@@ -106,13 +106,18 @@ namespace IbanNet
 			return false;
 		}
 
-		internal static string Normalize(string value)
+		/// <summary>
+		/// Normalizes an IBAN value by removing all whitespace.
+		/// </summary>
+		/// <param name="iban">The IBAN value.</param>
+		/// <returns>a normalized IBAN value</returns>
+		internal static string Normalize(string iban)
 		{
-			if (value == null)
+			if (iban == null)
 			{
 				return null;
 			}
-			return NormalizeRegex.Replace(value, "");
+			return NormalizeRegex.Replace(iban, "");
 		}
 	}
 }

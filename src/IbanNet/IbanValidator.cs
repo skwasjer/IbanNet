@@ -12,10 +12,36 @@ namespace IbanNet
 	/// </summary>
 	public class IbanValidator : IIbanValidator
 	{
-		private static readonly Lazy<IbanDefinitions> Definitions = new Lazy<IbanDefinitions>(LazyThreadSafetyMode.ExecutionAndPublication);
+		private Collection<IIbanValidationRule> _rules;
+
+		private IEnumerable<IIbanValidationRule> Rules
+		{
+			get
+			{
+				if (_rules == null)
+				{
+					var definitions = new IbanDefinitions();
+					_rules = new Collection<IIbanValidationRule>
+					{
+						new NotNullRule(),
+						new NoIllegalCharactersRule(),
+						new HasCountryCodeRule(),
+						new HasIbanChecksumRule(),
+						new IsValidCountryCodeRule(definitions),
+						new IsValidLengthRule(definitions),
+
+						// TODO: validate the country specific format.
+
+						// The last rule will always pass, but serves as a marker.
+						new FinalRule()
+					};
+				}
+				return _rules;
+			}
+		}
 
 		/// <summary>
-		/// Validates the specified <paramref name="iban"/> for correctness.
+		/// Validates the specified IBAN for correctness.
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
@@ -23,22 +49,7 @@ namespace IbanNet
 		{
 			var normalizedIban = Iban.Normalize(iban);
 
-			var _rules = new Collection<IIbanValidationRule>
-			{
-				new NotNullRule(),
-				new NoIllegalCharactersRule(),
-				new HasCountryCodeRule(),
-				new HasIbanChecksumRule(),
-				new IsValidCountryCodeRule(Definitions.Value),
-				new IsValidLengthRule(Definitions.Value),
-
-				// TODO: validate the country specific format.
-
-				// The last rule will always pass, but serves as a marker.
-				new FinalRule()
-			};
-
-			var testedRules = _rules.TakeUntil(rule => rule.Validate(normalizedIban) == false);
+			var testedRules = Rules.TakeUntil(rule => rule.Validate(normalizedIban) == false);
 			var lastTestedRule = testedRules.Last();
 
 			// If we hit the final rule all rules passed.

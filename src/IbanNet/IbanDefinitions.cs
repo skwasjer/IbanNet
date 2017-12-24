@@ -17,7 +17,6 @@ namespace IbanNet
 		/// <returns></returns>
 		private static IDictionary<string, IbanDefinition> GetDefinitions()
 		{
-
 			var definitions = DefinitionData
 				.Partition(8)
 				.Select(d =>

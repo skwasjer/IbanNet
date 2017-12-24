@@ -6,7 +6,7 @@
 	public interface IIbanValidator
 	{
 		/// <summary>
-		/// Validates the specified <paramref name="iban"/> for correctness.
+		/// Validates the specified IBAN for correctness.
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
