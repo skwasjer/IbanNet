@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace IbanNet
@@ -17,7 +18,8 @@ namespace IbanNet
 		private static IDictionary<string, IbanDefinition> GetDefinitions()
 		{
 
-			return DefinitionData.Partition(8)
+			var definitions = DefinitionData
+				.Partition(8)
 				.Select(d =>
 				{
 					var parts = d.ToList();
@@ -31,6 +33,11 @@ namespace IbanNet
 				})
 				.OrderBy(d => d.CountryCode)
 				.ToDictionary(kvp => kvp.CountryCode);
+
+			// At dev time, ensure all definitions are valid.
+			Debug.Assert(definitions.All(kvp => kvp.Value.Validate()), "One or more IBAN definitions are invalid.");
+
+			return definitions;
 		}
 
 		/// <summary>

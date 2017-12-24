@@ -28,6 +28,18 @@
 		/// </summary>
 		public string Example { get; set; }
 
+		public bool Validate()
+		{
+			// Must have a country code.
+			// Must have a length > 0.
+			// The structure must be a multiple of 3 characters.
+			// Must have an example with same length as defined in length property.
+			return CountryCode?.Length == 2
+				&& Length > 0
+				&& Structure?.Length % 3 == 0
+				&& Example?.Length == Length;
+		}
+
 		/// <summary>Determines whether the specified object is equal to the current object.</summary>
 		/// <param name="other">The <see cref="IbanDefinition"/> to compare with the current object. </param>
 		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
