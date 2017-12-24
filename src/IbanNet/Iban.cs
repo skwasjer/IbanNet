@@ -14,7 +14,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets or sets the <see cref="IIbanValidator"/> used to validate an IBAN.
 		/// </summary>
-		public static IIbanValidator Validator { get; set; }
+		public static IIbanValidator Validator { get; set; } = new IbanValidator();
 
 		private Iban(string iban)
 		{

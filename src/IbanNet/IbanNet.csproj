@@ -47,6 +47,7 @@
     <Compile Include="IbanDefinition.cs" />
     <Compile Include="IbanDefinitions.cs" />
     <Compile Include="IbanValidationResult.cs" />
+    <Compile Include="IbanValidator.cs" />
     <Compile Include="IIbanValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="IbanNet.nuspec" />
