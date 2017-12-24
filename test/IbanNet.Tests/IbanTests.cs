@@ -10,9 +10,9 @@ namespace IbanNet.Tests
 	{
 		private Mock<IIbanValidator> _ibanValidatorMock;
 
-		private const string ValidIban = "valid_iban";
-		private const string ValidIbanPartitioned = "vali d_ib an";
-		private const string InvalidIban = "invalid_iban";
+		private const string ValidIban = "VALID_IBAN";
+		private const string ValidIbanPartitioned = "VALI D_IB AN";
+		private const string InvalidIban = "INVALID_IBAN";
 
 		[SetUp]
 		public virtual void SetUp()

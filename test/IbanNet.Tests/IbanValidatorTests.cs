@@ -83,5 +83,16 @@ namespace IbanNet.Tests
 			// Assert
 			actual.Should().Be(IbanValidationResult.UnknownCountryCode);
 		}
+
+		[TestCase("NL91ABNA0417164300")]
+		[TestCase("NO9386011117947")]
+		public void When_validating_iban_with_invalid_structure_should_not_validate(string ibanWithInvalidStructure)
+		{
+			// Act
+			var actual = _validator.Validate(ibanWithInvalidStructure);
+
+			// Assert
+			actual.Should().Be(IbanValidationResult.InvalidStructure);
+		}
 	}
 }

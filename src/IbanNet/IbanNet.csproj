@@ -53,6 +53,7 @@
     <Compile Include="ValidationRules\CountrySpecificRule.cs" />
     <Compile Include="ValidationRules\HasIbanChecksumRule.cs" />
     <Compile Include="ValidationRules\IIbanValidationRule.cs" />
+    <Compile Include="ValidationRules\IsMatchingStructure.cs" />
     <Compile Include="ValidationRules\IsValidCountryCodeRule.cs" />
     <Compile Include="ValidationRules\IsValidLengthRule.cs" />
     <Compile Include="ValidationRules\NoIllegalCharactersRule.cs" />

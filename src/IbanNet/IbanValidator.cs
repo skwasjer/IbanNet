@@ -29,7 +29,7 @@ namespace IbanNet
 						new HasIbanChecksumRule(),
 						new IsValidCountryCodeRule(definitions),
 						new IsValidLengthRule(definitions),
-
+						new IsMatchingStructure(definitions),
 						// TODO: validate the country specific format.
 
 						// The last rule will always pass, but serves as a marker.
