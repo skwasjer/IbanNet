@@ -12,7 +12,7 @@ namespace IbanNet.Tests
 
 		private const string ValidIban = "AD1200012030200359100100";
 		private const string ValidIbanPartitioned = "AD12 0001 2030 2003 5910 0100";
-		private const string InvalidIban = "INVALID_IBAN";
+		private const string InvalidIban = "__INVALID_IBAN";
 
 		[SetUp]
 		public virtual void SetUp()
@@ -23,7 +23,7 @@ namespace IbanNet.Tests
 				.Returns(IbanValidationResult.Valid);
 			_ibanValidatorMock
 				.Setup(m => m.Validate(InvalidIban))
-				.Returns(IbanValidationResult.InvalidLength);
+				.Returns(IbanValidationResult.IllegalCharacters);
 
 			Iban.Validator = _ibanValidatorMock.Object;
 		}
@@ -47,7 +47,8 @@ namespace IbanNet.Tests
 				Action act = () => Iban.Parse(InvalidIban);
 
 				// Assert
-				act.ShouldThrow<FormatException>("the provided value was invalid");
+				act.ShouldThrow<IbanFormatException>("the provided value was invalid")
+					.Which.Result.Should().Be(IbanValidationResult.IllegalCharacters);
 			}
 
 			[Test]
@@ -59,7 +60,7 @@ namespace IbanNet.Tests
 				Action act = () => iban = Iban.Parse(ValidIban);
 
 				// Assert
-				act.ShouldNotThrow<FormatException>();
+				act.ShouldNotThrow<IbanFormatException>();
 				iban.Should().NotBeNull("the value should be parsed")
 					.And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(ValidIban, "the returned value should match the provided value");
 			}

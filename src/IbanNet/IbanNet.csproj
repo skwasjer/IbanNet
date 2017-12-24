@@ -51,6 +51,7 @@
     <Compile Include="Iban.cs" />
     <Compile Include="IbanDefinition.cs" />
     <Compile Include="IbanDefinitions.cs" />
+    <Compile Include="IbanFormatException.cs" />
     <Compile Include="IbanValidationResult.cs" />
     <Compile Include="IbanValidator.cs" />
     <Compile Include="IIbanValidator.cs" />

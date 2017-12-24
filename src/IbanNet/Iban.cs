@@ -94,12 +94,13 @@ namespace IbanNet
 			}
 
 			Iban iban;
-			if (TryParse(value, out iban))
+			IbanValidationResult validationResult;
+			if (TryParse(value, out iban, out validationResult))
 			{
 				return iban;
 			}
 
-			throw new FormatException($"The value '{value}' is not a valid IBAN.");
+			throw new IbanFormatException($"The value '{value}' is not a valid IBAN.", validationResult);
 		}
 
 		/// <summary>
@@ -111,13 +112,29 @@ namespace IbanNet
 		public static bool TryParse(string value, out Iban iban)
 		{
 			iban = null;
+			IbanValidationResult validationResult;
+
+			return TryParse(value, out iban, out validationResult);
+		}
+
+		/// <summary>
+		/// Attempts to parse the specified <paramref name="value"/> into an <see cref="Iban"/>.
+		/// </summary>
+		/// <param name="value">The IBAN value to parse.</param>
+		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
+		/// <param name="validationResult">The validation result.</param>
+		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
+		private static bool TryParse(string value, out Iban iban, out IbanValidationResult validationResult)
+		{
+			iban = null;
+			validationResult = IbanValidationResult.IllegalCharacters;
 			if (value == null)
 			{
 				return false;
 			}
 
 			var normalizedValue = Normalize(value);
-			if (Validator.Validate(normalizedValue) == IbanValidationResult.Valid)
+			if ((validationResult = Validator.Validate(normalizedValue)) == IbanValidationResult.Valid)
 			{
 				iban = new Iban(normalizedValue.ToUpperInvariant());
 				return true;
