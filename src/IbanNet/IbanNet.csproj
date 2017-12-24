@@ -43,8 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions.cs" />
+    <Compile Include="Iban.cs" />
     <Compile Include="IbanDefinition.cs" />
     <Compile Include="IbanDefinitions.cs" />
+    <Compile Include="IbanValidationResult.cs" />
+    <Compile Include="IIbanValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="IbanNet.nuspec" />
     <None Include="packages.config">
