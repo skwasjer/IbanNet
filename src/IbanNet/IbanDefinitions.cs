@@ -47,6 +47,7 @@ namespace IbanNet
 		/// </remarks>
 		private static readonly object[] DefinitionData =
 		{
+			// Date: 2017-12
 			"AD", 24, "F04F04A12", "AD1200012030200359100100", "n", "n", "n", "n",
 			"AE", 23, "F03F16", "AE070331234567890123456", "n", "n", "n", "n",
 			"AL", 28, "F08A16", "AL47212110090000000235698741", "n", "n", "n", "n",
