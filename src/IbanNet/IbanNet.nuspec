@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>IbanNet</id>
+		<version>$Version$</version>
+		<title>$Title$</title>
+		<authors>$Authors$</authors>
+		<owners>$Owners$</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>IBAN validator and converter</description>
+		<summary>Provides an IBAN validator for verifying IBAN's, and provides ways to convert old (national) bank account numbers to IBAN's using online (payed) services.</summary>
+		<releaseNotes>$ReleaseNotes$</releaseNotes>
+		<copyright>Copyright © 2017</copyright>
+		<projectUrl>$ProjectUrl$</projectUrl>
+		<tags>$Configuration$</tags>
+		<dependencies />
+	</metadata>
+</package>
