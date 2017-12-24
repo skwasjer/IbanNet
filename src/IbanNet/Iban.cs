@@ -9,6 +9,12 @@ namespace IbanNet
 	/// </summary>
 	public sealed class Iban
 	{
+		private static class Formats
+		{
+			public const string Partioned = "S";
+			public const string Flat = "F";
+		}
+
 		private static readonly Regex NormalizeRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		private readonly string _iban;
@@ -35,20 +41,20 @@ namespace IbanNet
 			switch (format)
 			{
 				// Flat
-				case "F":
+				case Formats.Flat:
 					return _iban;
 
 				// Partitioned by space
-				case "S":
+				case Formats.Partioned:
 					// Split into 4 char segments.
 					var segments = _iban.Partition(4).Select(p => string.Join("", p));
 					return string.Join(" ", segments);
 
 				case null:
-					throw new ArgumentNullException(nameof(format), "The format is required. Supported formats are 'F' (flat) and 'S' (partitioned by space).");
+					throw new ArgumentNullException(nameof(format), $"The format is required. Supported formats are '{Formats.Flat}' (flat) and '{Formats.Partioned}' (partitioned by space).");
 
 				default:
-					throw new ArgumentException($"The format '{format}' is invalid. Supported formats are 'F' (flat) and 'S' (partitioned by space).", nameof(format));
+					throw new ArgumentException($"The format '{format}' is invalid. Supported formats are '{Formats.Flat}' (flat) and '{Formats.Partioned}' (partitioned by space).", nameof(format));
 			}
 		}
 
@@ -56,7 +62,7 @@ namespace IbanNet
 		/// <returns>A string that represents the current <see cref="Iban"/>.</returns>
 		public override string ToString()
 		{
-			return ToString("S");
+			return ToString(Formats.Partioned);
 		}
 
 		/// <summary>
