@@ -99,7 +99,7 @@ namespace IbanNet
 			var normalizedValue = Normalize(value);
 			if (Validator.Validate(normalizedValue) == IbanValidationResult.Valid)
 			{
-				iban = new Iban(normalizedValue);
+				iban = new Iban(normalizedValue.ToUpperInvariant());
 				return true;
 			}
 
@@ -107,7 +107,7 @@ namespace IbanNet
 		}
 
 		/// <summary>
-		/// Normalizes an IBAN value by removing all whitespace.
+		/// Normalizes an IBAN value by removing all whitespace (but does not change character casing).
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a normalized IBAN value</returns>
