@@ -23,7 +23,7 @@ namespace IbanNet.Tests
 				.Returns(IbanValidationResult.Valid);
 			_ibanValidatorMock
 				.Setup(m => m.Validate(InvalidIban))
-				.Returns(IbanValidationResult.Invalid);
+				.Returns(IbanValidationResult.IncorrectLength);
 
 			Iban.Validator = _ibanValidatorMock.Object;
 		}
