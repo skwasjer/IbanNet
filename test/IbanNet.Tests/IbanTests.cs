@@ -61,7 +61,7 @@ namespace IbanNet.Tests
 				// Assert
 				act.ShouldNotThrow<FormatException>();
 				iban.Should().NotBeNull("the value should be parsed")
-					.And.Subject.As<Iban>().ToString("F").Should().Be(ValidIban, "the returned value should match the provided value");
+					.And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(ValidIban, "the returned value should match the provided value");
 			}
 		}
 
@@ -106,7 +106,7 @@ namespace IbanNet.Tests
 
 				// Assert
 				actual.Should().BeTrue("the provided value was valid");
-				iban.Should().NotBeNull().And.Subject.As<Iban>().ToString("F").Should().Be(ValidIban);
+				iban.Should().NotBeNull().And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(ValidIban);
 
 				_ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
 			}
@@ -149,8 +149,8 @@ namespace IbanNet.Tests
 					.Which.ParamName.Should().Be("format");
 			}
 
-			[TestCase("F", ValidIban)]
-			[TestCase("S", ValidIbanPartitioned)]
+			[TestCase(Iban.Formats.Flat, ValidIban)]
+			[TestCase(Iban.Formats.Partioned, ValidIbanPartitioned)]
 			public void With_valid_format_should_succeed(string format, string expected)
 			{
 				// Act

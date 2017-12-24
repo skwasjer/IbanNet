@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -9,14 +11,26 @@ namespace IbanNet
 	/// </summary>
 	public sealed class Iban
 	{
-		private static class Formats
+		/// <summary>
+		/// The supported IBAN output formats.
+		/// </summary>
+		public static class Formats
 		{
+			/// <summary>
+			/// Partitions an IBAN into 4 character segments separated with a space.
+			/// </summary>
 			public const string Partioned = "S";
+
+			/// <summary>
+			/// An IBAN without whitespace.
+			/// </summary>
 			public const string Flat = "F";
 		}
 
 		private static readonly Regex NormalizeRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		private readonly string _iban;
 
 		/// <summary>
