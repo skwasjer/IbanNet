@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace IbanNet
 {
@@ -30,6 +31,39 @@ namespace IbanNet
 			if (partition.Count > 0)
 			{
 				yield return partition;
+			}
+		}
+
+		/// <summary>Returns elements from a sequence until a specified condition is true.</summary>
+		/// <param name="source">A sequence to return elements from.</param>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
+		/// <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains the elements from the input sequence that occur before and including the element at which the test no longer passes.</returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		/// <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.</exception>
+		public static IEnumerable<TSource> TakeUntil<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+		{
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+			if (predicate == null)
+			{
+				throw new ArgumentNullException(nameof(predicate));
+			}
+
+			return TakeUntilIterator(source, predicate);
+		}
+
+		private static IEnumerable<TSource> TakeUntilIterator<TSource>(IEnumerable<TSource> source, Func<TSource, bool> predicate)
+		{
+			foreach (TSource item in source)
+			{
+				yield return item;
+				if (predicate(item))
+				{
+					break;
+				}
 			}
 		}
 	}

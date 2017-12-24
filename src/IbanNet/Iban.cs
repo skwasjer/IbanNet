@@ -106,8 +106,12 @@ namespace IbanNet
 			return false;
 		}
 
-		private static string Normalize(string value)
+		internal static string Normalize(string value)
 		{
+			if (value == null)
+			{
+				return null;
+			}
 			return NormalizeRegex.Replace(value, "");
 		}
 	}

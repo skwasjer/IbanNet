@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="IbanDefinitionsTests.cs" />
     <Compile Include="IbanTests.cs" />
+    <Compile Include="IbanValidatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +80,9 @@
       <Project>{0032CDE8-09A3-4D68-88A1-60E3F4FC99A3}</Project>
       <Name>IbanNet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

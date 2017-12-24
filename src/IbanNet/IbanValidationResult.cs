@@ -3,6 +3,12 @@
 	public enum IbanValidationResult
 	{
 		Invalid,
-		Valid
+		Valid,
+		IllegalCharacters,
+		UnknownCountryCode,
+		InvalidStructure,
+		WrongCheckDigits,
+		CantCheckLength,
+		IncorrectLength,
 	}
 }
