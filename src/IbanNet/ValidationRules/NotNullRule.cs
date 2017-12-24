@@ -8,7 +8,7 @@
 		/// <summary>
 		/// The validation result to use when this rule is not valid.
 		/// </summary>
-		public IbanValidationResult InvalidResult { get; } = IbanValidationResult.IncorrectLength;
+		public IbanValidationResult InvalidResult { get; } = IbanValidationResult.InvalidLength;
 
 		/// <summary>
 		/// Validates the IBAN against this rule.

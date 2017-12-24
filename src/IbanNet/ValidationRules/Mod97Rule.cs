@@ -9,7 +9,7 @@ namespace IbanNet.ValidationRules
 	{
 		private static readonly int CharCodeA = 'A';
 
-		public IbanValidationResult InvalidResult { get; } = IbanValidationResult.WrongCheckDigits;
+		public IbanValidationResult InvalidResult { get; } = IbanValidationResult.InvalidCheckDigits;
 		public bool Validate(string iban)
 		{
 			var upperIban = iban.ToUpperInvariant();

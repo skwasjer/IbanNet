@@ -12,7 +12,7 @@
 		/// <summary>
 		/// The validation result to use when this rule is not valid.
 		/// </summary>
-		public override IbanValidationResult InvalidResult { get; } = IbanValidationResult.IncorrectLength;
+		public override IbanValidationResult InvalidResult { get; } = IbanValidationResult.InvalidLength;
 
 		/// <summary>
 		/// Validates the IBAN according to the country specific definition.

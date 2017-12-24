@@ -23,7 +23,7 @@ namespace IbanNet.Tests
 			var actual = _validator.Validate(null);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.IncorrectLength);
+			actual.Should().Be(IbanValidationResult.InvalidLength);
 		}
 
 		[TestCase("NL91ABNA041716430!")]
@@ -72,7 +72,7 @@ namespace IbanNet.Tests
 			var actual = _validator.Validate(ibanWithIncorrectLength);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.IncorrectLength);
+			actual.Should().Be(IbanValidationResult.InvalidLength);
 		}
 
 		[TestCase("AA91ABNA0417164300")]
@@ -105,7 +105,7 @@ namespace IbanNet.Tests
 			var actual = _validator.Validate(tamperedIban);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.WrongCheckDigits);
+			actual.Should().Be(IbanValidationResult.InvalidCheckDigits);
 		}
 
 		private static IEnumerable GetAllValidSamples()
