@@ -9,6 +9,8 @@ namespace IbanNet
 	/// </summary>
 	public sealed class Iban
 	{
+		private static readonly Regex NormalizeRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
 		private readonly string _iban;
 
 		/// <summary>
@@ -94,7 +96,7 @@ namespace IbanNet
 				return false;
 			}
 
-			var normalizedValue = Regex.Replace(value, @"\s+", "");
+			var normalizedValue = Normalize(value);
 			if (Validator.Validate(normalizedValue) == IbanValidationResult.Valid)
 			{
 				iban = new Iban(normalizedValue);
@@ -102,6 +104,11 @@ namespace IbanNet
 			}
 
 			return false;
+		}
+
+		private static string Normalize(string value)
+		{
+			return NormalizeRegex.Replace(value, "");
 		}
 	}
 }
