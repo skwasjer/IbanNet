@@ -125,5 +125,53 @@ namespace IbanNet
 			}
 			return NormalizeRegex.Replace(iban, "");
 		}
+
+		private bool Equals(Iban other)
+		{
+			return string.Equals(_iban, other._iban);
+		}
+
+		/// <summary>
+		/// Determines whether the specified object is equal to the current object.
+		/// </summary>
+		/// <param name="obj">The object to compare with the current object. </param>
+		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			return obj is Iban && Equals((Iban)obj);
+		}
+
+		/// <summary>
+		/// Serves as the default hash function.
+		/// </summary>
+		/// <returns>A hash code for the current object.</returns>
+		public override int GetHashCode()
+		{
+			return (_iban != null ? _iban.GetHashCode() : 0);
+		}
+
+		/// <summary>
+		/// Determines whether the <see cref="Iban"/>s are equal to eachother.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator ==(Iban left, Iban right)
+		{
+			return Equals(left, right);
+		}
+
+		/// <summary>
+		/// Determines whether the <see cref="Iban"/>s are unequal to eachother.
+		/// </summary>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns></returns>
+		public static bool operator !=(Iban left, Iban right)
+		{
+			return !Equals(left, right);
+		}
 	}
 }
