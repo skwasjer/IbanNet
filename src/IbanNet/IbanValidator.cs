@@ -30,7 +30,7 @@ namespace IbanNet
 						new IsValidCountryCodeRule(definitions),
 						new IsValidLengthRule(definitions),
 						new IsMatchingStructure(definitions),
-						// TODO: validate the country specific format.
+						new Mod97Rule(),
 
 						// The last rule will always pass, but serves as a marker.
 						new FinalRule()

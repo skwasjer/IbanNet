@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System.Collections;
+using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace IbanNet.Tests
@@ -84,8 +86,8 @@ namespace IbanNet.Tests
 			actual.Should().Be(IbanValidationResult.UnknownCountryCode);
 		}
 
-		[TestCase("NL91ABNA0417164300")]
-		[TestCase("NO9386011117947")]
+		[TestCase("NL91ABNA041716430A")]
+		[TestCase("NO938601111794A")]
 		public void When_validating_iban_with_invalid_structure_should_not_validate(string ibanWithInvalidStructure)
 		{
 			// Act
@@ -93,6 +95,32 @@ namespace IbanNet.Tests
 
 			// Assert
 			actual.Should().Be(IbanValidationResult.InvalidStructure);
+		}
+
+		[TestCase("NL92ABNA0417164300")]
+		[TestCase("NO9486011117947")]
+		public void When_validating_tampered_iban_should_not_validate(string tamperedIban)
+		{
+			// Act
+			var actual = _validator.Validate(tamperedIban);
+
+			// Assert
+			actual.Should().Be(IbanValidationResult.WrongCheckDigits);
+		}
+
+		private static IEnumerable GetAllValidSamples()
+		{
+			return new IbanDefinitions().Select(d => new TestCaseData(d.Key, d.Value.Example));
+		}
+
+		[TestCaseSource(nameof(GetAllValidSamples))]
+		public void When_validating_good_iban_should_validate(string countryCode, string iban)
+		{
+			// Act
+			var actual = _validator.Validate(iban);
+
+			// Assert
+			actual.Should().Be(IbanValidationResult.Valid);
 		}
 	}
 }

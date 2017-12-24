@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,7 @@
     <Compile Include="ValidationRules\IsMatchingStructure.cs" />
     <Compile Include="ValidationRules\IsValidCountryCodeRule.cs" />
     <Compile Include="ValidationRules\IsValidLengthRule.cs" />
+    <Compile Include="ValidationRules\Mod97Rule.cs" />
     <Compile Include="ValidationRules\NoIllegalCharactersRule.cs" />
     <Compile Include="ValidationRules\NotNullRule.cs" />
     <Compile Include="ValidationRules\RegexRule.cs" />
