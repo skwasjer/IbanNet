@@ -1,7 +1,7 @@
 ﻿# -- Init
 $ciPath = (Split-Path $MyInvocation.MyCommand.Path)
-$repoPath = $ciPath + "\.." # TODO: set this to AppVeyor env var
-$packagePath = $repoPath + "\packages"
+$repoPath = Join-Path $ciPath "\.." # TODO: set this to AppVeyor env var
+$packagePath = Join-Path $repoPath "\packages"
 $debug = $false
 
 # -- Unzip helper
@@ -14,13 +14,13 @@ function Unzip
 }
 
 # -- Downloads and unpacks a Nuget package
-function DownloadAndUnpackNugetPackage
+function Download-And-Unpack-Nuget-Package
 {
     param([string]$packageName, [string]$version, [string]$outpath)
 
     $nugetUri = "https://www.nuget.org/api/v2/package/$packageName/$version"
-    $packagePath = "$outpath\$packageName.$version.nupkg"
-    $unpackPath = "$outpath\$packageName.$version"
+    $packagePath = Join-Path $outpath "$packageName.$version.nupkg"
+    $unpackPath = Join-Path $outpath "$packageName.$version"
 
     Write-Host "Downloading $nugetUri" -ForegroundColor Yellow
     if (Test-Path $unpackPath)
@@ -55,11 +55,11 @@ function DownloadAndUnpackNugetPackage
     return $unpackPath
 }
 
-$unpackZoltuFolder = DownloadAndUnpackNugetPackage "Zoltu.Versioning" "1.2.34" $packagePath
+$unpackZoltuFolder = Download-And-Unpack-Nuget-Package "Zoltu.Versioning" "1.2.34" $packagePath
 
 # Add reference to Zoltu DLL's
-Add-Type -Path ($unpackZoltuFolder + "\build\LibGit2Sharp.dll")
-Add-Type -Path ($unpackZoltuFolder + "\build\Zoltu.Versioning.dll")
+Add-Type -Path (Join-Path $unpackZoltuFolder "build\LibGit2Sharp.dll")
+Add-Type -Path (Join-Path $unpackZoltuFolder "build\Zoltu.Versioning.dll")
 
 # Get repo path (.git folder)
 $gitRepositoryPath = [LibGit2Sharp.Repository]::Discover($repoPath)
@@ -96,14 +96,4 @@ if ($debug)
     }
 }
 
-$versions = [Zoltu.Versioning.VersionFinder]::GetVersions($commits, $tags);
-
-# Build version with preferences
-#$versionConfig = New-Object -TypeName Zoltu.Versioning.VersionConfiguration -ArgumentList 1, 1, 1, 1, 1, 1
-#$versionConfigAppl = New-Object -TypeName Zoltu.Versioning.VersionConfigurationApplicator -ArgumentList $versions, $versionConfig
-
-#return $versionConfigAppl
-
-#Write-Host
-#Write-Host "Setting Version: $($versions.Version), FileVersion: $($versions.FileVersion), InfoVersion: $($versions.InfoVersion)" -ForegroundColor Yellow
-return $versions
+return [Zoltu.Versioning.VersionFinder]::GetVersions($commits, $tags);
