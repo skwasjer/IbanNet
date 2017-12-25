@@ -1,81 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0032CDE8-09A3-4D68-88A1-60E3F4FC99A3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IbanNet</RootNamespace>
-    <AssemblyName>IbanNet</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>netstandard1.2;net452;net462</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <WarningsAsErrors>CS1591</WarningsAsErrors>
-    <DocumentationFile>bin\Debug\IbanNet.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <WarningsAsErrors>CS1591</WarningsAsErrors>
-    <DocumentationFile>bin\Release\IbanNet.XML</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net452' OR '$(TargetFramework)'=='net462'">
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Iban.cs" />
-    <Compile Include="IbanDefinition.cs" />
-    <Compile Include="IbanDefinitions.cs" />
-    <Compile Include="IbanFormatException.cs" />
-    <Compile Include="IbanValidationResult.cs" />
-    <Compile Include="IbanValidator.cs" />
-    <Compile Include="IIbanValidator.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidationRules\CountrySpecificRule.cs" />
-    <Compile Include="ValidationRules\HasIbanChecksumRule.cs" />
-    <Compile Include="ValidationRules\IIbanValidationRule.cs" />
-    <Compile Include="ValidationRules\IsMatchingStructureRule.cs" />
-    <Compile Include="ValidationRules\IsValidCountryCodeRule.cs" />
-    <Compile Include="ValidationRules\IsValidLengthRule.cs" />
-    <Compile Include="ValidationRules\Mod97Rule.cs" />
-    <Compile Include="ValidationRules\NoIllegalCharactersRule.cs" />
-    <Compile Include="ValidationRules\NotNullRule.cs" />
-    <Compile Include="ValidationRules\RegexRule.cs" />
-    <Compile Include="ValidationRules\HasCountryCodeRule.cs" />
-    <None Include="IbanNet.nuspec" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <PackageVersion>1.0.0</PackageVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Authors>Martijn Bodeman</Authors>
+	<Company></Company>
+    <Description>Provides an IBAN validator for verifying IBAN's, and provides ways to convert old (national) bank account numbers to IBAN's using online (payed) services.</Description>
+    <Copyright>Copyright © 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/skwasjer/IbanNet/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet.git</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/skwasjer/IbanNet.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>IBAN, International Bank Account Number</PackageTags>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\IbanNet.xml</DocumentationFile>
+    <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+  </PropertyGroup>
+
 </Project>
