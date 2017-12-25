@@ -19,7 +19,7 @@ namespace IbanNet
 			/// <summary>
 			/// Partitions an IBAN into 4 character segments separated with a space.
 			/// </summary>
-			public const string Partioned = "S";
+			public const string Partitioned = "S";
 
 			/// <summary>
 			/// An IBAN without whitespace.
@@ -59,16 +59,16 @@ namespace IbanNet
 					return _iban;
 
 				// Partitioned by space
-				case Formats.Partioned:
+				case Formats.Partitioned:
 					// Split into 4 char segments.
 					var segments = _iban.Partition(4).Select(p => string.Join("", p));
 					return string.Join(" ", segments);
 
 				case null:
-					throw new ArgumentNullException(nameof(format), $"The format is required. Supported formats are '{Formats.Flat}' (flat) and '{Formats.Partioned}' (partitioned by space).");
+					throw new ArgumentNullException(nameof(format), $"The format is required. Supported formats are '{Formats.Flat}' (flat) and '{Formats.Partitioned}' (partitioned by space).");
 
 				default:
-					throw new ArgumentException($"The format '{format}' is invalid. Supported formats are '{Formats.Flat}' (flat) and '{Formats.Partioned}' (partitioned by space).", nameof(format));
+					throw new ArgumentException($"The format '{format}' is invalid. Supported formats are '{Formats.Flat}' (flat) and '{Formats.Partitioned}' (partitioned by space).", nameof(format));
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace IbanNet
 		/// <returns>A string that represents the current <see cref="Iban"/>.</returns>
 		public override string ToString()
 		{
-			return ToString(Formats.Partioned);
+			return ToString(Formats.Partitioned);
 		}
 
 		/// <summary>

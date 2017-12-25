@@ -151,7 +151,7 @@ namespace IbanNet.Tests
 			}
 
 			[TestCase(Iban.Formats.Flat, ValidIban)]
-			[TestCase(Iban.Formats.Partioned, ValidIbanPartitioned)]
+			[TestCase(Iban.Formats.Partitioned, ValidIbanPartitioned)]
 			public void With_valid_format_should_succeed(string format, string expected)
 			{
 				// Act
