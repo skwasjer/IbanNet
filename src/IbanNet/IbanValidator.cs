@@ -28,7 +28,7 @@ namespace IbanNet
 						new HasIbanChecksumRule(),
 						new IsValidCountryCodeRule(definitions),
 						new IsValidLengthRule(definitions),
-						new IsMatchingStructure(definitions),
+						new IsMatchingStructureRule(definitions),
 						new Mod97Rule(),
 
 						// The last rule will always pass, but serves as a marker.

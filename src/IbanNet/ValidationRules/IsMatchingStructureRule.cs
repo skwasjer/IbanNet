@@ -3,9 +3,9 @@
 	/// <summary>
 	/// Asserts that the IBAN is matching the structure defined for a specific country.
 	/// </summary>
-	internal class IsMatchingStructure : CountrySpecificRule
+	internal class IsMatchingStructureRule : CountrySpecificRule
 	{
-		public IsMatchingStructure(IbanDefinitions definitions) : base(definitions)
+		public IsMatchingStructureRule(IbanDefinitions definitions) : base(definitions)
 		{
 		}
 
