@@ -8,7 +8,15 @@ $debug = $false
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 function Unzip
 {
-    param([string]$zipfile, [string]$outpath)
+    param(
+        [parameter(Mandatory=$true)]
+        [string]
+        $zipfile,
+    
+        [parameter(Mandatory=$true)]    
+        [string]
+        $outpath
+    )
 
     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
 }
@@ -16,7 +24,19 @@ function Unzip
 # -- Downloads and unpacks a Nuget package
 function Download-And-Unpack-Nuget-Package
 {
-    param([string]$packageName, [string]$version, [string]$outpath)
+    param(
+        [parameter(Mandatory=$true)]
+        [string]
+        $packageName, 
+        
+        [parameter(Mandatory=$true)]
+        [string]
+        $version,
+
+        [parameter(Mandatory=$true)]
+        [string]
+        $outpath
+    )
 
     $nugetUri = "https://www.nuget.org/api/v2/package/$packageName/$version"
     $packagePath = Join-Path $outpath "$packageName.$version.nupkg"
