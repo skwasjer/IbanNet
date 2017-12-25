@@ -1,4 +1,4 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/fq829j3tjy5x5g49?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
 
 # IbanNet
 
