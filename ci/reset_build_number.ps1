@@ -23,10 +23,14 @@ $lastBuildVersion = $response.builds | select -first 1 @{Label="MajorVersion"; E
 
 if ($lastBuildVersion.MajorVersion -ne $buildVersion.MajorVersion -or ($lastBuildVersion.MajorVersion -eq $buildVersion.MajorVersion -and $lastBuildVersion.MinorVersion -ne $buildVersion.MinorVersion))
 {
+  Write-Output "Major or minor version increase found, resetting build number."
+  Write-Output "Last version was v$($lastBuildVersion.MajorVersion).$($lastBuildVersion.MinorVersion).$($lastBuildVersion.BuildVersion)."
+  Write-Output "Setting new version to v$($buildVersion.MajorVersion).$($buildVersion.MinorVersion).0."
   $build = @{
       nextBuildNumber = 0
   }
   $json = $build | ConvertTo-Json
 
   Invoke-RestMethod -Method Put "$apiUrl/projects/$accountName/$projectSlug/settings/build-number" -Body $json -Headers $headers
+  Write-Host "OK" -ForegroundColor Green
 }
