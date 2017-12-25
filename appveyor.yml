@@ -1,6 +1,4 @@
 version: 1.0.0.{build}-ci
-pull_requests:
-  do_not_increment_build_number: true
 skip_branch_with_pr: true
 image: Visual Studio 2017
 configuration: Release
