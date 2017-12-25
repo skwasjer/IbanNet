@@ -1,16 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
+    <TargetFrameworks>netstandard1.2;net452;net462</TargetFrameworks>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.0\IbanNet.xml</DocumentationFile>
-    <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+  <ItemGroup Condition="'$(TargetFramework)'=='net452' OR '$(TargetFramework)'=='net462'">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <Authors>Martijn Bodeman</Authors>
+	<Company></Company>
+    <Description>Provides an IBAN validator for verifying IBAN's, and provides ways to convert old (national) bank account numbers to IBAN's using online (payed) services.</Description>
+    <Copyright>Copyright © 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/skwasjer/IbanNet/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet.git</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/skwasjer/IbanNet.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\IbanNet.xml</DocumentationFile>
+  
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\IbanNet.xml</DocumentationFile>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
   </PropertyGroup>
 
