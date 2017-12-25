@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -7,38 +8,50 @@ namespace IbanNet
 	/// <summary>
 	/// Describes how an IBAN for a given country is defined.
 	/// </summary>
-    internal sealed class IbanDefinition
+	public sealed class IbanRegionDefinition
 	{
 		private static readonly Regex IsValidStructure = new Regex(@"^([ABCFLUW]\d{2})+$", RegexOptions.CultureInvariant | RegexOptions.Singleline);
 		private Regex _structureTest;
+		private RegionInfo _regionInfo;
+
+		internal IbanRegionDefinition()
+		{
+			// Hide from public.
+		}
 
 		/// <summary>
-		/// Gets or sets the country code.
+		/// Gets the country code.
 		/// </summary>
-		public string CountryCode { get; set; }
+		// ReSharper disable once InconsistentNaming
+		public string TwoLetterISORegionName { get; internal set; }
 
 		/// <summary>
-		/// Gets or sets the IBAN character length.
+		/// Gets the IBAN character length.
 		/// </summary>
-		public int Length { get; set; }
+		public int Length { get; internal set; }
 
 		/// <summary>
-		/// Gets or sets the structure of the IBAN.
+		/// Gets the structure of the IBAN.
 		/// </summary>
 		/// <remarks>
 		/// See http://www.tbg5-finance.org/checkiban.js for all structures.
 		/// </remarks>
-		public string Structure { get; set; }
+		internal string Structure { get; set; }
 
 		/// <summary>
-		/// Gets or sets the IBAN example, for verification purposes.
+		/// Gets the IBAN example, for verification purposes.
 		/// </summary>
-		public string Example { get; set; }
+		public string Example { get; internal set; }
+
+		/// <summary>
+		/// Gets the region.
+		/// </summary>
+		public RegionInfo Region => _regionInfo ?? (_regionInfo = new RegionInfo(TwoLetterISORegionName));
 
 		/// <summary>
 		/// Gets a regex that can be used to test if an IBAN value has the correct structure.
 		/// </summary>
-		public Regex StructureTest => _structureTest ?? (
+		internal Regex StructureTest => _structureTest ?? (
 				_structureTest = new Regex(
 					BuildStructureRegexPattern("B04" + Structure), 
 					RegexOptions.CultureInvariant
@@ -74,7 +87,7 @@ namespace IbanNet
 			return regexPattern;
 		}
 
-		public bool Validate()
+		internal bool Validate()
 		{
 			// Must have a country code.
 			// Must have a length > 0.
@@ -82,20 +95,21 @@ namespace IbanNet
 			// Must have an example with same length as defined in length property.
 			// The structure must not contain invalid characters.
 			// The example should pass the structure test.
-			return CountryCode?.Length == 2
+			return TwoLetterISORegionName?.Length == 2
 				&& Length > 0
 				&& Structure?.Length % 3 == 0
 				&& Example?.Length == Length
 				&& IsValidStructure.IsMatch(Structure)
-				&& StructureTest.IsMatch(Example);
+				&& StructureTest.IsMatch(Example)
+				&& Region.TwoLetterISORegionName == TwoLetterISORegionName;
 		}
 
 		/// <summary>Determines whether the specified object is equal to the current object.</summary>
-		/// <param name="other">The <see cref="IbanDefinition"/> to compare with the current object. </param>
+		/// <param name="other">The <see cref="IbanRegionDefinition"/> to compare with the current object. </param>
 		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
-		private bool Equals(IbanDefinition other)
+		private bool Equals(IbanRegionDefinition other)
 		{
-			return string.Equals(CountryCode, other.CountryCode) && Length == other.Length && string.Equals(Structure, other.Structure) && string.Equals(Example, other.Example);
+			return string.Equals(TwoLetterISORegionName, other.TwoLetterISORegionName) && Length == other.Length && string.Equals(Structure, other.Structure) && string.Equals(Example, other.Example);
 		}
 
 		/// <summary>Determines whether the specified object is equal to the current object.</summary>
@@ -106,7 +120,7 @@ namespace IbanNet
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj.GetType() != GetType()) return false;
-			return Equals((IbanDefinition) obj);
+			return Equals((IbanRegionDefinition) obj);
 		}
 
 		/// <summary>Serves as the default hash function. </summary>
@@ -116,7 +130,7 @@ namespace IbanNet
 			unchecked
 			{
 				// ReSharper disable NonReadonlyMemberInGetHashCode
-				var hashCode = (CountryCode != null ? CountryCode.GetHashCode() : 0);
+				var hashCode = (TwoLetterISORegionName != null ? TwoLetterISORegionName.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ Length;
 				hashCode = (hashCode * 397) ^ (Structure != null ? Structure.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (Example != null ? Example.GetHashCode() : 0);

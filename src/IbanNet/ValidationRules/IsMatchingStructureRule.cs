@@ -1,11 +1,13 @@
-﻿namespace IbanNet.ValidationRules
+﻿using System.Collections.Generic;
+
+namespace IbanNet.ValidationRules
 {
 	/// <summary>
 	/// Asserts that the IBAN is matching the structure defined for a specific country.
 	/// </summary>
 	internal class IsMatchingStructureRule : CountrySpecificRule
 	{
-		public IsMatchingStructureRule(IbanDefinitions definitions) : base(definitions)
+		public IsMatchingStructureRule(IReadOnlyDictionary<string, IbanRegionDefinition> definitions) : base(definitions)
 		{
 		}
 
@@ -20,7 +22,7 @@
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <param name="definition">The country specific definition, or null if no definition was found.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		protected override bool Validate(string iban, IbanDefinition definition)
+		protected override bool Validate(string iban, IbanRegionDefinition definition)
 		{
 			return definition.StructureTest.IsMatch(iban);
 		}		

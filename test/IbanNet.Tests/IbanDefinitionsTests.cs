@@ -24,9 +24,9 @@ namespace IbanNet.Tests
 		private static IEnumerable GetExpectedDefinitions()
 		{
 			yield return new TestCaseData(
-				new IbanDefinition
+				new IbanRegionDefinition
 				{
-					CountryCode = "AD",
+					TwoLetterISORegionName = "AD",
 					Length = 24,
 					Structure = "F04F04A12",
 					Example = "AD1200012030200359100100"
@@ -37,9 +37,9 @@ namespace IbanNet.Tests
 			;
 
 			yield return new TestCaseData(
-				new IbanDefinition
+				new IbanRegionDefinition
 				{
-					CountryCode = "XK",
+					TwoLetterISORegionName = "XK",
 					Length = 20,
 					Structure = "F04F10F02",
 					Example = "XK051212012345678906"
@@ -51,7 +51,7 @@ namespace IbanNet.Tests
 		}
 
 		[TestCaseSource(nameof(GetExpectedDefinitions))]
-		public void When_definitions_are_loaded_should_contain(IbanDefinition expectedDefinition)
+		public void When_definitions_are_loaded_should_contain(IbanRegionDefinition expectedDefinition)
 		{
 			_sut.Should().ContainValue(expectedDefinition);
 		}

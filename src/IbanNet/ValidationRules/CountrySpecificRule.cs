@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace IbanNet.ValidationRules
 {
@@ -7,9 +8,9 @@ namespace IbanNet.ValidationRules
 	/// </summary>
 	internal abstract class CountrySpecificRule : IIbanValidationRule
 	{
-		private readonly IbanDefinitions _definitions;
+		private readonly IReadOnlyDictionary<string, IbanRegionDefinition> _definitions;
 
-		protected CountrySpecificRule(IbanDefinitions definitions)
+		protected CountrySpecificRule(IReadOnlyDictionary<string, IbanRegionDefinition> definitions)
 		{
 			if (definitions == null)
 			{
@@ -31,7 +32,7 @@ namespace IbanNet.ValidationRules
 		public bool Validate(string iban)
 		{
 			var countryCode = iban.Substring(0, 2);
-			IbanDefinition definition;
+			IbanRegionDefinition definition;
 			_definitions.TryGetValue(countryCode, out definition);
 
 			return Validate(iban, definition);
@@ -43,6 +44,6 @@ namespace IbanNet.ValidationRules
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <param name="definition">The country specific definition, or null if no definition was found.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		protected abstract bool Validate(string iban, IbanDefinition definition);
+		protected abstract bool Validate(string iban, IbanRegionDefinition definition);
 	}
 }

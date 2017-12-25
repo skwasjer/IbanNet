@@ -5,33 +5,36 @@ using System.Linq;
 
 namespace IbanNet
 {
-	internal class IbanDefinitions : ReadOnlyDictionary<string, IbanDefinition>
+	/// <summary>
+	/// Represents a read only dictionary of <see cref="IbanRegionDefinition"/>.
+	/// </summary>
+	internal class IbanDefinitions : ReadOnlyDictionary<string, IbanRegionDefinition>
 	{
 		public IbanDefinitions() : base(GetDefinitions())
 		{
 		}
 
 		/// <summary>
-		/// Partitions the <see cref="DefinitionData"/> and then builds <see cref="IbanDefinition"/>s from the resulting data. The <see cref="DefinitionData"/> is expected to have 8 segments per definition.
+		/// Partitions the <see cref="DefinitionData"/> and then builds <see cref="IbanRegionDefinition"/>s from the resulting data. The <see cref="DefinitionData"/> is expected to have 8 segments per definition.
 		/// </summary>
 		/// <returns></returns>
-		private static IDictionary<string, IbanDefinition> GetDefinitions()
+		private static IDictionary<string, IbanRegionDefinition> GetDefinitions()
 		{
 			var definitions = DefinitionData
 				.Partition(8)
 				.Select(d =>
 				{
 					var parts = d.ToList();
-					return new IbanDefinition
+					return new IbanRegionDefinition
 					{
-						CountryCode = (string) parts[0],
+						TwoLetterISORegionName = (string) parts[0],
 						Length = (int) parts[1],
 						Structure = (string) parts[2],
 						Example = (string) parts[3]
 					};
 				})
-				.OrderBy(d => d.CountryCode)
-				.ToDictionary(kvp => kvp.CountryCode);
+				.OrderBy(d => d.TwoLetterISORegionName)
+				.ToDictionary(kvp => kvp.TwoLetterISORegionName);
 
 			// At dev time, ensure all definitions are valid.
 			Debug.Assert(definitions.All(kvp => kvp.Value.Validate()), "One or more IBAN definitions are invalid.");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using IbanNet.ValidationRules;
 
@@ -12,32 +13,32 @@ namespace IbanNet
 	public class IbanValidator : IIbanValidator
 	{
 		private Collection<IIbanValidationRule> _rules;
+		private IbanDefinitions _definitions;
 
-		private IEnumerable<IIbanValidationRule> Rules
+		private IEnumerable<IIbanValidationRule> Rules => _rules ?? (_rules = new Collection<IIbanValidationRule>
 		{
-			get
-			{
-				if (_rules == null)
-				{
-					var definitions = new IbanDefinitions();
-					_rules = new Collection<IIbanValidationRule>
-					{
-						new NotNullRule(),
-						new NoIllegalCharactersRule(),
-						new HasCountryCodeRule(),
-						new HasIbanChecksumRule(),
-						new IsValidCountryCodeRule(definitions),
-						new IsValidLengthRule(definitions),
-						new IsMatchingStructureRule(definitions),
-						new Mod97Rule(),
+			new NotNullRule(),
+			new NoIllegalCharactersRule(),
+			new HasCountryCodeRule(),
+			new HasIbanChecksumRule(),
+			new IsValidCountryCodeRule(Definitions),
+			new IsValidLengthRule(Definitions),
+			new IsMatchingStructureRule(Definitions),
+			new Mod97Rule(),
 
-						// The last rule will always pass, but serves as a marker.
-						new FinalRule()
-					};
-				}
-				return _rules;
-			}
-		}
+			// The last rule will always pass, but serves as a marker.
+			new FinalRule()
+		});
+
+		/// <summary>
+		/// Gets all the definitions the <see cref="IbanValidator"/> supports.
+		/// </summary>
+		private IReadOnlyDictionary<string, IbanRegionDefinition> Definitions => _definitions ?? (_definitions = new IbanDefinitions());
+
+		/// <summary>
+		/// Gets the supported regions.
+		/// </summary>
+		public IEnumerable<IbanRegionDefinition> SupportedRegions => Definitions.Values;
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.
