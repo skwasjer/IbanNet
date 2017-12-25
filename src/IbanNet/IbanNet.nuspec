@@ -2,6 +2,7 @@
 <package >
 	<metadata>
 		<id>IbanNet</id>
+		<version>1.0.0</version>
 		<title>IbanNet</title>
 		<authors>Martijn Bodeman</authors>
 		<owners>Martijn Bodeman</owners>
