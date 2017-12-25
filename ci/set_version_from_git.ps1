@@ -14,10 +14,11 @@ if ($versions)
         $newAppVeyorVersion += "-" + $versions.Version.Suffix
     }
 
-    Write-Host "AppVeyor build $env:APPVEYOR_BUILD_NUMBER will be using version v$newVersion"
+    Write-Host "AppVeyor build v$newAppVeyorVersion will be building package version v$newVersion"
 
     Try
     {
+        Set-AppveyorBuildVariable "nuget_package_version" $newVersion
         Update-AppveyorBuild -Version $newAppVeyorVersion
     }
     Catch
