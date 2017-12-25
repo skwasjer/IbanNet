@@ -35,6 +35,28 @@ IbanValidationResult validationResult = validator.Validate("NL91ABNA041716430");
 ```
 The benefit of using the validator is that it implements the IIbanValidator interface. This allows for mocking and using a DI container. It is recommended that when you do, that you cache the validator or register it as a singleton, since the initialization - although not much - does introduce some overhead when initializing the IBAN validation rules.
 
+### Iban type
+
+`Iban.Parse` and `Iban.TryParse` return a type Iban. The Iban type is entirely optional, and if you use the validator directly you won't ever need to use this type.
+
+However, this type does provide some useful features:
+
+#### Format IBAN
+To convert an Iban type to a string, call the ToString() method with either of 2 formats:
+
+|Format|Result|
+|---|---|
+|F|NL91ABNA0417164300|
+|S|NL91 ABNA 0417 1643 00|
+
+#### Equals
+
+Whether or not you parsed `NL91 ABNA 0417 1643 00` or `NL91ABNA0417164300`, these IBAN are considered equal.
+
+#### Mocking the static Parse/TryParse methods
+
+If you use the static methods because you would like to use the Iban type, you can still mock the underlying validator for testing purposes by setting the static property `Iban.Validator`.
+
 ## Installation
 
 Install **IbanNet** via [NuGet](https://www.nuget.org/packages/IbanNet/).
