@@ -10,6 +10,6 @@ if ($versions.Version.Suffix)
     $newVersion += "-" + $versions.Version.Suffix
 }
 
-Write-Host "Build $env:APPVEYOR_BUILD_NUMBER using version v$newVersion"
+Write-Host "AppVeyor build $env:APPVEYOR_BUILD_NUMBER will be using version v$newVersion"
 
 Update-AppveyorBuild -Version $newVersion

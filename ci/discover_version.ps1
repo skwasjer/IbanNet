@@ -1,7 +1,7 @@
 ﻿# -- Init
-$ciPath = (Split-Path $MyInvocation.MyCommand.Path) + "\"
-$repoPath = $ciPath + "..\" # TODO: set this to AppVeyor env var
-$packagePath = $repoPath + "packages\"
+$ciPath = (Split-Path $MyInvocation.MyCommand.Path)
+$repoPath = $ciPath + "\.." # TODO: set this to AppVeyor env var
+$packagePath = $repoPath + "\packages"
 $debug = $false
 
 # -- Unzip helper
@@ -25,13 +25,18 @@ function DownloadAndUnpackNugetPackage
     Write-Host "Downloading $nugetUri" -ForegroundColor Yellow
     if (Test-Path $unpackPath)
     {
-        Write-Host "  Skipping, package already found."
+        Write-Host "  Skipping, package already found"
     }
     else {
+        if (-Not (Test-Path $outpath))
+        {
+            New-Item $outpath -type directory | Out-Null
+        }
+
         Try
         {
             $webClient = New-Object System.Net.WebClient
-            $webClient.DownloadFile($nugetUri, $packagePath)
+            $webClient.DownloadFile($nugetUri, $packagePath) | Out-Null
         }
         Catch [System.Net.WebException]
         {
@@ -45,7 +50,7 @@ function DownloadAndUnpackNugetPackage
     }
 
     if (Test-Path $packagePath) { Remove-Item $packagePath }
-
+    
     Write-Host
     return $unpackPath
 }
@@ -60,7 +65,7 @@ Add-Type -Path ($unpackZoltuFolder + "\build\Zoltu.Versioning.dll")
 $gitRepositoryPath = [LibGit2Sharp.Repository]::Discover($repoPath)
 if ($gitRepositoryPath -eq $null)
 {
-    Write-Host "Git repository not found, aborting." -ForegroundColor Red
+    Write-Host "Git repository not found, aborting" -ForegroundColor Red
     # TODO: fail build job
     exit
 }
@@ -93,4 +98,12 @@ if ($debug)
 
 $versions = [Zoltu.Versioning.VersionFinder]::GetVersions($commits, $tags);
 
+# Build version with preferences
+#$versionConfig = New-Object -TypeName Zoltu.Versioning.VersionConfiguration -ArgumentList 1, 1, 1, 1, 1, 1
+#$versionConfigAppl = New-Object -TypeName Zoltu.Versioning.VersionConfigurationApplicator -ArgumentList $versions, $versionConfig
+
+#return $versionConfigAppl
+
+#Write-Host
+#Write-Host "Setting Version: $($versions.Version), FileVersion: $($versions.FileVersion), InfoVersion: $($versions.InfoVersion)" -ForegroundColor Yellow
 return $versions
