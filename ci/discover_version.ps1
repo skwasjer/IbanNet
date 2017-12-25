@@ -2,6 +2,7 @@
 $ciPath = (Split-Path $MyInvocation.MyCommand.Path) + "\"
 $repoPath = $ciPath + "..\" # TODO: set this to AppVeyor env var
 $packagePath = $repoPath + "packages\"
+$debug = $false
 
 # -- Unzip helper
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -75,19 +76,21 @@ $gitRepository = New-Object -TypeName LibGit2Sharp.Repository -ArgumentList $git
 $commits = [Zoltu.Versioning.GitVersion]::GetHeadCommitsFromRepository($gitRepository)
 $tags = [Zoltu.Versioning.GitVersion]::GetTagsFromRepository($gitRepository)
 
-Write-Host "Tags:"
-ForEach ($tag in $tags)
+if ($debug)
 {
-    Write-Host "  $($tag.Name)"
-}
+    Write-Host "Tags:"
+    ForEach ($tag in $tags)
+    {
+        Write-Host "  $($tag.Name)"
+    }
 
-Write-Host "Commits:"
-ForEach ($commit in $commits)
-{
-    Write-Host "  Commit $($commit.Sha)"
+    Write-Host "Commits:"
+    ForEach ($commit in $commits)
+    {
+        Write-Host "  Commit $($commit.Sha)"
+    }
 }
 
 $versions = [Zoltu.Versioning.VersionFinder]::GetVersions($commits, $tags);
 
-Write-Host
-Write-Host "Setting Version: $($versions.Version), FileVersion: $($versions.FileVersion), InfoVersion: $($versions.InfoVersion)" -ForegroundColor Yellow
+return $versions
