@@ -6,15 +6,34 @@ IbanNet is a .NET library providing functionality to validate and parse an [Inte
 
 ## Usage
 
+#### Parse
+The simplest way to use this library is to use the static Parse method:
+
 ```csharp
 Iban iban = Iban.Parse("NL91ABNA0417164300");
 ```
-or
+
+When parsing fails, a IbanFormatException is thrown, which contains a property Result which indicates the type of error that occurred.
+
+#### TryParse
+
+To parse an IBAN without throwing an exception use TryParse.
 
 ```csharp
 Iban iban;
 bool success = Iban.TryParse("NL91ABNA0417164300", out iban);
 ```
+
+The only downside is there is no way to retrieve the type of validation error that occurred if parsing fails.
+
+#### IbanValidator
+
+Lastly, you can use the validator directly:
+```csharp
+IIbanValidator validator = new IbanValidator();
+IbanValidationResult validationResult = validator.Validate("NL91ABNA041716430");
+```
+The benefit of using the validator is that it implements the IIbanValidator interface. This allows for mocking and using a DI container. It is recommended that when you do, that you cache the validator or register it as a singleton, since the initialization - although not much - does introduce some overhead when initializing the IBAN validation rules.
 
 ## Installation
 
@@ -29,15 +48,11 @@ Install-Package IbanNet
 ```
 dotnet add package IbanNet
 ```
-## API
-
-TODO: ...
 
 ### Future enhancements
-- Change to .NET Standard 1.x
 - Add support for conversion from BBAN to IBAN via 3rd party API's.
 
-#### Supported platforms
+#### Supported .NET targets
 - .NET 4.5.2
 - .NET 4.6.2
 - .NET Standard 1.2
