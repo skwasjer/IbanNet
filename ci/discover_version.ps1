@@ -42,12 +42,9 @@ function Download-And-Unpack-Nuget-Package
     $packagePath = Join-Path $outpath "$packageName.$version.nupkg"
     $unpackPath = Join-Path $outpath "$packageName.$version"
 
-    Write-Host "Downloading $nugetUri" -ForegroundColor Yellow
-    if (Test-Path $unpackPath)
+    # Skip if package path already exists
+    if (-Not (Test-Path $unpackPath))
     {
-        Write-Host "  Skipping, package already found"
-    }
-    else {
         if (-Not (Test-Path $outpath))
         {
             New-Item $outpath -type directory | Out-Null
@@ -55,6 +52,7 @@ function Download-And-Unpack-Nuget-Package
 
         Try
         {
+            Write-Host "Downloading $nugetUri" -ForegroundColor Yellow
             $webClient = New-Object System.Net.WebClient
             $webClient.DownloadFile($nugetUri, $packagePath) | Out-Null
         }
@@ -66,7 +64,7 @@ function Download-And-Unpack-Nuget-Package
         }
     
         Unzip $packagePath $unpackPath
-        Write-Host "$packageName.$version unpacked"
+        if ($debug) { Write-Host "$packageName.$version unpacked" }
     }
 
     if (Test-Path $packagePath) { Remove-Item $packagePath }
