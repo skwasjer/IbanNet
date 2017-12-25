@@ -13,7 +13,7 @@ namespace IbanNet.ValidationRules
 		}
 
 		protected RegexRule(string pattern)
-			: this(new Regex(pattern, RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline))
+			: this(new Regex(pattern, RegexOptions.CultureInvariant | RegexOptions.Singleline))
 		{
 		}
 

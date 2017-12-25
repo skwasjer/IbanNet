@@ -10,9 +10,6 @@
 *.user
 *.sln.docstates
 
-## will be autoigemnerated by zoltu.versioning 
-VersionAssemblyInfo.cs
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

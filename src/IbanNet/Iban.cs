@@ -27,7 +27,7 @@ namespace IbanNet
 			public const string Flat = "F";
 		}
 
-		private static readonly Regex NormalizeRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex NormalizeRegex = new Regex(@"\s+", RegexOptions.CultureInvariant);
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
