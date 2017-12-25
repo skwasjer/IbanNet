@@ -3,13 +3,27 @@
 # Discover version(s)
 $versions = & ($ciPath + "discover_version.ps1")
 
-# Build new version string
-$newVersion = "$($versions.Version.Major).$($versions.Version.Minor).$($versions.Version.Patch)"
-if ($versions.Version.Suffix)
+if ($versions)
 {
-    $newVersion += "-" + $versions.Version.Suffix
+    # Build new version string
+    $newVersion = "$($versions.Version.Major).$($versions.Version.Minor).$($versions.Version.Patch)"
+    if ($versions.Version.Suffix)
+    {
+        $newVersion += "-" + $versions.Version.Suffix
+    }
+
+    Write-Host "AppVeyor build $env:APPVEYOR_BUILD_NUMBER will be using version v$newVersion"
+
+    Try
+    {
+        Update-AppveyorBuild -Version $newVersion
+    }
+    Catch
+    {
+        $host.SetShouldExit(2)
+    }
 }
-
-Write-Host "AppVeyor build $env:APPVEYOR_BUILD_NUMBER will be using version v$newVersion"
-
-Update-AppveyorBuild -Version $newVersion
+else
+{
+    $host.SetShouldExit(1)
+}

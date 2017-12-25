@@ -84,7 +84,6 @@ $gitRepositoryPath = [LibGit2Sharp.Repository]::Discover($repoPath)
 if ($gitRepositoryPath -eq $null)
 {
     Write-Host "Git repository not found, aborting" -ForegroundColor Red
-    # TODO: fail build job
     exit
 }
 else
