@@ -1,4 +1,6 @@
-﻿# IbanNet
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/fq829j3tjy5x5g49?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
+
+# IbanNet
 
 IbanNet is a .NET library providing functionality to validate an [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) also known as IBAN.
 
