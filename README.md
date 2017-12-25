@@ -4,6 +4,8 @@
 
 IbanNet is a .NET library providing functionality to validate and parse an [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) also known as IBAN.
 
+[Supported regions](SupportedRegions.md)
+
 ## Usage
 
 #### Parse
