@@ -8,8 +8,8 @@
 		/// <summary>
 		/// Validates the IBAN against this rule.
 		/// </summary>
-		/// <param name="iban">The IBAN to validate.</param>
-		/// <returns>true if the IBAN is valid, or false otherwise</returns>
+		/// <param name="iban">The IBAN value to validate.</param>
+		/// <returns>a validation result, indicating if the rule passed or not</returns>
 		IbanValidationResult Validate(string iban);
 	}
 }
