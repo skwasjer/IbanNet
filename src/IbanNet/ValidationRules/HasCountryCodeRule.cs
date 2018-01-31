@@ -8,10 +8,5 @@
 		public HasCountryCodeRule() : base(@"^\D\D")
 		{
 		}
-
-		/// <summary>
-		/// The validation result to use when this rule is not valid.
-		/// </summary>
-		public override IbanValidationResult InvalidResult { get; } = IbanValidationResult.IllegalCharacters;
 	}
 }

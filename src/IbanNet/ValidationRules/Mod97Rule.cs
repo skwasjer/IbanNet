@@ -4,12 +4,19 @@ using System.Numerics;
 
 namespace IbanNet.ValidationRules
 {
+	/// <summary>
+	/// Asserts that the check digits are valid.
+	/// </summary>
 	internal class Mod97Rule : IIbanValidationRule
 	{
 		private static readonly int CharCodeA = 'A';
 
-		public IbanValidationResult InvalidResult { get; } = IbanValidationResult.InvalidCheckDigits;
-		public bool Validate(string iban)
+		/// <summary>
+		/// Validates the IBAN against this rule.
+		/// </summary>
+		/// <param name="iban">The IBAN to validate.</param>
+		/// <returns>true if the IBAN is valid, or false otherwise</returns>
+		public IbanValidationResult Validate(string iban)
 		{
 			var upperIban = iban.ToUpperInvariant();
 			var shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);
@@ -22,7 +29,9 @@ namespace IbanNet.ValidationRules
 			);
 
 			var largeInteger = BigInteger.Parse(iso13616, CultureInfo.InvariantCulture);
-			return largeInteger % 97 == 1;
+			return largeInteger % 97 == 1
+				? IbanValidationResult.Valid
+				: IbanValidationResult.InvalidCheckDigits;
 		}
 	}
 }

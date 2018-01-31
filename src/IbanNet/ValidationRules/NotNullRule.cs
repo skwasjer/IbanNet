@@ -6,18 +6,15 @@
 	internal sealed class NotNullRule : IIbanValidationRule
 	{
 		/// <summary>
-		/// The validation result to use when this rule is not valid.
-		/// </summary>
-		public IbanValidationResult InvalidResult { get; } = IbanValidationResult.InvalidLength;
-
-		/// <summary>
 		/// Validates the IBAN against this rule.
 		/// </summary>
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		public bool Validate(string iban)
+		public IbanValidationResult Validate(string iban)
 		{
-			return iban != null;
+			return iban != null
+				? IbanValidationResult.Valid
+				: IbanValidationResult.InvalidLength;
 		}
 	}
 }

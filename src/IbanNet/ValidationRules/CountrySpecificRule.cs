@@ -20,16 +20,11 @@ namespace IbanNet.ValidationRules
 		}
 
 		/// <summary>
-		/// The validation result to use when this rule is not valid.
-		/// </summary>
-		public abstract IbanValidationResult InvalidResult { get; }
-
-		/// <summary>
 		/// Validates the IBAN against this rule.
 		/// </summary>
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		public bool Validate(string iban)
+		public IbanValidationResult Validate(string iban)
 		{
 			var countryCode = iban.Substring(0, 2);
 			IbanRegionDefinition definition;
@@ -44,6 +39,6 @@ namespace IbanNet.ValidationRules
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <param name="definition">The country specific definition, or null if no definition was found.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		protected abstract bool Validate(string iban, IbanRegionDefinition definition);
+		protected abstract IbanValidationResult Validate(string iban, IbanRegionDefinition definition);
 	}
 }

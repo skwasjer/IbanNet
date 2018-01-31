@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using IbanNet.ValidationRules;
 
@@ -24,10 +22,7 @@ namespace IbanNet
 			new IsValidCountryCodeRule(Definitions),
 			new IsValidLengthRule(Definitions),
 			new IsMatchingStructureRule(Definitions),
-			new Mod97Rule(),
-
-			// The last rule will always pass, but serves as a marker.
-			new FinalRule()
+			new Mod97Rule()
 		});
 
 		/// <summary>
@@ -49,29 +44,16 @@ namespace IbanNet
 		{
 			var normalizedIban = Iban.Normalize(iban);
 
-			var testedRules = Rules.TakeUntil(rule => rule.Validate(normalizedIban) == false);
-			var lastTestedRule = testedRules.Last();
-
-			// If we hit the final rule all rules passed.
-			return lastTestedRule is FinalRule
-				? IbanValidationResult.Valid
-				: lastTestedRule.InvalidResult;
-		}
-
-		/// <summary>
-		/// A marker rule indicating all previous rule tests have passed.
-		/// </summary>
-		private class FinalRule : IIbanValidationRule
-		{
-			public IbanValidationResult InvalidResult
+			var validationResult = IbanValidationResult.Valid;
+			foreach (var rule in Rules)
 			{
-				get { throw new NotSupportedException(); }
+				validationResult = rule.Validate(normalizedIban);
+				if (validationResult != IbanValidationResult.Valid)
+				{
+					break;
+				}
 			}
-
-			public bool Validate(string iban)
-			{
-				return true;
-			}
+			return validationResult;
 		}
 	}
 }
