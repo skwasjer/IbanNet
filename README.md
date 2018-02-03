@@ -45,12 +45,12 @@ The benefit of using the validator is that it implements the `IIbanValidator` in
 However, this type does provide some useful features:
 
 #### Format IBAN
-To convert an Iban type to a string, call the `ToString()` method with either of 2 formats:
+To convert an Iban type to a string, call the `ToString(string format)` method with either of 2 formats:
 
 |Format|Result|
 |---|---|
-|F|NL91ABNA0417164300|
-|S|NL91 ABNA 0417 1643 00|
+|"F" or `IbanNet.Iban.Formats.Flat`|NL91ABNA0417164300|
+|"S" or `IbanNet.Iban.Formats.Partitioned`|NL91 ABNA 0417 1643 00|
 
 If `ToString()` is called without format, defaults to 'F'.
 
@@ -80,9 +80,8 @@ dotnet add package IbanNet
 - Add support for conversion from BBAN to IBAN via 3rd party API's.
 
 #### Supported .NET targets
-- .NET 4.5.2
-- .NET 4.6.2
-- .NET Standard 1.2
+- .NET 4.5 or greater
+- .NET Standard 1.2 or greater
 
 #### Requirements
 - Visual Studio 2017
