@@ -13,6 +13,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.1.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <Version>1.0.0</Version>
     <PackageVersion>1.0.0</PackageVersion>
