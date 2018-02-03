@@ -34,7 +34,7 @@ namespace IbanNet
 				resultObj.Should()
 					.NotBeNull()
 					.And.BeOfType<Iban>()
-					.Which.ToString(Iban.Formats.Flat)
+					.Which.ToString()
 					.Should()
 					.Be(TestValues.ValidIban);
 			}
@@ -55,6 +55,7 @@ namespace IbanNet
 				string nullValue = null;
 
 				// Act
+				// ReSharper disable once ExpressionIsAlwaysNull
 				var resultObj = _sut.ConvertFrom(nullValue);
 
 				// Assert
@@ -80,7 +81,7 @@ namespace IbanNet
 			}
 
 			[Test]
-			public void To_string_should_return_partition_formatted_iban()
+			public void To_string_should_return_flat_formatted_iban()
 			{
 				// Act
 				var resultObj = _sut.ConvertTo(_iban, typeof(string));
@@ -89,7 +90,7 @@ namespace IbanNet
 				resultObj.Should()
 					.NotBeNull()
 					.And.BeOfType<string>()
-					.Which.Should().Be(TestValues.ValidIbanPartitioned);
+					.Which.Should().Be(TestValues.ValidIban);
 			}
 		}
 

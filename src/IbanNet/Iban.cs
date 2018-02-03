@@ -77,7 +77,7 @@ namespace IbanNet
 		/// <returns>A string that represents the current <see cref="Iban"/>.</returns>
 		public override string ToString()
 		{
-			return ToString(Formats.Partitioned);
+			return ToString(Formats.Flat);
 		}
 
 		/// <summary>

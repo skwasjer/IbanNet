@@ -45,16 +45,18 @@ The benefit of using the validator is that it implements the `IIbanValidator` in
 However, this type does provide some useful features:
 
 #### Format IBAN
-To convert an Iban type to a string, call the ToString() method with either of 2 formats:
+To convert an Iban type to a string, call the `ToString()` method with either of 2 formats:
 
 |Format|Result|
 |---|---|
 |F|NL91ABNA0417164300|
 |S|NL91 ABNA 0417 1643 00|
 
+If `ToString()` is called without format, defaults to 'F'.
+
 #### Equals
 
-Whether or not you parsed `NL91 ABNA 0417 1643 00` or `NL91ABNA0417164300`, these IBAN are considered equal.
+Whether you parsed `NL91 ABNA 0417 1643 00` or `NL91ABNA0417164300`, these IBAN are considered equal.
 
 #### Mocking the static Parse/TryParse methods
 
@@ -87,7 +89,7 @@ dotnet add package IbanNet
 - .NET Core 2.0 SDK
 
 #### Contributions
-Since this is a new package I'm still working on CI, refactoring and perhaps some restructuring. PR's are welcome but keep this in mind, as it may cause me to decline PR's if upcoming changes may conflict too much with PR's.
+PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.
 
 #### Contributors
 - skwas (author/maintainer)

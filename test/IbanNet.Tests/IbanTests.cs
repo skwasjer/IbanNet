@@ -158,13 +158,13 @@ namespace IbanNet.Tests
 			}
 
 			[Test]
-			public void With_default_format_should_return_partitioned()
+			public void With_default_format_should_return_flat()
 			{
 				// Act
 				var actual = _iban.ToString();
 
 				// Assert
-				actual.Should().Be(TestValues.ValidIbanPartitioned);
+				actual.Should().Be(TestValues.ValidIban);
 			}
 		}
 	}
