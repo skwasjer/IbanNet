@@ -37,6 +37,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets or sets the <see cref="IIbanValidator"/> used to validate an IBAN.
 		/// </summary>
+		// ReSharper disable once MemberCanBePrivate.Global
 		public static IIbanValidator Validator { get; set; } = new IbanValidator();
 
 		private Iban(string iban)
@@ -94,9 +95,7 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(value));
 			}
 
-			Iban iban;
-			IbanValidationResult validationResult;
-			if (TryParse(value, out iban, out validationResult))
+			if (TryParse(value, out var iban, out var validationResult))
 			{
 				return iban;
 			}
@@ -113,9 +112,8 @@ namespace IbanNet
 		public static bool TryParse(string value, out Iban iban)
 		{
 			iban = null;
-			IbanValidationResult validationResult;
 
-			return TryParse(value, out iban, out validationResult);
+			return TryParse(value, out iban, out var _);
 		}
 
 		/// <summary>
@@ -172,7 +170,7 @@ namespace IbanNet
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			return obj is Iban && Equals((Iban)obj);
+			return obj is Iban iban && Equals(iban);
 		}
 
 		/// <summary>

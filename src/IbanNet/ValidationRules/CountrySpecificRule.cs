@@ -12,11 +12,7 @@ namespace IbanNet.ValidationRules
 
 		protected CountrySpecificRule(IReadOnlyDictionary<string, IbanRegionDefinition> definitions)
 		{
-			if (definitions == null)
-			{
-				throw new ArgumentNullException(nameof(definitions));
-			}
-			_definitions = definitions;
+			_definitions = definitions ?? throw new ArgumentNullException(nameof(definitions));
 		}
 
 		/// <summary>
@@ -27,8 +23,7 @@ namespace IbanNet.ValidationRules
 		public IbanValidationResult Validate(string iban)
 		{
 			var countryCode = iban.Substring(0, 2);
-			IbanRegionDefinition definition;
-			_definitions.TryGetValue(countryCode, out definition);
+			_definitions.TryGetValue(countryCode, out var definition);
 
 			return Validate(iban, definition);
 		}

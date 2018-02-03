@@ -36,6 +36,7 @@ namespace IbanNet
 		/// <remarks>
 		/// See http://www.tbg5-finance.org/checkiban.js for all structures.
 		/// </remarks>
+		// ReSharper disable once MemberCanBePrivate.Global
 		internal string Structure { get; set; }
 
 		/// <summary>
@@ -46,6 +47,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the region.
 		/// </summary>
+		// ReSharper disable once MemberCanBePrivate.Global
 		public RegionInfo Region => _regionInfo ?? (_regionInfo = new RegionInfo(TwoLetterISORegionName));
 
 		/// <summary>

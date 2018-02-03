@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using NUnit.Framework;
 
 namespace IbanNet
 {
 	[TestFixture]
+	[SuppressMessage("ReSharper", "InconsistentNaming")]
 	internal class IbanTypeConverterTests
 	{
 		private IbanTypeConverter _sut;

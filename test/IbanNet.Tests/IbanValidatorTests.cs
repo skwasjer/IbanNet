@@ -3,7 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace IbanNet.Tests
+namespace IbanNet
 {
 	[TestFixture]
 	internal class IbanValidatorTests
@@ -11,7 +11,7 @@ namespace IbanNet.Tests
 		private IbanValidator _validator;
 
 		[SetUp]
-		public virtual void SetUp()
+		public void SetUp()
 		{
 			_validator = new IbanValidator();
 		}

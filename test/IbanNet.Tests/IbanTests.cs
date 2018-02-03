@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace IbanNet.Tests
+namespace IbanNet
 {
 	[TestFixture]
+	[SuppressMessage("ReSharper", "InconsistentNaming")]
 	internal class IbanTests
 	{
 		private Mock<IIbanValidator> _ibanValidatorMock;
@@ -44,7 +46,8 @@ namespace IbanNet.Tests
 
 				// Assert
 				act.ShouldThrow<IbanFormatException>("the provided value was invalid")
-					.Which.Result.Should().Be(IbanValidationResult.IllegalCharacters);
+					.Which.Result
+					.Should().Be(IbanValidationResult.IllegalCharacters);
 			}
 
 			[Test]
@@ -58,7 +61,9 @@ namespace IbanNet.Tests
 				// Assert
 				act.ShouldNotThrow<IbanFormatException>();
 				iban.Should().NotBeNull("the value should be parsed")
-					.And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(TestValues.ValidIban, "the returned value should match the provided value");
+					.And.BeOfType<Iban>()
+					.Which.ToString()
+					.Should().Be(TestValues.ValidIban, "the returned value should match the provided value");
 			}
 		}
 
@@ -67,10 +72,8 @@ namespace IbanNet.Tests
 			[Test]
 			public void With_null_value_should_return_false()
 			{
-				Iban iban;
-
 				// Act
-				var actual = Iban.TryParse(null, out iban);
+				var actual = Iban.TryParse(null, out var iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was null which is not valid");
@@ -81,10 +84,8 @@ namespace IbanNet.Tests
 			[Test]
 			public void With_invalid_value_should_return_false()
 			{
-				Iban iban;
-
 				// Act
-				var actual = Iban.TryParse(TestValues.InvalidIban, out iban);
+				var actual = Iban.TryParse(TestValues.InvalidIban, out var iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was invalid");
@@ -96,14 +97,15 @@ namespace IbanNet.Tests
 			[Test]
 			public void With_valid_value_should_pass()
 			{
-				Iban iban;
-
 				// Act
-				var actual = Iban.TryParse(TestValues.ValidIban, out iban);
+				var actual = Iban.TryParse(TestValues.ValidIban, out var iban);
 
 				// Assert
 				actual.Should().BeTrue("the provided value was valid");
-				iban.Should().NotBeNull().And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(TestValues.ValidIban);
+				iban.Should().NotBeNull().
+					And.BeOfType<Iban>()
+					.Which.ToString()
+					.Should().Be(TestValues.ValidIban);
 
 				_ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
 			}

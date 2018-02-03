@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace IbanNet.Tests
+namespace IbanNet
 {
     [TestFixture]
     internal class IbanDefinitionsTests

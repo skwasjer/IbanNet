@@ -12,6 +12,7 @@ namespace IbanNet
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanTypeConverter"/> class.
 		/// </summary>
+		// ReSharper disable once EmptyConstructor
 		public IbanTypeConverter()
 		{
 		}

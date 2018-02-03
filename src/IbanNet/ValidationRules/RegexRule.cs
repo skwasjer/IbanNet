@@ -7,7 +7,7 @@ namespace IbanNet.ValidationRules
 	/// </summary>
 	internal abstract class RegexRule : IIbanValidationRule
 	{
-		protected RegexRule(Regex regex)
+		private RegexRule(Regex regex)
 		{
 			Regex = regex;
 		}
@@ -20,6 +20,7 @@ namespace IbanNet.ValidationRules
 		/// <summary>
 		/// Gets the regex used to test the IBAN.
 		/// </summary>
+		// ReSharper disable once MemberCanBePrivate.Global
 		protected Regex Regex { get; }
 
 		/// <summary>

@@ -32,6 +32,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the supported regions.
 		/// </summary>
+		// ReSharper disable once UnusedMember.Global
 		public IEnumerable<IbanRegionDefinition> SupportedRegions => Definitions.Values;
 
 		/// <summary>
