@@ -10,19 +10,15 @@ namespace IbanNet.Tests
 	{
 		private Mock<IIbanValidator> _ibanValidatorMock;
 
-		private const string ValidIban = "AD1200012030200359100100";
-		private const string ValidIbanPartitioned = "AD12 0001 2030 2003 5910 0100";
-		private const string InvalidIban = "__INVALID_IBAN";
-
 		[SetUp]
 		public virtual void SetUp()
 		{
 			_ibanValidatorMock = new Mock<IIbanValidator>();
 			_ibanValidatorMock
-				.Setup(m => m.Validate(ValidIban))
+				.Setup(m => m.Validate(TestValues.ValidIban))
 				.Returns(IbanValidationResult.Valid);
 			_ibanValidatorMock
-				.Setup(m => m.Validate(InvalidIban))
+				.Setup(m => m.Validate(TestValues.InvalidIban))
 				.Returns(IbanValidationResult.IllegalCharacters);
 
 			Iban.Validator = _ibanValidatorMock.Object;
@@ -44,7 +40,7 @@ namespace IbanNet.Tests
 			public void With_invalid_value_should_throw()
 			{
 				// Act
-				Action act = () => Iban.Parse(InvalidIban);
+				Action act = () => Iban.Parse(TestValues.InvalidIban);
 
 				// Assert
 				act.ShouldThrow<IbanFormatException>("the provided value was invalid")
@@ -57,12 +53,12 @@ namespace IbanNet.Tests
 				Iban iban = null;
 
 				// Act
-				Action act = () => iban = Iban.Parse(ValidIban);
+				Action act = () => iban = Iban.Parse(TestValues.ValidIban);
 
 				// Assert
 				act.ShouldNotThrow<IbanFormatException>();
 				iban.Should().NotBeNull("the value should be parsed")
-					.And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(ValidIban, "the returned value should match the provided value");
+					.And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(TestValues.ValidIban, "the returned value should match the provided value");
 			}
 		}
 
@@ -88,7 +84,7 @@ namespace IbanNet.Tests
 				Iban iban;
 
 				// Act
-				var actual = Iban.TryParse(InvalidIban, out iban);
+				var actual = Iban.TryParse(TestValues.InvalidIban, out iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was invalid");
@@ -103,11 +99,11 @@ namespace IbanNet.Tests
 				Iban iban;
 
 				// Act
-				var actual = Iban.TryParse(ValidIban, out iban);
+				var actual = Iban.TryParse(TestValues.ValidIban, out iban);
 
 				// Assert
 				actual.Should().BeTrue("the provided value was valid");
-				iban.Should().NotBeNull().And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(ValidIban);
+				iban.Should().NotBeNull().And.Subject.As<Iban>().ToString(Iban.Formats.Flat).Should().Be(TestValues.ValidIban);
 
 				_ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
 			}
@@ -121,7 +117,7 @@ namespace IbanNet.Tests
 			{
 				base.SetUp();
 
-				_iban = Iban.Parse(ValidIban);
+				_iban = Iban.Parse(TestValues.ValidIban);
 			}
 
 			[Test]
@@ -150,8 +146,8 @@ namespace IbanNet.Tests
 					.Which.ParamName.Should().Be("format");
 			}
 
-			[TestCase(Iban.Formats.Flat, ValidIban)]
-			[TestCase(Iban.Formats.Partitioned, ValidIbanPartitioned)]
+			[TestCase(Iban.Formats.Flat, TestValues.ValidIban)]
+			[TestCase(Iban.Formats.Partitioned, TestValues.ValidIbanPartitioned)]
 			public void With_valid_format_should_succeed(string format, string expected)
 			{
 				// Act
@@ -168,7 +164,7 @@ namespace IbanNet.Tests
 				var actual = _iban.ToString();
 
 				// Assert
-				actual.Should().Be(ValidIbanPartitioned);
+				actual.Should().Be(TestValues.ValidIbanPartitioned);
 			}
 		}
 	}
