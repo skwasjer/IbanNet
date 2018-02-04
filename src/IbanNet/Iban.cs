@@ -87,7 +87,7 @@ namespace IbanNet
 		/// <param name="value">The IBAN value to parse.</param>
 		/// <returns>an <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully</returns>
 		/// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="value"/> is null.</exception>
-		/// <exception cref="FormatException">Thrown when the specified <paramref name="value"/> is not a valid IBAN.</exception>
+		/// <exception cref="IbanFormatException">Thrown when the specified <paramref name="value"/> is not a valid IBAN.</exception>
 		public static Iban Parse(string value)
 		{
 			if (value == null)
