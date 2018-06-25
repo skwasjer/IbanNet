@@ -48,7 +48,7 @@ namespace IbanNet
 				Action act = () => _sut.ConvertFrom(TestValues.InvalidIban);
 
 				// Assert
-				act.ShouldThrow<NotSupportedException>();
+				act.Should().Throw<NotSupportedException>();
 			}
 
 			[Test]

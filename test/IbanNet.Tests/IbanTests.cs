@@ -35,7 +35,7 @@ namespace IbanNet
 				Action act = () => Iban.Parse(null);
 
 				// Assert
-				act.ShouldThrow<ArgumentNullException>("the provided value was null").Which.ParamName.Should().Be("value");
+				act.Should().Throw<ArgumentNullException>("the provided value was null").Which.ParamName.Should().Be("value");
 			}
 
 			[Test]
@@ -45,7 +45,7 @@ namespace IbanNet
 				Action act = () => Iban.Parse(TestValues.InvalidIban);
 
 				// Assert
-				act.ShouldThrow<IbanFormatException>("the provided value was invalid")
+				act.Should().Throw<IbanFormatException>("the provided value was invalid")
 					.Which.Result
 					.Should().Be(IbanValidationResult.IllegalCharacters);
 			}
@@ -59,7 +59,7 @@ namespace IbanNet
 				Action act = () => iban = Iban.Parse(TestValues.ValidIban);
 
 				// Assert
-				act.ShouldNotThrow<IbanFormatException>();
+				act.Should().NotThrow<IbanFormatException>();
 				iban.Should().NotBeNull("the value should be parsed")
 					.And.BeOfType<Iban>()
 					.Which.ToString()
@@ -129,7 +129,7 @@ namespace IbanNet
 				Action act = () => _iban.ToString(null);
 
 				// Assert
-				act.ShouldThrow<ArgumentNullException>("the provided format was null")
+				act.Should().Throw<ArgumentNullException>("the provided format was null")
 					.Which.ParamName.Should().Be("format");
 			}
 
@@ -144,7 +144,7 @@ namespace IbanNet
 				Action act = () => _iban.ToString(format);
 
 				// Assert
-				act.ShouldThrow<ArgumentException>("the provided format was invalid")
+				act.Should().Throw<ArgumentException>("the provided format was invalid")
 					.Which.ParamName.Should().Be("format");
 			}
 
