@@ -9,23 +9,8 @@ namespace IbanNet
 	[TestFixture]
 	[SuppressMessage("ReSharper", "InconsistentNaming")]
 	internal class IbanTests
+		: IbanTestFixture
 	{
-		private Mock<IIbanValidator> _ibanValidatorMock;
-
-		[SetUp]
-		public virtual void SetUp()
-		{
-			_ibanValidatorMock = new Mock<IIbanValidator>();
-			_ibanValidatorMock
-				.Setup(m => m.Validate(TestValues.ValidIban))
-				.Returns(IbanValidationResult.Valid);
-			_ibanValidatorMock
-				.Setup(m => m.Validate(TestValues.InvalidIban))
-				.Returns(IbanValidationResult.IllegalCharacters);
-
-			Iban.Validator = _ibanValidatorMock.Object;
-		}
-
 		public class When_parsing_iban : IbanTests
 		{
 			[Test]
@@ -91,7 +76,7 @@ namespace IbanNet
 				actual.Should().BeFalse("the provided value was invalid");
 				iban.Should().BeNull("parsing did not succeed");
 
-				_ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
+				IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
 			}
 
 			[Test]
@@ -107,7 +92,7 @@ namespace IbanNet
 					.Which.ToString()
 					.Should().Be(TestValues.ValidIban);
 
-				_ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
+				IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
 			}
 		}
 
