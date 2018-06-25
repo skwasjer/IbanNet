@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.2;net45</TargetFrameworks>
@@ -17,23 +17,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
 
+  <Import Project="..\Package.props" />
+
   <PropertyGroup>
-    <Version>1.0.0</Version>
-    <PackageVersion>1.0.0</PackageVersion>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-    <InformationalVersion>1.0.0</InformationalVersion>
-  </PropertyGroup>
-  
-  <PropertyGroup>
-    <Authors>Martijn Bodeman</Authors>
-	<Company></Company>
     <Description>Provides an IBAN validator for verifying IBAN's, and provides ways to convert old (national) bank account numbers to IBAN's using online (payed) services.</Description>
-    <Copyright>Copyright © 2017</Copyright>
-    <PackageLicenseUrl>https://github.com/skwasjer/IbanNet/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet.git</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/skwasjer/IbanNet.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
   

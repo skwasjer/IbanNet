@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6DDAB3B8-F745-42DD-B3E7-B2EAEEBF79B4}"
+	ProjectSection(SolutionItems) = preProject
+		src\Package.props = src\Package.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D19A7B97-1063-40A0-90FD-D88CCAE710AD}"
 EndProject
