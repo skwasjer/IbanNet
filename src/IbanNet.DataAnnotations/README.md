@@ -4,7 +4,7 @@
 
 # IbanNet.DataAnnotations
 
-Data annotations to validate IBAN user input.
+Data Annotations to validate IBAN user input.
 
 ## Introduction
 
@@ -60,6 +60,29 @@ public class MyController : Controller
 	}
 }
 ```
+
+
+## FAQ
+### Why would I need this package?
+
+While there are different alternatives to validate user input, a lot of projects rely on ASP.NET MVC and/or Web API which already use Data Annotations.
+
+### How about directly using the Iban type?
+
+Because the `Iban` type itself has `TypeConverter` support, it can also be directly used in an input model, negating the need for this library.
+
+#### Example ####
+
+```csharp
+public class InputModel
+{	
+	public Iban BackAccountNumber { get; set; }
+}
+```
+
+> See [IbanTypeConverter](../IbanNet/IbanTypeConverter.cs). The converter will be called during model binding allowing proper deserialization.
+
+However in this situation - when a validation error occurs - instead of gracefully populating the `ModelStateDictionary`, an exception is thrown during model binding. Whether or not that is acceptable depends on the project/team.
 
 ## Installation
 
