@@ -20,7 +20,8 @@
   <Import Project="..\Package.props" />
 
   <PropertyGroup>
-    <Description>Provides an IBAN validator for verifying IBAN's, and provides ways to convert old (national) bank account numbers to IBAN's using online (payed) services.</Description>
+    <Description>Provides an IBAN validator for verifying IBAN's.</Description>
+	<PackageProjectUrl>https://github.com/skwasjer/IbanNet</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
   

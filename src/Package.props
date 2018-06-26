@@ -13,8 +13,7 @@
 	<Company></Company>
     <Copyright>Copyright © 2017</Copyright>
     <PackageLicenseUrl>https://github.com/skwasjer/IbanNet/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet.git</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/skwasjer/IbanNet.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/skwasjer/IbanNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 

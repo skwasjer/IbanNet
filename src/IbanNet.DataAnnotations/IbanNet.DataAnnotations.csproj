@@ -38,7 +38,8 @@
   <Import Project="..\Package.props" />
 	
   <PropertyGroup>
-    <Description>Data annotations to validate IBAN user input</Description>
+    <Description>Data annotations to validate IBAN user input.</Description>
+	<PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.DataAnnotations</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, Web API, MVC</PackageTags>
   </PropertyGroup>
   
