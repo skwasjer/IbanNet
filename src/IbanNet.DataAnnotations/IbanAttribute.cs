@@ -52,7 +52,7 @@ namespace IbanNet.DataAnnotations
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <returns></returns>
-		private static IIbanValidator GetValidator(ValidationContext serviceProvider)
+		private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
 		{
 			IIbanValidator ibanValidator = (IIbanValidator)serviceProvider?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
 			if (ibanValidator == null)

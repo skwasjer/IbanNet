@@ -136,7 +136,7 @@ dotnet add package IbanNet.DataAnnotations
 
 #### Supported .NET targets
 - .NET 4.5 or greater
-- .NET Standard 1.2 or greater
+- .NET Standard 1.3 or greater
 
 #### Requirements
 - Visual Studio 2017
