@@ -32,7 +32,10 @@ public class MyMvcController : Controller
 	[HttpPost]
 	public ActionResult Save(InputModel model)
 	{
-		// ..
+		if (ModelState.IsValid)
+		{
+			// ..
+		}
 	}
 }
 
@@ -42,7 +45,10 @@ public class MyWebApiController : ApiController
 	[HttpPost]
 	public IHttpActionResult Save(InputModel model)
 	{
-		// ..
+		if (ModelState.IsValid)
+		{
+			// ..
+		}
 	}
 }
 
@@ -56,11 +62,18 @@ public class MyController : Controller
 	[HttpPost]
 	public ActionResult Save([Iban] string bankAccountNumber)
 	{
-		// ..
+		if (ModelState.IsValid)
+		{
+			// ..
+		}
 	}
 }
 ```
 
+## Dependency injection
+
+You can use your favorite DI provider to provide an [`IIbanValidator`](../IbanNet/IIbanValidator.cs) to the validation attribute, as long as `IServiceProvider.GetService(Type)` is implemented. 
+If no instance of `IIbanValidator` is resolved from the DI container, the static `Iban.IbanValidator` property is used instead.
 
 ## FAQ
 ### Why would I need this package?
@@ -69,7 +82,7 @@ While there are different alternatives to validate user input, a lot of projects
 
 ### How about directly using the Iban type?
 
-Because the `Iban` type itself has `TypeConverter` support, it can also be directly used in an input model, negating the need for this library.
+Because the [`Iban`](../../README.md) type itself has `TypeConverter` support, it can also be directly used in an input model, negating the need for this library.
 
 #### Example ####
 
@@ -83,6 +96,25 @@ public class InputModel
 > See [IbanTypeConverter](../IbanNet/IbanTypeConverter.cs). The converter will be called during model binding allowing proper deserialization.
 
 However in this situation - when a validation error occurs - instead of gracefully populating the `ModelStateDictionary`, an exception is thrown during model binding. Whether or not that is acceptable depends on the project/team.
+
+### Mapping to Iban type
+
+The `string` value can be mapped using an Object Mapper to an `Iban` type using [`Iban.Parse`](../../README.md#parse) or manually by providing an extra property:
+
+#### Example ####
+
+```csharp
+public class InputModel
+{	
+	[Iban]
+	public string BackAccountNumber { get; set; }
+
+	[JsonIgnore]
+	internal Iban InternalBackAccountNumber => BackAccountNumber != null ? Iban.Parse(BackAccountNumber) : null;
+}
+```
+
+Because validation has already occurred, the `Parse` method should always succeed.
 
 ## Installation
 
