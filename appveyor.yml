@@ -6,10 +6,10 @@ dotnet_csproj:
   patch: true
   file: '**\*.csproj;**\*.props'
   version: '{version}'
-  package_version: $(nuget_package_version)
-  assembly_version: $(nuget_package_version)
-  file_version: '{version}'
-  informational_version: '{version}'
+  package_version: $(package_version)
+  assembly_version: $(assembly_version)
+  file_version: $(file_version)
+  informational_version: $(informational_version)
 install:
 - ps: '& .\ci\set_version_from_git.ps1'
 nuget:

@@ -7,19 +7,26 @@ if ($versions)
 {
     # Build new version string
     $newVersion = "$($versions.InfoVersion.Major).$($versions.InfoVersion.Minor).$($versions.InfoVersion.Patch)"
-    $newAppVeyorVersion = "$newVersion.$env:APPVEYOR_BUILD_NUMBER"
+	$assembly_version = "$newVersion.0"
+	$fullVersion = "$newVersion.$env:APPVEYOR_BUILD_NUMBER"
+    $semVer1 = $fullVersion
+
     if ($versions.InfoVersion.Suffix)
     {
-        $newVersion += "-" + $versions.InfoVersion.Suffix
-        $newAppVeyorVersion += "-" + $versions.InfoVersion.Suffix
+        $semVer1 += "-" + $versions.InfoVersion.Suffix
     }
 
-    Write-Host "AppVeyor build v$newAppVeyorVersion will be building package version v$newVersion"
+	$informational_version = $semVer1
+
+    Write-Host "Build v$fullVersion will be building package version v$semVer1"
 
     Try
     {
-        Set-AppveyorBuildVariable "nuget_package_version" $newVersion
-        Update-AppveyorBuild -Version $newAppVeyorVersion
+        Set-AppveyorBuildVariable "package_version" $semVer1		
+        Set-AppveyorBuildVariable "assembly_version" $assembly_version
+        Set-AppveyorBuildVariable "file_version" $fullVersion
+        Set-AppveyorBuildVariable "informational_version" $semVer1
+        Update-AppveyorBuild -Version $semVer1
     }
     Catch
     {
