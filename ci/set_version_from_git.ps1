@@ -6,12 +6,12 @@ $versions = & ($ciPath + "discover_version.ps1")
 if ($versions)
 {
     # Build new version string
-    $newVersion = "$($versions.Version.Major).$($versions.Version.Minor).$($versions.Version.Patch)"
+    $newVersion = "$($versions.InfoVersion.Major).$($versions.InfoVersion.Minor).$($versions.InfoVersion.Patch)"
     $newAppVeyorVersion = "$newVersion.$env:APPVEYOR_BUILD_NUMBER"
-    if ($versions.Version.Suffix)
+    if ($versions.InfoVersion.Suffix)
     {
-        $newVersion += "-" + $versions.Version.Suffix
-        $newAppVeyorVersion += "-" + $versions.Version.Suffix
+        $newVersion += "-" + $versions.InfoVersion.Suffix
+        $newAppVeyorVersion += "-" + $versions.InfoVersion.Suffix
     }
 
     Write-Host "AppVeyor build v$newAppVeyorVersion will be building package version v$newVersion"
