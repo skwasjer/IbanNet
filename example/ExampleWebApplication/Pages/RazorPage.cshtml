@@ -1,0 +1,55 @@
+﻿@page
+@model RazorPageModel
+@{
+	ViewData["Title"] = "Razor Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+	@if (!ViewData.ModelState.IsValid)
+	{
+		<div class="row">
+			<div class="col-md-6">
+				<div asp-validation-summary="All" class="alert alert-danger"></div>
+			</div>
+		</div>
+	}
+	else if (Model?.BankAccountNumber != null)
+	{
+		<div class="row">
+			<div class="col-md-6">
+				<div class="alert alert-success">
+					The IBAN @Model.BankAccountNumber appears to be valid.
+				</div>
+			</div>
+		</div>
+	}
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label asp-for="BankAccountNumber" class="control-label"></label>
+				<div>
+					<input asp-for="BankAccountNumber" class="form-control" value="@Model?.BankAccountNumber" />
+					<span asp-validation-for="BankAccountNumber"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<button type="submit" class="btn btn-default">Save</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<a href="javascript:setBankAccountNumber('NL91ABNA0417164300')">Set valid</a> | <a href="javascript:setBankAccountNumber('NL92ABNA041716430')">Set invalid</a> | <a href="javascript:setBankAccountNumber('')">Set empty</a>
+			</div>
+		</div>
+	</div>
+</form>
