@@ -93,3 +93,6 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 
 #### Contributors
 - skwas (author/maintainer)
+
+## Related libraries
+- [IbanNet.DataAnnotations](src/IbanNet.DataAnnotations/README.md)

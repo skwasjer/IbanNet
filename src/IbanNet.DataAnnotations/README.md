@@ -132,6 +132,7 @@ dotnet add package IbanNet.DataAnnotations
 
 ### Future enhancements
 - Poll: add client side validation support via AJAX?
+- Localization
 
 #### Supported .NET targets
 - .NET 4.5 or greater
@@ -146,3 +147,6 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 
 #### Contributors
 - skwas (author/maintainer)
+
+## Related libraries
+- [IbanNet](../../README.md)
