@@ -154,5 +154,97 @@ namespace IbanNet
 				actual.Should().Be(TestValues.ValidIban);
 			}
 		}
+
+		public class When_comparing_for_equality : IbanTests
+		{
+			private Iban _iban;
+			private Iban _equalIban;
+			private Iban _otherIban;
+
+			public override void SetUp()
+			{
+				base.SetUp();
+
+				_iban = Iban.Parse(TestValues.ValidIban);
+				_equalIban = Iban.Parse(TestValues.ValidIbanPartitioned);
+				_otherIban = Iban.Parse("AE070331234567890123456");
+			}
+
+			[Test]
+			public void When_values_are_equal_should_return_true()
+			{
+				// Act
+				bool actual = _iban == _equalIban;
+
+				// Assert
+				actual.Should().BeTrue();
+			}
+
+			[Test]
+			public void By_reference_when_values_are_equal_should_return_true()
+			{
+				// Act
+				bool actual = _iban.Equals(_equalIban);
+
+				// Assert
+				actual.Should().BeTrue();
+			}
+
+			[Test]
+			public void When_values_are_not_equal_should_return_false()
+			{
+				// Act
+				bool actual = _iban == _otherIban;
+
+				// Assert
+				actual.Should().BeFalse();
+			}
+		}
+
+		public class When_comparing_for_inequality : IbanTests
+		{
+			private Iban _iban;
+			private Iban _equalIban;
+			private Iban _otherIban;
+
+			public override void SetUp()
+			{
+				base.SetUp();
+
+				_iban = Iban.Parse(TestValues.ValidIban);
+				_equalIban = Iban.Parse(TestValues.ValidIbanPartitioned);
+				_otherIban = Iban.Parse("AE070331234567890123456");
+			}
+
+			[Test]
+			public void When_values_are_not_equal_should_return_true()
+			{
+				// Act
+				bool actual = _iban != _otherIban;
+
+				// Assert
+				actual.Should().BeTrue();
+			}
+
+			[Test]
+			public void By_reference_when_values_are_not_equal_should_return_false()
+			{
+				// Act
+				bool actual = _iban.Equals(_otherIban);
+
+				// Assert
+				actual.Should().BeFalse();
+			}
+
+			[Test]
+			public void When_values_are_equal_should_return_false()
+			{
+				// Act
+				bool actual = _iban != _equalIban;
+
+				// Assert
+				actual.Should().BeFalse();
+			}
+		}
 	}
 }

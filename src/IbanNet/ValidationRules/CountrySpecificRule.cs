@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IbanNet.Registry;
 
 namespace IbanNet.ValidationRules
 {
@@ -8,9 +9,9 @@ namespace IbanNet.ValidationRules
 	/// </summary>
 	internal abstract class CountrySpecificRule : IIbanValidationRule
 	{
-		private readonly IReadOnlyDictionary<string, IbanRegionDefinition> _definitions;
+		private readonly IReadOnlyDictionary<string, CountryInfo> _definitions;
 
-		protected CountrySpecificRule(IReadOnlyDictionary<string, IbanRegionDefinition> definitions)
+		protected CountrySpecificRule(IReadOnlyDictionary<string, CountryInfo> definitions)
 		{
 			_definitions = definitions ?? throw new ArgumentNullException(nameof(definitions));
 		}
@@ -34,6 +35,6 @@ namespace IbanNet.ValidationRules
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <param name="definition">The country specific definition, or null if no definition was found.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		protected abstract IbanValidationResult Validate(string iban, IbanRegionDefinition definition);
+		protected abstract IbanValidationResult Validate(string iban, CountryInfo definition);
 	}
 }

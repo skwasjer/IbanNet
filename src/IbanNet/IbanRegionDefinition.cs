@@ -2,13 +2,15 @@
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using IbanNet.Registry;
 
 namespace IbanNet
 {
 	/// <summary>
 	/// Describes how an IBAN for a given country is defined.
 	/// </summary>
-	public sealed class IbanRegionDefinition
+	[Obsolete("Use " + nameof(IbanRegistry) + ".")]
+	public sealed class IbanRegionDefinition : IStructureSection
 	{
 		private static readonly Regex IsValidStructure = new Regex(@"^([ABCFLUW]\d{2})+$", RegexOptions.CultureInvariant | RegexOptions.Singleline);
 		private Regex _structureTest;
@@ -25,10 +27,14 @@ namespace IbanNet
 		// ReSharper disable once InconsistentNaming
 		public string TwoLetterISORegionName { get; internal set; }
 
+		int IStructureSection.Position { get; } = 0;
+
 		/// <summary>
 		/// Gets the IBAN character length.
 		/// </summary>
 		public int Length { get; internal set; }
+
+		string IStructureSection.Structure => Structure;
 
 		/// <summary>
 		/// Gets the structure of the IBAN.

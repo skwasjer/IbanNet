@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFrameworks>netcoreapp2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0;net45</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="CsvHelper" Version="12.1.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
     <PackageReference Include="FluentAssertions" Version="5.4.1" />
     <PackageReference Include="Moq" Version="4.8.3" />
     <PackageReference Include="NUnit" Version="3.10.1" />

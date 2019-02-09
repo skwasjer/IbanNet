@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using IbanNet.Registry;
 
 namespace IbanNet
 {
 	/// <summary>
 	/// Represents a read only dictionary of <see cref="IbanRegionDefinition"/>.
 	/// </summary>
+	[Obsolete("Use " + nameof(IbanRegistry) + ".")]
 	internal class IbanDefinitions : ReadOnlyDictionary<string, IbanRegionDefinition>
 	{
 		public IbanDefinitions() : base(GetDefinitions())

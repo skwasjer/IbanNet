@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IbanNet.Registry;
 
 namespace IbanNet.ValidationRules
 {
@@ -7,7 +8,7 @@ namespace IbanNet.ValidationRules
 	/// </summary>
 	internal class IsValidCountryCodeRule : CountrySpecificRule
 	{
-		public IsValidCountryCodeRule(IReadOnlyDictionary<string, IbanRegionDefinition> definitions) : base(definitions)
+		public IsValidCountryCodeRule(IReadOnlyDictionary<string, CountryInfo> definitions) : base(definitions)
 		{
 		}
 
@@ -17,7 +18,7 @@ namespace IbanNet.ValidationRules
 		/// <param name="iban">The IBAN to validate.</param>
 		/// <param name="definition">The country specific definition, or null if no definition was found.</param>
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		protected override IbanValidationResult Validate(string iban, IbanRegionDefinition definition)
+		protected override IbanValidationResult Validate(string iban, CountryInfo definition)
 		{
 			return definition == null
 				? IbanValidationResult.UnknownCountryCode
