@@ -23,18 +23,18 @@ Catch
     exit
 }
 
-$validator = New-Object IbanNet.IbanValidator
+$regions = New-Object IbanNet.Registry.IbanRegistry;
 
-$markdown = "## IbanNet supports $($validator.SupportedRegions.Count) regions`r`n"
+$markdown = "## IbanNet supports $($regions.Count) regions`r`n"
 
-$markdown += "| ISO country code | Country | IBAN length | IBAN example |`r`n"
-$markdown += "|---|---|---|---|`r`n"
-ForEach($region in $validator.SupportedRegions)
+$markdown += "| ISO country code | Country | SEPA | Length | IBAN example |`r`n"
+$markdown += "|---|---|---|---|---|`r`n"
+ForEach($region in $regions)
 {
-    $iban = [IbanNet.Iban]::Parse($region.Example)
-    $markdown += "| $($region.TwoLetterISORegionName) | $($region.Region.EnglishName) | $($region.Length) | ``$($iban.ToString("S"))`` |`r`n"
+    $iban = [IbanNet.Iban]::Parse($region.Iban.Example)
+    $markdown += "| $($region.TwoLetterISORegionName) | $($region.EnglishName) | $(If ($region.Sepa.IsMember) { "Yes" } else { "No" }) | $($region.Iban.Length) | ``$($iban.ToString("S"))`` |`r`n"
 }
 
 $markdown += "`r`nFor more info visit [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number)."
 
-$markdown | Set-Content (Join-Path $repoPath "SupportedRegions.md")
+[System.IO.File]::WriteAllLines((Join-Path $repoPath "SupportedRegions.md"), $markdown)

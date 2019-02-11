@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace IbanNet
 {
@@ -46,6 +48,41 @@ namespace IbanNet
 			if (partition.Count > 0)
 			{
 				yield return partition;
+			}
+		}
+
+		/// <summary>
+		/// Splits a given <paramref name="sequence"/> into partitions when encountering any of the <paramref name="markers"/>.
+		/// </summary>
+		/// <param name="sequence">The sequence to partition.</param>
+		/// <param name="markers">A list of markers to partition on.</param>
+		/// <returns>an enumerable of partitions</returns>
+		public static IEnumerable<string> PartitionOn(this string sequence, params char[] markers)
+		{
+			if (sequence == null)
+			{
+				throw new ArgumentNullException(nameof(sequence));
+			}
+
+			if (markers == null || markers.Length == 0)
+			{
+				throw new ArgumentException("At least one marker is required.", nameof(markers));
+			}
+
+			return PartitionOnIterator(sequence, markers);
+		}
+
+		private static IEnumerable<string> PartitionOnIterator(this string sequence, params char[] markers)
+		{
+			var partition = new StringBuilder();
+			foreach (var item in sequence)
+			{
+				partition.Append(item);
+				if (markers.Contains(item))
+				{
+					yield return partition.ToString();
+					partition.Clear();
+				}
 			}
 		}
 	}

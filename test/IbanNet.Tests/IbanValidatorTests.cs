@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using FluentAssertions;
+using IbanNet.Registry;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -110,7 +111,8 @@ namespace IbanNet
 
 		private static IEnumerable GetAllValidSamples()
 		{
-			return new IbanDefinitions().Select(d => new TestCaseData(d.Key, d.Value.Example));
+			return new IbanRegistry()
+				.Select(d => new TestCaseData(d.TwoLetterISORegionName, d.Iban.Example));
 		}
 
 		[TestCaseSource(nameof(GetAllValidSamples))]

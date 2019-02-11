@@ -11,19 +11,45 @@
   <ItemGroup Condition="'$(TargetFramework)'=='net45'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <PackageReference Include="CsvHelper" Version="12.1.2">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <Import Project="..\Package.props" />
 
   <PropertyGroup>
     <Description>Provides an IBAN validator for verifying IBAN's.</Description>
-	<PackageProjectUrl>https://github.com/skwasjer/IbanNet</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\IbanNet.xml</DocumentationFile>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Registry\swift_iban_registry_201811.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Registry\IbanRegistry.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IbanRegistry.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Registry\IbanRegistry.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IbanRegistry.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 
 </Project>
