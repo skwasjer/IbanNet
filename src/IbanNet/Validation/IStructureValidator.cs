@@ -1,4 +1,4 @@
-﻿namespace IbanNet.ValidationRules
+﻿namespace IbanNet.Validation
 {
 	/// <summary>
 	/// Describes a validator that validates a specific IBAN.

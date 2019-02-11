@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN matches a specific regular expression.

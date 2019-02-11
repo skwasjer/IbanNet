@@ -1,10 +1,11 @@
-﻿using IbanNet.Registry;
-using IbanNet.ValidationRules;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
+using IbanNet.Registry;
+using IbanNet.Validation;
+using IbanNet.Validation.Rules;
 
 namespace IbanNet
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using IbanNet.Registry;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// A base class for country specific IBAN validation rules.

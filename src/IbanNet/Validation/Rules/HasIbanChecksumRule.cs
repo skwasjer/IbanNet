@@ -1,4 +1,4 @@
-﻿namespace IbanNet.ValidationRules
+﻿namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN checksum digits are not 00, 01 or 99.

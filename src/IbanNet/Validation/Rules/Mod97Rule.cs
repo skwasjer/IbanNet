@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Numerics;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the check digits are valid.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using IbanNet.Registry;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN is matching the structure defined for a specific country.

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using IbanNet.Registry;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation
 {
 	/// <summary>
 	/// A factory to create validators that are based on the Swift Registry its structure definitions.

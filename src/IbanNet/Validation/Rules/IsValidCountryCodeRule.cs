@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using IbanNet.Registry;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN has a valid and known country code.

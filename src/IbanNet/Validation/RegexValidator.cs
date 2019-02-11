@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace IbanNet.ValidationRules
+namespace IbanNet.Validation
 {
 	/// <summary>
 	/// A validator that uses a regex to validate IBAN's.

@@ -1,4 +1,4 @@
-﻿namespace IbanNet.ValidationRules
+﻿namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN is not null.
