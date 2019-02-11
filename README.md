@@ -6,8 +6,6 @@
 
 IbanNet is a .NET library providing functionality to validate and parse an [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) also known as IBAN.
 
-[Supported regions](SupportedRegions.md)
-
 ## Usage
 
 #### Parse
@@ -67,24 +65,21 @@ If you use the static methods because you would like to use the Iban type, you c
 
 Install **IbanNet** via [NuGet](https://www.nuget.org/packages/IbanNet/).
 
-#### Visual Studio / .NET Framework
+### Visual Studio / .NET Framework
 ```powershell
 Install-Package IbanNet
 ```
 
-#### .NET CLI
+### .NET CLI
 ```
 dotnet add package IbanNet
 ```
 
-### Future enhancements
-- Add support for conversion from BBAN to IBAN via 3rd party API's.
-
-#### Supported .NET targets
+### Supported .NET targets
 - .NET 4.5 or greater
 - .NET Standard 1.2 or greater
 
-#### Requirements
+### Requirements
 - Visual Studio 2017
 - .NET Core 2.0 SDK
 
@@ -94,5 +89,9 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 #### Contributors
 - skwas (author/maintainer)
 
-## Related libraries
-- [IbanNet.DataAnnotations](src/IbanNet.DataAnnotations/README.md)
+## Useful info
+
+- [Changelog](Changelog.md)
+- [IbanNet supported regions](SupportedRegions.md)
+- Related/associated libraries
+  - [IbanNet.DataAnnotations](src/IbanNet.DataAnnotations/README.md)
