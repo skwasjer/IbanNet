@@ -440,7 +440,7 @@ namespace IbanNet.Registry
 						},
 						IsSepaCountry = false,
 						DomesticAccountNumberExample = "02001026284066",
-						LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+						LastUpdatedDate = new DateTimeOffset(2019, 1, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// Cyprus
@@ -2427,11 +2427,11 @@ namespace IbanNet.Registry
 							Length = 22,
 							Structure = "VA2!n3!n15!n",
 							Example = "VA59001123000012345678",
-							EffectiveDate = new DateTimeOffset(2019, 11, 1, 0, 0, 0, TimeSpan.Zero)
+							EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						IsSepaCountry = false,	// N/A
+						IsSepaCountry = true,
 						DomesticAccountNumberExample = "123000012345678",
-						LastUpdatedDate = new DateTimeOffset(2018, 11, 1, 0, 0, 0, TimeSpan.Zero)
+						LastUpdatedDate = new DateTimeOffset(2018, 12, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// Virgin Islands
