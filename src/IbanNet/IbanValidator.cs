@@ -37,7 +37,7 @@ namespace IbanNet
 		{
 			_registry = registry ?? throw new ArgumentNullException(nameof(registry));
 
-			_structureValidationFactory = new SwiftStructureValidationFactory();
+			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
 		}
 
 		private ICollection<IIbanValidationRule> Rules

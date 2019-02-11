@@ -24,7 +24,7 @@ namespace IbanNet.Validation.Rules
 		/// <returns>true if the IBAN is valid, or false otherwise</returns>
 		protected override IbanValidationResult Validate(string iban, CountryInfo definition)
 		{
-			IStructureValidator validator = _structureValidationFactory.CreateValidator(definition, definition.Iban.Structure);
+			IStructureValidator validator = _structureValidationFactory.CreateValidator(definition.TwoLetterISORegionName, definition.Iban.Structure);
 			return validator.Validate(iban)
 				? IbanValidationResult.Valid
 				: IbanValidationResult.InvalidStructure;

@@ -8,11 +8,12 @@ namespace IbanNet.Validation
 	public interface IStructureValidationFactory
 	{
 		/// <summary>
-		/// Creates a validator for specified <paramref name="countryInfo" /> using the provided <paramref name="structure" />.
+		/// Creates a validator for specified country using the provided <paramref name="structure" />.
 		/// </summary>
-		/// <param name="countryInfo">The country info.</param>
+		/// <param name="twoLetterISORegionName">The country code.</param>
 		/// <param name="structure">The pattern/structure to create a validator for.</param>
 		/// <returns>A validator to use for the given country and structure.</returns>
-		IStructureValidator CreateValidator(CountryInfo countryInfo, string structure);
+		// ReSharper disable once InconsistentNaming
+		IStructureValidator CreateValidator(string twoLetterISORegionName, string structure);
 	}
 }

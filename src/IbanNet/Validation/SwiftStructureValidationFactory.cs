@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using IbanNet.Registry;
 
 namespace IbanNet.Validation
 {
@@ -34,7 +33,8 @@ namespace IbanNet.Validation
 		}
 
 		/// <inheritdoc />
-		public IStructureValidator CreateValidator(CountryInfo countryInfo, string structure)
+		// ReSharper disable once InconsistentNaming
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
 		{
 			return new RegexValidator(new Regex(
 				BuildStructureRegexPattern(structure),
