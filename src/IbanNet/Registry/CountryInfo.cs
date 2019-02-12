@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Contains IBAN/BBAN format information about the country.
 	/// </summary>
+	[DebuggerDisplay("\\{{" + nameof(TwoLetterISORegionName) + ",nq} - {" + nameof(EnglishName) + ",nq}\\}")]
 	public class CountryInfo
 	{
 		internal CountryInfo()
@@ -68,5 +70,11 @@ namespace IbanNet.Registry
 		/// Gets when this <see cref="CountryInfo"/> was last updated in the Iban Registry.
 		/// </summary>
 		public DateTimeOffset LastUpdatedDate { get; set; }
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return TwoLetterISORegionName;
+		}
 	}
 }
