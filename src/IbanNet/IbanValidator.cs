@@ -16,7 +16,6 @@ namespace IbanNet
 	{
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
 		private Collection<IIbanValidationRule> _rules;
-		private IbanDefinitions _definitions;
 		private readonly object _lockObject = new object();
 		private readonly IStructureValidationFactory _structureValidationFactory;
 
@@ -72,19 +71,7 @@ namespace IbanNet
 				return _rules;
 			}
 		}
-
-		/// <summary>
-		/// Gets all the definitions the <see cref="IbanValidator"/> supports.
-		/// </summary>
-		private IReadOnlyDictionary<string, IbanRegionDefinition> Definitions => _definitions ?? (_definitions = new IbanDefinitions());
-
-		/// <summary>
-		/// Gets the supported regions.
-		/// </summary>
-		// ReSharper disable once UnusedMember.Global
-		[Obsolete("Use " + nameof(SupportedCountries) + ".")]
-		public IEnumerable<IbanRegionDefinition> SupportedRegions => Definitions.Values;
-
+		
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
