@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 
 namespace IbanNet.Registry
@@ -6,6 +7,7 @@ namespace IbanNet.Registry
 	/// <summary>
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
+	[GeneratedCode("IbanRegistryT4", "1.0")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>

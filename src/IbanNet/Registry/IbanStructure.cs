@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Describes an IBAN structure.
 	/// </summary>
+	[DebuggerStepThrough]
 	public class IbanStructure : StructureSection
 	{
 		internal IbanStructure()

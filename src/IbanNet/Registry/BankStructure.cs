@@ -1,8 +1,11 @@
-﻿namespace IbanNet.Registry
+﻿using System.Diagnostics;
+
+namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Defines a bank section of a structure.
 	/// </summary>
+	[DebuggerStepThrough]
 	public class BankStructure : StructureSection
 	{
 		internal BankStructure()

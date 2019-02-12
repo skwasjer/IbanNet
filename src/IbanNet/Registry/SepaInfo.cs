@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Represents SEPA information.
 	/// </summary>
+	[DebuggerStepThrough]
 	public class SepaInfo
 	{
 		/// <summary>

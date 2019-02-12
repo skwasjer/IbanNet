@@ -1,8 +1,11 @@
-﻿namespace IbanNet.Registry
+﻿using System.Diagnostics;
+
+namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Contains information about the BBAN structure.
 	/// </summary>
+	[DebuggerStepThrough]
 	public class BbanStructure : StructureSection
 	{
 		internal BbanStructure()

@@ -6,6 +6,7 @@ namespace IbanNet.Registry
 	/// <summary>
 	/// Defines a section of a structure.
 	/// </summary>
+	[DebuggerStepThrough]
 	public abstract class StructureSection : IStructureSection
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
