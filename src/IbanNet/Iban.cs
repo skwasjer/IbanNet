@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -63,7 +64,7 @@ namespace IbanNet
 				// Partitioned by space
 				case Formats.Partitioned:
 					// Split into 4 char segments.
-					var segments = _iban.Partition(4).Select(p => string.Join("", p));
+					IEnumerable<string> segments = _iban.Partition(4).Select(p => string.Join("", p));
 					return string.Join(" ", segments);
 
 				case null:
@@ -95,7 +96,7 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(value));
 			}
 
-			if (TryParse(value, out var iban, out var validationResult))
+			if (TryParse(value, out Iban iban, out IbanValidationResult validationResult))
 			{
 				return iban;
 			}
@@ -113,7 +114,7 @@ namespace IbanNet
 		{
 			iban = null;
 
-			return TryParse(value, out iban, out var _);
+			return TryParse(value, out iban, out IbanValidationResult _);
 		}
 
 		/// <summary>
@@ -132,7 +133,7 @@ namespace IbanNet
 				return false;
 			}
 
-			var normalizedValue = Normalize(value);
+			string normalizedValue = Normalize(value);
 			if ((validationResult = Validator.Validate(normalizedValue)) == IbanValidationResult.Valid)
 			{
 				iban = new Iban(normalizedValue.ToUpperInvariant());
@@ -168,8 +169,16 @@ namespace IbanNet
 		/// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
 		public override bool Equals(object obj)
 		{
-			if (ReferenceEquals(null, obj)) return false;
-			if (ReferenceEquals(this, obj)) return true;
+			if (ReferenceEquals(null, obj))
+			{
+				return false;
+			}
+
+			if (ReferenceEquals(this, obj))
+			{
+				return true;
+			}
+
 			return obj is Iban iban && Equals(iban);
 		}
 
@@ -183,7 +192,7 @@ namespace IbanNet
 		}
 
 		/// <summary>
-		/// Determines whether the <see cref="Iban"/>s are equal to eachother.
+		/// Determines whether the <see cref="Iban"/>s are equal to each other.
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
@@ -194,7 +203,7 @@ namespace IbanNet
 		}
 
 		/// <summary>
-		/// Determines whether the <see cref="Iban"/>s are unequal to eachother.
+		/// Determines whether the <see cref="Iban"/>s are unequal to each other.
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
