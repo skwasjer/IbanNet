@@ -30,10 +30,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Registry\swift_iban_registry_201811.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
