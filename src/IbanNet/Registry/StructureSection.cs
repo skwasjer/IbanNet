@@ -36,7 +36,9 @@ namespace IbanNet.Registry
 			Structure = structure ?? throw new ArgumentNullException(nameof(structure));
 		}
 
-		/// <inheritdoc />
+		/// <summary>
+		/// Gets or sets the position within the structure.
+		/// </summary>
 		public int Position
 		{
 			get => _position;
@@ -51,7 +53,9 @@ namespace IbanNet.Registry
 			}
 		}
 
-		/// <inheritdoc />
+		/// <summary>
+		/// Gets or sets the section length.
+		/// </summary>
 		public int Length
 		{
 			get => _length;
@@ -66,14 +70,18 @@ namespace IbanNet.Registry
 			}
 		}
 
-		/// <inheritdoc />
+		/// <summary>
+		/// Gets or sets the section example.
+		/// </summary>
 		public string Example
 		{
 			get => _example;
 			set => _example = value ?? string.Empty;
 		}
 
-		/// <inheritdoc />
+		/// <summary>
+		/// Gets or sets the structure.
+		/// </summary>
 		public string Structure
 		{
 			get => _structure;

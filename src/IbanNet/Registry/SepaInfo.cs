@@ -11,12 +11,12 @@ namespace IbanNet.Registry
 	public class SepaInfo
 	{
 		/// <summary>
-		/// Gets whether this region is a SEPA country.
+		/// Gets or sets whether this region is a SEPA country.
 		/// </summary>
 		public bool IsMember { get; set; }
 
 		/// <summary>
-		/// Gets a list of included SEPA countries.
+		/// Gets or sets a list of included SEPA countries.
 		/// </summary>
 		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(new string[0]);
 	}

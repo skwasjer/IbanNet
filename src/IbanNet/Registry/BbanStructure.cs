@@ -23,12 +23,12 @@ namespace IbanNet.Registry
 		}
 
 		/// <summary>
-		/// Gets the bank identifier structure section.
+		/// Gets or sets the bank identifier structure section.
 		/// </summary>
 		public BankStructure Bank { get; set; }
 
 		/// <summary>
-		/// Gets the branch identifier structure section.
+		/// Gets or sets the branch identifier structure section.
 		/// </summary>
 		public BranchStructure Branch { get; set; }
 	}

@@ -43,7 +43,7 @@ namespace IbanNet.Registry
 		public string EnglishName { get; set; }
 
 		/// <summary>
-		/// Gets a list of included countries.
+		/// Gets or sets the list of included countries.
 		/// </summary>
 		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(new string[0]);
 
@@ -53,22 +53,22 @@ namespace IbanNet.Registry
 		public SepaInfo Sepa { get; set; }
 
 		/// <summary>
-		/// Gets a domestic account number example.
+		/// Gets or sets a domestic account number example.
 		/// </summary>
 		public string DomesticAccountNumberExample { get; set; }
 
 		/// <summary>
-		/// Gets the structure of the BBAN.
+		/// Gets or sets the structure of the BBAN.
 		/// </summary>
 		public BbanStructure Bban { get; set; }
 
 		/// <summary>
-		/// Gets the structure of the IBAN.
+		/// Gets or sets the structure of the IBAN.
 		/// </summary>
 		public IbanStructure Iban { get; set; }
 
 		/// <summary>
-		/// Gets when this <see cref="CountryInfo"/> was last updated in the Iban Registry.
+		/// Gets or sets when this <see cref="CountryInfo"/> was last updated in the Iban Registry.
 		/// </summary>
 		public DateTimeOffset LastUpdatedDate { get; set; }
 
