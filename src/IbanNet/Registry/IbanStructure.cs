@@ -1,29 +1,29 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Describes an IBAN structure.
 	/// </summary>
-	public class IbanStructure : IStructureSection
+	public class IbanStructure : StructureSection
 	{
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		// Not relevant.
-		int IStructureSection.Position { get; } = 0;
+		internal IbanStructure()
+		{
+		}
 
-		/// <inheritdoc />
-		public int Length { get; internal set; }
-
-		/// <inheritdoc />
-		public string Example { get; internal set; }
-
-		/// <inheritdoc />
-		public string Structure { get; internal set; }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IbanStructure"/> class using specified parameters.
+		/// </summary>
+		/// <param name="structure">The structure.</param>
+		// ReSharper disable once UnusedMember.Global
+		public IbanStructure(string structure)
+			: base(structure)
+		{
+		}
 
 		/// <summary>
 		/// Gets the date the IBAN came in effect.
 		/// </summary>
-		public DateTimeOffset EffectiveDate { get; internal set; }
+		public DateTimeOffset EffectiveDate { get; set; }
 	}
 }

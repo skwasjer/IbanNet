@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace IbanNet.Registry
 {
@@ -7,19 +8,14 @@ namespace IbanNet.Registry
 	/// </summary>
 	public class SepaInfo
 	{
-		internal SepaInfo()
-		{
-			IncludedCountries = new CountryInfo[0];
-		}
-
 		/// <summary>
 		/// Gets whether this region is a SEPA country.
 		/// </summary>
-		public bool IsMember { get; internal set; }
+		public bool IsMember { get; set; }
 
 		/// <summary>
 		/// Gets a list of included SEPA countries.
 		/// </summary>
-		public IReadOnlyCollection<CountryInfo> IncludedCountries { get; internal set; }
+		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(new string[0]);
 	}
 }

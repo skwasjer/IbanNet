@@ -1,33 +1,32 @@
-﻿using System.Diagnostics;
-
-namespace IbanNet.Registry
+﻿namespace IbanNet.Registry
 {
 	/// <summary>
 	/// Contains information about the BBAN structure.
 	/// </summary>
-	public class BbanStructure : IStructureSection
+	public class BbanStructure : StructureSection
 	{
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		// Not relevant.
-		int IStructureSection.Position { get; } = 0;
+		internal BbanStructure()
+		{
+		}
 
-		/// <inheritdoc />
-		public int Length { get; internal set; }
-
-		/// <inheritdoc />
-		public string Example { get; internal set; }
-
-		/// <inheritdoc />
-		public string Structure { get; internal set; }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StructureSection"/> class using specified parameters.
+		/// </summary>
+		/// <param name="structure">The structure.</param>
+		// ReSharper disable once UnusedMember.Global
+		public BbanStructure(string structure)
+			: base(structure)
+		{
+		}
 
 		/// <summary>
 		/// Gets the bank identifier structure section.
 		/// </summary>
-		public IStructureSection Bank { get; internal set; }
+		public BankStructure Bank { get; set; }
 
 		/// <summary>
 		/// Gets the branch identifier structure section.
 		/// </summary>
-		public IStructureSection Branch { get; internal set; }
+		public BranchStructure Branch { get; set; }
 	}
 }

@@ -25,8 +25,9 @@ namespace IbanNet.Registry
 		private static IEnumerable GetExpectedDefinitions()
 		{
 			yield return new TestCaseData(
-				new CountryInfo("AD")
+				new CountryInfo
 				{
+					TwoLetterISORegionName = "AD",
 					DisplayName = "Andorra",
 					EnglishName = "Andorra",
 					Bban = new BbanStructure
@@ -34,14 +35,14 @@ namespace IbanNet.Registry
 						Length = 20,
 						Structure = "4!n4!n12!c",
 						Example = "00012030200359100100",
-						Bank = new StructureSection
+						Bank = new BankStructure
 						{
 							Position = 0,
 							Length = 4,
 							Structure = "4!n",
 							Example = "0001",
 						},
-						Branch = new StructureSection
+						Branch = new BranchStructure
 						{
 							Position = 4,
 							Length = 4,
@@ -56,7 +57,10 @@ namespace IbanNet.Registry
 						Example = "AD1200012030200359100100",
 						EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 					},
-					IsSepaCountry = false,
+					Sepa = new SepaInfo
+					{
+						IsMember = false,
+					},
 					DomesticAccountNumberExample = "2030200359100100",
 					LastUpdatedDate = new DateTimeOffset(2009, 11, 1, 0, 0, 0, TimeSpan.Zero)
 				}
@@ -66,8 +70,9 @@ namespace IbanNet.Registry
 			;
 
 			yield return new TestCaseData(
-				new CountryInfo("XK")
+				new CountryInfo
 				{
+					TwoLetterISORegionName = "XK",
 					DisplayName = "Kosovo",
 					EnglishName = "Kosovo",
 					Bban = new BbanStructure
@@ -75,14 +80,14 @@ namespace IbanNet.Registry
 						Length = 16,
 						Structure = "4!n10!n2!n",
 						Example = "1212012345678906",
-						Bank = new StructureSection
+						Bank = new BankStructure
 						{
 							Position = 0,
 							Length = 2,
 							Structure = "2!n",
 							Example = "12",
 						},
-						Branch = new StructureSection
+						Branch = new BranchStructure
 						{
 							Position = 2,
 							Length = 2,
@@ -97,7 +102,10 @@ namespace IbanNet.Registry
 						Example = "XK051212012345678906",
 						EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
 					},
-					IsSepaCountry = false,
+					Sepa = new SepaInfo
+					{
+						IsMember = false,
+					},
 					DomesticAccountNumberExample = "1212 0123456789 06",
 					LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
 				}
@@ -112,7 +120,8 @@ namespace IbanNet.Registry
 		{
 			_sut.Should()
 				.Contain(c => c.TwoLetterISORegionName == expectedCountryInfo.TwoLetterISORegionName)
-				.Which.Should().BeEquivalentTo(expectedCountryInfo);
+				.Which
+				.Should().BeEquivalentTo(expectedCountryInfo);
 		}
 	}
 }
