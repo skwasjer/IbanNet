@@ -35,7 +35,7 @@ namespace IbanNet
 		private static IEnumerable<IEnumerable<TSource>> PartitionIterator<TSource>(this IEnumerable<TSource> sequence, int size)
 		{
 			var partition = new List<TSource>(size);
-			foreach (var item in sequence)
+			foreach (TSource item in sequence)
 			{
 				partition.Add(item);
 				if (partition.Count == size)
@@ -75,7 +75,7 @@ namespace IbanNet
 		private static IEnumerable<string> PartitionOnIterator(this string sequence, params char[] markers)
 		{
 			var partition = new StringBuilder();
-			foreach (var item in sequence)
+			foreach (char item in sequence)
 			{
 				partition.Append(item);
 				if (markers.Contains(item))
@@ -83,6 +83,11 @@ namespace IbanNet
 					yield return partition.ToString();
 					partition.Clear();
 				}
+			}
+
+			if (partition.Length > 0)
+			{
+				yield return partition.ToString();
 			}
 		}
 	}
