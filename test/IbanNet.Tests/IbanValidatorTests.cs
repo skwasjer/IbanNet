@@ -150,6 +150,23 @@ namespace IbanNet
 			});
 		}
 
+		[TestCase("NL91 ABNA 0417 1643 00")]
+		[TestCase("NL91\tABNA\t0417\t1643\t00")]
+		[TestCase(" NL91 ABNA041 716 4300 ")]
+		public void When_iban_contains_whitespace_should_validate(string ibanWithWhitespace)
+		{
+			// Act
+			ValidationResult actual = _validator.Validate(ibanWithWhitespace);
+
+			// Assert
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = Iban.Normalize(ibanWithWhitespace),
+				Result = IbanValidationResult.Valid,
+				Country = _validator.SupportedCountries.Single(c => c.TwoLetterISORegionName == "NL")
+			});
+		}
+
 		private static IEnumerable GetAllValidSamples()
 		{
 			return new IbanRegistry()

@@ -29,7 +29,7 @@ namespace IbanNet
 			public const string Flat = "F";
 		}
 
-		private static readonly Regex NormalizeRegex = new Regex(@"\s+", RegexOptions.CultureInvariant);
+		private static readonly Regex NormalizeRegex = new Regex(@"[ \t]+", RegexOptions.CultureInvariant);
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
@@ -133,6 +133,9 @@ namespace IbanNet
 				return false;
 			}
 
+			// Although our validator normalizes too, we can't rely on this fact if other implementations
+			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
+			// represents the IBAN value, we normalize inline here and take the penalty.
 			string normalizedValue = Normalize(value);
 			ValidationResult result = Validator.Validate(normalizedValue);
 			if (result.Result == IbanValidationResult.Valid)

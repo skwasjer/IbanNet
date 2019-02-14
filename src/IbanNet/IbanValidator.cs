@@ -90,7 +90,7 @@ namespace IbanNet
 			
 			return new ValidationResult
 			{
-				Value = iban,
+				Value = normalizedIban?.ToUpperInvariant(),
 				Result = context.Result,
 				Country = context.Country
 			};

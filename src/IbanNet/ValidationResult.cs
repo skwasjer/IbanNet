@@ -18,7 +18,7 @@ namespace IbanNet
 		public bool IsValid => Result == IbanValidationResult.Valid;
 
 		/// <summary>
-		/// Gets the validated iban value.
+		/// Gets the validated IBAN.
 		/// </summary>
 		public string Value { get; set; }
 
