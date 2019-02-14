@@ -1,6 +1,6 @@
 # Changelog
 
-## v3.0-rc
+## v3.0
 
 - Partial rewrite to support the official [Swift IBAN registry](https://www.swift.com/standards/data-standards/iban).
 - Added support for 4 more countries for a total of 76.
