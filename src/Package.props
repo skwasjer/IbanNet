@@ -11,7 +11,7 @@
   <PropertyGroup>
     <Authors>Martijn Bodeman</Authors>
     <Company></Company>
-    <Copyright>Copyright © 2017</Copyright>
+    <Copyright>Copyright © 2019</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/skwasjer/IbanNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
