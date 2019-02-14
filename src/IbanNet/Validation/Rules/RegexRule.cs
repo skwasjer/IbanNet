@@ -7,14 +7,9 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal abstract class RegexRule : IIbanValidationRule
 	{
-		private RegexRule(Regex regex)
-		{
-			Regex = regex;
-		}
-
 		protected RegexRule(string pattern)
-			: this(new Regex(pattern, RegexOptions.CultureInvariant | RegexOptions.Singleline))
 		{
+			Regex = new Regex(pattern, RegexOptions.CultureInvariant | RegexOptions.Singleline);
 		}
 
 		/// <summary>
@@ -23,16 +18,13 @@ namespace IbanNet.Validation.Rules
 		// ReSharper disable once MemberCanBePrivate.Global
 		protected Regex Regex { get; }
 
-		/// <summary>
-		/// Validates the IBAN against this rule.
-		/// </summary>
-		/// <param name="iban">The IBAN to validate.</param>
-		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		public virtual IbanValidationResult Validate(string iban)
+		/// <inheritdoc />
+		public virtual void Validate(ValidationContext context)
 		{
-			return Regex.IsMatch(iban)
-				? IbanValidationResult.Valid
-				: IbanValidationResult.IllegalCharacters;
+			if (!Regex.IsMatch(context.Value))
+			{
+				context.Result = IbanValidationResult.IllegalCharacters;
+			}
 		}
 	}
 }

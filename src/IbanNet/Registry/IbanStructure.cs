@@ -6,24 +6,26 @@ namespace IbanNet.Registry
 	/// <summary>
 	/// Describes an IBAN structure.
 	/// </summary>
-	public class IbanStructure : IStructureSection
+	[DebuggerStepThrough]
+	public class IbanStructure : StructureSection
 	{
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		// Not relevant.
-		int IStructureSection.Position { get; } = 0;
-
-		/// <inheritdoc />
-		public int Length { get; internal set; }
-
-		/// <inheritdoc />
-		public string Example { get; internal set; }
-
-		/// <inheritdoc />
-		public string Structure { get; internal set; }
+		internal IbanStructure()
+		{
+		}
 
 		/// <summary>
-		/// Gets the date the IBAN came in effect.
+		/// Initializes a new instance of the <see cref="IbanStructure"/> class using specified parameters.
 		/// </summary>
-		public DateTimeOffset EffectiveDate { get; internal set; }
+		/// <param name="structure">The structure.</param>
+		// ReSharper disable once UnusedMember.Global
+		public IbanStructure(string structure)
+			: base(structure)
+		{
+		}
+
+		/// <summary>
+		/// Gets or sets the date the IBAN came in effect.
+		/// </summary>
+		public DateTimeOffset EffectiveDate { get; set; }
 	}
 }

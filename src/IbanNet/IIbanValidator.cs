@@ -10,6 +10,6 @@
 		/// </summary>
 		/// <param name="iban">The IBAN value to validate.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
-		IbanValidationResult Validate(string iban);
+		ValidationResult Validate(string iban);
 	}
 }

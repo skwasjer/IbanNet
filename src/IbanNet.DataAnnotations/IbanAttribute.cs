@@ -19,11 +19,11 @@ namespace IbanNet.DataAnnotations
 		}
 
 		/// <inheritdoc />
-		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+		protected override System.ComponentModel.DataAnnotations.ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
 			if (value == null)
 			{
-				return ValidationResult.Success;
+				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}
 
 			if (!(value is string strValue))
@@ -32,10 +32,10 @@ namespace IbanNet.DataAnnotations
 			}
 
 			IIbanValidator ibanValidator = GetValidator(validationContext);
-			IbanValidationResult result = ibanValidator.Validate(strValue);
-			if (result == IbanValidationResult.Valid)
+			ValidationResult result = ibanValidator.Validate(strValue);
+			if (result.Result == IbanValidationResult.Valid)
 			{
-				return ValidationResult.Success;
+				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}
 
 			IEnumerable<string> memberNames = null;
@@ -44,7 +44,7 @@ namespace IbanNet.DataAnnotations
 				memberNames = new[] { validationContext.MemberName };
 			}
 
-			return new ValidationResult(FormatErrorMessage(validationContext.DisplayName), memberNames);
+			return new System.ComponentModel.DataAnnotations.ValidationResult(FormatErrorMessage(validationContext.DisplayName), memberNames);
 		}
 
 		/// <summary>

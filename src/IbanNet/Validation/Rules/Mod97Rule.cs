@@ -11,27 +11,24 @@ namespace IbanNet.Validation.Rules
 	{
 		private static readonly int CharCodeA = 'A';
 
-		/// <summary>
-		/// Validates the IBAN against this rule.
-		/// </summary>
-		/// <param name="iban">The IBAN to validate.</param>
-		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		public IbanValidationResult Validate(string iban)
+		/// <inheritdoc />
+		public void Validate(ValidationContext context)
 		{
-			var upperIban = iban.ToUpperInvariant();
-			var shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);
+			string upperIban = context.Value.ToUpperInvariant();
+			string shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);
 
-			var iso13616 = string.Join("", 
+			string iso13616 = string.Join("", 
 				shiftedIban.Select(c => char.IsNumber(c) 
 					? c.ToString() 
 					: (c - CharCodeA + 10).ToString()
 				)
 			);
 
-			var largeInteger = BigInteger.Parse(iso13616, CultureInfo.InvariantCulture);
-			return largeInteger % 97 == 1
-				? IbanValidationResult.Valid
-				: IbanValidationResult.InvalidCheckDigits;
+			BigInteger largeInteger = BigInteger.Parse(iso13616, CultureInfo.InvariantCulture);
+			if (largeInteger % 97 != 1)
+			{
+				context.Result = IbanValidationResult.InvalidCheckDigits;
+			}
 		}
 	}
 }

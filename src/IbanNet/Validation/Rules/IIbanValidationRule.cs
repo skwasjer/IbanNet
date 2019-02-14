@@ -8,8 +8,7 @@
 		/// <summary>
 		/// Validates the IBAN against this rule.
 		/// </summary>
-		/// <param name="iban">The IBAN value to validate.</param>
-		/// <returns>a validation result, indicating if the rule passed or not</returns>
-		IbanValidationResult Validate(string iban);
+		/// <param name="context">The validation context.</param>
+		void Validate(ValidationContext context);
 	}
 }

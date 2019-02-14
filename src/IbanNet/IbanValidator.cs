@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using IbanNet.Registry;
@@ -14,11 +15,16 @@ namespace IbanNet
 	/// </summary>
 	public class IbanValidator : IIbanValidator
 	{
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private Collection<IIbanValidationRule> _rules;
-		private IbanDefinitions _definitions;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly IStructureValidationFactory _structureValidationFactory;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private Dictionary<string, CountryInfo> _structures;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
@@ -38,53 +44,19 @@ namespace IbanNet
 			_registry = registry ?? throw new ArgumentNullException(nameof(registry));
 
 			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
-		}
-
-		private ICollection<IIbanValidationRule> Rules
-		{
-			get
+			_rules = new Collection<IIbanValidationRule>
 			{
-				if (_rules != null)
-				{
-					return _rules;
-				}
-
-				lock (_lockObject)
-				{
-					Dictionary<string, CountryInfo> structures = _registry.Value
-						.ToDictionary(
-							kvp => kvp.TwoLetterISORegionName,
-							kvp => kvp
-						);
-					_rules = _rules ?? new Collection<IIbanValidationRule>
-					{
-						new NotNullRule(),
-						new NoIllegalCharactersRule(),
-						new HasCountryCodeRule(),
-						new HasIbanChecksumRule(),
-						new IsValidCountryCodeRule(structures),
-						new IsValidLengthRule(structures),
-						new IsMatchingStructureRule(_structureValidationFactory, structures),
-						new Mod97Rule()
-					};
-				}
-
-				return _rules;
-			}
+				new NotNullRule(),
+				new NoIllegalCharactersRule(),
+				new HasCountryCodeRule(),
+				new HasIbanChecksumRule(),
+				new IsValidCountryCodeRule(),
+				new IsValidLengthRule(),
+				new IsMatchingStructureRule(_structureValidationFactory),
+				new Mod97Rule()
+			};
 		}
-
-		/// <summary>
-		/// Gets all the definitions the <see cref="IbanValidator"/> supports.
-		/// </summary>
-		private IReadOnlyDictionary<string, IbanRegionDefinition> Definitions => _definitions ?? (_definitions = new IbanDefinitions());
-
-		/// <summary>
-		/// Gets the supported regions.
-		/// </summary>
-		// ReSharper disable once UnusedMember.Global
-		[Obsolete("Use " + nameof(SupportedCountries) + ".")]
-		public IEnumerable<IbanRegionDefinition> SupportedRegions => Definitions.Values;
-
+		
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
@@ -95,20 +67,62 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
-		public IbanValidationResult Validate(string iban)
+		public ValidationResult Validate(string iban)
 		{
-			string normalizedIban = Iban.Normalize(iban);
+			InitRegistry();
 
-			IbanValidationResult validationResult = IbanValidationResult.Valid;
-			foreach (IIbanValidationRule rule in Rules)
+			string normalizedIban = Iban.Normalize(iban);
+			var context = new ValidationContext
 			{
-				validationResult = rule.Validate(normalizedIban);
-				if (validationResult != IbanValidationResult.Valid)
+				Value = normalizedIban,
+				Result = IbanValidationResult.Valid,
+				Country = GetMatchingCountry(normalizedIban)
+			};
+
+			foreach (IIbanValidationRule rule in _rules)
+			{
+				rule.Validate(context);
+				if (context.Result != IbanValidationResult.Valid)
 				{
 					break;
 				}
 			}
-			return validationResult;
+			
+			return new ValidationResult
+			{
+				Value = normalizedIban?.ToUpperInvariant(),
+				Result = context.Result,
+				Country = context.Country
+			};
+		}
+
+		private void InitRegistry()
+		{
+			if (_structures != null)
+			{
+				return;
+			}
+
+			lock (_lockObject)
+			{
+				_structures = _structures ?? _registry.Value
+					.ToDictionary(
+						kvp => kvp.TwoLetterISORegionName,
+						kvp => kvp
+					);
+			}
+		}
+
+		private CountryInfo GetMatchingCountry(string iban)
+		{
+			if (iban == null || iban.Length < 2)
+			{
+				return null;
+			}
+
+			string countryCode = iban.Substring(0, 2).ToUpperInvariant();
+			_structures.TryGetValue(countryCode, out CountryInfo matchedCountry);
+			return matchedCountry;
 		}
 	}
 }

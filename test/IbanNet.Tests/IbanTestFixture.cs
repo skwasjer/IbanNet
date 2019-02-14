@@ -12,11 +12,19 @@ namespace IbanNet
 		{
 			IbanValidatorMock = new Mock<IIbanValidator>();
 			IbanValidatorMock
-				.Setup(m => m.Validate(TestValues.ValidIban))
-				.Returns(IbanValidationResult.Valid);
+				.Setup(m => m.Validate(It.IsAny<string>()))
+				.Returns<string>(iban => new ValidationResult
+				{
+					Value = iban,
+					Result = IbanValidationResult.Valid
+				});
 			IbanValidatorMock
 				.Setup(m => m.Validate(TestValues.InvalidIban))
-				.Returns(IbanValidationResult.IllegalCharacters);
+				.Returns<string>(iban => new ValidationResult
+				{
+					Value = iban,
+					Result = IbanValidationResult.IllegalCharacters
+				});
 
 			Iban.Validator = IbanValidatorMock.Object;
 		}

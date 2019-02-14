@@ -10,6 +10,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 
 namespace IbanNet.Registry
@@ -17,6 +18,7 @@ namespace IbanNet.Registry
 	/// <summary>
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
+	[GeneratedCode("IbanRegistryT4", "1.0")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>
@@ -53,18 +55,19 @@ namespace IbanNet.Registry
 			var lastUpdatedDate = DateTime.ParseExact(row[42], "MMM-yy", CultureInfo.InvariantCulture);
 #>
 					// <#= row[0] #>
-					new CountryInfo("<#= row[1] #>")
+					new CountryInfo
 					{
+						TwoLetterISORegionName = "<#= row[1].ToUpperInvariant() #>",
 						DisplayName = "<#= row[0] #>", 
 						EnglishName = "<#= row[0] #>",
 <#
 					includedCountries = row[2] == null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 					if (includedCountries.Length > 0) {
 #>
-						IncludedCountriesInternal = new[]
+						IncludedCountries = new[]
 						{
-						<#
-						Write(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+							<#
+						WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
 						#>
 						},
 <#
@@ -78,7 +81,7 @@ namespace IbanNet.Registry
 <#
 						if (row[9] != null) {
 #>
-							Bank = new StructureSection
+							Bank = new BankStructure
 							{
 								Position = <#= int.Parse(row[9].Split('-')[0]) - 1 #>,
 								Length = <#= int.Parse(row[9].Split('-', ' ')[1]) - int.Parse(row[9].Split('-')[0]) + 1 #>,
@@ -90,7 +93,7 @@ namespace IbanNet.Registry
 
 						if (row[11] != null) {
 #>
-							Branch = new StructureSection
+							Branch = new BranchStructure
 							{
 								Position = <#= int.Parse(row[11].Split('-')[0]) - 1 #>,
 								Length = <#= int.Parse(row[11].Split('-', ' ')[1]) - int.Parse(row[11].Split('-')[0]) + 1 #>,
@@ -108,21 +111,22 @@ namespace IbanNet.Registry
 							Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
 							EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						IsSepaCountry = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
+						Sepa = new SepaInfo {
+							IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
 <#
 					includedCountries = row[4] == null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 					if (includedCountries.Length > 0) {
 #>
-					InternalSepaIncludedCountries = new[]
-					{
-						<#
-						Write(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+							IncludedCountries = new[]
+							{
+								<#
+						WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
 						#>
-
-					},
+							}
 <#
 					}
 #>
+						},
 						DomesticAccountNumberExample = "<#= row[5] ?? string.Empty #>",
 						LastUpdatedDate = new DateTimeOffset(<#= lastUpdatedDate.Year #>, <#= lastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
 					},
