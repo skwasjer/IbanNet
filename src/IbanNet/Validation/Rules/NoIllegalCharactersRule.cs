@@ -9,15 +9,13 @@
 		{
 		}
 
-		/// <summary>
-		/// Validates the IBAN against this rule.
-		/// </summary>
-		/// <param name="iban">The IBAN to validate.</param>
-		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		public override IbanValidationResult Validate(string iban)
+		/// <inheritdoc />
+		public override void Validate(ValidationContext context)
 		{
-			// We have to invert the result of the regex check, since we're testing for the presence of non-word characters.
-			return base.Validate(iban) == IbanValidationResult.Valid
+			base.Validate(context);
+
+			// We have to invert the result of the regex check, since we're testing for the presence of 00, 01 and 99.
+			context.Result = context.IsValid
 				? IbanValidationResult.IllegalCharacters
 				: IbanValidationResult.Valid;
 		}

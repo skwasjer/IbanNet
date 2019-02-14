@@ -5,16 +5,13 @@
 	/// </summary>
 	internal sealed class NotNullRule : IIbanValidationRule
 	{
-		/// <summary>
-		/// Validates the IBAN against this rule.
-		/// </summary>
-		/// <param name="iban">The IBAN to validate.</param>
-		/// <returns>true if the IBAN is valid, or false otherwise</returns>
-		public IbanValidationResult Validate(string iban)
+		/// <inheritdoc />
+		public void Validate(ValidationContext context)
 		{
-			return iban != null
-				? IbanValidationResult.Valid
-				: IbanValidationResult.InvalidLength;
+			if (context.Value == null)
+			{
+				context.Result = IbanValidationResult.InvalidLength;
+			}
 		}
 	}
 }
