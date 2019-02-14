@@ -1,4 +1,4 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
+[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
 [![NuGet](https://img.shields.io/nuget/v/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/)
 [![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
 
@@ -30,12 +30,20 @@ The only downside is there is no way to retrieve the type of validation error th
 
 #### IbanValidator
 
-Lastly, you can use the validator directly:
+Lastly, you can use the validator directly. The benefit of using the validator is that it implements the `IIbanValidator` interface and can thus be mocked. Additionally, the `ValidationResult` provides extra context, like the matched country (if any).
+
+For example:
+
 ```csharp
 IIbanValidator validator = new IbanValidator();
-IbanValidationResult validationResult = validator.Validate("NL91ABNA041716430");
+ValidationResult validationResult = validator.Validate("NL91ABNA041716430");
+if (validationResult.IsValid) {
+  // For example:
+  if (validationResult.Country.TwoLetterISORegionName != "NL") {
+    throw new InvalidOperationException("Please provide a Dutch bank account.");
+  }
+}
 ```
-The benefit of using the validator is that it implements the `IIbanValidator` interface. This allows for mocking and using a DI container. It is recommended that when you do, that you cache the validator or register it as a singleton, since the initialization - although not much - does introduce some overhead when initializing the IBAN validation rules.
 
 ### Iban type
 

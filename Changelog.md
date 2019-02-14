@@ -5,7 +5,8 @@
 - Partial rewrite to support the official [Swift IBAN registry](https://www.swift.com/standards/data-standards/iban).
 - Added support for 4 more countries for a total of 76.
 - Added details through `CountryInfo`, including IBAN, BBAN, bank and branch structure information, whether a country is a SEPA member and more.
-- (breaking) Deprecated `IbanValidator.SupportedRegions` in favor of the new `IbanValidator.SupportedCountries`.
+- (breaking) Replaced `IbanValidator.SupportedRegions` with `IbanValidator.SupportedCountries`.
+- (breaking) The `IIbanValidator.Validate` method now returns a `ValidationResult` object, instead of an enum value, in order to provide more information of the validation.
 
 ## v2.1
 
