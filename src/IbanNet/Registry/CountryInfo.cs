@@ -23,7 +23,17 @@ namespace IbanNet.Registry
 		/// <param name="name">The 2 letter iso region name.</param>
 		public CountryInfo(string name)
 		{
-			TwoLetterISORegionName = name ?? throw new ArgumentNullException(nameof(name));
+			if (name == null)
+			{
+				throw new ArgumentNullException(nameof(name));
+			}
+
+			if (name.Length != 2)
+			{
+				throw new ArgumentOutOfRangeException(nameof(name), "Invalid country code. must be exactly two characters long.");
+			}
+
+			TwoLetterISORegionName = name.ToUpperInvariant();
 		}
 
 		/// <summary>

@@ -57,7 +57,7 @@ namespace IbanNet.Registry
 					// <#= row[0] #>
 					new CountryInfo
 					{
-						TwoLetterISORegionName = "<#= row[1] #>",
+						TwoLetterISORegionName = "<#= row[1].ToUpperInvariant() #>",
 						DisplayName = "<#= row[0] #>", 
 						EnglishName = "<#= row[0] #>",
 <#
