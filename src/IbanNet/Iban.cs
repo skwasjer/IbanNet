@@ -134,7 +134,8 @@ namespace IbanNet
 			}
 
 			string normalizedValue = Normalize(value);
-			if ((validationResult = Validator.Validate(normalizedValue)) == IbanValidationResult.Valid)
+			ValidationResult result = Validator.Validate(normalizedValue);
+			if (result.Result == IbanValidationResult.Valid)
 			{
 				iban = new Iban(normalizedValue.ToUpperInvariant());
 				return true;

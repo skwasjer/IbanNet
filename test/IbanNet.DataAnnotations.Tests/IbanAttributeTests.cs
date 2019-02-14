@@ -55,10 +55,10 @@ namespace IbanNet.DataAnnotations
 			public void It_should_succeed()
 			{
 				// Act
-				ValidationResult result = _sut.GetValidationResult(null, _validationContext);
+				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(null, _validationContext);
 
 				// Assert
-				result.Should().Be(ValidationResult.Success);
+				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
 		}
 
@@ -88,10 +88,10 @@ namespace IbanNet.DataAnnotations
 			public void It_should_succeed()
 			{
 				// Act
-				ValidationResult result = _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
 				// Assert
-				result.Should().Be(ValidationResult.Success);
+				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
 		}
 
@@ -111,10 +111,10 @@ namespace IbanNet.DataAnnotations
 			public void It_should_fail()
 			{
 				// Act
-				ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
 				// Assert
-				result.Should().NotBe(ValidationResult.Success);
+				result.Should().NotBe(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
 
 			[Test]
@@ -123,7 +123,7 @@ namespace IbanNet.DataAnnotations
 				_validationContext.DisplayName = "Property";
 
 				// Act
-				ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
 				// Assert
 				result.ErrorMessage.Should().Be(string.Format(Resources.IbanAttribute_Invalid, _validationContext.DisplayName));

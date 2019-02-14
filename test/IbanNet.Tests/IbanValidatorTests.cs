@@ -21,33 +21,46 @@ namespace IbanNet
 		public void When_validating_null_value_should_not_validate()
 		{
 			// Act
-			var actual = _validator.Validate(null);
+			ValidationResult actual = _validator.Validate(null);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.InvalidLength);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Result = IbanValidationResult.InvalidLength
+			});
 		}
 
 		[TestCase("NL91ABNA041716430!")]
-		[TestCase("#L91ABNA0417164300")]
 		[TestCase("NL91ABNA^417164300")]
 		public void When_validating_iban_with_illegal_characters_should_not_validate(string ibanWithIllegalChars)
 		{
 			// Act
-			var actual = _validator.Validate(ibanWithIllegalChars);
+			ValidationResult actual = _validator.Validate(ibanWithIllegalChars);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.IllegalCharacters);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithIllegalChars,
+				Result = IbanValidationResult.IllegalCharacters,
+				Country = _validator.SupportedCountries
+					.Single(c => c.TwoLetterISORegionName == ibanWithIllegalChars.Substring(0, 2))
+			});
 		}
 
 		[TestCase("0091ABNA0417164300")]
 		[TestCase("4591ABNA0417164300")]
+		[TestCase("#L91ABNA0417164300")]
 		public void When_validating_iban_with_illegal_country_code_should_not_validate(string ibanWithIllegalCountryCode)
 		{
 			// Act
-			var actual = _validator.Validate(ibanWithIllegalCountryCode);
+			ValidationResult actual = _validator.Validate(ibanWithIllegalCountryCode);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.IllegalCharacters);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithIllegalCountryCode,
+				Result = IbanValidationResult.IllegalCharacters
+			});
 		}
 
 		[TestCase("NL00ABNA0417164300")]
@@ -56,10 +69,16 @@ namespace IbanNet
 		public void When_validating_iban_with_invalid_checksum_should_not_validate(string ibanWithInvalidChecksum)
 		{
 			// Act
-			var actual = _validator.Validate(ibanWithInvalidChecksum);
+			ValidationResult actual = _validator.Validate(ibanWithInvalidChecksum);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.IllegalCharacters);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithInvalidChecksum,
+				Result = IbanValidationResult.IllegalCharacters,
+				Country = _validator.SupportedCountries
+					.Single(c => c.TwoLetterISORegionName == ibanWithInvalidChecksum.Substring(0, 2))
+			});
 		}
 
 
@@ -70,10 +89,16 @@ namespace IbanNet
 		public void When_validating_iban_with_incorrect_length_should_not_validate(string ibanWithIncorrectLength)
 		{
 			// Act
-			var actual = _validator.Validate(ibanWithIncorrectLength);
+			ValidationResult actual = _validator.Validate(ibanWithIncorrectLength);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.InvalidLength);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithIncorrectLength,
+				Result = IbanValidationResult.InvalidLength,
+				Country = _validator.SupportedCountries
+					.Single(c => c.TwoLetterISORegionName == ibanWithIncorrectLength.Substring(0, 2))
+			});
 		}
 
 		[TestCase("AA91ABNA0417164300")]
@@ -81,10 +106,14 @@ namespace IbanNet
 		public void When_validating_iban_with_unknown_country_code_should_not_validate(string ibanWithUnknownCountryCode)
 		{
 			// Act
-			var actual = _validator.Validate(ibanWithUnknownCountryCode);
+			ValidationResult actual = _validator.Validate(ibanWithUnknownCountryCode);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.UnknownCountryCode);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithUnknownCountryCode,
+				Result = IbanValidationResult.UnknownCountryCode
+			});
 		}
 
 		[TestCase("NL91ABNA041716430A")]
@@ -92,10 +121,16 @@ namespace IbanNet
 		public void When_validating_iban_with_invalid_structure_should_not_validate(string ibanWithInvalidStructure)
 		{
 			// Act
-			var actual = _validator.Validate(ibanWithInvalidStructure);
+			ValidationResult actual = _validator.Validate(ibanWithInvalidStructure);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.InvalidStructure);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithInvalidStructure,
+				Result = IbanValidationResult.InvalidStructure,
+				Country = _validator.SupportedCountries
+					.Single(c => c.TwoLetterISORegionName == ibanWithInvalidStructure.Substring(0, 2))
+			});
 		}
 
 		[TestCase("NL92ABNA0417164300")]
@@ -103,10 +138,16 @@ namespace IbanNet
 		public void When_validating_tampered_iban_should_not_validate(string tamperedIban)
 		{
 			// Act
-			var actual = _validator.Validate(tamperedIban);
+			ValidationResult actual = _validator.Validate(tamperedIban);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.InvalidCheckDigits);
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = tamperedIban,
+				Result = IbanValidationResult.InvalidCheckDigits,
+				Country = _validator.SupportedCountries
+					.Single(c => c.TwoLetterISORegionName == tamperedIban.Substring(0, 2))
+			});
 		}
 
 		private static IEnumerable GetAllValidSamples()
@@ -118,11 +159,19 @@ namespace IbanNet
 		[TestCaseSource(nameof(GetAllValidSamples))]
 		public void When_validating_good_iban_should_validate(string countryCode, string iban)
 		{
+			var expectedResult = new ValidationResult
+			{
+				Value = iban,
+				Result = IbanValidationResult.Valid,
+				Country = _validator.SupportedCountries
+					.FirstOrDefault(c => c.TwoLetterISORegionName == iban.Substring(0, 2))
+			};
+
 			// Act
-			var actual = _validator.Validate(iban);
+			ValidationResult actual = _validator.Validate(iban);
 
 			// Assert
-			actual.Should().Be(IbanValidationResult.Valid);
+			actual.Should().BeEquivalentTo(expectedResult);
 		}
 	}
 }

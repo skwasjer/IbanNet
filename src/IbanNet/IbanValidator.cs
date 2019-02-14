@@ -18,6 +18,7 @@ namespace IbanNet
 		private Collection<IIbanValidationRule> _rules;
 		private readonly object _lockObject = new object();
 		private readonly IStructureValidationFactory _structureValidationFactory;
+		private Dictionary<string, CountryInfo> _structures;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
@@ -50,7 +51,7 @@ namespace IbanNet
 
 				lock (_lockObject)
 				{
-					Dictionary<string, CountryInfo> structures = _registry.Value
+					_structures = _registry.Value
 						.ToDictionary(
 							kvp => kvp.TwoLetterISORegionName,
 							kvp => kvp
@@ -61,9 +62,9 @@ namespace IbanNet
 						new NoIllegalCharactersRule(),
 						new HasCountryCodeRule(),
 						new HasIbanChecksumRule(),
-						new IsValidCountryCodeRule(structures),
-						new IsValidLengthRule(structures),
-						new IsMatchingStructureRule(_structureValidationFactory, structures),
+						new IsValidCountryCodeRule(_structures),
+						new IsValidLengthRule(_structures),
+						new IsMatchingStructureRule(_structureValidationFactory, _structures),
 						new Mod97Rule()
 					};
 				}
@@ -82,11 +83,11 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
-		public IbanValidationResult Validate(string iban)
+		public ValidationResult Validate(string iban)
 		{
 			string normalizedIban = Iban.Normalize(iban);
 
-			IbanValidationResult validationResult = IbanValidationResult.Valid;
+			var validationResult = IbanValidationResult.Valid;
 			foreach (IIbanValidationRule rule in Rules)
 			{
 				validationResult = rule.Validate(normalizedIban);
@@ -95,7 +96,20 @@ namespace IbanNet
 					break;
 				}
 			}
-			return validationResult;
+
+			CountryInfo matchedCountry = null;
+			if (normalizedIban != null)
+			{
+				string countryCode = normalizedIban.Substring(0, 2).ToUpperInvariant();
+				_structures.TryGetValue(countryCode, out matchedCountry);
+			}
+
+			return new ValidationResult
+			{
+				Value = iban,
+				Result = validationResult,
+				Country = matchedCountry
+			};
 		}
 	}
 }
