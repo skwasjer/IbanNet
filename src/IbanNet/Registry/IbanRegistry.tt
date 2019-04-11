@@ -111,7 +111,8 @@ namespace IbanNet.Registry
 							Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
 							EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
 <#
 					includedCountries = row[4] == null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
