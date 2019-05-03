@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace IbanNet
+namespace IbanNet.TypeConverters
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "InconsistentNaming")]

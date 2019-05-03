@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace IbanNet
+namespace IbanNet.TypeConverters
 {
 	/// <summary>
 	/// Provides a way of converting an <see cref="Iban"/> from and to other types.
