@@ -149,4 +149,19 @@
     <data name="One_or_more_providers_is_required" xml:space="preserve">
         <value>One or more providers is required.</value>
     </data>
+    <data name="ArgumentException_Builder_The_country_code_is_not_registered" xml:space="preserve">
+        <value>The country code is not registered.</value>
+    </data>
+    <data name="Exception_Builder_The_BBAN_cannot_be_built" xml:space="preserve">
+        <value>The BBAN cannot be built.</value>
+    </data>
+    <data name="Exception_Builder_The_IBAN_cannot_be_built" xml:space="preserve">
+        <value>The IBAN cannot be built.</value>
+    </data>
+    <data name="Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1" xml:space="preserve">
+        <value>A value for '{0}' is not supported for country code {1}.</value>
+    </data>
+    <data name="Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1" xml:space="preserve">
+        <value>The value '{0}' does not have the correct length of {1}.</value>
+    </data>
 </root>

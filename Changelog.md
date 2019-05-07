@@ -3,6 +3,7 @@
 ## v4.x - pending
 
 - Upgraded registry to September '20 release 88 (added Libya (LY))
+- Added `IbanBuilder` and `BbanBuilder` types.
 
 ## v4.1.0
 
