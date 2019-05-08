@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp2.0;net45</TargetFrameworks>
+		<TargetFrameworks>netcoreapp2.0;netcoreapp1.1;net45</TargetFrameworks>
 
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
@@ -11,6 +11,12 @@
 
 	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+		<ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp1.1'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+		<ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.3" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net45'">
@@ -18,6 +24,7 @@
 		<Reference Include="System" />
 		<Reference Include="System.Core" />
 		<Reference Include="System.ComponentModel.DataAnnotations" />
+		<ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net45" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,7 +35,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" />
 		<ProjectReference Include="..\IbanNet.Tests\IbanNet.Tests.csproj" />
 	</ItemGroup>
 
