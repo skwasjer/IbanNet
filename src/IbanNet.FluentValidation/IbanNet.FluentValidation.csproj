@@ -1,17 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.2;netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.2;net47;net45</TargetFrameworks>
   </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.2'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.0.0" />

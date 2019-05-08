@@ -134,13 +134,20 @@ dotnet add package IbanNet.DataAnnotations
 - Poll: add client side validation support via AJAX?
 - Localization
 
-#### Supported .NET targets
-- .NET 4.5 or greater
-- .NET Standard 1.3 or greater
+### .NET target frameworks
+- .NET Standard 2.0
+- .NET Standard 1.6
+- .NET Standard 1.3
+- .NET 4.7
+- .NET 4.5
 
-#### Requirements
+### Build requirements
 - Visual Studio 2017
+- .NET Core 2.1 SDK
 - .NET Core 2.0 SDK
+- .NET Core 1.1 SDK
+- .NET 4.7 targetting pack
+- .NET 4.5 targetting pack
 
 #### Contributions
 PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.

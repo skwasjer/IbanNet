@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;netcoreapp1.1;net45</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;net47;net45</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
@@ -9,21 +9,8 @@
     <RootNamespace>IbanNet</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp1.1'">
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.2" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net45" />
-  </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" Condition="$(TargetFramework.StartsWith('netcoreapp'))" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="Moq" Version="4.10.1" />
@@ -31,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.0'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.2" Condition="'$(TargetFramework)'=='netcoreapp1.1'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=$(TargetFramework)" Condition="$(TargetFramework.StartsWith('net4'))" />
   </ItemGroup>
 
 </Project>
