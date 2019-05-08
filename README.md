@@ -104,3 +104,4 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 - [Fiddle](https://dotnetfiddle.net/JeGa9x)
 - Related/associated libraries
   - [IbanNet.DataAnnotations](src/IbanNet.DataAnnotations/README.md)
+  - [IbanNet.FluentValidation](src/IbanNet.FluentValidation/README.md)
