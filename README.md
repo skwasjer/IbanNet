@@ -83,13 +83,20 @@ Install-Package IbanNet
 dotnet add package IbanNet
 ```
 
-### Supported .NET targets
-- .NET 4.5 or greater
-- .NET Standard 1.2 or greater
+### .NET target frameworks
+- .NET Standard 2.0
+- .NET Standard 1.6
+- .NET Standard 1.2
+- .NET 4.7
+- .NET 4.5
 
-### Requirements
+### Build requirements
 - Visual Studio 2017
+- .NET Core 2.1 SDK
 - .NET Core 2.0 SDK
+- .NET Core 1.1 SDK
+- .NET 4.7 targetting pack
+- .NET 4.5 targetting pack
 
 #### Contributions
 PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.
@@ -104,3 +111,4 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 - [Fiddle](https://dotnetfiddle.net/JeGa9x)
 - Related/associated libraries
   - [IbanNet.DataAnnotations](src/IbanNet.DataAnnotations/README.md)
+  - [IbanNet.FluentValidation](src/IbanNet.FluentValidation/README.md)

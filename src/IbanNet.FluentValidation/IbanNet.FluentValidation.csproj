@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.2;net47;net45</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Package.props" />
+
+  <PropertyGroup>
+    <Description>FluentValidation support to validate IBAN user input.</Description>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.FluentValidation</PackageProjectUrl>
+    <PackageTags>IBAN, International Bank Account Number, FluentValidation, Web API, MVC</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\IbanNet.DataAnnotations.xml</DocumentationFile>
+    <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
+  </PropertyGroup>
+
+</Project>
