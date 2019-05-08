@@ -21,6 +21,7 @@ indent_style = tab
 
 [*.csproj]
 indent_size = 2
+indent_style = space
 
 # Misc
 [*.{js,json,yml}]
