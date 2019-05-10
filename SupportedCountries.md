@@ -1,4 +1,5 @@
-## IbanNet supports 76 regions
+## IbanNet supports 92 countries
+
 | ISO country code | Country | SEPA | Length | IBAN example |
 |---|---|---|---|---|
 | AD | Andorra | No | 24 | `AD12 0001 2030 2003 5910 0100` |
@@ -77,5 +78,30 @@
 | VA | Vatican City State | Yes | 22 | `VA59 0011 2300 0012 3456 78` |
 | VG | Virgin Islands | No | 24 | `VG96 VPVG 0000 0123 4567 8901` |
 | XK | Kosovo | No | 20 | `XK05 1212 0123 4567 8906` |
+
+### Finland includes:
+
+- Unknown (AX)
+
+### France includes:
+
+- French Guiana (GF)
+- Guadeloupe (GP)
+- Martinique (MQ)
+- Réunion (RE)
+- French Polynesia (PF)
+- Unknown (TF)
+- Mayotte (YT)
+- New Caledonia (NC)
+- Saint Barthélemy (BL)
+- Saint Martin (MF)
+- Saint Pierre and Miquelon (PM)
+- Wallis and Futuna (WF)
+
+### United Kingdom includes:
+
+- Unknown (IM)
+- Unknown (JE)
+- Unknown (GG)
 
 For more info visit [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number).

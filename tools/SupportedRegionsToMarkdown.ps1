@@ -1,4 +1,4 @@
-﻿# Extract supported regions from assembly to update README.md
+﻿# Extract supported countries from assembly to update README.md
 
 $scriptPath = (Split-Path $MyInvocation.MyCommand.Path)
 $repoPath = Join-Path $scriptPath "..\"
@@ -23,18 +23,46 @@ Catch
     exit
 }
 
-$regions = New-Object IbanNet.Registry.IbanRegistry;
+$countries = New-Object IbanNet.Registry.IbanRegistry;
+$supportedCount = $countries.Count
 
-$markdown = "## IbanNet supports $($regions.Count) regions`r`n"
+$markdown = "## IbanNet supports [SUPPORTED_COUNT] countries`r`n`r`n"
 
 $markdown += "| ISO country code | Country | SEPA | Length | IBAN example |`r`n"
 $markdown += "|---|---|---|---|---|`r`n"
-ForEach($region in $regions)
+ForEach($country in $countries)
 {
-    $iban = [IbanNet.Iban]::Parse($region.Iban.Example)
-    $markdown += "| $($region.TwoLetterISORegionName) | $($region.EnglishName) | $(If ($region.Sepa.IsMember) { "Yes" } else { "No" }) | $($region.Iban.Length) | ``$($iban.ToString("S"))`` |`r`n"
+    $iban = [IbanNet.Iban]::Parse($country.Iban.Example)
+    $markdown += "| $($country.TwoLetterISORegionName) | $($country.EnglishName) | $(If ($country.Sepa.IsMember) { "Yes" } else { "No" }) | $($country.Iban.Length) | ``$($iban.ToString("S"))`` |`r`n"
+}
+
+ForEach($country in $countries)
+{
+    If ($country.IncludedCountries.Count -gt 0)
+    {
+        $supportedCount += $country.IncludedCountries.Count
+
+        $markdown += "`r`n"
+        $markdown += "### $($country.EnglishName) includes:`r`n`r`n"
+        
+        ForEach($ic in $country.IncludedCountries)
+        {
+            $regionInfo = New-Object System.Globalization.RegionInfo($ic)
+            If ($regionInfo.ThreeLetterISORegionName -eq "ZZZ")
+            {
+                # Unknown
+                $markdown += "- Unknown ($($ic.Substring(3)))`r`n"
+            }
+            Else
+            {
+                $markdown += "- $($regionInfo.EnglishName) ($($ic.Substring(3)))`r`n"
+            }
+        }
+    }
 }
 
 $markdown += "`r`nFor more info visit [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number)."
 
-[System.IO.File]::WriteAllLines((Join-Path $repoPath "SupportedRegions.md"), $markdown)
+$markdown = $markdown.Replace("[SUPPORTED_COUNT]", $supportedCount)
+
+[System.IO.File]::WriteAllLines((Join-Path $repoPath "SupportedCountries.md"), $markdown)
