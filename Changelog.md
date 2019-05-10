@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.1
+
+- Deprecated `IbanNet.IbanTypeConverter`, replaced by  `IbanNet.TypeConverters.IbanTypeConverter`.
+- Added `IbanNet.FluentValidation` package.
+
 ## v3.0
 
 - Partial rewrite to support the official [Swift IBAN registry](https://www.swift.com/standards/data-standards/iban).

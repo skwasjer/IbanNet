@@ -1,5 +1,4 @@
 ﻿using System;
-using FluentValidation.Resources;
 using FluentValidation.Validators;
 
 namespace IbanNet.FluentValidation
@@ -12,7 +11,7 @@ namespace IbanNet.FluentValidation
 		private readonly IIbanValidator _ibanValidator;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="FluentIbanValidator"/> class.
+		/// Initializes a new instance of the <see cref="FluentIbanValidator"/> class using specified validator.
 		/// </summary>
 		/// <param name="ibanValidator">The IBAN validator to use.</param>
 		public FluentIbanValidator(IIbanValidator ibanValidator)

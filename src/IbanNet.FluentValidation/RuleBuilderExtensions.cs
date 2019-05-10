@@ -8,8 +8,8 @@ namespace IbanNet.FluentValidation
 	public static class RuleBuilderExtensions
 	{
 		/// <summary>
-		/// Defines a regular expression validator on the current rule builder, but only for string properties.
-		/// Validation will fail if the value returned by the lambda is not a valid email address.
+		/// Defines an IBAN validator on the current rule builder, but only for string properties.
+		/// Validation will fail if the value returned by the lambda is not a valid international bank account number.
 		/// </summary>
 		/// <typeparam name="T">Type of object being validated</typeparam>
 		/// <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
