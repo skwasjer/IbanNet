@@ -1,10 +1,8 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
-[![NuGet](https://img.shields.io/nuget/v/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/)
-[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
-
 # IbanNet.FluentValidation
 
 [FluentValidation](https://fluentvalidation.net/) support to validate IBAN user input.
+
+[Package installation](../../README.md)
 
 ## Introduction
 
@@ -51,21 +49,9 @@ services.AddTransient<IValidator<InputModel>, InputModelValidator>()
 services.AddFluentValidation();
 ```
 
-## Installation
+## Requirements
 
-Install **IbanNet.FluentValidation** via [NuGet](https://www.nuget.org/packages/IbanNet.FluentValidation/).
-
-#### Visual Studio / .NET Framework
-```powershell
-Install-Package IbanNet.FluentValidation
-```
-
-#### .NET CLI
-```
-dotnet add package IbanNet.FluentValidation
-```
-
-#### Dependencies
+### Dependencies
 
 - FluentValidation 8.x
 
@@ -83,13 +69,3 @@ dotnet add package IbanNet.FluentValidation
 - .NET Core 1.1 SDK
 - .NET 4.7 targetting pack
 - .NET 4.5 targetting pack
-
-#### Contributions
-PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.
-
-#### Contributors
-- skwas (author/maintainer)
-
-## Related libraries
-- [IbanNet](../../README.md)
-- [IbanNet.DataAnnotations](../IbanNet.DataAnnotations/README.md)
