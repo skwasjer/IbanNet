@@ -1,15 +1,10 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
-[![NuGet](https://img.shields.io/nuget/v/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/)
-[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
+# How to use IbanNet.DataAnnotations
 
-# IbanNet.DataAnnotations
+Data Annotations support to validate IBAN user input with [IbanNet](../IbanNet/README.md).
 
-Data Annotations to validate IBAN user input.
+[Package installation](../../README.md)
 
 ## Introduction
-
-To validate user input in ASP.NET MVC and Web API, Microsoft provides .NET Data Annotations. 
-While there are other alternatives to validate user input, this library specifically provides Data Annotation support which allows **IbanNet** to easily integrate in existing MVC and Web API projects for both .NET Framework and .NET Core.
 
 For more detailed info please visit:
 - [Basic Introduction to Data Annotation in .Net Framework](https://code.msdn.microsoft.com/Basic-Introduction-to-Data-244734a4)
@@ -17,7 +12,7 @@ For more detailed info please visit:
 
 ## Usage
 
-#### By field or property ####
+### By property ####
 
 ```csharp
 public class InputModel
@@ -54,7 +49,7 @@ public class MyWebApiController : ApiController
 
 ```
 
-#### By parameter ####
+### By parameter ####
 
 ```csharp
 public class MyController : Controller
@@ -75,10 +70,13 @@ public class MyController : Controller
 You can use your favorite DI provider to provide an [`IIbanValidator`](../IbanNet/IIbanValidator.cs) to the validation attribute, as long as `IServiceProvider.GetService(Type)` is implemented. 
 If no instance of `IIbanValidator` is resolved from the DI container, the static `Iban.IbanValidator` property is used instead.
 
-## FAQ
-### Why would I need this package?
+### .NET Core example ###
 
-While there are different alternatives to validate user input, a lot of projects rely on ASP.NET MVC and/or Web API which already use Data Annotations.
+```csharp
+services.AddSingleton<IIbanValidator, IbanValidator>();
+```
+
+## FAQ
 
 ### How about directly using the Iban type?
 
@@ -93,7 +91,7 @@ public class InputModel
 }
 ```
 
-> See [IbanTypeConverter](../IbanNet/IbanTypeConverter.cs). The converter will be called during model binding allowing proper deserialization.
+> See [IbanTypeConverter](../IbanNet/TypeConverters/IbanTypeConverter.cs). The converter will be called during model binding allowing proper deserialization.
 
 However in this situation - when a validation error occurs - instead of gracefully populating the `ModelStateDictionary`, an exception is thrown during model binding. Whether or not that is acceptable depends on the project/team.
 
@@ -116,37 +114,19 @@ public class InputModel
 
 Because validation has already occurred, the `Parse` method should always succeed.
 
-## Installation
+## Requirements
 
-Install **IbanNet.DataAnnotations** via [NuGet](https://www.nuget.org/packages/IbanNet.DataAnnotations/).
+### .NET target frameworks
+- .NET Standard 2.0
+- .NET Standard 1.6
+- .NET Standard 1.3
+- .NET 4.7
+- .NET 4.5
 
-#### Visual Studio / .NET Framework
-```powershell
-Install-Package IbanNet.DataAnnotations
-```
-
-#### .NET CLI
-```
-dotnet add package IbanNet.DataAnnotations
-```
-
-### Future enhancements
-- Poll: add client side validation support via AJAX?
-- Localization
-
-#### Supported .NET targets
-- .NET 4.5 or greater
-- .NET Standard 1.3 or greater
-
-#### Requirements
+### Build requirements
 - Visual Studio 2017
+- .NET Core 2.1 SDK
 - .NET Core 2.0 SDK
-
-#### Contributions
-PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.
-
-#### Contributors
-- skwas (author/maintainer)
-
-## Related libraries
-- [IbanNet](../../README.md)
+- .NET Core 1.1 SDK
+- .NET 4.7 targetting pack
+- .NET 4.5 targetting pack

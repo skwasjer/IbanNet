@@ -10,7 +10,7 @@ namespace IbanNet
 	/// <summary>
 	/// Represents an IBAN.
 	/// </summary>
-	[TypeConverter(typeof(IbanTypeConverter))]
+	[TypeConverter(typeof(TypeConverters.IbanTypeConverter))]
 	public sealed class Iban
 	{
 		/// <summary>

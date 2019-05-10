@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1
+
+- Deprecated `IbanNet.IbanTypeConverter`, replaced by  `IbanNet.TypeConverters.IbanTypeConverter`.
+- Added [IbanNet.FluentValidation](src/IbanNet.FluentValidation/README.md)  package.
+- Upgraded registry to April '19 release 83.
+- Added extra target frameworks `.NET 4.7`, `.NET Standard 1.6` and `.NET Standard 2.0`
+
 ## v3.0
 
 - Partial rewrite to support the official [Swift IBAN registry](https://www.swift.com/standards/data-standards/iban).

@@ -7,7 +7,10 @@ namespace IbanNet.Registry
 	/// <summary>
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
-	[GeneratedCode("IbanRegistryT4", "1.0")]
+	/// <remarks>
+	/// Generated from: swift_iban_registry_201904.r83.txt
+	/// </remarks>
+	[GeneratedCode("IbanRegistryT4", "1.1-r83")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>
@@ -53,7 +56,8 @@ namespace IbanNet.Registry
 							Example = "AD1200012030200359100100",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "2030200359100100",
@@ -86,7 +90,8 @@ namespace IbanNet.Registry
 							Example = "AE070331234567890123456",
 							EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "1234567890123456",
@@ -126,7 +131,8 @@ namespace IbanNet.Registry
 							Example = "AL47212110090000000235698741",
 							EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0000000235698741",
@@ -159,7 +165,8 @@ namespace IbanNet.Registry
 							Example = "AT611904300234573201",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "BLZ 19043 Kto 234573201",
@@ -192,7 +199,8 @@ namespace IbanNet.Registry
 							Example = "AZ21NABZ00000000137010001944",
 							EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "NABZ00000000137010001944",
@@ -232,7 +240,8 @@ namespace IbanNet.Registry
 							Example = "BA391290079401028494",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "199-044-00012002-79",
@@ -265,7 +274,8 @@ namespace IbanNet.Registry
 							Example = "BE68539007547034",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "BE68 5390 0754 7034",
@@ -305,7 +315,8 @@ namespace IbanNet.Registry
 							Example = "BG80BNBG96611020345678",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "",
@@ -338,7 +349,8 @@ namespace IbanNet.Registry
 							Example = "BH67BMAG00001299123456",
 							EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00001299123456",
@@ -378,7 +390,8 @@ namespace IbanNet.Registry
 							Example = "BR1800360305000010009795493C1",
 							EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0009795493C1",
@@ -411,7 +424,8 @@ namespace IbanNet.Registry
 							Example = "BY13NBRB3600900000002Z00AB00",
 							EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "3600 0000 0000 0Z00 AB00",
@@ -444,7 +458,8 @@ namespace IbanNet.Registry
 							Example = "CH9300762011623852957",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "762 1162-3852.957",
@@ -477,7 +492,8 @@ namespace IbanNet.Registry
 							Example = "CR05015202001026284066",
 							EffectiveDate = new DateTimeOffset(2011, 6, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "02001026284066",
@@ -517,7 +533,8 @@ namespace IbanNet.Registry
 							Example = "CY17002001280000001200527600",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "0000001200527600",
@@ -550,7 +567,8 @@ namespace IbanNet.Registry
 							Example = "CZ6508000000192000145399",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "19-2000145399/0800",
@@ -583,7 +601,8 @@ namespace IbanNet.Registry
 							Example = "DE89370400440532013000",
 							EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "532013000",
@@ -616,7 +635,8 @@ namespace IbanNet.Registry
 							Example = "DK5000400440116243",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "0040 0440116243",
@@ -649,7 +669,8 @@ namespace IbanNet.Registry
 							Example = "DO28BAGR00000001212453611324",
 							EffectiveDate = new DateTimeOffset(2010, 12, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00000001212453611324",
@@ -682,7 +703,8 @@ namespace IbanNet.Registry
 							Example = "EE382200221020145685",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "221020145685",
@@ -722,7 +744,8 @@ namespace IbanNet.Registry
 							Example = "ES9121000418450200051332",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "2100 0418 45 0200051332",
@@ -759,7 +782,8 @@ namespace IbanNet.Registry
 							Example = "FI2112345600000785",
 							EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 							IncludedCountries = new[]
 							{
@@ -796,7 +820,8 @@ namespace IbanNet.Registry
 							Example = "FO6264600001631634",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "6460 0001631634",
@@ -833,7 +858,8 @@ namespace IbanNet.Registry
 							Example = "FR1420041010050500013M02606",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 							IncludedCountries = new[]
 							{
@@ -881,7 +907,8 @@ namespace IbanNet.Registry
 							Example = "GB29NWBK60161331926819",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "60-16-13 31926819",
@@ -914,7 +941,8 @@ namespace IbanNet.Registry
 							Example = "GE29NB0000000101904917",
 							EffectiveDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0000000101904917",
@@ -947,7 +975,8 @@ namespace IbanNet.Registry
 							Example = "GI75NWBK000000007099453",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "0000 00007099 453",
@@ -980,7 +1009,8 @@ namespace IbanNet.Registry
 							Example = "GL8964710001000206",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "6471 0001000206",
@@ -1020,7 +1050,8 @@ namespace IbanNet.Registry
 							Example = "GR1601101250000000012300695",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "01250000000012300695",
@@ -1053,7 +1084,8 @@ namespace IbanNet.Registry
 							Example = "GT82TRAJ01020000001210029690",
 							EffectiveDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "01020000001210029690",
@@ -1086,7 +1118,8 @@ namespace IbanNet.Registry
 							Example = "HR1210010051863000160",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "1001005-1863000160",
@@ -1126,7 +1159,8 @@ namespace IbanNet.Registry
 							Example = "HU42117730161111101800000000",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "11773016-11111018-00000000",
@@ -1166,7 +1200,8 @@ namespace IbanNet.Registry
 							Example = "IE29AIBK93115212345678",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "93-11-52 12345678",
@@ -1206,7 +1241,8 @@ namespace IbanNet.Registry
 							Example = "IL620108000000099999999",
 							EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "10-800-99999999",
@@ -1246,7 +1282,8 @@ namespace IbanNet.Registry
 							Example = "IQ98NBIQ850123456789012",
 							EffectiveDate = new DateTimeOffset(2017, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "123456789012",
@@ -1286,7 +1323,8 @@ namespace IbanNet.Registry
 							Example = "IS140159260076545510730339",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0159-26-007654-551073-0339",
@@ -1326,7 +1364,8 @@ namespace IbanNet.Registry
 							Example = "IT60X0542811101000000123456",
 							EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "X 05428 11101 000000123456",
@@ -1366,7 +1405,8 @@ namespace IbanNet.Registry
 							Example = "JO94CBJO0010000000000131000302",
 							EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0001310000302",
@@ -1399,7 +1439,8 @@ namespace IbanNet.Registry
 							Example = "KW81CBKU0000000000001234560101",
 							EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "1234560101",
@@ -1432,7 +1473,8 @@ namespace IbanNet.Registry
 							Example = "KZ86125KZT5004100100",
 							EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "KZ86 125K ZT50 0410 0100",
@@ -1465,7 +1507,8 @@ namespace IbanNet.Registry
 							Example = "LB62099900000001001901229114",
 							EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "01 001 901229114",
@@ -1498,7 +1541,8 @@ namespace IbanNet.Registry
 							Example = "LC55HEMM000100010012001200023015",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0001 0001 0012 0012 0002 3015",
@@ -1531,7 +1575,8 @@ namespace IbanNet.Registry
 							Example = "LI21088100002324013AA",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "8810 2324013AA",
@@ -1564,7 +1609,8 @@ namespace IbanNet.Registry
 							Example = "LT121000011101001000",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "",
@@ -1597,7 +1643,8 @@ namespace IbanNet.Registry
 							Example = "LU280019400644750000",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "",
@@ -1630,7 +1677,8 @@ namespace IbanNet.Registry
 							Example = "LV80BANK0000435195001",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "LV80 BANK 0000 4351 9500 1",
@@ -1670,7 +1718,8 @@ namespace IbanNet.Registry
 							Example = "MC5811222000010123456789030",
 							EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "0011111000h",
@@ -1703,7 +1752,8 @@ namespace IbanNet.Registry
 							Example = "MD24AG000225100013104168",
 							EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "000225100013104168",
@@ -1736,7 +1786,8 @@ namespace IbanNet.Registry
 							Example = "ME25505000012345678951",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "505 0000123456789 51",
@@ -1769,7 +1820,8 @@ namespace IbanNet.Registry
 							Example = "MK07250120000058984",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "MK07 300 0000000424 25",
@@ -1809,7 +1861,8 @@ namespace IbanNet.Registry
 							Example = "MR1300020001010000123456753",
 							EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00020 00101 00001234567 53",
@@ -1849,7 +1902,8 @@ namespace IbanNet.Registry
 							Example = "MT84MALT011000012345MTLCAST001S",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "12345MTLCAST001S",
@@ -1889,7 +1943,8 @@ namespace IbanNet.Registry
 							Example = "MU17BOMM0101101030300200000MUR",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "MU17 BOMM 0101 1010 3030 0200 000M UR",
@@ -1922,7 +1977,8 @@ namespace IbanNet.Registry
 							Example = "NL91ABNA0417164300",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "041 71 64 300",
@@ -1955,7 +2011,8 @@ namespace IbanNet.Registry
 							Example = "NO9386011117947",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "8601 11 17947",
@@ -1988,7 +2045,8 @@ namespace IbanNet.Registry
 							Example = "PK36SCBL0000001123456702",
 							EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00260101036360",
@@ -2021,7 +2079,8 @@ namespace IbanNet.Registry
 							Example = "PL61109010140000071219812874",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "61 1090 1014 0000 0712 1981 2874",
@@ -2054,7 +2113,8 @@ namespace IbanNet.Registry
 							Example = "PS92PALS000000000400123456702",
 							EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "400123456702",
@@ -2087,7 +2147,8 @@ namespace IbanNet.Registry
 							Example = "PT50000201231234567890154",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 							IncludedCountries = new[]
 							{
@@ -2124,7 +2185,8 @@ namespace IbanNet.Registry
 							Example = "QA58DOHB00001234567890ABCDEFG",
 							EffectiveDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00001234567890ABCDEFG",
@@ -2157,7 +2219,8 @@ namespace IbanNet.Registry
 							Example = "RO49AAAA1B31007593840000",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "RO49 AAAA 1B31 0075 9384 0000",
@@ -2190,7 +2253,8 @@ namespace IbanNet.Registry
 							Example = "RS35260005601001611379",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "260-0056010016113-79",
@@ -2223,7 +2287,8 @@ namespace IbanNet.Registry
 							Example = "SA0380000000608010167519",
 							EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "608010167519",
@@ -2263,7 +2328,8 @@ namespace IbanNet.Registry
 							Example = "SC18SSCB11010000000000001497USD",
 							EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0000000000001497",
@@ -2296,7 +2362,8 @@ namespace IbanNet.Registry
 							Example = "SE4550000000058398257466",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "1234 12 3456 1",
@@ -2329,7 +2396,8 @@ namespace IbanNet.Registry
 							Example = "SI56263300012039086",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "2633 0001 2039 086",
@@ -2362,7 +2430,8 @@ namespace IbanNet.Registry
 							Example = "SK3112000000198742637541",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "19-8742637541/1200",
@@ -2402,7 +2471,8 @@ namespace IbanNet.Registry
 							Example = "SM86U0322509800000000270100",
 							EffectiveDate = new DateTimeOffset(2007, 8, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "",
@@ -2442,7 +2512,8 @@ namespace IbanNet.Registry
 							Example = "ST68000100010051845310112",
 							EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "01921942101.12",
@@ -2462,18 +2533,11 @@ namespace IbanNet.Registry
 							Example = "CENR00000000000000700025",
 							Bank = new BankStructure
 							{
-								Position = 4,
+								Position = 0,
 								Length = 4,
 								Structure = "4!a",
 								Example = "CENR",
 							},
-							Branch = new BranchStructure
-							{
-								Position = 0,
-								Length = 4,
-								Structure = "",
-								Example = "",
-							}
 						},
 						Iban = new IbanStructure
 						{
@@ -2482,11 +2546,12 @@ namespace IbanNet.Registry
 							Example = "SV62CENR00000000000000700025",
 							EffectiveDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00000000000000700025",
-						LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero)
+						LastUpdatedDate = new DateTimeOffset(2019, 4, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// Timor-Leste
@@ -2515,7 +2580,8 @@ namespace IbanNet.Registry
 							Example = "TL380080012345678910157",
 							EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "008 00123456789101 57",
@@ -2555,7 +2621,8 @@ namespace IbanNet.Registry
 							Example = "TN5910006035183598478831",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "10 006 0351835984788 31",
@@ -2588,7 +2655,8 @@ namespace IbanNet.Registry
 							Example = "TR330006100519786457841326",
 							EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "",
@@ -2621,7 +2689,8 @@ namespace IbanNet.Registry
 							Example = "UA213223130000026007233566001",
 							EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "26007233566001",
@@ -2654,7 +2723,8 @@ namespace IbanNet.Registry
 							Example = "VA59001123000012345678",
 							EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = true,
 						},
 						DomesticAccountNumberExample = "123000012345678",
@@ -2687,7 +2757,8 @@ namespace IbanNet.Registry
 							Example = "VG96VPVG0000012345678901",
 							EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00000 12 345 678 901",
@@ -2727,7 +2798,8 @@ namespace IbanNet.Registry
 							Example = "XK051212012345678906",
 							EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
-						Sepa = new SepaInfo {
+						Sepa = new SepaInfo
+						{
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "1212 0123456789 06",

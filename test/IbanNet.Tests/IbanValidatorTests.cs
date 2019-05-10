@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Linq;
+﻿using System.Linq;
 using FluentAssertions;
-using IbanNet.Registry;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -167,13 +165,7 @@ namespace IbanNet
 			});
 		}
 
-		private static IEnumerable GetAllValidSamples()
-		{
-			return new IbanRegistry()
-				.Select(d => new TestCaseData(d.TwoLetterISORegionName, d.Iban.Example));
-		}
-
-		[TestCaseSource(nameof(GetAllValidSamples))]
+		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetValidIbanPerCountry))]
 		public void When_validating_good_iban_should_validate(string countryCode, string iban)
 		{
 			var expectedResult = new ValidationResult
