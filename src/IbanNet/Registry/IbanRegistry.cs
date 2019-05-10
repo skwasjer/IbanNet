@@ -2324,7 +2324,7 @@ namespace IbanNet.Registry
 						Iban = new IbanStructure
 						{
 							Length = 31,
-							Structure = "SC2!n4!a2n!2n!16n!3!a",
+							Structure = "SC2!n4!a2!n2!n16!n3!a",
 							Example = "SC18SSCB11010000000000001497USD",
 							EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
 						},
@@ -2509,7 +2509,7 @@ namespace IbanNet.Registry
 						{
 							Length = 25,
 							Structure = "ST2!n4!n4!n11!n2!n",
-							Example = "ST68000200010192194210112",
+							Example = "ST68000100010051845310112",
 							EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
 						Sepa = new SepaInfo
