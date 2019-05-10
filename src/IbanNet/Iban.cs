@@ -4,14 +4,13 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
-using IbanNet.TypeConverters;
 
 namespace IbanNet
 {
 	/// <summary>
 	/// Represents an IBAN.
 	/// </summary>
-	[TypeConverter(typeof(IbanTypeConverter))]
+	[TypeConverter(typeof(TypeConverters.IbanTypeConverter))]
 	public sealed class Iban
 	{
 		/// <summary>
