@@ -15,6 +15,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/skwasjer/IbanNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://raw.githubusercontent.com/skwasjer/IbanNet/master/IbanNet64.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup>
