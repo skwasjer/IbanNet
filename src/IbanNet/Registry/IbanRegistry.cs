@@ -7,7 +7,10 @@ namespace IbanNet.Registry
 	/// <summary>
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
-	[GeneratedCode("IbanRegistryT4", "1.0")]
+	/// <remarks>
+	/// Generated from: swift_iban_registry_201904.r83.txt
+	/// </remarks>
+	[GeneratedCode("IbanRegistryT4", "1.1-r83")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>
@@ -2321,7 +2324,7 @@ namespace IbanNet.Registry
 						Iban = new IbanStructure
 						{
 							Length = 31,
-							Structure = "SC2!n4!a2!n2!n16!n3!a",
+							Structure = "SC2!n4!a2n!2n!16n!3!a",
 							Example = "SC18SSCB11010000000000001497USD",
 							EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
 						},
@@ -2506,7 +2509,7 @@ namespace IbanNet.Registry
 						{
 							Length = 25,
 							Structure = "ST2!n4!n4!n11!n2!n",
-							Example = "ST68000100010051845310112",
+							Example = "ST68000200010192194210112",
 							EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
 						},
 						Sepa = new SepaInfo
@@ -2530,18 +2533,11 @@ namespace IbanNet.Registry
 							Example = "CENR00000000000000700025",
 							Bank = new BankStructure
 							{
-								Position = 4,
+								Position = 0,
 								Length = 4,
 								Structure = "4!a",
 								Example = "CENR",
 							},
-							Branch = new BranchStructure
-							{
-								Position = 0,
-								Length = 4,
-								Structure = "",
-								Example = "",
-							}
 						},
 						Iban = new IbanStructure
 						{
@@ -2555,7 +2551,7 @@ namespace IbanNet.Registry
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "00000000000000700025",
-						LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero)
+						LastUpdatedDate = new DateTimeOffset(2019, 4, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// Timor-Leste

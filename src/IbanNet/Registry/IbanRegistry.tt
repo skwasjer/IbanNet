@@ -12,13 +12,22 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+<#
+	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("IbanRegistry.tt")), "Files");
+	string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
+	string registryFile = Path.GetFileName(registryPath);
+	string registryReleaseVersion = registryFile.Split('.')[1];
+#>
 
 namespace IbanNet.Registry
 {
 	/// <summary>
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
-	[GeneratedCode("IbanRegistryT4", "1.0")]
+	/// <remarks>
+	/// Generated from: <#= registryFile #>
+	/// </remarks>
+	[GeneratedCode("IbanRegistryT4", "1.1-<#= registryReleaseVersion #>")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>
@@ -34,8 +43,8 @@ namespace IbanNet.Registry
 <#
 	Func<string, string> checkValue = (value) => value == null || value == "" || value == "N/A" ? null : value.Trim();
 	Func<string, string> normalizeExample = (value) => string.IsNullOrEmpty(value) ? value : Regex.Replace(value, @"[^\w]", "");
+	Func<string, int> getNumber = (value) => value == null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
 
-	string registryPath = this.Host.ResolvePath("swift_iban_registry_201901.txt");
 	Configuration config = new Configuration
 	{
 		Delimiter = "\t"
@@ -75,7 +84,7 @@ namespace IbanNet.Registry
 #>
 						Bban = new BbanStructure
 						{
-							Length = <#= row[8] #>,
+							Length = <#= getNumber(row[8]) #>,
 							Structure = "<#= row[7] ?? string.Empty #>",
 							Example = "<#= normalizeExample(row[15]) ?? string.Empty #>",
 <#
@@ -106,7 +115,7 @@ namespace IbanNet.Registry
 						},
 						Iban = new IbanStructure
 						{
-							Length = <#= row[18] #>,
+							Length = <#= getNumber(row[18]) #>,
 							Structure = "<#= row[17] ?? string.Empty #>",
 							Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
 							EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
