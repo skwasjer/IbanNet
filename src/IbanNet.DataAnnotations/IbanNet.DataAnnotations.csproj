@@ -40,8 +40,4 @@
     <PackageTags>IBAN, International Bank Account Number, Web API, MVC</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\IbanNet.DataAnnotations.xml</DocumentationFile>
-    <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
-  </PropertyGroup>
 </Project>
