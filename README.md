@@ -20,8 +20,8 @@ Install-Package IbanNet.FluentValidation
 
 ---
 
-[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
-[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
+[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l/branch/master?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
+[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet/master.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
 
 | | | |
 |---|---|---|
