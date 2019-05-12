@@ -18,12 +18,10 @@ namespace IbanNet
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private Collection<IIbanValidationRule> _rules;
+		private readonly Collection<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly IStructureValidationFactory _structureValidationFactory;
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private Dictionary<string, CountryInfo> _structures;
 
 		/// <summary>

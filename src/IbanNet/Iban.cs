@@ -29,10 +29,10 @@ namespace IbanNet
 			public const string Flat = "F";
 		}
 
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private static readonly Regex NormalizeRegex = new Regex(@"[ \t]+", RegexOptions.CultureInvariant);
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
 		private readonly string _iban;
 
 		/// <summary>
