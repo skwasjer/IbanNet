@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace IbanNet.DataAnnotations
 {
 	/// <summary>
-	/// When applied to a <see cref="string" /> property, field or parameter, validates that a valid IBAN is provided.
+	/// When applied to a <see cref="string" /> property or parameter, validates that a valid IBAN is provided.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
+	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
 	public class IbanAttribute : ValidationAttribute
 	{
 		/// <summary>
