@@ -120,12 +120,12 @@ namespace IbanNet
 
 		private CountryInfo GetMatchingCountry(string iban)
 		{
-			if (iban == null || iban.Length < 2)
+			string countryCode = iban.GetCountryCode();
+			if (countryCode == null)
 			{
 				return null;
 			}
 
-			string countryCode = iban.Substring(0, 2).ToUpperInvariant();
 			_structures.TryGetValue(countryCode, out CountryInfo matchedCountry);
 			return matchedCountry;
 		}
