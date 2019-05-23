@@ -1,5 +1,9 @@
 # Changelog
 
+## v-upcoming
+
+- (breaking) Changed type of `SupportedCountries` to dictionary for faster lookup.
+
 ## v3.1
 
 - Deprecated `IbanNet.IbanTypeConverter`, replaced by  `IbanNet.TypeConverters.IbanTypeConverter`.
