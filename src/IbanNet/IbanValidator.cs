@@ -13,7 +13,7 @@ namespace IbanNet
 	/// <summary>
 	/// Represents the default IBAN validator.
 	/// </summary>
-	public class IbanValidator : IIbanValidator
+	public class IbanValidator : IIbanValidator, ICountryValidationSupport
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
@@ -54,11 +54,19 @@ namespace IbanNet
 				new Mod97Rule()
 			};
 		}
-		
+
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		public IEnumerable<CountryInfo> SupportedCountries => _registry.Value;
+		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries
+		{
+			get
+			{
+				InitRegistry();
+
+				return _structures;
+			}
+		}
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.
@@ -105,8 +113,7 @@ namespace IbanNet
 			{
 				_structures = _structures ?? _registry.Value
 					.ToDictionary(
-						kvp => kvp.TwoLetterISORegionName,
-						kvp => kvp
+						kvp => kvp.TwoLetterISORegionName
 					);
 			}
 		}

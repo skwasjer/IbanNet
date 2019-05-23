@@ -58,5 +58,5 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 ### Useful info
 
 - [Changelog](Changelog.md)
-- [IbanNet supported regions](SupportedCountries.md)
+- [IbanNet supported countries](SupportedCountries.md)
 - [Fiddle](https://dotnetfiddle.net/JeGa9x)
