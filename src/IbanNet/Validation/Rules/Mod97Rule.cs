@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using IbanNet.Extensions;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
@@ -9,16 +10,15 @@ namespace IbanNet.Validation.Rules
 	internal class Mod97Rule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
 			BigInteger largeInteger;
 			largeInteger = BuildLargeInteger(iban, 4, iban.Length, new BigInteger());
 			largeInteger = BuildLargeInteger(iban, 0, 4, largeInteger);
 
-			if (largeInteger % 97 != 1)
-			{
-				context.Result = IbanValidationResult.InvalidCheckDigits;
-			}
+			return largeInteger % 97 == 1
+				? ValidationRuleResult.Success
+				: new BuiltInErrorResult(IbanValidationResult.InvalidCheckDigits);
 		}
 
 		private static BigInteger BuildLargeInteger(string value, int startPos, int endPos, BigInteger current)

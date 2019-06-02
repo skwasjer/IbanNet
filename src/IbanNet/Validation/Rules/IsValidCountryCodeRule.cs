@@ -1,4 +1,6 @@
-﻿namespace IbanNet.Validation.Rules
+﻿using IbanNet.Validation.Results;
+
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN has a valid and known country code.
@@ -6,12 +8,11 @@
 	internal class IsValidCountryCodeRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
-			if (context.Country == null)
-			{
-				context.Result = IbanValidationResult.UnknownCountryCode;
-			}
+			return context.Country == null
+				? new BuiltInErrorResult(IbanValidationResult.UnknownCountryCode)
+				: ValidationRuleResult.Success;
 		}
 	}
 }

@@ -3,7 +3,7 @@
 namespace IbanNet.Validation.Rules
 {
 	/// <summary>
-	/// Represents the validation context for a validation rule.
+	/// The validation context for a validation rule.
 	/// </summary>
 	public class ValidationRuleContext
 	{
@@ -27,7 +27,7 @@ namespace IbanNet.Validation.Rules
 		public bool IsValid => Result == IbanValidationResult.Valid;
 
 		/// <summary>
-		/// Gets or sets the country info that matches the iban, if any.
+		/// Gets or sets the country info that applies to the IBAN, if any.
 		/// </summary>
 		public CountryInfo? Country { get; set; }
 	}

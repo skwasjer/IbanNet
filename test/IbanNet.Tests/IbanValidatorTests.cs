@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 using Moq;
 using NUnit.Framework;
@@ -75,6 +76,9 @@ namespace IbanNet
 			public void SetUp()
 			{
 				_customValidationRuleMock = new Mock<IIbanValidationRule>();
+				_customValidationRuleMock
+					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>(), It.IsAny<string>()))
+					.Returns(ValidationRuleResult.Success);
 
 				_sut = new IbanValidator(new IbanValidatorOptions
 				{
@@ -113,6 +117,31 @@ namespace IbanNet
 					.Throw<InvalidOperationException>()
 					.Which.Should()
 					.Be(exception);
+			}
+
+			[Test]
+			public void Given_custom_rule_fails_when_validating_should_not_validate()
+			{
+				const string iban = "NL91ABNA0417164300";
+				const string errorMessage = "My custom error";
+
+				_customValidationRuleMock
+					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>(), iban))
+					.Returns(new ErrorResult(errorMessage));
+
+				// Act
+				ValidationResult actual = _sut.Validate(iban);
+
+				// Assert
+				actual.Should()
+					.BeEquivalentTo(new ValidationResult
+					{
+						Value = iban,
+						Result = IbanValidationResult.Custom,
+						Country = _countryValidationSupport.SupportedCountries["NL"],
+						ValidationRuleType = _customValidationRuleMock.Object.GetType(),
+						ErrorMessage = errorMessage
+					});
 			}
 		}
 	}

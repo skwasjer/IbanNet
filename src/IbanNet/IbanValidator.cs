@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using IbanNet.Extensions;
 using IbanNet.Registry;
+using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet
@@ -103,20 +104,28 @@ namespace IbanNet
 			string valueToValidate = normalizedIban ?? string.Empty;
 			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
 
+			IIbanValidationRule failingRule = null;
+			ValidationRuleResult ruleResult = null;
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				rule.Validate(context, valueToValidate);
-				if (context.Result != IbanValidationResult.Valid)
+				ruleResult = rule.Validate(context, valueToValidate);
+				if (ruleResult != ValidationRuleResult.Success)
 				{
+					failingRule = rule;
 					break;
 				}
 			}
 
+			var ruleBuiltInErrorResult = ruleResult as BuiltInErrorResult;
+			var ruleErrorResult = ruleResult as ErrorResult;
+
 			return new ValidationResult
 			{
 				Value = normalizedIban?.ToUpperInvariant(),
-				Result = context.Result,
-				Country = context.Country
+				Result = ruleBuiltInErrorResult?.Result ?? (ruleResult == ValidationRuleResult.Success ? IbanValidationResult.Valid : IbanValidationResult.Custom),
+				Country = context.Country,
+				ErrorMessage = ruleErrorResult?.ErrorMessage,
+				ValidationRuleType = failingRule?.GetType()
 			};
 		}
 

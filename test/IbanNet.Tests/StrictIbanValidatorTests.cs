@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using IbanNet.Validation.Rules;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -23,7 +24,8 @@ namespace IbanNet
 			{
 				Value = ibanWithInvalidStructure,
 				Result = IbanValidationResult.InvalidStructure,
-				Country = CountryValidationSupport.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)]
+				Country = CountryValidationSupport.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)],
+				ValidationRuleType = typeof(IsMatchingStructureRule)
 			});
 		}
 

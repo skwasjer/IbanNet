@@ -1,10 +1,11 @@
 ﻿using IbanNet.Extensions;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
 	internal class NoIllegalCharactersRule : IIbanValidationRule
 	{
-		public void Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery : justification -> faster
 			// ReSharper disable once ForCanBeConvertedToForeach : justification -> faster
@@ -14,10 +15,11 @@ namespace IbanNet.Validation.Rules
 				// All chars must be 0-9, a-z or A-Z.
 				if (!(c.IsAsciiLetter() || c.IsAsciiDigit()))
 				{
-					context.Result = IbanValidationResult.IllegalCharacters;
-					return;
+					return new BuiltInErrorResult(IbanValidationResult.IllegalCharacters);
 				}
 			}
+
+			return ValidationRuleResult.Success;
 		}
 	}
 }
