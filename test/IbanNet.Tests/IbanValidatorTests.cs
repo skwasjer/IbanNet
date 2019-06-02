@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Validation.Rules;
+using Moq;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -11,11 +13,19 @@ namespace IbanNet
 	{
 		private IbanValidator _validator;
 		private ICountryValidationSupport _countryValidationSupport;
+		private Mock<IIbanValidationRule> _customValidationRuleMock;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_validator = new IbanValidator();
+			_customValidationRuleMock = new Mock<IIbanValidationRule>();
+			_validator = new IbanValidator(new IbanValidatorOptions
+			{
+				Rules =
+				{
+					_customValidationRuleMock.Object
+				}
+			});
 			_countryValidationSupport = _validator;
 		}
 
@@ -28,7 +38,8 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Result = IbanValidationResult.InvalidLength
+				Result = IbanValidationResult.InvalidLength,
+				ValidationRuleType = typeof(NotNullRule)
 			});
 		}
 
@@ -44,7 +55,8 @@ namespace IbanNet
 			{
 				Value = ibanWithIllegalChars,
 				Result = IbanValidationResult.IllegalCharacters,
-				Country = _countryValidationSupport.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)]
+				Country = _countryValidationSupport.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)],
+				ValidationRuleType = typeof(NoIllegalCharactersRule)
 			});
 		}
 
@@ -61,7 +73,7 @@ namespace IbanNet
 			{
 				Value = ibanWithIllegalCountryCode,
 				Result = IbanValidationResult.IllegalCharacters
-			});
+			}, opts => opts.Excluding(vr => vr.ValidationRuleType));
 		}
 
 		[TestCase("NL00ABNA0417164300")]
@@ -77,7 +89,8 @@ namespace IbanNet
 			{
 				Value = ibanWithInvalidChecksum,
 				Result = IbanValidationResult.IllegalCharacters,
-				Country = _countryValidationSupport.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)]
+				Country = _countryValidationSupport.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)],
+				ValidationRuleType = typeof(HasIbanChecksumRule)
 			});
 		}
 
@@ -96,7 +109,8 @@ namespace IbanNet
 			{
 				Value = ibanWithIncorrectLength,
 				Result = IbanValidationResult.InvalidLength,
-				Country = _countryValidationSupport.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
+				Country = _countryValidationSupport.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)],
+				ValidationRuleType = typeof(IsValidLengthRule)
 			});
 		}
 
@@ -111,7 +125,8 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithUnknownCountryCode,
-				Result = IbanValidationResult.UnknownCountryCode
+				Result = IbanValidationResult.UnknownCountryCode,
+				ValidationRuleType = typeof(IsValidCountryCodeRule)
 			});
 		}
 
@@ -127,7 +142,8 @@ namespace IbanNet
 			{
 				Value = ibanWithInvalidStructure,
 				Result = IbanValidationResult.InvalidStructure,
-				Country = _countryValidationSupport.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)]
+				Country = _countryValidationSupport.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)],
+				ValidationRuleType = typeof(IsMatchingStructureRule)
 			});
 		}
 
@@ -143,7 +159,8 @@ namespace IbanNet
 			{
 				Value = tamperedIban,
 				Result = IbanValidationResult.InvalidCheckDigits,
-				Country = _countryValidationSupport.SupportedCountries[tamperedIban.Substring(0, 2)]
+				Country = _countryValidationSupport.SupportedCountries[tamperedIban.Substring(0, 2)],
+				ValidationRuleType = typeof(Mod97Rule)
 			});
 		}
 
@@ -161,6 +178,64 @@ namespace IbanNet
 				Value = Iban.Normalize(ibanWithWhitespace),
 				Result = IbanValidationResult.Valid,
 				Country = _countryValidationSupport.SupportedCountries["NL"]
+			});
+		}
+
+		[Test]
+		public void When_validating_should_call_custom_rule()
+		{
+			// Act
+			_validator.Validate("NL91ABNA0417164300");
+
+			// Assert
+			_customValidationRuleMock.Verify(m => m.Validate(It.IsAny<ValidationRuleContext>()), Times.Once);
+		}
+
+		[Test]
+		public void Given_custom_rule_fails_when_validating_should_not_validate()
+		{
+			const string iban = "NL91ABNA0417164300";
+			const string errorMessage = "My custom error";
+
+			_customValidationRuleMock
+				.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
+				.Callback<ValidationRuleContext>(ctx => ctx.Fail(errorMessage));
+
+			// Act
+			ValidationResult actual = _validator.Validate(iban);
+
+			// Assert
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = iban,
+				Result = IbanValidationResult.Custom,
+				Country = _countryValidationSupport.SupportedCountries["NL"],
+				ValidationRuleType = _customValidationRuleMock.Object.GetType(),
+				ErrorMessage = errorMessage
+			});
+		}
+
+		[Test]
+		public void Given_custom_rule_fails_with_exception_when_validating_should_not_validate()
+		{
+			const string iban = "NL91ABNA0417164300";
+			Exception exception = new InvalidOperationException("My custom error");
+
+			_customValidationRuleMock
+				.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
+				.Callback<ValidationRuleContext>(ctx => ctx.Fail(exception));
+
+			// Act
+			ValidationResult actual = _validator.Validate(iban);
+
+			// Assert
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = iban,
+				Result = IbanValidationResult.Custom,
+				Country = _countryValidationSupport.SupportedCountries["NL"],
+				ValidationRuleType = _customValidationRuleMock.Object.GetType(),
+				Exception = exception
 			});
 		}
 

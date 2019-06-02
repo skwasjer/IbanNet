@@ -111,11 +111,13 @@ namespace IbanNet
 			string normalizedIban = Iban.Normalize(iban);
 			var context = new ValidationRuleContext(normalizedIban, GetMatchingCountry(normalizedIban));
 
+			IIbanValidationRule failingRule = null;
 			foreach (IIbanValidationRule rule in _rules)
 			{
 				rule.Validate(context);
 				if (context.Result != IbanValidationResult.Valid)
 				{
+					failingRule = rule;
 					break;
 				}
 			}
@@ -124,7 +126,10 @@ namespace IbanNet
 			{
 				Value = normalizedIban?.ToUpperInvariant(),
 				Result = context.Result,
-				Country = context.Country
+				Country = context.Country,
+				ErrorMessage = context.ErrorMessage,
+				Exception = context.Exception,
+				ValidationRuleType = failingRule?.GetType()
 			};
 		}
 

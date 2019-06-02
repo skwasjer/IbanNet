@@ -33,6 +33,11 @@
 		/// <summary>
 		/// The IBAN has an incorrect length.
 		/// </summary>
-		InvalidLength
+		InvalidLength,
+
+		/// <summary>
+		/// A custom IBAN validation did not pass.
+		/// </summary>
+		Custom,
 	}
 }

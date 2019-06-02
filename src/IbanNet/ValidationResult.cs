@@ -1,4 +1,6 @@
-﻿using IbanNet.Registry;
+﻿using System;
+using IbanNet.Registry;
+using IbanNet.Validation.Rules;
 
 namespace IbanNet
 {
@@ -26,5 +28,20 @@ namespace IbanNet
 		/// Gets the country info that matches the iban, if any.
 		/// </summary>
 		public CountryInfo Country { get; set; }
+
+		/// <summary>
+		/// Gets the exception that occurred during validation (if any).
+		/// </summary>
+		public Exception Exception { get; set; }
+
+		/// <summary>
+		/// Gets the error message that occurred during validation (if any).
+		/// </summary>
+		public string ErrorMessage { get; set; }
+
+		/// <summary>
+		/// Gets the type of the validation rule that did not pass (if any).
+		/// </summary>
+		public Type ValidationRuleType { get; set; }
 	}
 }
