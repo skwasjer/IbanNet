@@ -18,7 +18,7 @@ namespace IbanNet
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Collection<IIbanValidationRule> _rules;
+		private readonly List<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
 		// ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable - Justification: helpful during debug.
@@ -29,7 +29,7 @@ namespace IbanNet
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
 		/// </summary>
 		public IbanValidator()
-			: this(new Lazy<IReadOnlyCollection<CountryInfo>>(() => new IbanRegistry(), LazyThreadSafetyMode.ExecutionAndPublication))
+			: this(new IbanValidatorOptions())
 		{
 		}
 
@@ -38,12 +38,31 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="registry">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
 		// ReSharper disable once MemberCanBePrivate.Global
+		[Obsolete("Use the overload that accepts " + nameof(IbanValidatorOptions) + ".")]
 		public IbanValidator(Lazy<IReadOnlyCollection<CountryInfo>> registry)
+			: this(new IbanValidatorOptions
+			{
+				Registry = registry
+			})
 		{
-			_registry = registry ?? throw new ArgumentNullException(nameof(registry));
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified registry.
+		/// </summary>
+		/// <param name="options">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
+		// ReSharper disable once MemberCanBePrivate.Global
+		public IbanValidator(IbanValidatorOptions options)
+		{
+			if (options == null)
+			{
+				throw new ArgumentNullException(nameof(options));
+			}
+
+			_registry = options.Registry ?? throw new ArgumentException("Provide the registry.", nameof(options));
 
 			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
-			_rules = new Collection<IIbanValidationRule>
+			_rules = new List<IIbanValidationRule>
 			{
 				new NotNullRule(),
 				new NoIllegalCharactersRule(),
@@ -54,6 +73,11 @@ namespace IbanNet
 				new IsMatchingStructureRule(_structureValidationFactory),
 				new Mod97Rule()
 			};
+
+			if (options.Rules != null)
+			{
+				_rules.AddRange(options.Rules);
+			}
 		}
 
 		/// <summary>
