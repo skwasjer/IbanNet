@@ -4,7 +4,7 @@ namespace IbanNet.Validation.Rules
 {
 	internal class NoIllegalCharactersRule : IIbanValidationRule
 	{
-		public void Validate(ValidationContext context, string iban)
+		public void Validate(ValidationRuleContext context, string iban)
 		{
 			// ReSharper disable once LoopCanBeConvertedToQuery : justification -> faster
 			// ReSharper disable once ForCanBeConvertedToForeach : justification -> faster

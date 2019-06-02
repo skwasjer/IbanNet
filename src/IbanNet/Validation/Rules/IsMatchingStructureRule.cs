@@ -15,7 +15,7 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context, string iban)
+		public void Validate(ValidationRuleContext context, string iban)
 		{
 			if (context.Country is null)
 			{

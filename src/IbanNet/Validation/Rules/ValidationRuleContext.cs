@@ -2,8 +2,20 @@
 
 namespace IbanNet.Validation.Rules
 {
-	internal class ValidationContext
+	/// <summary>
+	/// Represents the validation context for a validation rule.
+	/// </summary>
+	public class ValidationRuleContext
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ValidationRuleContext"/> class.
+		/// </summary>
+		/// <param name="country">The country info (if any).</param>
+		public ValidationRuleContext(CountryInfo? country)
+		{
+			Country = country;
+		}
+
 		/// <summary>
 		/// <see cref="IbanValidationResult.Valid"/> if validation succeeded. Otherwise, indicates the reason of failure. 
 		/// </summary>

@@ -96,11 +96,7 @@ namespace IbanNet
 
 			string? normalizedIban = iban.StripWhitespaceOrNull();
 			string valueToValidate = normalizedIban ?? string.Empty;
-			var context = new ValidationContext
-			{
-				Result = IbanValidationResult.Valid,
-				Country = GetMatchingCountry(valueToValidate)
-			};
+			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
 
 			foreach (IIbanValidationRule rule in _rules)
 			{

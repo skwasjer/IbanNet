@@ -2,7 +2,7 @@
 {
 	internal class HasIbanChecksumRule : IIbanValidationRule
 	{
-		public void Validate(ValidationContext context, string iban)
+		public void Validate(ValidationRuleContext context, string iban)
 		{
 			if (iban.Length < 4
 				// 00 and 01 are invalid.

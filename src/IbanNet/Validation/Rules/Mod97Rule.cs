@@ -9,7 +9,7 @@ namespace IbanNet.Validation.Rules
 	internal class Mod97Rule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context, string iban)
+		public void Validate(ValidationRuleContext context, string iban)
 		{
 			BigInteger largeInteger;
 			largeInteger = BuildLargeInteger(iban, 4, iban.Length, new BigInteger());

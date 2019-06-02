@@ -6,7 +6,7 @@
 	internal sealed class NotNullOrEmptyRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context, string iban)
+		public void Validate(ValidationRuleContext context, string iban)
 		{
 			if (string.IsNullOrEmpty(iban))
 			{
