@@ -64,6 +64,11 @@ namespace IbanNet
 			_registryBuilder = options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 
 			_rules = options.ValidationMethod.GetRules().ToList();
+
+			if (options.Rules != null)
+			{
+				_rules.AddRange(options.Rules);
+			}
 		}
 
 		/// <summary>
