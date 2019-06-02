@@ -10,7 +10,7 @@
 		}
 
 		/// <inheritdoc />
-		public override void Validate(ValidationContext context)
+		public override void Validate(ValidationRuleContext context)
 		{
 			base.Validate(context);
 

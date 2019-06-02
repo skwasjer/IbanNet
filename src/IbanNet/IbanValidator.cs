@@ -21,6 +21,7 @@ namespace IbanNet
 		private readonly Collection<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
+		// ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable - Justification: helpful during debug.
 		private readonly IStructureValidationFactory _structureValidationFactory;
 		private Dictionary<string, CountryInfo> _structures;
 
@@ -84,12 +85,7 @@ namespace IbanNet
 			InitRegistry();
 
 			string normalizedIban = Iban.Normalize(iban);
-			var context = new ValidationContext
-			{
-				Value = normalizedIban,
-				Result = IbanValidationResult.Valid,
-				Country = GetMatchingCountry(normalizedIban)
-			};
+			var context = new ValidationRuleContext(normalizedIban, GetMatchingCountry(normalizedIban));
 
 			foreach (IIbanValidationRule rule in _rules)
 			{
@@ -99,7 +95,7 @@ namespace IbanNet
 					break;
 				}
 			}
-			
+
 			return new ValidationResult
 			{
 				Value = normalizedIban?.ToUpperInvariant(),

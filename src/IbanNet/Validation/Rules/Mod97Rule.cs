@@ -12,7 +12,7 @@ namespace IbanNet.Validation.Rules
 		private static readonly int CharCodeA = 'A';
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationRuleContext context)
 		{
 			string upperIban = context.Value.ToUpperInvariant();
 			string shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);

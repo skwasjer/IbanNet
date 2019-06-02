@@ -6,7 +6,7 @@
 	internal sealed class NotNullRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationRuleContext context)
 		{
 			if (context.Value == null)
 			{
