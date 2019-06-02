@@ -28,7 +28,7 @@ namespace IbanNet
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
 		/// </summary>
 		public IbanValidator()
-			: this(new Lazy<IReadOnlyCollection<CountryInfo>>(() => new IbanRegistry(), LazyThreadSafetyMode.ExecutionAndPublication))
+			: this(new IbanValidatorOptions())
 		{
 		}
 
@@ -37,9 +37,32 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="registry">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
 		// ReSharper disable once MemberCanBePrivate.Global
+		[Obsolete("Will be removed in v4. Use the overload that accepts " + nameof(IbanValidatorOptions) + ".")]
 		public IbanValidator(Lazy<IReadOnlyCollection<CountryInfo>> registry)
+			: this(new IbanValidatorOptions
+			{
+				Registry = () => registry.Value
+			})
 		{
-			_registry = registry ?? throw new ArgumentNullException(nameof(registry));
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified registry.
+		/// </summary>
+		/// <param name="options">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
+		// ReSharper disable once MemberCanBePrivate.Global
+		public IbanValidator(IbanValidatorOptions options)
+		{
+			if (options == null)
+			{
+				throw new ArgumentNullException(nameof(options));
+			}
+
+			if (options.Registry == null)
+			{
+				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
+			}
+			_registry = new Lazy<IReadOnlyCollection<CountryInfo>>(options.Registry, LazyThreadSafetyMode.ExecutionAndPublication);
 
 			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
 			_rules = new Collection<IIbanValidationRule>
@@ -99,7 +122,7 @@ namespace IbanNet
 					break;
 				}
 			}
-			
+
 			return new ValidationResult
 			{
 				Value = normalizedIban?.ToUpperInvariant(),

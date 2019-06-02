@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
@@ -18,6 +19,27 @@ namespace IbanNet
 			_validator = new IbanValidator();
 			_countryValidationSupport = _validator;
 		}
+
+		[TestCaseSource(nameof(CtorWithOptionsTestCases))]
+		public void Given_invalid_options_when_creating_instance_it_should_throw(IbanValidatorOptions options, Type expectedExceptionType)
+		{
+			// Act
+			// ReSharper disable once ObjectCreationAsStatement
+			Action act = () => new IbanValidator(options);
+
+			// Assert
+			act.Should()
+				.Throw<ArgumentException>()
+				.Which.Should()
+				.BeOfType(expectedExceptionType);
+		}
+
+		public static IEnumerable CtorWithOptionsTestCases()
+		{
+			yield return new TestCaseData(null, typeof(ArgumentNullException));
+			yield return new TestCaseData(new IbanValidatorOptions { Registry = null }, typeof(ArgumentException));
+		}
+
 
 		[Test]
 		public void When_validating_null_value_should_not_validate()
