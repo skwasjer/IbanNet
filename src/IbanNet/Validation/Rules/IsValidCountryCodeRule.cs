@@ -6,7 +6,7 @@
 	internal class IsValidCountryCodeRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationRuleContext context)
 		{
 			if (context.Country == null)
 			{

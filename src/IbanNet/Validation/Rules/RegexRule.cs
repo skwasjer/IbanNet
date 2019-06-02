@@ -19,7 +19,7 @@ namespace IbanNet.Validation.Rules
 		protected Regex Regex { get; }
 
 		/// <inheritdoc />
-		public virtual void Validate(ValidationContext context)
+		public virtual void Validate(ValidationRuleContext context)
 		{
 			if (!Regex.IsMatch(context.Value))
 			{

@@ -15,7 +15,7 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationRuleContext context)
 		{
 			IStructureValidator validator = _structureValidationFactory.CreateValidator(
 				context.Country.TwoLetterISORegionName,
