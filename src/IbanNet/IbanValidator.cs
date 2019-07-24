@@ -64,7 +64,7 @@ namespace IbanNet
 			{
 				InitRegistry();
 
-				return _structures;
+				return new ReadOnlyDictionary<string, CountryInfo>(_structures);
 			}
 		}
 

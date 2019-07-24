@@ -1,4 +1,7 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
+using IbanNet.Registry;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -176,6 +179,19 @@ namespace IbanNet
 
 			// Assert
 			actual.Should().BeEquivalentTo(expectedResult);
+		}
+
+		[Test]
+		public void When_casting_readonly_countries_dictionary_should_not_be_able_to_add()
+		{
+			var countries = (IDictionary<string, CountryInfo>)_validator.SupportedCountries;
+
+			// Act
+			Action act = () => countries.Add("key", new CountryInfo());
+
+			// Assert
+			act.Should().Throw<NotSupportedException>()
+				.WithMessage("Collection is read-only.");
 		}
 	}
 }
