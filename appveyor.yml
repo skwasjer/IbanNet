@@ -15,6 +15,9 @@ install:
 nuget:
   project_feed: true
   disable_publish_on_pr: true
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml, codecov.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml, codecov.yml
 before_build:
 - ps: dotnet restore
 - ps: choco install opencover.portable

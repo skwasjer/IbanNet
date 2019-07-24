@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.2;net47;net45</TargetFrameworks>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <Import Project="..\Package.props" />
+
+  <PropertyGroup>
+    <Description>FluentValidation support to validate IBAN user input.</Description>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.FluentValidation</PackageProjectUrl>
+    <PackageTags>IBAN, International Bank Account Number, FluentValidation, Web API, MVC</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,13 +20,5 @@
   <ItemGroup>
     <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
   </ItemGroup>
-
-  <Import Project="..\Package.props" />
-
-  <PropertyGroup>
-    <Description>FluentValidation support to validate IBAN user input.</Description>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.FluentValidation</PackageProjectUrl>
-    <PackageTags>IBAN, International Bank Account Number, FluentValidation, Web API, MVC</PackageTags>
-  </PropertyGroup>
 
 </Project>
