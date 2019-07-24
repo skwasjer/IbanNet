@@ -31,8 +31,7 @@ test_script:
   - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test -c Debug -l:trx;LogFileName=test-results.xml" -output:coverage.xml -register:user -filter:"+[IbanNet*]* -[*Tests]*" -oldStyle
   - codecov -f coverage.xml
 on_finish:
-  - sh: |
-    find "$APPVEYOR_BUILD_FOLDER" -type f -name '*/test-results.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
+  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name '*/test-results.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
 deploy:
 - provider: NuGet
   api_key:
