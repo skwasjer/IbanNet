@@ -6,7 +6,7 @@ namespace IbanNet
 	/// <summary>
 	/// Describes the countries that a validator supports.
 	/// </summary>
-	public interface ICountryValidationSupport
+	internal interface ICountryValidationSupport
 	{
 		/// <summary>
 		/// Gets the supported countries.
