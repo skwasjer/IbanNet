@@ -182,9 +182,17 @@ namespace IbanNet
 		}
 
 		[Test]
+		public void When_getting_supported_countries_should_match_default_registry()
+		{
+			_validator.SupportedCountries
+				.Should()
+				.BeEquivalentTo(new IbanRegistry());
+		}
+
+		[Test]
 		public void When_casting_readonly_countries_dictionary_should_not_be_able_to_add()
 		{
-			var countries = (IDictionary<string, CountryInfo>)_validator.SupportedCountries;
+			var countries = (IDictionary<string, CountryInfo>)((ICountryValidationSupport)_validator).SupportedCountries;
 
 			// Act
 			Action act = () => countries.Add("key", new CountryInfo());

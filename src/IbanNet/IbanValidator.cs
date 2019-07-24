@@ -58,7 +58,13 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries
+		// TODO: v4, change to dictionary for faster lookup.
+		public IEnumerable<CountryInfo> SupportedCountries => ((ICountryValidationSupport)this).SupportedCountries.Values;
+
+		/// <summary>
+		/// Gets the supported countries.
+		/// </summary>
+		IReadOnlyDictionary<string, CountryInfo> ICountryValidationSupport.SupportedCountries
 		{
 			get
 			{
