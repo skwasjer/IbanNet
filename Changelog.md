@@ -1,8 +1,9 @@
 # Changelog
 
-## v-upcoming
+## v3.1.1
 
-- (breaking) Changed type of `SupportedCountries` to dictionary for faster lookup.
+- Removed ability to apply `IbanAttribute` to fields, since model validation does not occur for fields.
+- Improved continuous integration, added code coverage.
 
 ## v3.1
 
