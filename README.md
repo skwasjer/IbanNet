@@ -20,8 +20,9 @@ Install-Package IbanNet.FluentValidation
 
 ---
 
-[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
-[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
+[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l/branch/master?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
+[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet/master.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
+[![codecov](https://codecov.io/gh/skwasjer/IbanNet/branch/master/graph/badge.svg)](https://codecov.io/gh/skwasjer/IbanNet)
 
 | | | |
 |---|---|---|
@@ -58,5 +59,5 @@ PR's are welcome. Please rebase before submitting, provide test coverage, and en
 ### Useful info
 
 - [Changelog](Changelog.md)
-- [IbanNet supported regions](SupportedCountries.md)
+- [IbanNet supported countries](SupportedCountries.md)
 - [Fiddle](https://dotnetfiddle.net/JeGa9x)

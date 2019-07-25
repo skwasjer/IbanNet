@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.1.1
+
+- Removed ability to apply `IbanAttribute` to fields, since model validation does not occur for fields.
+- Improved continuous integration, added code coverage.
+
 ## v3.1
 
 - Deprecated `IbanNet.IbanTypeConverter`, replaced by  `IbanNet.TypeConverters.IbanTypeConverter`.

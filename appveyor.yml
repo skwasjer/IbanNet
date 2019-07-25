@@ -15,17 +15,22 @@ install:
 nuget:
   project_feed: true
   disable_publish_on_pr: true
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml, codecov.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml, codecov.yml
 before_build:
 - ps: dotnet restore
+- ps: choco install opencover.portable
+- ps: choco install codecov
 build:
   project: IbanNet.sln
   publish_nuget: true
   publish_nuget_symbols: true
   verbosity: minimal
-test:
-  categories:
-    except:
-    - Integration
+test_script:
+  - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test -c Debug -l:trx;LogFileName=test-results.xml" -output:coverage.xml -register:user -filter:"+[IbanNet*]* -[*Tests]*" -oldStyle
+  - codecov -f coverage.xml
+  - ps: '& .\ci\upload-testresults.ps1'
 deploy:
 - provider: NuGet
   api_key:

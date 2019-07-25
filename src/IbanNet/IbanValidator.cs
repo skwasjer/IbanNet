@@ -13,17 +13,15 @@ namespace IbanNet
 	/// <summary>
 	/// Represents the default IBAN validator.
 	/// </summary>
-	public class IbanValidator : IIbanValidator
+	public class IbanValidator : IIbanValidator, ICountryValidationSupport
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private Collection<IIbanValidationRule> _rules;
+		private readonly Collection<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly IStructureValidationFactory _structureValidationFactory;
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private Dictionary<string, CountryInfo> _structures;
 
 		/// <summary>
@@ -56,11 +54,25 @@ namespace IbanNet
 				new Mod97Rule()
 			};
 		}
-		
+
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		public IEnumerable<CountryInfo> SupportedCountries => _registry.Value;
+		// TODO: v4, change to dictionary for faster lookup.
+		public IEnumerable<CountryInfo> SupportedCountries => ((ICountryValidationSupport)this).SupportedCountries.Values;
+
+		/// <summary>
+		/// Gets the supported countries.
+		/// </summary>
+		IReadOnlyDictionary<string, CountryInfo> ICountryValidationSupport.SupportedCountries
+		{
+			get
+			{
+				InitRegistry();
+
+				return new ReadOnlyDictionary<string, CountryInfo>(_structures);
+			}
+		}
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.
@@ -107,20 +119,19 @@ namespace IbanNet
 			{
 				_structures = _structures ?? _registry.Value
 					.ToDictionary(
-						kvp => kvp.TwoLetterISORegionName,
-						kvp => kvp
+						kvp => kvp.TwoLetterISORegionName
 					);
 			}
 		}
 
 		private CountryInfo GetMatchingCountry(string iban)
 		{
-			if (iban == null || iban.Length < 2)
+			string countryCode = iban.GetCountryCode();
+			if (countryCode == null)
 			{
 				return null;
 			}
 
-			string countryCode = iban.Substring(0, 2).ToUpperInvariant();
 			_structures.TryGetValue(countryCode, out CountryInfo matchedCountry);
 			return matchedCountry;
 		}

@@ -90,5 +90,15 @@ namespace IbanNet
 				yield return partition.ToString();
 			}
 		}
+
+		public static string GetCountryCode(this string value)
+		{
+			if (value == null || value.Length < 2)
+			{
+				return null;
+			}
+
+			return value.Substring(0, 2).ToUpperInvariant();
+		}
 	}
 }

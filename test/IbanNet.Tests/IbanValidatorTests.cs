@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
+using IbanNet.Registry;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -8,11 +10,13 @@ namespace IbanNet
 	internal class IbanValidatorTests
 	{
 		private IbanValidator _validator;
+		private ICountryValidationSupport _countryValidationSupport;
 
 		[SetUp]
 		public void SetUp()
 		{
 			_validator = new IbanValidator();
+			_countryValidationSupport = _validator;
 		}
 
 		[Test]
@@ -40,8 +44,7 @@ namespace IbanNet
 			{
 				Value = ibanWithIllegalChars,
 				Result = IbanValidationResult.IllegalCharacters,
-				Country = _validator.SupportedCountries
-					.Single(c => c.TwoLetterISORegionName == ibanWithIllegalChars.Substring(0, 2))
+				Country = _countryValidationSupport.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)]
 			});
 		}
 
@@ -74,8 +77,7 @@ namespace IbanNet
 			{
 				Value = ibanWithInvalidChecksum,
 				Result = IbanValidationResult.IllegalCharacters,
-				Country = _validator.SupportedCountries
-					.Single(c => c.TwoLetterISORegionName == ibanWithInvalidChecksum.Substring(0, 2))
+				Country = _countryValidationSupport.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)]
 			});
 		}
 
@@ -94,8 +96,7 @@ namespace IbanNet
 			{
 				Value = ibanWithIncorrectLength,
 				Result = IbanValidationResult.InvalidLength,
-				Country = _validator.SupportedCountries
-					.Single(c => c.TwoLetterISORegionName == ibanWithIncorrectLength.Substring(0, 2))
+				Country = _countryValidationSupport.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
 			});
 		}
 
@@ -126,8 +127,7 @@ namespace IbanNet
 			{
 				Value = ibanWithInvalidStructure,
 				Result = IbanValidationResult.InvalidStructure,
-				Country = _validator.SupportedCountries
-					.Single(c => c.TwoLetterISORegionName == ibanWithInvalidStructure.Substring(0, 2))
+				Country = _countryValidationSupport.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)]
 			});
 		}
 
@@ -143,8 +143,7 @@ namespace IbanNet
 			{
 				Value = tamperedIban,
 				Result = IbanValidationResult.InvalidCheckDigits,
-				Country = _validator.SupportedCountries
-					.Single(c => c.TwoLetterISORegionName == tamperedIban.Substring(0, 2))
+				Country = _countryValidationSupport.SupportedCountries[tamperedIban.Substring(0, 2)]
 			});
 		}
 
@@ -161,7 +160,7 @@ namespace IbanNet
 			{
 				Value = Iban.Normalize(ibanWithWhitespace),
 				Result = IbanValidationResult.Valid,
-				Country = _validator.SupportedCountries.Single(c => c.TwoLetterISORegionName == "NL")
+				Country = _countryValidationSupport.SupportedCountries["NL"]
 			});
 		}
 
@@ -172,8 +171,7 @@ namespace IbanNet
 			{
 				Value = iban,
 				Result = IbanValidationResult.Valid,
-				Country = _validator.SupportedCountries
-					.FirstOrDefault(c => c.TwoLetterISORegionName == iban.Substring(0, 2))
+				Country = _countryValidationSupport.SupportedCountries[iban.Substring(0, 2)]
 			};
 
 			// Act
@@ -181,6 +179,27 @@ namespace IbanNet
 
 			// Assert
 			actual.Should().BeEquivalentTo(expectedResult);
+		}
+
+		[Test]
+		public void When_getting_supported_countries_should_match_default_registry()
+		{
+			_validator.SupportedCountries
+				.Should()
+				.BeEquivalentTo(new IbanRegistry());
+		}
+
+		[Test]
+		public void When_casting_readonly_countries_dictionary_should_not_be_able_to_add()
+		{
+			var countries = (IDictionary<string, CountryInfo>)((ICountryValidationSupport)_validator).SupportedCountries;
+
+			// Act
+			Action act = () => countries.Add("key", new CountryInfo());
+
+			// Assert
+			act.Should().Throw<NotSupportedException>()
+				.WithMessage("Collection is read-only.");
 		}
 	}
 }
