@@ -201,5 +201,16 @@ namespace IbanNet
 			act.Should().Throw<NotSupportedException>()
 				.WithMessage("Collection is read-only.");
 		}
+
+		[TestCase("NL91abna0417164300", IbanValidationResult.InvalidStructure, Description = "A region that requires bank details to be upper case")]
+		[TestCase("MT84MALT011000012345mtlcast001S", IbanValidationResult.Valid, Description = "A region that allows bank details to be lower case")]
+		public void When_validating_iban_with_invalid_case_should_not_be_valid(string lowerIban, IbanValidationResult expectedResult)
+		{
+			// Act
+			ValidationResult actual = _validator.Validate(lowerIban);
+
+			// Assert
+			actual.Result.Should().Be(expectedResult);
+		}		
 	}
 }
