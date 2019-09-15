@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
-using System.Numerics;
+﻿using IbanNet.CheckDigits.Calculators;
 
 namespace IbanNet.Validation.Rules
 {
@@ -9,7 +7,14 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal class Mod97Rule : IIbanValidationRule
 	{
-		private static readonly int CharCodeA = 'A';
+		private const int ExpectedCheckDigit = 1;
+
+		private readonly CheckDigitsCalculator _checkDigitsCalculator;
+
+		public Mod97Rule()
+		{
+			_checkDigitsCalculator = new Mod97CheckDigitsCalculator();
+		}
 
 		/// <inheritdoc />
 		public void Validate(ValidationRuleContext context)
@@ -17,15 +22,7 @@ namespace IbanNet.Validation.Rules
 			string upperIban = context.Value.ToUpperInvariant();
 			string shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);
 
-			string iso13616 = string.Join("", 
-				shiftedIban.Select(c => char.IsNumber(c) 
-					? c.ToString() 
-					: (c - CharCodeA + 10).ToString()
-				)
-			);
-
-			BigInteger largeInteger = BigInteger.Parse(iso13616, CultureInfo.InvariantCulture);
-			if (largeInteger % 97 != 1)
+			if (_checkDigitsCalculator.Compute(shiftedIban) != ExpectedCheckDigit)
 			{
 				context.Result = IbanValidationResult.InvalidCheckDigits;
 			}
