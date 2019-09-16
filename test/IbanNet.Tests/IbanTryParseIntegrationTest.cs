@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -16,11 +17,11 @@ namespace IbanNet
 		{
 			// Act
 			ValidationResult validatorResult = Iban.Validator.Validate(attemptedIbanValue);
-			bool tryParseResult = Iban.TryParse(attemptedIbanValue, out Iban iban, out IbanValidationResult validationResult);
+			bool tryParseResult = Iban.TryParse(attemptedIbanValue, out Iban iban, out ValidationResult validationResult, out Exception _);
 
 			// Assert
 			validatorResult.IsValid.Should().Be(tryParseResult);
-			validatorResult.Result.Should().Be(validationResult);
+			validatorResult.Should().BeEquivalentTo(validationResult);
 			if (tryParseResult)
 			{
 				iban.Should().NotBeNull();

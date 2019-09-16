@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -35,6 +36,19 @@ namespace IbanNet
 					Value = iban,
 					Result = IbanValidationResult.IllegalCharacters
 				});
+
+			IbanValidatorMock
+				.Setup(m => m.Validate(TestValues.IbanForCustomRuleFailure))
+				.Returns<string>(iban => new ValidationResult
+				{
+					Value = iban,
+					Result = IbanValidationResult.Custom,
+					ErrorMessage = "Custom message"
+				});
+
+			IbanValidatorMock
+				.Setup(m => m.Validate(TestValues.IbanForCustomRuleException))
+				.Throws(new InvalidOperationException("Custom message"));
 
 			Iban.Validator = IbanValidatorMock.Object;
 		}
