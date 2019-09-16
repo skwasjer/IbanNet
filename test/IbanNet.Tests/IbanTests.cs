@@ -50,6 +50,19 @@ namespace IbanNet
 					.Which.ToString()
 					.Should().Be(TestValues.ValidIban, "the returned value should match the provided value");
 			}
+
+			[Test]
+			public void With_value_that_fails_custom_rule_should_throw()
+			{
+				// Act
+				Action act = () => Iban.Parse(TestValues.IbanForCustomRuleFailure);
+
+				// Assert
+				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				ex.Result.Should().Be(IbanValidationResult.Custom);
+				ex.InnerException.Should().NotBeNull();
+				ex.Message.Should().Be("Custom message");
+			}
 		}
 
 		public class When_trying_to_parse_iban : IbanTests

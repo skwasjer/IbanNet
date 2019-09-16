@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
+using IbanNet.Validation.Rules;
 
 namespace IbanNet
 {
@@ -96,12 +97,16 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(value));
 			}
 
-			if (TryParse(value, out Iban iban, out IbanValidationResult validationResult))
+			if (TryParse(value, out Iban iban, out ValidationResult validationResult))
 			{
 				return iban;
 			}
 
-			throw new IbanFormatException(string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value), validationResult);
+			string errorMessage = string.IsNullOrEmpty(validationResult.ErrorMessage)
+				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
+				: validationResult.ErrorMessage;
+
+			throw new IbanFormatException(errorMessage, validationResult.Result, validationResult.Exception);
 		}
 
 		/// <summary>
@@ -114,7 +119,7 @@ namespace IbanNet
 		{
 			iban = null;
 
-			return TryParse(value, out iban, out IbanValidationResult _);
+			return TryParse(value, out iban, out ValidationResult _);
 		}
 
 		/// <summary>
@@ -124,12 +129,17 @@ namespace IbanNet
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <param name="validationResult">The validation result.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		private static bool TryParse(string value, out Iban iban, out IbanValidationResult validationResult)
+		private static bool TryParse(string value, out Iban iban, out ValidationResult validationResult)
 		{
 			iban = null;
-			validationResult = IbanValidationResult.IllegalCharacters;
 			if (value == null)
 			{
+				validationResult = new ValidationResult
+				{
+					Result = IbanValidationResult.IllegalCharacters,
+					ValidationRuleType = typeof(NotNullRule)
+				};
+
 				return false;
 			}
 
@@ -137,8 +147,8 @@ namespace IbanNet
 			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
 			// represents the IBAN value, we normalize inline here and take the penalty.
 			string normalizedValue = Normalize(value);
-			ValidationResult result = Validator.Validate(normalizedValue);
-			if (result.Result == IbanValidationResult.Valid)
+			validationResult = Validator.Validate(normalizedValue);
+			if (validationResult.IsValid)
 			{
 				iban = new Iban(normalizedValue.ToUpperInvariant());
 				return true;

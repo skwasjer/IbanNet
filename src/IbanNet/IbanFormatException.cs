@@ -12,7 +12,8 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="message">The error message.</param>
 		/// <param name="result">The validation result.</param>
-		public IbanFormatException(string message, IbanValidationResult result) : base(message)
+		/// <param name="innerException">The inner exception.</param>
+		public IbanFormatException(string message, IbanValidationResult result, Exception innerException) : base(message, innerException)
 		{
 			Result = result;
 		}
