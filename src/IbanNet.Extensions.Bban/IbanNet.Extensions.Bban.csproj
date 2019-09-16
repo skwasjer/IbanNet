@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.2;net47;net45</TargetFrameworks>
+    <DebugType>full</DebugType>
+    <RootNamespace>IbanNet</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\Package.props" />
+
+  <PropertyGroup>
+    <Description>IbanNet BBAN validation extensions.</Description>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.Extensions.Bban</PackageProjectUrl>
+    <PackageTags>BBAN, Validation, IBAN, International Bank Account Number</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
+  </ItemGroup>
+
+</Project>

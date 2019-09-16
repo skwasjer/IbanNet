@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;net47;net45</TargetFrameworks>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+
+    <RootNamespace>IbanNet</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <ProjectReference Include="..\..\src\IbanNet.Extensions.Bban\IbanNet.Extensions.Bban.csproj" AdditionalProperties="TargetFramework=$(TargetFramework)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" Condition="$(TargetFramework.StartsWith('netcoreapp'))" />
+    <PackageReference Include="FluentValidation" Version="8.5.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="FluentAssertions" Version="5.9.0" />
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IbanNet.Tests\IbanNet.Tests.csproj" />
+    <ProjectReference Include="..\..\src\IbanNet.Extensions.Bban\IbanNet.Extensions.Bban.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
+    <ProjectReference Include="..\..\src\IbanNet.Extensions.Bban\IbanNet.Extensions.Bban.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.0'" />
+    <ProjectReference Include="..\..\src\IbanNet.Extensions.Bban\IbanNet.Extensions.Bban.csproj" AdditionalProperties="TargetFramework=netstandard1.2" Condition="'$(TargetFramework)'=='netcoreapp1.1'" />
+  </ItemGroup>
+
+</Project>
