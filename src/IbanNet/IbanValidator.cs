@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using IbanNet.Registry;
 using IbanNet.Validation;
+using IbanNet.Validation.NationalCheckDigits;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet
@@ -22,8 +23,9 @@ namespace IbanNet
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
 		private readonly IStructureValidationFactory _structureValidationFactory;
+		private readonly INationalCheckDigitsValidationFactory _nationalCheckDigitsValidationFactory;
 		private Dictionary<string, CountryInfo> _structures;
-
+		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
 		/// </summary>
@@ -42,6 +44,7 @@ namespace IbanNet
 			_registry = registry ?? throw new ArgumentNullException(nameof(registry));
 
 			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
+			_nationalCheckDigitsValidationFactory = new NationalCheckDigitsValidationFactory();
 			_rules = new Collection<IIbanValidationRule>
 			{
 				new NotNullRule(),
@@ -51,7 +54,8 @@ namespace IbanNet
 				new IsValidCountryCodeRule(),
 				new IsValidLengthRule(),
 				new IsMatchingStructureRule(_structureValidationFactory),
-				new Mod97Rule()
+				new Mod97Rule(),
+				new IsValidNationalCheckDigitsRule(_nationalCheckDigitsValidationFactory)
 			};
 		}
 

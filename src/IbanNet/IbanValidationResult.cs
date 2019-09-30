@@ -33,6 +33,11 @@
 		/// <summary>
 		/// The IBAN has an incorrect length.
 		/// </summary>
-		InvalidLength
+		InvalidLength,
+
+        /// <summary>
+		/// The National Check digits are incorrect.
+		/// </summary>
+		InvalidNationalCheckDigits
 	}
 }

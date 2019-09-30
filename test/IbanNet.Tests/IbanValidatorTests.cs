@@ -164,6 +164,47 @@ namespace IbanNet
 			});
 		}
 
+		[TestCase("FR7630001007941234567890185")]
+		[TestCase("FR7630004000031234567890143")]
+		[TestCase("FR7630006000011234567890189")]
+		[TestCase("IT73C0114962654315W0AV67Q9J")]
+		[TestCase("IT81I0900245288OKALSKMZQPVZ")]
+		[TestCase("IT79U9382566253RRP8KQG4ALJZ")]
+
+		public void When_validating_iban_with_correct_bban_check_digit_should_validate(string ibanWithCorrectBban)
+		{
+			// Act
+			ValidationResult actual = _validator.Validate(ibanWithCorrectBban);
+
+			// Assert
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithCorrectBban,
+				Result = IbanValidationResult.Valid,
+				Country = _countryValidationSupport.SupportedCountries[ibanWithCorrectBban.Substring(0, 2)]
+			});
+		}
+
+		[TestCase("FR4930001007941234567890186")]
+		[TestCase("FR4930004000031234567890144")]
+		[TestCase("FR4930006000011234567890190")]
+		[TestCase("IT26V0114962654315W0AV67Q9J")]
+		[TestCase("IT39B0900245288OKALSKMZQPVZ")]
+		[TestCase("IT61L9382566253RRP8KQG4ALJZ")]
+		public void When_validating_iban_with_tempered_bban_should_not_validate(string ibanWithTamperedBban)
+		{
+			// Act
+			ValidationResult actual = _validator.Validate(ibanWithTamperedBban);
+
+			// Assert
+			actual.Should().BeEquivalentTo(new ValidationResult
+			{
+				Value = ibanWithTamperedBban,
+				Result = IbanValidationResult.InvalidNationalCheckDigits,
+				Country = _countryValidationSupport.SupportedCountries[ibanWithTamperedBban.Substring(0, 2)]
+			});
+		}
+
 		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetValidIbanPerCountry))]
 		public void When_validating_good_iban_should_validate(string countryCode, string iban)
 		{
