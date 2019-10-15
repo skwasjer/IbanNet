@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.6;netstandard1.3;net47;net45</TargetFrameworks>
-    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <Import Project="..\Package.props" />

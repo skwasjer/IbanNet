@@ -199,3 +199,4 @@ cordova.js
 /lib
 *.DotSettings
 .vs/
+/coverage.xml
