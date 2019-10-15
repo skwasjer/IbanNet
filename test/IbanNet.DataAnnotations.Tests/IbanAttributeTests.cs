@@ -138,6 +138,35 @@ namespace IbanNet.DataAnnotations
 				// Assert
 				_serviceProviderMock.Verify();
 			}
+
+			[Test]
+			public void It_should_set_member_name()
+			{
+				// Act
+				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+
+				// Assert
+				if (string.IsNullOrEmpty(_validationContext.MemberName))
+				{
+					result.MemberNames.Should().BeNullOrEmpty();
+				}
+				else
+				{
+					result.MemberNames.Should()
+						.NotBeNull()
+						.And.BeEquivalentTo(_validationContext.MemberName);
+				}
+			}
+
+			public class Given_context_with_member_name : When_validating_an_invalid_iban
+			{
+				public override void SetUp()
+				{
+					base.SetUp();
+
+					_validationContext.MemberName = "MyMemberName";
+				}
+			}
 		}
 
 		public class When_validating_an_unsupported_type : IbanAttributeTests
@@ -194,6 +223,22 @@ namespace IbanNet.DataAnnotations
 
 				// Assert
 				_serviceProviderMock.Verify();
+				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+			}
+		}
+
+		public class When_service_provider_is_null : IbanAttributeTests
+		{
+			[Test]
+			public void It_should_use_default_validator()
+			{
+				// Arrange
+				_validationContext = new ValidationContext(new object(), null, null);
+
+				// Act
+				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+
+				// Assert
 				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
 			}
 		}

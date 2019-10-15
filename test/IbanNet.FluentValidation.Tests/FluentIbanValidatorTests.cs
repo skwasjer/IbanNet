@@ -153,5 +153,24 @@ namespace IbanNet.FluentValidation
 				IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
 			}
 		}
+
+		public class When_validator_is_null
+		{
+			[Test]
+			public void It_should_throw()
+			{
+				IIbanValidator ibanValidator = null;
+
+				// Act
+				// ReSharper disable once ExpressionIsAlwaysNull
+				Action act = () => new FluentIbanValidator(ibanValidator);
+
+				// Assert
+				act.Should()
+					.Throw<ArgumentNullException>()
+					.Which.ParamName.Should()
+					.Be(nameof(ibanValidator));
+			}
+		}
 	}
 }
