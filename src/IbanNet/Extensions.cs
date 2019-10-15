@@ -52,24 +52,24 @@ namespace IbanNet
 		}
 
 		/// <summary>
-		/// Splits a given <paramref name="sequence"/> into partitions when encountering any of the <paramref name="markers"/>.
+		/// Splits a given <paramref name="sequence"/> into partitions when encountering any of the <paramref name="chars"/>.
 		/// </summary>
 		/// <param name="sequence">The sequence to partition.</param>
-		/// <param name="markers">A list of markers to partition on.</param>
+		/// <param name="chars">A list of markers to partition on.</param>
 		/// <returns>an enumerable of partitions</returns>
-		public static IEnumerable<string> PartitionOn(this string sequence, params char[] markers)
+		public static IEnumerable<string> PartitionOn(this string sequence, params char[] chars)
 		{
 			if (sequence == null)
 			{
 				throw new ArgumentNullException(nameof(sequence));
 			}
 
-			if (markers == null || markers.Length == 0)
+			if (chars == null || chars.Length == 0)
 			{
-				throw new ArgumentException("At least one marker is required.", nameof(markers));
+				throw new ArgumentException("At least one character to partition on is required.", nameof(chars));
 			}
 
-			return PartitionOnIterator(sequence, markers);
+			return PartitionOnIterator(sequence, chars);
 		}
 
 		private static IEnumerable<string> PartitionOnIterator(this string sequence, params char[] markers)
