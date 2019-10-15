@@ -1,6 +1,6 @@
 ﻿$wc = New-Object 'System.Net.WebClient'
 
-$files = Get-ChildItem test-result*.trx -Recurse
+$files = Get-ChildItem *.trx -Recurse
 
 $uploadUri = "https://ci.appveyor.com/api/testresults/mstest/$($env:APPVEYOR_JOB_ID)"
 Write-Host "Uploading test results to $($uploadUri)"
