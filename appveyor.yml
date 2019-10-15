@@ -28,8 +28,9 @@ build:
   publish_nuget_symbols: true
   verbosity: minimal
 test_script:
-  - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test -c Debug /p:DebugType=full" -output:coverage.xml -register:user -returntargetcode -filter:"+[IbanNet*]* -[*Tests]*" -excludebyattribute:*.ExcludeFromCodeCoverageAttribute;*.GeneratedCodeAttribute;*.DebuggerNonUserCodeAttribute;*.CompilerGeneratedAttribute;*.DebuggerHiddenAttribute -oldStyle
+  - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test -c Debug /p:DebugType=full -l:trx;LogFileName=test-results.xml" -output:coverage.xml -register:user -returntargetcode -filter:"+[IbanNet*]* -[*Tests]*" -excludebyattribute:*.ExcludeFromCodeCoverageAttribute;*.GeneratedCodeAttribute;*.DebuggerNonUserCodeAttribute;*.CompilerGeneratedAttribute;*.DebuggerHiddenAttribute -oldStyle
   - codecov -f coverage.xml
+  - ps: '& .\ci\upload-testresults.ps1'
 deploy:
 - provider: NuGet
   api_key:
