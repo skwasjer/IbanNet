@@ -67,7 +67,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "<#= row[1].ToUpperInvariant() #>",
-						DisplayName = "<#= row[0] #>", 
+						DisplayName = "<#= row[0] #>",
 						EnglishName = "<#= row[0] #>",
 <#
 					includedCountries = row[2] == null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);

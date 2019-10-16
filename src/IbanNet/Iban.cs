@@ -192,7 +192,7 @@ namespace IbanNet
 		/// <returns>A hash code for the current object.</returns>
 		public override int GetHashCode()
 		{
-			return (_iban != null ? _iban.GetHashCode() : 0);
+			return _iban.GetHashCode();
 		}
 
 		/// <summary>

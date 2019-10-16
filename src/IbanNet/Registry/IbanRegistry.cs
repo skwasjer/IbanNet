@@ -27,7 +27,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "AD",
-						DisplayName = "Andorra", 
+						DisplayName = "Andorra",
 						EnglishName = "Andorra",
 						Bban = new BbanStructure
 						{
@@ -68,7 +68,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "AE",
-						DisplayName = "United Arab Emirates (The)", 
+						DisplayName = "United Arab Emirates (The)",
 						EnglishName = "United Arab Emirates (The)",
 						Bban = new BbanStructure
 						{
@@ -102,7 +102,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "AL",
-						DisplayName = "Albania", 
+						DisplayName = "Albania",
 						EnglishName = "Albania",
 						Bban = new BbanStructure
 						{
@@ -143,7 +143,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "AT",
-						DisplayName = "Austria", 
+						DisplayName = "Austria",
 						EnglishName = "Austria",
 						Bban = new BbanStructure
 						{
@@ -177,7 +177,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "AZ",
-						DisplayName = "Azerbaijan", 
+						DisplayName = "Azerbaijan",
 						EnglishName = "Azerbaijan",
 						Bban = new BbanStructure
 						{
@@ -211,7 +211,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "BA",
-						DisplayName = "Bosnia and Herzegovina", 
+						DisplayName = "Bosnia and Herzegovina",
 						EnglishName = "Bosnia and Herzegovina",
 						Bban = new BbanStructure
 						{
@@ -252,7 +252,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "BE",
-						DisplayName = "Belgium", 
+						DisplayName = "Belgium",
 						EnglishName = "Belgium",
 						Bban = new BbanStructure
 						{
@@ -286,7 +286,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "BG",
-						DisplayName = "Bulgaria", 
+						DisplayName = "Bulgaria",
 						EnglishName = "Bulgaria",
 						Bban = new BbanStructure
 						{
@@ -327,7 +327,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "BH",
-						DisplayName = "Bahrain", 
+						DisplayName = "Bahrain",
 						EnglishName = "Bahrain",
 						Bban = new BbanStructure
 						{
@@ -361,7 +361,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "BR",
-						DisplayName = "Brazil", 
+						DisplayName = "Brazil",
 						EnglishName = "Brazil",
 						Bban = new BbanStructure
 						{
@@ -402,7 +402,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "BY",
-						DisplayName = "Republic of Belarus", 
+						DisplayName = "Republic of Belarus",
 						EnglishName = "Republic of Belarus",
 						Bban = new BbanStructure
 						{
@@ -436,7 +436,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "CH",
-						DisplayName = "Switzerland", 
+						DisplayName = "Switzerland",
 						EnglishName = "Switzerland",
 						Bban = new BbanStructure
 						{
@@ -470,7 +470,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "CR",
-						DisplayName = "Costa Rica", 
+						DisplayName = "Costa Rica",
 						EnglishName = "Costa Rica",
 						Bban = new BbanStructure
 						{
@@ -504,7 +504,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "CY",
-						DisplayName = "Cyprus", 
+						DisplayName = "Cyprus",
 						EnglishName = "Cyprus",
 						Bban = new BbanStructure
 						{
@@ -545,7 +545,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "CZ",
-						DisplayName = "Czechia", 
+						DisplayName = "Czechia",
 						EnglishName = "Czechia",
 						Bban = new BbanStructure
 						{
@@ -579,7 +579,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "DE",
-						DisplayName = "Germany", 
+						DisplayName = "Germany",
 						EnglishName = "Germany",
 						Bban = new BbanStructure
 						{
@@ -613,7 +613,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "DK",
-						DisplayName = "Denmark", 
+						DisplayName = "Denmark",
 						EnglishName = "Denmark",
 						Bban = new BbanStructure
 						{
@@ -647,7 +647,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "DO",
-						DisplayName = "Dominican Republic", 
+						DisplayName = "Dominican Republic",
 						EnglishName = "Dominican Republic",
 						Bban = new BbanStructure
 						{
@@ -681,7 +681,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "EE",
-						DisplayName = "Estonia", 
+						DisplayName = "Estonia",
 						EnglishName = "Estonia",
 						Bban = new BbanStructure
 						{
@@ -715,7 +715,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "ES",
-						DisplayName = "Spain", 
+						DisplayName = "Spain",
 						EnglishName = "Spain",
 						Bban = new BbanStructure
 						{
@@ -756,7 +756,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "FI",
-						DisplayName = "Finland", 
+						DisplayName = "Finland",
 						EnglishName = "Finland",
 						IncludedCountries = new[]
 						{
@@ -798,7 +798,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "FO",
-						DisplayName = "Faroe Islands", 
+						DisplayName = "Faroe Islands",
 						EnglishName = "Faroe Islands",
 						Bban = new BbanStructure
 						{
@@ -832,7 +832,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "FR",
-						DisplayName = "France", 
+						DisplayName = "France",
 						EnglishName = "France",
 						IncludedCountries = new[]
 						{
@@ -874,7 +874,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "GB",
-						DisplayName = "United Kingdom", 
+						DisplayName = "United Kingdom",
 						EnglishName = "United Kingdom",
 						IncludedCountries = new[]
 						{
@@ -919,7 +919,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "GE",
-						DisplayName = "Georgia", 
+						DisplayName = "Georgia",
 						EnglishName = "Georgia",
 						Bban = new BbanStructure
 						{
@@ -953,7 +953,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "GI",
-						DisplayName = "Gibraltar", 
+						DisplayName = "Gibraltar",
 						EnglishName = "Gibraltar",
 						Bban = new BbanStructure
 						{
@@ -987,7 +987,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "GL",
-						DisplayName = "Greenland", 
+						DisplayName = "Greenland",
 						EnglishName = "Greenland",
 						Bban = new BbanStructure
 						{
@@ -1021,7 +1021,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "GR",
-						DisplayName = "Greece", 
+						DisplayName = "Greece",
 						EnglishName = "Greece",
 						Bban = new BbanStructure
 						{
@@ -1062,7 +1062,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "GT",
-						DisplayName = "Guatemala", 
+						DisplayName = "Guatemala",
 						EnglishName = "Guatemala",
 						Bban = new BbanStructure
 						{
@@ -1096,7 +1096,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "HR",
-						DisplayName = "Croatia", 
+						DisplayName = "Croatia",
 						EnglishName = "Croatia",
 						Bban = new BbanStructure
 						{
@@ -1130,7 +1130,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "HU",
-						DisplayName = "Hungary", 
+						DisplayName = "Hungary",
 						EnglishName = "Hungary",
 						Bban = new BbanStructure
 						{
@@ -1171,7 +1171,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "IE",
-						DisplayName = "Ireland", 
+						DisplayName = "Ireland",
 						EnglishName = "Ireland",
 						Bban = new BbanStructure
 						{
@@ -1212,7 +1212,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "IL",
-						DisplayName = "Israel", 
+						DisplayName = "Israel",
 						EnglishName = "Israel",
 						Bban = new BbanStructure
 						{
@@ -1253,7 +1253,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "IQ",
-						DisplayName = "Iraq", 
+						DisplayName = "Iraq",
 						EnglishName = "Iraq",
 						Bban = new BbanStructure
 						{
@@ -1294,7 +1294,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "IS",
-						DisplayName = "Iceland", 
+						DisplayName = "Iceland",
 						EnglishName = "Iceland",
 						Bban = new BbanStructure
 						{
@@ -1335,7 +1335,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "IT",
-						DisplayName = "Italy", 
+						DisplayName = "Italy",
 						EnglishName = "Italy",
 						Bban = new BbanStructure
 						{
@@ -1376,7 +1376,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "JO",
-						DisplayName = "Jordan", 
+						DisplayName = "Jordan",
 						EnglishName = "Jordan",
 						Bban = new BbanStructure
 						{
@@ -1417,7 +1417,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "KW",
-						DisplayName = "Kuwait", 
+						DisplayName = "Kuwait",
 						EnglishName = "Kuwait",
 						Bban = new BbanStructure
 						{
@@ -1451,7 +1451,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "KZ",
-						DisplayName = "Kazakhstan", 
+						DisplayName = "Kazakhstan",
 						EnglishName = "Kazakhstan",
 						Bban = new BbanStructure
 						{
@@ -1485,7 +1485,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "LB",
-						DisplayName = "Lebanon", 
+						DisplayName = "Lebanon",
 						EnglishName = "Lebanon",
 						Bban = new BbanStructure
 						{
@@ -1519,7 +1519,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "LC",
-						DisplayName = "Saint Lucia", 
+						DisplayName = "Saint Lucia",
 						EnglishName = "Saint Lucia",
 						Bban = new BbanStructure
 						{
@@ -1553,7 +1553,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "LI",
-						DisplayName = "Liechtenstein", 
+						DisplayName = "Liechtenstein",
 						EnglishName = "Liechtenstein",
 						Bban = new BbanStructure
 						{
@@ -1587,7 +1587,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "LT",
-						DisplayName = "Lithuania", 
+						DisplayName = "Lithuania",
 						EnglishName = "Lithuania",
 						Bban = new BbanStructure
 						{
@@ -1621,7 +1621,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "LU",
-						DisplayName = "Luxembourg", 
+						DisplayName = "Luxembourg",
 						EnglishName = "Luxembourg",
 						Bban = new BbanStructure
 						{
@@ -1655,7 +1655,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "LV",
-						DisplayName = "Latvia", 
+						DisplayName = "Latvia",
 						EnglishName = "Latvia",
 						Bban = new BbanStructure
 						{
@@ -1689,7 +1689,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "MC",
-						DisplayName = "Monaco", 
+						DisplayName = "Monaco",
 						EnglishName = "Monaco",
 						Bban = new BbanStructure
 						{
@@ -1730,7 +1730,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "MD",
-						DisplayName = "Moldova", 
+						DisplayName = "Moldova",
 						EnglishName = "Moldova",
 						Bban = new BbanStructure
 						{
@@ -1764,7 +1764,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "ME",
-						DisplayName = "Montenegro", 
+						DisplayName = "Montenegro",
 						EnglishName = "Montenegro",
 						Bban = new BbanStructure
 						{
@@ -1798,7 +1798,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "MK",
-						DisplayName = "Macedonia", 
+						DisplayName = "Macedonia",
 						EnglishName = "Macedonia",
 						Bban = new BbanStructure
 						{
@@ -1832,7 +1832,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "MR",
-						DisplayName = "Mauritania", 
+						DisplayName = "Mauritania",
 						EnglishName = "Mauritania",
 						Bban = new BbanStructure
 						{
@@ -1873,7 +1873,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "MT",
-						DisplayName = "Malta", 
+						DisplayName = "Malta",
 						EnglishName = "Malta",
 						Bban = new BbanStructure
 						{
@@ -1914,7 +1914,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "MU",
-						DisplayName = "Mauritius", 
+						DisplayName = "Mauritius",
 						EnglishName = "Mauritius",
 						Bban = new BbanStructure
 						{
@@ -1955,7 +1955,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "NL",
-						DisplayName = "Netherlands (The)", 
+						DisplayName = "Netherlands (The)",
 						EnglishName = "Netherlands (The)",
 						Bban = new BbanStructure
 						{
@@ -1989,7 +1989,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "NO",
-						DisplayName = "Norway", 
+						DisplayName = "Norway",
 						EnglishName = "Norway",
 						Bban = new BbanStructure
 						{
@@ -2023,7 +2023,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "PK",
-						DisplayName = "Pakistan", 
+						DisplayName = "Pakistan",
 						EnglishName = "Pakistan",
 						Bban = new BbanStructure
 						{
@@ -2057,7 +2057,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "PL",
-						DisplayName = "Poland", 
+						DisplayName = "Poland",
 						EnglishName = "Poland",
 						Bban = new BbanStructure
 						{
@@ -2091,7 +2091,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "PS",
-						DisplayName = "Palestine, State of", 
+						DisplayName = "Palestine, State of",
 						EnglishName = "Palestine, State of",
 						Bban = new BbanStructure
 						{
@@ -2125,7 +2125,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "PT",
-						DisplayName = "Portugal", 
+						DisplayName = "Portugal",
 						EnglishName = "Portugal",
 						Bban = new BbanStructure
 						{
@@ -2163,7 +2163,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "QA",
-						DisplayName = "Qatar", 
+						DisplayName = "Qatar",
 						EnglishName = "Qatar",
 						Bban = new BbanStructure
 						{
@@ -2197,7 +2197,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "RO",
-						DisplayName = "Romania", 
+						DisplayName = "Romania",
 						EnglishName = "Romania",
 						Bban = new BbanStructure
 						{
@@ -2231,7 +2231,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "RS",
-						DisplayName = "Serbia", 
+						DisplayName = "Serbia",
 						EnglishName = "Serbia",
 						Bban = new BbanStructure
 						{
@@ -2265,7 +2265,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SA",
-						DisplayName = "Saudi Arabia", 
+						DisplayName = "Saudi Arabia",
 						EnglishName = "Saudi Arabia",
 						Bban = new BbanStructure
 						{
@@ -2299,7 +2299,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SC",
-						DisplayName = "Seychelles", 
+						DisplayName = "Seychelles",
 						EnglishName = "Seychelles",
 						Bban = new BbanStructure
 						{
@@ -2340,7 +2340,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SE",
-						DisplayName = "Sweden", 
+						DisplayName = "Sweden",
 						EnglishName = "Sweden",
 						Bban = new BbanStructure
 						{
@@ -2374,7 +2374,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SI",
-						DisplayName = "Slovenia", 
+						DisplayName = "Slovenia",
 						EnglishName = "Slovenia",
 						Bban = new BbanStructure
 						{
@@ -2408,7 +2408,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SK",
-						DisplayName = "Slovakia", 
+						DisplayName = "Slovakia",
 						EnglishName = "Slovakia",
 						Bban = new BbanStructure
 						{
@@ -2442,7 +2442,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SM",
-						DisplayName = "San Marino", 
+						DisplayName = "San Marino",
 						EnglishName = "San Marino",
 						Bban = new BbanStructure
 						{
@@ -2483,7 +2483,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "ST",
-						DisplayName = "Sao Tome and Principe", 
+						DisplayName = "Sao Tome and Principe",
 						EnglishName = "Sao Tome and Principe",
 						Bban = new BbanStructure
 						{
@@ -2524,7 +2524,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "SV",
-						DisplayName = "El Salvador", 
+						DisplayName = "El Salvador",
 						EnglishName = "El Salvador",
 						Bban = new BbanStructure
 						{
@@ -2558,7 +2558,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "TL",
-						DisplayName = "Timor-Leste", 
+						DisplayName = "Timor-Leste",
 						EnglishName = "Timor-Leste",
 						Bban = new BbanStructure
 						{
@@ -2592,7 +2592,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "TN",
-						DisplayName = "Tunisia", 
+						DisplayName = "Tunisia",
 						EnglishName = "Tunisia",
 						Bban = new BbanStructure
 						{
@@ -2633,7 +2633,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "TR",
-						DisplayName = "Turkey", 
+						DisplayName = "Turkey",
 						EnglishName = "Turkey",
 						Bban = new BbanStructure
 						{
@@ -2667,7 +2667,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "UA",
-						DisplayName = "Ukraine", 
+						DisplayName = "Ukraine",
 						EnglishName = "Ukraine",
 						Bban = new BbanStructure
 						{
@@ -2701,7 +2701,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "VA",
-						DisplayName = "Vatican City State", 
+						DisplayName = "Vatican City State",
 						EnglishName = "Vatican City State",
 						Bban = new BbanStructure
 						{
@@ -2735,7 +2735,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "VG",
-						DisplayName = "Virgin Islands", 
+						DisplayName = "Virgin Islands",
 						EnglishName = "Virgin Islands",
 						Bban = new BbanStructure
 						{
@@ -2769,7 +2769,7 @@ namespace IbanNet.Registry
 					new CountryInfo
 					{
 						TwoLetterISORegionName = "XK",
-						DisplayName = "Kosovo", 
+						DisplayName = "Kosovo",
 						EnglishName = "Kosovo",
 						Bban = new BbanStructure
 						{

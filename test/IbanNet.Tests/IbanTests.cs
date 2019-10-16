@@ -191,6 +191,42 @@ namespace IbanNet
 			}
 
 			[Test]
+			public void By_reference_when_other_is_null_should_return_false()
+			{
+				Iban nullIban = null;
+
+				// Act
+				// ReSharper disable once ExpressionIsAlwaysNull
+				bool actual = _iban.Equals(nullIban);
+
+				// Assert
+				actual.Should().BeFalse();
+			}
+
+			[Test]
+			public void By_reference_when_other_is_self_should_return_true()
+			{
+				// Act
+				// ReSharper disable once EqualExpressionComparison
+				bool actual = _iban.Equals(_iban);
+
+				// Assert
+				actual.Should().BeTrue();
+			}
+
+			[Test]
+			public void By_reference_when_other_is_wrong_type_should_return_false()
+			{
+				var otherType = new object();
+
+				// Act
+				bool actual = _iban.Equals(otherType);
+
+				// Assert
+				actual.Should().BeFalse();
+			}
+
+			[Test]
 			public void When_values_are_not_equal_should_return_false()
 			{
 				// Act
@@ -244,6 +280,22 @@ namespace IbanNet
 
 				// Assert
 				actual.Should().BeFalse();
+			}
+		}
+
+		public class When_getting_hashcode : IbanTests
+		{
+			[Test]
+			public void It_should_be_same_as_underlying_string_value()
+			{
+				Iban iban = Iban.Parse(TestValues.ValidIban);
+				int expectedHashCode = TestValues.ValidIban.GetHashCode();
+
+				// Act
+				int actual = iban.GetHashCode();
+
+				// Assert
+				actual.Should().Be(expectedHashCode);
 			}
 		}
 	}

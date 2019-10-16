@@ -126,7 +126,7 @@ namespace IbanNet
 
 		private CountryInfo GetMatchingCountry(string iban)
 		{
-			string countryCode = iban.GetCountryCode();
+			string countryCode = GetCountryCode(iban);
 			if (countryCode == null)
 			{
 				return null;
@@ -134,6 +134,16 @@ namespace IbanNet
 
 			_structures.TryGetValue(countryCode, out CountryInfo matchedCountry);
 			return matchedCountry;
+		}
+
+		private static string GetCountryCode(string value)
+		{
+			if (value == null || value.Length < 2)
+			{
+				return null;
+			}
+
+			return value.Substring(0, 2).ToUpperInvariant();
 		}
 	}
 }
