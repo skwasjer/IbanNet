@@ -26,6 +26,7 @@ build:
   project: IbanNet.sln
   publish_nuget: true
   publish_nuget_symbols: true
+  use_snupkg_format: true
   verbosity: minimal
 test_script:
   - OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test -c Debug /p:DebugType=full -l:trx;LogFilePrefix=testresults" -output:coverage.xml -register:user -returntargetcode -filter:"+[IbanNet*]* -[*Tests]*" -excludebyattribute:*.ExcludeFromCodeCoverageAttribute;*.GeneratedCodeAttribute;*.DebuggerNonUserCodeAttribute;*.CompilerGeneratedAttribute;*.DebuggerHiddenAttribute -oldStyle
