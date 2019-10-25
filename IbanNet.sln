@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6DDAB3B8-F745-42DD-B3E7-B2EAEEBF79B4}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,6 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.Tests", "test\IbanN
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A44047DB-7353-446A-A6F5-43D6855572EC}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
@@ -26,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.DataAnnotations", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.DataAnnotations.Tests", "test\IbanNet.DataAnnotations.Tests\IbanNet.DataAnnotations.Tests.csproj", "{B10ED810-E191-40A0-9F0F-7D168C4AAEDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanNet.FluentValidation", "src\IbanNet.FluentValidation\IbanNet.FluentValidation.csproj", "{E73402F9-F5D9-4EB8-B554-EE2EAD3CF24C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.FluentValidation", "src\IbanNet.FluentValidation\IbanNet.FluentValidation.csproj", "{E73402F9-F5D9-4EB8-B554-EE2EAD3CF24C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IbanNet.FluentValidation.Tests", "test\IbanNet.FluentValidation.Tests\IbanNet.FluentValidation.Tests.csproj", "{F6BC952E-39D5-4F5D-9406-7B2A7B66FE55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.FluentValidation.Tests", "test\IbanNet.FluentValidation.Tests\IbanNet.FluentValidation.Tests.csproj", "{F6BC952E-39D5-4F5D-9406-7B2A7B66FE55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
