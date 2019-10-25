@@ -15,7 +15,7 @@ namespace IbanNet.FluentValidation
 		/// </summary>
 		/// <param name="ibanValidator">The IBAN validator to use.</param>
 		public FluentIbanValidator(IIbanValidator ibanValidator)
-			: base("'{PropertyName}' is not a valid IBAN.")
+			: base(Resources.Not_a_valid_IBAN)
 		{
 			_ibanValidator = ibanValidator ?? throw new ArgumentNullException(nameof(ibanValidator));
 		}
