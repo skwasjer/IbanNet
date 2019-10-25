@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.1.2
+
+- Enabled [SourceLink](https://github.com/dotnet/sourcelink).
+
 ## v3.1.1
 
 - Removed ability to apply `IbanAttribute` to fields, since model validation does not occur for fields.
