@@ -26,11 +26,18 @@ namespace IbanNet.CheckDigits.Calculators
 				sb.Append(
 					char.IsNumber(c)
 						? c - CharCode0
-						: ((char.ToUpperInvariant(c) - CharCodeA) % 9 + 1)
+						: MapLetters(c)
 				);
 			}
 
 			return sb.ToString();
+		}
+
+		private static int MapLetters(char c)
+		{
+			int v = char.ToUpperInvariant(c) - CharCodeA;
+			int digit = v % 9 + 1;
+			return c >= 'S' ? ++digit : digit;
 		}
 
 		protected override int Calculate(string digits)

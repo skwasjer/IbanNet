@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -68,6 +69,35 @@ namespace IbanNet.CheckDigits.Calculators
 				.WithMessage($"The input '{input}' can not be validated using clé RIB.*")
 				.Which.ParamName.Should()
 				.Be(nameof(input));
+		}
+
+		/// <summary>
+		/// Asserts correct mapping of letters.
+		/// </summary>
+		[TestCaseSource(nameof(SingleDigitTestCases))]
+		public void Given_single_digit_account_number_when_validating_it_should_return_correct_check_digit(string singleDigitAccountNumber, int expectedCheckDigits)
+		{
+			// Act
+			int actual = _sut.Compute(singleDigitAccountNumber);
+
+			// Assert
+			actual.Should().Be(expectedCheckDigits);
+		}
+
+		public static IEnumerable SingleDigitTestCases()
+		{
+			const char charCodeA = 'A';
+			for (int i = 0; i < 26; i++)
+			{
+				char digit = ((char)(charCodeA + i));
+				string accountNumber = digit.ToString().PadLeft(21, '0');
+				int expectedCheckDigits = 97 - (i % 9 + 1) * 3;
+				if (digit >= 'S')	// 3rd row
+				{
+					expectedCheckDigits -= 3;
+				}
+				yield return new TestCaseData(accountNumber, expectedCheckDigits);
+			}
 		}
 	}
 }
