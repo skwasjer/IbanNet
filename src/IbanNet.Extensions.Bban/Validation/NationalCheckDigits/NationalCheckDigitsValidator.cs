@@ -22,7 +22,7 @@ namespace IbanNet.Validation.NationalCheckDigits
 		/// <summary>
 		/// Validates a BBAN for valid national check digits.
 		/// </summary>
-		public bool Validate(string bban)
+		public virtual bool Validate(string bban)
 		{
 			string checkString = GetCheckString(bban);
 			int computedCheckDigits = _checkDigitsCalculator.Compute(checkString);

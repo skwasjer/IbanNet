@@ -22,8 +22,8 @@ namespace IbanNet.Validation.Rules
 				{
 					new CinNationalCheckDigitsValidator(),
 					new CleRibNationalCheckDigitsValidator(),
-					new Mod11ValidatorDigitsValidator(),
-					new Mod97NationalCheckDigitsValidator()
+					new NorwayMod11ValidatorDigitsValidator(),
+					new BosniaAndHerzegovinaMod97NationalCheckDigitsValidator()
 				}
 			)
 		{
