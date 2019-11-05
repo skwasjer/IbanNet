@@ -4,7 +4,7 @@ using System.Text;
 using IbanNet.Validation.NationalCheckDigits;
 using NUnit.Framework;
 
-namespace IbanNet.CheckDigits.Calculators
+namespace IbanNet.Validation.NationalCheckDigits
 {
 	[TestFixture]
 	public class NorwayMod11ValidatorDigitsValidatorTest
