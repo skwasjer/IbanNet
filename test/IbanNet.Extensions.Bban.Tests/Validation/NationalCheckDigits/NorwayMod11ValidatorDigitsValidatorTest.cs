@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using IbanNet.Validation.NationalCheckDigits;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace IbanNet.Validation.NationalCheckDigits
 {

@@ -1,5 +1,4 @@
-﻿using IbanNet.Validation.NationalCheckDigits;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace IbanNet.Validation.NationalCheckDigits
 {
