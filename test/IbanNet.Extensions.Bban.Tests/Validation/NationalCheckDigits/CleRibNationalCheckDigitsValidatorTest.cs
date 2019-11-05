@@ -5,7 +5,7 @@ namespace IbanNet.Validation.NationalCheckDigits
 	[TestFixture]
 	public class CleRibNationalCheckDigitsValidatorTest
 	{
-        // FR, MR, MC
+		// FR, MR, MC
 		[TestCase("30001007941234567890185")]
 		[TestCase("30004000031234567890143")]
 		[TestCase("30006000011234567890189")]

@@ -6,16 +6,16 @@ namespace IbanNet.Validation.NationalCheckDigits
 	public class NorwayMod11ValidatorDigitsValidatorTest
 	{
 		// NO
-        [TestCase("12340012345")]
-        [TestCase("12340012346")]
-        [TestCase("12340012347")]
+		[TestCase("12340012345")]
+		[TestCase("12340012346")]
+		[TestCase("12340012347")]
 		public void Given_a_double_zero_bban_should_validate(string bban)
-        {
-	        var validator = new NorwayMod11ValidatorDigitsValidator();
-	        Assert.That(validator.Validate(bban), Is.True);
-        }
+		{
+			var validator = new NorwayMod11ValidatorDigitsValidator();
+			Assert.That(validator.Validate(bban), Is.True);
+		}
 
-        // NO
+		// NO
 		[TestCase("86011117947")]
 		[TestCase("02056439652")]
 		[TestCase("12345678903")]
