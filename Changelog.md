@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.0
+
+- Upgraded registry to October '19 release 84 (adds Egypt).
+
 ## v3.1.2
 
 - Enabled [SourceLink](https://github.com/dotnet/sourcelink).
