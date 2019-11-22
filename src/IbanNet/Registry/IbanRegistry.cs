@@ -8,9 +8,9 @@ namespace IbanNet.Registry
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
 	/// <remarks>
-	/// Generated from: swift_iban_registry_201904.r83.txt
+	/// Generated from: swift_iban_registry_201910.r84.txt
 	/// </remarks>
-	[GeneratedCode("IbanRegistryT4", "1.1-r83")]
+	[GeneratedCode("IbanRegistryT4", "1.1-r84")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>
@@ -709,6 +709,47 @@ namespace IbanNet.Registry
 						},
 						DomesticAccountNumberExample = "221020145685",
 						LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+					},
+
+					// Egypt
+					new CountryInfo
+					{
+						TwoLetterISORegionName = "EG",
+						DisplayName = "Egypt",
+						EnglishName = "Egypt",
+						Bban = new BbanStructure
+						{
+							Length = 23,
+							Structure = "3!n3!n17!n",
+							Example = "01900500000000263180002",
+							Bank = new BankStructure
+							{
+								Position = 0,
+								Length = 3,
+								Structure = "3!",
+								Example = "19",
+							},
+							Branch = new BranchStructure
+							{
+								Position = 3,
+								Length = 3,
+								Structure = "3!",
+								Example = "005",
+							}
+						},
+						Iban = new IbanStructure
+						{
+							Length = 27,
+							Structure = "EG2!n3!n3!n17!n",
+							Example = "EG0401900500000000263180002",
+							EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
+						},
+						Sepa = new SepaInfo
+						{
+							IsMember = false,
+						},
+						DomesticAccountNumberExample = "000263180002",
+						LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// Spain
@@ -2333,7 +2374,7 @@ namespace IbanNet.Registry
 							IsMember = false,
 						},
 						DomesticAccountNumberExample = "0000000000001497",
-						LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero)
+						LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// Sweden

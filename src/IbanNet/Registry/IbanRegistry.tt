@@ -41,7 +41,7 @@ namespace IbanNet.Registry
 					// ReSharper disable StringLiteralTypo
 
 <#
-	Func<string, string> checkValue = (value) => value == null || value == "" || value == "N/A" ? null : value.Trim();
+	Func<string, string> checkValue = (value) => value == null || value == "" || value.Trim() == "N/A" ? null : value.Trim();
 	Func<string, string> normalizeExample = (value) => string.IsNullOrEmpty(value) ? value : Regex.Replace(value, @"[^\w]", "");
 	Func<string, int> getNumber = (value) => value == null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
 
