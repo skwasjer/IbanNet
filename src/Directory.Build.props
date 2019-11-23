@@ -1,0 +1,25 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <PackageVersion>1.0.0</PackageVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Martijn Bodeman</Authors>
+    <Company></Company>
+    <Copyright>Copyright © 2019</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/skwasjer/IbanNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>IbanNet64.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\IbanNet64.png" Pack="true" Visible="false" PackagePath="\"/>
+  </ItemGroup>
+  
+</Project>

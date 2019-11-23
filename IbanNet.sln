@@ -5,7 +5,8 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6DDAB3B8-F745-42DD-B3E7-B2EAEEBF79B4}"
 	ProjectSection(SolutionItems) = preProject
-		src\Package.props = src\Package.props
+		src\Directory.Build.props = src\Directory.Build.props
+		src\Directory.Build.targets = src\Directory.Build.targets
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D19A7B97-1063-40A0-90FD-D88CCAE710AD}"
