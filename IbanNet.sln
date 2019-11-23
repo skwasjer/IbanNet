@@ -5,10 +5,14 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6DDAB3B8-F745-42DD-B3E7-B2EAEEBF79B4}"
 	ProjectSection(SolutionItems) = preProject
-		src\Package.props = src\Package.props
+		src\Directory.Build.props = src\Directory.Build.props
+		src\Directory.Build.targets = src\Directory.Build.targets
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D19A7B97-1063-40A0-90FD-D88CCAE710AD}"
+	ProjectSection(SolutionItems) = preProject
+		test\Directory.Build.targets = test\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet", "src\IbanNet\IbanNet.csproj", "{0032CDE8-09A3-4D68-88A1-60E3F4FC99A3}"
 EndProject
@@ -20,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
+		Changelog.md = Changelog.md
 		README.md = README.md
 	EndProjectSection
 EndProject
