@@ -726,14 +726,14 @@ namespace IbanNet.Registry
 							{
 								Position = 0,
 								Length = 3,
-								Structure = "3!",
+								Structure = "3!n",
 								Example = "19",
 							},
 							Branch = new BranchStructure
 							{
 								Position = 3,
 								Length = 3,
-								Structure = "3!",
+								Structure = "3!n",
 								Example = "005",
 							}
 						},
