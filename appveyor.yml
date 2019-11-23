@@ -3,7 +3,7 @@ skip_branch_with_pr: true
 configuration: Release
 install:
 #  - choco install gitversion.portable -pre -y
-  - choco install gitversion.portable -y --version=5.0.1
+  - choco install gitversion.portable -y --version=4.0.0
   - gitversion /l console /output buildserver
   - choco install opencover.portable
   - choco install codecov
