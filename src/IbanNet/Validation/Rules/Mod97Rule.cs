@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using IbanNet.Extensions;
+﻿using IbanNet.CheckDigits.Calculators;
 using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
@@ -9,38 +8,27 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal class Mod97Rule : IIbanValidationRule
 	{
+		private const int ExpectedCheckDigit = 1;
+
+		private readonly ICheckDigitsCalculator _checkDigitsCalculator;
+
+		public Mod97Rule()
+		{
+			_checkDigitsCalculator = new Mod97CheckDigitsCalculator();
+		}
+
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
-			BigInteger largeInteger;
-			largeInteger = BuildLargeInteger(iban, 4, iban.Length, new BigInteger());
-			largeInteger = BuildLargeInteger(iban, 0, 4, largeInteger);
+			int length = iban.Length;
+			var buffer = new char[length];
+			// Reorder (first 4 chars at end).
+			iban.CopyTo(4, buffer, 0, length - 4);
+			iban.CopyTo(0, buffer, length - 4, 4);
 
-			return largeInteger % 97 == 1
+			return _checkDigitsCalculator.Compute(buffer) == ExpectedCheckDigit
 				? ValidationRuleResult.Success
 				: new BuiltInErrorResult(IbanValidationResult.InvalidCheckDigits);
-		}
-
-		private static BigInteger BuildLargeInteger(string value, int startPos, int endPos, BigInteger current)
-		{
-			for (int i = startPos; i < endPos; i++)
-			{
-				char c = value[i];
-				if (c.IsAsciiDigit())
-				{
-					// Append digit.
-					current = current * 10 + c - '0';
-				}
-				else
-				{
-					// Append char value:
-					// - Use bitwise OR to convert char to lowercase.
-					// - a = 10, b = 11, c = 12, etc.
-					current = current * 100 + (c | ' ') - 'a' + 10;
-				}
-			}
-
-			return current;
 		}
 	}
 }
