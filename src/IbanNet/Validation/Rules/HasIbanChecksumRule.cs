@@ -1,23 +1,17 @@
 ﻿namespace IbanNet.Validation.Rules
 {
-	/// <summary>
-	/// Asserts that the IBAN checksum digits are not 00, 01 or 99.
-	/// </summary>
-	internal class HasIbanChecksumRule : RegexRule
+	internal class HasIbanChecksumRule : IIbanValidationRule
 	{
-		public HasIbanChecksumRule() : base(@"^\D\D00|^\D\D01|^\D\D99")
+		public void Validate(ValidationContext context)
 		{
-		}
-
-		/// <inheritdoc />
-		public override void Validate(ValidationContext context)
-		{
-			base.Validate(context);
-
-			// We have to invert the result of the regex check, since we're testing for the presence of 00, 01 and 99.
-			context.Result = context.IsValid
-				? IbanValidationResult.IllegalCharacters
-				: IbanValidationResult.Valid;
+			if (context.Value.Length < 4
+				// 00 and 01 are invalid.
+			 || context.Value[2] == '0' && (context.Value[3] == '0' || context.Value[3] == '1')
+				// 99 is invalid.
+			 || context.Value[2] == '9' && context.Value[3] == '9')
+			{
+				context.Result = IbanValidationResult.IllegalCharacters;
+			}
 		}
 	}
 }
