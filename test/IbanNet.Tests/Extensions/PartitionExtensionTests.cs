@@ -4,10 +4,10 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace IbanNet
+namespace IbanNet.Extensions
 {
 	[TestFixture]
-	public class ExtensionTests
+	public class PartitionExtensionTests
 	{
 		[Test]
 		public void Given_null_collection_when_partitioning_it_should_throw()

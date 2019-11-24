@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IbanNet
+namespace IbanNet.Extensions
 {
-	internal static class Extensions
+	internal static class PartitionExtensions
 	{
 		/// <summary>
 		/// Splits a given <paramref name="sequence"/> into partitions of specified <paramref name="size"/>.
