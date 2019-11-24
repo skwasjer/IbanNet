@@ -15,20 +15,15 @@ namespace IbanNet.Extensions
 			// ReSharper restore RedundantCast
 		}
 
-		public static bool IsLatin1(this char ch)
-		{
-			return ch <= 'ÿ';
-		}
-
-		public static bool IsAscii(this char ch)
-		{
-			return ch <= '\x007F';
-		}
-
 		public static bool IsAsciiLetter(this char ch)
 		{
 			ch |= ' ';
 			return IsInRange(ch, 'a', 'z');
+		}
+
+		public static bool IsUpperAsciiLetter(this char ch)
+		{
+			return IsInRange(ch, 'A', 'Z');
 		}
 
 		public static bool IsAsciiDigit(this char ch)

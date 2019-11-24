@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using IbanNet.Extensions;
 
 namespace IbanNet.Validation
@@ -11,35 +10,27 @@ namespace IbanNet.Validation
 	/// </summary>
 	internal class SwiftStructureValidationFactory : IStructureValidationFactory
 	{
-		private static readonly IDictionary<char, string> RegexMap = new Dictionary<char, string>
+		private static readonly IDictionary<char, Func<char, bool>> SegmentMap = new Dictionary<char, Func<char, bool>>
 		{
-			{ 'n', "[0-9]" },
-			{ 'a', "[A-Z]" },
-			{ 'c', "[A-Za-z0-9]" },
-			{ 'e', "[ ]" }
+			{ 'n', c => c.IsAsciiDigit() },
+			{ 'a', c => c.IsUpperAsciiLetter() },
+			{ 'c', c => c.IsAsciiDigit() || c.IsAsciiLetter() },
+			{ 'e', c => c == ' ' }
 		};
 
 		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming
 		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
 		{
-			return new RegexValidator(new Regex(
-				BuildStructureRegexPattern(structure),
-				RegexOptions.CultureInvariant
-				 | RegexOptions.ExplicitCapture
-#if !NETSTANDARD1_2
-				 | RegexOptions.Compiled
-#endif
-			));
+			return new StructureValidator(structure.Substring(0, 2), GetSegments(structure).ToList());
 		}
 
-		private string BuildStructureRegexPattern(string structure)
+		private IEnumerable<StructureSegmentTest> GetSegments(string structure)
 		{
-			IEnumerable<string> structureSegments = structure
+			return structure
 				.Substring(2)
-				.PartitionOn(RegexMap.Keys.ToArray())
-				.Select(GetRegexPattern);
-			return $"^{structure.Substring(0, 2)}{string.Join("", structureSegments)}$";
+				.PartitionOn(SegmentMap.Keys.ToArray())
+				.Select(GetSegmentInfo);
 		}
 
 		/// <remarks>
@@ -48,10 +39,10 @@ namespace IbanNet.Validation
 		/// ! = fixed
 		/// marker
 		/// </remarks>
-		private string GetRegexPattern(string structureSegment)
+		private StructureSegmentTest GetSegmentInfo(string structureSegment)
 		{
-			char marker = structureSegment[structureSegment.Length - 1];
-			if (!RegexMap.TryGetValue(marker, out string regexPattern))
+			char segmentType = structureSegment[structureSegment.Length - 1];
+			if (!SegmentMap.TryGetValue(segmentType, out Func<char, bool> characterTest))
 			{
 				throw new ArgumentException($"The structure segment '{structureSegment}' is invalid.", nameof(structureSegment));
 			}
@@ -62,7 +53,11 @@ namespace IbanNet.Validation
 				lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength))
 			);
 
-			return $"({regexPattern}{{{occurrences}}})";
+			return new StructureSegmentTest
+			{
+				Occurrences = occurrences,
+				Test = characterTest
+			};
 		}
 	}
 }
