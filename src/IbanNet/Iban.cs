@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Text;
 using IbanNet.Extensions;
 
 namespace IbanNet
@@ -29,9 +29,6 @@ namespace IbanNet
 			/// </summary>
 			public const string Flat = "F";
 		}
-
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private static readonly Regex NormalizeRegex = new Regex(@"[ \t]+", RegexOptions.CultureInvariant);
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly string _iban;
@@ -159,7 +156,20 @@ namespace IbanNet
 			{
 				return null;
 			}
-			return NormalizeRegex.Replace(iban, "");
+
+			var buffer = new char[iban.Length];
+			int pos = 0;
+			// ReSharper disable once ForCanBeConvertedToForeach - justification : performance
+			for (int i = 0; i < iban.Length; i++)
+			{
+				char c = iban[i];
+				if (!c.IsWhitespace())
+				{
+					buffer[pos++] = c;
+				}
+			}
+
+			return new string(buffer, 0, pos);
 		}
 
 		private bool Equals(Iban other)
