@@ -71,6 +71,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provide the validation method..
+        /// </summary>
+        internal static string ArgumentException_ValidationMethod_is_required {
+            get {
+                return ResourceManager.GetString("ArgumentException_ValidationMethod_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The format &apos;{0}&apos; is invalid. Supported formats are &apos;{1}&apos; (flat) and &apos;{2}&apos; (partitioned by space)..
         /// </summary>
         internal static string The_format_0_is_invalid_with_supported_formats {

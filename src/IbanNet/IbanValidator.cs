@@ -18,10 +18,9 @@ namespace IbanNet
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Collection<IIbanValidationRule> _rules;
+		private readonly List<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
-		private readonly IStructureValidationFactory _structureValidationFactory;
 		private Dictionary<string, CountryInfo> _structures;
 
 		/// <summary>
@@ -62,20 +61,14 @@ namespace IbanNet
 			{
 				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 			}
+			if (options.ValidationMethod == null)
+			{
+				throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_required, nameof(options));
+			}
+
 			_registry = new Lazy<IReadOnlyCollection<CountryInfo>>(options.Registry, LazyThreadSafetyMode.ExecutionAndPublication);
 
-			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
-			_rules = new Collection<IIbanValidationRule>
-			{
-				new NotNullRule(),
-				new NoIllegalCharactersRule(),
-				new HasCountryCodeRule(),
-				new HasIbanChecksumRule(),
-				new IsValidCountryCodeRule(),
-				new IsValidLengthRule(),
-				new IsMatchingStructureRule(_structureValidationFactory),
-				new Mod97Rule()
-			};
+			_rules = options.ValidationMethod.GetRules().ToList();
 		}
 
 		/// <summary>
