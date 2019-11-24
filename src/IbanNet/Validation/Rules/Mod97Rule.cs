@@ -1,6 +1,5 @@
-﻿using System.Globalization;
-using System.Linq;
-using System.Numerics;
+﻿using System.Numerics;
+using IbanNet.Extensions;
 
 namespace IbanNet.Validation.Rules
 {
@@ -9,26 +8,41 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal class Mod97Rule : IIbanValidationRule
 	{
-		private static readonly int CharCodeA = 'A';
-
 		/// <inheritdoc />
 		public void Validate(ValidationContext context)
 		{
-			string upperIban = context.Value.ToUpperInvariant();
-			string shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);
+			string value = context.Value;
 
-			string iso13616 = string.Join("", 
-				shiftedIban.Select(c => char.IsNumber(c) 
-					? c.ToString() 
-					: (c - CharCodeA + 10).ToString()
-				)
-			);
+			BigInteger largeInteger;
+			largeInteger = BuildLargeInteger(value, 4, value.Length, new BigInteger());
+			largeInteger = BuildLargeInteger(value, 0, 4, largeInteger);
 
-			BigInteger largeInteger = BigInteger.Parse(iso13616, CultureInfo.InvariantCulture);
 			if (largeInteger % 97 != 1)
 			{
 				context.Result = IbanValidationResult.InvalidCheckDigits;
 			}
+		}
+
+		private static BigInteger BuildLargeInteger(string value, int startPos, int endPos, BigInteger current)
+		{
+			for (int i = startPos; i < endPos; i++)
+			{
+				char c = value[i];
+				if (c.IsAsciiDigit())
+				{
+					// Append digit.
+					current = current * 10 + c - '0';
+				}
+				else
+				{
+					// Append char value:
+					// - Use bitwise OR to convert char to lowercase.
+					// - a = 10, b = 11, c = 12, etc.
+					current = current * 100 + (c | ' ') - 'a' + 10;
+				}
+			}
+
+			return current;
 		}
 	}
 }

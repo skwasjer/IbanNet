@@ -1,12 +1,16 @@
-﻿namespace IbanNet.Validation.Rules
+﻿using IbanNet.Extensions;
+
+namespace IbanNet.Validation.Rules
 {
-	/// <summary>
-	/// Asserts that the IBAN has a country code but does not check the validity of the country code itself.
-	/// </summary>
-	internal class HasCountryCodeRule : RegexRule
+	internal class HasCountryCodeRule : IIbanValidationRule
 	{
-		public HasCountryCodeRule() : base(@"^\D\D")
+		public void Validate(ValidationContext context)
 		{
+			// First 2 chars must be a-z or A-Z.
+			if (context.Value.Length < 2 || !context.Value[0].IsAsciiLetter() || !context.Value[1].IsAsciiLetter())
+			{
+				context.Result = IbanValidationResult.IllegalCharacters;
+			}
 		}
 	}
 }
