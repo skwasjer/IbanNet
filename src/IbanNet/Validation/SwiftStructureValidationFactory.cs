@@ -26,6 +26,10 @@ namespace IbanNet.Validation
 			return new RegexValidator(new Regex(
 				BuildStructureRegexPattern(structure),
 				RegexOptions.CultureInvariant
+				 | RegexOptions.ExplicitCapture
+#if !NETSTANDARD1_2
+				 | RegexOptions.Compiled
+#endif
 			));
 		}
 
