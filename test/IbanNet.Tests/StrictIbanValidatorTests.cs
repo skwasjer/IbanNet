@@ -1,20 +1,14 @@
-﻿using System.Collections;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace IbanNet
 {
-	[TestFixtureSource(nameof(ValidatorMethodTestCases))]
-	internal class StrictIbanValidatorTests : IbanValidatorTests
+	[TestFixture]
+	internal class StrictIbanValidatorTests : IbanValidatorIntegrationTests
 	{
-		public StrictIbanValidatorTests(string fixtureName, IbanValidator validator)
-			: base(fixtureName, validator)
+		public StrictIbanValidatorTests()
+			: base(new IbanValidator())
 		{
-		}
-
-		public static IEnumerable ValidatorMethodTestCases()
-		{
-			yield return new object[] { "DefaultStrict", new IbanValidator() };
 		}
 
 		[TestCase("NL91ABNA041716430A")]

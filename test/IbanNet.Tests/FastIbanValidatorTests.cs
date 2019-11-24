@@ -1,20 +1,14 @@
-﻿using System.Collections;
-using IbanNet.Validation.Methods;
+﻿using IbanNet.Validation.Methods;
 using NUnit.Framework;
 
 namespace IbanNet
 {
-	[TestFixtureSource(nameof(ValidatorMethodTestCases))]
-	internal class FastIbanValidatorTests : IbanValidatorTests
+	[TestFixture]
+	internal class FastIbanValidatorTests : IbanValidatorIntegrationTests
 	{
-		public FastIbanValidatorTests(string fixtureName, IbanValidator validator)
-			: base(fixtureName, validator)
+		public FastIbanValidatorTests()
+			: base(new IbanValidator(new IbanValidatorOptions { ValidationMethod = new FastValidation() }))
 		{
-		}
-
-		public static IEnumerable ValidatorMethodTestCases()
-		{
-			yield return new object[] { "Fast", new IbanValidator(new IbanValidatorOptions { ValidationMethod = new FastValidation() }) };
 		}
 	}
 }
