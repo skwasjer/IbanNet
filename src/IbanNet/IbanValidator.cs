@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using IbanNet.Extensions;
 using IbanNet.Registry;
 using IbanNet.Validation;
 using IbanNet.Validation.Rules;
@@ -99,7 +100,7 @@ namespace IbanNet
 		{
 			InitRegistry();
 
-			string normalizedIban = Iban.Normalize(iban);
+			string normalizedIban = iban.StripWhitespaceOrNull();
 			var context = new ValidationContext
 			{
 				Value = normalizedIban,

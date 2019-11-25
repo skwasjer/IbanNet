@@ -134,7 +134,7 @@ namespace IbanNet
 			// Although our validator normalizes too, we can't rely on this fact if other implementations
 			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
 			// represents the IBAN value, we normalize inline here and take the penalty.
-			string normalizedValue = Normalize(value);
+			string normalizedValue = value.StripWhitespaceOrNull();
 			ValidationResult result = Validator.Validate(normalizedValue);
 			if (result.Result == IbanValidationResult.Valid)
 			{
@@ -143,33 +143,6 @@ namespace IbanNet
 			}
 
 			return false;
-		}
-
-		/// <summary>
-		/// Normalizes an IBAN value by removing all whitespace (but does not change character casing).
-		/// </summary>
-		/// <param name="iban">The IBAN value.</param>
-		/// <returns>a normalized IBAN value</returns>
-		internal static string Normalize(string iban)
-		{
-			if (iban == null)
-			{
-				return null;
-			}
-
-			var buffer = new char[iban.Length];
-			int pos = 0;
-			// ReSharper disable once ForCanBeConvertedToForeach - justification : performance
-			for (int i = 0; i < iban.Length; i++)
-			{
-				char c = iban[i];
-				if (!c.IsWhitespace())
-				{
-					buffer[pos++] = c;
-				}
-			}
-
-			return new string(buffer, 0, pos);
 		}
 
 		private bool Equals(Iban other)

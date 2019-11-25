@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using IbanNet.Extensions;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -137,7 +138,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = Iban.Normalize(ibanWithWhitespace),
+				Value = ibanWithWhitespace.StripWhitespaceOrNull(),
 				Result = IbanValidationResult.Valid,
 				Country = CountryValidationSupport.SupportedCountries["NL"]
 			});
