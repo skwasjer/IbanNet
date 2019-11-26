@@ -28,13 +28,17 @@ namespace IbanNet.CheckDigits.Calculators
 					// - Subtract '0' to get value 0, 1, 2.
 					current = current * 10 + c - '0';
 				}
-				else
+				else if (c.IsAsciiLetter())
 				{
 					// - For letters, always is two digits so shift 2 digits.
 					// - Use bitwise OR with ' ' (space, 0x20) to convert char to lowercase.
 					// - Then subtract 'a' to get value 0, 1, 2, etc.
 					// - Last, add 10 so: - a = 10, b = 11, c = 12, etc.
 					current = current * 100 + (c | ' ') - 'a' + 10;
+				}
+				else
+				{
+					throw new InvalidTokenException(i, c);
 				}
 			}
 
