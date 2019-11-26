@@ -10,9 +10,9 @@ namespace IbanNet.Registry
 	public abstract class StructureSection : IStructureSection
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private string _example = string.Empty;
+		private string _example;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private string _structure = string.Empty;
+		private string _structure;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private int _length;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -23,7 +23,8 @@ namespace IbanNet.Registry
 		/// </summary>
 		protected internal StructureSection()
 		{
-			//
+			Example = string.Empty;
+			Structure = string.Empty;
 		}
 
 		/// <summary>
@@ -32,6 +33,7 @@ namespace IbanNet.Registry
 		/// <param name="structure">The structure.</param>
 		// ReSharper disable once UnusedMember.Global
 		protected StructureSection(string structure)
+			: this()
 		{
 			Structure = structure ?? throw new ArgumentNullException(nameof(structure));
 		}
@@ -85,7 +87,7 @@ namespace IbanNet.Registry
 		public string Structure
 		{
 			get => _structure;
-			internal set => _structure = value ?? string.Empty;
+			internal set => _structure = value ?? throw new ArgumentNullException(nameof(value));
 		}
 	}
 }
