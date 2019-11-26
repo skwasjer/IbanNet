@@ -1,6 +1,6 @@
 ﻿using IbanNet.Registry;
 
-namespace IbanNet.Validation
+namespace IbanNet.Validation.Rules
 {
 	internal class ValidationContext
 	{
