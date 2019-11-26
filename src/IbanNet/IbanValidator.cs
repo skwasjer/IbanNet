@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using IbanNet.Extensions;
 using IbanNet.Registry;
 using IbanNet.Validation;
@@ -17,7 +16,7 @@ namespace IbanNet
 	public class IbanValidator : IIbanValidator, ICountryValidationSupport
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
+		private readonly Func<IReadOnlyCollection<CountryInfo>> _registryBuilder;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly List<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -58,16 +57,12 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(options));
 			}
 
-			if (options.Registry == null)
-			{
-				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
-			}
 			if (options.ValidationMethod == null)
 			{
 				throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_required, nameof(options));
 			}
 
-			_registry = new Lazy<IReadOnlyCollection<CountryInfo>>(options.Registry, LazyThreadSafetyMode.ExecutionAndPublication);
+			_registryBuilder = options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 
 			_rules = options.ValidationMethod.GetRules().ToList();
 		}
@@ -134,7 +129,7 @@ namespace IbanNet
 
 			lock (_lockObject)
 			{
-				_structures = _structures ?? _registry.Value
+				_structures = _structures ?? _registryBuilder()
 					.ToDictionary(
 						kvp => kvp.TwoLetterISORegionName
 					);
