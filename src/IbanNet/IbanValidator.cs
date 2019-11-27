@@ -104,8 +104,8 @@ namespace IbanNet
 			string valueToValidate = normalizedIban ?? string.Empty;
 			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
 
-			IIbanValidationRule failingRule = null;
-			ValidationRuleResult ruleResult = null;
+			IIbanValidationRule? failingRule = null;
+			ValidationRuleResult? ruleResult = null;
 			foreach (IIbanValidationRule rule in _rules)
 			{
 				ruleResult = rule.Validate(context, valueToValidate);

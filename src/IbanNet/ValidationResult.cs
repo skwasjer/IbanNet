@@ -31,11 +31,11 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the error message that occurred during validation (if any).
 		/// </summary>
-		public string ErrorMessage { get; set; }
+		public string? ErrorMessage { get; set; }
 
 		/// <summary>
 		/// Gets the type of the validation rule that did not pass (if any).
 		/// </summary>
-		public Type ValidationRuleType { get; set; }
+		public Type? ValidationRuleType { get; set; }
 	}
 }

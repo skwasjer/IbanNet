@@ -100,7 +100,7 @@ namespace IbanNet
 				return iban;
 			}
 
-			string errorMessage = validationResult is null || string.IsNullOrEmpty(validationResult.ErrorMessage)
+			string errorMessage = validationResult?.ErrorMessage is null || string.IsNullOrEmpty(validationResult.ErrorMessage)
 				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
 				: validationResult.ErrorMessage;
 
