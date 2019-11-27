@@ -97,14 +97,14 @@ namespace IbanNet
 			string normalizedIban = iban.StripWhitespaceOrNull();
 			var context = new ValidationContext
 			{
-				Value = normalizedIban ?? string.Empty,
 				Result = IbanValidationResult.Valid,
 				Country = GetMatchingCountry(normalizedIban)
 			};
 
+			string valueToValidate = normalizedIban ?? string.Empty;
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				rule.Validate(context);
+				rule.Validate(context, valueToValidate);
 				if (context.Result != IbanValidationResult.Valid)
 				{
 					break;

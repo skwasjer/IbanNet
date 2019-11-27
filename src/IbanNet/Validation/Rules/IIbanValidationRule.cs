@@ -9,6 +9,7 @@
 		/// Validates the IBAN against this rule.
 		/// </summary>
 		/// <param name="context">The validation context.</param>
-		void Validate(ValidationContext context);
+		/// <param name="iban">The IBAN to validate.</param>
+		void Validate(ValidationContext context, string iban);
 	}
 }

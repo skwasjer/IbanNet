@@ -6,9 +6,9 @@
 	internal class IsValidLengthRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationContext context, string iban)
 		{
-			if (context.Value.Length != context.Country.Iban.Length)
+			if (iban.Length != context.Country.Iban.Length)
 			{
 				context.Result = IbanValidationResult.InvalidLength;
 			}

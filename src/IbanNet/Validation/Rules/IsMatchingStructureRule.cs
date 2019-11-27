@@ -15,14 +15,14 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationContext context, string iban)
 		{
 			IStructureValidator validator = _structureValidationFactory.CreateValidator(
 				context.Country.TwoLetterISORegionName,
 				context.Country.Iban.Structure
 			);
 
-			if (!validator.Validate(context.Value))
+			if (!validator.Validate(iban))
 			{
 				context.Result = IbanValidationResult.InvalidStructure;
 			}

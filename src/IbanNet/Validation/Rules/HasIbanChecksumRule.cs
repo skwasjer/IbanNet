@@ -2,13 +2,13 @@
 {
 	internal class HasIbanChecksumRule : IIbanValidationRule
 	{
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationContext context, string iban)
 		{
-			if (context.Value.Length < 4
+			if (iban.Length < 4
 				// 00 and 01 are invalid.
-			 || context.Value[2] == '0' && (context.Value[3] == '0' || context.Value[3] == '1')
+			 || iban[2] == '0' && (iban[3] == '0' || iban[3] == '1')
 				// 99 is invalid.
-			 || context.Value[2] == '9' && context.Value[3] == '9')
+			 || iban[2] == '9' && iban[3] == '9')
 			{
 				context.Result = IbanValidationResult.IllegalCharacters;
 			}

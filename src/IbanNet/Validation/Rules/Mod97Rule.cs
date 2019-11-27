@@ -9,13 +9,11 @@ namespace IbanNet.Validation.Rules
 	internal class Mod97Rule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public void Validate(ValidationContext context, string iban)
 		{
-			string value = context.Value;
-
 			BigInteger largeInteger;
-			largeInteger = BuildLargeInteger(value, 4, value.Length, new BigInteger());
-			largeInteger = BuildLargeInteger(value, 0, 4, largeInteger);
+			largeInteger = BuildLargeInteger(iban, 4, iban.Length, new BigInteger());
+			largeInteger = BuildLargeInteger(iban, 0, 4, largeInteger);
 
 			if (largeInteger % 97 != 1)
 			{
