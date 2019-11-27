@@ -1,5 +1,16 @@
 # Changelog
 
+## v4.0.0-betaXX
+
+- Performance improvements
+- (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs fast), extensibility through custom rules.
+- (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
+- Exposing `IIbanValidationRule` allowing custom validation rules.
+- Added .NET Standard 2.1 target, enabled and refactored for nullable reference types.
+- (breaking) Remove deprecated TypeConverter facade.
+- (breaking) Remove deprecated ctor (accepting `Lazy`)
+- Added `ICheckDigitsCalculator` abstraction, with currently a single implementation (`Mod97CheckDigitsCalculator`).
+
 ## v3.2.0
 
 - Upgraded registry to October '19 release 84 (adds Egypt).
