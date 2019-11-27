@@ -100,9 +100,7 @@ namespace IbanNet
 				return iban;
 			}
 
-			var errorResult = validationResult?.Result as ErrorResult;
-
-			string errorMessage = errorResult is null || string.IsNullOrEmpty(errorResult.ErrorMessage)
+			string errorMessage = !(validationResult?.Result is ErrorResult errorResult) || string.IsNullOrEmpty(errorResult.ErrorMessage)
 				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
 				: errorResult.ErrorMessage;
 
@@ -117,7 +115,7 @@ namespace IbanNet
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
 		public static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
-			return TryParse(value, out iban, out ValidationResult _, out Exception? __);
+			return TryParse(value, out iban, out _, out _);
 		}
 
 		/// <summary>
