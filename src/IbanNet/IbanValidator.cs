@@ -20,7 +20,7 @@ namespace IbanNet
 		private readonly List<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
-		private Dictionary<string, CountryInfo> _structures;
+		private Dictionary<string, CountryInfo>? _structures;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
@@ -90,18 +90,18 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
-		public ValidationResult Validate(string iban)
+		public ValidationResult Validate(string? iban)
 		{
 			InitRegistry();
 
-			string normalizedIban = iban.StripWhitespaceOrNull();
+			string? normalizedIban = iban.StripWhitespaceOrNull();
+			string valueToValidate = normalizedIban ?? string.Empty;
 			var context = new ValidationContext
 			{
 				Result = IbanValidationResult.Valid,
-				Country = GetMatchingCountry(normalizedIban)
+				Country = GetMatchingCountry(valueToValidate)
 			};
 
-			string valueToValidate = normalizedIban ?? string.Empty;
 			foreach (IIbanValidationRule rule in _rules)
 			{
 				rule.Validate(context, valueToValidate);
@@ -128,33 +128,29 @@ namespace IbanNet
 
 			lock (_lockObject)
 			{
-				_structures = _structures ?? _registryBuilder()
+				_structures ??= _registryBuilder()
 					.ToDictionary(
 						kvp => kvp.TwoLetterISORegionName
 					);
 			}
 		}
 
-		private CountryInfo GetMatchingCountry(string iban)
+		private CountryInfo? GetMatchingCountry(string iban)
 		{
-			string countryCode = GetCountryCode(iban);
+			string? countryCode = GetCountryCode(iban);
 			if (countryCode == null)
 			{
 				return null;
 			}
 
-			_structures.TryGetValue(countryCode, out CountryInfo matchedCountry);
+			// Note: This function can only be called once registry is initialized.
+			_structures!.TryGetValue(countryCode, out CountryInfo matchedCountry);
 			return matchedCountry;
 		}
 
-		private static string GetCountryCode(string value)
+		private static string? GetCountryCode(string value)
 		{
-			if (value == null || value.Length < 2)
-			{
-				return null;
-			}
-
-			return value.Substring(0, 2).ToUpperInvariant();
+			return value.Length < 2 ? null : value.Substring(0, 2).ToUpperInvariant();
 		}
 	}
 }

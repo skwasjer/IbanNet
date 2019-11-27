@@ -8,7 +8,7 @@ namespace IbanNet.TypeConverters
 	/// Provides a way of converting an <see cref="Iban"/> from and to other types.
 	/// </summary>
 	public class IbanTypeConverter : TypeConverter
-    {
+	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanTypeConverter"/> class.
 		/// </summary>
@@ -22,9 +22,9 @@ namespace IbanNet.TypeConverters
 		{
 			return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
 		}
-		
+
 		/// <inheritdoc />
-		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+		public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
 			switch (value)
 			{
@@ -32,7 +32,7 @@ namespace IbanNet.TypeConverters
 					return null;
 
 				case string strValue:
-					if (Iban.TryParse(strValue, out var iban))
+					if (Iban.TryParse(strValue, out Iban? iban))
 					{
 						return iban;
 					}
@@ -41,6 +41,6 @@ namespace IbanNet.TypeConverters
 			}
 
 			return base.ConvertFrom(context, culture, value);
-		}		
+		}
 	}
 }

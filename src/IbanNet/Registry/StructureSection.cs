@@ -23,8 +23,8 @@ namespace IbanNet.Registry
 		/// </summary>
 		protected internal StructureSection()
 		{
-			Example = string.Empty;
-			Structure = string.Empty;
+			_example = string.Empty;
+			_structure = string.Empty;
 		}
 
 		/// <summary>
