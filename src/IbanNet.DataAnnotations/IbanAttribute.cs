@@ -38,7 +38,7 @@ namespace IbanNet.DataAnnotations
 				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}
 
-			IEnumerable<string> memberNames = null;
+			IEnumerable<string>? memberNames = null;
 			if (validationContext.MemberName != null)
 			{
 				memberNames = new[] { validationContext.MemberName };
@@ -54,7 +54,7 @@ namespace IbanNet.DataAnnotations
 		/// <returns></returns>
 		private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
 		{
-			IIbanValidator ibanValidator = (IIbanValidator)serviceProvider?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
+			IIbanValidator? ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
 			if (ibanValidator == null)
 			{
 				throw new InvalidOperationException(string.Format(Resources.IbanAttribute_ValidatorMissing, nameof(IIbanValidator)));
