@@ -14,7 +14,7 @@ namespace IbanNet.Validation
 		{
 			{ 'n', c => c.IsAsciiDigit() },
 			{ 'a', c => c.IsUpperAsciiLetter() },
-			{ 'c', c => c.IsAsciiDigit() || c.IsAsciiLetter() },
+			{ 'c', c => c.IsAlphaNumeric() },
 			{ 'e', c => c == ' ' }
 		};
 
@@ -22,13 +22,12 @@ namespace IbanNet.Validation
 		// ReSharper disable once InconsistentNaming
 		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
 		{
-			return new StructureValidator(structure.Substring(0, 2), GetSegments(structure).ToList());
+			return new StructureValidator(structure.Substring(0, 2), GetSegments(structure.Substring(2)).ToList());
 		}
 
 		private IEnumerable<StructureSegmentTest> GetSegments(string structure)
 		{
 			return structure
-				.Substring(2)
 				.PartitionOn(SegmentMap.Keys.ToArray())
 				.Select(GetSegmentInfo);
 		}
@@ -48,7 +47,7 @@ namespace IbanNet.Validation
 			}
 
 			string lengthDescriptor = structureSegment.Substring(0, structureSegment.Length - 1);
-			bool isFixedLength = lengthDescriptor.EndsWith("!");
+			bool isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
 			int occurrences = int.Parse(
 				lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength))
 			);

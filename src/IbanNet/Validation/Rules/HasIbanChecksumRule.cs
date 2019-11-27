@@ -4,8 +4,9 @@ namespace IbanNet.Validation.Rules
 {
 	internal class HasIbanChecksumRule : IIbanValidationRule
 	{
-		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
+			string iban = context.Value;
 			if (iban.Length < 4
 				// 00 and 01 are invalid.
 			 || iban[2] == '0' && (iban[3] == '0' || iban[3] == '1')

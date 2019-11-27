@@ -15,7 +15,7 @@ namespace IbanNet.Validation
 
 		public bool Validate(string iban)
 		{
-			if (iban.Substring(0, 2) != _expectedCountryCode)
+			if (iban[0] != _expectedCountryCode[0] && iban[1] != _expectedCountryCode[1])
 			{
 				return false;
 			}

@@ -8,9 +8,9 @@ namespace IbanNet.Validation.Rules
 	internal sealed class NotNullOrEmptyRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			return string.IsNullOrEmpty(iban)
+			return context.Value.Length == 0
 				? new InvalidLengthResult()
 				: ValidationRuleResult.Success;
 		}

@@ -8,7 +8,7 @@ namespace IbanNet.Validation.Rules
 	internal class IsValidCountryCodeRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
 			return context.Country == null
 				? new UnknownCountryCodeResult()

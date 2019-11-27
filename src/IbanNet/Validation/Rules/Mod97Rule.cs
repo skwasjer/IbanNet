@@ -1,4 +1,5 @@
-﻿using IbanNet.CheckDigits.Calculators;
+﻿using System;
+using IbanNet.CheckDigits.Calculators;
 using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
@@ -18,8 +19,9 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
+			string iban = context.Value;
 			int length = iban.Length;
 			var buffer = new char[length];
 			// Reorder (first 4 chars at end).

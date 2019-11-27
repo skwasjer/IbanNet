@@ -11,7 +11,6 @@ namespace IbanNet.Validation.Rules
 		/// Validates the IBAN against this rule.
 		/// </summary>
 		/// <param name="context">The validation context.</param>
-		/// <param name="iban">The IBAN to validate.</param>
-		ValidationRuleResult Validate(ValidationRuleContext context, string iban);
+		ValidationRuleResult Validate(ValidationRuleContext context);
 	}
 }

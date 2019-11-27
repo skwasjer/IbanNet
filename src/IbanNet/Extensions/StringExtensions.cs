@@ -1,17 +1,23 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace IbanNet.Extensions
 {
 	internal static class StringExtensions
 	{
-		/// <summary>
-		/// Removes all whitespace in the string or returns null if the value is null.
-		/// </summary>
 		internal static string? StripWhitespaceOrNull([NotNullIfNotNull("value")] this string? value)
 		{
-			if (value == null)
+			return value is null ? null : StripWhitespace(value);
+		}
+
+		/// <summary>
+		/// Removes all whitespace.
+		/// </summary>
+		internal static string StripWhitespace(this string value)
+		{
+			if (value is null)
 			{
-				return null;
+				throw new ArgumentNullException(nameof(value));
 			}
 
 			var buffer = new char[value.Length];

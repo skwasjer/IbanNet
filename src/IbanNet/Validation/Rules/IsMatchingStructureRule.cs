@@ -16,7 +16,7 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
 			if (context.Country is null)
 			{
@@ -28,7 +28,7 @@ namespace IbanNet.Validation.Rules
 				context.Country.Iban.Structure
 			);
 
-			return validator.Validate(iban)
+			return validator.Validate(context.Value)
 				? ValidationRuleResult.Success
 				: new InvalidStructureResult();
 		}

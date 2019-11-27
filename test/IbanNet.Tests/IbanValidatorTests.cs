@@ -76,7 +76,7 @@ namespace IbanNet
 			{
 				_customValidationRuleMock = new Mock<IIbanValidationRule>();
 				_customValidationRuleMock
-					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>(), It.IsAny<string>()))
+					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
 					.Returns(ValidationRuleResult.Success);
 
 				_sut = new IbanValidator(new IbanValidatorOptions
@@ -94,7 +94,7 @@ namespace IbanNet
 				_sut.Validate(iban);
 
 				// Assert
-				_customValidationRuleMock.Verify(m => m.Validate(It.IsAny<ValidationRuleContext>(), iban), Times.Once);
+				_customValidationRuleMock.Verify(m => m.Validate(It.Is<ValidationRuleContext>(ctx => ctx.Value == iban)), Times.Once);
 			}
 
 			[Test]
@@ -104,7 +104,7 @@ namespace IbanNet
 				Exception exception = new InvalidOperationException("My custom error");
 
 				_customValidationRuleMock
-					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>(), iban))
+					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
 					.Throws(exception);
 
 				// Act
@@ -124,7 +124,7 @@ namespace IbanNet
 				const string errorMessage = "My custom error";
 
 				_customValidationRuleMock
-					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>(), iban))
+					.Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
 					.Returns(new ErrorResult(errorMessage));
 
 				// Act

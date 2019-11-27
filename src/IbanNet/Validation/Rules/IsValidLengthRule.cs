@@ -8,9 +8,9 @@ namespace IbanNet.Validation.Rules
 	internal class IsValidLengthRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			return context.Country != null && iban.Length == context.Country.Iban.Length
+			return context.Country != null && context.Value.Length == context.Country.Iban.Length
 				? ValidationRuleResult.Success
 				: new InvalidLengthResult();
 		}

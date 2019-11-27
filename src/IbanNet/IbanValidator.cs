@@ -83,7 +83,8 @@ namespace IbanNet
 
 			string? normalizedIban = iban.StripWhitespaceOrNull();
 			string valueToValidate = normalizedIban ?? string.Empty;
-			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
+
+			var context = new ValidationRuleContext(valueToValidate, GetMatchingCountry(valueToValidate));
 
 			var validationResult = new ValidationResult
 			{
@@ -93,7 +94,7 @@ namespace IbanNet
 
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				validationResult.Error = rule.Validate(context, valueToValidate) as ErrorResult;
+				validationResult.Error = rule.Validate(context) as ErrorResult;
 				if (!validationResult.IsValid)
 				{
 					break;
@@ -134,7 +135,13 @@ namespace IbanNet
 
 		private static string? GetCountryCode(string value)
 		{
-			return value.Length < 2 ? null : value.Substring(0, 2).ToUpperInvariant();
+			return value.Length < 2
+				? null
+				: new string(new[]
+				{
+					char.ToUpperInvariant(value[0]),
+					char.ToUpperInvariant(value[1])
+				});
 		}
 	}
 }
