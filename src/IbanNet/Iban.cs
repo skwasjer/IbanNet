@@ -104,7 +104,12 @@ namespace IbanNet
 				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
 				: errorResult.ErrorMessage;
 
-			throw new IbanFormatException(errorMessage, validationResult, exceptionThrown);
+			if (exceptionThrown != null)
+			{
+				throw new IbanFormatException(errorMessage, exceptionThrown);
+			}
+
+			throw new IbanFormatException(errorMessage, validationResult!);
 		}
 
 		/// <summary>
