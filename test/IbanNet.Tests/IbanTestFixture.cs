@@ -1,4 +1,5 @@
 ﻿using System;
+using IbanNet.Validation.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -18,7 +19,7 @@ namespace IbanNet
 				.Returns<string>(iban => new ValidationResult
 				{
 					Value = iban,
-					Result = IbanValidationResult.Valid
+					Result = ValidationRuleResult.Success
 				});
 
 			IbanValidatorMock
@@ -26,7 +27,7 @@ namespace IbanNet
 				.Returns<string>(iban => new ValidationResult
 				{
 					Value = null,
-					Result = IbanValidationResult.InvalidLength
+					Result = new InvalidLengthResult()
 				});
 
 			IbanValidatorMock
@@ -34,7 +35,7 @@ namespace IbanNet
 				.Returns<string>(iban => new ValidationResult
 				{
 					Value = iban,
-					Result = IbanValidationResult.IllegalCharacters
+					Result = new IllegalCharactersResult()
 				});
 
 			IbanValidatorMock
@@ -42,8 +43,7 @@ namespace IbanNet
 				.Returns<string>(iban => new ValidationResult
 				{
 					Value = iban,
-					Result = IbanValidationResult.Custom,
-					ErrorMessage = "Custom message"
+					Result = new ErrorResult("Custom message")
 				});
 
 			IbanValidatorMock

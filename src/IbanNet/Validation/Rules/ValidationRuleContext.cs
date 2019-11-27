@@ -17,16 +17,6 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <summary>
-		/// <see cref="IbanValidationResult.Valid"/> if validation succeeded. Otherwise, indicates the reason of failure. 
-		/// </summary>
-		public IbanValidationResult Result { get; set; }
-
-		/// <summary>
-		/// Gets whether validation is successful.
-		/// </summary>
-		public bool IsValid => Result == IbanValidationResult.Valid;
-
-		/// <summary>
 		/// Gets or sets the country info that applies to the IBAN, if any.
 		/// </summary>
 		public CountryInfo? Country { get; set; }

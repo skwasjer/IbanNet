@@ -137,10 +137,8 @@ namespace IbanNet
 					.BeEquivalentTo(new ValidationResult
 					{
 						Value = iban,
-						Result = IbanValidationResult.Custom,
-						Country = _countryValidationSupport.SupportedCountries["NL"],
-						ValidationRuleType = _customValidationRuleMock.Object.GetType(),
-						ErrorMessage = errorMessage
+						Result = new ErrorResult(errorMessage),
+						Country = _countryValidationSupport.SupportedCountries["NL"]
 					});
 			}
 		}

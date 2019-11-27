@@ -12,7 +12,7 @@ namespace IbanNet.Validation.Rules
 		{
 			return context.Country != null && iban.Length == context.Country.Iban.Length
 				? ValidationRuleResult.Success
-				: new BuiltInErrorResult(IbanValidationResult.InvalidLength);
+				: new InvalidLengthResult();
 		}
 	}
 }

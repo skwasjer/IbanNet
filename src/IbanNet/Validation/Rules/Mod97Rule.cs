@@ -28,7 +28,7 @@ namespace IbanNet.Validation.Rules
 
 			return _checkDigitsCalculator.Compute(buffer) == ExpectedCheckDigit
 				? ValidationRuleResult.Success
-				: new BuiltInErrorResult(IbanValidationResult.InvalidCheckDigits);
+				: new InvalidCheckDigitsResult();
 		}
 	}
 }

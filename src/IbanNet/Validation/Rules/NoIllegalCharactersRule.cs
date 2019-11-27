@@ -15,7 +15,7 @@ namespace IbanNet.Validation.Rules
 				// All chars must be 0-9, a-z or A-Z.
 				if (!(c.IsAsciiLetter() || c.IsAsciiDigit()))
 				{
-					return new BuiltInErrorResult(IbanValidationResult.IllegalCharacters);
+					return new IllegalCharactersResult();
 				}
 			}
 

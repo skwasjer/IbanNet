@@ -11,7 +11,7 @@ namespace IbanNet.Validation.Rules
 		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
 			return string.IsNullOrEmpty(iban)
-				? new BuiltInErrorResult(IbanValidationResult.InvalidLength)
+				? new InvalidLengthResult()
 				: ValidationRuleResult.Success;
 		}
 	}

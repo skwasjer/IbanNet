@@ -104,28 +104,21 @@ namespace IbanNet
 			string valueToValidate = normalizedIban ?? string.Empty;
 			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
 
-			IIbanValidationRule? failingRule = null;
-			ValidationRuleResult? ruleResult = null;
+			ValidationRuleResult ruleResult = ValidationRuleResult.Success;
 			foreach (IIbanValidationRule rule in _rules)
 			{
 				ruleResult = rule.Validate(context, valueToValidate);
-				if (ruleResult != ValidationRuleResult.Success)
+				if (!Equals(ruleResult, ValidationRuleResult.Success))
 				{
-					failingRule = rule;
 					break;
 				}
 			}
 
-			var ruleBuiltInErrorResult = ruleResult as BuiltInErrorResult;
-			var ruleErrorResult = ruleResult as ErrorResult;
-
 			return new ValidationResult
 			{
 				Value = normalizedIban?.ToUpperInvariant(),
-				Result = ruleBuiltInErrorResult?.Result ?? (ruleResult == ValidationRuleResult.Success ? IbanValidationResult.Valid : IbanValidationResult.Custom),
-				Country = context.Country,
-				ErrorMessage = ruleErrorResult?.ErrorMessage,
-				ValidationRuleType = failingRule?.GetType()
+				Result = ruleResult,
+				Country = context.Country
 			};
 		}
 

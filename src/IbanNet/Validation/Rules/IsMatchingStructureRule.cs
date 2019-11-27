@@ -20,8 +20,7 @@ namespace IbanNet.Validation.Rules
 		{
 			if (context.Country is null)
 			{
-				context.Result = IbanValidationResult.InvalidStructure;
-				return new BuiltInErrorResult(IbanValidationResult.InvalidStructure);
+				return new InvalidStructureResult();
 			}
 
 			IStructureValidator validator = _structureValidationFactory.CreateValidator(
@@ -31,7 +30,7 @@ namespace IbanNet.Validation.Rules
 
 			return validator.Validate(iban)
 				? ValidationRuleResult.Success
-				: new BuiltInErrorResult(IbanValidationResult.InvalidStructure);
+				: new InvalidStructureResult();
 		}
 	}
 }

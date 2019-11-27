@@ -11,7 +11,7 @@ namespace IbanNet.Validation.Rules
 		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
 			return context.Country == null
-				? new BuiltInErrorResult(IbanValidationResult.UnknownCountryCode)
+				? new UnknownCountryCodeResult()
 				: ValidationRuleResult.Success;
 		}
 	}

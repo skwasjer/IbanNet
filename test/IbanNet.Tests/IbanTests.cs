@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
+using IbanNet.Validation.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -31,9 +32,13 @@ namespace IbanNet
 
 				// Assert
 				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-				ex.Result.Should().Be(IbanValidationResult.IllegalCharacters);
+				ex.Result.Should().BeEquivalentTo(new ValidationResult
+				{
+					Result = new IllegalCharactersResult(),
+					Value = TestValues.InvalidIban
+				});
 				ex.InnerException.Should().BeNull();
-				ex.Message.Should().Contain("is not a valid IBAN.");
+				ex.Message.Should().Be("The IBAN contains illegal characters.");
 			}
 
 			[Test]
@@ -60,7 +65,11 @@ namespace IbanNet
 
 				// Assert
 				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-				ex.Result.Should().Be(IbanValidationResult.Custom);
+				ex.Result.Should().BeEquivalentTo(new ValidationResult
+				{
+					Result = new ErrorResult("Custom message"),
+					Value = TestValues.IbanForCustomRuleFailure
+				});
 				ex.InnerException.Should().BeNull();
 				ex.Message.Should().Be("Custom message");
 			}
@@ -73,7 +82,7 @@ namespace IbanNet
 
 				// Assert
 				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-				ex.Result.Should().Be(IbanValidationResult.Custom);
+				ex.Result.Should().BeNull();
 				ex.InnerException.Should().NotBeNull();
 				ex.Message.Should().Contain("is not a valid IBAN.");
 			}

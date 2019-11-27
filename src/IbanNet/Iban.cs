@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using IbanNet.Extensions;
-using IbanNet.Validation.Rules;
+using IbanNet.Validation.Results;
 
 namespace IbanNet
 {
@@ -100,11 +100,13 @@ namespace IbanNet
 				return iban;
 			}
 
-			string errorMessage = validationResult?.ErrorMessage is null || string.IsNullOrEmpty(validationResult.ErrorMessage)
-				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
-				: validationResult.ErrorMessage;
+			var errorResult = validationResult?.Result as ErrorResult;
 
-			throw new IbanFormatException(errorMessage, validationResult?.Result ?? IbanValidationResult.Custom, exceptionThrown);
+			string errorMessage = errorResult is null || string.IsNullOrEmpty(errorResult.ErrorMessage)
+				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
+				: errorResult.ErrorMessage;
+
+			throw new IbanFormatException(errorMessage, validationResult, exceptionThrown);
 		}
 
 		/// <summary>

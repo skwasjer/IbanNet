@@ -8,18 +8,10 @@ namespace IbanNet.Validation.Results
 	public class ErrorResult : ValidationRuleResult
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ErrorResult"/>.
-		/// </summary>
-		protected ErrorResult()
-		{
-		}
-
-		/// <summary>
 		/// Initializes a new instance of the <see cref="ErrorResult"/> class using specified <paramref name="errorMessage"/>.
 		/// </summary>
 		/// <param name="errorMessage">The error message.</param>
 		public ErrorResult(string errorMessage)
-			: this()
 		{
 			ErrorMessage = errorMessage ?? throw new ArgumentNullException(nameof(errorMessage));
 		}

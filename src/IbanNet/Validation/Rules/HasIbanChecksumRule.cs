@@ -12,7 +12,7 @@ namespace IbanNet.Validation.Rules
 				// 99 is invalid.
 			 || iban[2] == '9' && iban[3] == '9')
 			{
-				return new BuiltInErrorResult(IbanValidationResult.IllegalCharacters);
+				return new IllegalCharactersResult();
 			}
 
 			return ValidationRuleResult.Success;
