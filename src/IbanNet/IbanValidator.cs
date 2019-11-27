@@ -34,20 +34,6 @@ namespace IbanNet
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified registry.
 		/// </summary>
-		/// <param name="registry">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
-		// ReSharper disable once MemberCanBePrivate.Global
-		[Obsolete("Will be removed in v4. Use the overload that accepts " + nameof(IbanValidatorOptions) + ".")]
-		public IbanValidator(Lazy<IReadOnlyCollection<CountryInfo>> registry)
-			: this(new IbanValidatorOptions
-			{
-				Registry = () => registry.Value
-			})
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified registry.
-		/// </summary>
 		/// <param name="options">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
 		// ReSharper disable once MemberCanBePrivate.Global
 		public IbanValidator(IbanValidatorOptions options)
