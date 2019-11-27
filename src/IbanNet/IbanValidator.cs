@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using IbanNet.Extensions;
 using IbanNet.Registry;
-using IbanNet.Validation;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet
@@ -98,7 +97,7 @@ namespace IbanNet
 			string normalizedIban = iban.StripWhitespaceOrNull();
 			var context = new ValidationContext
 			{
-				Value = normalizedIban,
+				Value = normalizedIban ?? string.Empty,
 				Result = IbanValidationResult.Valid,
 				Country = GetMatchingCountry(normalizedIban)
 			};
