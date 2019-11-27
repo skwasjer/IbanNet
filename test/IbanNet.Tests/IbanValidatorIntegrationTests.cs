@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using IbanNet.Extensions;
+using IbanNet.Validation.Results;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -24,7 +25,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Result = IbanValidationResult.InvalidLength
+				Result = new InvalidLengthResult()
 			});
 		}
 
@@ -39,7 +40,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithIllegalChars,
-				Result = IbanValidationResult.IllegalCharacters,
+				Result = new IllegalCharactersResult(),
 				Country = CountryValidationSupport.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)]
 			});
 		}
@@ -56,7 +57,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithIllegalCountryCode,
-				Result = IbanValidationResult.IllegalCharacters
+				Result = new IllegalCharactersResult()
 			});
 		}
 
@@ -72,7 +73,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithInvalidChecksum,
-				Result = IbanValidationResult.IllegalCharacters,
+				Result = new IllegalCharactersResult(),
 				Country = CountryValidationSupport.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)]
 			});
 		}
@@ -91,7 +92,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithIncorrectLength,
-				Result = IbanValidationResult.InvalidLength,
+				Result = new InvalidLengthResult(),
 				Country = CountryValidationSupport.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
 			});
 		}
@@ -107,7 +108,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithUnknownCountryCode,
-				Result = IbanValidationResult.UnknownCountryCode
+				Result = new UnknownCountryCodeResult()
 			});
 		}
 
@@ -122,7 +123,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = tamperedIban,
-				Result = IbanValidationResult.InvalidCheckDigits,
+				Result = new InvalidCheckDigitsResult(),
 				Country = CountryValidationSupport.SupportedCountries[tamperedIban.Substring(0, 2)]
 			});
 		}
@@ -139,7 +140,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithWhitespace.StripWhitespaceOrNull(),
-				Result = IbanValidationResult.Valid,
+				Result = ValidationRuleResult.Success,
 				Country = CountryValidationSupport.SupportedCountries["NL"]
 			});
 		}
@@ -150,7 +151,7 @@ namespace IbanNet
 			var expectedResult = new ValidationResult
 			{
 				Value = iban,
-				Result = IbanValidationResult.Valid,
+				Result = ValidationRuleResult.Success,
 				Country = CountryValidationSupport.SupportedCountries[iban.Substring(0, 2)]
 			};
 

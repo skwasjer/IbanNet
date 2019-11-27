@@ -1,4 +1,5 @@
 ﻿using System;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
@@ -15,12 +16,11 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
 			if (context.Country is null)
 			{
-				context.Result = IbanValidationResult.InvalidStructure;
-				return;
+				return new InvalidStructureResult();
 			}
 
 			IStructureValidator validator = _structureValidationFactory.CreateValidator(
@@ -28,10 +28,9 @@ namespace IbanNet.Validation.Rules
 				context.Country.Iban.Structure
 			);
 
-			if (!validator.Validate(iban))
-			{
-				context.Result = IbanValidationResult.InvalidStructure;
-			}
+			return validator.Validate(iban)
+				? ValidationRuleResult.Success
+				: new InvalidStructureResult();
 		}
 	}
 }

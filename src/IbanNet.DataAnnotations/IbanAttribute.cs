@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.DataAnnotations
 {
@@ -33,7 +34,7 @@ namespace IbanNet.DataAnnotations
 
 			IIbanValidator ibanValidator = GetValidator(validationContext);
 			ValidationResult result = ibanValidator.Validate(strValue);
-			if (result.Result == IbanValidationResult.Valid)
+			if (Equals(result.Result, ValidationRuleResult.Success))
 			{
 				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}

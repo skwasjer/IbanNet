@@ -1,8 +1,10 @@
-﻿namespace IbanNet.Validation.Rules
+﻿using IbanNet.Validation.Results;
+
+namespace IbanNet.Validation.Rules
 {
 	internal class HasIbanChecksumRule : IIbanValidationRule
 	{
-		public void Validate(ValidationContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
 			if (iban.Length < 4
 				// 00 and 01 are invalid.
@@ -10,8 +12,10 @@
 				// 99 is invalid.
 			 || iban[2] == '9' && iban[3] == '9')
 			{
-				context.Result = IbanValidationResult.IllegalCharacters;
+				return new IllegalCharactersResult();
 			}
+
+			return ValidationRuleResult.Success;
 		}
 	}
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using IbanNet.Extensions;
 using IbanNet.Registry;
+using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet
@@ -64,6 +65,11 @@ namespace IbanNet
 			_registryBuilder = options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 
 			_rules = options.ValidationMethod.GetRules().ToList();
+
+			if (options.Rules != null)
+			{
+				_rules.AddRange(options.Rules);
+			}
 		}
 
 		/// <summary>
@@ -96,16 +102,13 @@ namespace IbanNet
 
 			string? normalizedIban = iban.StripWhitespaceOrNull();
 			string valueToValidate = normalizedIban ?? string.Empty;
-			var context = new ValidationContext
-			{
-				Result = IbanValidationResult.Valid,
-				Country = GetMatchingCountry(valueToValidate)
-			};
+			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
 
+			ValidationRuleResult ruleResult = ValidationRuleResult.Success;
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				rule.Validate(context, valueToValidate);
-				if (context.Result != IbanValidationResult.Valid)
+				ruleResult = rule.Validate(context, valueToValidate);
+				if (!Equals(ruleResult, ValidationRuleResult.Success))
 				{
 					break;
 				}
@@ -114,7 +117,7 @@ namespace IbanNet
 			return new ValidationResult
 			{
 				Value = normalizedIban?.ToUpperInvariant(),
-				Result = context.Result,
+				Result = ruleResult,
 				Country = context.Country
 			};
 		}

@@ -1,4 +1,6 @@
-﻿namespace IbanNet.Validation.Rules
+﻿using IbanNet.Validation.Results;
+
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN is not an null/empty value.
@@ -6,12 +8,11 @@
 	internal sealed class NotNullOrEmptyRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context, string iban)
+		public ValidationRuleResult Validate(ValidationRuleContext context, string iban)
 		{
-			if (string.IsNullOrEmpty(iban))
-			{
-				context.Result = IbanValidationResult.InvalidLength;
-			}
+			return string.IsNullOrEmpty(iban)
+				? new InvalidLengthResult()
+				: ValidationRuleResult.Success;
 		}
 	}
 }

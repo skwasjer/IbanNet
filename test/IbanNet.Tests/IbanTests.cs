@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
+using IbanNet.Validation.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -30,9 +31,14 @@ namespace IbanNet
 				Action act = () => Iban.Parse(TestValues.InvalidIban);
 
 				// Assert
-				act.Should().Throw<IbanFormatException>("the provided value was invalid")
-					.Which.Result
-					.Should().Be(IbanValidationResult.IllegalCharacters);
+				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				ex.Result.Should().BeEquivalentTo(new ValidationResult
+				{
+					Result = new IllegalCharactersResult(),
+					Value = TestValues.InvalidIban
+				});
+				ex.InnerException.Should().BeNull();
+				ex.Message.Should().Be("The IBAN contains illegal characters.");
 			}
 
 			[Test]
@@ -49,6 +55,36 @@ namespace IbanNet
 					.And.BeOfType<Iban>()
 					.Which.ToString()
 					.Should().Be(TestValues.ValidIban, "the returned value should match the provided value");
+			}
+
+			[Test]
+			public void With_value_that_fails_custom_rule_should_throw()
+			{
+				// Act
+				Action act = () => Iban.Parse(TestValues.IbanForCustomRuleFailure);
+
+				// Assert
+				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				ex.Result.Should().BeEquivalentTo(new ValidationResult
+				{
+					Result = new ErrorResult("Custom message"),
+					Value = TestValues.IbanForCustomRuleFailure
+				});
+				ex.InnerException.Should().BeNull();
+				ex.Message.Should().Be("Custom message");
+			}
+
+			[Test]
+			public void With_value_that_causes_custom_rule_to_throw_should_rethrow()
+			{
+				// Act
+				Action act = () => Iban.Parse(TestValues.IbanForCustomRuleException);
+
+				// Assert
+				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				ex.Result.Should().BeNull();
+				ex.InnerException.Should().NotBeNull();
+				ex.Message.Should().Contain("is not a valid IBAN.");
 			}
 		}
 

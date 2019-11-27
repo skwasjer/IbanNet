@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using IbanNet.Extensions;
+using IbanNet.Validation.Results;
 
 namespace IbanNet
 {
@@ -94,12 +95,21 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(value));
 			}
 
-			if (TryParse(value, out Iban? iban, out IbanValidationResult validationResult))
+			if (TryParse(value, out Iban? iban, out ValidationResult? validationResult, out Exception? exceptionThrown))
 			{
 				return iban;
 			}
 
-			throw new IbanFormatException(string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value), validationResult);
+			string errorMessage = !(validationResult?.Result is ErrorResult errorResult) || string.IsNullOrEmpty(errorResult.ErrorMessage)
+				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
+				: errorResult.ErrorMessage;
+
+			if (exceptionThrown != null)
+			{
+				throw new IbanFormatException(errorMessage, exceptionThrown);
+			}
+
+			throw new IbanFormatException(errorMessage, validationResult!);
 		}
 
 		/// <summary>
@@ -110,7 +120,7 @@ namespace IbanNet
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
 		public static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
-			return TryParse(value, out iban, out IbanValidationResult _);
+			return TryParse(value, out iban, out _, out _);
 		}
 
 		/// <summary>
@@ -119,18 +129,33 @@ namespace IbanNet
 		/// <param name="value">The IBAN value to parse.</param>
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <param name="validationResult">The validation result.</param>
+		/// <param name="exceptionThrown">The exception if one was thrown.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		internal static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban, out IbanValidationResult validationResult)
+		internal static bool TryParse(
+			string? value,
+			[NotNullWhen(true)] out Iban? iban,
+			out ValidationResult? validationResult,
+			[MaybeNullWhen(false)] out Exception? exceptionThrown)
 		{
 			iban = null;
+			exceptionThrown = null;
 
 			// Although our validator normalizes too, we can't rely on this fact if other implementations
 			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
 			// represents the IBAN value, we normalize inline here and take the penalty.
 			string? normalizedValue = value.StripWhitespaceOrNull();
-			ValidationResult result = Validator.Validate(normalizedValue);
-			validationResult = result.Result;
-			if (result.Result == IbanValidationResult.Valid)
+			try
+			{
+				validationResult = Validator.Validate(normalizedValue);
+			}
+			catch (Exception ex)
+			{
+				validationResult = null;
+				exceptionThrown = ex;
+				return false;
+			}
+
+			if (validationResult.IsValid)
 			{
 				iban = new Iban(normalizedValue!.ToUpperInvariant());
 				return true;
