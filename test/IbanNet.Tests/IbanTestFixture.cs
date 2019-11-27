@@ -11,6 +11,7 @@ namespace IbanNet
 		public virtual void SetUp()
 		{
 			IbanValidatorMock = new Mock<IIbanValidator>();
+
 			IbanValidatorMock
 				.Setup(m => m.Validate(It.IsAny<string>()))
 				.Returns<string>(iban => new ValidationResult
@@ -18,6 +19,15 @@ namespace IbanNet
 					Value = iban,
 					Result = IbanValidationResult.Valid
 				});
+
+			IbanValidatorMock
+				.Setup(m => m.Validate(null))
+				.Returns<string>(iban => new ValidationResult
+				{
+					Value = null,
+					Result = IbanValidationResult.InvalidLength
+				});
+
 			IbanValidatorMock
 				.Setup(m => m.Validate(TestValues.InvalidIban))
 				.Returns<string>(iban => new ValidationResult

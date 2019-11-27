@@ -110,8 +110,6 @@ namespace IbanNet
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
 		public static bool TryParse(string value, out Iban iban)
 		{
-			iban = null;
-
 			return TryParse(value, out iban, out IbanValidationResult _);
 		}
 
@@ -122,20 +120,16 @@ namespace IbanNet
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <param name="validationResult">The validation result.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		private static bool TryParse(string value, out Iban iban, out IbanValidationResult validationResult)
+		internal static bool TryParse(string value, out Iban iban, out IbanValidationResult validationResult)
 		{
 			iban = null;
-			validationResult = IbanValidationResult.IllegalCharacters;
-			if (value == null)
-			{
-				return false;
-			}
 
 			// Although our validator normalizes too, we can't rely on this fact if other implementations
 			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
 			// represents the IBAN value, we normalize inline here and take the penalty.
 			string normalizedValue = value.StripWhitespaceOrNull();
 			ValidationResult result = Validator.Validate(normalizedValue);
+			validationResult = result.Result;
 			if (result.Result == IbanValidationResult.Valid)
 			{
 				iban = new Iban(normalizedValue.ToUpperInvariant());
