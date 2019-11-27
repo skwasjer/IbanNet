@@ -54,7 +54,7 @@ namespace IbanNet
 				var countries = (IDictionary<string, CountryInfo>)((ICountryValidationSupport)sut).SupportedCountries;
 
 				// Act
-				Action act = () => countries.Add("key", new CountryInfo());
+				Action act = () => countries.Add("key", new CountryInfo("ZZ"));
 
 				// Assert
 				act.Should()

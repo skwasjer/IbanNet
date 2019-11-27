@@ -62,6 +62,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid country code. must be exactly two characters long..
+        /// </summary>
+        internal static string ArgumentException_Invalid_country_code {
+            get {
+                return ResourceManager.GetString("ArgumentException_Invalid_country_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Provide the registry..
         /// </summary>
         internal static string ArgumentException_Registry_is_required {

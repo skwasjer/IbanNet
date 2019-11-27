@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace IbanNet.Registry
 {
@@ -12,40 +13,46 @@ namespace IbanNet.Registry
 	[DebuggerStepThrough]
 	public class CountryInfo
 	{
-		internal CountryInfo()
-		{
-			//
-		}
+		private string? _displayName;
+		private BbanStructure? _bbanStructure;
+		private IbanStructure? _ibanStructure;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CountryInfo"/> class using specified 2 letter ISO region name.
 		/// </summary>
-		/// <param name="name">The 2 letter iso region name.</param>
-		public CountryInfo(string name)
+		/// <param name="twoLetterISORegionName">The 2 letter iso region name.</param>
+		// ReSharper disable once InconsistentNaming
+		public CountryInfo(string twoLetterISORegionName)
 		{
-			if (name == null)
+			if (twoLetterISORegionName == null)
 			{
-				throw new ArgumentNullException(nameof(name));
+				throw new ArgumentNullException(nameof(twoLetterISORegionName));
 			}
 
-			if (name.Length != 2)
+			if (twoLetterISORegionName.Length != 2)
 			{
-				throw new ArgumentOutOfRangeException(nameof(name), "Invalid country code. must be exactly two characters long.");
+				// TODO: breaking change, wrong exception, should just be ArgumentException.
+				throw new ArgumentOutOfRangeException(nameof(twoLetterISORegionName), Resources.ArgumentException_Invalid_country_code);
 			}
 
-			TwoLetterISORegionName = name.ToUpperInvariant();
+			TwoLetterISORegionName = twoLetterISORegionName.ToUpperInvariant();
+			EnglishName = TwoLetterISORegionName;
 		}
 
 		/// <summary>
 		/// Gets or sets the country code.
 		/// </summary>
 		// ReSharper disable once InconsistentNaming
-		public string TwoLetterISORegionName { get; internal set; }
+		public string TwoLetterISORegionName { get; }
 
 		/// <summary>
 		/// Gets or sets the display name.
 		/// </summary>
-		public string DisplayName { get; set; }
+		public string DisplayName
+		{
+			get => _displayName ?? EnglishName;
+			set => _displayName = value;
+		}
 
 		/// <summary>
 		/// Gets or sets the English name.
@@ -60,22 +67,32 @@ namespace IbanNet.Registry
 		/// <summary>
 		/// Gets SEPA information.
 		/// </summary>
-		public SepaInfo Sepa { get; set; }
+		public SepaInfo? Sepa { get; set; }
 
 		/// <summary>
 		/// Gets or sets a domestic account number example.
 		/// </summary>
-		public string DomesticAccountNumberExample { get; set; }
+		public string? DomesticAccountNumberExample { get; set; }
 
 		/// <summary>
 		/// Gets or sets the structure of the BBAN.
 		/// </summary>
-		public BbanStructure Bban { get; set; }
+		[AllowNull]
+		public BbanStructure Bban
+		{
+			get => _bbanStructure ??= new BbanStructure();
+			set => _bbanStructure = value;
+		}
 
 		/// <summary>
 		/// Gets or sets the structure of the IBAN.
 		/// </summary>
-		public IbanStructure Iban { get; set; }
+		[AllowNull]
+		public IbanStructure Iban
+		{
+			get => _ibanStructure ??= new IbanStructure();
+			set => _ibanStructure = value;
+		}
 
 		/// <summary>
 		/// Gets or sets when this <see cref="CountryInfo"/> was last updated in the Iban Registry.

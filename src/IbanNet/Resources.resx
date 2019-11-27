@@ -113,4 +113,7 @@
     <data name="ArgumentException_ValidationMethod_is_required" xml:space="preserve">
         <value>Provide the validation method.</value>
     </data>
+    <data name="ArgumentException_Invalid_country_code" xml:space="preserve">
+        <value>Invalid country code. must be exactly two characters long.</value>
+    </data>
 </root>
