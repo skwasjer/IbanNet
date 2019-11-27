@@ -8,7 +8,7 @@
 		/// <inheritdoc />
 		public void Validate(ValidationContext context, string iban)
 		{
-			if (iban.Length != context.Country.Iban.Length)
+			if (context.Country == null || iban.Length != context.Country.Iban.Length)
 			{
 				context.Result = IbanValidationResult.InvalidLength;
 			}

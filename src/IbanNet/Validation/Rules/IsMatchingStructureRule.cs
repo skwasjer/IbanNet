@@ -17,6 +17,12 @@ namespace IbanNet.Validation.Rules
 		/// <inheritdoc />
 		public void Validate(ValidationContext context, string iban)
 		{
+			if (context.Country is null)
+			{
+				context.Result = IbanValidationResult.InvalidStructure;
+				return;
+			}
+
 			IStructureValidator validator = _structureValidationFactory.CreateValidator(
 				context.Country.TwoLetterISORegionName,
 				context.Country.Iban.Structure

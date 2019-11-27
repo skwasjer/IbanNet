@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using IbanNet.Extensions;
 
 namespace IbanNet
@@ -87,14 +87,14 @@ namespace IbanNet
 		/// <returns>an <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully</returns>
 		/// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="value"/> is null.</exception>
 		/// <exception cref="IbanFormatException">Thrown when the specified <paramref name="value"/> is not a valid IBAN.</exception>
-		public static Iban Parse(string value)
+		public static Iban Parse(string? value)
 		{
 			if (value == null)
 			{
 				throw new ArgumentNullException(nameof(value));
 			}
 
-			if (TryParse(value, out Iban iban, out IbanValidationResult validationResult))
+			if (TryParse(value, out Iban? iban, out IbanValidationResult validationResult))
 			{
 				return iban;
 			}
@@ -108,7 +108,7 @@ namespace IbanNet
 		/// <param name="value">The IBAN value to parse.</param>
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		public static bool TryParse(string value, out Iban iban)
+		public static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
 			return TryParse(value, out iban, out IbanValidationResult _);
 		}
@@ -120,19 +120,19 @@ namespace IbanNet
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <param name="validationResult">The validation result.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		internal static bool TryParse(string value, out Iban iban, out IbanValidationResult validationResult)
+		internal static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban, out IbanValidationResult validationResult)
 		{
 			iban = null;
 
 			// Although our validator normalizes too, we can't rely on this fact if other implementations
 			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
 			// represents the IBAN value, we normalize inline here and take the penalty.
-			string normalizedValue = value.StripWhitespaceOrNull();
+			string? normalizedValue = value.StripWhitespaceOrNull();
 			ValidationResult result = Validator.Validate(normalizedValue);
 			validationResult = result.Result;
 			if (result.Result == IbanValidationResult.Valid)
 			{
-				iban = new Iban(normalizedValue.ToUpperInvariant());
+				iban = new Iban(normalizedValue!.ToUpperInvariant());
 				return true;
 			}
 

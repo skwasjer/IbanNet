@@ -16,7 +16,7 @@ namespace IbanNet.Registry
 
 			// Assert
 			act.Should().Throw<ArgumentOutOfRangeException>()
-				.Which.ParamName.Should().Be("name");
+				.Which.ParamName.Should().Be("twoLetterISORegionName");
 		}
 
 		[Test]

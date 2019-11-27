@@ -20,11 +20,11 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the validated IBAN.
 		/// </summary>
-		public string Value { get; set; }
+		public string? Value { get; set; }
 
 		/// <summary>
 		/// Gets the country info that matches the iban, if any.
 		/// </summary>
-		public CountryInfo Country { get; set; }
+		public CountryInfo? Country { get; set; }
 	}
 }

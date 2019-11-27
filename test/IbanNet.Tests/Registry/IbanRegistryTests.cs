@@ -25,9 +25,8 @@ namespace IbanNet.Registry
 		private static IEnumerable GetExpectedDefinitions()
 		{
 			yield return new TestCaseData(
-				new CountryInfo
+				new CountryInfo("AD")
 				{
-					TwoLetterISORegionName = "AD",
 					DisplayName = "Andorra",
 					EnglishName = "Andorra",
 					Bban = new BbanStructure
@@ -70,9 +69,8 @@ namespace IbanNet.Registry
 			;
 
 			yield return new TestCaseData(
-				new CountryInfo
+				new CountryInfo("XK")
 				{
-					TwoLetterISORegionName = "XK",
 					DisplayName = "Kosovo",
 					EnglishName = "Kosovo",
 					Bban = new BbanStructure

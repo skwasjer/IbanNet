@@ -15,8 +15,8 @@ namespace IbanNet.Validation.Rules
 		public bool IsValid => Result == IbanValidationResult.Valid;
 
 		/// <summary>
-		/// Gets the country info that matches the iban, if any.
+		/// Gets or sets the country info that matches the iban, if any.
 		/// </summary>
-		public CountryInfo Country { get; set; }
+		public CountryInfo? Country { get; set; }
 	}
 }
