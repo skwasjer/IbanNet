@@ -13,8 +13,11 @@ namespace IbanNet.Registry
 	[DebuggerStepThrough]
 	public class CountryInfo
 	{
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private string? _displayName;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private BbanStructure? _bbanStructure;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private IbanStructure? _ibanStructure;
 
 		/// <summary>
