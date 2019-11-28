@@ -34,7 +34,7 @@ namespace IbanNet
 				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
 				ex.Result.Should().BeEquivalentTo(new ValidationResult
 				{
-					Result = new IllegalCharactersResult(),
+					Error = new IllegalCharactersResult(),
 					Value = TestValues.InvalidIban
 				});
 				ex.InnerException.Should().BeNull();
@@ -67,7 +67,7 @@ namespace IbanNet
 				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
 				ex.Result.Should().BeEquivalentTo(new ValidationResult
 				{
-					Result = new ErrorResult("Custom message"),
+					Error = new ErrorResult("Custom message"),
 					Value = TestValues.IbanForCustomRuleFailure
 				});
 				ex.InnerException.Should().BeNull();

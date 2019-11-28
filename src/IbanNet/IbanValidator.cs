@@ -90,22 +90,22 @@ namespace IbanNet
 			string valueToValidate = normalizedIban ?? string.Empty;
 			var context = new ValidationRuleContext(GetMatchingCountry(valueToValidate));
 
-			ValidationRuleResult ruleResult = ValidationRuleResult.Success;
+			var validationResult = new ValidationResult
+			{
+				Value = normalizedIban?.ToUpperInvariant(),
+				Country = context.Country
+			};
+
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				ruleResult = rule.Validate(context, valueToValidate);
-				if (!Equals(ruleResult, ValidationRuleResult.Success))
+				validationResult.Error = rule.Validate(context, valueToValidate) as ErrorResult;
+				if (!validationResult.IsValid)
 				{
 					break;
 				}
 			}
 
-			return new ValidationResult
-			{
-				Value = normalizedIban?.ToUpperInvariant(),
-				Result = ruleResult,
-				Country = context.Country
-			};
+			return validationResult;
 		}
 
 		private void InitRegistry()

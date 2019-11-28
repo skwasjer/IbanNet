@@ -9,14 +9,9 @@ namespace IbanNet
 	public class ValidationResult
 	{
 		/// <summary>
-		/// <see cref="ValidationRuleResult.Success"/> if validation succeeded. Otherwise, indicates the reason of failure.
-		/// </summary>
-		public ValidationRuleResult Result { get; set; } = ValidationRuleResult.Success;
-
-		/// <summary>
 		/// Gets whether validation is successful.
 		/// </summary>
-		public bool IsValid => Equals(Result, ValidationRuleResult.Success);
+		public bool IsValid => Error is null;
 
 		/// <summary>
 		/// Gets the validated IBAN.
@@ -27,5 +22,10 @@ namespace IbanNet
 		/// Gets the country info that matches the iban, if any.
 		/// </summary>
 		public CountryInfo? Country { get; set; }
+
+		/// <summary>
+		/// Gets the error that occurred, if any.
+		/// </summary>
+		public ErrorResult? Error { get; set; }
 	}
 }

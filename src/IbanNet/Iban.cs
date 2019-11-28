@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using IbanNet.Extensions;
-using IbanNet.Validation.Results;
 
 namespace IbanNet
 {
@@ -100,9 +99,9 @@ namespace IbanNet
 				return iban;
 			}
 
-			string errorMessage = !(validationResult?.Result is ErrorResult errorResult) || string.IsNullOrEmpty(errorResult.ErrorMessage)
+			string errorMessage = string.IsNullOrEmpty(validationResult?.Error?.ErrorMessage)
 				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
-				: errorResult.ErrorMessage;
+				: validationResult!.Error!.ErrorMessage;
 
 			if (exceptionThrown != null)
 			{
