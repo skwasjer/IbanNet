@@ -34,8 +34,7 @@ namespace IbanNet.Registry
 
 			if (twoLetterISORegionName.Length != 2)
 			{
-				// TODO: breaking change, wrong exception, should just be ArgumentException.
-				throw new ArgumentOutOfRangeException(nameof(twoLetterISORegionName), Resources.ArgumentException_Invalid_country_code);
+				throw new ArgumentException(Resources.ArgumentException_Invalid_country_code, nameof(twoLetterISORegionName));
 			}
 
 			TwoLetterISORegionName = twoLetterISORegionName.ToUpperInvariant();

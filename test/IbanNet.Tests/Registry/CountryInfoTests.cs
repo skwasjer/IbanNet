@@ -6,6 +6,7 @@ namespace IbanNet.Registry
 {
 	public class CountryInfoTests
 	{
+		[TestCase(null)]
 		[TestCase("")]
 		[TestCase("N")]
 		[TestCase("NLD")]
@@ -15,7 +16,7 @@ namespace IbanNet.Registry
 			Action act = () => new CountryInfo(countryCode);
 
 			// Assert
-			act.Should().Throw<ArgumentOutOfRangeException>()
+			act.Should().Throw<ArgumentException>()
 				.Which.ParamName.Should().Be("twoLetterISORegionName");
 		}
 
