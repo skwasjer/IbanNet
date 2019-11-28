@@ -28,7 +28,7 @@ namespace IbanNet.CheckDigits.Calculators
 
 			void AddToCurrent()
 			{
-				current = current * (ulong)Math.Pow(10, digits) + intermediate;
+				current = current * (ulong)Power(10, digits) + intermediate;
 			}
 
 			// ReSharper disable once ForCanBeConvertedToForeach - justification : performance
@@ -72,6 +72,26 @@ namespace IbanNet.CheckDigits.Calculators
 			}
 
 			return (int)(current % 97);
+		}
+
+		private static long Power(long @base, int exponent)
+		{
+			long result = 1L;
+			while (exponent > 0)
+			{
+				if ((exponent & 1) == 0)
+				{
+					@base *= @base;
+					exponent >>= 1;
+				}
+				else
+				{
+					result *= @base;
+					--exponent;
+				}
+			}
+
+			return result;
 		}
 	}
 }
