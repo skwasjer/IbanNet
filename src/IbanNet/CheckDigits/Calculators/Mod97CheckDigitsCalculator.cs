@@ -18,6 +18,19 @@ namespace IbanNet.CheckDigits.Calculators
 			}
 
 			var current = new BigInteger();
+
+			// 'intermediate' is only used for math up until we reach 18 or more digits (before overflow).
+			// Then, we shift 'current' n 'digits' to left (in base 10) and add 'intermediate' to it.
+			// This means we can do most math using ulong, instead of with slower BigInteger.
+			const int maxDigits = 18;
+			int digits = 0;
+			ulong intermediate = 0;
+
+			void AddToCurrent()
+			{
+				current = current * (ulong)Math.Pow(10, digits) + intermediate;
+			}
+
 			// ReSharper disable once ForCanBeConvertedToForeach - justification : performance
 			for (int i = 0; i < value.Length; i++)
 			{
@@ -26,7 +39,8 @@ namespace IbanNet.CheckDigits.Calculators
 				{
 					// - Shift by 1 digit
 					// - Subtract '0' to get value 0, 1, 2.
-					current = current * 10 + c - '0';
+					intermediate = intermediate * 10 + c - '0';
+					digits++;
 				}
 				else if (c.IsAsciiLetter())
 				{
@@ -34,12 +48,27 @@ namespace IbanNet.CheckDigits.Calculators
 					// - Use bitwise OR with ' ' (space, 0x20) to convert char to lowercase.
 					// - Then subtract 'a' to get value 0, 1, 2, etc.
 					// - Last, add 10 so: - a = 10, b = 11, c = 12, etc.
-					current = current * 100 + (c | ' ') - 'a' + 10;
+					intermediate = intermediate * 100 + (uint)(c | ' ') - 'a' + 10;
+					digits += 2;
 				}
 				else
 				{
 					throw new InvalidTokenException(i, c);
 				}
+
+				// Once we reach threshold, store intermediate and reset.
+				if (digits >= maxDigits)
+				{
+					AddToCurrent();
+					intermediate = 0;
+					digits = 0;
+				}
+			}
+
+			// Add remainder.
+			if (digits > 0)
+			{
+				AddToCurrent();
 			}
 
 			return (int)(current % 97);
