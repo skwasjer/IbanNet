@@ -34,7 +34,7 @@ namespace IbanNet.DataAnnotations
 
 			IIbanValidator ibanValidator = GetValidator(validationContext);
 			ValidationResult result = ibanValidator.Validate(strValue);
-			if (Equals(result.Result, ValidationRuleResult.Success))
+			if (result.IsValid)
 			{
 				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}
