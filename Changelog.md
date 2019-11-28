@@ -2,14 +2,16 @@
 
 ## v4.0.0-betaXX
 
-- Performance improvements
+- Performance improvements (up to 10x faster at around 500ns per validation, and lower memory footprint)
 - (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs fast), extensibility through custom rules.
 - (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
-- Exposing `IIbanValidationRule` allowing custom validation rules.
+- (breaking) `ValidationResult` now contains `Error`-property containing the error that occurred.
+- Exposing `IIbanValidationRule` allowing custom validation rules. Note that this now also opens up possibility of exceptions being thrown in poorly written rules, beyond control of IbanNet.
 - Added .NET Standard 2.1 target, enabled and refactored for nullable reference types.
 - (breaking) Remove deprecated TypeConverter facade.
 - (breaking) Remove deprecated ctor (accepting `Lazy`)
 - Added `ICheckDigitsCalculator` abstraction, with currently a single implementation (`Mod97CheckDigitsCalculator`).
+- (breaking) `IbanValidator.SupportedCountries` now is a dictionary, allowing looking by country code.
 
 ## v3.2.0
 
