@@ -44,7 +44,7 @@ namespace IbanNet
 			public void When_getting_it_should_match_default_registry()
 			{
 				// Act
-				IEnumerable<CountryInfo> actual = new IbanValidator().SupportedCountries;
+				IEnumerable<CountryInfo> actual = new IbanValidator().SupportedCountries.Values;
 
 				// Assert
 				actual.Should().BeEquivalentTo(new IbanRegistry());
@@ -54,7 +54,7 @@ namespace IbanNet
 			public void When_casting_readonly_countries_to_dictionary_it_should_not_be_able_to_add()
 			{
 				var sut = new IbanValidator();
-				var countries = (IDictionary<string, CountryInfo>)((ICountryValidationSupport)sut).SupportedCountries;
+				var countries = (IDictionary<string, CountryInfo>)sut.SupportedCountries;
 
 				// Act
 				Action act = () => countries.Add("key", new CountryInfo("ZZ"));
@@ -69,7 +69,6 @@ namespace IbanNet
 		public class Given_custom_rule_is_added : IbanValidatorTests
 		{
 			private IbanValidator _sut;
-			private ICountryValidationSupport _countryValidationSupport;
 			private Mock<IIbanValidationRule> _customValidationRuleMock;
 
 			[SetUp]
@@ -84,7 +83,6 @@ namespace IbanNet
 				{
 					Rules = { _customValidationRuleMock.Object }
 				});
-				_countryValidationSupport = _sut;
 			}
 
 			[Test]
@@ -138,7 +136,7 @@ namespace IbanNet
 					{
 						Value = iban,
 						Error = new ErrorResult(errorMessage),
-						Country = _countryValidationSupport.SupportedCountries["NL"]
+						Country = _sut.SupportedCountries["NL"]
 					});
 			}
 		}

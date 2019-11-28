@@ -13,7 +13,7 @@ namespace IbanNet
 	/// <summary>
 	/// Represents the default IBAN validator.
 	/// </summary>
-	public class IbanValidator : IIbanValidator, ICountryValidationSupport
+	public class IbanValidator : IIbanValidator
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly Func<IReadOnlyCollection<CountryInfo>> _registryBuilder;
@@ -21,6 +21,7 @@ namespace IbanNet
 		private readonly List<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private Dictionary<string, CountryInfo>? _structures;
 
 		/// <summary>
@@ -61,13 +62,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		// TODO: v4, change to dictionary for faster lookup.
-		public IEnumerable<CountryInfo> SupportedCountries => ((ICountryValidationSupport)this).SupportedCountries.Values;
-
-		/// <summary>
-		/// Gets the supported countries.
-		/// </summary>
-		IReadOnlyDictionary<string, CountryInfo> ICountryValidationSupport.SupportedCountries
+		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries
 		{
 			get
 			{

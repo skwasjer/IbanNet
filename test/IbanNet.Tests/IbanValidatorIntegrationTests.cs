@@ -8,12 +8,10 @@ namespace IbanNet
 	internal abstract class IbanValidatorIntegrationTests
 	{
 		protected readonly IbanValidator Validator;
-		protected readonly ICountryValidationSupport CountryValidationSupport;
 
 		protected IbanValidatorIntegrationTests(IbanValidator validator)
 		{
 			Validator = validator;
-			CountryValidationSupport = validator;
 		}
 
 		[Test]
@@ -41,7 +39,7 @@ namespace IbanNet
 			{
 				Value = ibanWithIllegalChars,
 				Error = new IllegalCharactersResult(),
-				Country = CountryValidationSupport.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)]
+				Country = Validator.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)]
 			});
 		}
 
@@ -74,7 +72,7 @@ namespace IbanNet
 			{
 				Value = ibanWithInvalidChecksum,
 				Error = new IllegalCharactersResult(),
-				Country = CountryValidationSupport.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)]
+				Country = Validator.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)]
 			});
 		}
 
@@ -93,7 +91,7 @@ namespace IbanNet
 			{
 				Value = ibanWithIncorrectLength,
 				Error = new InvalidLengthResult(),
-				Country = CountryValidationSupport.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
+				Country = Validator.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
 			});
 		}
 
@@ -124,7 +122,7 @@ namespace IbanNet
 			{
 				Value = tamperedIban,
 				Error = new InvalidCheckDigitsResult(),
-				Country = CountryValidationSupport.SupportedCountries[tamperedIban.Substring(0, 2)]
+				Country = Validator.SupportedCountries[tamperedIban.Substring(0, 2)]
 			});
 		}
 
@@ -140,7 +138,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithWhitespace.StripWhitespaceOrNull(),
-				Country = CountryValidationSupport.SupportedCountries["NL"]
+				Country = Validator.SupportedCountries["NL"]
 			});
 		}
 
@@ -150,7 +148,7 @@ namespace IbanNet
 			var expectedResult = new ValidationResult
 			{
 				Value = iban,
-				Country = CountryValidationSupport.SupportedCountries[iban.Substring(0, 2)]
+				Country = Validator.SupportedCountries[iban.Substring(0, 2)]
 			};
 
 			// Act
