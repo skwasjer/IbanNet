@@ -6,7 +6,7 @@ namespace IbanNet.Validation.Rules
 	/// <summary>
 	/// Asserts that the IBAN does not contain any illegal characters.
 	/// </summary>
-	internal class NoIllegalCharactersRule : IIbanValidationRule
+	internal sealed class NoIllegalCharactersRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)

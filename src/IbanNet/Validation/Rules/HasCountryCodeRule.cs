@@ -6,7 +6,7 @@ namespace IbanNet.Validation.Rules
 	/// <summary>
 	/// Asserts that the IBAN has a country code but does not check the validity of the country code itself.
 	/// </summary>
-	internal class HasCountryCodeRule : IIbanValidationRule
+	internal sealed class HasCountryCodeRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)

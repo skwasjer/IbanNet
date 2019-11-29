@@ -5,7 +5,7 @@ namespace IbanNet.Validation.Rules
 	/// <summary>
 	/// Asserts that the IBAN has the correct length as defined for its country.
 	/// </summary>
-	internal class IsValidLengthRule : IIbanValidationRule
+	internal sealed class IsValidLengthRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)

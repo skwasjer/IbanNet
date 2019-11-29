@@ -5,7 +5,7 @@ namespace IbanNet.Validation.Rules
 	/// <summary>
 	/// Asserts that the IBAN checksum digits are not 00, 01 or 99.
 	/// </summary>
-	internal class HasIbanChecksumRule : IIbanValidationRule
+	internal sealed class HasIbanChecksumRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)

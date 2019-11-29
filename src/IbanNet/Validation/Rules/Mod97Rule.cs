@@ -7,7 +7,7 @@ namespace IbanNet.Validation.Rules
 	/// <summary>
 	/// Asserts that the check digits are valid.
 	/// </summary>
-	internal class Mod97Rule : IIbanValidationRule
+	internal sealed class Mod97Rule : IIbanValidationRule
 	{
 		private const int ExpectedCheckDigit = 1;
 

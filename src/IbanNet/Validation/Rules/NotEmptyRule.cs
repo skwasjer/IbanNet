@@ -3,9 +3,9 @@
 namespace IbanNet.Validation.Rules
 {
 	/// <summary>
-	/// Asserts that the IBAN is not an null/empty value.
+	/// Asserts that the IBAN is not an empty value.
 	/// </summary>
-	internal sealed class NotNullOrEmptyRule : IIbanValidationRule
+	internal sealed class NotEmptyRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)

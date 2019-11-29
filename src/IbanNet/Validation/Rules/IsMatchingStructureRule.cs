@@ -6,7 +6,7 @@ namespace IbanNet.Validation.Rules
 	/// <summary>
 	/// Asserts that the IBAN is matching the structure defined for a specific country.
 	/// </summary>
-	internal class IsMatchingStructureRule : IIbanValidationRule
+	internal sealed class IsMatchingStructureRule : IIbanValidationRule
 	{
 		private readonly IStructureValidationFactory _structureValidationFactory;
 
