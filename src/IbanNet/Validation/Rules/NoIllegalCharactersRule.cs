@@ -3,8 +3,12 @@ using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
+	/// <summary>
+	/// Asserts that the IBAN does not contain any illegal characters.
+	/// </summary>
 	internal class NoIllegalCharactersRule : IIbanValidationRule
 	{
+		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
 			string iban = context.Value;
