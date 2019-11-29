@@ -14,8 +14,13 @@ namespace IbanNet.Validation.Rules
 		private readonly ICheckDigitsCalculator _checkDigitsCalculator;
 
 		public Mod97Rule()
+			: this(new Mod97CheckDigitsCalculator())
 		{
-			_checkDigitsCalculator = new Mod97CheckDigitsCalculator();
+		}
+
+		internal Mod97Rule(ICheckDigitsCalculator calculator)
+		{
+			_checkDigitsCalculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
 		}
 
 		/// <inheritdoc />
