@@ -3,6 +3,7 @@
 [Package installation](../../README.md)
 
 ## Parsing an IBAN
+
 The simplest way to use this library is to use the static `Iban.Parse` method:
 
 ```csharp
@@ -23,6 +24,7 @@ bool success = Iban.TryParse("NL91 ABNA 0417 1643 00", out iban);
 The only downside is there is no way to retrieve the type of validation error that occurred if parsing fails.
 
 ### Formatting an IBAN
+
 To convert an `Iban` type to a string, call the `ToString(string format)` method with either of 2 formats:
 
 - `IbanNet.Iban.Formats.Flat` (default)
@@ -55,7 +57,7 @@ Debug.WriteLine(iban1 == iban3); // False
 
 ### Mocking the static Parse/TryParse methods
 
-If you use the static methods because you would like to use the Iban type, you can mock the underlying validator for testing purposes by setting the static property `Iban.Validator`. 
+If you use the static methods because you would like to use the Iban type, you can mock the underlying validator for testing purposes by setting the static property `Iban.Validator`.
 
 > Take caution in that setting a static singleton is inherently problematic, for instance in unit tests that are run in parallel.
 
@@ -68,11 +70,13 @@ You can also use the validator directly. The benefit of using the validator is t
 ```csharp
 IIbanValidator validator = new IbanValidator();
 ValidationResult validationResult = validator.Validate("NL91ABNA041716430");
-if (validationResult.IsValid) {
-  // For example:
-  if (validationResult.Country.TwoLetterISORegionName != "NL") {
-    throw new InvalidOperationException("Please provide a Dutch bank account.");
-  }
+if (validationResult.IsValid)
+{
+    // For example:
+    if (validationResult.Country.TwoLetterISORegionName != "NL")
+    {
+        throw new InvalidOperationException("Please provide a Dutch bank account.");
+    }
 }
 ```
 
@@ -95,16 +99,10 @@ services.AddSingleton<IIbanValidator>(Iban.Validator);
 ## Requirements
 
 ### .NET target frameworks
+
+- .NET Standard 2.1
 - .NET Standard 2.0
 - .NET Standard 1.6
 - .NET Standard 1.2
 - .NET 4.7
 - .NET 4.5
-
-### Build requirements
-- Visual Studio 2017
-- .NET Core 2.1 SDK
-- .NET Core 2.0 SDK
-- .NET Core 1.1 SDK
-- .NET 4.7 targetting pack
-- .NET 4.5 targetting pack

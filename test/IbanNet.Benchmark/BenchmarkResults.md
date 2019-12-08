@@ -53,7 +53,6 @@ As the author of IbanNet, I can attest that code readability was given priority 
 |   IbanNet Fast | 2.273 us | 0.0095 us | 0.0079 us | 0.4349 |     - |     - |    2.7 KB |
 | IbanNet Strict | 2.473 us | 0.0027 us | 0.0022 us | 0.4692 |     - |     - |   2.89 KB |
 
-
 - Final optimization, replacing the regex that is used to remove whitespace with char buffer iteration.
 
 ### Environment

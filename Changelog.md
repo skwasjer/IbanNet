@@ -9,8 +9,8 @@
 - Exposing `IIbanValidationRule` allowing custom validation rules. Note that this now also opens up possibility of exceptions being thrown in poorly written rules, beyond control of IbanNet.
 - Added .NET Standard 2.1 target, enabled and refactored for nullable reference types.
 - (breaking) Remove deprecated TypeConverter facade.
-- (breaking) Remove deprecated ctor (accepting `Lazy`)
-- Added `ICheckDigitsCalculator` abstraction, with currently a single implementation (`Mod97CheckDigitsCalculator`).
+- (breaking) Remove deprecated ctor (accepting `Lazy`).
+- Added `ICheckDigitsCalculator` abstraction.
 - (breaking) `IbanValidator.SupportedCountries` now is a dictionary, allowing looking by country code.
 
 ## v3.2.0

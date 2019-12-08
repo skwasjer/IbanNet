@@ -7,70 +7,71 @@ Data Annotations support to validate IBAN user input with [IbanNet](../IbanNet/R
 ## Introduction
 
 For more detailed info please visit:
+
 - [Basic Introduction to Data Annotation in .Net Framework](https://code.msdn.microsoft.com/Basic-Introduction-to-Data-244734a4)
 - [System.ComponentModel.DataAnnotations Namespace](https://msdn.microsoft.com/en-US/library/System.ComponentModel.DataAnnotations.aspx)
 
 ## Usage
 
-### By property ####
+### By property
 
 ```csharp
 public class InputModel
-{	
-	[Iban]
-	public string BackAccountNumber { get; set; }
+{
+    [Iban]
+    public string BackAccountNumber { get; set; }
 }
 
 // MVC
 public class MyMvcController : Controller
 {
-	[HttpPost]
-	public ActionResult Save(InputModel model)
-	{
-		if (ModelState.IsValid)
-		{
-			// ..
-		}
-	}
+    [HttpPost]
+    public ActionResult Save(InputModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            // ..
+        }
+    }
 }
 
 // Web API
 public class MyWebApiController : ApiController
 {
-	[HttpPost]
-	public IHttpActionResult Save(InputModel model)
-	{
-		if (ModelState.IsValid)
-		{
-			// ..
-		}
-	}
+    [HttpPost]
+    public IHttpActionResult Save(InputModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            // ..
+        }
+    }
 }
 
 ```
 
-### By parameter ####
+### By parameter
 
 ```csharp
 public class MyController : Controller
 {
-	[HttpPost]
-	public ActionResult Save([Iban] string bankAccountNumber)
-	{
-		if (ModelState.IsValid)
-		{
-			// ..
-		}
-	}
+    [HttpPost]
+    public ActionResult Save([Iban] string bankAccountNumber)
+    {
+        if (ModelState.IsValid)
+        {
+            // ..
+        }
+    }
 }
 ```
 
 ## Dependency injection
 
-You can use your favorite DI provider to provide an [`IIbanValidator`](../IbanNet/IIbanValidator.cs) to the validation attribute, as long as `IServiceProvider.GetService(Type)` is implemented. 
+You can use your favorite DI provider to provide an [`IIbanValidator`](../IbanNet/IIbanValidator.cs) to the validation attribute, as long as `IServiceProvider.GetService(Type)` is implemented.
 If no instance of `IIbanValidator` is resolved from the DI container, the static `Iban.IbanValidator` property is used instead.
 
-### .NET Core example ###
+### .NET Core example
 
 ```csharp
 services.AddSingleton<IIbanValidator, IbanValidator>();
@@ -82,12 +83,12 @@ services.AddSingleton<IIbanValidator, IbanValidator>();
 
 Because the [`Iban`](../../README.md) type itself has `TypeConverter` support, it can also be directly used in an input model, negating the need for this library.
 
-#### Example ####
+#### Example
 
 ```csharp
 public class InputModel
-{	
-	public Iban BackAccountNumber { get; set; }
+{
+   public Iban BackAccountNumber { get; set; }
 }
 ```
 
@@ -99,16 +100,16 @@ However in this situation - when a validation error occurs - instead of graceful
 
 The `string` value can be mapped using an Object Mapper to an `Iban` type using [`Iban.Parse`](../../README.md#parse) or manually by providing an extra property:
 
-#### Example ####
+#### Example
 
 ```csharp
 public class InputModel
-{	
-	[Iban]
-	public string BackAccountNumber { get; set; }
+{
+    [Iban]
+    public string BackAccountNumber { get; set; }
 
-	[JsonIgnore]
-	internal Iban InternalBackAccountNumber => BackAccountNumber != null ? Iban.Parse(BackAccountNumber) : null;
+    [JsonIgnore]
+    internal Iban InternalBackAccountNumber => BackAccountNumber != null ? Iban.Parse(BackAccountNumber) : null;
 }
 ```
 
@@ -117,16 +118,10 @@ Because validation has already occurred, the `Parse` method should always succee
 ## Requirements
 
 ### .NET target frameworks
+
+- .NET Standard 2.1
 - .NET Standard 2.0
 - .NET Standard 1.6
 - .NET Standard 1.3
 - .NET 4.7
 - .NET 4.5
-
-### Build requirements
-- Visual Studio 2017
-- .NET Core 2.1 SDK
-- .NET Core 2.0 SDK
-- .NET Core 1.1 SDK
-- .NET 4.7 targetting pack
-- .NET 4.5 targetting pack

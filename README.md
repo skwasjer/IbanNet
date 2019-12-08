@@ -9,11 +9,15 @@ Install IbanNet via the Nuget package manager or `dotnet` cli.
 ```powershell
 Install-Package IbanNet
 ```
+
 For Data Annotation integration:
+
 ```powershell
 Install-Package IbanNet.DataAnnotations
 ```
+
 For FluentValidation integration:
+
 ```powershell
 Install-Package IbanNet.FluentValidation
 ```
@@ -35,11 +39,13 @@ Install-Package IbanNet.FluentValidation
 ```csharp
 IIbanValidator validator = new IbanValidator();
 ValidationResult validationResult = validator.Validate("NL91ABNA041716430");
-if (validationResult.IsValid) {
-  // For example:
-  if (validationResult.Country.TwoLetterISORegionName != "NL") {
-    throw new InvalidOperationException("Please provide a Dutch bank account.");
-  }
+if (validationResult.IsValid)
+{
+    // For example:
+    if (validationResult.Country.TwoLetterISORegionName != "NL")
+    {
+        throw new InvalidOperationException("Please provide a Dutch bank account.");
+    }
 }
 ```
 
@@ -51,9 +57,11 @@ bool success = Iban.TryParse("NL91 ABNA 0417 1643 00", out iban);
 ```
 
 ### Contributions
+
 PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.
 
 ### Contributors
+
 - skwas (author/maintainer)
 
 ### Useful info

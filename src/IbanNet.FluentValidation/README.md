@@ -12,11 +12,11 @@ This library provides a property validator for the [FluentValidation](https://fl
 
 Set up your rule.
 
-### Example ###
+### Example
 
 ```csharp
 public class InputModel
-{	
+{
     public string BackAccountNumber { get; set; }
 }
 ```
@@ -41,7 +41,7 @@ public class InputModelValidator : AbstractValidator<InputModel>
 
 You can use your favorite DI provider to provide an [`IIbanValidator`](../IbanNet/IIbanValidator.cs) to the validator.
 
-### .NET Core example ###
+### .NET Core example
 
 ```csharp
 services.AddSingleton<IIbanValidator, IbanValidator>();
@@ -56,16 +56,10 @@ services.AddFluentValidation();
 - FluentValidation 8.x
 
 ### .NET target frameworks
+
+- .NET Standard 2.1
 - .NET Standard 2.0
 - .NET Standard 1.6
 - .NET Standard 1.2
 - .NET 4.7
 - .NET 4.5
-
-### Build requirements
-- Visual Studio 2017
-- .NET Core 2.1 SDK
-- .NET Core 2.0 SDK
-- .NET Core 1.1 SDK
-- .NET 4.7 targetting pack
-- .NET 4.5 targetting pack
