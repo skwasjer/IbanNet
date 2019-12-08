@@ -1,7 +1,7 @@
 ﻿namespace IbanNet.Validation.Results
 {
 	/// <summary>
-	/// The IBAN has an incorrect length.
+	/// The result returned when the IBAN has an incorrect length.
 	/// </summary>
 	public class InvalidLengthResult : ErrorResult
 	{
