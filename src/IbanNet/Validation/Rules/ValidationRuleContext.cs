@@ -25,7 +25,7 @@ namespace IbanNet.Validation.Rules
 		public string Value { get; }
 
 		/// <summary>
-		/// Gets or sets the country info that applies to the IBAN, if any.
+		/// Gets the country info that applies to the IBAN, if any.
 		/// </summary>
 		public CountryInfo? Country { get; }
 	}
