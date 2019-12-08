@@ -66,10 +66,10 @@ namespace IbanNet
 					return string.Join(" ", segments);
 
 				case null:
-					throw new ArgumentNullException(nameof(format), string.Format(Resources.The_format_is_required_with_supported_formats, Formats.Flat, Formats.Partitioned));
+					throw new ArgumentNullException(nameof(format), string.Format(Resources.ArgumentException_The_format_is_required_with_supported_formats, Formats.Flat, Formats.Partitioned));
 
 				default:
-					throw new ArgumentException(string.Format(Resources.The_format_0_is_invalid_with_supported_formats, format, Formats.Flat, Formats.Partitioned), nameof(format));
+					throw new ArgumentException(string.Format(Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats, format, Formats.Flat, Formats.Partitioned), nameof(format));
 			}
 		}
 
@@ -100,7 +100,7 @@ namespace IbanNet
 			}
 
 			string errorMessage = validationResult?.Error == null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
-				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
+				? string.Format(Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
 				: validationResult.Error.ErrorMessage;
 
 			if (validationResult == null || exceptionThrown != null)

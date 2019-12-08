@@ -9,7 +9,7 @@
 		/// Initializes a new instance of the <see cref="InvalidLengthResult"/> class.
 		/// </summary>
 		public InvalidLengthResult()
-			: base("The IBAN has an incorrect length.")
+			: base(Resources.InvalidLengthResult)
 		{
 		}
 	}

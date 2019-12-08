@@ -9,7 +9,7 @@
 		/// Initializes a new instance of the <see cref="IllegalCharactersResult"/> class.
 		/// </summary>
 		public IllegalCharactersResult()
-			: base("The IBAN contains illegal characters.")
+			: base(Resources.IllegalCharactersResult)
 		{
 		}
 	}

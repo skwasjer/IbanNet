@@ -9,7 +9,7 @@
 		/// Initializes a new instance of the <see cref="InvalidStructureResult"/> class.
 		/// </summary>
 		public InvalidStructureResult()
-			: base("The structure of the IBAN is incorrect.")
+			: base(Resources.InvalidStructureResult)
 		{
 		}
 	}

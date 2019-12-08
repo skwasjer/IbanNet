@@ -9,7 +9,7 @@
 		/// Initializes a new instance of the <see cref="UnknownCountryCodeResult"/> class.
 		/// </summary>
 		public UnknownCountryCodeResult()
-			: base("The country code is unknown/not supported.")
+			: base(Resources.UnknownCountryCodeResult)
 		{
 		}
 	}

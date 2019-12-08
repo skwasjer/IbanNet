@@ -9,7 +9,7 @@
 		/// Initializes a new instance of the <see cref="InvalidCheckDigitsResult"/> class.
 		/// </summary>
 		public InvalidCheckDigitsResult()
-			: base("The IBAN check digits are incorrect.")
+			: base(Resources.InvalidCheckDigitsResult)
 		{
 		}
 	}

@@ -13,7 +13,7 @@ namespace IbanNet.CheckDigits.Calculators
 		/// <param name="position">The position in the string/char buffer where the unexpected character is located.</param>
 		/// <param name="unexpectedChar">The character that was not expected.</param>
 		public InvalidTokenException(int position, char unexpectedChar)
-			: this($"Expected alphanumeric character at position {position}, but found '{unexpectedChar}'.")
+			: this(string.Format(Resources.InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1, position, unexpectedChar))
 		{
 		}
 

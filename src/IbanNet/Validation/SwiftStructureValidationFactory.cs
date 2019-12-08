@@ -43,7 +43,7 @@ namespace IbanNet.Validation
 			char segmentType = structureSegment[structureSegment.Length - 1];
 			if (!SegmentMap.TryGetValue(segmentType, out Func<char, bool> characterTest))
 			{
-				throw new ArgumentException($"The structure segment '{structureSegment}' is invalid.", nameof(structureSegment));
+				throw new ArgumentException(string.Format(Resources.ArgumentException_The_structure_segment_0_is_invalid, structureSegment), nameof(structureSegment));
 			}
 
 			string lengthDescriptor = structureSegment.Substring(0, structureSegment.Length - 1);
