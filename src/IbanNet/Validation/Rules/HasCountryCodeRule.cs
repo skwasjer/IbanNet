@@ -15,7 +15,7 @@ namespace IbanNet.Validation.Rules
 			// First 2 chars must be a-z or A-Z.
 			if (iban.Length < 2 || !iban[0].IsAsciiLetter() || !iban[1].IsAsciiLetter())
 			{
-				return new IllegalCharactersResult();
+				return new IllegalCountryCodeCharactersResult();
 			}
 
 			return ValidationRuleResult.Success;

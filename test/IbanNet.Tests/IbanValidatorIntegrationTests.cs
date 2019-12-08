@@ -55,7 +55,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithIllegalCountryCode,
-				Error = new IllegalCharactersResult()
+				Error = new IllegalCountryCodeCharactersResult()
 			});
 		}
 

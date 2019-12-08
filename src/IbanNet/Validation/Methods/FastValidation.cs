@@ -13,8 +13,8 @@ namespace IbanNet.Validation.Methods
 		internal override IEnumerable<IIbanValidationRule> GetRules()
 		{
 			yield return new NotEmptyRule();
-			yield return new NoIllegalCharactersRule();
 			yield return new HasCountryCodeRule();
+			yield return new NoIllegalCharactersRule();
 			yield return new HasIbanChecksumRule();
 			yield return new IsValidCountryCodeRule();
 			yield return new IsValidLengthRule();

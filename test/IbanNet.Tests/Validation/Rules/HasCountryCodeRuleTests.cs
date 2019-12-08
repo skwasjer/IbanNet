@@ -21,7 +21,7 @@ namespace IbanNet.Validation.Rules
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value, null));
 
-			actual.Should().BeOfType<IllegalCharactersResult>();
+			actual.Should().BeOfType<IllegalCountryCodeCharactersResult>();
 		}
 
 		[Test]
