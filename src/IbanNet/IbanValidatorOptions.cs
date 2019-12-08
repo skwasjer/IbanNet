@@ -12,7 +12,7 @@ namespace IbanNet
 	public class IbanValidatorOptions
 	{
 		/// <summary>
-		/// Gets or sets the IBAN country registry builder.
+		/// Gets or sets the IBAN country registry builder. Defaults to a new <see cref="IbanRegistry"/>.
 		/// </summary>
 		public Func<IReadOnlyCollection<CountryInfo>> Registry { get; set; } = () => new IbanRegistry();
 
