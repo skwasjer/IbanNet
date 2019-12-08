@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
+using IbanNet.Validation.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -60,6 +61,16 @@ namespace IbanNet.DataAnnotations
 				// Assert
 				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
+
+			[Test]
+			public void It_should_not_set_error_item()
+			{
+				// Act
+				_sut.GetValidationResult(null, _validationContext);
+
+				// Assert
+				_validationContext.Items.Should().NotContainKey("Error");
+			}
 		}
 
 		public class When_validating_a_valid_iban : IbanAttributeTests
@@ -92,6 +103,16 @@ namespace IbanNet.DataAnnotations
 
 				// Assert
 				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
+			}
+
+			[Test]
+			public void It_should_not_set_error_item()
+			{
+				// Act
+				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+
+				// Assert
+				_validationContext.Items.Should().NotContainKey("Error");
 			}
 		}
 
@@ -156,6 +177,19 @@ namespace IbanNet.DataAnnotations
 						.NotBeNull()
 						.And.BeEquivalentTo(_validationContext.MemberName);
 				}
+			}
+
+			[Test]
+			public void It_should_set_error_item()
+			{
+				// Act
+				_sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+
+				// Assert
+				_validationContext.Items.Should()
+					.ContainKey("Error")
+					.WhichValue.Should()
+					.Be(new IllegalCharactersResult());
 			}
 
 			public class Given_context_with_member_name : When_validating_an_invalid_iban

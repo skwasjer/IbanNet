@@ -39,6 +39,8 @@ namespace IbanNet.DataAnnotations
 				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}
 
+			validationContext.Items.Add("Error", result.Error);
+
 			IEnumerable<string>? memberNames = null;
 			if (validationContext.MemberName != null)
 			{
