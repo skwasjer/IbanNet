@@ -3,6 +3,8 @@ using System.Linq;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
+using IbanNet.Registry;
+using IbanNet.Validation.Results;
 using NUnit.Framework;
 
 namespace IbanNet.FluentValidation
@@ -22,9 +24,11 @@ namespace IbanNet.FluentValidation
 			_testModel = new TestModel();
 		}
 
-		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetInvalidIbanPerCountry))]
-		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors(string countryCode, string attemptedIbanValue)
+		[Test]
+		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors()
 		{
+			CountryInfo country = new IbanRegistry().First();
+			string attemptedIbanValue = country.Iban.Example + "Z"; // Add some char to make invalid.
 			_testModel.BankAccountNumber = attemptedIbanValue;
 
 			const string expectedFormattedPropertyName = "Bank Account Number";
@@ -36,7 +40,8 @@ namespace IbanNet.FluentValidation
 				FormattedMessagePlaceholderValues = new Dictionary<string, object>
 				{
 					{ "PropertyName", expectedFormattedPropertyName },
-					{ "PropertyValue", attemptedIbanValue }
+					{ "PropertyValue", attemptedIbanValue },
+					{ "Error", new InvalidLengthResult() }
 				}
 			};
 
@@ -51,10 +56,11 @@ namespace IbanNet.FluentValidation
 				.Should().BeEquivalentTo(expectedValidationFailure);
 		}
 
-		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetValidIbanPerCountry))]
-		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string countryCode, string attemptedIbanValue)
+		[Test]
+		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors()
 		{
-			_testModel.BankAccountNumber = attemptedIbanValue;
+			CountryInfo country = new IbanRegistry().First();
+			_testModel.BankAccountNumber = country.Iban.Example;
 
 			// Act
 			var actual = _sut.Validate(_testModel);
