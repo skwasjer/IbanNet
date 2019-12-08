@@ -12,7 +12,7 @@ namespace IbanNet.Benchmark
 	[MemoryDiagnoser]
 	public class RunOnce
 	{
-		private IIbanValidator _strictValidator, _fastValidator;
+		private IIbanValidator _strictValidator, _looseValidator;
 		private IList<string> _testData;
 
 		[GlobalSetup]
@@ -20,10 +20,7 @@ namespace IbanNet.Benchmark
 		{
 			// IbanNet setup
 			_strictValidator = new IbanValidator();
-			_fastValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = new FastValidation() });
-
-			// IbanValidation setup
-			new IbanValidation.IbanValidator();
+			_looseValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = new LooseValidation() });
 
 			_testData = TestSamples.GetIbanSamples(1);
 		}
@@ -33,7 +30,7 @@ namespace IbanNet.Benchmark
 			get
 			{
 				yield return new ValidatorCase("IbanNet Strict", s => _strictValidator.Validate(s));
-				yield return new ValidatorCase("IbanNet Fast", s => _fastValidator.Validate(s));
+				yield return new ValidatorCase("IbanNet Loose", s => _looseValidator.Validate(s));
 			}
 		}
 

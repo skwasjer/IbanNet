@@ -13,7 +13,7 @@ namespace IbanNet.Benchmark
 	[MemoryDiagnoser]
 	public class ValidatorBenchmark
 	{
-		private IIbanValidator _strictValidator, _fastValidator;
+		private IIbanValidator _strictValidator, _looseValidator;
 		private IbanValidation.IbanValidator _nugetIbanValidator;
 		private IList<string> _testData;
 
@@ -26,7 +26,7 @@ namespace IbanNet.Benchmark
 		{
 			// IbanNet setup
 			_strictValidator = new IbanValidator();
-			_fastValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = new FastValidation() });
+			_looseValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = new LooseValidation() });
 
 			_nugetIbanValidator = new IbanValidation.IbanValidator();
 
@@ -44,12 +44,12 @@ namespace IbanNet.Benchmark
 		}
 
 		[Benchmark]
-		public void IbanNet_Fast()
+		public void IbanNet_Loose()
 		{
 			// ReSharper disable once ForCanBeConvertedToForeach
 			for (int i = 0; i < _testData.Count; i++)
 			{
-				_fastValidator.Validate(_testData[i]);
+				_looseValidator.Validate(_testData[i]);
 			}
 		}
 

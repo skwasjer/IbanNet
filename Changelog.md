@@ -3,7 +3,7 @@
 ## v4.0.0-betaXX
 
 - Performance improvements (up to 10x faster at around 500ns per validation, and lower memory footprint)
-- (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs fast), extensibility through custom rules.
+- (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs loose), extensibility through custom rules.
 - (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
 - (breaking) `ValidationResult` now contains `Error`-property containing the error that occurred.
 - Exposing `IIbanValidationRule` allowing custom validation rules. Note that this now also opens up possibility of exceptions being thrown in poorly written rules, beyond control of IbanNet.
