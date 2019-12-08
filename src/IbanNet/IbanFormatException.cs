@@ -23,7 +23,7 @@ namespace IbanNet
 		/// </summary>
 		/// <param name="message">The error message.</param>
 		/// <param name="innerException">The inner exception.</param>
-		public IbanFormatException(string message, Exception innerException)
+		public IbanFormatException(string message, Exception? innerException)
 			: base(message, innerException)
 		{
 		}

@@ -99,16 +99,16 @@ namespace IbanNet
 				return iban;
 			}
 
-			string errorMessage = string.IsNullOrEmpty(validationResult?.Error?.ErrorMessage)
+			string errorMessage = validationResult?.Error == null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
 				? string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value)
-				: validationResult!.Error!.ErrorMessage;
+				: validationResult.Error.ErrorMessage;
 
-			if (exceptionThrown != null)
+			if (validationResult == null || exceptionThrown != null)
 			{
 				throw new IbanFormatException(errorMessage, exceptionThrown);
 			}
 
-			throw new IbanFormatException(errorMessage, validationResult!);
+			throw new IbanFormatException(errorMessage, validationResult);
 		}
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace IbanNet
 		internal static bool TryParse(
 			string? value,
 			[NotNullWhen(true)] out Iban? iban,
-			out ValidationResult? validationResult,
+			[MaybeNullWhen(false)] out ValidationResult? validationResult,
 			[MaybeNullWhen(false)] out Exception? exceptionThrown)
 		{
 			iban = null;
