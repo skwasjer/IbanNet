@@ -22,7 +22,7 @@ namespace IbanNet
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly object _lockObject = new object();
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private Dictionary<string, CountryInfo>? _structures;
+		private ReadOnlyDictionary<string, CountryInfo>? _registryDictionary;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
@@ -39,10 +39,7 @@ namespace IbanNet
 		// ReSharper disable once MemberCanBePrivate.Global
 		public IbanValidator(IbanValidatorOptions options)
 		{
-			if (options == null)
-			{
-				throw new ArgumentNullException(nameof(options));
-			}
+			Options = options ?? throw new ArgumentNullException(nameof(options));
 
 			if (options.ValidationMethod == null)
 			{
@@ -60,15 +57,27 @@ namespace IbanNet
 		}
 
 		/// <summary>
+		/// Gets the validator options.
+		/// </summary>
+		/// <remarks>The instance members should not be set/modified after creating the <see cref="IbanValidator"/>.</remarks>
+		public IbanValidatorOptions Options { get; }
+
+		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
 		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries
 		{
 			get
 			{
-				InitRegistry();
+				if (_registryDictionary != null)
+				{
+					return _registryDictionary;
+				}
 
-				return new ReadOnlyDictionary<string, CountryInfo>(_structures);
+				lock (_lockObject)
+				{
+					return _registryDictionary ??= new ReadOnlyDictionary<string, CountryInfo>(GetRegistry());
+				}
 			}
 		}
 
@@ -79,8 +88,6 @@ namespace IbanNet
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
 		public ValidationResult Validate(string? iban)
 		{
-			InitRegistry();
-
 			string? normalizedIban = iban.StripWhitespaceOrNull();
 			string valueToValidate = normalizedIban ?? string.Empty;
 
@@ -104,20 +111,12 @@ namespace IbanNet
 			return validationResult;
 		}
 
-		private void InitRegistry()
+		private IDictionary<string, CountryInfo> GetRegistry()
 		{
-			if (_structures != null)
-			{
-				return;
-			}
-
-			lock (_lockObject)
-			{
-				_structures ??= _registryBuilder()
-					.ToDictionary(
-						kvp => kvp.TwoLetterISORegionName
-					);
-			}
+			return _registryBuilder()
+				.ToDictionary(
+					kvp => kvp.TwoLetterISORegionName
+				);
 		}
 
 		private CountryInfo? GetMatchingCountry(string iban)
@@ -129,7 +128,7 @@ namespace IbanNet
 			}
 
 			// Note: This function can only be called once registry is initialized.
-			_structures!.TryGetValue(countryCode, out CountryInfo matchedCountry);
+			SupportedCountries.TryGetValue(countryCode, out CountryInfo matchedCountry);
 			return matchedCountry;
 		}
 

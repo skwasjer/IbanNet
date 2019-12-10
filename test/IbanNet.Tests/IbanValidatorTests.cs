@@ -66,6 +66,46 @@ namespace IbanNet
 			}
 		}
 
+		public class Given_validator : IbanValidatorTests
+		{
+			private IbanValidator _sut;
+
+			[SetUp]
+			public void SetUp()
+			{
+				_sut = new IbanValidator();
+			}
+
+			[Test]
+			public void When_validating_multiple_times_it_should_succeed()
+			{
+				const string iban = "NL91ABNA0417164300";
+
+				// Act
+				ValidationResult result1 = _sut.Validate(iban);
+				ValidationResult result2 = _sut.Validate(iban);
+
+				// Assert
+				result1.IsValid.Should().BeTrue();
+				result1.Should().BeEquivalentTo(result2);
+			}
+		}
+
+		public class Given_options : IbanValidatorTests
+		{
+			[Test]
+			public void It_should_set_property()
+			{
+				var opts = new IbanValidatorOptions();
+
+				// Act
+				var validator = new IbanValidator(opts);
+
+				// Assert
+				validator.Options.Should().BeSameAs(opts);
+			}
+		}
+
 		public class Given_custom_rule_is_added : IbanValidatorTests
 		{
 			private IbanValidator _sut;
