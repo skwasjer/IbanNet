@@ -16,7 +16,7 @@ namespace IbanNet
 	public class IbanValidator : IIbanValidator
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Func<IReadOnlyCollection<CountryInfo>> _registryBuilder;
+		private readonly Func<IEnumerable<CountryInfo>> _registryBuilder;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly List<IIbanValidationRule> _rules;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]

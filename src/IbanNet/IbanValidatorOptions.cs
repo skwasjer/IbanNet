@@ -14,7 +14,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets or sets the IBAN country registry builder. Defaults to a new <see cref="IbanRegistry"/>.
 		/// </summary>
-		public Func<IReadOnlyCollection<CountryInfo>> Registry { get; set; } = () => new IbanRegistry();
+		public Func<IEnumerable<CountryInfo>> Registry { get; set; } = () => new IbanRegistry();
 
 		/// <summary>
 		/// Gets or sets the validation method. Defaults to <see cref="StrictValidation"/>.
