@@ -14,15 +14,17 @@ namespace IbanNet
 			Validator = validator;
 		}
 
-		[Test]
-		public void When_validating_null_value_should_not_validate()
+		[TestCase(null)]
+		[TestCase("")]
+		public void When_validating_null_or_empty_value_should_not_validate(string iban)
 		{
 			// Act
-			ValidationResult actual = Validator.Validate(null);
+			ValidationResult actual = Validator.Validate(iban);
 
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
+				Value = iban,
 				Error = new InvalidLengthResult()
 			});
 		}
