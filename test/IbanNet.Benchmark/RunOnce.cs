@@ -20,7 +20,10 @@ namespace IbanNet.Benchmark
 		{
 			// IbanNet setup
 			_strictValidator = new IbanValidator();
-			_looseValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = new LooseValidation() });
+			_looseValidator = new IbanValidator(new IbanValidatorOptions
+			{
+				ValidationMethod = new LooseValidation()
+			});
 
 			_testData = TestSamples.GetIbanSamples(1);
 		}
