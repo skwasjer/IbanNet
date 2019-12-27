@@ -35,7 +35,7 @@ namespace IbanNet
 				ex.Result.Should().BeEquivalentTo(new ValidationResult
 				{
 					Error = new IllegalCharactersResult(),
-					Value = TestValues.InvalidIban
+					AttemptedValue = TestValues.InvalidIban
 				});
 				ex.InnerException.Should().BeNull();
 				ex.Message.Should().Be("The IBAN contains illegal characters.");
@@ -68,7 +68,7 @@ namespace IbanNet
 				ex.Result.Should().BeEquivalentTo(new ValidationResult
 				{
 					Error = new ErrorResult("Custom message"),
-					Value = TestValues.IbanForCustomRuleFailure
+					AttemptedValue = TestValues.IbanForCustomRuleFailure
 				});
 				ex.InnerException.Should().BeNull();
 				ex.Message.Should().Be("Custom message");

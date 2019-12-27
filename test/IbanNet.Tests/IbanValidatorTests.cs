@@ -174,7 +174,7 @@ namespace IbanNet
 				actual.Should()
 					.BeEquivalentTo(new ValidationResult
 					{
-						Value = iban,
+						AttemptedValue = iban,
 						Error = new ErrorResult(errorMessage),
 						Country = _sut.SupportedCountries["NL"]
 					});

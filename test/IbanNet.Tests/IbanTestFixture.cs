@@ -18,14 +18,14 @@ namespace IbanNet
 				.Setup(m => m.Validate(It.IsAny<string>()))
 				.Returns<string>(iban => new ValidationResult
 				{
-					Value = iban
+					AttemptedValue = iban
 				});
 
 			IbanValidatorMock
 				.Setup(m => m.Validate(null))
 				.Returns<string>(iban => new ValidationResult
 				{
-					Value = null,
+					AttemptedValue = null,
 					Error = new InvalidLengthResult()
 				});
 
@@ -33,7 +33,7 @@ namespace IbanNet
 				.Setup(m => m.Validate(TestValues.InvalidIban))
 				.Returns<string>(iban => new ValidationResult
 				{
-					Value = iban,
+					AttemptedValue = iban,
 					Error = new IllegalCharactersResult()
 				});
 
@@ -41,7 +41,7 @@ namespace IbanNet
 				.Setup(m => m.Validate(TestValues.IbanForCustomRuleFailure))
 				.Returns<string>(iban => new ValidationResult
 				{
-					Value = iban,
+					AttemptedValue = iban,
 					Error = new ErrorResult("Custom message")
 				});
 

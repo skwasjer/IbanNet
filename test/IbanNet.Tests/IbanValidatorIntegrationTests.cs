@@ -24,7 +24,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = iban,
+				AttemptedValue = iban,
 				Error = new InvalidLengthResult()
 			});
 		}
@@ -39,7 +39,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = ibanWithIllegalChars,
+				AttemptedValue = ibanWithIllegalChars,
 				Error = new IllegalCharactersResult()
 			});
 		}
@@ -55,7 +55,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = ibanWithIllegalCountryCode,
+				AttemptedValue = ibanWithIllegalCountryCode,
 				Error = new IllegalCountryCodeCharactersResult()
 			});
 		}
@@ -71,7 +71,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = ibanWithInvalidChecksum,
+				AttemptedValue = ibanWithInvalidChecksum,
 				Error = new IllegalCharactersResult()
 			});
 		}
@@ -89,7 +89,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = ibanWithIncorrectLength,
+				AttemptedValue = ibanWithIncorrectLength,
 				Error = new InvalidLengthResult(),
 				Country = Validator.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
 			});
@@ -105,7 +105,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = ibanWithUnknownCountryCode,
+				AttemptedValue = ibanWithUnknownCountryCode,
 				Error = new UnknownCountryCodeResult()
 			});
 		}
@@ -120,7 +120,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = tamperedIban,
+				AttemptedValue = tamperedIban,
 				Error = new InvalidCheckDigitsResult(),
 				Country = Validator.SupportedCountries[tamperedIban.Substring(0, 2)]
 			});
@@ -137,7 +137,7 @@ namespace IbanNet
 			// Assert
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
-				Value = ibanWithWhitespace.StripWhitespaceOrNull(),
+				AttemptedValue = ibanWithWhitespace.StripWhitespaceOrNull(),
 				Country = Validator.SupportedCountries["NL"]
 			});
 		}
@@ -147,7 +147,7 @@ namespace IbanNet
 		{
 			var expectedResult = new ValidationResult
 			{
-				Value = iban,
+				AttemptedValue = iban,
 				Country = Validator.SupportedCountries[iban.Substring(0, 2)]
 			};
 

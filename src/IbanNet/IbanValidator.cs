@@ -78,7 +78,7 @@ namespace IbanNet
 			var context = new ValidationRuleContext(valueToValidate);
 			var validationResult = new ValidationResult
 			{
-				Value = normalizedIban?.ToUpperInvariant()
+				AttemptedValue = normalizedIban?.ToUpperInvariant()
 			};
 
 			foreach (IIbanValidationRule rule in _rules)

@@ -14,9 +14,9 @@ namespace IbanNet
 		public bool IsValid => Error is null;
 
 		/// <summary>
-		/// Gets the validated IBAN.
+		/// Gets the IBAN value for which validation was attempted.
 		/// </summary>
-		public string? Value { get; set; }
+		public string? AttemptedValue { get; set; }
 
 		/// <summary>
 		/// Gets the country info that matches the iban, if any.

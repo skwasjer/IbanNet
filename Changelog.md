@@ -2,7 +2,6 @@
 
 ## v4.0.0-betaXX
 
-- Performance improvements (up to 10x faster at around 500ns per validation, and lower memory footprint)
 - (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs loose), extensibility through custom rules.
 - (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
 - (breaking) `ValidationResult` now contains `Error`-property containing the error that occurred.
@@ -13,6 +12,8 @@
 - Added `ICheckDigitsCalculator` abstraction.
 - (breaking) `IbanValidator.SupportedCountries` now is a dictionary, allowing looking by country code.
 - (breaking) Renamed `CountryInfo` to `IbanCountry`.
+- (breaking) Renamed `ValidationResult.Value` to `ValidationResult.AttemptedValue`.
+- Performance improvements (up to 10x faster at around 500ns per validation, and lower memory footprint)
 
 ## v3.2.0
 
