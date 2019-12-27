@@ -12,6 +12,7 @@
 - (breaking) Remove deprecated ctor (accepting `Lazy`).
 - Added `ICheckDigitsCalculator` abstraction.
 - (breaking) `IbanValidator.SupportedCountries` now is a dictionary, allowing looking by country code.
+- (breaking) Renamed `CountryInfo` to `IbanCountry`.
 
 ## v3.2.0
 

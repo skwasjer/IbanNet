@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace IbanNet.Registry
 {
-	public class CountryInfoTests
+	public class IbanCountryTests
 	{
 		[TestCase(null)]
 		[TestCase("")]
@@ -13,7 +13,7 @@ namespace IbanNet.Registry
 		public void When_country_code_is_of_invalid_length_should_throw(string countryCode)
 		{
 			// Act
-			Action act = () => new CountryInfo(countryCode);
+			Action act = () => new IbanCountry(countryCode);
 
 			// Assert
 			act.Should().Throw<ArgumentException>()
@@ -24,7 +24,7 @@ namespace IbanNet.Registry
 		public void When_country_code_is_of_valid_length_should_not_throw()
 		{
 			// Act
-			Action act = () => new CountryInfo("ZA");
+			Action act = () => new IbanCountry("ZA");
 
 			// Assert
 			act.Should().NotThrow();
@@ -34,7 +34,7 @@ namespace IbanNet.Registry
 		public void When_country_code_is_provided_in_lowercase_should_make_it_uppercase()
 		{
 			// Act
-			var actual = new CountryInfo("nl");
+			var actual = new IbanCountry("nl");
 
 			// Assert
 			actual.TwoLetterISORegionName.Should().Be("NL");

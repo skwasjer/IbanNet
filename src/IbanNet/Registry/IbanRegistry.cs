@@ -11,7 +11,7 @@ namespace IbanNet.Registry
 	/// Generated from: swift_iban_registry_201910.r84.txt
 	/// </remarks>
 	[GeneratedCode("IbanRegistryT4", "1.1-r84")]
-	public class IbanRegistry : List<CountryInfo>
+	public class IbanRegistry : List<IbanCountry>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanRegistry" /> class.
@@ -24,7 +24,7 @@ namespace IbanNet.Registry
 					// ReSharper disable StringLiteralTypo
 
 					// Andorra
-					new CountryInfo("AD")
+					new IbanCountry("AD")
 					{
 						DisplayName = "Andorra",
 						EnglishName = "Andorra",
@@ -64,7 +64,7 @@ namespace IbanNet.Registry
 					},
 
 					// United Arab Emirates (The)
-					new CountryInfo("AE")
+					new IbanCountry("AE")
 					{
 						DisplayName = "United Arab Emirates (The)",
 						EnglishName = "United Arab Emirates (The)",
@@ -97,7 +97,7 @@ namespace IbanNet.Registry
 					},
 
 					// Albania
-					new CountryInfo("AL")
+					new IbanCountry("AL")
 					{
 						DisplayName = "Albania",
 						EnglishName = "Albania",
@@ -137,7 +137,7 @@ namespace IbanNet.Registry
 					},
 
 					// Austria
-					new CountryInfo("AT")
+					new IbanCountry("AT")
 					{
 						DisplayName = "Austria",
 						EnglishName = "Austria",
@@ -170,7 +170,7 @@ namespace IbanNet.Registry
 					},
 
 					// Azerbaijan
-					new CountryInfo("AZ")
+					new IbanCountry("AZ")
 					{
 						DisplayName = "Azerbaijan",
 						EnglishName = "Azerbaijan",
@@ -203,7 +203,7 @@ namespace IbanNet.Registry
 					},
 
 					// Bosnia and Herzegovina
-					new CountryInfo("BA")
+					new IbanCountry("BA")
 					{
 						DisplayName = "Bosnia and Herzegovina",
 						EnglishName = "Bosnia and Herzegovina",
@@ -243,7 +243,7 @@ namespace IbanNet.Registry
 					},
 
 					// Belgium
-					new CountryInfo("BE")
+					new IbanCountry("BE")
 					{
 						DisplayName = "Belgium",
 						EnglishName = "Belgium",
@@ -276,7 +276,7 @@ namespace IbanNet.Registry
 					},
 
 					// Bulgaria
-					new CountryInfo("BG")
+					new IbanCountry("BG")
 					{
 						DisplayName = "Bulgaria",
 						EnglishName = "Bulgaria",
@@ -316,7 +316,7 @@ namespace IbanNet.Registry
 					},
 
 					// Bahrain
-					new CountryInfo("BH")
+					new IbanCountry("BH")
 					{
 						DisplayName = "Bahrain",
 						EnglishName = "Bahrain",
@@ -349,7 +349,7 @@ namespace IbanNet.Registry
 					},
 
 					// Brazil
-					new CountryInfo("BR")
+					new IbanCountry("BR")
 					{
 						DisplayName = "Brazil",
 						EnglishName = "Brazil",
@@ -389,7 +389,7 @@ namespace IbanNet.Registry
 					},
 
 					// Republic of Belarus
-					new CountryInfo("BY")
+					new IbanCountry("BY")
 					{
 						DisplayName = "Republic of Belarus",
 						EnglishName = "Republic of Belarus",
@@ -422,7 +422,7 @@ namespace IbanNet.Registry
 					},
 
 					// Switzerland
-					new CountryInfo("CH")
+					new IbanCountry("CH")
 					{
 						DisplayName = "Switzerland",
 						EnglishName = "Switzerland",
@@ -455,7 +455,7 @@ namespace IbanNet.Registry
 					},
 
 					// Costa Rica
-					new CountryInfo("CR")
+					new IbanCountry("CR")
 					{
 						DisplayName = "Costa Rica",
 						EnglishName = "Costa Rica",
@@ -488,7 +488,7 @@ namespace IbanNet.Registry
 					},
 
 					// Cyprus
-					new CountryInfo("CY")
+					new IbanCountry("CY")
 					{
 						DisplayName = "Cyprus",
 						EnglishName = "Cyprus",
@@ -528,7 +528,7 @@ namespace IbanNet.Registry
 					},
 
 					// Czechia
-					new CountryInfo("CZ")
+					new IbanCountry("CZ")
 					{
 						DisplayName = "Czechia",
 						EnglishName = "Czechia",
@@ -561,7 +561,7 @@ namespace IbanNet.Registry
 					},
 
 					// Germany
-					new CountryInfo("DE")
+					new IbanCountry("DE")
 					{
 						DisplayName = "Germany",
 						EnglishName = "Germany",
@@ -594,7 +594,7 @@ namespace IbanNet.Registry
 					},
 
 					// Denmark
-					new CountryInfo("DK")
+					new IbanCountry("DK")
 					{
 						DisplayName = "Denmark",
 						EnglishName = "Denmark",
@@ -627,7 +627,7 @@ namespace IbanNet.Registry
 					},
 
 					// Dominican Republic
-					new CountryInfo("DO")
+					new IbanCountry("DO")
 					{
 						DisplayName = "Dominican Republic",
 						EnglishName = "Dominican Republic",
@@ -660,7 +660,7 @@ namespace IbanNet.Registry
 					},
 
 					// Estonia
-					new CountryInfo("EE")
+					new IbanCountry("EE")
 					{
 						DisplayName = "Estonia",
 						EnglishName = "Estonia",
@@ -693,7 +693,7 @@ namespace IbanNet.Registry
 					},
 
 					// Egypt
-					new CountryInfo("EG")
+					new IbanCountry("EG")
 					{
 						DisplayName = "Egypt",
 						EnglishName = "Egypt",
@@ -733,7 +733,7 @@ namespace IbanNet.Registry
 					},
 
 					// Spain
-					new CountryInfo("ES")
+					new IbanCountry("ES")
 					{
 						DisplayName = "Spain",
 						EnglishName = "Spain",
@@ -773,7 +773,7 @@ namespace IbanNet.Registry
 					},
 
 					// Finland
-					new CountryInfo("FI")
+					new IbanCountry("FI")
 					{
 						DisplayName = "Finland",
 						EnglishName = "Finland",
@@ -814,7 +814,7 @@ namespace IbanNet.Registry
 					},
 
 					// Faroe Islands
-					new CountryInfo("FO")
+					new IbanCountry("FO")
 					{
 						DisplayName = "Faroe Islands",
 						EnglishName = "Faroe Islands",
@@ -847,7 +847,7 @@ namespace IbanNet.Registry
 					},
 
 					// France
-					new CountryInfo("FR")
+					new IbanCountry("FR")
 					{
 						DisplayName = "France",
 						EnglishName = "France",
@@ -888,7 +888,7 @@ namespace IbanNet.Registry
 					},
 
 					// United Kingdom
-					new CountryInfo("GB")
+					new IbanCountry("GB")
 					{
 						DisplayName = "United Kingdom",
 						EnglishName = "United Kingdom",
@@ -932,7 +932,7 @@ namespace IbanNet.Registry
 					},
 
 					// Georgia
-					new CountryInfo("GE")
+					new IbanCountry("GE")
 					{
 						DisplayName = "Georgia",
 						EnglishName = "Georgia",
@@ -965,7 +965,7 @@ namespace IbanNet.Registry
 					},
 
 					// Gibraltar
-					new CountryInfo("GI")
+					new IbanCountry("GI")
 					{
 						DisplayName = "Gibraltar",
 						EnglishName = "Gibraltar",
@@ -998,7 +998,7 @@ namespace IbanNet.Registry
 					},
 
 					// Greenland
-					new CountryInfo("GL")
+					new IbanCountry("GL")
 					{
 						DisplayName = "Greenland",
 						EnglishName = "Greenland",
@@ -1031,7 +1031,7 @@ namespace IbanNet.Registry
 					},
 
 					// Greece
-					new CountryInfo("GR")
+					new IbanCountry("GR")
 					{
 						DisplayName = "Greece",
 						EnglishName = "Greece",
@@ -1071,7 +1071,7 @@ namespace IbanNet.Registry
 					},
 
 					// Guatemala
-					new CountryInfo("GT")
+					new IbanCountry("GT")
 					{
 						DisplayName = "Guatemala",
 						EnglishName = "Guatemala",
@@ -1104,7 +1104,7 @@ namespace IbanNet.Registry
 					},
 
 					// Croatia
-					new CountryInfo("HR")
+					new IbanCountry("HR")
 					{
 						DisplayName = "Croatia",
 						EnglishName = "Croatia",
@@ -1137,7 +1137,7 @@ namespace IbanNet.Registry
 					},
 
 					// Hungary
-					new CountryInfo("HU")
+					new IbanCountry("HU")
 					{
 						DisplayName = "Hungary",
 						EnglishName = "Hungary",
@@ -1177,7 +1177,7 @@ namespace IbanNet.Registry
 					},
 
 					// Ireland
-					new CountryInfo("IE")
+					new IbanCountry("IE")
 					{
 						DisplayName = "Ireland",
 						EnglishName = "Ireland",
@@ -1217,7 +1217,7 @@ namespace IbanNet.Registry
 					},
 
 					// Israel
-					new CountryInfo("IL")
+					new IbanCountry("IL")
 					{
 						DisplayName = "Israel",
 						EnglishName = "Israel",
@@ -1257,7 +1257,7 @@ namespace IbanNet.Registry
 					},
 
 					// Iraq
-					new CountryInfo("IQ")
+					new IbanCountry("IQ")
 					{
 						DisplayName = "Iraq",
 						EnglishName = "Iraq",
@@ -1297,7 +1297,7 @@ namespace IbanNet.Registry
 					},
 
 					// Iceland
-					new CountryInfo("IS")
+					new IbanCountry("IS")
 					{
 						DisplayName = "Iceland",
 						EnglishName = "Iceland",
@@ -1337,7 +1337,7 @@ namespace IbanNet.Registry
 					},
 
 					// Italy
-					new CountryInfo("IT")
+					new IbanCountry("IT")
 					{
 						DisplayName = "Italy",
 						EnglishName = "Italy",
@@ -1377,7 +1377,7 @@ namespace IbanNet.Registry
 					},
 
 					// Jordan
-					new CountryInfo("JO")
+					new IbanCountry("JO")
 					{
 						DisplayName = "Jordan",
 						EnglishName = "Jordan",
@@ -1417,7 +1417,7 @@ namespace IbanNet.Registry
 					},
 
 					// Kuwait
-					new CountryInfo("KW")
+					new IbanCountry("KW")
 					{
 						DisplayName = "Kuwait",
 						EnglishName = "Kuwait",
@@ -1450,7 +1450,7 @@ namespace IbanNet.Registry
 					},
 
 					// Kazakhstan
-					new CountryInfo("KZ")
+					new IbanCountry("KZ")
 					{
 						DisplayName = "Kazakhstan",
 						EnglishName = "Kazakhstan",
@@ -1483,7 +1483,7 @@ namespace IbanNet.Registry
 					},
 
 					// Lebanon
-					new CountryInfo("LB")
+					new IbanCountry("LB")
 					{
 						DisplayName = "Lebanon",
 						EnglishName = "Lebanon",
@@ -1516,7 +1516,7 @@ namespace IbanNet.Registry
 					},
 
 					// Saint Lucia
-					new CountryInfo("LC")
+					new IbanCountry("LC")
 					{
 						DisplayName = "Saint Lucia",
 						EnglishName = "Saint Lucia",
@@ -1549,7 +1549,7 @@ namespace IbanNet.Registry
 					},
 
 					// Liechtenstein
-					new CountryInfo("LI")
+					new IbanCountry("LI")
 					{
 						DisplayName = "Liechtenstein",
 						EnglishName = "Liechtenstein",
@@ -1582,7 +1582,7 @@ namespace IbanNet.Registry
 					},
 
 					// Lithuania
-					new CountryInfo("LT")
+					new IbanCountry("LT")
 					{
 						DisplayName = "Lithuania",
 						EnglishName = "Lithuania",
@@ -1615,7 +1615,7 @@ namespace IbanNet.Registry
 					},
 
 					// Luxembourg
-					new CountryInfo("LU")
+					new IbanCountry("LU")
 					{
 						DisplayName = "Luxembourg",
 						EnglishName = "Luxembourg",
@@ -1648,7 +1648,7 @@ namespace IbanNet.Registry
 					},
 
 					// Latvia
-					new CountryInfo("LV")
+					new IbanCountry("LV")
 					{
 						DisplayName = "Latvia",
 						EnglishName = "Latvia",
@@ -1681,7 +1681,7 @@ namespace IbanNet.Registry
 					},
 
 					// Monaco
-					new CountryInfo("MC")
+					new IbanCountry("MC")
 					{
 						DisplayName = "Monaco",
 						EnglishName = "Monaco",
@@ -1721,7 +1721,7 @@ namespace IbanNet.Registry
 					},
 
 					// Moldova
-					new CountryInfo("MD")
+					new IbanCountry("MD")
 					{
 						DisplayName = "Moldova",
 						EnglishName = "Moldova",
@@ -1754,7 +1754,7 @@ namespace IbanNet.Registry
 					},
 
 					// Montenegro
-					new CountryInfo("ME")
+					new IbanCountry("ME")
 					{
 						DisplayName = "Montenegro",
 						EnglishName = "Montenegro",
@@ -1787,7 +1787,7 @@ namespace IbanNet.Registry
 					},
 
 					// Macedonia
-					new CountryInfo("MK")
+					new IbanCountry("MK")
 					{
 						DisplayName = "Macedonia",
 						EnglishName = "Macedonia",
@@ -1820,7 +1820,7 @@ namespace IbanNet.Registry
 					},
 
 					// Mauritania
-					new CountryInfo("MR")
+					new IbanCountry("MR")
 					{
 						DisplayName = "Mauritania",
 						EnglishName = "Mauritania",
@@ -1860,7 +1860,7 @@ namespace IbanNet.Registry
 					},
 
 					// Malta
-					new CountryInfo("MT")
+					new IbanCountry("MT")
 					{
 						DisplayName = "Malta",
 						EnglishName = "Malta",
@@ -1900,7 +1900,7 @@ namespace IbanNet.Registry
 					},
 
 					// Mauritius
-					new CountryInfo("MU")
+					new IbanCountry("MU")
 					{
 						DisplayName = "Mauritius",
 						EnglishName = "Mauritius",
@@ -1940,7 +1940,7 @@ namespace IbanNet.Registry
 					},
 
 					// Netherlands (The)
-					new CountryInfo("NL")
+					new IbanCountry("NL")
 					{
 						DisplayName = "Netherlands (The)",
 						EnglishName = "Netherlands (The)",
@@ -1973,7 +1973,7 @@ namespace IbanNet.Registry
 					},
 
 					// Norway
-					new CountryInfo("NO")
+					new IbanCountry("NO")
 					{
 						DisplayName = "Norway",
 						EnglishName = "Norway",
@@ -2006,7 +2006,7 @@ namespace IbanNet.Registry
 					},
 
 					// Pakistan
-					new CountryInfo("PK")
+					new IbanCountry("PK")
 					{
 						DisplayName = "Pakistan",
 						EnglishName = "Pakistan",
@@ -2039,7 +2039,7 @@ namespace IbanNet.Registry
 					},
 
 					// Poland
-					new CountryInfo("PL")
+					new IbanCountry("PL")
 					{
 						DisplayName = "Poland",
 						EnglishName = "Poland",
@@ -2072,7 +2072,7 @@ namespace IbanNet.Registry
 					},
 
 					// Palestine, State of
-					new CountryInfo("PS")
+					new IbanCountry("PS")
 					{
 						DisplayName = "Palestine, State of",
 						EnglishName = "Palestine, State of",
@@ -2105,7 +2105,7 @@ namespace IbanNet.Registry
 					},
 
 					// Portugal
-					new CountryInfo("PT")
+					new IbanCountry("PT")
 					{
 						DisplayName = "Portugal",
 						EnglishName = "Portugal",
@@ -2142,7 +2142,7 @@ namespace IbanNet.Registry
 					},
 
 					// Qatar
-					new CountryInfo("QA")
+					new IbanCountry("QA")
 					{
 						DisplayName = "Qatar",
 						EnglishName = "Qatar",
@@ -2175,7 +2175,7 @@ namespace IbanNet.Registry
 					},
 
 					// Romania
-					new CountryInfo("RO")
+					new IbanCountry("RO")
 					{
 						DisplayName = "Romania",
 						EnglishName = "Romania",
@@ -2208,7 +2208,7 @@ namespace IbanNet.Registry
 					},
 
 					// Serbia
-					new CountryInfo("RS")
+					new IbanCountry("RS")
 					{
 						DisplayName = "Serbia",
 						EnglishName = "Serbia",
@@ -2241,7 +2241,7 @@ namespace IbanNet.Registry
 					},
 
 					// Saudi Arabia
-					new CountryInfo("SA")
+					new IbanCountry("SA")
 					{
 						DisplayName = "Saudi Arabia",
 						EnglishName = "Saudi Arabia",
@@ -2274,7 +2274,7 @@ namespace IbanNet.Registry
 					},
 
 					// Seychelles
-					new CountryInfo("SC")
+					new IbanCountry("SC")
 					{
 						DisplayName = "Seychelles",
 						EnglishName = "Seychelles",
@@ -2314,7 +2314,7 @@ namespace IbanNet.Registry
 					},
 
 					// Sweden
-					new CountryInfo("SE")
+					new IbanCountry("SE")
 					{
 						DisplayName = "Sweden",
 						EnglishName = "Sweden",
@@ -2347,7 +2347,7 @@ namespace IbanNet.Registry
 					},
 
 					// Slovenia
-					new CountryInfo("SI")
+					new IbanCountry("SI")
 					{
 						DisplayName = "Slovenia",
 						EnglishName = "Slovenia",
@@ -2380,7 +2380,7 @@ namespace IbanNet.Registry
 					},
 
 					// Slovakia
-					new CountryInfo("SK")
+					new IbanCountry("SK")
 					{
 						DisplayName = "Slovakia",
 						EnglishName = "Slovakia",
@@ -2413,7 +2413,7 @@ namespace IbanNet.Registry
 					},
 
 					// San Marino
-					new CountryInfo("SM")
+					new IbanCountry("SM")
 					{
 						DisplayName = "San Marino",
 						EnglishName = "San Marino",
@@ -2453,7 +2453,7 @@ namespace IbanNet.Registry
 					},
 
 					// Sao Tome and Principe
-					new CountryInfo("ST")
+					new IbanCountry("ST")
 					{
 						DisplayName = "Sao Tome and Principe",
 						EnglishName = "Sao Tome and Principe",
@@ -2493,7 +2493,7 @@ namespace IbanNet.Registry
 					},
 
 					// El Salvador
-					new CountryInfo("SV")
+					new IbanCountry("SV")
 					{
 						DisplayName = "El Salvador",
 						EnglishName = "El Salvador",
@@ -2526,7 +2526,7 @@ namespace IbanNet.Registry
 					},
 
 					// Timor-Leste
-					new CountryInfo("TL")
+					new IbanCountry("TL")
 					{
 						DisplayName = "Timor-Leste",
 						EnglishName = "Timor-Leste",
@@ -2559,7 +2559,7 @@ namespace IbanNet.Registry
 					},
 
 					// Tunisia
-					new CountryInfo("TN")
+					new IbanCountry("TN")
 					{
 						DisplayName = "Tunisia",
 						EnglishName = "Tunisia",
@@ -2599,7 +2599,7 @@ namespace IbanNet.Registry
 					},
 
 					// Turkey
-					new CountryInfo("TR")
+					new IbanCountry("TR")
 					{
 						DisplayName = "Turkey",
 						EnglishName = "Turkey",
@@ -2632,7 +2632,7 @@ namespace IbanNet.Registry
 					},
 
 					// Ukraine
-					new CountryInfo("UA")
+					new IbanCountry("UA")
 					{
 						DisplayName = "Ukraine",
 						EnglishName = "Ukraine",
@@ -2665,7 +2665,7 @@ namespace IbanNet.Registry
 					},
 
 					// Vatican City State
-					new CountryInfo("VA")
+					new IbanCountry("VA")
 					{
 						DisplayName = "Vatican City State",
 						EnglishName = "Vatican City State",
@@ -2698,7 +2698,7 @@ namespace IbanNet.Registry
 					},
 
 					// Virgin Islands
-					new CountryInfo("VG")
+					new IbanCountry("VG")
 					{
 						DisplayName = "Virgin Islands",
 						EnglishName = "Virgin Islands",
@@ -2731,7 +2731,7 @@ namespace IbanNet.Registry
 					},
 
 					// Kosovo
-					new CountryInfo("XK")
+					new IbanCountry("XK")
 					{
 						DisplayName = "Kosovo",
 						EnglishName = "Kosovo",

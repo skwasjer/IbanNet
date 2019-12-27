@@ -27,7 +27,7 @@ namespace IbanNet.FluentValidation
 		[Test]
 		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors()
 		{
-			CountryInfo country = new IbanRegistry().First();
+			IbanCountry country = new IbanRegistry().First();
 			string attemptedIbanValue = country.Iban.Example + "Z"; // Add some char to make invalid.
 			_testModel.BankAccountNumber = attemptedIbanValue;
 
@@ -59,7 +59,7 @@ namespace IbanNet.FluentValidation
 		[Test]
 		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors()
 		{
-			CountryInfo country = new IbanRegistry().First();
+			IbanCountry country = new IbanRegistry().First();
 			_testModel.BankAccountNumber = country.Iban.Example;
 
 			// Act

@@ -10,9 +10,9 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal sealed class IsValidCountryCodeRule : IIbanValidationRule
 	{
-		private readonly IReadOnlyDictionary<string, CountryInfo> _ibanRegistry;
+		private readonly IReadOnlyDictionary<string, IbanCountry> _ibanRegistry;
 
-		public IsValidCountryCodeRule(IReadOnlyDictionary<string, CountryInfo> ibanRegistry)
+		public IsValidCountryCodeRule(IReadOnlyDictionary<string, IbanCountry> ibanRegistry)
 		{
 			_ibanRegistry = ibanRegistry ?? throw new ArgumentNullException(nameof(ibanRegistry));
 		}
@@ -20,7 +20,7 @@ namespace IbanNet.Validation.Rules
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			CountryInfo? country = GetMatchingCountry(context.Value);
+			IbanCountry? country = GetMatchingCountry(context.Value);
 			if (country is null)
 			{
 				return new UnknownCountryCodeResult();
@@ -30,7 +30,7 @@ namespace IbanNet.Validation.Rules
 			return ValidationRuleResult.Success;
 		}
 
-		private CountryInfo? GetMatchingCountry(string iban)
+		private IbanCountry? GetMatchingCountry(string iban)
 		{
 			string? countryCode = GetCountryCode(iban);
 			if (countryCode == null)
@@ -38,7 +38,7 @@ namespace IbanNet.Validation.Rules
 				return null;
 			}
 
-			return _ibanRegistry.TryGetValue(countryCode, out CountryInfo country) ? country : null;
+			return _ibanRegistry.TryGetValue(countryCode, out IbanCountry country) ? country : null;
 		}
 
 		private static string? GetCountryCode(string value)

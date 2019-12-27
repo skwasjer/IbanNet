@@ -45,7 +45,7 @@ namespace IbanNet
 				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 			}
 
-			SupportedCountries = new ReadOnlyDictionary<string, CountryInfo>(options.GetRegistry());
+			SupportedCountries = new ReadOnlyDictionary<string, IbanCountry>(options.GetRegistry());
 			_rules = options.ValidationMethod.GetRules(SupportedCountries).ToList();
 
 			if (options.Rules != null)
@@ -63,7 +63,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries { get; }
+		public IReadOnlyDictionary<string, IbanCountry> SupportedCountries { get; }
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.

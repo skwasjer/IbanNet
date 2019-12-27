@@ -19,6 +19,6 @@ namespace IbanNet.Validation.Methods
 		/// <summary>
 		/// Gets the validation rules to execute.
 		/// </summary>
-		internal abstract IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, CountryInfo> ibanRegistry);
+		internal abstract IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, IbanCountry> ibanRegistry);
 	}
 }

@@ -11,7 +11,7 @@ namespace IbanNet.Registry
 	/// </summary>
 	[DebuggerDisplay("\\{{" + nameof(TwoLetterISORegionName) + ",nq} - {" + nameof(EnglishName) + ",nq}\\}")]
 	[DebuggerStepThrough]
-	public class CountryInfo
+	public class IbanCountry
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private string? _displayName;
@@ -21,11 +21,11 @@ namespace IbanNet.Registry
 		private IbanStructure? _ibanStructure;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CountryInfo"/> class using specified 2 letter ISO region name.
+		/// Initializes a new instance of the <see cref="IbanCountry"/> class using specified 2 letter ISO region name.
 		/// </summary>
 		/// <param name="twoLetterISORegionName">The 2 letter iso region name.</param>
 		// ReSharper disable once InconsistentNaming
-		public CountryInfo(string twoLetterISORegionName)
+		public IbanCountry(string twoLetterISORegionName)
 		{
 			if (twoLetterISORegionName == null)
 			{
@@ -97,7 +97,7 @@ namespace IbanNet.Registry
 		}
 
 		/// <summary>
-		/// Gets or sets when this <see cref="CountryInfo"/> was last updated in the Iban Registry.
+		/// Gets or sets when this <see cref="IbanCountry"/> was last updated in the Iban Registry.
 		/// </summary>
 		public DateTimeOffset LastUpdatedDate { get; set; }
 

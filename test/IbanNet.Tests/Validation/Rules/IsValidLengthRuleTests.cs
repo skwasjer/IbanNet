@@ -22,7 +22,7 @@ namespace IbanNet.Validation.Rules
 			string value = new string('0', count);
 			var context = new ValidationRuleContext(value)
 			{
-				Country = new CountryInfo("XX")
+				Country = new IbanCountry("XX")
 				{
 					Iban =
 					{
@@ -44,7 +44,7 @@ namespace IbanNet.Validation.Rules
 			string value = new string('0', 10);
 			var context = new ValidationRuleContext(value)
 			{
-				Country = new CountryInfo("XX")
+				Country = new IbanCountry("XX")
 				{
 					Iban =
 					{

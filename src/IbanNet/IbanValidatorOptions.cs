@@ -15,7 +15,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets or sets the IBAN country registry factory. Defaults to a new <see cref="IbanRegistry"/>.
 		/// </summary>
-		public Func<IEnumerable<CountryInfo>> Registry { get; set; } = () => new IbanRegistry();
+		public Func<IEnumerable<IbanCountry>> Registry { get; set; } = () => new IbanRegistry();
 
 		/// <summary>
 		/// Gets or sets the validation method. Defaults to <see cref="StrictValidation"/>.
@@ -31,9 +31,9 @@ namespace IbanNet
 		/// Gets the registry as dictionary.
 		/// </summary>
 		/// <exception cref="InvalidOperationException">Thrown when <see cref="Registry"/> is empty.</exception>
-		internal IDictionary<string, CountryInfo> GetRegistry()
+		internal IDictionary<string, IbanCountry> GetRegistry()
 		{
-			Dictionary<string, CountryInfo>? registry = Registry
+			Dictionary<string, IbanCountry>? registry = Registry
 				?.Invoke()
 				?.Where(c => !string.IsNullOrWhiteSpace(c.TwoLetterISORegionName))
 				.ToDictionary(kvp => kvp.TwoLetterISORegionName);

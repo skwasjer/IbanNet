@@ -44,7 +44,7 @@ namespace IbanNet
 			public void When_getting_it_should_match_default_registry()
 			{
 				// Act
-				IEnumerable<CountryInfo> actual = new IbanValidator().SupportedCountries.Values;
+				IEnumerable<IbanCountry> actual = new IbanValidator().SupportedCountries.Values;
 
 				// Assert
 				actual.Should().BeEquivalentTo(new IbanRegistry());
@@ -54,10 +54,10 @@ namespace IbanNet
 			public void When_casting_readonly_countries_to_dictionary_it_should_not_be_able_to_add()
 			{
 				var sut = new IbanValidator();
-				var countries = (IDictionary<string, CountryInfo>)sut.SupportedCountries;
+				var countries = (IDictionary<string, IbanCountry>)sut.SupportedCountries;
 
 				// Act
-				Action act = () => countries.Add("key", new CountryInfo("ZZ"));
+				Action act = () => countries.Add("key", new IbanCountry("ZZ"));
 
 				// Assert
 				act.Should()

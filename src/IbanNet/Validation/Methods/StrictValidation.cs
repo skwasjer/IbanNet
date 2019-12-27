@@ -9,7 +9,7 @@ namespace IbanNet.Validation.Methods
 	/// </summary>
 	public class StrictValidation : LooseValidation
 	{
-		internal override IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, CountryInfo> ibanRegistry)
+		internal override IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, IbanCountry> ibanRegistry)
 		{
 			foreach (IIbanValidationRule rule in base.GetRules(ibanRegistry))
 			{

@@ -18,7 +18,7 @@ namespace IbanNet.Validation.Methods
 
 			// Act
 			IEnumerable<IIbanValidationRule> rules = sut.GetRules(
-				new ReadOnlyDictionary<string, CountryInfo>(new Dictionary<string, CountryInfo>())
+				new ReadOnlyDictionary<string, IbanCountry>(new Dictionary<string, IbanCountry>())
 			);
 
 			// Assert

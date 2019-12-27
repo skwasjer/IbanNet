@@ -25,7 +25,7 @@ namespace IbanNet.Registry
 		private static IEnumerable GetExpectedDefinitions()
 		{
 			yield return new TestCaseData(
-				new CountryInfo("AD")
+				new IbanCountry("AD")
 				{
 					DisplayName = "Andorra",
 					EnglishName = "Andorra",
@@ -69,7 +69,7 @@ namespace IbanNet.Registry
 			;
 
 			yield return new TestCaseData(
-				new CountryInfo("XK")
+				new IbanCountry("XK")
 				{
 					DisplayName = "Kosovo",
 					EnglishName = "Kosovo",
@@ -114,12 +114,12 @@ namespace IbanNet.Registry
 		}
 
 		[TestCaseSource(nameof(GetExpectedDefinitions))]
-		public void When_definitions_are_loaded_should_contain(CountryInfo expectedCountryInfo)
+		public void When_definitions_are_loaded_should_contain(IbanCountry expectedIbanCountry)
 		{
 			_sut.Should()
-				.Contain(c => c.TwoLetterISORegionName == expectedCountryInfo.TwoLetterISORegionName)
+				.Contain(c => c.TwoLetterISORegionName == expectedIbanCountry.TwoLetterISORegionName)
 				.Which
-				.Should().BeEquivalentTo(expectedCountryInfo);
+				.Should().BeEquivalentTo(expectedIbanCountry);
 		}
 	}
 }

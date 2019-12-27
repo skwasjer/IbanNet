@@ -14,7 +14,7 @@ namespace IbanNet.Validation.Methods
 	/// </remarks>
 	public class LooseValidation : ValidationMethod
 	{
-		internal override IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, CountryInfo> ibanRegistry)
+		internal override IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, IbanCountry> ibanRegistry)
 		{
 			yield return new NotEmptyRule();
 			yield return new HasCountryCodeRule();

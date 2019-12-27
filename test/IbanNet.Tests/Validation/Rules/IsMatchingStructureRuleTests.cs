@@ -41,7 +41,7 @@ namespace IbanNet.Validation.Rules
 		public void Given_valid_value_when_validating_it_should_return_success()
 		{
 			const string testValue = "XX";
-			var country = new CountryInfo("NL")
+			var country = new IbanCountry("NL")
 			{
 				Iban =
 				{
@@ -69,7 +69,7 @@ namespace IbanNet.Validation.Rules
 		public void Given_invalid_value_when_validating_it_should_return_error()
 		{
 			const string testValue = "XX";
-			var country = new CountryInfo("NL")
+			var country = new IbanCountry("NL")
 			{
 				Iban =
 				{

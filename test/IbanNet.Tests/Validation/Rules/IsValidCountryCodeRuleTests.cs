@@ -11,14 +11,14 @@ namespace IbanNet.Validation.Rules
 	[TestFixture]
 	internal class IsValidCountryCodeRuleTests
 	{
-		private Dictionary<string, CountryInfo> _ibanRegistry;
+		private Dictionary<string, IbanCountry> _ibanRegistry;
 		private IsValidCountryCodeRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_ibanRegistry = new Dictionary<string, CountryInfo>();
-			_sut = new IsValidCountryCodeRule(new ReadOnlyDictionary<string, CountryInfo>(_ibanRegistry));
+			_ibanRegistry = new Dictionary<string, IbanCountry>();
+			_sut = new IsValidCountryCodeRule(new ReadOnlyDictionary<string, IbanCountry>(_ibanRegistry));
 		}
 
 		[Test]
@@ -38,7 +38,7 @@ namespace IbanNet.Validation.Rules
 		public void Given_known_country_code_when_validating_it_should_return_success()
 		{
 			var context = new ValidationRuleContext("XX");
-			var country = new CountryInfo("XX");
+			var country = new IbanCountry("XX");
 			_ibanRegistry.Add(country.TwoLetterISORegionName, country);
 
 			// Act

@@ -21,7 +21,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the country info that matches the iban, if any.
 		/// </summary>
-		public CountryInfo? Country { get; set; }
+		public IbanCountry? Country { get; set; }
 
 		/// <summary>
 		/// Gets the error that occurred, if any.
