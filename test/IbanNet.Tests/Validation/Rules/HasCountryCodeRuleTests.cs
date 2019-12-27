@@ -19,7 +19,7 @@ namespace IbanNet.Validation.Rules
 		[TestCase("@#")]
 		public void Given_invalid_value_when_validating_it_should_return_error(string value)
 		{
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value, null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
 
 			actual.Should().BeOfType<IllegalCountryCodeCharactersResult>();
 		}
@@ -27,7 +27,7 @@ namespace IbanNet.Validation.Rules
 		[Test]
 		public void Given_valid_value_when_validating_it_should_return_success()
 		{
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("XX", null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("XX"));
 
 			actual.Should().Be(ValidationRuleResult.Success);
 		}

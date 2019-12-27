@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation.Methods
@@ -13,13 +14,13 @@ namespace IbanNet.Validation.Methods
 	/// </remarks>
 	public class LooseValidation : ValidationMethod
 	{
-		internal override IEnumerable<IIbanValidationRule> GetRules()
+		internal override IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, CountryInfo> ibanRegistry)
 		{
 			yield return new NotEmptyRule();
 			yield return new HasCountryCodeRule();
 			yield return new NoIllegalCharactersRule();
 			yield return new HasIbanChecksumRule();
-			yield return new IsValidCountryCodeRule();
+			yield return new IsValidCountryCodeRule(ibanRegistry);
 			yield return new IsValidLengthRule();
 			yield return new Mod97Rule();
 		}

@@ -17,7 +17,7 @@ namespace IbanNet.Validation.Rules
 		[Test]
 		public void Given_empty_value_when_validating_it_should_return_error()
 		{
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty, null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty));
 
 			actual.Should().BeOfType<InvalidLengthResult>();
 		}
@@ -25,7 +25,7 @@ namespace IbanNet.Validation.Rules
 		[Test]
 		public void Given_non_empty_value_when_validating_it_should_return_success()
 		{
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("not-empty", null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("not-empty"));
 
 			actual.Should().Be(ValidationRuleResult.Success);
 		}

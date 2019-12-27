@@ -12,11 +12,9 @@ namespace IbanNet.Validation.Rules
 		/// Initializes a new instance of the <see cref="ValidationRuleContext"/> class.
 		/// </summary>
 		/// <param name="value">The IBAN value to validate.</param>
-		/// <param name="country">The country info (if any).</param>
-		public ValidationRuleContext(string value, CountryInfo? country)
+		public ValidationRuleContext(string value)
 		{
 			Value = value ?? throw new ArgumentNullException(nameof(value));
-			Country = country;
 		}
 
 		/// <summary>
@@ -25,8 +23,8 @@ namespace IbanNet.Validation.Rules
 		public string Value { get; }
 
 		/// <summary>
-		/// Gets the country info that applies to the IBAN, if any.
+		/// Gets or sets the country info that applies to the IBAN, if any.
 		/// </summary>
-		public CountryInfo? Country { get; }
+		public CountryInfo? Country { get; set; }
 	}
 }

@@ -20,13 +20,16 @@ namespace IbanNet.Validation.Rules
 		public void Given_value_of_invalid_length_when_validating_it_should_return_error(int count)
 		{
 			string value = new string('0', count);
-			var context = new ValidationRuleContext(value, new CountryInfo("XX")
+			var context = new ValidationRuleContext(value)
 			{
-				Iban =
+				Country = new CountryInfo("XX")
 				{
-					Length = 10
+					Iban =
+					{
+						Length = 10
+					}
 				}
-			});
+			};
 
 			// Act
 			ValidationRuleResult actual = _sut.Validate(context);
@@ -39,13 +42,16 @@ namespace IbanNet.Validation.Rules
 		public void Given_value_of_valid_length_when_validating_it_should_return_success()
 		{
 			string value = new string('0', 10);
-			var context = new ValidationRuleContext(value, new CountryInfo("XX")
+			var context = new ValidationRuleContext(value)
 			{
-				Iban =
+				Country = new CountryInfo("XX")
 				{
-					Length = 10
+					Iban =
+					{
+						Length = 10
+					}
 				}
-			});
+			};
 
 			// Act
 			ValidationRuleResult actual = _sut.Validate(context);

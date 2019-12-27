@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation.Methods
@@ -18,6 +19,6 @@ namespace IbanNet.Validation.Methods
 		/// <summary>
 		/// Gets the validation rules to execute.
 		/// </summary>
-		internal abstract IEnumerable<IIbanValidationRule> GetRules();
+		internal abstract IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, CountryInfo> ibanRegistry);
 	}
 }

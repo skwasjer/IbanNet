@@ -31,7 +31,7 @@ namespace IbanNet.Validation.Rules
 				.Verifiable();
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value, null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
 
 			// Assert
 			actual.Should().BeOfType<InvalidCheckDigitsResult>();
@@ -49,7 +49,7 @@ namespace IbanNet.Validation.Rules
 				.Verifiable();
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value, null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
 
 			// Assert
 			actual.Should().Be(ValidationRuleResult.Success);

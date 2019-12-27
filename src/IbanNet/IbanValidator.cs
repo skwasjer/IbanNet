@@ -16,13 +16,7 @@ namespace IbanNet
 	public class IbanValidator : IIbanValidator
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Func<IEnumerable<CountryInfo>> _registryBuilder;
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly List<IIbanValidationRule> _rules;
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly object _lockObject = new object();
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private ReadOnlyDictionary<string, CountryInfo>? _registryDictionary;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
@@ -46,9 +40,13 @@ namespace IbanNet
 				throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_required, nameof(options));
 			}
 
-			_registryBuilder = options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
+			if (options.Registry == null)
+			{
+				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
+			}
 
-			_rules = options.ValidationMethod.GetRules().ToList();
+			SupportedCountries = new ReadOnlyDictionary<string, CountryInfo>(options.GetRegistry());
+			_rules = options.ValidationMethod.GetRules(SupportedCountries).ToList();
 
 			if (options.Rules != null)
 			{
@@ -65,21 +63,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries
-		{
-			get
-			{
-				if (_registryDictionary != null)
-				{
-					return _registryDictionary;
-				}
-
-				lock (_lockObject)
-				{
-					return _registryDictionary ??= new ReadOnlyDictionary<string, CountryInfo>(GetRegistry());
-				}
-			}
-		}
+		public IReadOnlyDictionary<string, CountryInfo> SupportedCountries { get; }
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.
@@ -91,12 +75,10 @@ namespace IbanNet
 			string? normalizedIban = iban.StripWhitespaceOrNull();
 			string valueToValidate = normalizedIban ?? string.Empty;
 
-			var context = new ValidationRuleContext(valueToValidate, GetMatchingCountry(valueToValidate));
-
+			var context = new ValidationRuleContext(valueToValidate);
 			var validationResult = new ValidationResult
 			{
-				Value = normalizedIban?.ToUpperInvariant(),
-				Country = context.Country
+				Value = normalizedIban?.ToUpperInvariant()
 			};
 
 			foreach (IIbanValidationRule rule in _rules)
@@ -108,39 +90,8 @@ namespace IbanNet
 				}
 			}
 
+			validationResult.Country = context.Country;
 			return validationResult;
-		}
-
-		private IDictionary<string, CountryInfo> GetRegistry()
-		{
-			return _registryBuilder()
-				.ToDictionary(
-					kvp => kvp.TwoLetterISORegionName
-				);
-		}
-
-		private CountryInfo? GetMatchingCountry(string iban)
-		{
-			string? countryCode = GetCountryCode(iban);
-			if (countryCode == null)
-			{
-				return null;
-			}
-
-			// Note: This function can only be called once registry is initialized.
-			SupportedCountries.TryGetValue(countryCode, out CountryInfo matchedCountry);
-			return matchedCountry;
-		}
-
-		private static string? GetCountryCode(string value)
-		{
-			return value.Length < 2
-				? null
-				: new string(new[]
-				{
-					char.ToUpperInvariant(value[0]),
-					char.ToUpperInvariant(value[1])
-				});
 		}
 	}
 }

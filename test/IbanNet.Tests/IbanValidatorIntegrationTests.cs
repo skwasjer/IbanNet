@@ -40,8 +40,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithIllegalChars,
-				Error = new IllegalCharactersResult(),
-				Country = Validator.SupportedCountries[ibanWithIllegalChars.Substring(0, 2)]
+				Error = new IllegalCharactersResult()
 			});
 		}
 
@@ -73,8 +72,7 @@ namespace IbanNet
 			actual.Should().BeEquivalentTo(new ValidationResult
 			{
 				Value = ibanWithInvalidChecksum,
-				Error = new IllegalCharactersResult(),
-				Country = Validator.SupportedCountries[ibanWithInvalidChecksum.Substring(0, 2)]
+				Error = new IllegalCharactersResult()
 			});
 		}
 

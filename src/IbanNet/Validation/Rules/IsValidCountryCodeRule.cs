@@ -1,4 +1,7 @@
-﻿using IbanNet.Validation.Results;
+﻿using System;
+using System.Collections.Generic;
+using IbanNet.Registry;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
@@ -7,12 +10,46 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal sealed class IsValidCountryCodeRule : IIbanValidationRule
 	{
+		private readonly IReadOnlyDictionary<string, CountryInfo> _ibanRegistry;
+
+		public IsValidCountryCodeRule(IReadOnlyDictionary<string, CountryInfo> ibanRegistry)
+		{
+			_ibanRegistry = ibanRegistry ?? throw new ArgumentNullException(nameof(ibanRegistry));
+		}
+
 		/// <inheritdoc />
 		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			return context.Country == null
-				? new UnknownCountryCodeResult()
-				: ValidationRuleResult.Success;
+			CountryInfo? country = GetMatchingCountry(context.Value);
+			if (country is null)
+			{
+				return new UnknownCountryCodeResult();
+			}
+
+			context.Country = country;
+			return ValidationRuleResult.Success;
+		}
+
+		private CountryInfo? GetMatchingCountry(string iban)
+		{
+			string? countryCode = GetCountryCode(iban);
+			if (countryCode == null)
+			{
+				return null;
+			}
+
+			return _ibanRegistry.TryGetValue(countryCode, out CountryInfo country) ? country : null;
+		}
+
+		private static string? GetCountryCode(string value)
+		{
+			return value.Length < 2
+				? null
+				: new string(new[]
+				{
+					char.ToUpperInvariant(value[0]),
+					char.ToUpperInvariant(value[1])
+				});
 		}
 	}
 }

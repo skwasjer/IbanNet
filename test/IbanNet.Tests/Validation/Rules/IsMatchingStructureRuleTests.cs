@@ -30,7 +30,7 @@ namespace IbanNet.Validation.Rules
 		[Test]
 		public void Given_no_country_when_validating_it_should_return_error()
 		{
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty, null));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty));
 
 			// Assert
 			actual.Should().BeOfType<InvalidStructureResult>();
@@ -54,7 +54,10 @@ namespace IbanNet.Validation.Rules
 				.Verifiable();
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue, country));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue)
+			{
+				Country = country
+			});
 
 			// Assert
 			actual.Should().Be(ValidationRuleResult.Success);
@@ -79,7 +82,10 @@ namespace IbanNet.Validation.Rules
 				.Verifiable();
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue, country));
+			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue)
+			{
+				Country = country
+			});
 
 			// Assert
 			actual.Should().BeOfType<InvalidStructureResult>();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation.Methods
@@ -8,10 +9,11 @@ namespace IbanNet.Validation.Methods
 	/// </summary>
 	public class StrictValidation : LooseValidation
 	{
-		internal override IEnumerable<IIbanValidationRule> GetRules()
+		internal override IEnumerable<IIbanValidationRule> GetRules(IReadOnlyDictionary<string, CountryInfo> ibanRegistry)
 		{
-			foreach (IIbanValidationRule rule in base.GetRules())
+			foreach (IIbanValidationRule rule in base.GetRules(ibanRegistry))
 			{
+				// Inject structure rule before mod 97.
 				if (rule is Mod97Rule)
 				{
 					var structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using IbanNet.Registry;
 using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
@@ -12,7 +13,7 @@ namespace IbanNet
 	public class IbanValidatorOptions
 	{
 		/// <summary>
-		/// Gets or sets the IBAN country registry builder. Defaults to a new <see cref="IbanRegistry"/>.
+		/// Gets or sets the IBAN country registry factory. Defaults to a new <see cref="IbanRegistry"/>.
 		/// </summary>
 		public Func<IEnumerable<CountryInfo>> Registry { get; set; } = () => new IbanRegistry();
 
@@ -25,5 +26,24 @@ namespace IbanNet
 		/// Gets or sets custom rules to apply after built-in IBAN validation has taken place.
 		/// </summary>
 		public ICollection<IIbanValidationRule> Rules { get; set; } = new List<IIbanValidationRule>();
+
+		/// <summary>
+		/// Gets the registry as dictionary.
+		/// </summary>
+		/// <exception cref="InvalidOperationException">Thrown when <see cref="Registry"/> is empty.</exception>
+		internal IDictionary<string, CountryInfo> GetRegistry()
+		{
+			Dictionary<string, CountryInfo>? registry = Registry
+				?.Invoke()
+				?.Where(c => !string.IsNullOrWhiteSpace(c.TwoLetterISORegionName))
+				.ToDictionary(kvp => kvp.TwoLetterISORegionName);
+
+			if (registry == null || registry.Count == 0)
+			{
+				throw new InvalidOperationException("The provided registry cannot be empty.");
+			}
+
+			return registry;
+		}
 	}
 }
