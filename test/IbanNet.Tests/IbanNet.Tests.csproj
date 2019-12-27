@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.0'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.2'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />

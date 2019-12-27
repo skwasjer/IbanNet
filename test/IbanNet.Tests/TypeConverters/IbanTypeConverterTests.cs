@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace IbanNet.TypeConverters
@@ -106,6 +108,21 @@ namespace IbanNet.TypeConverters
 
 				// Assert
 				typeConverter.Should().BeOfType<IbanTypeConverter>();
+			}
+		}
+
+		public class When_json_converting
+		{
+			[Test]
+			public void It_should_succeed()
+			{
+				Iban bankAccountNumber1 = Iban.Parse("NL91ABNA0417164300");
+				var json = JsonConvert.SerializeObject(bankAccountNumber1);
+
+				json.Should().Be("\"NL91ABNA0417164300\"");
+
+				Iban bankAccountNumber2 = JsonConvert.DeserializeObject<Iban>(json);
+				bankAccountNumber1.Should().Be(bankAccountNumber2);
 			}
 		}
 	}
