@@ -59,5 +59,20 @@ namespace IbanNet.Validation.Rules
 			// Assert
 			actual.Should().Be(ValidationRuleResult.Success);
 		}
+
+		[Test]
+		public void Given_country_info_is_null_when_validating_it_should_return_error()
+		{
+			var context = new ValidationRuleContext(string.Empty)
+			{
+				Country = null
+			};
+
+			// Act
+			ValidationRuleResult actual = _sut.Validate(context);
+
+			// Assert
+			actual.Should().BeOfType<InvalidLengthResult>();
+		}
 	}
 }

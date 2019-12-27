@@ -35,8 +35,7 @@ namespace IbanNet
 		{
 			Dictionary<string, IbanCountry>? registry = Registry
 				?.Invoke()
-				?.Where(c => !string.IsNullOrWhiteSpace(c.TwoLetterISORegionName))
-				.ToDictionary(kvp => kvp.TwoLetterISORegionName);
+				?.ToDictionary(kvp => kvp.TwoLetterISORegionName);
 
 			if (registry == null || registry.Count == 0)
 			{
