@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using IbanNet.Extensions;
 
 namespace IbanNet
@@ -32,12 +33,20 @@ namespace IbanNet
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly string _iban;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private static Lazy<IIbanValidator> _validatorInstance = new Lazy<IIbanValidator>(
+			() => new IbanValidator(), LazyThreadSafetyMode.ExecutionAndPublication
+		);
 
 		/// <summary>
 		/// Gets or sets the <see cref="IIbanValidator"/> used to validate an IBAN.
 		/// </summary>
 		// ReSharper disable once MemberCanBePrivate.Global
-		public static IIbanValidator Validator { get; set; } = new IbanValidator();
+		public static IIbanValidator Validator
+		{
+			get => _validatorInstance.Value;
+			set => _validatorInstance = new Lazy<IIbanValidator>(() => value, true);
+		}
 
 		private Iban(string iban)
 		{
