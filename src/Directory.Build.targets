@@ -20,12 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
-  <PropertyGroup Condition="!$(TargetFramework.StartsWith('netstandard1'))">
-    <DefineConstants>$(DefineConstants);NULLABLE_ATTRIBUTES_EXCLUDE_FROM_CODE_COVERAGE</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Nullable" Version="1.1.1">
+    <PackageReference Include="Nullable" Version="1.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
