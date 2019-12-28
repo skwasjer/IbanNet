@@ -32,6 +32,14 @@ namespace IbanNet.TypeConverters
 					return null;
 
 				case string strValue:
+					// Request validator from service provider if available.
+					// We don't use it atm., but if DI extensions are used, it triggers setting static validator.
+					// TODO: refactor so that TryParse can use resolved instance instead of relying on static validator member.
+					if (context is IServiceProvider services)
+					{
+						services.GetService(typeof(IIbanValidator));
+					}
+
 					if (Iban.TryParse(strValue, out Iban? iban))
 					{
 						return iban;

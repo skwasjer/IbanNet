@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using FluentAssertions;
+using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -64,6 +65,28 @@ namespace IbanNet.TypeConverters
 
 				// Assert
 				resultObj.Should().BeNull();
+			}
+
+			[Test]
+			public void Given_type_descriptor_context_when_converting_from_string_it_should_request_validator()
+			{
+				var typeDescriptorContextMock = new Mock<ITypeDescriptorContext>();
+				typeDescriptorContextMock
+					.Setup(m => m.GetService(It.Is<Type>(t => t == typeof(IIbanValidator))))
+					.Returns(new IbanValidator())
+					.Verifiable();
+
+				// Act
+				var resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
+
+				// Assert
+				typeDescriptorContextMock.Verify();
+				resultObj.Should()
+					.NotBeNull()
+					.And.BeOfType<Iban>()
+					.Which.ToString()
+					.Should()
+					.Be(TestValues.ValidIban);
 			}
 		}
 
