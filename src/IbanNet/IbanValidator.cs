@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using IbanNet.Extensions;
 using IbanNet.Registry;
+using IbanNet.Validation;
 using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 
@@ -22,36 +23,51 @@ namespace IbanNet
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
 		/// </summary>
 		public IbanValidator()
-			: this(new IbanValidatorOptions())
+			: this(
+				new IbanValidatorOptions()
+			)
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified registry.
+		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified options.
 		/// </summary>
-		/// <param name="options">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
-		// ReSharper disable once MemberCanBePrivate.Global
+		/// <param name="options">The validator options.</param>
 		public IbanValidator(IbanValidatorOptions options)
+			: this(
+				options,
+				new DefaultValidationRuleResolver(new CachedStructureValidationFactory(new SwiftStructureValidationFactory()), options?.Rules)
+			)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified options.
+		/// </summary>
+		/// <param name="options">The validator options.</param>
+		/// <param name="validationRuleResolver">The validation rule resolver.</param>
+		// ReSharper disable once MemberCanBePrivate.Global
+		public IbanValidator(IbanValidatorOptions options, IValidationRuleResolver validationRuleResolver)
 		{
 			Options = options ?? throw new ArgumentNullException(nameof(options));
-
-			if (options.ValidationMethod == null)
+			if (options.ValidationMethod is null)
 			{
 				throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_required, nameof(options));
 			}
 
-			if (options.Registry == null)
+			if (options.Registry is null)
 			{
 				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 			}
 
-			SupportedCountries = new ReadOnlyDictionary<string, IbanCountry>(options.GetRegistry());
-			_rules = options.ValidationMethod.GetRules(SupportedCountries).ToList();
-
-			if (options.Rules != null)
+			if (validationRuleResolver is null)
 			{
-				_rules.AddRange(options.Rules);
+				throw new ArgumentNullException(nameof(validationRuleResolver));
 			}
+
+			IDictionary<string, IbanCountry> registry = options.GetRegistry();
+			SupportedCountries = new ReadOnlyDictionary<string, IbanCountry>(registry);
+			_rules = validationRuleResolver.GetRules(options.ValidationMethod, registry).ToList();
 		}
 
 		/// <summary>

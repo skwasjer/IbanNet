@@ -10,9 +10,9 @@ namespace IbanNet.Validation.Rules
 	/// </summary>
 	internal sealed class IsValidCountryCodeRule : IIbanValidationRule
 	{
-		private readonly IReadOnlyDictionary<string, IbanCountry> _ibanRegistry;
+		private readonly IDictionary<string, IbanCountry> _ibanRegistry;
 
-		public IsValidCountryCodeRule(IReadOnlyDictionary<string, IbanCountry> ibanRegistry)
+		public IsValidCountryCodeRule(IDictionary<string, IbanCountry> ibanRegistry)
 		{
 			_ibanRegistry = ibanRegistry ?? throw new ArgumentNullException(nameof(ibanRegistry));
 		}
