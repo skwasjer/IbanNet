@@ -28,10 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Registry\IbanRegistry.cs">
+    <Compile Update="Registry\IbanRegistryProvider.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>IbanRegistry.tt</DependentUpon>
+      <DependentUpon>IbanRegistryProvider.tt</DependentUpon>
     </Compile>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -48,9 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Registry\IbanRegistry.tt">
+    <None Update="Registry\IbanRegistryProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IbanRegistry.cs</LastGenOutput>
+      <LastGenOutput>IbanRegistryProvider.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

@@ -47,7 +47,7 @@ namespace IbanNet
 				IEnumerable<IbanCountry> actual = new IbanValidator().SupportedCountries.Values;
 
 				// Assert
-				actual.Should().BeEquivalentTo(new IbanRegistry());
+				actual.Should().BeEquivalentTo(IbanRegistry.Default);
 			}
 
 			[Test]

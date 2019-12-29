@@ -13,7 +13,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 <#
-	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("IbanRegistry.tt")), "Files");
+	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("IbanRegistryProvider.tt")), "Files");
 	string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
 	string registryFile = Path.GetFileName(registryPath);
 	string registryReleaseVersion = registryFile.Split('.')[1];
@@ -22,23 +22,19 @@ using System.Collections.Generic;
 namespace IbanNet.Registry
 {
 	/// <summary>
-	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
+	/// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
 	/// <remarks>
 	/// Generated from: <#= registryFile #>
 	/// </remarks>
 	[GeneratedCode("IbanRegistryT4", "1.1-<#= registryReleaseVersion #>")]
-	public class IbanRegistry : List<IbanCountry>
+	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="IbanRegistry" /> class.
-		/// </summary>
-		public IbanRegistry() {
-			AddRange(
-				new []
-				{
-					// ReSharper disable CommentTypo
-					// ReSharper disable StringLiteralTypo
+		/// <inheritdoc />
+		public IEnumerable<IbanCountry> Load()
+		{
+			// ReSharper disable CommentTypo
+			// ReSharper disable StringLiteralTypo
 
 <#
 	Func<string, string> checkValue = (value) => value == null || value == "" || value.Trim() == "N/A" ? null : value.Trim();
@@ -63,90 +59,89 @@ namespace IbanNet.Registry
 			var effectiveDate = DateTime.ParseExact(row[19], "MMM-yy", CultureInfo.InvariantCulture);
 			var lastUpdatedDate = DateTime.ParseExact(row[42], "MMM-yy", CultureInfo.InvariantCulture);
 #>
-					// <#= row[0] #>
-					new IbanCountry("<#= row[1].ToUpperInvariant() #>")
-					{
-						DisplayName = "<#= row[0] #>",
-						EnglishName = "<#= row[0] #>",
+			// <#= row[0] #>
+			yield return new IbanCountry("<#= row[1].ToUpperInvariant() #>")
+			{
+				DisplayName = "<#= row[0] #>",
+				EnglishName = "<#= row[0] #>",
 <#
 					includedCountries = row[2] == null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 					if (includedCountries.Length > 0) {
 #>
-						IncludedCountries = new[]
-						{
-							<#
-						WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
-						#>
-						},
+				IncludedCountries = new[]
+				{
+					<#
+				WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+				#>
+				},
 <#
 					}
 #>
-						Bban = new BbanStructure
-						{
-							Length = <#= getNumber(row[8]) #>,
-							Structure = "<#= row[7] ?? string.Empty #>",
-							Example = "<#= normalizeExample(row[15]) ?? string.Empty #>",
+				Bban = new BbanStructure
+				{
+					Length = <#= getNumber(row[8]) #>,
+					Structure = "<#= row[7] ?? string.Empty #>",
+					Example = "<#= normalizeExample(row[15]) ?? string.Empty #>",
 <#
 						if (row[9] != null) {
 #>
-							Bank = new BankStructure
-							{
-								Position = <#= int.Parse(row[9].Split('-')[0]) - 1 #>,
-								Length = <#= int.Parse(row[9].Split('-', ' ')[1]) - int.Parse(row[9].Split('-')[0]) + 1 #>,
-								Structure = "<#= row[10] ?? string.Empty #>",
-								Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
-							},
+					Bank = new BankStructure
+					{
+						Position = <#= int.Parse(row[9].Split('-')[0]) - 1 #>,
+						Length = <#= int.Parse(row[9].Split('-', ' ')[1]) - int.Parse(row[9].Split('-')[0]) + 1 #>,
+						Structure = "<#= row[10] ?? string.Empty #>",
+						Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
+					},
 <#
 						}
 
 						if (row[11] != null) {
 #>
-							Branch = new BranchStructure
-							{
-								Position = <#= int.Parse(row[11].Split('-')[0]) - 1 #>,
-								Length = <#= int.Parse(row[11].Split('-', ' ')[1]) - int.Parse(row[11].Split('-')[0]) + 1 #>,
-								Structure = "<#= row[12] ?? string.Empty #>",
-								Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
-							}
+					Branch = new BranchStructure
+					{
+						Position = <#= int.Parse(row[11].Split('-')[0]) - 1 #>,
+						Length = <#= int.Parse(row[11].Split('-', ' ')[1]) - int.Parse(row[11].Split('-')[0]) + 1 #>,
+						Structure = "<#= row[12] ?? string.Empty #>",
+						Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
+					}
 <#
 						}
 #>
-						},
-						Iban = new IbanStructure
-						{
-							Length = <#= getNumber(row[18]) #>,
-							Structure = "<#= row[17] ?? string.Empty #>",
-							Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
-							EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
-						},
-						Sepa = new SepaInfo
-						{
-							IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
+				},
+				Iban = new IbanStructure
+				{
+					Length = <#= getNumber(row[18]) #>,
+					Structure = "<#= row[17] ?? string.Empty #>",
+					Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
+					EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+				},
+				Sepa = new SepaInfo
+				{
+					IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
 <#
 					includedCountries = row[4] == null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 					if (includedCountries.Length > 0) {
 #>
-							IncludedCountries = new[]
-							{
+					IncludedCountries = new[]
+					{
 								<#
 						WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
 						#>
-							}
+					}
 <#
 					}
 #>
-						},
-						DomesticAccountNumberExample = "<#= row[5] ?? string.Empty #>",
-						LastUpdatedDate = new DateTimeOffset(<#= lastUpdatedDate.Year #>, <#= lastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
-					},
+				},
+				DomesticAccountNumberExample = "<#= row[5] ?? string.Empty #>",
+				LastUpdatedDate = new DateTimeOffset(<#= lastUpdatedDate.Year #>, <#= lastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+			};
 
 <#
 	}
 }
 #>
-				// ReSharper restore StringLiteralTypo
-				// ReSharper restore CommentTypo
-			});
+			// ReSharper restore StringLiteralTypo
+			// ReSharper restore CommentTypo
 		}
 	}
 }

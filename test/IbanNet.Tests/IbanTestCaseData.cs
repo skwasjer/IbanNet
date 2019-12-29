@@ -9,13 +9,13 @@ namespace IbanNet
 	{
 		public static IEnumerable GetValidIbanPerCountry()
 		{
-			return new IbanRegistry()
+			return IbanRegistry.Default
 				.Select(d => new TestCaseData(d.TwoLetterISORegionName, d.Iban.Example));
 		}
 
 		public static IEnumerable GetInvalidIbanPerCountry()
 		{
-			return new IbanRegistry()
+			return IbanRegistry.Default
 				.Select(d => new TestCaseData(d.TwoLetterISORegionName, d.Iban.Example + "X"));
 		}
 	}

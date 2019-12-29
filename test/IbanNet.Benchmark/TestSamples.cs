@@ -8,7 +8,7 @@ namespace IbanNet.Benchmark
 	{
 		public static IList<string> GetIbanSamples(int count)
 		{
-			List<string> examples = new IbanRegistry().Select(d => d.Iban.Example).ToList();
+			List<string> examples = IbanRegistry.Default.Select(d => d.Iban.Example).ToList();
 
 			return Enumerable.Range(0, count)
 				.Select((i, index) => examples[index % examples.Count])
