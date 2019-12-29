@@ -3,7 +3,6 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
 using IbanNet.Validation.Methods;
-using sinkien.IBAN4Net;
 
 namespace IbanNet.Benchmark
 {
