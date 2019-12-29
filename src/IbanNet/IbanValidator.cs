@@ -35,7 +35,9 @@ namespace IbanNet
 		public IbanValidator(IbanValidatorOptions options)
 			: this(
 				options,
-				new DefaultValidationRuleResolver(new CachedStructureValidationFactory(new SwiftStructureValidationFactory()), options?.Rules)
+				new DefaultValidationRuleResolverFactory(
+						new CachedStructureValidationFactory(new SwiftStructureValidationFactory())
+				).CreateRuleResolver(options)
 			)
 		{
 		}
