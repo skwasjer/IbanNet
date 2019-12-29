@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Validation.Methods;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -17,71 +16,22 @@ namespace IbanNet
 			_sut = new IbanValidatorOptions();
 		}
 
-		[Test]
-		public void Given_registry_factory_returns_countries_when_getting_registry_it_should_return_dictionary()
+		[TestCase]
+		public void Registry_should_default_to_default_registry()
 		{
-			var countries = new[]
-			{
-				new IbanCountry("NL"),
-				new IbanCountry("FR")
-			};
-			_sut.Registry = () => countries;
-
-			// Act
-			IDictionary<string, IbanCountry> registry = _sut.GetRegistry();
-
-			// Assert
-			registry.Should().HaveCount(2);
-			registry.Should()
-				.ContainKey("NL")
-				.WhichValue.Should()
-				.Be(countries[0]);
-			registry.Should()
-				.ContainKey("FR")
-				.WhichValue.Should()
-				.Be(countries[1]);
+			_sut.Registry.Should().BeSameAs(IbanRegistry.Default);
 		}
 
 		[TestCase]
-		public void Given_registry_factory_is_null_when_getting_registry_it_should_throw()
+		public void Validation_method_should_default_to_strict()
 		{
-			_sut.Registry = null;
-
-			// Act
-			Action act = () => _sut.GetRegistry();
-
-			// Assert
-			act.Should()
-				.Throw<InvalidOperationException>()
-				.WithMessage("The provided registry cannot be empty.");
+			_sut.ValidationMethod.Should().BeOfType<StrictValidation>();
 		}
 
 		[TestCase]
-		public void Given_registry_factory_returns_null_when_getting_registry_it_should_throw()
+		public void Rules_should_default_to_empty_list()
 		{
-			_sut.Registry = () => null;
-
-			// Act
-			Action act = () => _sut.GetRegistry();
-
-			// Assert
-			act.Should()
-				.Throw<InvalidOperationException>()
-				.WithMessage("The provided registry cannot be empty.");
-		}
-
-		[TestCase]
-		public void Given_registry_factory_returns_empty_list_when_getting_registry_it_should_throw()
-		{
-			_sut.Registry = () => new IbanCountry[0];
-
-			// Act
-			Action act = () => _sut.GetRegistry();
-
-			// Assert
-			act.Should()
-				.Throw<InvalidOperationException>()
-				.WithMessage("The provided registry cannot be empty.");
+			_sut.Rules.Should().BeEmpty();
 		}
 	}
 }

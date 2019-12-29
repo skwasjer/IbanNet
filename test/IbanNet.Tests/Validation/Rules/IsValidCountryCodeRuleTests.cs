@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
-using Moq;
 using NUnit.Framework;
 
 namespace IbanNet.Validation.Rules
@@ -11,14 +9,14 @@ namespace IbanNet.Validation.Rules
 	[TestFixture]
 	internal class IsValidCountryCodeRuleTests
 	{
-		private Dictionary<string, IbanCountry> _ibanRegistry;
+		private Dictionary<string, IbanCountry> _registryDict;
 		private IsValidCountryCodeRule _sut;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_ibanRegistry = new Dictionary<string, IbanCountry>();
-			_sut = new IsValidCountryCodeRule(new ReadOnlyDictionary<string, IbanCountry>(_ibanRegistry));
+			_registryDict = new Dictionary<string, IbanCountry>();
+			_sut = new IsValidCountryCodeRule(new IbanRegistry(_registryDict));
 		}
 
 		[Test]
@@ -39,7 +37,7 @@ namespace IbanNet.Validation.Rules
 		{
 			var context = new ValidationRuleContext("XX");
 			var country = new IbanCountry("XX");
-			_ibanRegistry.Add(country.TwoLetterISORegionName, country);
+			_registryDict.Add(country.TwoLetterISORegionName, country);
 
 			// Act
 			ValidationRuleResult actual = _sut.Validate(context);

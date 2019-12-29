@@ -17,7 +17,7 @@ namespace IbanNet.Registry
 		/// <summary>
 		/// Gets the registry mapped as dictionary by country code.
 		/// </summary>
-		public IDictionary<string, IbanCountry> Dictionary { get; }
+		internal IDictionary<string, IbanCountry> Dictionary { get; }
 
 		/// <summary>
 		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized with all the built-in countries.
@@ -58,5 +58,13 @@ namespace IbanNet.Registry
 
 		/// <inheritdoc />
 		public int Count => Dictionary.Count;
+
+		/// <inheritdoc />
+		// ReSharper disable once InconsistentNaming
+		public bool TryGetValue(string twoLetterISORegionName, out IbanCountry country) => Dictionary.TryGetValue(twoLetterISORegionName, out country);
+
+		/// <inheritdoc />
+		// ReSharper disable once InconsistentNaming
+		public IbanCountry this[string twoLetterISORegionName] => Dictionary[twoLetterISORegionName];
 	}
 }

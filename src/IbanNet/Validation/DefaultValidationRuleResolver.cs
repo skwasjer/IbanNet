@@ -24,13 +24,13 @@ namespace IbanNet.Validation
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<IIbanValidationRule> GetRules(ValidationMethod validationMethod, IDictionary<string, IbanCountry> acceptedCountries)
+		public IEnumerable<IIbanValidationRule> GetRules(ValidationMethod validationMethod, IIbanRegistry registry)
 		{
 			yield return new NotEmptyRule();
 			yield return new HasCountryCodeRule();
 			yield return new NoIllegalCharactersRule();
 			yield return new HasIbanChecksumRule();
-			yield return new IsValidCountryCodeRule(acceptedCountries);
+			yield return new IsValidCountryCodeRule(registry);
 			yield return new IsValidLengthRule();
 
 			if (validationMethod is StrictValidation)

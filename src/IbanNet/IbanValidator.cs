@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using IbanNet.Extensions;
@@ -65,9 +64,8 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(validationRuleResolver));
 			}
 
-			IDictionary<string, IbanCountry> registry = options.GetRegistry();
-			SupportedCountries = new ReadOnlyDictionary<string, IbanCountry>(registry);
-			_rules = validationRuleResolver.GetRules(options.ValidationMethod, registry).ToList();
+			SupportedCountries = options.Registry;
+			_rules = validationRuleResolver.GetRules(options.ValidationMethod, options.Registry).ToList();
 		}
 
 		/// <summary>
@@ -79,7 +77,7 @@ namespace IbanNet
 		/// <summary>
 		/// Gets the supported countries.
 		/// </summary>
-		public IReadOnlyDictionary<string, IbanCountry> SupportedCountries { get; }
+		public IIbanRegistry SupportedCountries { get; }
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.

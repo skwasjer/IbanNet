@@ -44,25 +44,10 @@ namespace IbanNet
 			public void When_getting_it_should_match_default_registry()
 			{
 				// Act
-				IEnumerable<IbanCountry> actual = new IbanValidator().SupportedCountries.Values;
+				IEnumerable<IbanCountry> actual = new IbanValidator().SupportedCountries;
 
 				// Assert
 				actual.Should().BeEquivalentTo(IbanRegistry.Default);
-			}
-
-			[Test]
-			public void When_casting_readonly_countries_to_dictionary_it_should_not_be_able_to_add()
-			{
-				var sut = new IbanValidator();
-				var countries = (IDictionary<string, IbanCountry>)sut.SupportedCountries;
-
-				// Act
-				Action act = () => countries.Add("key", new IbanCountry("ZZ"));
-
-				// Assert
-				act.Should()
-					.Throw<NotSupportedException>()
-					.WithMessage("Collection is read-only.");
 			}
 		}
 

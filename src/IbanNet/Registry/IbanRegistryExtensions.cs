@@ -11,7 +11,7 @@ namespace IbanNet.Registry
 		/// <summary>
 		/// Returns the enumerable of <see cref="IbanCountry" /> as a writable dictionary.
 		/// </summary>
-		/// <param name="countries">The enumerable of iban countries.</param>
+		/// <param name="countries">The enumerable of IBAN countries.</param>
 		/// <returns>A writable dictionary.</returns>
 		public static IDictionary<string, IbanCountry> ToDictionary(this IEnumerable<KeyValuePair<string, IbanCountry>> countries)
 		{

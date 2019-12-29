@@ -29,7 +29,7 @@ namespace IbanNet.Validation
 			var validationMethod = new LooseValidation();
 
 			// Act
-			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, new Dictionary<string, IbanCountry>());
+			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, Mock.Of<IIbanRegistry>());
 
 			// Assert
 			rules.Select(r => r.GetType())
@@ -54,7 +54,7 @@ namespace IbanNet.Validation
 			var validationMethod = new StrictValidation();
 
 			// Act
-			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, new Dictionary<string, IbanCountry>());
+			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, Mock.Of<IIbanRegistry>());
 
 			// Assert
 			rules.Select(r => r.GetType())
@@ -85,7 +85,7 @@ namespace IbanNet.Validation
 			_customRules.Add(rule2);
 
 			// Act
-			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, new Dictionary<string, IbanCountry>());
+			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, Mock.Of<IIbanRegistry>());
 
 			// Assert
 			rules.Should()
