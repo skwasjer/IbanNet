@@ -10,7 +10,7 @@ namespace IbanNet.Registry
 	/// <remarks>
 	/// Generated from: swift_iban_registry_201910.r84.txt
 	/// </remarks>
-	[GeneratedCode("IbanRegistryT4", "1.1-r84")]
+	[GeneratedCode("IbanRegistryProviderT4", "1.1-r84")]
 	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
 		/// <inheritdoc />
@@ -26,6 +26,7 @@ namespace IbanNet.Registry
 				EnglishName = "Andorra",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!n4!n12!c",
 					Example = "00012030200359100100",
@@ -66,6 +67,7 @@ namespace IbanNet.Registry
 				EnglishName = "United Arab Emirates (The)",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 19,
 					Structure = "3!n16!n",
 					Example = "0331234567890123456",
@@ -99,6 +101,7 @@ namespace IbanNet.Registry
 				EnglishName = "Albania",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "8!n16!c",
 					Example = "212110090000000235698741",
@@ -139,6 +142,7 @@ namespace IbanNet.Registry
 				EnglishName = "Austria",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "5!n11!n",
 					Example = "1904300234573201",
@@ -172,6 +176,7 @@ namespace IbanNet.Registry
 				EnglishName = "Azerbaijan",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "4!a20!c",
 					Example = "NABZ00000000137010001944",
@@ -205,6 +210,7 @@ namespace IbanNet.Registry
 				EnglishName = "Bosnia and Herzegovina",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "3!n3!n8!n2!n",
 					Example = "1990440001200279",
@@ -245,6 +251,7 @@ namespace IbanNet.Registry
 				EnglishName = "Belgium",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 12,
 					Structure = "3!n7!n2!n",
 					Example = "539007547034",
@@ -278,6 +285,7 @@ namespace IbanNet.Registry
 				EnglishName = "Bulgaria",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "4!a4!n2!n8!c",
 					Example = "BNBG96611020345678",
@@ -318,6 +326,7 @@ namespace IbanNet.Registry
 				EnglishName = "Bahrain",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "4!a14!c",
 					Example = "BMAG00001299123456",
@@ -351,6 +360,7 @@ namespace IbanNet.Registry
 				EnglishName = "Brazil",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 25,
 					Structure = "8!n5!n10!n1!a1!c",
 					Example = "00360305000010009795493P1",
@@ -391,6 +401,7 @@ namespace IbanNet.Registry
 				EnglishName = "Republic of Belarus",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "4!c4!n16!c",
 					Example = "NBRB3600900000002Z00AB00",
@@ -424,6 +435,7 @@ namespace IbanNet.Registry
 				EnglishName = "Switzerland",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 17,
 					Structure = "5!n12!c",
 					Example = "00762011623852957",
@@ -457,6 +469,7 @@ namespace IbanNet.Registry
 				EnglishName = "Costa Rica",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "4!n14!n",
 					Example = "15202001026284066",
@@ -490,6 +503,7 @@ namespace IbanNet.Registry
 				EnglishName = "Cyprus",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "3!n5!n16!c",
 					Example = "002001280000001200527600",
@@ -530,6 +544,7 @@ namespace IbanNet.Registry
 				EnglishName = "Czechia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!n6!n10!n",
 					Example = "08000000192000145399",
@@ -563,6 +578,7 @@ namespace IbanNet.Registry
 				EnglishName = "Germany",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "8!n10!n",
 					Example = "370400440532013000",
@@ -596,6 +612,7 @@ namespace IbanNet.Registry
 				EnglishName = "Denmark",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 14,
 					Structure = "4!n9!n1!n",
 					Example = "00400440116243",
@@ -629,6 +646,7 @@ namespace IbanNet.Registry
 				EnglishName = "Dominican Republic",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "4!c20!n",
 					Example = "BAGR00000001212453611324",
@@ -662,6 +680,7 @@ namespace IbanNet.Registry
 				EnglishName = "Estonia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "2!n2!n11!n1!n",
 					Example = "2200221020145685",
@@ -695,6 +714,7 @@ namespace IbanNet.Registry
 				EnglishName = "Egypt",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "3!n3!n17!n",
 					Example = "01900500000000263180002",
@@ -735,6 +755,7 @@ namespace IbanNet.Registry
 				EnglishName = "Spain",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!n4!n1!n1!n10!n",
 					Example = "21000418450200051332",
@@ -779,6 +800,7 @@ namespace IbanNet.Registry
 				},
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 14,
 					Structure = "3!n11!n",
 					Example = "",
@@ -816,6 +838,7 @@ namespace IbanNet.Registry
 				EnglishName = "Faroe Islands",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 14,
 					Structure = "4!n9!n1!n",
 					Example = "64600001631634",
@@ -853,6 +876,7 @@ namespace IbanNet.Registry
 				},
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "5!n5!n11!c2!n",
 					Example = "20041010050500013M02606",
@@ -894,6 +918,7 @@ namespace IbanNet.Registry
 				},
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "4!a6!n8!n",
 					Example = "NWBK60161331926819",
@@ -934,6 +959,7 @@ namespace IbanNet.Registry
 				EnglishName = "Georgia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "2!a16!n",
 					Example = "NB0000000101904917",
@@ -967,6 +993,7 @@ namespace IbanNet.Registry
 				EnglishName = "Gibraltar",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 19,
 					Structure = "4!a15!c",
 					Example = "NWBK000000007099453",
@@ -1000,6 +1027,7 @@ namespace IbanNet.Registry
 				EnglishName = "Greenland",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 14,
 					Structure = "4!n9!n1!n",
 					Example = "64710001000206",
@@ -1033,6 +1061,7 @@ namespace IbanNet.Registry
 				EnglishName = "Greece",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "3!n4!n16!c",
 					Example = "01101250000000012300695",
@@ -1073,6 +1102,7 @@ namespace IbanNet.Registry
 				EnglishName = "Guatemala",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "4!c20!c",
 					Example = "TRAJ01020000001210029690",
@@ -1106,6 +1136,7 @@ namespace IbanNet.Registry
 				EnglishName = "Croatia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 17,
 					Structure = "7!n10!n",
 					Example = "10010051863000160",
@@ -1139,6 +1170,7 @@ namespace IbanNet.Registry
 				EnglishName = "Hungary",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "3!n4!n1!n15!n1!n",
 					Example = "117730161111101800000000",
@@ -1179,6 +1211,7 @@ namespace IbanNet.Registry
 				EnglishName = "Ireland",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "4!a6!n8!n",
 					Example = "AIBK93115212345678",
@@ -1219,6 +1252,7 @@ namespace IbanNet.Registry
 				EnglishName = "Israel",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 19,
 					Structure = "3!n3!n13!n",
 					Example = "010800000099999999",
@@ -1259,6 +1293,7 @@ namespace IbanNet.Registry
 				EnglishName = "Iraq",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 19,
 					Structure = "4!a3!n12!n",
 					Example = "NBIQ850123456789012",
@@ -1299,6 +1334,7 @@ namespace IbanNet.Registry
 				EnglishName = "Iceland",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 22,
 					Structure = "4!n2!n6!n10!n",
 					Example = "0159260076545510730339",
@@ -1339,6 +1375,7 @@ namespace IbanNet.Registry
 				EnglishName = "Italy",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "1!a5!n5!n12!c",
 					Example = "X0542811101000000123456",
@@ -1379,6 +1416,7 @@ namespace IbanNet.Registry
 				EnglishName = "Jordan",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 26,
 					Structure = "4!a4!n18!c",
 					Example = "CBJO0010000000000131000302",
@@ -1419,6 +1457,7 @@ namespace IbanNet.Registry
 				EnglishName = "Kuwait",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 26,
 					Structure = "4!a22!c",
 					Example = "CBKU0000000000001234560101",
@@ -1452,6 +1491,7 @@ namespace IbanNet.Registry
 				EnglishName = "Kazakhstan",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "3!n13!c",
 					Example = "125KZT5004100100",
@@ -1485,6 +1525,7 @@ namespace IbanNet.Registry
 				EnglishName = "Lebanon",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "4!n20!c",
 					Example = "099900000001001901229114",
@@ -1518,6 +1559,7 @@ namespace IbanNet.Registry
 				EnglishName = "Saint Lucia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 28,
 					Structure = "4!a24!c",
 					Example = "HEMM000100010012001200023015",
@@ -1551,6 +1593,7 @@ namespace IbanNet.Registry
 				EnglishName = "Liechtenstein",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 17,
 					Structure = "5!n12!c",
 					Example = "088100002324013AA",
@@ -1584,6 +1627,7 @@ namespace IbanNet.Registry
 				EnglishName = "Lithuania",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "5!n11!n",
 					Example = "1000011101001000",
@@ -1617,6 +1661,7 @@ namespace IbanNet.Registry
 				EnglishName = "Luxembourg",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "3!n13!c",
 					Example = "0019400644750000",
@@ -1650,6 +1695,7 @@ namespace IbanNet.Registry
 				EnglishName = "Latvia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 17,
 					Structure = "4!a13!c",
 					Example = "BANK0000435195001",
@@ -1683,6 +1729,7 @@ namespace IbanNet.Registry
 				EnglishName = "Monaco",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "5!n5!n11!c2!n",
 					Example = "11222000010123456789030",
@@ -1723,6 +1770,7 @@ namespace IbanNet.Registry
 				EnglishName = "Moldova",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "2!c18!c",
 					Example = "AG000225100013104168",
@@ -1756,6 +1804,7 @@ namespace IbanNet.Registry
 				EnglishName = "Montenegro",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "3!n13!n2!n",
 					Example = "505000012345678951",
@@ -1789,6 +1838,7 @@ namespace IbanNet.Registry
 				EnglishName = "Macedonia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 15,
 					Structure = "3!n10!c2!n",
 					Example = "250120000058984",
@@ -1822,6 +1872,7 @@ namespace IbanNet.Registry
 				EnglishName = "Mauritania",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "5!n5!n11!n2!n",
 					Example = "00020001010000123456753",
@@ -1862,6 +1913,7 @@ namespace IbanNet.Registry
 				EnglishName = "Malta",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 27,
 					Structure = "4!a5!n18!c",
 					Example = "MALT011000012345MTLCAST001S",
@@ -1902,6 +1954,7 @@ namespace IbanNet.Registry
 				EnglishName = "Mauritius",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 26,
 					Structure = "4!a2!n2!n12!n3!n3!a",
 					Example = "BOMM0101101030300200000MUR",
@@ -1942,6 +1995,7 @@ namespace IbanNet.Registry
 				EnglishName = "Netherlands (The)",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 14,
 					Structure = "4!a10!n",
 					Example = "ABNA0417164300",
@@ -1975,6 +2029,7 @@ namespace IbanNet.Registry
 				EnglishName = "Norway",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 11,
 					Structure = "4!n6!n1!n",
 					Example = "86011117947",
@@ -2008,6 +2063,7 @@ namespace IbanNet.Registry
 				EnglishName = "Pakistan",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!a16!c",
 					Example = "SCBL0000001123456702",
@@ -2041,6 +2097,7 @@ namespace IbanNet.Registry
 				EnglishName = "Poland",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "8!n16!n",
 					Example = "109010140000071219812874",
@@ -2074,6 +2131,7 @@ namespace IbanNet.Registry
 				EnglishName = "Palestine, State of",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 25,
 					Structure = "4!a21!c",
 					Example = "PALS000000000400123456702",
@@ -2107,6 +2165,7 @@ namespace IbanNet.Registry
 				EnglishName = "Portugal",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 21,
 					Structure = "4!n4!n11!n2!n",
 					Example = "000201231234567890154",
@@ -2144,6 +2203,7 @@ namespace IbanNet.Registry
 				EnglishName = "Qatar",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 25,
 					Structure = "4!a21!c",
 					Example = "DOHB00001234567890ABCDEFG",
@@ -2177,6 +2237,7 @@ namespace IbanNet.Registry
 				EnglishName = "Romania",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!a16!c",
 					Example = "AAAA1B31007593840000",
@@ -2210,6 +2271,7 @@ namespace IbanNet.Registry
 				EnglishName = "Serbia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "3!n13!n2!n",
 					Example = "260005601001611379",
@@ -2243,6 +2305,7 @@ namespace IbanNet.Registry
 				EnglishName = "Saudi Arabia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "2!n18!c",
 					Example = "80000000608010167519",
@@ -2276,6 +2339,7 @@ namespace IbanNet.Registry
 				EnglishName = "Seychelles",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 27,
 					Structure = "4!a2!n2!n16!n3!a",
 					Example = "SSCB11010000000000001497USD",
@@ -2316,6 +2380,7 @@ namespace IbanNet.Registry
 				EnglishName = "Sweden",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "3!n16!n1!n",
 					Example = "50000000058398257466",
@@ -2349,6 +2414,7 @@ namespace IbanNet.Registry
 				EnglishName = "Slovenia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 15,
 					Structure = "5!n8!n2!n",
 					Example = "263300012039086",
@@ -2382,6 +2448,7 @@ namespace IbanNet.Registry
 				EnglishName = "Slovakia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!n6!n10!n",
 					Example = "12000000198742637541",
@@ -2415,6 +2482,7 @@ namespace IbanNet.Registry
 				EnglishName = "San Marino",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 23,
 					Structure = "1!a5!n5!n12!c",
 					Example = "U0322509800000000270100",
@@ -2455,6 +2523,7 @@ namespace IbanNet.Registry
 				EnglishName = "Sao Tome and Principe",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 21,
 					Structure = "4!n4!n11!n2!n",
 					Example = "000200010192194210112",
@@ -2495,6 +2564,7 @@ namespace IbanNet.Registry
 				EnglishName = "El Salvador",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 24,
 					Structure = "4!a20!n",
 					Example = "CENR00000000000000700025",
@@ -2528,6 +2598,7 @@ namespace IbanNet.Registry
 				EnglishName = "Timor-Leste",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 19,
 					Structure = "3!n14!n2!n",
 					Example = "0080012345678910157",
@@ -2561,6 +2632,7 @@ namespace IbanNet.Registry
 				EnglishName = "Tunisia",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "2!n3!n13!n2!n",
 					Example = "10006035183598478831",
@@ -2601,6 +2673,7 @@ namespace IbanNet.Registry
 				EnglishName = "Turkey",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 22,
 					Structure = "5!n1!n16!c",
 					Example = "0006100519786457841326",
@@ -2634,6 +2707,7 @@ namespace IbanNet.Registry
 				EnglishName = "Ukraine",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 25,
 					Structure = "6!n19!c",
 					Example = "3223130000026007233566001",
@@ -2667,6 +2741,7 @@ namespace IbanNet.Registry
 				EnglishName = "Vatican City State",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 18,
 					Structure = "3!n15!n",
 					Example = "001123000012345678",
@@ -2700,6 +2775,7 @@ namespace IbanNet.Registry
 				EnglishName = "Virgin Islands",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 20,
 					Structure = "4!a16!n",
 					Example = "VPVG0000012345678901",
@@ -2733,6 +2809,7 @@ namespace IbanNet.Registry
 				EnglishName = "Kosovo",
 				Bban = new BbanStructure
 				{
+					Position = 4,
 					Length = 16,
 					Structure = "4!n10!n2!n",
 					Example = "1212012345678906",
