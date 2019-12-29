@@ -16,9 +16,13 @@ namespace IbanNet.Registry
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private string? _displayName;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private IbanStructure? _ibanStructure;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private BbanStructure? _bbanStructure;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private IbanStructure? _ibanStructure;
+		private BankStructure? _bankStructure;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private BranchStructure? _branchStructure;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanCountry"/> class using specified 2 letter ISO region name.
@@ -94,6 +98,26 @@ namespace IbanNet.Registry
 		{
 			get => _ibanStructure ??= new IbanStructure();
 			set => _ibanStructure = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the bank identifier structure section.
+		/// </summary>
+		[AllowNull]
+		public BankStructure Bank
+		{
+			get => _bankStructure ??= new BankStructure();
+			set => _bankStructure = value;
+		}
+
+		/// <summary>
+		/// Gets or sets the branch identifier structure section.
+		/// </summary>
+		[AllowNull]
+		public BranchStructure Branch
+		{
+			get => _branchStructure ??= new BranchStructure();
+			set => _branchStructure = value;
 		}
 
 		/// <summary>

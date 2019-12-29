@@ -21,15 +21,5 @@ namespace IbanNet.Registry
 			: base(structure)
 		{
 		}
-
-		/// <summary>
-		/// Gets or sets the bank identifier structure section.
-		/// </summary>
-		public BankStructure? Bank { get; set; }
-
-		/// <summary>
-		/// Gets or sets the branch identifier structure section.
-		/// </summary>
-		public BranchStructure? Branch { get; set; }
 	}
 }
