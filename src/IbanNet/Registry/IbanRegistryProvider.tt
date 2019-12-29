@@ -27,7 +27,7 @@ namespace IbanNet.Registry
 	/// <remarks>
 	/// Generated from: <#= registryFile #>
 	/// </remarks>
-	[GeneratedCode("IbanRegistryT4", "1.1-<#= registryReleaseVersion #>")]
+	[GeneratedCode("IbanRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
 	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
 		/// <inheritdoc />
@@ -76,38 +76,9 @@ namespace IbanNet.Registry
 				},
 <#
 					}
-#>
-				Bban = new BbanStructure
-				{
-					Length = <#= getNumber(row[8]) #>,
-					Structure = "<#= row[7] ?? string.Empty #>",
-					Example = "<#= normalizeExample(row[15]) ?? string.Empty #>",
-<#
-						if (row[9] != null) {
-#>
-					Bank = new BankStructure
-					{
-						Position = <#= int.Parse(row[9].Split('-')[0]) - 1 #>,
-						Length = <#= int.Parse(row[9].Split('-', ' ')[1]) - int.Parse(row[9].Split('-')[0]) + 1 #>,
-						Structure = "<#= row[10] ?? string.Empty #>",
-						Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
-					},
-<#
-						}
 
-						if (row[11] != null) {
+					int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
 #>
-					Branch = new BranchStructure
-					{
-						Position = <#= int.Parse(row[11].Split('-')[0]) - 1 #>,
-						Length = <#= int.Parse(row[11].Split('-', ' ')[1]) - int.Parse(row[11].Split('-')[0]) + 1 #>,
-						Structure = "<#= row[12] ?? string.Empty #>",
-						Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
-					}
-<#
-						}
-#>
-				},
 				Iban = new IbanStructure
 				{
 					Length = <#= getNumber(row[18]) #>,
@@ -115,6 +86,38 @@ namespace IbanNet.Registry
 					Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
 					EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
 				},
+				Bban = new BbanStructure
+				{
+					Position = <#= bbanOffset #>,
+					Length = <#= getNumber(row[8]) #>,
+					Structure = "<#= row[7] ?? string.Empty #>",
+					Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
+				},
+<#
+						if (row[9] != null) {
+#>
+				Bank = new BankStructure
+				{
+					Position = <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>,
+					Length = <#= getNumber(row[9].Split('-', ' ')[1]) - getNumber(row[9].Split('-')[0]) + 1 #>,
+					Structure = "<#= row[10] ?? string.Empty #>",
+					Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
+				},
+<#
+						}
+
+						if (row[11] != null) {
+#>
+				Branch = new BranchStructure
+				{
+					Position = <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>,
+					Length = <#= getNumber(row[11].Split('-', ' ')[1]) - getNumber(row[11].Split('-')[0]) + 1 #>,
+					Structure = "<#= row[12] ?? string.Empty #>",
+					Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
+				},
+<#
+						}
+#>
 				Sepa = new SepaInfo
 				{
 					IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
