@@ -5,11 +5,14 @@ using NUnit.Framework;
 namespace IbanNet
 {
 	[TestFixture]
-	internal class IbanParseIntegrationTest
+	internal class IbanParserTests
 	{
-		public IbanParseIntegrationTest()
+		private readonly IbanValidator _ibanValidator;
+		private readonly IbanParser _sut;
+
+		public IbanParserTests()
 		{
-			Iban.Validator = new IbanValidator();
+			_sut = new IbanParser(_ibanValidator = new IbanValidator());
 		}
 
 		[TestCase(null, typeof(ArgumentNullException))]
@@ -19,7 +22,7 @@ namespace IbanNet
 		public void Given_invalid_value_when_parsing_it_should_throw(string attemptedIbanValue, Type expectedExceptionType)
 		{
 			// Act
-			Action act = () => Iban.Parse(attemptedIbanValue);
+			Action act = () => _sut.Parse(attemptedIbanValue);
 
 			// Assert
 			act.Should().Throw<Exception>()
@@ -33,7 +36,7 @@ namespace IbanNet
 		public void Given_invalid_value_when_trying_parsing_it_should_throw(string attemptedIbanValue)
 		{
 			// Act
-			Func<bool> act = () => Iban.TryParse(attemptedIbanValue, out _);
+			Func<bool> act = () => _sut.TryParse(attemptedIbanValue, out _);
 
 			// Assert
 			act.Should().NotThrow().Which.Should().BeFalse();
@@ -44,8 +47,8 @@ namespace IbanNet
 		public void Given_iban_when_parsing_should_give_same_result_as_validator(string attemptedIbanValue)
 		{
 			// Act
-			ValidationResult validatorResult = Iban.Validator.Validate(attemptedIbanValue);
-			bool tryParseResult = Iban.TryParse(attemptedIbanValue, out Iban iban, out ValidationResult tryParseValidationResult, out Exception _);
+			ValidationResult validatorResult = _ibanValidator.Validate(attemptedIbanValue);
+			bool tryParseResult = _sut.TryParse(attemptedIbanValue, out Iban iban, out ValidationResult tryParseValidationResult, out Exception _);
 
 			// Assert
 			validatorResult.IsValid.Should().Be(tryParseResult);
