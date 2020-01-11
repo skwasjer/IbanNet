@@ -56,7 +56,8 @@ namespace IbanNet.DataAnnotations
 		/// <returns></returns>
 		private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
 		{
-			IIbanValidator? ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
+			var resolvedValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
+			IIbanValidator? ibanValidator = resolvedValidator ?? Iban.Validator;
 			if (ibanValidator == null)
 			{
 				throw new InvalidOperationException(string.Format(Resources.IbanAttribute_ValidatorMissing, nameof(IIbanValidator)));

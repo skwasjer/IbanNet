@@ -99,7 +99,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="IbanAttribute_Invalid" xml:space="preserve">
-    <value>The {0} field is not a valid IBAN.</value>
+    <value>The field '{0}' is not a valid IBAN.</value>
   </data>
 	<data name="IbanAttribute_ValidatorMissing" xml:space="preserve">
     <value>Failed to get an instance of {0}.</value>

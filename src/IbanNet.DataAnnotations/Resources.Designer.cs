@@ -62,7 +62,7 @@ namespace IbanNet.DataAnnotations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} field is not a valid IBAN..
+        ///   Looks up a localized string similar to The field &apos;{0}&apos; is not a valid IBAN..
         /// </summary>
         internal static string IbanAttribute_Invalid {
             get {
