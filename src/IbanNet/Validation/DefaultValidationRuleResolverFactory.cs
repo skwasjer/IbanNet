@@ -5,9 +5,17 @@ namespace IbanNet.Validation
 	/// <summary>
 	/// The default factory for creating a validation rule resolver.
 	/// </summary>
-	public class DefaultValidationRuleResolverFactory  : IValidationRuleResolverFactory
+	internal class DefaultValidationRuleResolverFactory : IValidationRuleResolverFactory
 	{
 		private readonly IStructureValidationFactory _structureValidationFactory;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DefaultValidationRuleResolverFactory"/>.
+		/// </summary>
+		public DefaultValidationRuleResolverFactory()
+			: this(new CachedStructureValidationFactory(new SwiftStructureValidationFactory()))
+		{
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DefaultValidationRuleResolverFactory"/>.

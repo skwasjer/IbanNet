@@ -5,7 +5,7 @@ namespace IbanNet.Validation
 	/// <summary>
 	/// Describes a factory which is used to build a validator from a defined pattern/structure.
 	/// </summary>
-	public interface IStructureValidationFactory
+	internal interface IStructureValidationFactory
 	{
 		/// <summary>
 		/// Creates a validator for specified country using the provided <paramref name="structure" />.

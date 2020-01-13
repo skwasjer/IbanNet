@@ -35,9 +35,7 @@ namespace IbanNet
 		public IbanValidator(IbanValidatorOptions options)
 			: this(
 				options,
-				new DefaultValidationRuleResolverFactory(
-						new CachedStructureValidationFactory(new SwiftStructureValidationFactory())
-				).CreateRuleResolver(options)
+				new DefaultValidationRuleResolverFactory().CreateRuleResolver(options)
 			)
 		{
 		}
@@ -48,7 +46,7 @@ namespace IbanNet
 		/// <param name="options">The validator options.</param>
 		/// <param name="validationRuleResolver">The validation rule resolver.</param>
 		// ReSharper disable once MemberCanBePrivate.Global
-		public IbanValidator(IbanValidatorOptions options, IValidationRuleResolver validationRuleResolver)
+		internal IbanValidator(IbanValidatorOptions options, IValidationRuleResolver validationRuleResolver)
 		{
 			Options = options ?? throw new ArgumentNullException(nameof(options));
 			if (options.ValidationMethod is null)

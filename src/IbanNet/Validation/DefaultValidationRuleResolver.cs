@@ -9,7 +9,7 @@ namespace IbanNet.Validation
 	/// <summary>
 	/// Resolves validation rules by validation method.
 	/// </summary>
-	public class DefaultValidationRuleResolver : IValidationRuleResolver
+	internal class DefaultValidationRuleResolver : IValidationRuleResolver
 	{
 		private readonly IStructureValidationFactory _structureValidationFactory;
 		private readonly ICollection<IIbanValidationRule>? _customRules;

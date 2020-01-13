@@ -8,7 +8,7 @@ namespace IbanNet.Validation
 	/// <summary>
 	/// Describes how validation rules are resolved by validation method.
 	/// </summary>
-	public interface IValidationRuleResolver
+	internal interface IValidationRuleResolver
 	{
 		/// <summary>
 		/// Gets the rules for specified <paramref name="validationMethod"/> and <paramref name="registry"/>.

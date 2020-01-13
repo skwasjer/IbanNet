@@ -6,7 +6,7 @@ namespace IbanNet.Validation
 	/// <summary>
 	/// Represents a cache for validators.
 	/// </summary>
-	public class CachedStructureValidationFactory : IStructureValidationFactory
+	internal class CachedStructureValidationFactory : IStructureValidationFactory
 	{
 		private readonly ConcurrentDictionary<string, IStructureValidator> _cache;
 		private readonly IStructureValidationFactory _innerFactory;

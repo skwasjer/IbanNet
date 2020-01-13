@@ -3,7 +3,7 @@
 	/// <summary>
 	/// A factory for creating a validation rule resolver.
 	/// </summary>
-	public interface IValidationRuleResolverFactory
+	internal interface IValidationRuleResolverFactory
 	{
 		/// <summary>
 		/// Creates a <see cref="IValidationRuleResolver"/> using specified <paramref name="options"/>.
