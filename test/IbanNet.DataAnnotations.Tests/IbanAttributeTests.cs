@@ -189,7 +189,7 @@ namespace IbanNet.DataAnnotations
 				_validationContext.Items.Should()
 					.ContainKey("Error")
 					.WhichValue.Should()
-					.Be(new IllegalCharactersResult());
+					.BeOfType<IllegalCharactersResult>();
 			}
 
 			public class Given_context_with_member_name : When_validating_an_invalid_iban
