@@ -28,6 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="IFluentInterface" Version="2.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Registry\IbanRegistryProvider.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
