@@ -96,6 +96,7 @@ namespace IbanNet
 		/// <returns>an <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully</returns>
 		/// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="value"/> is null.</exception>
 		/// <exception cref="IbanFormatException">Thrown when the specified <paramref name="value"/> is not a valid IBAN.</exception>
+		[Obsolete("Use the `IbanParser` class.")]
 		public static Iban Parse(string? value)
 		{
 			return new IbanParser(Validator).Parse(value);
@@ -107,6 +108,7 @@ namespace IbanNet
 		/// <param name="value">The IBAN value to parse.</param>
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
+		[Obsolete("Use the `IbanParser` class.")]
 		public static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
 			return new IbanParser(Validator).TryParse(value, out iban);

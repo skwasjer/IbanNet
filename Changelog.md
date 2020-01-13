@@ -2,6 +2,7 @@
 
 ## v4.0.0-betaXX
 
+- Added `IbanParser` class which provides equivalent non-static functionality to `Iban.Parse` and `Iban.TryParse` (which will be obsolete).
 - Added .NET Standard 2.1 target, enabled and refactored for nullable reference types.
 - (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs loose), extensibility through custom rules.
 - (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
