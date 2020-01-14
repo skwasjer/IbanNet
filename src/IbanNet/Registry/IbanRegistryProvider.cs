@@ -8,9 +8,9 @@ namespace IbanNet.Registry
 	/// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
 	/// <remarks>
-	/// Generated from: swift_iban_registry_201910.r84.txt
+	/// Generated from: swift_iban_registry_202001.r85.txt
 	/// </remarks>
-	[GeneratedCode("IbanRegistryProviderT4", "1.1-r84")]
+	[GeneratedCode("IbanRegistryProviderT4", "1.1-r85")]
 	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
 		/// <inheritdoc />
@@ -714,38 +714,38 @@ namespace IbanNet.Registry
 				EnglishName = "Egypt",
 				Iban = new IbanStructure
 				{
-					Length = 27,
-					Structure = "EG2!n3!n3!n17!n",
-					Example = "EG0401900500000000263180002",
+					Length = 29,
+					Structure = "EG2!n4!n4!n17!n",
+					Example = "EG380019000500000000263180002",
 					EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
 				},
 				Bban = new BbanStructure
 				{
 					Position = 4,
-					Length = 23,
-					Structure = "3!n3!n17!n",
-					Example = "01900500000000263180002"
+					Length = 25,
+					Structure = "4!n4!n17!n",
+					Example = "0019000500000000263180002"
 				},
 				Bank = new BankStructure
 				{
 					Position = 4,
-					Length = 3,
-					Structure = "3!n",
-					Example = "19",
+					Length = 4,
+					Structure = "4!n",
+					Example = "0019",
 				},
 				Branch = new BranchStructure
 				{
-					Position = 7,
-					Length = 3,
-					Structure = "3!n",
-					Example = "005",
+					Position = 8,
+					Length = 4,
+					Structure = "4!n",
+					Example = "0005",
 				},
 				Sepa = new SepaInfo
 				{
 					IsMember = false,
 				},
 				DomesticAccountNumberExample = "000263180002",
-				LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
+				LastUpdatedDate = new DateTimeOffset(2020, 1, 1, 0, 0, 0, TimeSpan.Zero)
 			};
 
 			// Spain

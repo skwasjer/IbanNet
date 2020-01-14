@@ -24,11 +24,10 @@ namespace IbanNet.FluentValidation
 			_testModel = new TestModel();
 		}
 
-		[Test]
-		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors()
+		[TestCase("PL611090101400000712198128741")]
+		[TestCase("AE07033123456789012345")]
+		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors(string attemptedIbanValue)
 		{
-			IbanCountry country = IbanRegistry.Default.First();
-			string attemptedIbanValue = country.Iban.Example + "Z"; // Add some char to make invalid.
 			_testModel.BankAccountNumber = attemptedIbanValue;
 
 			const string expectedFormattedPropertyName = "Bank Account Number";
@@ -56,11 +55,11 @@ namespace IbanNet.FluentValidation
 				.Should().BeEquivalentTo(expectedValidationFailure);
 		}
 
-		[Test]
-		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors()
+		[TestCase("PL61109010140000071219812874")]
+		[TestCase("AE070331234567890123456")]
+		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string attemptedIbanValue)
 		{
-			IbanCountry country = IbanRegistry.Default.First();
-			_testModel.BankAccountNumber = country.Iban.Example;
+			_testModel.BankAccountNumber = attemptedIbanValue;
 
 			// Act
 			var actual = _sut.Validate(_testModel);

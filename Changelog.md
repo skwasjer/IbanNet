@@ -17,6 +17,10 @@
 - Performance improvements (up to 10x faster at around 500ns per validation, and lower memory footprint)
 - (breaking) Moved `Branch` and `Bank` properties from `BbanStructure` to `IbanCountry` and all offsets are now relative to entire IBAN. This makes it easier to extract this data from an IBAN.
 
+## v3.2.1
+
+- Upgraded registry to Januari '20 release 85 (improves Egypt, not effective until 2021).
+
 ## v3.2.0
 
 - Upgraded registry to October '19 release 84 (adds Egypt).
