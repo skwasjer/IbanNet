@@ -22,8 +22,9 @@ namespace IbanNet.FluentValidation
 			_testModel = new TestModel();
 		}
 
-		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetInvalidIbanPerCountry))]
-		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors(string countryCode, string attemptedIbanValue)
+		[TestCase("PL611090101400000712198128741")]
+		[TestCase("AE07033123456789012345")]
+		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors(string attemptedIbanValue)
 		{
 			_testModel.BankAccountNumber = attemptedIbanValue;
 
@@ -51,8 +52,9 @@ namespace IbanNet.FluentValidation
 				.Should().BeEquivalentTo(expectedValidationFailure);
 		}
 
-		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetValidIbanPerCountry))]
-		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string countryCode, string attemptedIbanValue)
+		[TestCase("PL61109010140000071219812874")]
+		[TestCase("AE070331234567890123456")]
+		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string attemptedIbanValue)
 		{
 			_testModel.BankAccountNumber = attemptedIbanValue;
 

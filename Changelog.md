@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.1
+
+- Upgraded registry to Januari '20 release 85 (improves Egypt, not effective until 2021).
+
 ## v3.2.0
 
 - Upgraded registry to October '19 release 84 (adds Egypt).
