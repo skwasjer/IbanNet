@@ -31,7 +31,7 @@ namespace IbanNet
 				Action act = () => Iban.Parse(TestValues.InvalidIban);
 
 				// Assert
-				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
 				ex.Result.Should().BeEquivalentTo(new ValidationResult
 				{
 					Error = new IllegalCharactersResult(),
@@ -64,7 +64,7 @@ namespace IbanNet
 				Action act = () => Iban.Parse(TestValues.IbanForCustomRuleFailure);
 
 				// Assert
-				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
 				ex.Result.Should().BeEquivalentTo(new ValidationResult
 				{
 					Error = new ErrorResult("Custom message"),
@@ -81,7 +81,7 @@ namespace IbanNet
 				Action act = () => Iban.Parse(TestValues.IbanForCustomRuleException);
 
 				// Assert
-				var ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
+				IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
 				ex.Result.Should().BeNull();
 				ex.InnerException.Should().NotBeNull();
 				ex.Message.Should().Contain("is not a valid IBAN.");
@@ -94,7 +94,7 @@ namespace IbanNet
 			public void With_null_value_should_return_false()
 			{
 				// Act
-				var actual = Iban.TryParse(null, out var iban);
+				bool actual = Iban.TryParse(null, out Iban? iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was null which is not valid");
@@ -106,7 +106,7 @@ namespace IbanNet
 			public void With_invalid_value_should_return_false()
 			{
 				// Act
-				var actual = Iban.TryParse(TestValues.InvalidIban, out var iban);
+				bool actual = Iban.TryParse(TestValues.InvalidIban, out Iban? iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was invalid");
@@ -119,7 +119,7 @@ namespace IbanNet
 			public void With_valid_value_should_pass()
 			{
 				// Act
-				var actual = Iban.TryParse(TestValues.ValidIban, out var iban);
+				bool actual = Iban.TryParse(TestValues.ValidIban, out Iban? iban);
 
 				// Assert
 				actual.Should().BeTrue("the provided value was valid");
@@ -140,7 +140,7 @@ namespace IbanNet
 			{
 				base.SetUp();
 
-				_iban = Iban.Parse(TestValues.ValidIban);
+				_iban = new Iban(TestValues.ValidIban);
 			}
 
 			[Test]
@@ -174,7 +174,7 @@ namespace IbanNet
 			public void With_valid_format_should_succeed(string format, string expected)
 			{
 				// Act
-				var actual = _iban.ToString(format);
+				string actual = _iban.ToString(format);
 
 				// Assert
 				actual.Should().Be(expected);
@@ -184,7 +184,7 @@ namespace IbanNet
 			public void With_default_format_should_return_flat()
 			{
 				// Act
-				var actual = _iban.ToString();
+				string actual = _iban.ToString();
 
 				// Assert
 				actual.Should().Be(TestValues.ValidIban);
@@ -201,9 +201,11 @@ namespace IbanNet
 			{
 				base.SetUp();
 
-				_iban = Iban.Parse(TestValues.ValidIban);
-				_equalIban = Iban.Parse(TestValues.ValidIbanPartitioned);
-				_otherIban = Iban.Parse("AE070331234567890123456");
+				var ibanParser = new IbanParser(IbanValidatorMock.Object);
+
+				_iban = ibanParser.Parse(TestValues.ValidIban);
+				_equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
+				_otherIban = ibanParser.Parse("AE070331234567890123456");
 			}
 
 			[Test]
@@ -283,9 +285,11 @@ namespace IbanNet
 			{
 				base.SetUp();
 
-				_iban = Iban.Parse(TestValues.ValidIban);
-				_equalIban = Iban.Parse(TestValues.ValidIbanPartitioned);
-				_otherIban = Iban.Parse("AE070331234567890123456");
+				var ibanParser = new IbanParser(IbanValidatorMock.Object);
+
+				_iban = ibanParser.Parse(TestValues.ValidIban);
+				_equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
+				_otherIban = ibanParser.Parse("AE070331234567890123456");
 			}
 
 			[Test]
@@ -324,7 +328,7 @@ namespace IbanNet
 			[Test]
 			public void It_should_be_same_as_underlying_string_value()
 			{
-				Iban iban = Iban.Parse(TestValues.ValidIban);
+				var iban = new Iban(TestValues.ValidIban);
 				int expectedHashCode = TestValues.ValidIban.GetHashCode();
 
 				// Act

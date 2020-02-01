@@ -33,7 +33,7 @@ namespace IbanNet.TypeConverters
 			public void From_valid_iban_string_should_return_parsed_iban()
 			{
 				// Act
-				var resultObj = _sut.ConvertFrom(TestValues.ValidIban);
+				object resultObj = _sut.ConvertFrom(TestValues.ValidIban);
 
 				// Assert
 				resultObj.Should()
@@ -61,7 +61,7 @@ namespace IbanNet.TypeConverters
 
 				// Act
 				// ReSharper disable once ExpressionIsAlwaysNull
-				var resultObj = _sut.ConvertFrom(nullValue);
+				object resultObj = _sut.ConvertFrom(nullValue);
 
 				// Assert
 				resultObj.Should().BeNull();
@@ -77,7 +77,7 @@ namespace IbanNet.TypeConverters
 					.Verifiable();
 
 				// Act
-				var resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
+				object resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
 
 				// Assert
 				typeDescriptorContextMock.Verify();
@@ -98,7 +98,7 @@ namespace IbanNet.TypeConverters
 			{
 				base.SetUp();
 
-				_iban = Iban.Parse(TestValues.ValidIban);
+				_iban = new Iban(TestValues.ValidIban);
 			}
 
 			[Test]
@@ -111,7 +111,7 @@ namespace IbanNet.TypeConverters
 			public void To_string_should_return_flat_formatted_iban()
 			{
 				// Act
-				var resultObj = _sut.ConvertTo(_iban, typeof(string));
+				object resultObj = _sut.ConvertTo(_iban, typeof(string));
 
 				// Assert
 				resultObj.Should()
@@ -127,7 +127,7 @@ namespace IbanNet.TypeConverters
 			public void Should_return_custom_typeConverter()
 			{
 				// Act
-				var typeConverter = TypeDescriptor.GetConverter(typeof(Iban));
+				TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(Iban));
 
 				// Assert
 				typeConverter.Should().BeOfType<IbanTypeConverter>();
@@ -139,10 +139,10 @@ namespace IbanNet.TypeConverters
 			[Test]
 			public void It_should_succeed()
 			{
-				Iban bankAccountNumber1 = Iban.Parse("NL91ABNA0417164300");
-				var json = JsonConvert.SerializeObject(bankAccountNumber1);
+				var bankAccountNumber1 = new Iban(TestValues.ValidIban);
+				string json = JsonConvert.SerializeObject(bankAccountNumber1);
 
-				json.Should().Be("\"NL91ABNA0417164300\"");
+				json.Should().Be($"\"{TestValues.ValidIban}\"");
 
 				Iban bankAccountNumber2 = JsonConvert.DeserializeObject<Iban>(json);
 				bankAccountNumber1.Should().Be(bankAccountNumber2);
