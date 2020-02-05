@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using IbanNet.Registry;
+
+namespace IbanNet.Validation
+{
+	/// <summary>
+	/// Wraps one or more providers and selects the first found <see cref="IStructureValidationFactory"/> for a given country code.
+	/// </summary>
+	internal class CompositeStructureValidationFactory : IStructureValidationFactory
+	{
+		private readonly IDictionary<string, IStructureValidationFactory> _structureValidationFactoriesByCountry;
+
+		public CompositeStructureValidationFactory(IEnumerable<IIbanRegistryProvider> providers)
+		{
+			if (providers is null)
+			{
+				throw new ArgumentNullException(nameof(providers));
+			}
+
+			_structureValidationFactoriesByCountry = new Dictionary<string, IStructureValidationFactory>();
+			InitStructureValidationFactories(providers, _structureValidationFactoriesByCountry);
+		}
+
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
+		{
+			if (_structureValidationFactoriesByCountry.TryGetValue(twoLetterISORegionName, out IStructureValidationFactory factory))
+			{
+				return factory.CreateValidator(twoLetterISORegionName, structure);
+			}
+
+			throw new InvalidOperationException($"No structure validation factory for country code '{twoLetterISORegionName}'.");
+		}
+
+		private static void InitStructureValidationFactories(IEnumerable<IIbanRegistryProvider> providers, IDictionary<string, IStructureValidationFactory> factories)
+		{
+			foreach (IIbanRegistryProvider provider in providers)
+			{
+				foreach (IbanCountry country in provider.Load())
+				{
+					if (!factories.ContainsKey(country.TwoLetterISORegionName))
+					{
+						factories.Add(country.TwoLetterISORegionName, provider.StructureValidationFactory);
+					}
+				}
+			}
+		}
+	}
+}

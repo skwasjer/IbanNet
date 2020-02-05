@@ -13,7 +13,13 @@ namespace IbanNet.Registry
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new IbanRegistry();
+			_sut = new IbanRegistry
+			{
+				Providers =
+				{
+					new IbanRegistryProvider()
+				}
+			};
 		}
 
 		[Test]

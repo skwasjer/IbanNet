@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
@@ -13,6 +14,9 @@ namespace IbanNet.Registry
 	[GeneratedCode("IbanRegistryProviderT4", "1.1-r85")]
 	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
+		/// <inheritdoc />
+		public IStructureValidationFactory StructureValidationFactory { get; } = new SwiftStructureValidationFactory();
+
 		/// <inheritdoc />
 		public IEnumerable<IbanCountry> Load()
 		{

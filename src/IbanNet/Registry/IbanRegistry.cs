@@ -6,49 +6,26 @@ using System.Linq;
 namespace IbanNet.Registry
 {
 	/// <summary>
+	/// Represents a registry of IBAN countries.
 	/// </summary>
 	public class IbanRegistry : IIbanRegistry
 	{
+		private IDictionary<string, IbanCountry>? _dictionary;
+
 		/// <summary>
 		/// Gets the default IBAN registry initialized with all the built-in countries.
 		/// </summary>
-		public static IbanRegistry Default { get; } = new IbanRegistry();
+		public static IbanRegistry Default { get; } = new IbanRegistry
+		{
+			Providers = { new IbanRegistryProvider() }
+		};
 
 		/// <summary>
-		/// Gets the registry mapped as dictionary by country code.
+		/// Initializes a new instance of <see cref="IbanRegistry" />.
 		/// </summary>
-		internal IDictionary<string, IbanCountry> Dictionary { get; }
-
-		/// <summary>
-		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized with all the built-in countries.
-		/// </summary>
+		// ReSharper disable once EmptyConstructor
 		public IbanRegistry()
-			: this(new IbanRegistryProvider())
 		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized by using specified provider.
-		/// </summary>
-		public IbanRegistry(IIbanRegistryProvider registryProvider)
-			: this(registryProvider.Load())
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized with specified <paramref name="countries" />.
-		/// </summary>
-		public IbanRegistry(IEnumerable<IbanCountry> countries)
-			: this(countries.ToDictionary(c => c.TwoLetterISORegionName))
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized with specified <paramref name="countries" />.
-		/// </summary>
-		public IbanRegistry(IEnumerable<KeyValuePair<string, IbanCountry>> countries)
-		{
-			Dictionary = new ReadOnlyDictionary<string, IbanCountry>(countries.ToDictionary());
 		}
 
 		/// <inheritdoc />
@@ -60,11 +37,31 @@ namespace IbanNet.Registry
 		public int Count => Dictionary.Count;
 
 		/// <inheritdoc />
+		public IList<IIbanRegistryProvider> Providers { get; } = new List<IIbanRegistryProvider>();
+
+		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming
 		public bool TryGetValue(string twoLetterISORegionName, out IbanCountry country) => Dictionary.TryGetValue(twoLetterISORegionName, out country);
 
 		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming
 		public IbanCountry this[string twoLetterISORegionName] => Dictionary[twoLetterISORegionName];
+
+		/// <summary>
+		/// Gets the registry mapped as dictionary by country code.
+		/// </summary>
+		private IDictionary<string, IbanCountry> Dictionary
+		{
+			get
+			{
+				return _dictionary ??= new ReadOnlyDictionary<string, IbanCountry>(Providers
+					.Select(p => p.Load())
+					.SelectMany(c => c)
+					// In case of duplicate country codes, select the first.
+					.GroupBy(c => c.TwoLetterISORegionName)
+					.ToDictionary(g => g.Key, g => g.First())
+				);
+			}
+		}
 	}
 }

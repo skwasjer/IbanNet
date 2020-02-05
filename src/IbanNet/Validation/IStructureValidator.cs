@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Describes a validator that validates a specific IBAN.
 	/// </summary>
-	internal interface IStructureValidator
+	public interface IStructureValidator
 	{
 		/// <summary>
 		/// Validates the specified <paramref name="iban" />.

@@ -6,6 +6,7 @@ using IbanNet.DependencyInjection.FluentAssertions;
 using IbanNet.FakeRules;
 using IbanNet.Registry;
 using IbanNet.TestCases;
+using IbanNet.Validation;
 using IbanNet.Validation.Methods;
 using Moq;
 using NUnit.Framework;
@@ -43,15 +44,21 @@ namespace IbanNet.DependencyInjection
 			[Test]
 			public void Given_registry_is_configured_it_should_set_registry()
 			{
-				IEnumerable<IbanCountry> customRegistry = new IbanRegistry()
+				IEnumerable<IbanCountry> limitedCountries = IbanRegistry.Default
 					.Where((country, i) => i % 2 == 0)
 					.ToList();
 
 				// Act
-				IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistry(customRegistry);
+				IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistry(new IbanRegistry
+				{
+					Providers =
+					{
+						new IbanRegistryListProvider(limitedCountries, new SwiftStructureValidationFactory())
+					}
+				});
 
 				// Assert
-				_builderStub.Should().HaveConfiguredRegistry(customRegistry);
+				_builderStub.Should().HaveConfiguredRegistry(limitedCountries);
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
@@ -118,7 +125,7 @@ namespace IbanNet.DependencyInjection
 					DelegateTestCase.Create(
 						IbanNetOptionsBuilderExtensions.UseRegistry,
 						instance,
-						Enumerable.Empty<IbanCountry>()),
+						Mock.Of<IIbanRegistry>()),
 					DelegateTestCase.Create(
 						IbanNetOptionsBuilderExtensions.WithRule<TestValidationRule>,
 						instance),

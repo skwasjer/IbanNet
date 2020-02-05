@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using IbanNet.Registry;
 using IbanNet.Validation.Methods;
@@ -39,7 +38,7 @@ namespace IbanNet.DependencyInjection
 		/// <param name="builder">The builder instance.</param>
 		/// <param name="registry">The registry of IBAN countries.</param>
 		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
-		public static IIbanNetOptionsBuilder UseRegistry(this IIbanNetOptionsBuilder builder, IEnumerable<IbanCountry> registry)
+		public static IIbanNetOptionsBuilder UseRegistry(this IIbanNetOptionsBuilder builder, IIbanRegistry registry)
 		{
 			if (builder is null)
 			{
@@ -51,8 +50,29 @@ namespace IbanNet.DependencyInjection
 				throw new ArgumentNullException(nameof(registry));
 			}
 
-			var ir = new IbanRegistry(registry);
-			builder.Configure(options => options.Registry = ir);
+			builder.Configure(options => options.Registry = registry);
+			return builder;
+		}
+
+		/// <summary>
+		/// Configures the <see cref="IbanValidator"/> to use the specified registry.
+		/// </summary>
+		/// <param name="builder">The builder instance.</param>
+		/// <param name="registryProvider">The registry provider.</param>
+		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
+		public static IIbanNetOptionsBuilder UseRegistryProvider(this IIbanNetOptionsBuilder builder, IIbanRegistryProvider registryProvider)
+		{
+			if (builder is null)
+			{
+				throw new ArgumentNullException(nameof(builder));
+			}
+
+			if (registryProvider is null)
+			{
+				throw new ArgumentNullException(nameof(registryProvider));
+			}
+
+			builder.Configure(options => options.Registry.Providers.Add(registryProvider));
 			return builder;
 		}
 

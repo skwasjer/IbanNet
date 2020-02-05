@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
@@ -7,6 +8,11 @@ namespace IbanNet.Registry
 	/// </summary>
 	public interface IIbanRegistryProvider
 	{
+		/// <summary>
+		/// Gets the structure validation factory to use when validating IBAN's matching any country code provided by <see cref="Load"/>.
+		/// </summary>
+		IStructureValidationFactory StructureValidationFactory { get; }
+
 		/// <summary>
 		/// Builds an enumerable of <see cref="IbanCountry" />.
 		/// </summary>

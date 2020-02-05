@@ -12,6 +12,7 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using IbanNet.Validation;
 <#
 	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("IbanRegistryProvider.tt")), "Files");
 	string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
@@ -30,6 +31,9 @@ namespace IbanNet.Registry
 	[GeneratedCode("IbanRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
 	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
+		/// <inheritdoc />
+		public IStructureValidationFactory StructureValidationFactory { get; } = new SwiftStructureValidationFactory();
+
 		/// <inheritdoc />
 		public IEnumerable<IbanCountry> Load()
 		{
