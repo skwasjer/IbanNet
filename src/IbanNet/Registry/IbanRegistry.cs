@@ -55,8 +55,7 @@ namespace IbanNet.Registry
 			get
 			{
 				return _dictionary ??= new ReadOnlyDictionary<string, IbanCountry>(Providers
-					.Select(p => p.Load())
-					.SelectMany(c => c)
+					.SelectMany(p => p)
 					// In case of duplicate country codes, select the first.
 					.GroupBy(c => c.TwoLetterISORegionName)
 					.ToDictionary(g => g.Key, g => g.First())

@@ -36,7 +36,7 @@ namespace IbanNet.Validation
 		{
 			foreach (IIbanRegistryProvider provider in providers)
 			{
-				foreach (IbanCountry country in provider.Load())
+				foreach (IbanCountry country in provider)
 				{
 					if (!factories.ContainsKey(country.TwoLetterISORegionName))
 					{

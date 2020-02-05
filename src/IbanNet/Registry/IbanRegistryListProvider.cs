@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using IbanNet.Validation;
 
@@ -7,7 +9,8 @@ namespace IbanNet.Registry
 {
 	internal class IbanRegistryListProvider : IIbanRegistryProvider
 	{
-		private readonly IEnumerable<IbanCountry> _countries;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private readonly ICollection<IbanCountry> _countries;
 
 		/// <summary>
 		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized with specified <paramref name="countries" />.
@@ -20,9 +23,16 @@ namespace IbanNet.Registry
 
 		public IStructureValidationFactory StructureValidationFactory { get; }
 
-		public IEnumerable<IbanCountry> Load()
+		public IEnumerator<IbanCountry> GetEnumerator()
 		{
-			return _countries;
+			return _countries.GetEnumerator();
 		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
+
+		public int Count => _countries.Count;
 	}
 }

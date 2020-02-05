@@ -1,6 +1,9 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using IbanNet.Validation;
 
 namespace IbanNet.Registry
@@ -14,11 +17,30 @@ namespace IbanNet.Registry
 	[GeneratedCode("IbanRegistryProviderT4", "1.1-r85")]
 	public class IbanRegistryProvider : IIbanRegistryProvider
 	{
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private ICollection<IbanCountry>? _countries;
+
 		/// <inheritdoc />
 		public IStructureValidationFactory StructureValidationFactory { get; } = new SwiftStructureValidationFactory();
 
 		/// <inheritdoc />
-		public IEnumerable<IbanCountry> Load()
+		public IEnumerator<IbanCountry> GetEnumerator()
+		{
+			_countries = _countries ??= Load().ToList();
+
+			return _countries.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
+
+		/// <inheritdoc />
+		// ReSharper disable once UseCollectionCountProperty - justification: need to init _countries first.
+		public int Count => _countries?.Count ?? this.Count();
+
+		private static IEnumerable<IbanCountry> Load()
 		{
 			// ReSharper disable CommentTypo
 			// ReSharper disable StringLiteralTypo

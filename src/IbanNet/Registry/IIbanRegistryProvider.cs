@@ -4,19 +4,13 @@ using IbanNet.Validation;
 namespace IbanNet.Registry
 {
 	/// <summary>
-	/// Provides a way to load IBAN registry data.
+	/// Provides IBAN registry data.
 	/// </summary>
-	public interface IIbanRegistryProvider
+	public interface IIbanRegistryProvider : IReadOnlyCollection<IbanCountry>
 	{
 		/// <summary>
-		/// Gets the structure validation factory to use when validating IBAN's matching any country code provided by <see cref="Load"/>.
+		/// Gets the structure validation factory to use when validating IBAN's matching any country code from this provider.
 		/// </summary>
 		IStructureValidationFactory StructureValidationFactory { get; }
-
-		/// <summary>
-		/// Builds an enumerable of <see cref="IbanCountry" />.
-		/// </summary>
-		/// <returns>an enumerable of <see cref="IbanCountry" />.</returns>
-		IEnumerable<IbanCountry> Load();
 	}
 }
