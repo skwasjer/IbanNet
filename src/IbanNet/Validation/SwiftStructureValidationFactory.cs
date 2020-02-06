@@ -8,7 +8,7 @@ namespace IbanNet.Validation
 	/// <summary>
 	/// A factory to create validators that are based on the Swift Registry its structure definitions.
 	/// </summary>
-	internal class SwiftStructureValidationFactory : IStructureValidationFactory
+	public class SwiftStructureValidationFactory : IStructureValidationFactory
 	{
 		private static readonly IDictionary<char, Func<char, bool>> SegmentMap = new Dictionary<char, Func<char, bool>>
 		{
