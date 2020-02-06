@@ -15,7 +15,7 @@ namespace IbanNet.Registry
 	/// Generated from: swift_iban_registry_202001.r85.txt
 	/// </remarks>
 	[GeneratedCode("IbanRegistryProviderT4", "1.1-r85")]
-	public class IbanRegistryProvider : IIbanRegistryProvider
+	public class SwiftRegistryProvider : IIbanRegistryProvider
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private ICollection<IbanCountry>? _countries;

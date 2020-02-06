@@ -17,7 +17,7 @@ namespace IbanNet.Registry
 		/// </summary>
 		public static IbanRegistry Default { get; } = new IbanRegistry
 		{
-			Providers = { new IbanRegistryProvider() }
+			Providers = { new SwiftRegistryProvider() }
 		};
 
 		/// <summary>

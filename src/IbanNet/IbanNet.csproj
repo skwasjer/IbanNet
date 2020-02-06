@@ -35,10 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Registry\IbanRegistryProvider.cs">
+    <Compile Update="Registry\SwiftRegistryProvider.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>IbanRegistryProvider.tt</DependentUpon>
+      <DependentUpon>SwiftRegistryProvider.tt</DependentUpon>
     </Compile>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -55,9 +55,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Registry\IbanRegistryProvider.tt">
+    <None Update="Registry\SwiftRegistryProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IbanRegistryProvider.cs</LastGenOutput>
+      <LastGenOutput>SwiftRegistryProvider.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

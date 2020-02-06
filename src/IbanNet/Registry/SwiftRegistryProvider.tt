@@ -17,7 +17,7 @@ using System.Diagnostics;
 using System.Linq;
 using IbanNet.Validation;
 <#
-	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("IbanRegistryProvider.tt")), "Files");
+	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
 	string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
 	string registryFile = Path.GetFileName(registryPath);
 	string registryReleaseVersion = registryFile.Split('.')[1];
@@ -32,7 +32,7 @@ namespace IbanNet.Registry
 	/// Generated from: <#= registryFile #>
 	/// </remarks>
 	[GeneratedCode("IbanRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
-	public class IbanRegistryProvider : IIbanRegistryProvider
+	public class SwiftRegistryProvider : IIbanRegistryProvider
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private ICollection<IbanCountry>? _countries;
