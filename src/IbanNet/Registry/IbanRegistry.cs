@@ -17,7 +17,8 @@ namespace IbanNet.Registry
 		/// </summary>
 		public static IbanRegistry Default { get; } = new IbanRegistry
 		{
-			Providers = { new SwiftRegistryProvider() }
+			// Read-only, so default can not be modified.
+			Providers = new ReadOnlyCollection<IIbanRegistryProvider>(new IIbanRegistryProvider[] { new SwiftRegistryProvider() })
 		};
 
 		/// <summary>
@@ -37,7 +38,7 @@ namespace IbanNet.Registry
 		public int Count => Dictionary.Count;
 
 		/// <inheritdoc />
-		public IList<IIbanRegistryProvider> Providers { get; } = new List<IIbanRegistryProvider>();
+		public IList<IIbanRegistryProvider> Providers { get; internal set; } = new List<IIbanRegistryProvider>();
 
 		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using IbanNet.Registry;
 using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
@@ -38,7 +40,7 @@ namespace IbanNet.DependencyInjection
 		/// <param name="builder">The builder instance.</param>
 		/// <param name="registry">The registry of IBAN countries.</param>
 		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
-		public static IIbanNetOptionsBuilder UseRegistry(this IIbanNetOptionsBuilder builder, IIbanRegistry registry)
+		public static IIbanNetOptionsBuilder UseRegistry(this IIbanNetOptionsBuilder builder, IEnumerable<IbanCountry> registry)
 		{
 			if (builder is null)
 			{
@@ -50,7 +52,18 @@ namespace IbanNet.DependencyInjection
 				throw new ArgumentNullException(nameof(registry));
 			}
 
-			builder.Configure(options => options.Registry = registry);
+			builder.Configure(options =>
+				options.Registry = registry is IIbanRegistry ibanRegistry
+					? ibanRegistry
+					: new IbanRegistry
+					{
+						Providers =
+						{
+							new IbanRegistryListProvider(registry)
+						}
+					}
+			);
+
 			return builder;
 		}
 
@@ -60,7 +73,7 @@ namespace IbanNet.DependencyInjection
 		/// <param name="builder">The builder instance.</param>
 		/// <param name="registryProvider">The registry provider.</param>
 		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
-		public static IIbanNetOptionsBuilder UseRegistryProvider(this IIbanNetOptionsBuilder builder, IIbanRegistryProvider registryProvider)
+		public static IIbanNetOptionsBuilder AddRegistryProvider(this IIbanNetOptionsBuilder builder, IIbanRegistryProvider registryProvider)
 		{
 			if (builder is null)
 			{
@@ -72,7 +85,20 @@ namespace IbanNet.DependencyInjection
 				throw new ArgumentNullException(nameof(registryProvider));
 			}
 
-			builder.Configure(options => options.Registry.Providers.Add(registryProvider));
+			builder.Configure(options =>
+			{
+				if (options.Registry.Providers.IsReadOnly)
+				{
+					options.Registry = new IbanRegistry
+					{
+						Providers = options.Registry.Providers.Concat(new[] { registryProvider }).ToList()
+					};
+				}
+				else
+				{
+					options.Registry.Providers.Add(registryProvider);
+				}
+			});
 			return builder;
 		}
 

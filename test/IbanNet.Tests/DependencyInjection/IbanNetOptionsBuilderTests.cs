@@ -62,6 +62,19 @@ namespace IbanNet.DependencyInjection
 			}
 
 			[Test]
+			public void Given_registry_provider_is_configured_it_should_add_provider()
+			{
+				var customProvider = new IbanRegistryListProvider(new [] { new IbanCountry("XX") });
+
+				// Act
+				IIbanNetOptionsBuilder returnedBuilder = _builder.AddRegistryProvider(customProvider);
+
+				// Assert
+				_builderStub.Should().HaveConfiguredRegistry(IbanRegistry.Default.Concat(customProvider));
+				returnedBuilder.Should().BeSameAs(_builderStub.Object);
+			}
+
+			[Test]
 			public void Given_strict_validation_is_configured_it_should_set_validation_method()
 			{
 				// Act
@@ -125,6 +138,10 @@ namespace IbanNet.DependencyInjection
 						IbanNetOptionsBuilderExtensions.UseRegistry,
 						instance,
 						Mock.Of<IIbanRegistry>()),
+					DelegateTestCase.Create(
+						IbanNetOptionsBuilderExtensions.AddRegistryProvider,
+						instance,
+						Mock.Of<IIbanRegistryProvider>()),
 					DelegateTestCase.Create(
 						IbanNetOptionsBuilderExtensions.WithRule<TestValidationRule>,
 						instance),
