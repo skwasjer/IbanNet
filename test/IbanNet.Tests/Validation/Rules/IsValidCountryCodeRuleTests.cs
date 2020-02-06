@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
-using Moq;
 using NUnit.Framework;
 
 namespace IbanNet.Validation.Rules
@@ -23,7 +21,7 @@ namespace IbanNet.Validation.Rules
 			{
 				Providers =
 				{
-					new IbanRegistryListProvider(new IbanCountry[0], Mock.Of<IStructureValidationFactory>())
+					new IbanRegistryListProvider(new IbanCountry[0])
 				}
 			});
 
@@ -44,7 +42,7 @@ namespace IbanNet.Validation.Rules
 			{
 				Providers =
 				{
-					new IbanRegistryListProvider(new [] { country }, Mock.Of<IStructureValidationFactory>())
+					new IbanRegistryListProvider(new [] { country })
 				}
 			});
 
@@ -64,7 +62,7 @@ namespace IbanNet.Validation.Rules
 			{
 				Providers =
 				{
-					new IbanRegistryListProvider(new IbanCountry[0], Mock.Of<IStructureValidationFactory>())
+					new IbanRegistryListProvider(new IbanCountry[0])
 				}
 			});
 

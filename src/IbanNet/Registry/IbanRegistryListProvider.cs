@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
@@ -15,13 +14,18 @@ namespace IbanNet.Registry
 		/// <summary>
 		/// Initializes a new instance of <see cref="IbanRegistry" /> initialized with specified <paramref name="countries" />.
 		/// </summary>
-		public IbanRegistryListProvider(IEnumerable<IbanCountry> countries, IStructureValidationFactory structureValidationFactory)
+		public IbanRegistryListProvider(IEnumerable<IbanCountry> countries)
 		{
 			_countries = countries?.ToList() ?? throw new ArgumentNullException(nameof(countries));
-			StructureValidationFactory = structureValidationFactory ?? throw new ArgumentNullException(nameof(structureValidationFactory));
-		}
 
-		public IStructureValidationFactory StructureValidationFactory { get; }
+			foreach (IbanCountry country in _countries)
+			{
+				if (country.Iban?.ValidationFactory is null)
+				{
+					throw new ArgumentException($"The country '{country.TwoLetterISORegionName}' does not specify a validation factory.", nameof(countries));
+				}
+			}
+		}
 
 		public IEnumerator<IbanCountry> GetEnumerator()
 		{

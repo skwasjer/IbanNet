@@ -38,9 +38,6 @@ namespace IbanNet.Registry
 		private ICollection<IbanCountry>? _countries;
 
 		/// <inheritdoc />
-		public IStructureValidationFactory StructureValidationFactory { get; } = new SwiftStructureValidationFactory();
-
-		/// <inheritdoc />
 		public IEnumerator<IbanCountry> GetEnumerator()
 		{
 			_countries = _countries ??= Load().ToList();
@@ -59,6 +56,8 @@ namespace IbanNet.Registry
 
 		private static IEnumerable<IbanCountry> Load()
 		{
+			var validationFactory = new SwiftStructureValidationFactory();
+
 			// ReSharper disable CommentTypo
 			// ReSharper disable StringLiteralTypo
 
@@ -109,6 +108,7 @@ namespace IbanNet.Registry
 				{
 					Length = <#= getNumber(row[18]) #>,
 					Structure = "<#= row[17] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
 					Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
 					EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
 				},
@@ -117,6 +117,7 @@ namespace IbanNet.Registry
 					Position = <#= bbanOffset #>,
 					Length = <#= getNumber(row[8]) #>,
 					Structure = "<#= row[7] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
 					Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
 				},
 <#
@@ -127,6 +128,7 @@ namespace IbanNet.Registry
 					Position = <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>,
 					Length = <#= getNumber(row[9].Split('-', ' ')[1]) - getNumber(row[9].Split('-')[0]) + 1 #>,
 					Structure = "<#= row[10] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
 					Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
 				},
 <#
@@ -139,6 +141,7 @@ namespace IbanNet.Registry
 					Position = <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>,
 					Length = <#= getNumber(row[11].Split('-', ' ')[1]) - getNumber(row[11].Split('-')[0]) + 1 #>,
 					Structure = "<#= row[12] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
 					Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
 				},
 <#

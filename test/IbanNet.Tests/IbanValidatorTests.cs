@@ -204,11 +204,11 @@ namespace IbanNet
 										Iban =
 										{
 											Length = 18,
-											Structure = "structure1"
+											Structure = "structure1",
+											ValidationFactory = _structureFactoryMocks[0].Object
 										}
 									}
-								},
-								_structureFactoryMocks[0].Object
+								}
 							),
 							new IbanRegistryListProvider(
 								new []
@@ -218,11 +218,11 @@ namespace IbanNet
 										Iban =
 										{
 											Length = 18,
-											Structure = "structure2"
+											Structure = "structure2",
+											ValidationFactory = _structureFactoryMocks[1].Object
 										}
 									}
-								},
-								_structureFactoryMocks[1].Object
+								}
 							),
 							new IbanRegistryListProvider(
 								new []
@@ -232,12 +232,11 @@ namespace IbanNet
 										Iban =
 										{
 											Length = 22,
-											Structure = "structure3"
+											Structure = "structure3",
+											ValidationFactory = _structureFactoryMocks[2].Object
 										}
 									}
-
-								},
-								_structureFactoryMocks[2].Object
+								}
 							)
 						}
 					}

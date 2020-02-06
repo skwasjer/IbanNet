@@ -40,7 +40,7 @@ namespace IbanNet.Validation
 				{
 					if (!factories.ContainsKey(country.TwoLetterISORegionName))
 					{
-						factories.Add(country.TwoLetterISORegionName, provider.StructureValidationFactory);
+						factories.Add(country.TwoLetterISORegionName, country.Iban.ValidationFactory);
 					}
 				}
 			}

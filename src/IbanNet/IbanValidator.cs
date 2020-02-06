@@ -35,14 +35,8 @@ namespace IbanNet
 		public IbanValidator(IbanValidatorOptions options)
 			: this(
 				options ?? throw new ArgumentNullException(nameof(options)),
-				new DefaultValidationRuleResolver(
-					new CachedStructureValidationFactory(
-						new CompositeStructureValidationFactory(
-							(options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options))).Providers
-						)
-					),
-					options.Rules)
-				)
+				new DefaultValidationRuleResolver(options)
+			)
 		{
 		}
 

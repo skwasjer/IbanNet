@@ -6,7 +6,6 @@ using IbanNet.DependencyInjection.FluentAssertions;
 using IbanNet.FakeRules;
 using IbanNet.Registry;
 using IbanNet.TestCases;
-using IbanNet.Validation;
 using IbanNet.Validation.Methods;
 using Moq;
 using NUnit.Framework;
@@ -53,7 +52,7 @@ namespace IbanNet.DependencyInjection
 				{
 					Providers =
 					{
-						new IbanRegistryListProvider(limitedCountries, new SwiftStructureValidationFactory())
+						new IbanRegistryListProvider(limitedCountries)
 					}
 				});
 
