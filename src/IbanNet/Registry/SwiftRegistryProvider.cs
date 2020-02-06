@@ -14,7 +14,7 @@ namespace IbanNet.Registry
 	/// <remarks>
 	/// Generated from: swift_iban_registry_202001.r85.txt
 	/// </remarks>
-	[GeneratedCode("IbanRegistryProviderT4", "1.1-r85")]
+	[GeneratedCode("SwiftRegistryProviderT4", "1.1-r85")]
 	public class SwiftRegistryProvider : IIbanRegistryProvider
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
