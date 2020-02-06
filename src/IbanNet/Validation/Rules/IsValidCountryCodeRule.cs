@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
 

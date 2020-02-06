@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using FluentAssertions;
+using IbanNet.Validation;
 using NUnit.Framework;
 
 namespace IbanNet.Registry
@@ -13,7 +14,13 @@ namespace IbanNet.Registry
 		[SetUp]
 		public void SetUp()
 		{
-			_sut = new IbanRegistry();
+			_sut = new IbanRegistry
+			{
+				Providers =
+				{
+					new SwiftRegistryProvider()
+				}
+			};
 		}
 
 		[Test]
@@ -24,6 +31,8 @@ namespace IbanNet.Registry
 
 		private static IEnumerable GetExpectedDefinitions()
 		{
+			var validationFactory = new SwiftStructureValidationFactory();
+
 			yield return new TestCaseData(
 				new IbanCountry("AD")
 				{
@@ -33,6 +42,7 @@ namespace IbanNet.Registry
 					{
 						Length = 24,
 						Structure = "AD2!n4!n4!n12!c",
+						ValidationFactory = validationFactory,
 						Example = "AD1200012030200359100100",
 						EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
 					},
@@ -41,6 +51,7 @@ namespace IbanNet.Registry
 						Position = 4,
 						Length = 20,
 						Structure = "4!n4!n12!c",
+						ValidationFactory = validationFactory,
 						Example = "00012030200359100100"
 					},
 					Bank = new BankStructure
@@ -48,6 +59,7 @@ namespace IbanNet.Registry
 						Position = 4,
 						Length = 4,
 						Structure = "4!n",
+						ValidationFactory = validationFactory,
 						Example = "0001",
 					},
 					Branch = new BranchStructure
@@ -55,6 +67,7 @@ namespace IbanNet.Registry
 						Position = 8,
 						Length = 4,
 						Structure = "4!n",
+						ValidationFactory = validationFactory,
 						Example = "2030",
 					},
 					Sepa = new SepaInfo
@@ -78,6 +91,7 @@ namespace IbanNet.Registry
 					{
 						Length = 20,
 						Structure = "XK2!n4!n10!n2!n",
+						ValidationFactory = validationFactory,
 						Example = "XK051212012345678906",
 						EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
 					},
@@ -86,6 +100,7 @@ namespace IbanNet.Registry
 						Position = 4,
 						Length = 16,
 						Structure = "4!n10!n2!n",
+						ValidationFactory = validationFactory,
 						Example = "1212012345678906"
 					},
 					Bank = new BankStructure
@@ -93,6 +108,7 @@ namespace IbanNet.Registry
 						Position = 4,
 						Length = 2,
 						Structure = "2!n",
+						ValidationFactory = validationFactory,
 						Example = "12",
 					},
 					Branch = new BranchStructure
@@ -100,6 +116,7 @@ namespace IbanNet.Registry
 						Position = 6,
 						Length = 2,
 						Structure = "2!n",
+						ValidationFactory = validationFactory,
 						Example = "12",
 					},
 					Sepa = new SepaInfo

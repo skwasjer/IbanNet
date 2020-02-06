@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using IbanNet.Validation;
 using NUnit.Framework;
 
 namespace IbanNet.Registry
@@ -13,7 +14,7 @@ namespace IbanNet.Registry
 			{
 			}
 
-			public TestStructureSection(string structure) : base(structure)
+			public TestStructureSection(string structure) : base(structure, new NullStructureValidationFactory())
 			{
 			}
 		}
@@ -76,6 +77,22 @@ namespace IbanNet.Registry
 			// Act
 			// ReSharper disable once ExpressionIsAlwaysNull
 			Action act = () => _sut.Structure = value;
+
+			// Assert
+			act.Should()
+				.Throw<ArgumentNullException>()
+				.Which.ParamName.Should()
+				.Be(nameof(value));
+		}
+
+		[Test]
+		public void When_creating_with_null_structure_validation_factory_it_should_throw()
+		{
+			IStructureValidationFactory value = null;
+
+			// Act
+			// ReSharper disable once ExpressionIsAlwaysNull
+			Action act = () => _sut.ValidationFactory = value;
 
 			// Assert
 			act.Should()

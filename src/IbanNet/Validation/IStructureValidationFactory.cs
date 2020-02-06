@@ -1,11 +1,9 @@
-﻿using IbanNet.Registry;
-
-namespace IbanNet.Validation
+﻿namespace IbanNet.Validation
 {
 	/// <summary>
 	/// Describes a factory which is used to build a validator from a defined pattern/structure.
 	/// </summary>
-	internal interface IStructureValidationFactory
+	public interface IStructureValidationFactory
 	{
 		/// <summary>
 		/// Creates a validator for specified country using the provided <paramref name="structure" />.

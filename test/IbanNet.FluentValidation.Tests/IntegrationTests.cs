@@ -3,7 +3,6 @@ using System.Linq;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
-using IbanNet.Registry;
 using IbanNet.Validation.Results;
 using NUnit.Framework;
 

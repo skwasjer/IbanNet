@@ -11,16 +11,21 @@ namespace IbanNet.Validation
 	/// </summary>
 	internal class DefaultValidationRuleResolver : IValidationRuleResolver
 	{
+		private readonly IbanValidatorOptions _options;
 		private readonly IStructureValidationFactory _structureValidationFactory;
-		private readonly ICollection<IIbanValidationRule>? _customRules;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DefaultValidationRuleResolver"/>.
 		/// </summary>
-		public DefaultValidationRuleResolver(IStructureValidationFactory structureValidationFactory, ICollection<IIbanValidationRule>? customRules)
+		public DefaultValidationRuleResolver(IbanValidatorOptions options)
 		{
-			_structureValidationFactory = structureValidationFactory ?? throw new ArgumentNullException(nameof(structureValidationFactory));
-			_customRules = customRules;
+			_options = options ?? throw new ArgumentNullException(nameof(options));
+
+			_structureValidationFactory = new CachedStructureValidationFactory(
+				new CompositeStructureValidationFactory(
+					(options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options))).Providers
+				)
+			);
 		}
 
 		/// <inheritdoc />
@@ -40,12 +45,12 @@ namespace IbanNet.Validation
 
 			yield return new Mod97Rule();
 
-			if (_customRules == null)
+			if (_options.Rules == null)
 			{
 				yield break;
 			}
 
-			foreach (IIbanValidationRule rule in _customRules)
+			foreach (IIbanValidationRule rule in _options.Rules)
 			{
 				yield return rule;
 			}

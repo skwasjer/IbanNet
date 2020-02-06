@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
@@ -17,25 +18,28 @@ namespace IbanNet.Registry
 		private int _length;
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private int _position;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private IStructureValidationFactory _structureValidationFactory;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="StructureSection"/> class.
 		/// </summary>
 		protected internal StructureSection()
+			: this(string.Empty, new NullStructureValidationFactory())
 		{
-			_example = string.Empty;
-			_structure = string.Empty;
 		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="StructureSection"/> class using specified parameters.
 		/// </summary>
 		/// <param name="structure">The structure.</param>
+		/// <param name="structureValidationFactory">The validation factory.</param>
 		// ReSharper disable once UnusedMember.Global
-		protected StructureSection(string structure)
-			: this()
+		protected StructureSection(string structure, IStructureValidationFactory structureValidationFactory)
 		{
-			Structure = structure ?? throw new ArgumentNullException(nameof(structure));
+			_example = string.Empty;
+			_structure = structure ?? throw new ArgumentNullException(nameof(structure));
+			_structureValidationFactory = structureValidationFactory ?? throw new ArgumentNullException(nameof(structureValidationFactory));
 		}
 
 		/// <summary>
@@ -88,6 +92,15 @@ namespace IbanNet.Registry
 		{
 			get => _structure;
 			internal set => _structure = value ?? throw new ArgumentNullException(nameof(value));
+		}
+
+		/// <summary>
+		/// Gets or sets the structure validation factory.
+		/// </summary>
+		public IStructureValidationFactory ValidationFactory
+		{
+			get => _structureValidationFactory;
+			internal set => _structureValidationFactory = value ?? throw new ArgumentNullException(nameof(value));
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
 using NUnit.Framework;
@@ -9,23 +8,25 @@ namespace IbanNet.Validation.Rules
 	[TestFixture]
 	internal class IsValidCountryCodeRuleTests
 	{
-		private Dictionary<string, IbanCountry> _registryDict;
-		private IsValidCountryCodeRule _sut;
-
 		[SetUp]
 		public void SetUp()
 		{
-			_registryDict = new Dictionary<string, IbanCountry>();
-			_sut = new IsValidCountryCodeRule(new IbanRegistry(_registryDict));
 		}
 
 		[Test]
 		public void Given_no_country_code_when_validating_it_should_return_error()
 		{
 			var context = new ValidationRuleContext(string.Empty);
+			var sut = new IsValidCountryCodeRule(new IbanRegistry
+			{
+				Providers =
+				{
+					new IbanRegistryListProvider(new IbanCountry[0])
+				}
+			});
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty));
+			ValidationRuleResult actual = sut.Validate(new ValidationRuleContext(string.Empty));
 
 			// Assert
 			actual.Should().BeOfType<UnknownCountryCodeResult>();
@@ -37,10 +38,16 @@ namespace IbanNet.Validation.Rules
 		{
 			var context = new ValidationRuleContext("XX");
 			var country = new IbanCountry("XX");
-			_registryDict.Add(country.TwoLetterISORegionName, country);
+			var sut = new IsValidCountryCodeRule(new IbanRegistry
+			{
+				Providers =
+				{
+					new IbanRegistryListProvider(new [] { country })
+				}
+			});
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(context);
+			ValidationRuleResult actual = sut.Validate(context);
 
 			// Assert
 			actual.Should().Be(ValidationRuleResult.Success);
@@ -51,9 +58,16 @@ namespace IbanNet.Validation.Rules
 		public void Given_unknown_country_code_when_validating_it_should_return_error()
 		{
 			var context = new ValidationRuleContext("XX");
+			var sut = new IsValidCountryCodeRule(new IbanRegistry
+			{
+				Providers =
+				{
+					new IbanRegistryListProvider(new IbanCountry[0])
+				}
+			});
 
 			// Act
-			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("XX"));
+			ValidationRuleResult actual = sut.Validate(new ValidationRuleContext("XX"));
 
 			// Assert
 			actual.Should().BeOfType<UnknownCountryCodeResult>();

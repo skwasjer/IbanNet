@@ -15,7 +15,10 @@ namespace IbanNet.Benchmark
 		public void Registry()
 		{
 			// ReSharper disable once ObjectCreationAsStatement
-			new IbanRegistry();
+			new IbanRegistry
+			{
+				Providers = { new SwiftRegistryProvider() }
+			};
 		}
 	}
 }

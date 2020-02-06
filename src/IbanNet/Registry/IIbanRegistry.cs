@@ -8,6 +8,11 @@ namespace IbanNet.Registry
 	public interface IIbanRegistry : IReadOnlyCollection<IbanCountry>
 	{
 		/// <summary>
+		/// Gets the registry providers.
+		/// </summary>
+		IList<IIbanRegistryProvider> Providers { get; }
+
+		/// <summary>
 		/// Tries to get the <see cref="IbanCountry"/> by <paramref name="twoLetterISORegionName"/>.
 		/// </summary>
 		/// <param name="twoLetterISORegionName">The 2 letter ISO region name.</param>

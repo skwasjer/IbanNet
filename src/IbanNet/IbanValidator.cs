@@ -34,8 +34,8 @@ namespace IbanNet
 		/// <param name="options">The validator options.</param>
 		public IbanValidator(IbanValidatorOptions options)
 			: this(
-				options,
-				new DefaultValidationRuleResolverFactory().CreateRuleResolver(options)
+				options ?? throw new ArgumentNullException(nameof(options)),
+				new DefaultValidationRuleResolver(options)
 			)
 		{
 		}

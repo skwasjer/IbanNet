@@ -20,7 +20,8 @@ namespace IbanNet.Validation
 		public void SetUp()
 		{
 			_customRules = new List<IIbanValidationRule>();
-			_sut = new DefaultValidationRuleResolver(new SwiftStructureValidationFactory(), _customRules);
+			var opts = new IbanValidatorOptions { Rules = _customRules };
+			_sut = new DefaultValidationRuleResolver(opts);
 		}
 
 		[Test]

@@ -43,15 +43,34 @@ namespace IbanNet.DependencyInjection
 			[Test]
 			public void Given_registry_is_configured_it_should_set_registry()
 			{
-				IEnumerable<IbanCountry> customRegistry = new IbanRegistry()
+				IEnumerable<IbanCountry> limitedCountries = IbanRegistry.Default
 					.Where((country, i) => i % 2 == 0)
 					.ToList();
 
 				// Act
-				IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistry(customRegistry);
+				IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistry(new IbanRegistry
+				{
+					Providers =
+					{
+						new IbanRegistryListProvider(limitedCountries)
+					}
+				});
 
 				// Assert
-				_builderStub.Should().HaveConfiguredRegistry(customRegistry);
+				_builderStub.Should().HaveConfiguredRegistry(limitedCountries);
+				returnedBuilder.Should().BeSameAs(_builderStub.Object);
+			}
+
+			[Test]
+			public void Given_registry_provider_is_configured_it_should_add_provider()
+			{
+				var customProvider = new IbanRegistryListProvider(new [] { new IbanCountry("XX") });
+
+				// Act
+				IIbanNetOptionsBuilder returnedBuilder = _builder.AddRegistryProvider(customProvider);
+
+				// Assert
+				_builderStub.Should().HaveConfiguredRegistry(IbanRegistry.Default.Concat(customProvider));
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
@@ -118,7 +137,11 @@ namespace IbanNet.DependencyInjection
 					DelegateTestCase.Create(
 						IbanNetOptionsBuilderExtensions.UseRegistry,
 						instance,
-						Enumerable.Empty<IbanCountry>()),
+						Mock.Of<IIbanRegistry>()),
+					DelegateTestCase.Create(
+						IbanNetOptionsBuilderExtensions.AddRegistryProvider,
+						instance,
+						Mock.Of<IIbanRegistryProvider>()),
 					DelegateTestCase.Create(
 						IbanNetOptionsBuilderExtensions.WithRule<TestValidationRule>,
 						instance),
