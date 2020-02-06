@@ -17,25 +17,27 @@ namespace IbanNet
 		public class Given_invalid_options : IbanValidatorTests
 		{
 			[TestCaseSource(nameof(CtorWithOptionsTestCases))]
-			public void When_creating_instance_it_should_throw(IbanValidatorOptions options, Type expectedExceptionType)
+			public void When_creating_instance_it_should_throw(Action act, Type expectedExceptionType, string expectedParamName)
 			{
-				// Act
-				// ReSharper disable once ObjectCreationAsStatement
-				Action act = () => new IbanValidator(options);
-
 				// Assert
 				act.Should()
 					.Throw<ArgumentException>()
+					.Where(ex => ex.ParamName == expectedParamName)
 					.Which.Should()
 					.BeOfType(expectedExceptionType);
 			}
 
-
 			public static IEnumerable CtorWithOptionsTestCases()
 			{
-				yield return new TestCaseData(null, typeof(ArgumentNullException));
-				yield return new TestCaseData(new IbanValidatorOptions { Registry = null }, typeof(ArgumentException));
-				yield return new TestCaseData(new IbanValidatorOptions { ValidationMethod = null }, typeof(ArgumentException));
+				// ReSharper disable ObjectCreationAsStatement
+				yield return new TestCaseData((Action)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options");
+				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options");
+				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { ValidationMethod = null })), typeof(ArgumentException), "options");
+				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver");
+				yield return new TestCaseData((Action)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options");
+				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options");
+				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { ValidationMethod = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options");
+				// ReSharper restore ObjectCreationAsStatement
 			}
 		}
 
