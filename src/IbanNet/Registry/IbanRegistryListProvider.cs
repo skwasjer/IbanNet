@@ -17,14 +17,6 @@ namespace IbanNet.Registry
 		public IbanRegistryListProvider(IEnumerable<IbanCountry> countries)
 		{
 			_countries = countries?.ToList() ?? throw new ArgumentNullException(nameof(countries));
-
-			foreach (IbanCountry country in _countries)
-			{
-				if (country.Iban?.ValidationFactory is null)
-				{
-					throw new ArgumentException($"The country '{country.TwoLetterISORegionName}' does not specify a validation factory.", nameof(countries));
-				}
-			}
 		}
 
 		public IEnumerator<IbanCountry> GetEnumerator()
