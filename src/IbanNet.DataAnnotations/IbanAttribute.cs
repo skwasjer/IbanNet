@@ -54,7 +54,8 @@ namespace IbanNet.DataAnnotations
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <returns></returns>
-		private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private static IIbanValidator GetValidator(ValidationContext serviceProvider)
 		{
 			var resolvedValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
 			IIbanValidator? ibanValidator = resolvedValidator ?? Iban.Validator;
