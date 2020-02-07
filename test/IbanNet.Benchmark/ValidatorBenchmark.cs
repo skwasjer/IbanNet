@@ -43,6 +43,17 @@ namespace IbanNet.Benchmark
 		}
 
 		[Benchmark]
+		public void IbanNet_Strict_CacheReuse()
+		{
+			// ReSharper disable once ForCanBeConvertedToForeach
+			for (int i = 0; i < _testData.Count; i++)
+			{
+				// Validate same IBAN to hit structure validator cache.
+				_strictValidator.Validate(_testData[0]);
+			}
+		}
+
+		[Benchmark]
 		public void IbanNet_Loose()
 		{
 			// ReSharper disable once ForCanBeConvertedToForeach
