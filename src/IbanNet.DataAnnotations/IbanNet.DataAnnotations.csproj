@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <Description>Data annotations to validate IBAN user input.</Description>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.DataAnnotations</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/IbanNet.DataAnnotations</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, Web API, MVC</PackageTags>
   </PropertyGroup>
 

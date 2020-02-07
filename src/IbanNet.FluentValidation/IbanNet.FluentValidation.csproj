@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <Description>FluentValidation support to validate IBAN user input.</Description>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.FluentValidation</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/IbanNet.FluentValidation</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, FluentValidation, Web API, MVC</PackageTags>
   </PropertyGroup>
 
