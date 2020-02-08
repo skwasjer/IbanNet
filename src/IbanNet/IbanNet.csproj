@@ -22,7 +22,7 @@
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <PackageReference Include="CsvHelper" Version="12.1.2">
+    <PackageReference Include="CsvHelper" Version="15.0.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
