@@ -6,7 +6,7 @@ namespace IbanNet
 	internal class LooseIbanValidatorTests : IbanValidatorIntegrationTests
 	{
 		public LooseIbanValidatorTests()
-			: base(new IbanValidator(new IbanValidatorOptions { ValidationMethod = ValidationMethod.Loose }))
+			: base(new IbanValidator(new IbanValidatorOptions { Method = ValidationMethod.Loose }))
 		{
 		}
 	}

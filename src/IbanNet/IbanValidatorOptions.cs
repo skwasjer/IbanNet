@@ -10,7 +10,7 @@ namespace IbanNet
 	/// </summary>
 	public class IbanValidatorOptions
 	{
-		private ValidationMethod _validationMethod = ValidationMethod.Strict;
+		private ValidationMethod _method = ValidationMethod.Strict;
 
 		/// <summary>
 		/// Gets or sets the IBAN country registry factory. Defaults to <see cref="IbanRegistry.Default"/>.
@@ -20,9 +20,9 @@ namespace IbanNet
 		/// <summary>
 		/// Gets or sets the validation method. Defaults to <see cref="IbanNet.ValidationMethod.Strict"/>.
 		/// </summary>
-		public ValidationMethod ValidationMethod
+		public ValidationMethod Method
 		{
-			get => _validationMethod;
+			get => _method;
 			set
 			{
 				if (!Enum.IsDefined(typeof(ValidationMethod), value))
@@ -30,7 +30,7 @@ namespace IbanNet
 					throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_invalid, nameof(value));
 				}
 
-				_validationMethod = value;
+				_method = value;
 			}
 		}
 

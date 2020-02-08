@@ -128,7 +128,7 @@ namespace IbanNet.DependencyInjection
 				throw new ArgumentNullException(nameof(builder));
 			}
 
-			return builder.Configure(options => options.ValidationMethod = validationMethod);
+			return builder.Configure(options => options.Method = validationMethod);
 		}
 
 

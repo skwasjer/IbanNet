@@ -35,7 +35,7 @@ namespace IbanNet.FluentAssertions
 		{
 			Execute.Assertion
 				.BecauseOf(because, becauseArgs)
-				.Given(() => Subject.ValidationMethod)
+				.Given(() => Subject.Method)
 				.ForCondition(vm => vm == method)
 				.FailWith("Expected {context:options} to use {0}{reason}, but found {1}.",
 					_ => method, m => m);

@@ -36,7 +36,7 @@ namespace IbanNet.Validation
 			yield return new IsValidCountryCodeRule(_options.Registry);
 			yield return new IsValidLengthRule();
 
-			if (_options.ValidationMethod == ValidationMethod.Strict)
+			if (_options.Method == ValidationMethod.Strict)
 			{
 				yield return new IsMatchingStructureRule(_structureValidationFactory);
 			}

@@ -25,7 +25,7 @@ namespace IbanNet
 		[TestCase]
 		public void Validation_method_should_default_to_strict()
 		{
-			_sut.ValidationMethod.Should().Be(ValidationMethod.Strict);
+			_sut.Method.Should().Be(ValidationMethod.Strict);
 		}
 
 		[TestCase]
@@ -37,7 +37,7 @@ namespace IbanNet
 		[TestCase]
 		public void When_setting_invalid_validation_method_it_should_throw()
 		{
-			Action act = () => _sut.ValidationMethod = (ValidationMethod)int.MaxValue;
+			Action act = () => _sut.Method = (ValidationMethod)int.MaxValue;
 
 			act.Should().Throw<ArgumentException>();
 		}
