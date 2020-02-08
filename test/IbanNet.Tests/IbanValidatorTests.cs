@@ -169,6 +169,69 @@ namespace IbanNet
 			}
 		}
 
+		public class Given_validator_is_called_multiple_times : IbanValidatorTests
+		{
+			private IbanValidator _sut;
+			private Mock<IStructureValidationFactory> _structureFactoryMock;
+
+			[SetUp]
+			public void SetUp()
+			{
+				var structureValidatorMock = new Mock<IStructureValidator>();
+				structureValidatorMock.Setup(m => m.Validate(It.IsAny<string>())).Returns(true);
+
+				_structureFactoryMock = new Mock<IStructureValidationFactory>();
+				_structureFactoryMock
+					.Setup(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()))
+					.Returns(structureValidatorMock.Object);
+
+				_sut = new IbanValidator(new IbanValidatorOptions
+				{
+					Registry = new IbanRegistry
+					{
+						Providers =
+						{
+							new IbanRegistryListProvider(
+								new[]
+								{
+									new IbanCountry("NL")
+									{
+										Iban =
+										{
+											Length = 18,
+											Structure = "structure1",
+											ValidationFactory = _structureFactoryMock.Object
+										}
+									}
+								}
+							)
+						}
+					}
+				});
+			}
+
+			[Test]
+			public void It_should_call_factory_once()
+			{
+				const string iban = "NL91ABNA0417164300";
+				string expectedCountryCode = iban.Substring(0, 2);
+
+				// Act
+				for (int i = 0; i < 3; i++)
+				{
+					ValidationResult actual = _sut.Validate(iban);
+					actual.IsValid.Should().BeTrue();
+				}
+
+				// Assert
+				_structureFactoryMock.Verify(m => m.CreateValidator(
+						expectedCountryCode,
+						"structure1"),
+					Times.Once
+				);
+			}
+		}
+
 		public class Given_multiple_providers : IbanValidatorTests
 		{
 			private IbanValidator _sut;
