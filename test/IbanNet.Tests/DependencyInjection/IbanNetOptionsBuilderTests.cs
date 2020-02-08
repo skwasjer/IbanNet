@@ -61,6 +61,22 @@ namespace IbanNet.DependencyInjection
 			}
 
 			[Test]
+			public void Given_registry_without_providers_is_configured_it_should_throw()
+			{
+				var registry = new IbanRegistry();
+
+				// Act
+				Action act = () => _builder.UseRegistry(registry);
+
+				// Assert
+				act.Should()
+					.Throw<ArgumentException>()
+					.WithMessage("The registry has no providers.*")
+					.And.ParamName.Should()
+					.Be(nameof(registry));
+			}
+
+			[Test]
 			public void Given_registry_provider_is_configured_it_should_use_provider()
 			{
 				var customProvider = new IbanRegistryListProvider(new [] { new IbanCountry("XX") });
