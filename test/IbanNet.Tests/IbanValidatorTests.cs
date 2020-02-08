@@ -124,7 +124,7 @@ namespace IbanNet
 			}
 
 			[Test]
-			public void Given_custom_rule_throws_when_validating_should_rethrow()
+			public void Given_custom_rule_throws_when_validating_should_wrap_as_exceptionResult()
 			{
 				const string iban = "NL91ABNA0417164300";
 				Exception exception = new InvalidOperationException("My custom error");
@@ -134,12 +134,14 @@ namespace IbanNet
 					.Throws(exception);
 
 				// Act
-				Action act = () => _sut.Validate(iban);
+				Func<ValidationResult> act = () => _sut.Validate(iban);
 
 				// Assert
 				act.Should()
-					.Throw<InvalidOperationException>()
-					.Which.Should()
+					.NotThrow()
+					.Which.Error.Should()
+					.BeOfType<ExceptionResult>()
+					.Which.Exception.Should()
 					.Be(exception);
 			}
 

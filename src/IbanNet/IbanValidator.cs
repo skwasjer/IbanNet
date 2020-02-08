@@ -92,7 +92,15 @@ namespace IbanNet
 
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				validationResult.Error = rule.Validate(context) as ErrorResult;
+				try
+				{
+					validationResult.Error = rule.Validate(context) as ErrorResult;
+				}
+				catch (Exception ex)
+				{
+					validationResult.Error = new ExceptionResult(ex);
+				}
+
 				if (!validationResult.IsValid)
 				{
 					break;
