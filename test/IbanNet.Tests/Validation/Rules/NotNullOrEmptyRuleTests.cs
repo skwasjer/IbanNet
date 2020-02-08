@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class NotNullOrEmptyRuleTests
+	public class NotNullOrEmptyRuleTests
 	{
 		private readonly NotEmptyRule _sut;
 
@@ -14,7 +13,7 @@ namespace IbanNet.Validation.Rules
 			_sut = new NotEmptyRule();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_empty_value_when_validating_it_should_return_error()
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty));
@@ -22,7 +21,7 @@ namespace IbanNet.Validation.Rules
 			actual.Should().BeOfType<InvalidLengthResult>();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_non_empty_value_when_validating_it_should_return_success()
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("not-empty"));

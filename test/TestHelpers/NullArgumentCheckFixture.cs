@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using FluentAssertions;
-using IbanNet.FluentAssertions;
+using TestHelpers.FluentAssertions;
 
-namespace IbanNet.TestCases
+namespace TestHelpers
 {
 	public static class NullArgumentTest
 	{

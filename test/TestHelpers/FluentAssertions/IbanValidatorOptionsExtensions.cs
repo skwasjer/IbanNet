@@ -1,4 +1,6 @@
-﻿namespace IbanNet.FluentAssertions
+﻿using IbanNet;
+
+namespace TestHelpers.FluentAssertions
 {
 	public static class IbanValidatorOptionsExtensions
 	{

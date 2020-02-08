@@ -1,12 +1,11 @@
 ﻿using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class IsValidLengthRuleTests
+	public class IsValidLengthRuleTests
 	{
 		private readonly IsValidLengthRule _sut;
 
@@ -15,8 +14,9 @@ namespace IbanNet.Validation.Rules
 			_sut = new IsValidLengthRule();
 		}
 
-		[TestCase(9)]
-		[TestCase(11)]
+		[Theory]
+		[InlineData(9)]
+		[InlineData(11)]
 		public void Given_value_of_invalid_length_when_validating_it_should_return_error(int count)
 		{
 			string value = new string('0', count);
@@ -38,7 +38,7 @@ namespace IbanNet.Validation.Rules
 			actual.Should().BeOfType<InvalidLengthResult>();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_value_of_valid_length_when_validating_it_should_return_success()
 		{
 			string value = new string('0', 10);
@@ -60,7 +60,7 @@ namespace IbanNet.Validation.Rules
 			actual.Should().Be(ValidationRuleResult.Success);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_country_info_is_null_when_validating_it_should_return_error()
 		{
 			var context = new ValidationRuleContext(string.Empty)

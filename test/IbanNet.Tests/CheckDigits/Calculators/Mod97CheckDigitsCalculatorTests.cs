@@ -1,10 +1,9 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.CheckDigits.Calculators
 {
-	[TestFixture]
 	public class Mod97CheckDigitsCalculatorTests
 	{
 		private readonly Mod97CheckDigitsCalculator _sut;
@@ -14,9 +13,10 @@ namespace IbanNet.CheckDigits.Calculators
 			_sut = new Mod97CheckDigitsCalculator();
 		}
 
-		[TestCase("BMAG00001299123456BH67", 1)]
-		[TestCase("ABC012", 85)]
-		[TestCase("", 0)]
+		[Theory]
+		[InlineData("BMAG00001299123456BH67", 1)]
+		[InlineData("ABC012", 85)]
+		[InlineData("", 0)]
 		public void Given_value_when_computing_should_return_expected_check_digits(string value, int expectedCheckDigits)
 		{
 			// Act
@@ -26,7 +26,7 @@ namespace IbanNet.CheckDigits.Calculators
 			actual.Should().Be(expectedCheckDigits);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_value_contains_invalid_character_when_computing_it_should_throw()
 		{
 			// Act
@@ -39,7 +39,7 @@ namespace IbanNet.CheckDigits.Calculators
 				.Be($"Expected alphanumeric character at position 2, but found '@'.");
 		}
 
-		[Test]
+		[Fact]
 		public void Given_null_value_when_computing_it_should_throw()
 		{
 			char[] value = null;

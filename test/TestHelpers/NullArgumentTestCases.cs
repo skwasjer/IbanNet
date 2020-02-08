@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace IbanNet.TestCases
+namespace TestHelpers
 {
 	public class NullArgumentTestCases : List<DelegateTestCase>
 	{

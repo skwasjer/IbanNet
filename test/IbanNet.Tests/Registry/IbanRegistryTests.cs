@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Validation;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Registry
 {
-	[TestFixture]
-	internal class IbanRegistryTests
+	public class IbanRegistryTests
 	{
-		private IbanRegistry _sut;
+		private readonly IbanRegistry _sut;
 
-		[SetUp]
-		public void SetUp()
+		public IbanRegistryTests()
 		{
 			_sut = new IbanRegistry
 			{
@@ -23,17 +22,18 @@ namespace IbanNet.Registry
 			};
 		}
 
-		[Test]
+		[Fact]
 		public void When_definitions_are_loaded_should_contain_exactly_n_items()
 		{
 			_sut.Count.Should().Be(77);
 		}
 
-		private static IEnumerable GetExpectedDefinitions()
+		public static IEnumerable<object[]> GetExpectedDefinitions()
 		{
 			var validationFactory = new SwiftStructureValidationFactory();
 
-			yield return new TestCaseData(
+			yield return new object[]
+			{
 				new IbanCountry("AD")
 				{
 					DisplayName = "Andorra",
@@ -70,19 +70,14 @@ namespace IbanNet.Registry
 						ValidationFactory = validationFactory,
 						Example = "2030",
 					},
-					Sepa = new SepaInfo
-					{
-						IsMember = false,
-					},
+					Sepa = new SepaInfo { IsMember = false, },
 					DomesticAccountNumberExample = "2030200359100100",
 					LastUpdatedDate = new DateTimeOffset(2009, 11, 1, 0, 0, 0, TimeSpan.Zero)
 				}
-			)
-				.SetDescription("The first item in the definition list.")
-				.SetName("Should_contain_definition_for_AD")
-			;
+			};
 
-			yield return new TestCaseData(
+			yield return new object[]
+			{
 				new IbanCountry("XK")
 				{
 					DisplayName = "Kosovo",
@@ -119,20 +114,15 @@ namespace IbanNet.Registry
 						ValidationFactory = validationFactory,
 						Example = "12",
 					},
-					Sepa = new SepaInfo
-					{
-						IsMember = false,
-					},
+					Sepa = new SepaInfo { IsMember = false, },
 					DomesticAccountNumberExample = "1212 0123456789 06",
 					LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
 				}
-			)
-				.SetDescription("The last item in the definition list.")
-				.SetName("Should_contain_definition_for_XK")
-			;
+			};
 		}
 
-		[TestCaseSource(nameof(GetExpectedDefinitions))]
+		[Theory]
+		[MemberData(nameof(GetExpectedDefinitions))]
 		public void When_definitions_are_loaded_should_contain(IbanCountry expectedIbanCountry)
 		{
 			_sut.Should()

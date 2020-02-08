@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 
-namespace IbanNet.FluentAssertions
+namespace TestHelpers.FluentAssertions
 {
 	public static class DelegateExtensions
 	{

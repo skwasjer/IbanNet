@@ -1,10 +1,12 @@
 ﻿#if ASPNET_INTEGRATION_TESTS
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Xunit;
 
 namespace IbanNet.DataAnnotations
 {
@@ -38,7 +40,7 @@ namespace IbanNet.DataAnnotations
 		}
 	}
 
-	public class AspNetWebHostFixture : WebHostFixture
+	public class AspNetWebHostFixture : WebHostFixture, IAsyncLifetime
 	{
 		protected override void Configure(IWebHostBuilder webHostBuilder)
 		{
@@ -53,6 +55,18 @@ namespace IbanNet.DataAnnotations
 #else
 			return JsonConvert.DeserializeObject<Dictionary<string, string[]>>(jsonContent);
 #endif
+		}
+
+		public Task InitializeAsync()
+		{
+			Start();
+			return Task.CompletedTask;
+		}
+
+		public Task DisposeAsync()
+		{
+			Dispose();
+			return Task.CompletedTask;
 		}
 	}
 }

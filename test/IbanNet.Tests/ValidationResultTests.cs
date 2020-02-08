@@ -1,13 +1,12 @@
 ﻿using FluentAssertions;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet
 {
-	[TestFixture]
-	internal class ValidationResultTests
+	public class ValidationResultTests
 	{
-		[Test]
+		[Fact]
 		public void Given_result_is_success_when_getting_isValid_it_should_be_true()
 		{
 			var sut = new ValidationResult();
@@ -15,7 +14,7 @@ namespace IbanNet
 			sut.IsValid.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_result_is_an_error_when_getting_isValid_it_should_be_false()
 		{
 			var sut = new ValidationResult { Error = new ErrorResult("Error") };

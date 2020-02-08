@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using FluentAssertions;
 using FluentAssertions.Collections;
 using FluentAssertions.Primitives;
-using IbanNet.FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 using Moq;
+using TestHelpers.FluentAssertions;
 
 namespace IbanNet.DependencyInjection.FluentAssertions
 {
