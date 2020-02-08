@@ -30,9 +30,9 @@ Install-Package IbanNet.FluentValidation
 
 | | | |
 |---|---|---|
-| `IbanNet` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) | [Documentation](wiki)
-| `IbanNet.DataAnnotations` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) | [Documentation](wiki/IbanNet.DataAnnotations) |
-| `IbanNet.FluentValidation` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) | [Documentation](wiki/IbanNet.FluentValidation) |
+| `IbanNet` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) | [Documentation](../../wiki)
+| `IbanNet.DataAnnotations` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) | [Documentation](../../wiki/IbanNet.DataAnnotations) |
+| `IbanNet.FluentValidation` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) | [Documentation](../../wiki/IbanNet.FluentValidation) |
 
 ## Example with validator
 
