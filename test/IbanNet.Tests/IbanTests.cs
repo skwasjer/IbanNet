@@ -94,7 +94,7 @@ namespace IbanNet
 			public void With_null_value_should_return_false()
 			{
 				// Act
-				bool actual = Iban.TryParse(null, out Iban? iban);
+				bool actual = Iban.TryParse(null, out Iban iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was null which is not valid");
@@ -106,7 +106,7 @@ namespace IbanNet
 			public void With_invalid_value_should_return_false()
 			{
 				// Act
-				bool actual = Iban.TryParse(TestValues.InvalidIban, out Iban? iban);
+				bool actual = Iban.TryParse(TestValues.InvalidIban, out Iban iban);
 
 				// Assert
 				actual.Should().BeFalse("the provided value was invalid");
@@ -119,7 +119,7 @@ namespace IbanNet
 			public void With_valid_value_should_pass()
 			{
 				// Act
-				bool actual = Iban.TryParse(TestValues.ValidIban, out Iban? iban);
+				bool actual = Iban.TryParse(TestValues.ValidIban, out Iban iban);
 
 				// Assert
 				actual.Should().BeTrue("the provided value was valid");
