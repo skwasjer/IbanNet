@@ -66,7 +66,7 @@ namespace IbanNet.Registry
 	Func<string, string> normalizeExample = (value) => string.IsNullOrEmpty(value) ? value : Regex.Replace(value, @"[^\w]", "");
 	Func<string, int> getNumber = (value) => value == null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
 
-	Configuration config = new Configuration
+	CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
 	{
 		Delimiter = "\t"
 	};
