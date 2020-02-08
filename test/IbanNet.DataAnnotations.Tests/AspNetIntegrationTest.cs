@@ -1,5 +1,4 @@
 ﻿#if ASPNET_INTEGRATION_TESTS
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,19 +9,13 @@ using NUnit.Framework;
 
 namespace IbanNet.DataAnnotations
 {
-#if NETCOREAPP3_1
-	[TestFixture(typeof(AspNet30WebHostFixture))]
-#endif
-#if NETCOREAPP2_2
-	[TestFixture(typeof(AspNet22WebHostFixture))]
-#endif
 	public class AspNetIntegrationTest
 	{
 		private readonly WebHostFixture _fixture;
 
-		public AspNetIntegrationTest(Type fixtureType)
+		public AspNetIntegrationTest()
 		{
-			_fixture = (WebHostFixture)Activator.CreateInstance(fixtureType);
+			_fixture = new AspNetWebHostFixture();
 		}
 
 		[OneTimeSetUp]

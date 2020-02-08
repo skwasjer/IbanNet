@@ -10,10 +10,6 @@ namespace IbanNet.DataAnnotations
 	{
 		public TestServer TestServer { get; private set; }
 
-		protected WebHostFixture()
-		{
-		}
-
 		public void Start()
 		{
 			IWebHostBuilder webHostBuilder = new WebHostBuilder();
