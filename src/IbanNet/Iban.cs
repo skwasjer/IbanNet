@@ -40,6 +40,9 @@ namespace IbanNet
 
 		/// <summary>
 		/// Gets or sets the <see cref="IIbanValidator"/> used to validate an IBAN.
+		/// <para>
+		/// Note: avoid using this member, it's only use case is allowing type conversion and may be obsolete in future.
+		/// </para>
 		/// </summary>
 		// ReSharper disable once MemberCanBePrivate.Global
 		public static IIbanValidator Validator
