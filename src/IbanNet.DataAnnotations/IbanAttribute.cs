@@ -49,6 +49,9 @@ namespace IbanNet.DataAnnotations
 			return new System.ComponentModel.DataAnnotations.ValidationResult(FormatErrorMessage(validationContext.DisplayName), memberNames);
 		}
 
+		/// <inheritdoc />
+		public override bool RequiresValidationContext => true;
+
 		/// <summary>
 		/// Gets the validator from IoC container.
 		/// </summary>

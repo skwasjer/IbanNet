@@ -260,5 +260,15 @@ namespace IbanNet.DataAnnotations
 				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
 			}
 		}
+
+		public class Requires_validation_context : IbanAttributeTests
+		{
+			[Test]
+			public void It_should_require()
+			{
+				// We don't support DynamicValidator, as we need context to resolve validator.
+				_sut.RequiresValidationContext.Should().BeTrue();
+			}
+		}
 	}
 }
