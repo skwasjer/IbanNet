@@ -67,36 +67,31 @@ namespace IbanNet.DependencyInjection
 		}
 
 		/// <summary>
-		/// Configures the <see cref="IbanValidator"/> to use the specified registry.
+		/// Configures the <see cref="IbanValidator"/> to use the specified provider(s).
 		/// </summary>
 		/// <param name="builder">The builder instance.</param>
-		/// <param name="registryProvider">The registry provider.</param>
+		/// <param name="registryProviders">One or more registry providers.</param>
 		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
-		public static IIbanNetOptionsBuilder AddRegistryProvider(this IIbanNetOptionsBuilder builder, IIbanRegistryProvider registryProvider)
+		public static IIbanNetOptionsBuilder UseRegistryProvider(this IIbanNetOptionsBuilder builder, params IIbanRegistryProvider[] registryProviders)
 		{
 			if (builder is null)
 			{
 				throw new ArgumentNullException(nameof(builder));
 			}
 
-			if (registryProvider is null)
+			if (registryProviders is null)
 			{
-				throw new ArgumentNullException(nameof(registryProvider));
+				throw new ArgumentNullException(nameof(registryProviders));
 			}
 
-			builder.Configure(options =>
+			if (registryProviders.Length == 0)
 			{
-				if (options.Registry.Providers.IsReadOnly)
-				{
-					options.Registry = new IbanRegistry
-					{
-						Providers = options.Registry.Providers.Concat(new[] { registryProvider }).ToList()
-					};
-				}
-				else
-				{
-					options.Registry.Providers.Add(registryProvider);
-				}
+				throw new ArgumentException("One or more providers is required.", nameof(registryProviders));
+			}
+
+			builder.UseRegistry(new IbanRegistry
+			{
+				Providers = registryProviders
 			});
 			return builder;
 		}

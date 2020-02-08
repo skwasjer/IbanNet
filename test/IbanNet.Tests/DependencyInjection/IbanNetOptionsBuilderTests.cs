@@ -61,15 +61,28 @@ namespace IbanNet.DependencyInjection
 			}
 
 			[Test]
-			public void Given_registry_provider_is_configured_it_should_add_provider()
+			public void Given_registry_provider_is_configured_it_should_use_provider()
 			{
 				var customProvider = new IbanRegistryListProvider(new [] { new IbanCountry("XX") });
 
 				// Act
-				IIbanNetOptionsBuilder returnedBuilder = _builder.AddRegistryProvider(customProvider);
+				IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistryProvider(customProvider);
 
 				// Assert
-				_builderStub.Should().HaveConfiguredRegistry(IbanRegistry.Default.Concat(customProvider));
+				_builderStub.Should().HaveConfiguredRegistry(customProvider);
+				returnedBuilder.Should().BeSameAs(_builderStub.Object);
+			}
+
+			[Test]
+			public void Given_multiple_registry_providers_are_configured_it_should_use_providers()
+			{
+				var customProvider = new IbanRegistryListProvider(new[] { new IbanCountry("XX") });
+
+				// Act
+				IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistryProvider(new SwiftRegistryProvider(), customProvider);
+
+				// Assert
+				_builderStub.Should().HaveConfiguredRegistry(new SwiftRegistryProvider().Concat(customProvider));
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
@@ -138,9 +151,9 @@ namespace IbanNet.DependencyInjection
 						instance,
 						Mock.Of<IIbanRegistry>()),
 					DelegateTestCase.Create(
-						IbanNetOptionsBuilderExtensions.AddRegistryProvider,
+						IbanNetOptionsBuilderExtensions.UseRegistryProvider,
 						instance,
-						Mock.Of<IIbanRegistryProvider>()),
+						new IIbanRegistryProvider[0]),
 					DelegateTestCase.Create(
 						IbanNetOptionsBuilderExtensions.WithRule<TestValidationRule>,
 						instance),
