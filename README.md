@@ -2,26 +2,6 @@
 
 IbanNet is a .NET library providing functionality to validate and parse an [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) also known as IBAN.
 
-## Installation
-
-Install IbanNet via the Nuget package manager or `dotnet` cli.
-
-```powershell
-Install-Package IbanNet
-```
-
-For Data Annotation integration:
-
-```powershell
-Install-Package IbanNet.DataAnnotations
-```
-
-For FluentValidation integration:
-
-```powershell
-Install-Package IbanNet.FluentValidation
-```
-
 ---
 
 [![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l/branch/master?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
