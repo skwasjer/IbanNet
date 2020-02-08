@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation
@@ -37,7 +36,7 @@ namespace IbanNet.Validation
 			yield return new IsValidCountryCodeRule(_options.Registry);
 			yield return new IsValidLengthRule();
 
-			if (_options.ValidationMethod is StrictValidation)
+			if (_options.ValidationMethod == ValidationMethod.Strict)
 			{
 				yield return new IsMatchingStructureRule(_structureValidationFactory);
 			}

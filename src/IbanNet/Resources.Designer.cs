@@ -107,11 +107,11 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide the validation method..
+        ///   Looks up a localized string similar to The validation method is invalid..
         /// </summary>
-        internal static string ArgumentException_ValidationMethod_is_required {
+        internal static string ArgumentException_ValidationMethod_is_invalid {
             get {
-                return ResourceManager.GetString("ArgumentException_ValidationMethod_is_required", resourceCulture);
+                return ResourceManager.GetString("ArgumentException_ValidationMethod_is_invalid", resourceCulture);
             }
         }
         

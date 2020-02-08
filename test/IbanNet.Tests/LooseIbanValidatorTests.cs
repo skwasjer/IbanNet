@@ -1,5 +1,4 @@
-﻿using IbanNet.Validation.Methods;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace IbanNet
 {
@@ -7,7 +6,7 @@ namespace IbanNet
 	internal class LooseIbanValidatorTests : IbanValidatorIntegrationTests
 	{
 		public LooseIbanValidatorTests()
-			: base(new IbanValidator(new IbanValidatorOptions { ValidationMethod = new LooseValidation() }))
+			: base(new IbanValidator(new IbanValidatorOptions { ValidationMethod = ValidationMethod.Loose }))
 		{
 		}
 	}

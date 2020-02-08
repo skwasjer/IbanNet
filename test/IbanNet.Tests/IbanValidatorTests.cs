@@ -32,11 +32,9 @@ namespace IbanNet
 				// ReSharper disable ObjectCreationAsStatement
 				yield return new TestCaseData((Action)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options");
 				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options");
-				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { ValidationMethod = null })), typeof(ArgumentException), "options");
 				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver");
 				yield return new TestCaseData((Action)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options");
 				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options");
-				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { ValidationMethod = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options");
 				// ReSharper restore ObjectCreationAsStatement
 			}
 		}

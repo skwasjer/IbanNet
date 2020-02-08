@@ -54,11 +54,6 @@ namespace IbanNet
 				throw new ArgumentNullException(nameof(validationRuleResolver));
 			}
 
-			if (options.ValidationMethod is null)
-			{
-				throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_required, nameof(options));
-			}
-
 			if (options.Registry is null)
 			{
 				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));

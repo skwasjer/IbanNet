@@ -2,7 +2,6 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
-using IbanNet.Validation.Methods;
 
 namespace IbanNet.Benchmark
 {
@@ -25,7 +24,7 @@ namespace IbanNet.Benchmark
 		{
 			// IbanNet setup
 			_strictValidator = new IbanValidator();
-			_looseValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = new LooseValidation() });
+			_looseValidator = new IbanValidator(new IbanValidatorOptions { ValidationMethod = ValidationMethod.Loose });
 
 			_nugetIbanValidator = new IbanValidation.IbanValidator();
 

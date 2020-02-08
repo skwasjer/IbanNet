@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using IbanNet.Registry;
-using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet.DependencyInjection
@@ -109,7 +108,7 @@ namespace IbanNet.DependencyInjection
 		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
 		public static IIbanNetOptionsBuilder UseStrictValidation(this IIbanNetOptionsBuilder builder)
 		{
-			return builder.UseValidationMethod(new StrictValidation());
+			return builder.UseValidationMethod(ValidationMethod.Strict);
 		}
 
 		/// <summary>
@@ -119,7 +118,7 @@ namespace IbanNet.DependencyInjection
 		/// <returns>The <see cref="IIbanNetOptionsBuilder"/> so that additional calls can be chained.</returns>
 		public static IIbanNetOptionsBuilder UseLooseValidation(this IIbanNetOptionsBuilder builder)
 		{
-			return builder.UseValidationMethod(new LooseValidation());
+			return builder.UseValidationMethod(ValidationMethod.Loose);
 		}
 
 		private static IIbanNetOptionsBuilder UseValidationMethod(this IIbanNetOptionsBuilder builder, ValidationMethod validationMethod)

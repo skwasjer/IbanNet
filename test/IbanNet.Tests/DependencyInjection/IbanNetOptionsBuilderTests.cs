@@ -6,7 +6,6 @@ using IbanNet.DependencyInjection.FluentAssertions;
 using IbanNet.FakeRules;
 using IbanNet.Registry;
 using IbanNet.TestCases;
-using IbanNet.Validation.Methods;
 using Moq;
 using NUnit.Framework;
 
@@ -81,7 +80,7 @@ namespace IbanNet.DependencyInjection
 				IIbanNetOptionsBuilder returnedBuilder = _builder.UseStrictValidation();
 
 				// Assert
-				_builderStub.Should().HaveConfiguredValidationMethod<StrictValidation>();
+				_builderStub.Should().HaveConfiguredValidationMethod(ValidationMethod.Strict);
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
@@ -92,7 +91,7 @@ namespace IbanNet.DependencyInjection
 				IIbanNetOptionsBuilder returnedBuilder = _builder.UseLooseValidation();
 
 				// Assert
-				_builderStub.Should().HaveConfiguredValidationMethod<LooseValidation>();
+				_builderStub.Should().HaveConfiguredValidationMethod(ValidationMethod.Loose);
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 

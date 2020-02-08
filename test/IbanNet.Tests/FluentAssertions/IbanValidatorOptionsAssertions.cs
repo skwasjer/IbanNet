@@ -5,7 +5,6 @@ using FluentAssertions.Collections;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using IbanNet.Registry;
-using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet.FluentAssertions
@@ -30,17 +29,16 @@ namespace IbanNet.FluentAssertions
 			);
 		}
 
-		public AndConstraint<IbanValidatorOptionsAssertions> HaveValidationMethod<TValidationMethod>(
-			string because = "", params object[] becauseArgs
+		public AndConstraint<IbanValidatorOptionsAssertions> HaveValidationMethod(
+			ValidationMethod method, string because = "", params object[] becauseArgs
 		)
-			where TValidationMethod : ValidationMethod
 		{
 			Execute.Assertion
 				.BecauseOf(because, becauseArgs)
 				.Given(() => Subject.ValidationMethod)
-				.ForCondition(vm => vm is TValidationMethod)
+				.ForCondition(vm => vm == method)
 				.FailWith("Expected {context:options} to use {0}{reason}, but found {1}.",
-					_ => typeof(TValidationMethod), method => method.GetType());
+					_ => method, m => m);
 
 			return new AndConstraint<IbanValidatorOptionsAssertions>(this);
 		}
@@ -51,7 +49,7 @@ namespace IbanNet.FluentAssertions
 			params object[] becauseArgs
 		)
 		{
-			return HaveValidationMethod<StrictValidation>(because, becauseArgs);
+			return HaveValidationMethod(ValidationMethod.Strict, because, becauseArgs);
 		}
 
 		public AndConstraint<IbanValidatorOptionsAssertions> HaveLooseValidation
@@ -60,7 +58,7 @@ namespace IbanNet.FluentAssertions
 			params object[] becauseArgs
 		)
 		{
-			return HaveValidationMethod<LooseValidation>(because, becauseArgs);
+			return HaveValidationMethod(ValidationMethod.Loose, because, becauseArgs);
 		}
 
 		public AndConstraint<GenericCollectionAssertions<TRule>> HaveRule<TRule>(

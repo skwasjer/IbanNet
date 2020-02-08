@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using IbanNet.Registry;
-using IbanNet.Validation.Methods;
 using NUnit.Framework;
 
 namespace IbanNet
@@ -25,13 +25,21 @@ namespace IbanNet
 		[TestCase]
 		public void Validation_method_should_default_to_strict()
 		{
-			_sut.ValidationMethod.Should().BeOfType<StrictValidation>();
+			_sut.ValidationMethod.Should().Be(ValidationMethod.Strict);
 		}
 
 		[TestCase]
 		public void Rules_should_default_to_empty_list()
 		{
 			_sut.Rules.Should().BeEmpty();
+		}
+
+		[TestCase]
+		public void When_setting_invalid_validation_method_it_should_throw()
+		{
+			Action act = () => _sut.ValidationMethod = (ValidationMethod)int.MaxValue;
+
+			act.Should().Throw<ArgumentException>();
 		}
 	}
 }

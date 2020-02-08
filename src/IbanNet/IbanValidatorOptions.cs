@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using IbanNet.Registry;
-using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet
@@ -10,15 +10,29 @@ namespace IbanNet
 	/// </summary>
 	public class IbanValidatorOptions
 	{
+		private ValidationMethod _validationMethod = ValidationMethod.Strict;
+
 		/// <summary>
 		/// Gets or sets the IBAN country registry factory. Defaults to <see cref="IbanRegistry.Default"/>.
 		/// </summary>
 		public IIbanRegistry Registry { get; set; } = IbanRegistry.Default;
 
 		/// <summary>
-		/// Gets or sets the validation method. Defaults to <see cref="StrictValidation"/>.
+		/// Gets or sets the validation method. Defaults to <see cref="IbanNet.ValidationMethod.Strict"/>.
 		/// </summary>
-		public ValidationMethod ValidationMethod { get; set; } = new StrictValidation();
+		public ValidationMethod ValidationMethod
+		{
+			get => _validationMethod;
+			set
+			{
+				if (!Enum.IsDefined(typeof(ValidationMethod), value))
+				{
+					throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_invalid, nameof(value));
+				}
+
+				_validationMethod = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets custom rules to apply after built-in IBAN validation has taken place.
