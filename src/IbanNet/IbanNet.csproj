@@ -15,22 +15,23 @@
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard1'))">
-    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.1.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <PackageReference Include="CsvHelper" Version="15.0.0">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="IFluentInterface" Version="2.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard1'))">
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <PackageReference Include="CsvHelper" Version="15.0.0">
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
 

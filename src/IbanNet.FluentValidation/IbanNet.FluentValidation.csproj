@@ -13,12 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
   </ItemGroup>

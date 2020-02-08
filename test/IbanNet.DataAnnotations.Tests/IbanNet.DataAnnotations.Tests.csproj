@@ -9,10 +9,6 @@
     <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp'))">$(DefineConstants);ASPNET_INTEGRATION_TESTS</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\IbanNet.Tests\IbanNet.Tests.csproj" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj"     AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />

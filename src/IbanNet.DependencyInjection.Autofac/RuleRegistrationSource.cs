@@ -41,7 +41,7 @@ namespace IbanNet.DependencyInjection.Autofac
 				InstanceSharing.None,
 				InstanceOwnership.OwnedByLifetimeScope,
 				new[] { service },
-				new Dictionary<string, object>());
+				new Dictionary<string, object?>());
 
 			return new IComponentRegistration[] { registration };
 		}

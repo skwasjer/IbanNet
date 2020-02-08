@@ -11,13 +11,11 @@
     <PackageTags>IBAN, International Bank Account Number, Web API, MVC</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
