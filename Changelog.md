@@ -2,20 +2,27 @@
 
 ## v4.0.0-betaXX
 
+### Improvements
+
 - Added `IbanParser` class which provides equivalent non-static functionality to `Iban.Parse` and `Iban.TryParse` (which will be obsolete).
 - Added .NET Standard 2.1 target
 - Enabled and refactored for non-nullable reference types.
+- Added abstraction to load registry from different sources.
+- Added `ICheckDigitsCalculator` abstraction.
+- Exposing `IIbanValidationRule` allowing custom validation rules.
+- Performance improvements (up to 10x faster per validation, and lower memory footprint)
+
+### Changes
+
+- (breaking) `Iban.Parse` and `Iban.TryParse` are obsolete, use `IIbanParser`.
 - (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs loose), extensibility through custom rules.
 - (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
 - (breaking) `ValidationResult` now contains `Error`-property containing the error that occurred.
-- Exposing `IIbanValidationRule` allowing custom validation rules.
 - (breaking) Remove deprecated TypeConverter facade.
 - (breaking) Remove deprecated ctor (accepting `Lazy`).
-- Added `ICheckDigitsCalculator` abstraction.
 - (breaking) `IbanValidator.SupportedCountries` now is a dictionary, allowing look up by country code.
 - (breaking) Renamed `CountryInfo` to `IbanCountry`.
 - (breaking) Renamed `ValidationResult.Value` to `ValidationResult.AttemptedValue`.
-- Performance improvements (up to 10x faster per validation, and lower memory footprint)
 - (breaking) Moved `Branch` and `Bank` properties from `BbanStructure` to `IbanCountry` and all offsets are now relative to entire IBAN. This makes it easier to extract this data from an IBAN.
 
 ## v3.2.1
