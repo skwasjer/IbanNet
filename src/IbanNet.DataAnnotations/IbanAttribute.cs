@@ -52,10 +52,9 @@ namespace IbanNet.DataAnnotations
 		/// <summary>
 		/// Gets the validator from IoC container.
 		/// </summary>
-		// ReSharper disable once SuggestBaseTypeForParameter
-		private static IIbanValidator GetValidator(ValidationContext validationContext)
+		private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
 		{
-			var ibanValidator = (IIbanValidator?)validationContext?.GetService(typeof(IIbanValidator));
+			var ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
 			if (ibanValidator == null)
 			{
 				throw new InvalidOperationException(string.Format(Resources.IbanAttribute_ValidatorMissing, nameof(IIbanValidator)));
