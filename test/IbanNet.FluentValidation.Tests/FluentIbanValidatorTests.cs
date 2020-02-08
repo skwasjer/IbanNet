@@ -5,6 +5,7 @@ using FluentAssertions;
 using FluentValidation.Internal;
 using FluentValidation.Results;
 using FluentValidation.Validators;
+using IbanNet.Validation.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -56,11 +57,14 @@ namespace IbanNet.FluentValidation
 				IEnumerable<ValidationFailure> actual = _sut.Validate(_propertyValidatorContext);
 
 				// Assert
-				actual.Should()
+				var error = actual.Should()
 					.HaveCount(1, "because one validation error should have occurred")
-					.And.Subject.First()
-					.ErrorMessage.Should()
-					.Be(expectedErrorMessage);
+					.And.Subject.First();
+				error.FormattedMessagePlaceholderValues.Should()
+					.ContainKey("Error")
+					.WhichValue.Should()
+					.BeOfType<IllegalCharactersResult>();
+				error.ErrorMessage.Should().Be(expectedErrorMessage);
 			}
 		}
 
