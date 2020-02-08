@@ -15,22 +15,29 @@ namespace IbanNet.Validation
 	{
 		private DefaultValidationRuleResolver _sut;
 		private List<IIbanValidationRule> _customRules;
+		private IbanValidatorOptions _options;
 
 		[SetUp]
 		public void SetUp()
 		{
 			_customRules = new List<IIbanValidationRule>();
-			var opts = new IbanValidatorOptions { Rules = _customRules };
-			_sut = new DefaultValidationRuleResolver(opts);
+			var registryMock = new Mock<IIbanRegistry>();
+			registryMock.Setup(m => m.Providers).Returns(new List<IIbanRegistryProvider>());
+			_options = new IbanValidatorOptions
+			{
+				Registry = registryMock.Object,
+				Rules = _customRules
+			};
+			_sut = new DefaultValidationRuleResolver(_options);
 		}
 
 		[Test]
 		public void Given_loose_method_when_getting_rules_it_should_return_expected_rules()
 		{
-			var validationMethod = new LooseValidation();
+			_options.ValidationMethod = new LooseValidation();
 
 			// Act
-			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, Mock.Of<IIbanRegistry>());
+			IEnumerable<IIbanValidationRule> rules = _sut.GetRules();
 
 			// Assert
 			rules.Select(r => r.GetType())
@@ -52,10 +59,10 @@ namespace IbanNet.Validation
 		[Test]
 		public void Given_strict_method_when_getting_rules_it_should_return_expected_rules()
 		{
-			var validationMethod = new StrictValidation();
+			_options.ValidationMethod = new StrictValidation();
 
 			// Act
-			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, Mock.Of<IIbanRegistry>());
+			IEnumerable<IIbanValidationRule> rules = _sut.GetRules();
 
 			// Assert
 			rules.Select(r => r.GetType())
@@ -79,14 +86,14 @@ namespace IbanNet.Validation
 		[TestCase(typeof(StrictValidation))]
 		public void Given_custom_rules_for_any_method_when_getting_rules_it_should_append_custom_rules(Type validationMethodType)
 		{
-			var validationMethod = (ValidationMethod)Activator.CreateInstance(validationMethodType);
-			var rule1 = Mock.Of<IIbanValidationRule>();
-			var rule2 = Mock.Of<IIbanValidationRule>();
+			_options.ValidationMethod = (ValidationMethod)Activator.CreateInstance(validationMethodType);
+			IIbanValidationRule rule1 = Mock.Of<IIbanValidationRule>();
+			IIbanValidationRule rule2 = Mock.Of<IIbanValidationRule>();
 			_customRules.Add(rule1);
 			_customRules.Add(rule2);
 
 			// Act
-			IEnumerable<IIbanValidationRule> rules = _sut.GetRules(validationMethod, Mock.Of<IIbanRegistry>());
+			IEnumerable<IIbanValidationRule> rules = _sut.GetRules();
 
 			// Assert
 			rules.Should()

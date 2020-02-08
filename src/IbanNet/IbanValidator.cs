@@ -49,6 +49,11 @@ namespace IbanNet
 		internal IbanValidator(IbanValidatorOptions options, IValidationRuleResolver validationRuleResolver)
 		{
 			Options = options ?? throw new ArgumentNullException(nameof(options));
+			if (validationRuleResolver is null)
+			{
+				throw new ArgumentNullException(nameof(validationRuleResolver));
+			}
+
 			if (options.ValidationMethod is null)
 			{
 				throw new ArgumentException(Resources.ArgumentException_ValidationMethod_is_required, nameof(options));
@@ -59,13 +64,8 @@ namespace IbanNet
 				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
 			}
 
-			if (validationRuleResolver is null)
-			{
-				throw new ArgumentNullException(nameof(validationRuleResolver));
-			}
-
 			SupportedCountries = options.Registry;
-			_rules = validationRuleResolver.GetRules(options.ValidationMethod, options.Registry).ToList();
+			_rules = validationRuleResolver.GetRules().ToList();
 		}
 
 		/// <summary>

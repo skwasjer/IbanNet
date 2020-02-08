@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using IbanNet.Registry;
 using IbanNet.Validation.Methods;
 using IbanNet.Validation.Rules;
 
@@ -29,16 +28,16 @@ namespace IbanNet.Validation
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<IIbanValidationRule> GetRules(ValidationMethod validationMethod, IIbanRegistry registry)
+		public IEnumerable<IIbanValidationRule> GetRules()
 		{
 			yield return new NotEmptyRule();
 			yield return new HasCountryCodeRule();
 			yield return new NoIllegalCharactersRule();
 			yield return new HasIbanChecksumRule();
-			yield return new IsValidCountryCodeRule(registry);
+			yield return new IsValidCountryCodeRule(_options.Registry);
 			yield return new IsValidLengthRule();
 
-			if (validationMethod is StrictValidation)
+			if (_options.ValidationMethod is StrictValidation)
 			{
 				yield return new IsMatchingStructureRule(_structureValidationFactory);
 			}
