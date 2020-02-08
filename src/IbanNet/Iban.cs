@@ -71,7 +71,7 @@ namespace IbanNet
 				// Partitioned by space
 				case Formats.Partitioned:
 					// Split into 4 char segments.
-					IEnumerable<string> segments = _iban.Partition(4).Select(p => string.Join("", p));
+					IEnumerable<string> segments = _iban.Partition(4).Select(p => new string(p.ToArray()));
 					return string.Join(" ", segments);
 
 				case null:
