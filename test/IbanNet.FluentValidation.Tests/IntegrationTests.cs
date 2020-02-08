@@ -4,27 +4,25 @@ using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.FluentValidation
 {
-	[TestFixture]
-	internal class IntegrationTests : IbanTestFixture
+	public class IntegrationTests : IbanTestFixture
 	{
-		private TestModelValidator _sut;
-		private TestModel _testModel;
+		private readonly TestModelValidator _sut;
+		private readonly TestModel _testModel;
 
-		public override void SetUp()
+		public IntegrationTests()
 		{
-			base.SetUp();
-
 			_sut = new TestModelValidator(new IbanValidator());
 
 			_testModel = new TestModel();
 		}
 
-		[TestCase("PL611090101400000712198128741")]
-		[TestCase("AE07033123456789012345")]
+		[Theory]
+		[InlineData("PL611090101400000712198128741")]
+		[InlineData("AE07033123456789012345")]
 		public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors(string attemptedIbanValue)
 		{
 			_testModel.BankAccountNumber = attemptedIbanValue;
@@ -54,8 +52,9 @@ namespace IbanNet.FluentValidation
 				.Should().BeEquivalentTo(expectedValidationFailure);
 		}
 
-		[TestCase("PL61109010140000071219812874")]
-		[TestCase("AE070331234567890123456")]
+		[Theory]
+		[InlineData("PL61109010140000071219812874")]
+		[InlineData("AE070331234567890123456")]
 		public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string attemptedIbanValue)
 		{
 			_testModel.BankAccountNumber = attemptedIbanValue;

@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using IbanNet.Extensions;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet
 {
-	internal abstract class IbanValidatorIntegrationTests
+	public abstract class IbanValidatorIntegrationTests
 	{
 		protected readonly IbanValidator Validator;
 
@@ -14,8 +14,9 @@ namespace IbanNet
 			Validator = validator;
 		}
 
-		[TestCase(null)]
-		[TestCase("")]
+		[Theory]
+		[InlineData(null)]
+		[InlineData("")]
 		public void When_validating_null_or_empty_value_should_not_validate(string iban)
 		{
 			// Act
@@ -29,8 +30,9 @@ namespace IbanNet
 			});
 		}
 
-		[TestCase("NL91ABNA041716430!")]
-		[TestCase("NL91ABNA^417164300")]
+		[Theory]
+		[InlineData("NL91ABNA041716430!")]
+		[InlineData("NL91ABNA^417164300")]
 		public void When_validating_iban_with_illegal_characters_should_not_validate(string ibanWithIllegalChars)
 		{
 			// Act
@@ -44,9 +46,10 @@ namespace IbanNet
 			});
 		}
 
-		[TestCase("0091ABNA0417164300")]
-		[TestCase("4591ABNA0417164300")]
-		[TestCase("#L91ABNA0417164300")]
+		[Theory]
+		[InlineData("0091ABNA0417164300")]
+		[InlineData("4591ABNA0417164300")]
+		[InlineData("#L91ABNA0417164300")]
 		public void When_validating_iban_with_illegal_country_code_should_not_validate(string ibanWithIllegalCountryCode)
 		{
 			// Act
@@ -60,9 +63,10 @@ namespace IbanNet
 			});
 		}
 
-		[TestCase("NL00ABNA0417164300")]
-		[TestCase("NL01ABNA0417164300")]
-		[TestCase("NL99ABNA0417164300")]
+		[Theory]
+		[InlineData("NL00ABNA0417164300")]
+		[InlineData("NL01ABNA0417164300")]
+		[InlineData("NL99ABNA0417164300")]
 		public void When_validating_iban_with_invalid_checksum_should_not_validate(string ibanWithInvalidChecksum)
 		{
 			// Act
@@ -76,11 +80,11 @@ namespace IbanNet
 			});
 		}
 
-
-		[TestCase("NL91ABNA04171643000")]
-		[TestCase("NL91ABNA041716430")]
-		[TestCase("NO938601111794")]
-		[TestCase("NO93860111179470")]
+		[Theory]
+		[InlineData("NL91ABNA04171643000")]
+		[InlineData("NL91ABNA041716430")]
+		[InlineData("NO938601111794")]
+		[InlineData("NO93860111179470")]
 		public void When_validating_iban_with_incorrect_length_should_not_validate(string ibanWithIncorrectLength)
 		{
 			// Act
@@ -95,8 +99,9 @@ namespace IbanNet
 			});
 		}
 
-		[TestCase("AA91ABNA0417164300")]
-		[TestCase("ZZ93860111179470")]
+		[Theory]
+		[InlineData("AA91ABNA0417164300")]
+		[InlineData("ZZ93860111179470")]
 		public void When_validating_iban_with_unknown_country_code_should_not_validate(string ibanWithUnknownCountryCode)
 		{
 			// Act
@@ -110,8 +115,9 @@ namespace IbanNet
 			});
 		}
 
-		[TestCase("NL92ABNA0417164300")]
-		[TestCase("NO9486011117947")]
+		[Theory]
+		[InlineData("NL92ABNA0417164300")]
+		[InlineData("NO9486011117947")]
 		public void When_validating_tampered_iban_should_not_validate(string tamperedIban)
 		{
 			// Act
@@ -126,9 +132,10 @@ namespace IbanNet
 			});
 		}
 
-		[TestCase("NL91 ABNA 0417 1643 00")]
-		[TestCase("NL91\tABNA\t0417\t1643\t00")]
-		[TestCase(" NL91 ABNA041 716 4300 ")]
+		[Theory]
+		[InlineData("NL91 ABNA 0417 1643 00")]
+		[InlineData("NL91\tABNA\t0417\t1643\t00")]
+		[InlineData(" NL91 ABNA041 716 4300 ")]
 		public void When_iban_contains_whitespace_should_validate(string ibanWithWhitespace)
 		{
 			// Act
@@ -142,8 +149,13 @@ namespace IbanNet
 			});
 		}
 
-		[TestCaseSource(typeof(IbanTestCaseData), nameof(IbanTestCaseData.GetValidIbanPerCountry))]
+		[Theory]
+		[MemberData(nameof(IbanTestCaseData.GetValidIbanPerCountry), MemberType = typeof(IbanTestCaseData))]
+#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
+#pragma warning disable IDE0060 // Remove unused parameter
 		public void When_validating_good_iban_should_validate(string countryCode, string iban)
+#pragma warning restore IDE0060 // Remove unused parameter
+#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
 		{
 			var expectedResult = new ValidationResult
 			{

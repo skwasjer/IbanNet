@@ -5,23 +5,18 @@ using FluentAssertions;
 using IbanNet.DependencyInjection.FluentAssertions;
 using IbanNet.FakeRules;
 using IbanNet.Registry;
-using IbanNet.TestCases;
 using Moq;
-using NUnit.Framework;
+using TestHelpers;
+using Xunit;
 
 namespace IbanNet.DependencyInjection
 {
 	public class IbanNetOptionsBuilderTests
 	{
-		private Mock<IIbanNetOptionsBuilder> _builderStub;
-		private IIbanNetOptionsBuilder _builder;
+		private readonly Mock<IIbanNetOptionsBuilder> _builderStub;
+		private readonly IIbanNetOptionsBuilder _builder;
 
 		protected IbanNetOptionsBuilderTests()
-		{
-		}
-
-		[SetUp]
-		public void SetUp()
 		{
 			_builder = GetBuilderStub();
 			_builderStub = Mock.Get(_builder);
@@ -39,7 +34,7 @@ namespace IbanNet.DependencyInjection
 
 		public class ExtensionTests : IbanNetOptionsBuilderTests
 		{
-			[Test]
+			[Fact]
 			public void Given_registry_is_configured_it_should_set_registry()
 			{
 				IEnumerable<IbanCountry> limitedCountries = IbanRegistry.Default
@@ -60,7 +55,7 @@ namespace IbanNet.DependencyInjection
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_registry_without_providers_is_configured_it_should_throw()
 			{
 				var registry = new IbanRegistry();
@@ -76,7 +71,7 @@ namespace IbanNet.DependencyInjection
 					.Be(nameof(registry));
 			}
 
-			[Test]
+			[Fact]
 			public void Given_registry_provider_is_configured_it_should_use_provider()
 			{
 				var customProvider = new IbanRegistryListProvider(new [] { new IbanCountry("XX") });
@@ -89,7 +84,7 @@ namespace IbanNet.DependencyInjection
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_multiple_registry_providers_are_configured_it_should_use_providers()
 			{
 				var customProvider = new IbanRegistryListProvider(new[] { new IbanCountry("XX") });
@@ -102,7 +97,7 @@ namespace IbanNet.DependencyInjection
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_strict_validation_is_configured_it_should_set_validation_method()
 			{
 				// Act
@@ -113,7 +108,7 @@ namespace IbanNet.DependencyInjection
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_loose_validation_is_configured_it_should_set_validation_method()
 			{
 				// Act
@@ -124,7 +119,7 @@ namespace IbanNet.DependencyInjection
 				returnedBuilder.Should().BeSameAs(_builderStub.Object);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_rule_is_configured_via_factory_it_should_add_instance_to_rule_collection()
 			{
 				var configuredRule = new TestValidationRule();
@@ -142,7 +137,8 @@ namespace IbanNet.DependencyInjection
 
 		public class NullArgumentTests : IbanNetOptionsBuilderTests
 		{
-			[TestCaseSource(nameof(NullArgumentTestCases))]
+			[Theory]
+			[MemberData(nameof(NullArgumentTestCases))]
 			public void Given_null_instance_when_calling_method_it_should_throw(params object[] args)
 			{
 				NullArgumentTest.Execute(args);

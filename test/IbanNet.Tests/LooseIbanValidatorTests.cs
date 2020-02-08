@@ -1,9 +1,8 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace IbanNet
 {
-	[TestFixture]
-	internal class LooseIbanValidatorTests : IbanValidatorIntegrationTests
+	public class LooseIbanValidatorTests : IbanValidatorIntegrationTests
 	{
 		public LooseIbanValidatorTests()
 			: base(new IbanValidator(new IbanValidatorOptions { Method = ValidationMethod.Loose }))

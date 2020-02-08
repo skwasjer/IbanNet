@@ -4,19 +4,17 @@ using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation
 {
-	[TestFixture]
 	public class DefaultValidationRuleResolverTests
 	{
-		private DefaultValidationRuleResolver _sut;
-		private List<IIbanValidationRule> _customRules;
-		private IbanValidatorOptions _options;
+		private readonly DefaultValidationRuleResolver _sut;
+		private readonly List<IIbanValidationRule> _customRules;
+		private readonly IbanValidatorOptions _options;
 
-		[SetUp]
-		public void SetUp()
+		public DefaultValidationRuleResolverTests()
 		{
 			_customRules = new List<IIbanValidationRule>();
 			var registryMock = new Mock<IIbanRegistry>();
@@ -29,7 +27,7 @@ namespace IbanNet.Validation
 			_sut = new DefaultValidationRuleResolver(_options);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_loose_method_when_getting_rules_it_should_return_expected_rules()
 		{
 			_options.Method = ValidationMethod.Loose;
@@ -54,7 +52,7 @@ namespace IbanNet.Validation
 				);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_strict_method_when_getting_rules_it_should_return_expected_rules()
 		{
 			_options.Method = ValidationMethod.Strict;
@@ -80,8 +78,9 @@ namespace IbanNet.Validation
 				);
 		}
 
-		[TestCase(ValidationMethod.Loose)]
-		[TestCase(ValidationMethod.Strict)]
+		[Theory]
+		[InlineData(ValidationMethod.Loose)]
+		[InlineData(ValidationMethod.Strict)]
 		public void Given_custom_rules_for_any_method_when_getting_rules_it_should_append_custom_rules(ValidationMethod method)
 		{
 			_options.Method = method;

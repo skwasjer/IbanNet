@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
@@ -7,16 +6,16 @@ using IbanNet.Validation;
 using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet
 {
-	[TestFixture]
-	internal class IbanValidatorTests
+	public class IbanValidatorTests
 	{
 		public class Given_invalid_options : IbanValidatorTests
 		{
-			[TestCaseSource(nameof(CtorWithOptionsTestCases))]
+			[Theory]
+			[MemberData(nameof(CtorWithOptionsTestCases))]
 			public void When_creating_instance_it_should_throw(Action act, Type expectedExceptionType, string expectedParamName)
 			{
 				// Assert
@@ -27,21 +26,21 @@ namespace IbanNet
 					.BeOfType(expectedExceptionType);
 			}
 
-			public static IEnumerable CtorWithOptionsTestCases()
+			public static IEnumerable<object[]> CtorWithOptionsTestCases()
 			{
 				// ReSharper disable ObjectCreationAsStatement
-				yield return new TestCaseData((Action)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options");
-				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options");
-				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver");
-				yield return new TestCaseData((Action)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options");
-				yield return new TestCaseData((Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options");
+				yield return new object[] { (Action)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options" };
+				yield return new object[] { (Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options" };
+				yield return new object[] { (Action)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver" };
+				yield return new object[] { (Action)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options" };
+				yield return new object[] { (Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options" };
 				// ReSharper restore ObjectCreationAsStatement
 			}
 		}
 
 		public class Given_default_supported_countries : IbanValidatorTests
 		{
-			[Test]
+			[Fact]
 			public void When_getting_it_should_match_default_registry()
 			{
 				// Act
@@ -54,15 +53,14 @@ namespace IbanNet
 
 		public class Given_validator : IbanValidatorTests
 		{
-			private IbanValidator _sut;
+			private readonly IbanValidator _sut;
 
-			[SetUp]
-			public void SetUp()
+			public Given_validator()
 			{
 				_sut = new IbanValidator();
 			}
 
-			[Test]
+			[Fact]
 			public void When_validating_multiple_times_it_should_succeed()
 			{
 				const string iban = "NL91ABNA0417164300";
@@ -79,7 +77,7 @@ namespace IbanNet
 
 		public class Given_options : IbanValidatorTests
 		{
-			[Test]
+			[Fact]
 			public void It_should_set_property()
 			{
 				var opts = new IbanValidatorOptions();
@@ -94,11 +92,10 @@ namespace IbanNet
 
 		public class Given_custom_rule_is_added : IbanValidatorTests
 		{
-			private IbanValidator _sut;
-			private Mock<IIbanValidationRule> _customValidationRuleMock;
+			private readonly IbanValidator _sut;
+			private readonly Mock<IIbanValidationRule> _customValidationRuleMock;
 
-			[SetUp]
-			public void SetUp()
+			public Given_custom_rule_is_added()
 			{
 				_customValidationRuleMock = new Mock<IIbanValidationRule>();
 				_customValidationRuleMock
@@ -111,7 +108,7 @@ namespace IbanNet
 				});
 			}
 
-			[Test]
+			[Fact]
 			public void When_validating_should_call_custom_rule()
 			{
 				const string iban = "NL91ABNA0417164300";
@@ -123,7 +120,7 @@ namespace IbanNet
 				_customValidationRuleMock.Verify(m => m.Validate(It.Is<ValidationRuleContext>(ctx => ctx.Value == iban)), Times.Once);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_custom_rule_throws_when_validating_should_wrap_as_exceptionResult()
 			{
 				const string iban = "NL91ABNA0417164300";
@@ -145,7 +142,7 @@ namespace IbanNet
 					.Be(exception);
 			}
 
-			[Test]
+			[Fact]
 			public void Given_custom_rule_fails_when_validating_should_not_validate()
 			{
 				const string iban = "NL91ABNA0417164300";
@@ -171,11 +168,10 @@ namespace IbanNet
 
 		public class Given_validator_is_called_multiple_times : IbanValidatorTests
 		{
-			private IbanValidator _sut;
-			private Mock<IStructureValidationFactory> _structureFactoryMock;
+			private readonly IbanValidator _sut;
+			private readonly Mock<IStructureValidationFactory> _structureFactoryMock;
 
-			[SetUp]
-			public void SetUp()
+			public Given_validator_is_called_multiple_times()
 			{
 				var structureValidatorMock = new Mock<IStructureValidator>();
 				structureValidatorMock.Setup(m => m.Validate(It.IsAny<string>())).Returns(true);
@@ -210,7 +206,7 @@ namespace IbanNet
 				});
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_call_factory_once()
 			{
 				const string iban = "NL91ABNA0417164300";
@@ -234,11 +230,10 @@ namespace IbanNet
 
 		public class Given_multiple_providers : IbanValidatorTests
 		{
-			private IbanValidator _sut;
-			private Mock<IStructureValidationFactory>[] _structureFactoryMocks;
+			private readonly IbanValidator _sut;
+			private readonly Mock<IStructureValidationFactory>[] _structureFactoryMocks;
 
-			[SetUp]
-			public void SetUp()
+			public Given_multiple_providers()
 			{
 				var structureValidatorMock = new Mock<IStructureValidator>();
 				structureValidatorMock.Setup(m => m.Validate(It.IsAny<string>())).Returns(true);
@@ -308,8 +303,9 @@ namespace IbanNet
 				});
 			}
 
-			[TestCase("NL91ABNA0417164300", "structure1", 0)]
-			[TestCase("GB29NWBK60161331926819", "structure3", 2)]
+			[Theory]
+			[InlineData("NL91ABNA0417164300", "structure1", 0)]
+			[InlineData("GB29NWBK60161331926819", "structure3", 2)]
 			public void When_validating_it_should_use_structure_validator_of_first_provider_that_supports_the_country_code(string iban, string expectedStructure, int expectedMockCalled)
 			{
 				string expectedCountryCode = iban.Substring(0, 2);

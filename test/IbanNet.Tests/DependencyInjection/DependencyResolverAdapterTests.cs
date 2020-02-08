@@ -2,24 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using IbanNet.FluentAssertions;
-using IbanNet.TestCases;
 using Moq;
-using NUnit.Framework;
+using TestHelpers;
+using TestHelpers.FluentAssertions;
+using Xunit;
 
 namespace IbanNet.DependencyInjection
 {
 	public class DependencyResolverAdapterTests
 	{
+		private readonly DependencyResolverAdapter _sut;
+		private readonly Mock<DependencyResolverAdapter> _adapterStub;
+
 		private class TestService
 		{
 		}
 
-		private DependencyResolverAdapter _sut;
-		private Mock<DependencyResolverAdapter> _adapterStub;
-
-		[SetUp]
-		public void SetUp()
+		public DependencyResolverAdapterTests()
 		{
 			_sut = CreateAdapterStub();
 			_adapterStub = Mock.Get(_sut);
@@ -37,7 +36,7 @@ namespace IbanNet.DependencyInjection
 			return adapterStub.Object;
 		}
 
-		[Test]
+		[Fact]
 		public void Given_service_is_not_registered_when_getting_generic_required_it_should_throw()
 		{
 			_adapterStub
@@ -53,7 +52,7 @@ namespace IbanNet.DependencyInjection
 			_adapterStub.Verify();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_service_is_not_registered_when_getting_required_it_should_throw()
 		{
 			_adapterStub
@@ -69,10 +68,11 @@ namespace IbanNet.DependencyInjection
 			_adapterStub.Verify();
 		}
 
-		[TestCaseSource(nameof(ResolvesSuccessfullyTestCases))]
+		[Theory]
+		[MemberData(nameof(ResolvesSuccessfullyTestCases))]
 		public void Given_service_is_registered_when_resolving_it_should_return_service(params object[] args)
 		{
-			Delegate act = (Delegate)args[0];
+			var act = (Delegate)args[0];
 			act.Should().NotThrow(args.Skip(1).ToArray()).Subject.Should().BeOfType<TestService>();
 		}
 

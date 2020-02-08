@@ -4,7 +4,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Specialized;
 
-namespace IbanNet.FluentAssertions
+namespace TestHelpers.FluentAssertions
 {
 	public class DelegateAssertions : DelegateAssertions<Delegate>
 	{

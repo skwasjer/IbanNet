@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class NoIllegalCharactersRuleTests
+	public class NoIllegalCharactersRuleTests
 	{
 		private readonly NoIllegalCharactersRule _sut;
 
@@ -14,8 +13,9 @@ namespace IbanNet.Validation.Rules
 			_sut = new NoIllegalCharactersRule();
 		}
 
-		[TestCase("AB!C")]
-		[TestCase("é")]
+		[Theory]
+		[InlineData("AB!C")]
+		[InlineData("é")]
 		public void Given_invalid_value_when_validating_it_should_return_error(string value)
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
@@ -23,7 +23,7 @@ namespace IbanNet.Validation.Rules
 			actual.Should().BeOfType<IllegalCharactersResult>();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_valid_value_when_validating_it_should_return_success()
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("0123ABCdef"));

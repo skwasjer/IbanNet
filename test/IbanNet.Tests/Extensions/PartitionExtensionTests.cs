@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Extensions
 {
-	[TestFixture]
 	public class PartitionExtensionTests
 	{
-		[Test]
+		[Fact]
 		public void Given_null_collection_when_partitioning_it_should_throw()
 		{
 			IEnumerable<object> sequence = null;
@@ -25,9 +24,10 @@ namespace IbanNet.Extensions
 				.Be(nameof(sequence));
 		}
 
-		[TestCase(0)]
-		[TestCase(-1)]
-		[TestCase(int.MinValue)]
+		[Theory]
+		[InlineData(0)]
+		[InlineData(-1)]
+		[InlineData(int.MinValue)]
 		public void Given_invalid_size_when_partitioning_it_should_throw(int size)
 		{
 			IEnumerable<object> sequence = new List<object>();
@@ -42,15 +42,16 @@ namespace IbanNet.Extensions
 				.Be(nameof(size));
 		}
 
-		[TestCase(1, 50, 1)]
-		[TestCase(3, 17, 2)]
-		[TestCase(9, 6, 5)]
+		[Theory]
+		[InlineData(1, 50, 1)]
+		[InlineData(3, 17, 2)]
+		[InlineData(9, 6, 5)]
 		public void Given_collection_when_partitioning_it_should_return_correct_partitioned_enumerable(int size, int expectedPartitions, int expectedLastPartitionSize)
 		{
 			IEnumerable<int> sequence = Enumerable.Range(0, 50).Select((_, i) => i).ToList();
 
 			// Act
-			List<IEnumerable<int>> actual = sequence.Partition(size).ToList();
+			var actual = sequence.Partition(size).ToList();
 
 			// Assert
 			actual.Should().HaveCount(expectedPartitions);
@@ -59,7 +60,7 @@ namespace IbanNet.Extensions
 			actual.SelectMany(i => i).Should().BeEquivalentTo(sequence, "joined back together it should be same as original sequence");
 		}
 
-		[Test]
+		[Fact]
 		public void Given_null_string_when_partitioning_on_char_it_should_throw()
 		{
 			string sequence = null;
@@ -75,8 +76,9 @@ namespace IbanNet.Extensions
 				.Be(nameof(sequence));
 		}
 
-		[TestCase(null)]
-		[TestCase("")]
+		[Theory]
+		[InlineData(null)]
+		[InlineData("")]
 		public void Given_null_chars_when_partitioning_on_char_it_should_throw(string charsToPartitionOn)
 		{
 			char[] chars = charsToPartitionOn?.ToCharArray();
@@ -93,15 +95,16 @@ namespace IbanNet.Extensions
 				.Be(nameof(chars));
 		}
 
-		[TestCase(' ', null, "a ", "quick ", "brown ", "fox ", "jumps ", "over ", "the ", "lazy ", "dog")]
-		[TestCase('o', 'm', "a quick bro", "wn fo", "x jum", "ps o", "ver the lazy do", "g")]
+		[Theory]
+		[InlineData(' ', null, "a ", "quick ", "brown ", "fox ", "jumps ", "over ", "the ", "lazy ", "dog")]
+		[InlineData('o', 'm', "a quick bro", "wn fo", "x jum", "ps o", "ver the lazy do", "g")]
 		public void Given_string_when_partitioning_it_should_return_correct_partitioned_enumerable1(char char1, char? char2, params string[] expectedPartitions)
 		{
 			const string sequence = "a quick brown fox jumps over the lazy dog";
 			char[] chars = char2.HasValue ? new[] { char1, char2.Value } : new[] { char1 };
 
 			// Act
-			List<string> actual = sequence.PartitionOn(chars).ToList();
+			var actual = sequence.PartitionOn(chars).ToList();
 
 			// Assert
 			actual.Should().BeEquivalentTo(expectedPartitions);

@@ -1,14 +1,13 @@
 ﻿using System;
 using FluentAssertions;
 using IbanNet.Validation;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Registry
 {
-	[TestFixture]
 	public class IbanStructureTests
 	{
-		[Test]
+		[Fact]
 		public void When_creating_with_null_structure_it_should_throw()
 		{
 			string structure = null;
@@ -25,7 +24,7 @@ namespace IbanNet.Registry
 				.Be(nameof(structure));
 		}
 
-		[Test]
+		[Fact]
 		public void When_creating_with_null_structure_validation_factory_it_should_throw()
 		{
 			IStructureValidationFactory structureValidationFactory = null;

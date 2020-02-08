@@ -2,19 +2,17 @@
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class IsMatchingStructureRuleTests
+	public class IsMatchingStructureRuleTests
 	{
-		private IsMatchingStructureRule _sut;
-		private Mock<IStructureValidator> _structureValidatorMock;
-		private Mock<IStructureValidationFactory> _structureValidationFactoryMock;
+		private readonly IsMatchingStructureRule _sut;
+		private readonly Mock<IStructureValidator> _structureValidatorMock;
+		private readonly Mock<IStructureValidationFactory> _structureValidationFactoryMock;
 
-		[SetUp]
-		public void SetUp()
+		public IsMatchingStructureRuleTests()
 		{
 			_structureValidatorMock = new Mock<IStructureValidator>();
 
@@ -27,7 +25,7 @@ namespace IbanNet.Validation.Rules
 			_sut = new IsMatchingStructureRule(_structureValidationFactoryMock.Object);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_no_country_when_validating_it_should_return_error()
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(string.Empty));
@@ -37,7 +35,7 @@ namespace IbanNet.Validation.Rules
 			_structureValidationFactoryMock.Verify(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_valid_value_when_validating_it_should_return_success()
 		{
 			const string testValue = "XX";
@@ -65,7 +63,7 @@ namespace IbanNet.Validation.Rules
 			_structureValidationFactoryMock.Verify(m => m.CreateValidator(country.TwoLetterISORegionName, country.Iban.Structure), Times.Once);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_invalid_value_when_validating_it_should_return_error()
 		{
 			const string testValue = "XX";

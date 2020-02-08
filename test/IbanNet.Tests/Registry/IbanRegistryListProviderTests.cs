@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Registry
 {
 	public class IbanRegistryListProviderTests
 	{
-		[Test]
+		[Fact]
 		public void Given_list_of_countries_when_creating_it_should_wrap_as_provider()
 		{
 			var sut = new IbanRegistryListProvider(new List<IbanCountry>

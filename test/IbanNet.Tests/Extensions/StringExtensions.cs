@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Extensions
 {
-	[TestFixture]
 	public class StringExtensions
 	{
-		[TestCase("no-whitespace", "no-whitespace")]
-		[TestCase(" \tin-\nstr ing\r", "in-string")]
-		[TestCase("", "")]
-		[TestCase(null, null)]
+		[Theory]
+		[InlineData("no-whitespace", "no-whitespace")]
+		[InlineData(" \tin-\nstr ing\r", "in-string")]
+		[InlineData("", "")]
+		[InlineData(null, null)]
 		public void Given_string_when_stripping_whitespace_it_should_return_expected_value(string input, string expected)
 		{
 			// Act

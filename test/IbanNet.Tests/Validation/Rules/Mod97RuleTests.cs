@@ -3,24 +3,22 @@ using FluentAssertions;
 using IbanNet.CheckDigits.Calculators;
 using IbanNet.Validation.Results;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class Mod97RuleTests
+	public class Mod97RuleTests
 	{
-		private Mod97Rule _sut;
-		private Mock<ICheckDigitsCalculator> _calculatorMock;
+		private readonly Mod97Rule _sut;
+		private readonly Mock<ICheckDigitsCalculator> _calculatorMock;
 
-		[SetUp]
-		public void SetUp()
+		public Mod97RuleTests()
 		{
 			_calculatorMock = new Mock<ICheckDigitsCalculator>();
 			_sut = new Mod97Rule(_calculatorMock.Object);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_invalid_value_when_validating_it_should_return_error()
 		{
 			const string value = "ABCD123456";
@@ -38,7 +36,7 @@ namespace IbanNet.Validation.Rules
 			_calculatorMock.Verify();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_valid_value_when_validating_it_should_return_success()
 		{
 			const string value = "ABCD123456";

@@ -1,40 +1,38 @@
 ﻿using System;
 using FluentAssertions;
 using IbanNet.Registry;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet
 {
-	[TestFixture]
 	public class IbanValidatorOptionsTests
 	{
-		private IbanValidatorOptions _sut;
+		private readonly IbanValidatorOptions _sut;
 
-		[SetUp]
-		public void SetUp()
+		public IbanValidatorOptionsTests()
 		{
 			_sut = new IbanValidatorOptions();
 		}
 
-		[TestCase]
+		[Fact]
 		public void Registry_should_default_to_default_registry()
 		{
 			_sut.Registry.Should().BeSameAs(IbanRegistry.Default);
 		}
 
-		[TestCase]
+		[Fact]
 		public void Validation_method_should_default_to_strict()
 		{
 			_sut.Method.Should().Be(ValidationMethod.Strict);
 		}
 
-		[TestCase]
+		[Fact]
 		public void Rules_should_default_to_empty_list()
 		{
 			_sut.Rules.Should().BeEmpty();
 		}
 
-		[TestCase]
+		[Fact]
 		public void When_setting_invalid_validation_method_it_should_throw()
 		{
 			Action act = () => _sut.Method = (ValidationMethod)int.MaxValue;

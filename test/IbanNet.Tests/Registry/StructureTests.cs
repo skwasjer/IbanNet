@@ -1,11 +1,10 @@
 ﻿using System;
 using FluentAssertions;
 using IbanNet.Validation;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Registry
 {
-	[TestFixture]
 	public class StructureTests
 	{
 		private class TestStructureSection : StructureSection
@@ -19,15 +18,14 @@ namespace IbanNet.Registry
 			}
 		}
 
-		private StructureSection _sut;
+		private readonly StructureSection _sut;
 
-		[SetUp]
-		public void SetUp()
+		public StructureTests()
 		{
 			_sut = new TestStructureSection();
 		}
 
-		[Test]
+		[Fact]
 		public void When_creating_structureSection_it_should_initialize_properties()
 		{
 			// Act
@@ -40,7 +38,7 @@ namespace IbanNet.Registry
 			structure.Position.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void When_creating_structureSection_with_structure_it_should_set_property()
 		{
 			const string myStructure = nameof(myStructure);
@@ -52,7 +50,7 @@ namespace IbanNet.Registry
 			structure.Structure.Should().Be(myStructure);
 		}
 
-		[Test]
+		[Fact]
 		public void When_creating_structureSection_with_null_structure_it_should_throw()
 		{
 			string structure = null;
@@ -69,7 +67,7 @@ namespace IbanNet.Registry
 				.Be(nameof(structure));
 		}
 
-		[Test]
+		[Fact]
 		public void When_setting_structure_to_null_it_should_throw()
 		{
 			string value = null;
@@ -85,7 +83,7 @@ namespace IbanNet.Registry
 				.Be(nameof(value));
 		}
 
-		[Test]
+		[Fact]
 		public void When_creating_with_null_structure_validation_factory_it_should_throw()
 		{
 			IStructureValidationFactory value = null;
@@ -101,7 +99,7 @@ namespace IbanNet.Registry
 				.Be(nameof(value));
 		}
 
-		[Test]
+		[Fact]
 		public void When_setting_example_to_null_it_should_set_to_empty_string()
 		{
 			// Act
@@ -111,7 +109,7 @@ namespace IbanNet.Registry
 			_sut.Example.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void When_setting_position_to_negative_value_it_should_throw()
 		{
 			const int value = -1;
@@ -126,7 +124,7 @@ namespace IbanNet.Registry
 				.Be(nameof(value));
 		}
 
-		[Test]
+		[Fact]
 		public void When_setting_length_to_negative_value_it_should_throw()
 		{
 			const int value = -1;

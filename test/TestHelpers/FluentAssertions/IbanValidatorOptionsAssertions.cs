@@ -4,10 +4,11 @@ using FluentAssertions;
 using FluentAssertions.Collections;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
+using IbanNet;
 using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 
-namespace IbanNet.FluentAssertions
+namespace TestHelpers.FluentAssertions
 {
 	public class IbanValidatorOptionsAssertions
 		: ReferenceTypeAssertions<IbanValidatorOptions, IbanValidatorOptionsAssertions>

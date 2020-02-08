@@ -1,11 +1,10 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet
 {
-	[TestFixture]
-	internal class IbanParserTests
+	public class IbanParserTests
 	{
 		private readonly IbanValidator _ibanValidator;
 		private readonly IbanParser _sut;
@@ -15,10 +14,11 @@ namespace IbanNet
 			_sut = new IbanParser(_ibanValidator = new IbanValidator());
 		}
 
-		[TestCase(null, typeof(ArgumentNullException))]
-		[TestCase("", typeof(IbanFormatException))]
-		[TestCase("AD12000120359100100", typeof(IbanFormatException))]
-		[TestCase("Invalid", typeof(IbanFormatException))]
+		[Theory]
+		[InlineData(null, typeof(ArgumentNullException))]
+		[InlineData("", typeof(IbanFormatException))]
+		[InlineData("AD12000120359100100", typeof(IbanFormatException))]
+		[InlineData("Invalid", typeof(IbanFormatException))]
 		public void Given_invalid_value_when_parsing_it_should_throw(string attemptedIbanValue, Type expectedExceptionType)
 		{
 			// Act
@@ -29,10 +29,11 @@ namespace IbanNet
 				.Which.Should().BeOfType(expectedExceptionType);
 		}
 
-		[TestCase(null)]
-		[TestCase("")]
-		[TestCase("AD12000120359100100")]
-		[TestCase("Invalid")]
+		[Theory]
+		[InlineData(null)]
+		[InlineData("")]
+		[InlineData("AD12000120359100100")]
+		[InlineData("Invalid")]
 		public void Given_invalid_value_when_trying_parsing_it_should_not_throw_and_return_false(string attemptedIbanValue)
 		{
 			// Act
@@ -42,8 +43,9 @@ namespace IbanNet
 			act.Should().NotThrow().Which.Should().BeFalse();
 		}
 
-		[TestCase("AD1200012030200359100100")] // Valid
-		[TestCase("AD12000120359100100")] // Invalid
+		[Theory]
+		[InlineData("AD1200012030200359100100")] // Valid
+		[InlineData("AD12000120359100100")] // Invalid
 		public void Given_iban_when_parsing_should_give_same_result_as_validator(string attemptedIbanValue)
 		{
 			// Act

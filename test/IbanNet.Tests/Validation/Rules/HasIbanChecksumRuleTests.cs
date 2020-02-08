@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class HasIbanChecksumRuleTests
+	public class HasIbanChecksumRuleTests
 	{
 		private readonly HasIbanChecksumRule _sut;
 
@@ -14,11 +13,12 @@ namespace IbanNet.Validation.Rules
 			_sut = new HasIbanChecksumRule();
 		}
 
-		[TestCase("XX")]
-		[TestCase("XX0")]
-		[TestCase("XX00")]
-		[TestCase("XX01")]
-		[TestCase("XX99")]
+		[Theory]
+		[InlineData("XX")]
+		[InlineData("XX0")]
+		[InlineData("XX00")]
+		[InlineData("XX01")]
+		[InlineData("XX99")]
 		public void Given_invalid_checksum_when_validating_it_should_return_error(string value)
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
@@ -26,7 +26,7 @@ namespace IbanNet.Validation.Rules
 			actual.Should().BeOfType<IllegalCharactersResult>();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_valid_value_when_validating_it_should_return_success()
 		{
 			ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext("XX45"));

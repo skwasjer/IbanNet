@@ -5,31 +5,29 @@ using System.Globalization;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.TypeConverters
 {
-	[TestFixture]
 	[SuppressMessage("ReSharper", "InconsistentNaming")]
-	internal class IbanTypeConverterTests
+	public class IbanTypeConverterTests
 	{
-		private IbanTypeConverter _sut;
+		private readonly IbanTypeConverter _sut;
 
-		[SetUp]
-		public virtual void SetUp()
+		public IbanTypeConverterTests()
 		{
 			_sut = new IbanTypeConverter();
 		}
 
 		public class When_converting_from_string : IbanTypeConverterTests
 		{
-			[Test]
+			[Fact]
 			public void Should_be_able()
 			{
 				_sut.CanConvertFrom(typeof(string)).Should().BeTrue();
 			}
 
-			[Test]
+			[Fact]
 			public void From_valid_iban_string_should_return_parsed_iban()
 			{
 				// Act
@@ -44,7 +42,7 @@ namespace IbanNet.TypeConverters
 					.Be(TestValues.ValidIban);
 			}
 
-			[Test]
+			[Fact]
 			public void From_invalid_iban_string_should_throw()
 			{
 				// Act
@@ -54,7 +52,7 @@ namespace IbanNet.TypeConverters
 				act.Should().Throw<NotSupportedException>();
 			}
 
-			[Test]
+			[Fact]
 			public void From_null_iban_string_should_return_null()
 			{
 				string nullValue = null;
@@ -67,7 +65,7 @@ namespace IbanNet.TypeConverters
 				resultObj.Should().BeNull();
 			}
 
-			[Test]
+			[Fact]
 			public void Given_type_descriptor_context_when_converting_from_string_it_should_request_validator()
 			{
 				var typeDescriptorContextMock = new Mock<ITypeDescriptorContext>();
@@ -92,22 +90,20 @@ namespace IbanNet.TypeConverters
 
 		public class When_converting_to_string : IbanTypeConverterTests
 		{
-			private Iban _iban;
+			private readonly Iban _iban;
 
-			public override void SetUp()
+			public When_converting_to_string()
 			{
-				base.SetUp();
-
 				_iban = new Iban(TestValues.ValidIban);
 			}
 
-			[Test]
+			[Fact]
 			public void Should_be_able()
 			{
 				_sut.CanConvertTo(typeof(string)).Should().BeTrue();
 			}
 
-			[Test]
+			[Fact]
 			public void To_string_should_return_flat_formatted_iban()
 			{
 				// Act
@@ -123,7 +119,7 @@ namespace IbanNet.TypeConverters
 
 		public class When_quering_for_converter_via_typeDescriptor : IbanTypeConverterTests
 		{
-			[Test]
+			[Fact]
 			public void Should_return_custom_typeConverter()
 			{
 				// Act
@@ -136,7 +132,7 @@ namespace IbanNet.TypeConverters
 
 		public class When_json_converting
 		{
-			[Test]
+			[Fact]
 			public void It_should_succeed()
 			{
 				var bankAccountNumber1 = new Iban(TestValues.ValidIban);

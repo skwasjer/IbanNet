@@ -1,22 +1,21 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
 using IbanNet.Registry;
-using NUnit.Framework;
 
 namespace IbanNet
 {
 	public static class IbanTestCaseData
 	{
-		public static IEnumerable GetValidIbanPerCountry()
+		public static IEnumerable<object[]> GetValidIbanPerCountry()
 		{
 			return IbanRegistry.Default
-				.Select(d => new TestCaseData(d.TwoLetterISORegionName, d.Iban.Example));
+				.Select(d => new object[] { d.TwoLetterISORegionName, d.Iban.Example });
 		}
 
-		public static IEnumerable GetInvalidIbanPerCountry()
+		public static IEnumerable<object[]> GetInvalidIbanPerCountry()
 		{
 			return IbanRegistry.Default
-				.Select(d => new TestCaseData(d.TwoLetterISORegionName, d.Iban.Example + "X"));
+				.Select(d => new object[] { d.TwoLetterISORegionName, d.Iban.Example + "X" });
 		}
 	}
 }

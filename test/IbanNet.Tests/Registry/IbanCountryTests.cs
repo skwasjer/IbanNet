@@ -1,15 +1,16 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Registry
 {
 	public class IbanCountryTests
 	{
-		[TestCase(null)]
-		[TestCase("")]
-		[TestCase("N")]
-		[TestCase("NLD")]
+		[Theory]
+		[InlineData(null)]
+		[InlineData("")]
+		[InlineData("N")]
+		[InlineData("NLD")]
 		public void When_country_code_is_of_invalid_length_should_throw(string countryCode)
 		{
 			// Act
@@ -20,7 +21,7 @@ namespace IbanNet.Registry
 				.Which.ParamName.Should().Be("twoLetterISORegionName");
 		}
 
-		[Test]
+		[Fact]
 		public void When_country_code_is_of_valid_length_should_not_throw()
 		{
 			// Act
@@ -30,7 +31,7 @@ namespace IbanNet.Registry
 			act.Should().NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void When_country_code_is_provided_in_lowercase_should_make_it_uppercase()
 		{
 			// Act

@@ -5,32 +5,20 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.DataAnnotations
 {
-	public class AspNetIntegrationTest
+	public class AspNetIntegrationTest : IClassFixture<AspNetWebHostFixture>
 	{
-		private readonly WebHostFixture _fixture;
+		private readonly AspNetWebHostFixture _fixture;
 
-		public AspNetIntegrationTest()
+		public AspNetIntegrationTest(AspNetWebHostFixture fixture)
 		{
-			_fixture = new AspNetWebHostFixture();
+			_fixture = fixture;
 		}
 
-		[OneTimeSetUp]
-		public void OneTimeSetUp()
-		{
-			_fixture.Start();
-		}
-
-		[OneTimeTearDown]
-		public void OneTimeTearDown()
-		{
-			_fixture.Dispose();
-		}
-
-		[Test]
+		[Fact]
 		public async Task Given_valid_iban_when_posting_with_attribute_validation_it_should_validate()
 		{
 			const string validIban = "NL91 ABNA 0417 1643 00";
@@ -44,7 +32,7 @@ namespace IbanNet.DataAnnotations
 			(await response.Content.ReadAsStringAsync()).Should().Be($"\"{validIban}\"");
 		}
 
-		[Test]
+		[Fact]
 		public async Task Given_invalid_iban_when_posting_with_attribute_validation_it_should_validate()
 		{
 			const string invalidIban = "invalid-iban";

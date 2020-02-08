@@ -1,16 +1,14 @@
 ﻿using System;
 using IbanNet.Validation.Results;
 using Moq;
-using NUnit.Framework;
 
 namespace IbanNet
 {
-	internal class IbanTestFixture
+	public class IbanTestFixture
 	{
-		protected Mock<IIbanValidator> IbanValidatorMock;
+		protected Mock<IIbanValidator> IbanValidatorMock { get; }
 
-		[SetUp]
-		public virtual void SetUp()
+		public IbanTestFixture()
 		{
 			IbanValidatorMock = new Mock<IIbanValidator>();
 

@@ -1,19 +1,13 @@
 ﻿using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
-using NUnit.Framework;
+using Xunit;
 
 namespace IbanNet.Validation.Rules
 {
-	[TestFixture]
-	internal class IsValidCountryCodeRuleTests
+	public class IsValidCountryCodeRuleTests
 	{
-		[SetUp]
-		public void SetUp()
-		{
-		}
-
-		[Test]
+		[Fact]
 		public void Given_no_country_code_when_validating_it_should_return_error()
 		{
 			var context = new ValidationRuleContext(string.Empty);
@@ -33,7 +27,7 @@ namespace IbanNet.Validation.Rules
 			context.Country.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void Given_known_country_code_when_validating_it_should_return_success()
 		{
 			var context = new ValidationRuleContext("XX");
@@ -54,7 +48,7 @@ namespace IbanNet.Validation.Rules
 			context.Country.Should().BeSameAs(country);
 		}
 
-		[Test]
+		[Fact]
 		public void Given_unknown_country_code_when_validating_it_should_return_error()
 		{
 			var context = new ValidationRuleContext("XX");
