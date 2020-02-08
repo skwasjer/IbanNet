@@ -221,27 +221,6 @@ namespace IbanNet.DataAnnotations
 			}
 		}
 
-		public class When_no_validator_is_registered : IbanAttributeTests
-		{
-			[Test]
-			public void It_should_throw()
-			{
-				// Arrange
-				_serviceProviderMock.Reset();
-				Iban.Validator = null;
-
-				// Act
-				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
-
-				// Assert
-				act.Should().Throw<InvalidOperationException>()
-					.WithMessage("Failed to get an instance of *");
-
-				_serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Once);
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
-			}
-		}
-
 		public class When_service_provider_does_not_return_validator : IbanAttributeTests
 		{
 			[Test]
