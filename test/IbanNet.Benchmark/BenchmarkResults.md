@@ -13,10 +13,10 @@ The intermediate steps only list measurements where they are appropriate.
 |      NuGet IBAN4NET v1.0.6 | 607.935 us | 2.7713 us | 2.5923 us | 15.6250 | 0.9766 |     - |  97.97 KB |
 
 - NuGet IbanValidator performs pretty good. Note that it does not do strict validation, so false positives may occur.
-- **IbanNet** performance is decent, but does do strict validation. This means no false positives, at cost of extra CPU time.
-- NuGet IBAN4NET does not perform very good because it recreates a list of countries per individual validation.
+- **IbanNet** performance is decent, and does do strict validation. This means no false positives, at cost of some extra CPU time.
+- NuGet IBAN4NET does not perform very good in comparison because it recreates a list of countries per individual validation (also evident from memory use).
 
-As the author of IbanNet, I can attest that code readability was given priority over performance. Let's see if we can change this.
+I generally prefer code readability/maintainability over performance. And while performance is not terrible, IBAN validation might for some use cases be in a hot path, so let's see what can be done to improve performance.
 
 ### After refactor (no regex rules)
 
@@ -25,8 +25,8 @@ As the author of IbanNet, I can attest that code readability was given priority 
 |        IbanNet Loose |   3.099 us |  0.0525 us |  0.0465 us |  0.5264 |      - |     - |   3.25 KB |
 |      IbanNet Strict |   3.821 us |  0.0642 us |  0.0570 us |  0.5531 |      - |     - |   3.41 KB |
 
-- I removed use of regex from 3 validation rules.
-- I added a 'Loose' validator mode, which does the same type of validation as NuGet IbanValidator, which we're now already on par with.
+- Removed the use of regex from 3 validation rules.
+- Added a 'Loose' validator mode, which does the same type of validation as NuGet IbanValidator, which we're now on par with.
 
 ### Faster Mod97
 
@@ -35,7 +35,7 @@ As the author of IbanNet, I can attest that code readability was given priority 
 |        IbanNet Loose |   2.585 us | 0.0341 us | 0.0302 us |  0.4120 |      - |     - |   2.55 KB |
 |      IbanNet Strict |   3.207 us | 0.0538 us | 0.0449 us |  0.4387 |      - |     - |   2.71 KB |
 
-- Refactor the Mod97 rule, removing use of LINQ, string join/concatenation and string parsing.
+- Removed the use of LINQ in the Mod97 rule, and removed string join/concatenation and string parsing.
 - 'Strict' mode performance now comes close to NuGet IbanValidator.
 
 ### Structure validation without regex
@@ -44,7 +44,7 @@ As the author of IbanNet, I can attest that code readability was given priority 
 |--------------- |---------:|----------:|----------:|-------:|------:|------:|----------:|
 | IbanNet Strict | 2.753 us | 0.0299 us | 0.0280 us | 0.4463 |     - |     - |   2.74 KB |
 
-- Refactor the structure validation so that we no longer use regex. This has no gains for 'Loose' mode, but 'Strict' mode now is a winner.
+- Refactored use of regex out of the structure validation. This has no gains for 'Loose' mode (since it does not validate structure!), but 'Strict' mode now is a winner.
 
 ### Normalization without regex
 
@@ -53,7 +53,7 @@ As the author of IbanNet, I can attest that code readability was given priority 
 |   IbanNet Loose | 2.273 us | 0.0095 us | 0.0079 us | 0.4349 |     - |     - |    2.7 KB |
 | IbanNet Strict | 2.473 us | 0.0027 us | 0.0022 us | 0.4692 |     - |     - |   2.89 KB |
 
-- Final optimization, replacing the regex that is used to remove whitespace with char buffer iteration.
+- Replaced the regex that was used to remove whitespace with a simple char buffer iteration.
 
 ### Environment
 
@@ -94,7 +94,7 @@ Still room for improvements, let's see what we can do.
 |   IbanNet Loose | 535.2 ns |  2.41 ns |  2.25 ns | 0.1078 |     - |     - |     688 B |
 | IbanNet Strict | 694.8 ns | 11.83 ns | 10.49 ns | 0.1345 |     - |     - |     856 B |
 
-- Most time is spent in Mod97 calculation due to necessity for big integer. But with some cleverness we can actually do most computations using `ulong`, and only do final Mod97 calculation using `BigInteger`. This comes at cost of code readability, but the performance gain is significant though, and more than I hoped for.
+- Most time was spent in Mod97 calculation due to necessity for big integer. But by refactoring to do most computations using `ulong`, and only do final Mod97 calculation using `BigInteger`, performance improves significantly. This however comes at cost of code readability.
 
 ## Using custom integer power func
 
@@ -103,13 +103,11 @@ Still room for improvements, let's see what we can do.
 |   IbanNet Loose | 512.6 ns | 2.24 ns | 2.10 ns | 0.1097 |     - |     - |     688 B |
 | IbanNet Strict | 652.1 ns | 8.56 ns | 7.15 ns | 0.1364 |     - |     - |     856 B |
 
-- In last refactor we use `Math.Pow` but with a simple and efficient integer power function we can get some performance increase.
+- Replacing `Math.Pow` with a simple and efficient integer power function results in a small performance improvement.
 
 ## Conclusion
 
-Now we're cooking. There's probably still optimizations possible (perhaps using `Span<T>`), but I am happy enough with it the current result.
+Looking good. There's probably still optimizations possible (perhaps using `Span<T>`), but I am happy with the current result.
 
 - Strict validation is almost 9x faster.
 - Memory footprint is 4x lower.
-
-It just goes to show what abstractions can do for you in terms of code readability and maintenance, but that it generally comes with some performance penalty.

@@ -10,7 +10,7 @@
 - Added abstraction to load registry from different sources.
 - Added `ICheckDigitsCalculator` abstraction.
 - Exposing `IIbanValidationRule` allowing custom validation rules.
-- Performance improvements (up to 10x faster per validation, and lower memory footprint)
+- [Performance improvements](test/IbanNet.Benchmark/BenchmarkResults.md)
 
 ### Changes
 
