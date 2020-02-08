@@ -1,34 +1,41 @@
-﻿using System.Globalization;
-using System.Linq;
-using System.Numerics;
+﻿using System;
+using IbanNet.CheckDigits.Calculators;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the check digits are valid.
 	/// </summary>
-	internal class Mod97Rule : IIbanValidationRule
+	internal sealed class Mod97Rule : IIbanValidationRule
 	{
-		private static readonly int CharCodeA = 'A';
+		private const int ExpectedCheckDigit = 1;
+
+		private readonly ICheckDigitsCalculator _checkDigitsCalculator;
+
+		public Mod97Rule()
+			: this(new Mod97CheckDigitsCalculator())
+		{
+		}
+
+		internal Mod97Rule(ICheckDigitsCalculator calculator)
+		{
+			_checkDigitsCalculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
+		}
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			string upperIban = context.Value.ToUpperInvariant();
-			string shiftedIban = upperIban.Substring(4) + upperIban.Substring(0, 4);
+			string iban = context.Value;
+			int length = iban.Length;
+			var buffer = new char[length];
+			// Reorder (first 4 chars at end).
+			iban.CopyTo(4, buffer, 0, length - 4);
+			iban.CopyTo(0, buffer, length - 4, 4);
 
-			string iso13616 = string.Join("", 
-				shiftedIban.Select(c => char.IsNumber(c) 
-					? c.ToString() 
-					: (c - CharCodeA + 10).ToString()
-				)
-			);
-
-			BigInteger largeInteger = BigInteger.Parse(iso13616, CultureInfo.InvariantCulture);
-			if (largeInteger % 97 != 1)
-			{
-				context.Result = IbanValidationResult.InvalidCheckDigits;
-			}
+			return _checkDigitsCalculator.Compute(buffer) == ExpectedCheckDigit
+				? ValidationRuleResult.Success
+				: new InvalidCheckDigitsResult();
 		}
 	}
 }

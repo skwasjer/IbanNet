@@ -15,12 +15,12 @@
 			</div>
 		</div>
 	}
-	else if (Model?.BankAccountNumber != null)
+	else if (Model?.Model?.BankAccountNumber != null)
 	{
 		<div class="row">
 			<div class="col-md-6">
 				<div class="alert alert-success">
-					The IBAN @Model.BankAccountNumber appears to be valid.
+					The IBAN @Model.Model.BankAccountNumber appears to be valid.
 				</div>
 			</div>
 		</div>
@@ -28,10 +28,10 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
-				<label asp-for="BankAccountNumber" class="control-label"></label>
+				<label asp-for="Model.BankAccountNumber" class="control-label"></label>
 				<div>
-					<input asp-for="BankAccountNumber" class="form-control" value="@Model?.BankAccountNumber" />
-					<span asp-validation-for="BankAccountNumber"></span>
+					<input asp-for="Model.BankAccountNumber" id="BankAccountNumber" class="form-control" value="@Model?.Model?.BankAccountNumber" />
+					<span asp-validation-for="Model.BankAccountNumber"></span>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,204 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)src\IbanNet\bin\Debug\net45\CsvHelper.dll" #>
+<#@ import namespace="CsvHelper" #>
+<#@ import namespace="CsvHelper.Configuration" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+using System;
+using System.CodeDom.Compiler;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using IbanNet.Validation;
+<#
+	string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
+	string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
+	string registryFile = Path.GetFileName(registryPath);
+	string registryReleaseVersion = registryFile.Split('.')[1];
+#>
+
+namespace IbanNet.Registry
+{
+	/// <summary>
+	/// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
+	/// </summary>
+	/// <remarks>
+	/// Generated from: <#= registryFile #>
+	/// </remarks>
+	[GeneratedCode("SwiftRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
+	public class SwiftRegistryProvider : IIbanRegistryProvider
+	{
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private ICollection<IbanCountry>? _countries;
+
+		/// <inheritdoc />
+		public IEnumerator<IbanCountry> GetEnumerator()
+		{
+			_countries = _countries ??= Load().ToList();
+
+			return _countries.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
+
+		/// <inheritdoc />
+		// ReSharper disable once UseCollectionCountProperty - justification: need to init _countries first.
+		public int Count => _countries?.Count ?? this.Count();
+
+		private static IEnumerable<IbanCountry> Load()
+		{
+			var validationFactory = new SwiftStructureValidationFactory();
+
+			// ReSharper disable CommentTypo
+			// ReSharper disable StringLiteralTypo
+
+<#
+	Func<string, string> checkValue = (value) => value == null || value == "" || value.Trim() == "N/A" ? null : value.Trim();
+	Func<string, string> normalizeExample = (value) => string.IsNullOrEmpty(value) ? value : Regex.Replace(value, @"[^\w]", "");
+	Func<string, int> getNumber = (value) => value == null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
+
+	CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
+	{
+		Delimiter = "\t"
+	};
+	using (var csv = new CsvReader(new StreamReader(registryPath, Encoding.GetEncoding(1252)), config)) {
+		List<string[]> records = new List<string[]>();
+		while (csv.Read())
+		{
+			records.Add(csv.Context.Record.Select(s => checkValue(s)).ToArray());
+		}
+
+		string[][] table = Transpose(records.Skip(1).ToArray()).Skip(1).ToArray();
+		string[] includedCountries;
+		foreach (string[] row in table)
+		{
+			var effectiveDate = DateTime.ParseExact(row[19], "MMM-yy", CultureInfo.InvariantCulture);
+			var lastUpdatedDate = DateTime.ParseExact(row[42], "MMM-yy", CultureInfo.InvariantCulture);
+#>
+			// <#= row[0] #>
+			yield return new IbanCountry("<#= row[1].ToUpperInvariant() #>")
+			{
+				DisplayName = "<#= row[0] #>",
+				EnglishName = "<#= row[0] #>",
+<#
+					includedCountries = row[2] == null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+					if (includedCountries.Length > 0) {
+#>
+				IncludedCountries = new[]
+				{
+					<#
+				WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+				#>
+				},
+<#
+					}
+
+					int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
+#>
+				Iban = new IbanStructure
+				{
+					Length = <#= getNumber(row[18]) #>,
+					Structure = "<#= row[17] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
+					Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
+					EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+				},
+				Bban = new BbanStructure
+				{
+					Position = <#= bbanOffset #>,
+					Length = <#= getNumber(row[8]) #>,
+					Structure = "<#= row[7] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
+					Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
+				},
+<#
+						if (row[9] != null) {
+#>
+				Bank = new BankStructure
+				{
+					Position = <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>,
+					Length = <#= getNumber(row[9].Split('-', ' ')[1]) - getNumber(row[9].Split('-')[0]) + 1 #>,
+					Structure = "<#= row[10] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
+					Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
+				},
+<#
+						}
+
+						if (row[11] != null) {
+#>
+				Branch = new BranchStructure
+				{
+					Position = <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>,
+					Length = <#= getNumber(row[11].Split('-', ' ')[1]) - getNumber(row[11].Split('-')[0]) + 1 #>,
+					Structure = "<#= row[12] ?? string.Empty #>",
+					ValidationFactory = validationFactory,
+					Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
+				},
+<#
+						}
+#>
+				Sepa = new SepaInfo
+				{
+					IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
+<#
+					includedCountries = row[4] == null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+					if (includedCountries.Length > 0) {
+#>
+					IncludedCountries = new[]
+					{
+								<#
+						WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+						#>
+					}
+<#
+					}
+#>
+				},
+				DomesticAccountNumberExample = "<#= row[5] ?? string.Empty #>",
+				LastUpdatedDate = new DateTimeOffset(<#= lastUpdatedDate.Year #>, <#= lastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+			};
+
+<#
+	}
+}
+#>
+			// ReSharper restore StringLiteralTypo
+			// ReSharper restore CommentTypo
+		}
+	}
+}
+
+
+<#+
+private string[][] Transpose(string[][] arr)
+{
+	// Init target buffer.
+	var buffer = new string[arr[0].Length][];
+	for (int i = 0; i < buffer.Length; i++)
+	{
+		buffer[i] = new string[arr.Length];
+	}
+
+	// Copy and transpose to target buffer.
+	for (int i = 0; i < arr.Length; i++)
+	{
+		var line = arr[i];
+		for (int j = 0; j < line.Length; j++)
+		{
+			buffer[j][i] = arr[i][j];
+		}
+	}
+
+	return buffer;
+}
+#>

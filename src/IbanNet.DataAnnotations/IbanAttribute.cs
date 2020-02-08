@@ -33,12 +33,14 @@ namespace IbanNet.DataAnnotations
 
 			IIbanValidator ibanValidator = GetValidator(validationContext);
 			ValidationResult result = ibanValidator.Validate(strValue);
-			if (result.Result == IbanValidationResult.Valid)
+			if (result.IsValid)
 			{
 				return System.ComponentModel.DataAnnotations.ValidationResult.Success;
 			}
 
-			IEnumerable<string> memberNames = null;
+			validationContext.Items.Add("Error", result.Error);
+
+			IEnumerable<string>? memberNames = null;
 			if (validationContext.MemberName != null)
 			{
 				memberNames = new[] { validationContext.MemberName };
@@ -47,14 +49,15 @@ namespace IbanNet.DataAnnotations
 			return new System.ComponentModel.DataAnnotations.ValidationResult(FormatErrorMessage(validationContext.DisplayName), memberNames);
 		}
 
+		/// <inheritdoc />
+		public override bool RequiresValidationContext => true;
+
 		/// <summary>
-		/// Gets the validator from DI, and falls back to the default validator.
+		/// Gets the validator from IoC container.
 		/// </summary>
-		/// <param name="serviceProvider"></param>
-		/// <returns></returns>
 		private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
 		{
-			IIbanValidator ibanValidator = (IIbanValidator)serviceProvider?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
+			var ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
 			if (ibanValidator == null)
 			{
 				throw new InvalidOperationException(string.Format(Resources.IbanAttribute_ValidatorMissing, nameof(IIbanValidator)));

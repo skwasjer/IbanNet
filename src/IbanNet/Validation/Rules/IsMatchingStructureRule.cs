@@ -1,11 +1,12 @@
 ﻿using System;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN is matching the structure defined for a specific country.
 	/// </summary>
-	internal class IsMatchingStructureRule : IIbanValidationRule
+	internal sealed class IsMatchingStructureRule : IIbanValidationRule
 	{
 		private readonly IStructureValidationFactory _structureValidationFactory;
 
@@ -15,17 +16,21 @@ namespace IbanNet.Validation.Rules
 		}
 
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
+			if (context.Country is null)
+			{
+				return new InvalidStructureResult();
+			}
+
 			IStructureValidator validator = _structureValidationFactory.CreateValidator(
 				context.Country.TwoLetterISORegionName,
 				context.Country.Iban.Structure
 			);
 
-			if (!validator.Validate(context.Value))
-			{
-				context.Result = IbanValidationResult.InvalidStructure;
-			}
+			return validator.Validate(context.Value)
+				? ValidationRuleResult.Success
+				: new InvalidStructureResult();
 		}
 	}
 }

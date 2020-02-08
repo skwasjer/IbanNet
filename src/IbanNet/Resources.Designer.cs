@@ -62,29 +62,119 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid country code. must be exactly two characters long..
+        /// </summary>
+        internal static string ArgumentException_Invalid_country_code {
+            get {
+                return ResourceManager.GetString("ArgumentException_Invalid_country_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide the registry..
+        /// </summary>
+        internal static string ArgumentException_Registry_is_required {
+            get {
+                return ResourceManager.GetString("ArgumentException_Registry_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The format &apos;{0}&apos; is invalid. Supported formats are &apos;{1}&apos; (flat) and &apos;{2}&apos; (partitioned by space)..
         /// </summary>
-        internal static string The_format_0_is_invalid_with_supported_formats {
+        internal static string ArgumentException_The_format_0_is_invalid_with_supported_formats {
             get {
-                return ResourceManager.GetString("The_format_0_is_invalid_with_supported_formats", resourceCulture);
+                return ResourceManager.GetString("ArgumentException_The_format_0_is_invalid_with_supported_formats", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The format is required. Supported formats are &apos;{0}&apos; (flat) and &apos;{1}&apos; (partitioned by space)..
         /// </summary>
-        internal static string The_format_is_required_with_supported_formats {
+        internal static string ArgumentException_The_format_is_required_with_supported_formats {
             get {
-                return ResourceManager.GetString("The_format_is_required_with_supported_formats", resourceCulture);
+                return ResourceManager.GetString("ArgumentException_The_format_is_required_with_supported_formats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The structure segment &apos;{0}&apos; is invalid..
+        /// </summary>
+        internal static string ArgumentException_The_structure_segment_0_is_invalid {
+            get {
+                return ResourceManager.GetString("ArgumentException_The_structure_segment_0_is_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The validation method is invalid..
+        /// </summary>
+        internal static string ArgumentException_ValidationMethod_is_invalid {
+            get {
+                return ResourceManager.GetString("ArgumentException_ValidationMethod_is_invalid", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The value &apos;{0}&apos; is not a valid IBAN..
         /// </summary>
-        internal static string The_value_0_is_not_a_valid_IBAN {
+        internal static string IbanFormatException_The_value_0_is_not_a_valid_IBAN {
             get {
-                return ResourceManager.GetString("The_value_0_is_not_a_valid_IBAN", resourceCulture);
+                return ResourceManager.GetString("IbanFormatException_The_value_0_is_not_a_valid_IBAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IBAN contains illegal characters..
+        /// </summary>
+        internal static string IllegalCharactersResult {
+            get {
+                return ResourceManager.GetString("IllegalCharactersResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IBAN check digits are incorrect..
+        /// </summary>
+        internal static string InvalidCheckDigitsResult {
+            get {
+                return ResourceManager.GetString("InvalidCheckDigitsResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IBAN has an incorrect length..
+        /// </summary>
+        internal static string InvalidLengthResult {
+            get {
+                return ResourceManager.GetString("InvalidLengthResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The structure of the IBAN is incorrect..
+        /// </summary>
+        internal static string InvalidStructureResult {
+            get {
+                return ResourceManager.GetString("InvalidStructureResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected alphanumeric character at position {0}, but found &apos;{1}&apos;..
+        /// </summary>
+        internal static string InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1 {
+            get {
+                return ResourceManager.GetString("InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country code is unknown/not supported..
+        /// </summary>
+        internal static string UnknownCountryCodeResult {
+            get {
+                return ResourceManager.GetString("UnknownCountryCodeResult", resourceCulture);
             }
         }
     }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
+using IbanNet.Extensions;
 using IbanNet.Registry;
 using IbanNet.Validation;
+using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 
 namespace IbanNet
@@ -13,137 +13,102 @@ namespace IbanNet
 	/// <summary>
 	/// Represents the default IBAN validator.
 	/// </summary>
-	public class IbanValidator : IIbanValidator, ICountryValidationSupport
+	public class IbanValidator : IIbanValidator
 	{
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Lazy<IReadOnlyCollection<CountryInfo>> _registry;
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly Collection<IIbanValidationRule> _rules;
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private readonly object _lockObject = new object();
-		private readonly IStructureValidationFactory _structureValidationFactory;
-		private Dictionary<string, CountryInfo> _structures;
+		private readonly List<IIbanValidationRule> _rules;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IbanValidator"/> class.
 		/// </summary>
 		public IbanValidator()
-			: this(new Lazy<IReadOnlyCollection<CountryInfo>>(() => new IbanRegistry(), LazyThreadSafetyMode.ExecutionAndPublication))
+			: this(
+				new IbanValidatorOptions()
+			)
 		{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified registry.
+		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified options.
 		/// </summary>
-		/// <param name="registry">The IBAN registry containing IBAN/BBAN/SEPA information per country.</param>
+		/// <param name="options">The validator options.</param>
+		public IbanValidator(IbanValidatorOptions options)
+			: this(
+				options ?? throw new ArgumentNullException(nameof(options)),
+				new DefaultValidationRuleResolver(options)
+			)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IbanValidator"/> class with specified options.
+		/// </summary>
+		/// <param name="options">The validator options.</param>
+		/// <param name="validationRuleResolver">The validation rule resolver.</param>
 		// ReSharper disable once MemberCanBePrivate.Global
-		public IbanValidator(Lazy<IReadOnlyCollection<CountryInfo>> registry)
+		internal IbanValidator(IbanValidatorOptions options, IValidationRuleResolver validationRuleResolver)
 		{
-			_registry = registry ?? throw new ArgumentNullException(nameof(registry));
-
-			_structureValidationFactory = new CachedStructureValidationFactory(new SwiftStructureValidationFactory());
-			_rules = new Collection<IIbanValidationRule>
+			Options = options ?? throw new ArgumentNullException(nameof(options));
+			if (validationRuleResolver is null)
 			{
-				new NotNullRule(),
-				new NoIllegalCharactersRule(),
-				new HasCountryCodeRule(),
-				new HasIbanChecksumRule(),
-				new IsValidCountryCodeRule(),
-				new IsValidLengthRule(),
-				new IsMatchingStructureRule(_structureValidationFactory),
-				new Mod97Rule()
-			};
-		}
-
-		/// <summary>
-		/// Gets the supported countries.
-		/// </summary>
-		// TODO: v4, change to dictionary for faster lookup.
-		public IEnumerable<CountryInfo> SupportedCountries => ((ICountryValidationSupport)this).SupportedCountries.Values;
-
-		/// <summary>
-		/// Gets the supported countries.
-		/// </summary>
-		IReadOnlyDictionary<string, CountryInfo> ICountryValidationSupport.SupportedCountries
-		{
-			get
-			{
-				InitRegistry();
-
-				return new ReadOnlyDictionary<string, CountryInfo>(_structures);
+				throw new ArgumentNullException(nameof(validationRuleResolver));
 			}
+
+			if (options.Registry is null)
+			{
+				throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
+			}
+
+			SupportedCountries = options.Registry;
+			_rules = validationRuleResolver.GetRules().ToList();
 		}
+
+		/// <summary>
+		/// Gets the validator options.
+		/// </summary>
+		/// <remarks>The instance members should not be set/modified after creating the <see cref="IbanValidator"/>.</remarks>
+		public IbanValidatorOptions Options { get; }
+
+		/// <summary>
+		/// Gets the supported countries.
+		/// </summary>
+		public IIbanRegistry SupportedCountries { get; }
 
 		/// <summary>
 		/// Validates the specified IBAN for correctness.
 		/// </summary>
 		/// <param name="iban">The IBAN value.</param>
 		/// <returns>a validation result, indicating if the IBAN is valid or not</returns>
-		public ValidationResult Validate(string iban)
+		public ValidationResult Validate(string? iban)
 		{
-			InitRegistry();
+			string? normalizedIban = iban.StripWhitespaceOrNull();
+			string valueToValidate = normalizedIban ?? string.Empty;
 
-			string normalizedIban = Iban.Normalize(iban);
-			var context = new ValidationContext
+			var context = new ValidationRuleContext(valueToValidate);
+			var validationResult = new ValidationResult
 			{
-				Value = normalizedIban,
-				Result = IbanValidationResult.Valid,
-				Country = GetMatchingCountry(normalizedIban)
+				AttemptedValue = normalizedIban?.ToUpperInvariant()
 			};
 
 			foreach (IIbanValidationRule rule in _rules)
 			{
-				rule.Validate(context);
-				if (context.Result != IbanValidationResult.Valid)
+				try
+				{
+					validationResult.Error = rule.Validate(context) as ErrorResult;
+				}
+				catch (Exception ex)
+				{
+					validationResult.Error = new ExceptionResult(ex);
+				}
+
+				if (!validationResult.IsValid)
 				{
 					break;
 				}
 			}
-			
-			return new ValidationResult
-			{
-				Value = normalizedIban?.ToUpperInvariant(),
-				Result = context.Result,
-				Country = context.Country
-			};
-		}
 
-		private void InitRegistry()
-		{
-			if (_structures != null)
-			{
-				return;
-			}
-
-			lock (_lockObject)
-			{
-				_structures = _structures ?? _registry.Value
-					.ToDictionary(
-						kvp => kvp.TwoLetterISORegionName
-					);
-			}
-		}
-
-		private CountryInfo GetMatchingCountry(string iban)
-		{
-			string countryCode = GetCountryCode(iban);
-			if (countryCode == null)
-			{
-				return null;
-			}
-
-			_structures.TryGetValue(countryCode, out CountryInfo matchedCountry);
-			return matchedCountry;
-		}
-
-		private static string GetCountryCode(string value)
-		{
-			if (value == null || value.Length < 2)
-			{
-				return null;
-			}
-
-			return value.Substring(0, 2).ToUpperInvariant();
+			validationResult.Country = context.Country;
+			return validationResult;
 		}
 	}
 }

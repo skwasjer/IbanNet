@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;net47;net45</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;net472;net452</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
 
@@ -9,10 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.0'" />
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.2" Condition="'$(TargetFramework)'=='netcoreapp1.1'" />
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=$(TargetFramework)" Condition="$(TargetFramework.StartsWith('net4'))" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.0'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.2'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard1.2" Condition="'$(TargetFramework)'=='netcoreapp2.0'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net47" Condition="'$(TargetFramework)'=='net472'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net45" Condition="'$(TargetFramework)'=='net452'" />
+    <ProjectReference Include="..\TestHelpers\TestHelpers.csproj" />
   </ItemGroup>
 
 </Project>

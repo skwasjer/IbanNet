@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.2</TargetFrameworks>
+
+    <IsTestProject>true</IsTestProject>
+
+    <RootNamespace>IbanNet.DependencyInjection.Autofac</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.2'">
+    <ProjectReference Include="..\..\src\IbanNet.DependencyInjection.Autofac\IbanNet.DependencyInjection.Autofac.csproj" AdditionalProperties="TargetFramework=netstandard2.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <ProjectReference Include="..\..\src\IbanNet.DependencyInjection.Autofac\IbanNet.DependencyInjection.Autofac.csproj" AdditionalProperties="TargetFramework=netstandard2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestHelpers\TestHelpers.csproj" />
+  </ItemGroup>
+
+</Project>

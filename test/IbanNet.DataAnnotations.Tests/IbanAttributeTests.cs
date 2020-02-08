@@ -1,23 +1,23 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
+using IbanNet.Validation.Results;
 using Moq;
-using NUnit.Framework;
+using TestHelpers;
+using Xunit;
 
 namespace IbanNet.DataAnnotations
 {
-	[TestFixture]
-	internal class IbanAttributeTests : IbanTestFixture
+	[Collection(nameof(SetsStaticValidator))]
+	public class IbanAttributeTests : IbanTestFixture
 	{
-		private Mock<IServiceProvider> _serviceProviderMock;
-		private IbanAttribute _sut;
+		private readonly Mock<IServiceProvider> _serviceProviderMock;
+		private readonly IbanAttribute _sut;
 
 		private ValidationContext _validationContext;
 
-		public override void SetUp()
+		public IbanAttributeTests()
 		{
-			base.SetUp();
-
 			_serviceProviderMock = new Mock<IServiceProvider>();
 			_serviceProviderMock
 				.Setup(m => m.GetService(typeof(IIbanValidator)))
@@ -31,7 +31,7 @@ namespace IbanNet.DataAnnotations
 
 		public class When_validating_a_null_value : IbanAttributeTests
 		{
-			[Test]
+			[Fact]
 			public void It_should_not_call_validator()
 			{
 				// Act
@@ -41,7 +41,7 @@ namespace IbanNet.DataAnnotations
 				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_not_resolve_the_validator()
 			{
 				// Act
@@ -51,7 +51,7 @@ namespace IbanNet.DataAnnotations
 				_serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_succeed()
 			{
 				// Act
@@ -60,11 +60,21 @@ namespace IbanNet.DataAnnotations
 				// Assert
 				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
+
+			[Fact]
+			public void It_should_not_set_error_item()
+			{
+				// Act
+				_sut.GetValidationResult(null, _validationContext);
+
+				// Assert
+				_validationContext.Items.Should().NotContainKey("Error");
+			}
 		}
 
 		public class When_validating_a_valid_iban : IbanAttributeTests
 		{
-			[Test]
+			[Fact]
 			public void It_should_call_validator()
 			{
 				// Act
@@ -74,7 +84,7 @@ namespace IbanNet.DataAnnotations
 				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_resolve_the_validator()
 			{
 				// Act
@@ -84,7 +94,7 @@ namespace IbanNet.DataAnnotations
 				_serviceProviderMock.Verify();
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_succeed()
 			{
 				// Act
@@ -93,11 +103,21 @@ namespace IbanNet.DataAnnotations
 				// Assert
 				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
+
+			[Fact]
+			public void It_should_not_set_error_item()
+			{
+				// Act
+				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+
+				// Assert
+				_validationContext.Items.Should().NotContainKey("Error");
+			}
 		}
 
 		public class When_validating_an_invalid_iban : IbanAttributeTests
 		{
-			[Test]
+			[Fact]
 			public void It_should_call_validator()
 			{
 				// Act
@@ -107,7 +127,7 @@ namespace IbanNet.DataAnnotations
 				IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_fail()
 			{
 				// Act
@@ -117,7 +137,7 @@ namespace IbanNet.DataAnnotations
 				result.Should().NotBe(System.ComponentModel.DataAnnotations.ValidationResult.Success);
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_have_error_message_with_displayName()
 			{
 				_validationContext.DisplayName = "Property";
@@ -129,7 +149,7 @@ namespace IbanNet.DataAnnotations
 				result.ErrorMessage.Should().Be(string.Format(Resources.IbanAttribute_Invalid, _validationContext.DisplayName));
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_resolve_the_validator()
 			{
 				// Act
@@ -139,7 +159,7 @@ namespace IbanNet.DataAnnotations
 				_serviceProviderMock.Verify();
 			}
 
-			[Test]
+			[Fact]
 			public void It_should_set_member_name()
 			{
 				// Act
@@ -158,12 +178,23 @@ namespace IbanNet.DataAnnotations
 				}
 			}
 
+			[Fact]
+			public void It_should_set_error_item()
+			{
+				// Act
+				_sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+
+				// Assert
+				_validationContext.Items.Should()
+					.ContainKey("Error")
+					.WhichValue.Should()
+					.BeOfType<IllegalCharactersResult>();
+			}
+
 			public class Given_context_with_member_name : When_validating_an_invalid_iban
 			{
-				public override void SetUp()
+				public Given_context_with_member_name()
 				{
-					base.SetUp();
-
 					_validationContext.MemberName = "MyMemberName";
 				}
 			}
@@ -173,7 +204,7 @@ namespace IbanNet.DataAnnotations
 		{
 			private static readonly object InvalidTypeValue = new object();
 
-			[Test]
+			[Fact]
 			public void It_should_throw()
 			{
 				// Act
@@ -187,30 +218,10 @@ namespace IbanNet.DataAnnotations
 			}
 		}
 
-		public class When_no_validator_is_registered : IbanAttributeTests
-		{
-			[Test]
-			public void It_should_throw()
-			{
-				// Arrange
-				_serviceProviderMock.Reset();
-				Iban.Validator = null;
-
-				// Act
-				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
-
-				// Assert
-				act.Should().Throw<InvalidOperationException>();
-
-				_serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Once);
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
-			}
-		}
-
 		public class When_service_provider_does_not_return_validator : IbanAttributeTests
 		{
-			[Test]
-			public void It_should_use_default_validator()
+			[Fact]
+			public void It_should_throw()
 			{
 				// Arrange
 				_serviceProviderMock
@@ -219,27 +230,41 @@ namespace IbanNet.DataAnnotations
 					.Verifiable();
 
 				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
 				// Assert
+				act.Should().Throw<InvalidOperationException>()
+					.WithMessage("Failed to get an instance of *");
 				_serviceProviderMock.Verify();
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
 			}
 		}
 
 		public class When_service_provider_is_null : IbanAttributeTests
 		{
-			[Test]
-			public void It_should_use_default_validator()
+			[Fact]
+			public void It_should_throw()
 			{
 				// Arrange
 				_validationContext = new ValidationContext(new object(), null, null);
 
 				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
 				// Assert
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+				act.Should().Throw<InvalidOperationException>()
+					.WithMessage("Failed to get an instance of *");
+				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+			}
+		}
+
+		public class Requires_validation_context : IbanAttributeTests
+		{
+			[Fact]
+			public void It_should_require()
+			{
+				// We don't support DynamicValidator, as we need context to resolve validator.
+				_sut.RequiresValidationContext.Should().BeTrue();
 			}
 		}
 	}

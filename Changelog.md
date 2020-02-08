@@ -1,5 +1,31 @@
 # Changelog
 
+## v4.0.0
+
+### Improvements
+
+- Added `IbanParser` which provides equivalent non-static functionality to `Iban.Parse` and `Iban.TryParse` (which will be obsolete).
+- Added .NET Standard 2.1 target
+- Enabled and refactored for non-nullable reference types.
+- Added abstraction to load registry from different sources.
+- Added `ICheckDigitsCalculator` abstraction.
+- Exposing `IIbanValidationRule` allowing custom validation rules.
+- [Performance improvements](test/IbanNet.Benchmark/BenchmarkResults.md)
+
+### Changes
+
+- (breaking) `Iban.Parse` and `Iban.TryParse` are obsolete, use `IIbanParser`.
+- (breaking) Added IbanValidator ctor overload accepting an `IbanValidatorOptions` class, providing options with validation method (strict = default vs loose), extensibility through custom rules.
+- (breaking) Refactored out enum `IbanValidationResult`, replaced with result object pattern for extensibility.
+- (breaking) `ValidationResult` now contains `Error`-property containing the error that occurred.
+- (breaking) Remove deprecated TypeConverter facade.
+- (breaking) Remove deprecated ctor (accepting `Lazy`).
+- (breaking) `IbanValidator.SupportedCountries` now is a dictionary, allowing look up by country code.
+- (breaking) Renamed `CountryInfo` to `IbanCountry`.
+- (breaking) Renamed `ValidationResult.Value` to `ValidationResult.AttemptedValue`.
+- (breaking) Moved `Branch` and `Bank` properties from `BbanStructure` to `IbanCountry` and all offsets are now relative to entire IBAN. This makes it easier to extract this data from an IBAN.
+- (breaking) `IbanAttribute` no longer uses static `Iban.Validator` as fallback since it is unclear it does so. The `IIbanValidator` will now only be resolved from IoC container and as such if not registered an exception is thrown.
+
 ## v3.2.1
 
 - Upgraded registry to Januari '20 release 85 (improves Egypt, not effective until 2021).

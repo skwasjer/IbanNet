@@ -21,5 +21,8 @@
   <ItemGroup>
     <None Include="..\..\IbanNet64.png" Pack="true" Visible="false" PackagePath="\"/>
   </ItemGroup>
-  
+
+  <!--https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2019#use-case-multi-level-merging -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
 </Project>

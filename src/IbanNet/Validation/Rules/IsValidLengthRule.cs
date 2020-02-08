@@ -1,17 +1,18 @@
-﻿namespace IbanNet.Validation.Rules
+﻿using IbanNet.Validation.Results;
+
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN has the correct length as defined for its country.
 	/// </summary>
-	internal class IsValidLengthRule : IIbanValidationRule
+	internal sealed class IsValidLengthRule : IIbanValidationRule
 	{
 		/// <inheritdoc />
-		public void Validate(ValidationContext context)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			if (context.Value.Length != context.Country.Iban.Length)
-			{
-				context.Result = IbanValidationResult.InvalidLength;
-			}
+			return context.Country != null && context.Value.Length == context.Country.Iban.Length
+				? ValidationRuleResult.Success
+				: new InvalidLengthResult();
 		}
 	}
 }

@@ -83,13 +83,33 @@ dotnet_style_prefer_conditional_expression_over_return = true:silent
 # Style Definitions
 dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
-# Use PascalCase for constant fields
+dotnet_naming_style.underscore_lower_camel_case_style.capitalization = camel_case
+dotnet_naming_style.underscore_lower_camel_case_style.required_prefix = _
+
+# Private fields
+dotnet_naming_rule.fields_should_be_underscore_lower_camel_case.severity = suggestion
+dotnet_naming_rule.fields_should_be_underscore_lower_camel_case.symbols  = private_fields
+dotnet_naming_rule.fields_should_be_underscore_lower_camel_case.style    = underscore_lower_camel_case_style
+dotnet_naming_symbols.private_fields.applicable_kinds            = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities  = private
+
+# Constants
 dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
 dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols  = constant_fields
 dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_style
+
 dotnet_naming_symbols.constant_fields.applicable_kinds            = field
 dotnet_naming_symbols.constant_fields.applicable_accessibilities  = *
 dotnet_naming_symbols.constant_fields.required_modifiers          = const
+
+# Static readonly
+dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.symbols  = static_readonly_fields
+dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.style    = pascal_case_style
+
+dotnet_naming_symbols.static_readonly_fields.applicable_kinds            = field
+dotnet_naming_symbols.static_readonly_fields.applicable_accessibilities  = *
+dotnet_naming_symbols.static_readonly_fields.required_modifiers          = static,readonly
 
 ###############################
 # C# Code Style Rules         #

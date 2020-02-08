@@ -23,7 +23,7 @@ Catch
     exit
 }
 
-$countries = New-Object IbanNet.Registry.IbanRegistry;
+$countries = New-Object IbanNet.Registry.SwiftRegistryProvider;
 $supportedCount = $countries.Count
 
 $markdown = "## IbanNet supports [SUPPORTED_COUNT] countries`r`n`r`n"

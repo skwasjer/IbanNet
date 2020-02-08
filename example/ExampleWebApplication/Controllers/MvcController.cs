@@ -1,15 +1,21 @@
 ﻿using ExampleWebApplication.Models;
 using IbanNet;
-using IbanNet.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleWebApplication.Controllers
 {
 	/// <summary>
-	/// MVC example, showing usage of <see cref="IbanAttribute"/>.
+	/// MVC example, showing usage of IbanNet validation.
 	/// </summary>
 	public class MvcController : Controller
 	{
+		private readonly IIbanParser _parser;
+
+		public MvcController(IIbanParser parser)
+		{
+			_parser = parser;
+		}
+
 		// GET
 		public IActionResult Index()
 		{
@@ -23,12 +29,12 @@ namespace ExampleWebApplication.Controllers
 				return View("Index");
 			}
 
-		    Iban iban = Iban.Parse(model.BankAccountNumber);
-            // Do something with model...
-		    ModelState.Clear();
-		    model.BankAccountNumber = iban.ToString(Iban.Formats.Partitioned);
+			Iban iban = _parser.Parse(model.BankAccountNumber);
+			// Do something with model...
+			ModelState.Clear();
+			model.BankAccountNumber = iban.ToString(Iban.Formats.Partitioned);
 
-            return View("Index", model);
+			return View("Index", model);
 		}
 	}
 }

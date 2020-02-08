@@ -11,15 +11,26 @@ namespace IbanNet
 		/// Initializes a new instance of the <see cref="IbanFormatException"/> class using specified message and validation result.
 		/// </summary>
 		/// <param name="message">The error message.</param>
-		/// <param name="result">The validation result.</param>
-		public IbanFormatException(string message, IbanValidationResult result) : base(message)
+		/// <param name="validationResult">The validation result.</param>
+		public IbanFormatException(string message, ValidationResult validationResult)
+			: base(message)
 		{
-			Result = result;
+			Result = validationResult ?? throw new ArgumentNullException(nameof(validationResult));
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IbanFormatException"/> class using specified message and validation result.
+		/// </summary>
+		/// <param name="message">The error message.</param>
+		/// <param name="innerException">The inner exception.</param>
+		public IbanFormatException(string message, Exception? innerException)
+			: base(message, innerException)
+		{
 		}
 
 		/// <summary>
 		/// Gets the validation result.
 		/// </summary>
-		public IbanValidationResult Result { get; }
+		public ValidationResult? Result { get; }
 	}
 }

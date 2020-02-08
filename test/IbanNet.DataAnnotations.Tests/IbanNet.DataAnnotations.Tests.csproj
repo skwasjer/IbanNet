@@ -1,23 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;net45;net47</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;net452;net472</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
 
     <RootNamespace>IbanNet.DataAnnotations</RootNamespace>
+    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp'))">$(DefineConstants);ASPNET_INTEGRATION_TESTS</DefineConstants>
   </PropertyGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=$(TargetFramework)" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IbanNet.Tests\IbanNet.Tests.csproj" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.0'" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.3" Condition="'$(TargetFramework)'=='netcoreapp1.1'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj"     AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.2'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.3" Condition="'$(TargetFramework)'=='netcoreapp2.0'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net45" Condition="'$(TargetFramework)'=='net452'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net47" Condition="'$(TargetFramework)'=='net472'" />
+    <ProjectReference Include="..\TestHelpers\TestHelpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netcoreapp2'))">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.2.0" />
   </ItemGroup>
 
 </Project>

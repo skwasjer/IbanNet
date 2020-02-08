@@ -1,30 +1,31 @@
 ﻿using IbanNet.Registry;
+using IbanNet.Validation.Results;
 
 namespace IbanNet
 {
 	/// <summary>
 	/// Represents the validator result.
 	/// </summary>
-	public sealed class ValidationResult
+	public class ValidationResult
 	{
-		/// <summary>
-		/// <see cref="IbanValidationResult.Valid"/> if validation succeeded. Otherwise, indicates the reason of failure. 
-		/// </summary>
-		public IbanValidationResult Result { get; set; }
-
 		/// <summary>
 		/// Gets whether validation is successful.
 		/// </summary>
-		public bool IsValid => Result == IbanValidationResult.Valid;
+		public bool IsValid => Error is null;
 
 		/// <summary>
-		/// Gets the validated IBAN.
+		/// Gets the IBAN value for which validation was attempted.
 		/// </summary>
-		public string Value { get; set; }
+		public string? AttemptedValue { get; set; }
 
 		/// <summary>
 		/// Gets the country info that matches the iban, if any.
 		/// </summary>
-		public CountryInfo Country { get; set; }
+		public IbanCountry? Country { get; set; }
+
+		/// <summary>
+		/// Gets the error that occurred, if any.
+		/// </summary>
+		public ErrorResult? Error { get; set; }
 	}
 }

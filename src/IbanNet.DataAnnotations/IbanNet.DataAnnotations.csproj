@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;netstandard1.6;netstandard2.0;net47;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard1.6;netstandard2.0;netstandard2.1;net47;net45</TargetFrameworks>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
     <Description>Data annotations to validate IBAN user input.</Description>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.DataAnnotations</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/IbanNet.DataAnnotations</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, Web API, MVC</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>

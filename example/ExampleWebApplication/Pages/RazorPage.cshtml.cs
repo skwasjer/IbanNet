@@ -1,33 +1,37 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ExampleWebApplication.Models;
 using IbanNet;
-using IbanNet.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ExampleWebApplication.Pages
 {
 	/// <summary>
-	/// Razor Page example, showing usage of <see cref="IbanAttribute"/>.
+	/// Razor Page example, showing usage of IbanNet.
 	/// </summary>
 	public class RazorPageModel : PageModel
 	{
-		[BindProperty]
-		[Required]
-		[Iban]
-		public string BankAccountNumber { get; set; }
+		private readonly IIbanParser _parser;
 
-		public IActionResult OnPostAsync(RazorPageModel model)
+		public RazorPageModel(IIbanParser parser)
+		{
+			_parser = parser;
+		}
+
+		[BindProperty]
+		public InputModel Model { get; set; }
+
+		public IActionResult OnPostAsync()
 		{
 			if (!ModelState.IsValid)
 			{
 				return Page();
 			}
 
-			Iban iban = Iban.Parse(model.BankAccountNumber);
-            // Do something with model...
-            BankAccountNumber = iban.ToString(Iban.Formats.Partitioned);
+			Iban iban = _parser.Parse(Model.BankAccountNumber);
+			// Do something with model...
+			Model.BankAccountNumber = iban.ToString(Iban.Formats.Partitioned);
 
-            return Page();
+			return Page();
 		}
 	}
 }

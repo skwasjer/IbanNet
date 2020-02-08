@@ -1,23 +1,30 @@
-﻿namespace IbanNet.Validation.Rules
+﻿using IbanNet.Extensions;
+using IbanNet.Validation.Results;
+
+namespace IbanNet.Validation.Rules
 {
 	/// <summary>
 	/// Asserts that the IBAN does not contain any illegal characters.
 	/// </summary>
-	internal class NoIllegalCharactersRule : RegexRule
+	internal sealed class NoIllegalCharactersRule : IIbanValidationRule
 	{
-		public NoIllegalCharactersRule() : base(@"\W")
-		{
-		}
-
 		/// <inheritdoc />
-		public override void Validate(ValidationContext context)
+		public ValidationRuleResult Validate(ValidationRuleContext context)
 		{
-			base.Validate(context);
+			string iban = context.Value;
+			// ReSharper disable once LoopCanBeConvertedToQuery : justification -> faster
+			// ReSharper disable once ForCanBeConvertedToForeach : justification -> faster
+			for (int i = 0; i < iban.Length; i++)
+			{
+				char c = iban[i];
+				// All chars must be 0-9, a-z or A-Z.
+				if (!c.IsAlphaNumeric())
+				{
+					return new IllegalCharactersResult();
+				}
+			}
 
-			// We have to invert the result of the regex check, since we're testing for the presence of 00, 01 and 99.
-			context.Result = context.IsValid
-				? IbanValidationResult.IllegalCharacters
-				: IbanValidationResult.Valid;
+			return ValidationRuleResult.Success;
 		}
 	}
 }

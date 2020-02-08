@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Threading;
+using IbanNet.Extensions;
 
 namespace IbanNet
 {
@@ -30,18 +32,26 @@ namespace IbanNet
 		}
 
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-		private static readonly Regex NormalizeRegex = new Regex(@"[ \t]+", RegexOptions.CultureInvariant);
-
-		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private readonly string _iban;
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private static Lazy<IIbanValidator> _validatorInstance = new Lazy<IIbanValidator>(
+			() => new IbanValidator(), LazyThreadSafetyMode.ExecutionAndPublication
+		);
 
 		/// <summary>
 		/// Gets or sets the <see cref="IIbanValidator"/> used to validate an IBAN.
+		/// <para>
+		/// Note: avoid using this member, it's only use case is allowing type conversion and may be obsolete in future.
+		/// </para>
 		/// </summary>
 		// ReSharper disable once MemberCanBePrivate.Global
-		public static IIbanValidator Validator { get; set; } = new IbanValidator();
+		public static IIbanValidator Validator
+		{
+			get => _validatorInstance.Value;
+			set => _validatorInstance = new Lazy<IIbanValidator>(() => value, true);
+		}
 
-		private Iban(string iban)
+		internal Iban(string iban)
 		{
 			_iban = iban;
 		}
@@ -64,14 +74,14 @@ namespace IbanNet
 				// Partitioned by space
 				case Formats.Partitioned:
 					// Split into 4 char segments.
-					IEnumerable<string> segments = _iban.Partition(4).Select(p => string.Join("", p));
+					IEnumerable<string> segments = _iban.Partition(4).Select(p => new string(p.ToArray()));
 					return string.Join(" ", segments);
 
 				case null:
-					throw new ArgumentNullException(nameof(format), string.Format(Resources.The_format_is_required_with_supported_formats, Formats.Flat, Formats.Partitioned));
+					throw new ArgumentNullException(nameof(format), string.Format(Resources.ArgumentException_The_format_is_required_with_supported_formats, Formats.Flat, Formats.Partitioned));
 
 				default:
-					throw new ArgumentException(string.Format(Resources.The_format_0_is_invalid_with_supported_formats, format, Formats.Flat, Formats.Partitioned), nameof(format));
+					throw new ArgumentException(string.Format(Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats, format, Formats.Flat, Formats.Partitioned), nameof(format));
 			}
 		}
 
@@ -89,19 +99,10 @@ namespace IbanNet
 		/// <returns>an <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully</returns>
 		/// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="value"/> is null.</exception>
 		/// <exception cref="IbanFormatException">Thrown when the specified <paramref name="value"/> is not a valid IBAN.</exception>
-		public static Iban Parse(string value)
+		[Obsolete("Use the `IbanParser` class.")]
+		public static Iban Parse(string? value)
 		{
-			if (value == null)
-			{
-				throw new ArgumentNullException(nameof(value));
-			}
-
-			if (TryParse(value, out Iban iban, out IbanValidationResult validationResult))
-			{
-				return iban;
-			}
-
-			throw new IbanFormatException(string.Format(Resources.The_value_0_is_not_a_valid_IBAN, value), validationResult);
+			return new IbanParser(Validator).Parse(value);
 		}
 
 		/// <summary>
@@ -110,55 +111,10 @@ namespace IbanNet
 		/// <param name="value">The IBAN value to parse.</param>
 		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
 		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		public static bool TryParse(string value, out Iban iban)
+		[Obsolete("Use the `IbanParser` class.")]
+		public static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
-			iban = null;
-
-			return TryParse(value, out iban, out IbanValidationResult _);
-		}
-
-		/// <summary>
-		/// Attempts to parse the specified <paramref name="value"/> into an <see cref="Iban"/>.
-		/// </summary>
-		/// <param name="value">The IBAN value to parse.</param>
-		/// <param name="iban">The <see cref="Iban"/> if the <paramref name="value"/> is parsed successfully.</param>
-		/// <param name="validationResult">The validation result.</param>
-		/// <returns>true if the <paramref name="value"/> is parsed successfully, or false otherwise</returns>
-		private static bool TryParse(string value, out Iban iban, out IbanValidationResult validationResult)
-		{
-			iban = null;
-			validationResult = IbanValidationResult.IllegalCharacters;
-			if (value == null)
-			{
-				return false;
-			}
-
-			// Although our validator normalizes too, we can't rely on this fact if other implementations
-			// are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
-			// represents the IBAN value, we normalize inline here and take the penalty.
-			string normalizedValue = Normalize(value);
-			ValidationResult result = Validator.Validate(normalizedValue);
-			if (result.Result == IbanValidationResult.Valid)
-			{
-				iban = new Iban(normalizedValue.ToUpperInvariant());
-				return true;
-			}
-
-			return false;
-		}
-
-		/// <summary>
-		/// Normalizes an IBAN value by removing all whitespace (but does not change character casing).
-		/// </summary>
-		/// <param name="iban">The IBAN value.</param>
-		/// <returns>a normalized IBAN value</returns>
-		internal static string Normalize(string iban)
-		{
-			if (iban == null)
-			{
-				return null;
-			}
-			return NormalizeRegex.Replace(iban, "");
+			return new IbanParser(Validator).TryParse(value, out iban);
 		}
 
 		private bool Equals(Iban other)

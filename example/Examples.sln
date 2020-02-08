@@ -1,20 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleWebApplication", "ExampleWebApplication\ExampleWebApplication.csproj", "{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug DataAnnotations|Any CPU = Debug DataAnnotations|Any CPU
+		Debug FluentValidation|Any CPU = Debug FluentValidation|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Debug DataAnnotations|Any CPU.ActiveCfg = Debug DataAnnotations|Any CPU
+		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Debug DataAnnotations|Any CPU.Build.0 = Debug DataAnnotations|Any CPU
+		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Debug FluentValidation|Any CPU.ActiveCfg = Debug FluentValidation|Any CPU
+		{8A1A0772-C3CB-49E8-8F47-94D1ADA24E17}.Debug FluentValidation|Any CPU.Build.0 = Debug FluentValidation|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,23 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.2;netstandard1.6;netstandard2.0;net47;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.2;netstandard1.6;netstandard2.0;netstandard2.1;net47;net45</TargetFrameworks>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
     <Description>FluentValidation support to validate IBAN user input.</Description>
-    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/blob/master/src/IbanNet.FluentValidation</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/IbanNet.FluentValidation</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, FluentValidation, Web API, MVC</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
   </ItemGroup>

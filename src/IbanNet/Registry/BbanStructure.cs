@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
@@ -16,20 +17,11 @@ namespace IbanNet.Registry
 		/// Initializes a new instance of the <see cref="StructureSection"/> class using specified parameters.
 		/// </summary>
 		/// <param name="structure">The structure.</param>
+		/// <param name="structureValidationFactory">The structure validation factory.</param>
 		// ReSharper disable once UnusedMember.Global
-		public BbanStructure(string structure)
-			: base(structure)
+		public BbanStructure(string structure, IStructureValidationFactory structureValidationFactory)
+			: base(structure, structureValidationFactory)
 		{
 		}
-
-		/// <summary>
-		/// Gets or sets the bank identifier structure section.
-		/// </summary>
-		public BankStructure Bank { get; set; }
-
-		/// <summary>
-		/// Gets or sets the branch identifier structure section.
-		/// </summary>
-		public BranchStructure Branch { get; set; }
 	}
 }

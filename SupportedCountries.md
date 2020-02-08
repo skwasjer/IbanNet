@@ -21,7 +21,7 @@
 | DK | Denmark | Yes | 18 | `DK50 0040 0440 1162 43` |
 | DO | Dominican Republic | No | 28 | `DO28 BAGR 0000 0001 2124 5361 1324` |
 | EE | Estonia | Yes | 20 | `EE38 2200 2210 2014 5685` |
-| EG | Egypt | No | 27 | `EG04 0190 0500 0000 0026 3180 002` |
+| EG | Egypt | No | 29 | `EG38 0019 0005 0000 0000 2631 8000 2` |
 | ES | Spain | Yes | 24 | `ES91 2100 0418 4502 0005 1332` |
 | FI | Finland | Yes | 18 | `FI21 1234 5600 0007 85` |
 | FO | Faroe Islands | No | 18 | `FO62 6460 0001 6316 34` |
