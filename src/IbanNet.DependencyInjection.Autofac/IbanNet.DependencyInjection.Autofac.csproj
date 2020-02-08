@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.2</TargetFrameworks>
+    <Nullable>enable</Nullable>
+
+    <ImportAbstractions>True</ImportAbstractions>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>Autofac IoC container integration for IbanNet; IbanNet provides an IBAN validator and parser.</Description>
+    <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/Dependency-injection</PackageProjectUrl>
+    <PackageTags>IBAN, IoC, Autofac, IbanNet, dependencyinjection</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
+  </ItemGroup>
+
+</Project>

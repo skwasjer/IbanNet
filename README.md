@@ -12,7 +12,10 @@ IbanNet is a .NET library providing functionality to validate and parse an [Inte
 |---|---|---|
 | `IbanNet` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) | [Documentation](../../wiki)
 | `IbanNet.DataAnnotations` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) | [Documentation](../../wiki/IbanNet.DataAnnotations) |
+| `IbanNet.DependencyInjection.Autofac` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DependencyInjection.Autofac.svg)](https://www.nuget.org/packages/IbanNet.DependencyInjection.Autofac/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DependencyInjection.Autofac.svg)](https://www.nuget.org/packages/IbanNet.DependencyInjection.Autofac/) | [Documentation](../../wiki/Dependency-injection) |
+| `IbanNet.DependencyInjection.ServiceProvider` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DependencyInjection.ServiceProvider.svg)](https://www.nuget.org/packages/IbanNet.DependencyInjection.ServiceProvider/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DependencyInjection.ServiceProvider.svg)](https://www.nuget.org/packages/IbanNet.DependencyInjection.ServiceProvider/) | [Documentation](../../wiki/Dependency-injection) |
 | `IbanNet.FluentValidation` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) | [Documentation](../../wiki/IbanNet.FluentValidation) |
+
 
 ## Example with validator
 
