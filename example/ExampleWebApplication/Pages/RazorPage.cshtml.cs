@@ -1,14 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ExampleWebApplication.Models;
+﻿using ExampleWebApplication.Models;
 using IbanNet;
-using IbanNet.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ExampleWebApplication.Pages
 {
 	/// <summary>
-	/// Razor Page example, showing usage of <see cref="IbanAttribute"/>.
+	/// Razor Page example, showing usage of IbanNet.
 	/// </summary>
 	public class RazorPageModel : PageModel
 	{

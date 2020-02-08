@@ -1,12 +1,11 @@
 ﻿using ExampleWebApplication.Models;
 using IbanNet;
-using IbanNet.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleWebApplication.Controllers
 {
 	/// <summary>
-	/// Web API example, showing usage of <see cref="IbanAttribute"/>.
+	/// Web API example, showing usage of IbanNet.
 	/// </summary>
 	[Route("api/[controller]")]
 	public class WebApiController : ControllerBase

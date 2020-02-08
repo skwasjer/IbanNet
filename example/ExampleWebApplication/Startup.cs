@@ -1,4 +1,8 @@
-﻿using IbanNet.DependencyInjection;
+﻿#if DEBUG_FLUENTVALIDATION
+using FluentValidation;
+using FluentValidation.AspNetCore;
+#endif
+using IbanNet.DependencyInjection;
 using IbanNet.DependencyInjection.ServiceProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,8 +26,17 @@ namespace ExampleWebApplication
 		{
 			// Register IbanNet.
 			services.AddIbanNet(opts => opts.UseStrictValidation());
+			services
+				.AddRazorPages()
+#if DEBUG_FLUENTVALIDATION
+				.AddFluentValidation(fv => fv
+					.RegisterValidatorsFromAssemblyContaining<Startup>()
+					// Disable DataAnnotations/IValidateObject (not required, but to isolate this as only validation framework)
+					.RunDefaultMvcValidationAfterFluentValidationExecutes = false
+				)
+#endif
+				;
 
-			services.AddRazorPages();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,12 +1,11 @@
 ﻿using ExampleWebApplication.Models;
 using IbanNet;
-using IbanNet.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleWebApplication.Controllers
 {
 	/// <summary>
-	/// MVC example, showing usage of <see cref="IbanAttribute"/>.
+	/// MVC example, showing usage of IbanNet validation.
 	/// </summary>
 	public class MvcController : Controller
 	{
