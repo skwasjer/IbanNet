@@ -164,8 +164,8 @@
 					var data;
 					if (err.responseText && err.status === 400) {
 						const modelError = data = JSON.parse(err.responseText);
-						if (modelError && modelError.ModelState && Object.keys(modelError.ModelState).length) {
-							updateSummary(modelError.ModelState);
+						if (modelError && Object.keys(modelError).length) {
+							updateSummary(modelError);
 						}
 					} else {
 						data = err;
