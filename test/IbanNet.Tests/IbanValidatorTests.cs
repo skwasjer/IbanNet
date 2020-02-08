@@ -248,7 +248,7 @@ namespace IbanNet
 					new Mock<IStructureValidationFactory>(),
 					new Mock<IStructureValidationFactory>()
 				};
-				foreach (var mock in _structureFactoryMocks)
+				foreach (Mock<IStructureValidationFactory> mock in _structureFactoryMocks)
 				{
 					mock
 						.Setup(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()))
