@@ -30,22 +30,18 @@ Install-Package IbanNet.FluentValidation
 
 | | | |
 |---|---|---|
-| `IbanNet` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) | [Documentation](src/IbanNet/README.md)
-| `IbanNet.DataAnnotations` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) | [Documentation](src/IbanNet.DataAnnotations/README.md) |
-| `IbanNet.FluentValidation` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) | [Documentation](src/IbanNet.FluentValidation/README.md) |
+| `IbanNet` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.svg)](https://www.nuget.org/packages/IbanNet/) | [Documentation](wiki)
+| `IbanNet.DataAnnotations` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.DataAnnotations.svg)](https://www.nuget.org/packages/IbanNet.DataAnnotations/) | [Documentation](wiki/IbanNet.DataAnnotations) |
+| `IbanNet.FluentValidation` | [![NuGet](https://img.shields.io/nuget/v/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) [![NuGet](https://img.shields.io/nuget/dt/IbanNet.FluentValidation.svg)](https://www.nuget.org/packages/IbanNet.FluentValidation/) | [Documentation](wiki/IbanNet.FluentValidation) |
 
 ## Example with validator
 
 ```csharp
 IIbanValidator validator = new IbanValidator();
-ValidationResult validationResult = validator.Validate("NL91ABNA041716430");
+ValidationResult validationResult = validator.Validate("NL91 ABNA 0417 1643 00");
 if (validationResult.IsValid)
 {
-    // For example:
-    if (validationResult.Country.TwoLetterISORegionName != "NL")
-    {
-        throw new InvalidOperationException("Please provide a Dutch bank account.");
-    }
+    // ..
 }
 ```
 
@@ -53,7 +49,8 @@ if (validationResult.IsValid)
 
 ```csharp
 Iban iban;
-bool success = Iban.TryParse("NL91 ABNA 0417 1643 00", out iban);
+IIbanParser parser = new IbanParser(new IbanValidator());
+bool success = parser.TryParse("NL91 ABNA 0417 1643 00", out iban);
 ```
 
 ### Contributions

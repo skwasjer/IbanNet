@@ -1,10 +1,10 @@
 # Changelog
 
-## v4.0.0-betaXX
+## v4.0.0
 
 ### Improvements
 
-- Added `IbanParser` class which provides equivalent non-static functionality to `Iban.Parse` and `Iban.TryParse` (which will be obsolete).
+- Added `IbanParser` which provides equivalent non-static functionality to `Iban.Parse` and `Iban.TryParse` (which will be obsolete).
 - Added .NET Standard 2.1 target
 - Enabled and refactored for non-nullable reference types.
 - Added abstraction to load registry from different sources.
