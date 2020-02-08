@@ -24,6 +24,7 @@
 - (breaking) Renamed `CountryInfo` to `IbanCountry`.
 - (breaking) Renamed `ValidationResult.Value` to `ValidationResult.AttemptedValue`.
 - (breaking) Moved `Branch` and `Bank` properties from `BbanStructure` to `IbanCountry` and all offsets are now relative to entire IBAN. This makes it easier to extract this data from an IBAN.
+- (breaking) `IbanAttribute` no longer uses static `Iban.Validator` as fallback since it is deprecated. The `IIbanValidator` will now only be resolved from IoC container.
 
 ## v3.2.1
 

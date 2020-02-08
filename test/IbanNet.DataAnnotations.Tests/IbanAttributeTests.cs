@@ -234,7 +234,8 @@ namespace IbanNet.DataAnnotations
 				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
 				// Assert
-				act.Should().Throw<InvalidOperationException>();
+				act.Should().Throw<InvalidOperationException>()
+					.WithMessage("Failed to get an instance of *");
 
 				_serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Once);
 				IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
@@ -244,7 +245,7 @@ namespace IbanNet.DataAnnotations
 		public class When_service_provider_does_not_return_validator : IbanAttributeTests
 		{
 			[Test]
-			public void It_should_use_default_validator()
+			public void It_should_throw()
 			{
 				// Arrange
 				_serviceProviderMock
@@ -253,27 +254,31 @@ namespace IbanNet.DataAnnotations
 					.Verifiable();
 
 				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
 				// Assert
+				act.Should().Throw<InvalidOperationException>()
+					.WithMessage("Failed to get an instance of *");
 				_serviceProviderMock.Verify();
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
 			}
 		}
 
 		public class When_service_provider_is_null : IbanAttributeTests
 		{
 			[Test]
-			public void It_should_use_default_validator()
+			public void It_should_throw()
 			{
 				// Arrange
 				_validationContext = new ValidationContext(new object(), null, null);
 
 				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
 				// Assert
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+				act.Should().Throw<InvalidOperationException>()
+					.WithMessage("Failed to get an instance of *");
+				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
 			}
 		}
 	}
