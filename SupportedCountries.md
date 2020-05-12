@@ -21,7 +21,7 @@
 | DK | Denmark | Yes | 18 | `DK50 0040 0440 1162 43` |
 | DO | Dominican Republic | No | 28 | `DO28 BAGR 0000 0001 2124 5361 1324` |
 | EE | Estonia | Yes | 20 | `EE38 2200 2210 2014 5685` |
-| EG | Egypt | No | 27 | `EG04 0190 0500 0000 0026 3180 002` |
+| EG | Egypt | No | 29 | `EG38 0019 0005 0000 0000 2631 8000 2` |
 | ES | Spain | Yes | 24 | `ES91 2100 0418 4502 0005 1332` |
 | FI | Finland | Yes | 18 | `FI21 1234 5600 0007 85` |
 | FO | Faroe Islands | No | 18 | `FO62 6460 0001 6316 34` |
@@ -70,7 +70,7 @@
 | SI | Slovenia | Yes | 19 | `SI56 2633 0001 2039 086` |
 | SK | Slovakia | Yes | 24 | `SK31 1200 0000 1987 4263 7541` |
 | SM | San Marino | Yes | 27 | `SM86 U032 2509 8000 0000 0270 100` |
-| ST | Sao Tome and Principe | No | 25 | `ST68 0001 0001 0051 8453 1011 2` |
+| ST | Sao Tome and Principe | No | 25 | `ST23 0001 0001 0051 8453 1014 6` |
 | SV | El Salvador | No | 28 | `SV62 CENR 0000 0000 0000 0070 0025` |
 | TL | Timor-Leste | No | 23 | `TL38 0080 0123 4567 8910 157` |
 | TN | Tunisia | No | 24 | `TN59 1000 6035 1835 9847 8831` |
