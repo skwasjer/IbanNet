@@ -8,9 +8,9 @@ namespace IbanNet.Registry
 	/// The IBAN registry contains IBAN/BBAN/SEPA information for all known IBAN countries.
 	/// </summary>
 	/// <remarks>
-	/// Generated from: swift_iban_registry_202001.r85.txt
+	/// Generated from: swift_iban_registry_202005.r87.txt
 	/// </remarks>
-	[GeneratedCode("IbanRegistryT4", "1.1-r85")]
+	[GeneratedCode("IbanRegistryT4", "1.1-r87")]
 	public class IbanRegistry : List<CountryInfo>
 	{
 		/// <summary>
@@ -2529,8 +2529,8 @@ namespace IbanNet.Registry
 						Bban = new BbanStructure
 						{
 							Length = 21,
-							Structure = "4!n4!n11!n2!n",
-							Example = "000200010192194210112",
+							Structure = "8!n11!n2!n",
+							Example = "000100010051845310146",
 							Bank = new BankStructure
 							{
 								Position = 0,
@@ -2549,16 +2549,16 @@ namespace IbanNet.Registry
 						Iban = new IbanStructure
 						{
 							Length = 25,
-							Structure = "ST2!n4!n4!n11!n2!n",
-							Example = "ST68000100010051845310112",
-							EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
+							Structure = "ST2!n8!n11!n2!n",
+							Example = "ST23000100010051845310146",
+							EffectiveDate = new DateTimeOffset(2020, 3, 1, 0, 0, 0, TimeSpan.Zero)
 						},
 						Sepa = new SepaInfo
 						{
 							IsMember = false,
 						},
-						DomesticAccountNumberExample = "01921942101.12",
-						LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+						DomesticAccountNumberExample = "0051845310146",
+						LastUpdatedDate = new DateTimeOffset(2020, 5, 1, 0, 0, 0, TimeSpan.Zero)
 					},
 
 					// El Salvador

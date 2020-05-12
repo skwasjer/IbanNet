@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.2
+
+- backport: Upgraded registry to May '20 release 87 (changes to ST)
+
 ## v3.2.1
 
 - Upgraded registry to Januari '20 release 85 (improves Egypt, not effective until 2021).
