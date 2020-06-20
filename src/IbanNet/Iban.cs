@@ -119,7 +119,7 @@ namespace IbanNet
 
 		private bool Equals(Iban other)
 		{
-			return string.Equals(_iban, other._iban);
+			return string.Equals(_iban, other._iban, StringComparison.Ordinal);
 		}
 
 		/// <summary>
@@ -148,7 +148,11 @@ namespace IbanNet
 		/// <returns>A hash code for the current object.</returns>
 		public override int GetHashCode()
 		{
+#if NETSTANDARD2_1
+			return _iban.GetHashCode(StringComparison.Ordinal);
+#else
 			return _iban.GetHashCode();
+#endif
 		}
 
 		/// <summary>
