@@ -43,7 +43,7 @@ namespace IbanNet.Validation
 
             yield return new Mod97Rule();
 
-            if (_options.Rules == null)
+            if (_options.Rules is null)
             {
                 yield break;
             }

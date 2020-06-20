@@ -24,7 +24,7 @@ namespace IbanNet
         /// <inheritdoc />
         public Iban Parse(string? value)
         {
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
@@ -34,11 +34,11 @@ namespace IbanNet
                 return iban;
             }
 
-            string errorMessage = validationResult?.Error == null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
+            string errorMessage = validationResult?.Error is null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
                 ? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
                 : validationResult.Error.ErrorMessage;
 
-            if (validationResult == null || exceptionThrown != null)
+            if (validationResult is null || exceptionThrown is { })
             {
                 throw new IbanFormatException(errorMessage, exceptionThrown);
             }

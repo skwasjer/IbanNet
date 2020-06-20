@@ -10,7 +10,7 @@ namespace IbanNet.Validation.Rules
         /// <inheritdoc />
         public ValidationRuleResult Validate(ValidationRuleContext context)
         {
-            return context.Country != null && context.Value.Length == context.Country.Iban.Length
+            return context.Country is { } && context.Value.Length == context.Country.Iban.Length
                 ? ValidationRuleResult.Success
                 : new InvalidLengthResult();
         }

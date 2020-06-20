@@ -62,9 +62,9 @@ namespace IbanNet.Registry
             // ReSharper disable StringLiteralTypo
 
 <#
-    Func<string, string> checkValue = (value) => value == null || value == "" || value.Trim() == "N/A" ? null : value.Trim();
+    Func<string, string> checkValue = (value) => value is null || value == "" || value.Trim() == "N/A" ? null : value.Trim();
     Func<string, string> normalizeExample = (value) => string.IsNullOrEmpty(value) ? value : Regex.Replace(value, @"[^\w]", "");
-    Func<string, int> getNumber = (value) => value == null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
+    Func<string, int> getNumber = (value) => value is null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
 
     CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
     {
@@ -90,7 +90,7 @@ namespace IbanNet.Registry
                 DisplayName = "<#= row[0] #>",
                 EnglishName = "<#= row[0] #>",
 <#
-                    includedCountries = row[2] == null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                    includedCountries = row[2] is null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
                     if (includedCountries.Length > 0) {
 #>
                 IncludedCountries = new[]
@@ -121,7 +121,7 @@ namespace IbanNet.Registry
                     Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
                 },
 <#
-                        if (row[9] != null) {
+                        if (row[9] is { }) {
 #>
                 Bank = new BankStructure
                 {
@@ -134,7 +134,7 @@ namespace IbanNet.Registry
 <#
                         }
 
-                        if (row[11] != null) {
+                        if (row[11] is { }) {
 #>
                 Branch = new BranchStructure
                 {
@@ -149,9 +149,9 @@ namespace IbanNet.Registry
 #>
                 Sepa = new SepaInfo
                 {
-                    IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] == null ? ",\t// N/A" : ",") #>
+                    IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[3] is null ? ",\t// N/A" : ",") #>
 <#
-                    includedCountries = row[4] == null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                    includedCountries = row[4] is null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
                     if (includedCountries.Length > 0) {
 #>
                     IncludedCountries = new[]

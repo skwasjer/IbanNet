@@ -32,7 +32,7 @@ namespace IbanNet.Validation.Rules
         private IbanCountry? GetMatchingCountry(string iban)
         {
             string? countryCode = GetCountryCode(iban);
-            if (countryCode == null)
+            if (countryCode is null)
             {
                 return null;
             }

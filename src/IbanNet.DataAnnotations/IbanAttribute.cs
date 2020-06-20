@@ -22,7 +22,7 @@ namespace IbanNet.DataAnnotations
         /// <inheritdoc />
         protected override System.ComponentModel.DataAnnotations.ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value == null)
+            if (value is null)
             {
                 return System.ComponentModel.DataAnnotations.ValidationResult.Success;
             }
@@ -42,7 +42,7 @@ namespace IbanNet.DataAnnotations
             validationContext.Items.Add("Error", result.Error);
 
             IEnumerable<string>? memberNames = null;
-            if (validationContext.MemberName != null)
+            if (validationContext.MemberName is { })
             {
                 memberNames = new[] { validationContext.MemberName };
             }
@@ -59,7 +59,7 @@ namespace IbanNet.DataAnnotations
         private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
         {
             var ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
-            if (ibanValidator == null)
+            if (ibanValidator is null)
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.IbanAttribute_ValidatorMissing, nameof(IIbanValidator)));
             }

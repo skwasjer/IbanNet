@@ -31,7 +31,7 @@ namespace IbanNet.Registry
         // ReSharper disable once InconsistentNaming
         public IbanCountry(string twoLetterISORegionName)
         {
-            if (twoLetterISORegionName == null)
+            if (twoLetterISORegionName is null)
             {
                 throw new ArgumentNullException(nameof(twoLetterISORegionName));
             }

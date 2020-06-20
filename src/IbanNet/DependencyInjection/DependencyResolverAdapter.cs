@@ -22,7 +22,7 @@ namespace IbanNet.DependencyInjection
         public object GetRequiredService(Type serviceType)
         {
             object? service = GetService(serviceType);
-            if (service == null)
+            if (service is null)
             {
                 throw new InvalidOperationException($"Failed to resolve {serviceType}.");
             }

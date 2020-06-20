@@ -13,7 +13,7 @@ namespace IbanNet.DependencyInjection.ServiceProvider
             _validatorOptionsBuilder = services.AddOptions<IbanValidatorOptions>();
 
 #if NETSTANDARD2_1
-            _validatorOptionsBuilder.Validate(opts => opts.Registry != null, "The 'Registry' is required.");
+            _validatorOptionsBuilder.Validate(opts => opts.Registry is { }, "The 'Registry' is required.");
 #endif
         }
 

@@ -23,13 +23,13 @@ namespace IbanNet.FluentValidation
         /// <inheritdoc />
         protected override bool IsValid(PropertyValidatorContext context)
         {
-            if (context?.PropertyValue == null)
+            if (context?.PropertyValue is null)
             {
                 return true;
             }
 
             ValidationResult result = _ibanValidator.Validate((string)context.PropertyValue);
-            if (result.Error != null)
+            if (result.Error is { })
             {
                 context.MessageFormatter.AppendArgument("Error", result.Error);
             }

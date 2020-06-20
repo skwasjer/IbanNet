@@ -21,7 +21,7 @@ namespace IbanNet.Extensions
         /// <returns>an enumerable of partitions</returns>
         public static IEnumerable<IEnumerable<TSource>> Partition<TSource>(this IEnumerable<TSource> sequence, int size)
         {
-            if (sequence == null)
+            if (sequence is null)
             {
                 throw new ArgumentNullException(nameof(sequence));
             }
@@ -62,12 +62,12 @@ namespace IbanNet.Extensions
         /// <returns>an enumerable of partitions</returns>
         public static IEnumerable<string> PartitionOn(this string sequence, params char[] chars)
         {
-            if (sequence == null)
+            if (sequence is null)
             {
                 throw new ArgumentNullException(nameof(sequence));
             }
 
-            if (chars == null || chars.Length == 0)
+            if (chars is null || chars.Length == 0)
             {
                 throw new ArgumentException(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required, nameof(chars));
             }
