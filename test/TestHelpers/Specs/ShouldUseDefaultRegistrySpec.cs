@@ -35,7 +35,7 @@ namespace TestHelpers.Specs
                 .Should()
                 .BeOfType<IbanValidator>()
                 .Which.Options.Registry.Should()
-                .BeEquivalentTo(IbanRegistry.Default);
+                .BeEquivalentTo(IbanRegistry.Default, opts => opts.WithStrictOrdering());
         }
 
         [Fact]

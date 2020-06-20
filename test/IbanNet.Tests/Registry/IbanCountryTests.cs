@@ -44,5 +44,49 @@ namespace IbanNet.Registry
             // Assert
             actual.TwoLetterISORegionName.Should().Be("NL");
         }
+
+        [Fact]
+        public void Getters_should_return_set_properties()
+        {
+            const string twoLetterIsoRegionName = "nl";
+            var ibanStructure = new IbanStructure();
+            var bankStructure = new BankStructure();
+            var bbanStructure = new BbanStructure();
+            var branchStructure = new BranchStructure();
+            const string displayName = "name";
+            const string domesticAccountNumberExample = "example";
+            const string englishName = "english name";
+            string[] includedCountries = new [] { "AB" };
+            DateTimeOffset lastUpdatedDate = DateTimeOffset.Now;
+            var sepaInfo = new SepaInfo();
+
+            // Act
+            var ibanCountry = new IbanCountry(twoLetterIsoRegionName)
+            {
+                Iban = ibanStructure,
+                Bank = bankStructure,
+                Bban = bbanStructure,
+                Branch = branchStructure,
+                DisplayName = displayName,
+                DomesticAccountNumberExample = domesticAccountNumberExample,
+                EnglishName = englishName,
+                IncludedCountries = includedCountries,
+                LastUpdatedDate = lastUpdatedDate,
+                Sepa = sepaInfo
+            };
+
+            // Assert
+            ibanCountry.TwoLetterISORegionName.Should().Be(twoLetterIsoRegionName.ToUpper());
+            ibanCountry.Iban.Should().BeSameAs(ibanStructure);
+            ibanCountry.Bank.Should().BeSameAs(bankStructure);
+            ibanCountry.Bban.Should().BeSameAs(bbanStructure);
+            ibanCountry.Branch.Should().BeSameAs(branchStructure);
+            ibanCountry.DisplayName.Should().Be(displayName);
+            ibanCountry.DomesticAccountNumberExample.Should().Be(domesticAccountNumberExample);
+            ibanCountry.EnglishName.Should().Be(englishName);
+            ibanCountry.IncludedCountries.Should().BeEquivalentTo(includedCountries, opts => opts.WithStrictOrdering());
+            ibanCountry.LastUpdatedDate.Should().Be(lastUpdatedDate);
+            ibanCountry.Sepa.Should().BeSameAs(sepaInfo);
+        }
     }
 }

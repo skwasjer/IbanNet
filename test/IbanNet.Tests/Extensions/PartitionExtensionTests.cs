@@ -57,7 +57,7 @@ namespace IbanNet.Extensions
             actual.Should().HaveCount(expectedPartitions);
             actual.Take(actual.Count - 1).Should().OnlyContain(inner => inner.Count() == size, "all but the last should at least be of the requested size");
             actual.Last().Should().HaveCount(expectedLastPartitionSize, "the last partition can be less than or equal to the requested size");
-            actual.SelectMany(i => i).Should().BeEquivalentTo(sequence, "joined back together it should be same as original sequence");
+            actual.SelectMany(i => i).Should().BeEquivalentTo(sequence, opts => opts.WithStrictOrdering(), "joined back together it should be same as original sequence");
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace IbanNet.Extensions
             var actual = sequence.PartitionOn(chars).ToList();
 
             // Assert
-            actual.Should().BeEquivalentTo(expectedPartitions);
+            actual.Should().BeEquivalentTo(expectedPartitions, opts => opts.WithStrictOrdering());
         }
     }
 }
