@@ -3,18 +3,18 @@ using BenchmarkDotNet.Running;
 
 namespace IbanNet.Benchmark
 {
-	internal static class Program
-	{
-		public static void Main(string[] args)
-		{
-			IConfig config = null;
+    internal static class Program
+    {
+        public static void Main(string[] args)
+        {
+            IConfig config = null;
 #if DEBUG
-			config = new DebugInProcessConfig();
+            config = new DebugInProcessConfig();
 #endif
 
-			BenchmarkSwitcher
-				.FromAssembly(typeof(Program).Assembly)
-				.Run(args, config);
-		}
-	}
+            BenchmarkSwitcher
+                .FromAssembly(typeof(Program).Assembly)
+                .Run(args, config);
+        }
+    }
 }

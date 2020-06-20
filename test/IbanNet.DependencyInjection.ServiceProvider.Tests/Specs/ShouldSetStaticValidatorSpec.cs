@@ -4,11 +4,11 @@ using Xunit;
 
 namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 {
-	[Collection(nameof(SetsStaticValidator))]
-	public class ShouldSetStaticValidatorSpec : TestHelpers.Specs.ShouldSetStaticValidatorSpec
-	{
-		public ShouldSetStaticValidatorSpec() : base(new ServiceProviderDependencyInjectionFixture(false))
-		{
-		}
-	}
+    [Collection(nameof(SetsStaticValidator))]
+    public class ShouldSetStaticValidatorSpec : TestHelpers.Specs.ShouldSetStaticValidatorSpec
+    {
+        public ShouldSetStaticValidatorSpec() : base(new ServiceProviderDependencyInjectionFixture(false))
+        {
+        }
+    }
 }

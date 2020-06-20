@@ -5,40 +5,40 @@ using Xunit;
 
 namespace IbanNet.Registry
 {
-	public class BankStructureTests
-	{
-		[Fact]
-		public void When_creating_with_null_structure_it_should_throw()
-		{
-			string structure = null;
+    public class BankStructureTests
+    {
+        [Fact]
+        public void When_creating_with_null_structure_it_should_throw()
+        {
+            string structure = null;
 
-			// Act
-			// ReSharper disable once ExpressionIsAlwaysNull
-			// ReSharper disable once ObjectCreationAsStatement
-			Action act = () => new BankStructure(structure, new NullStructureValidationFactory());
+            // Act
+            // ReSharper disable once ObjectCreationAsStatement
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => new BankStructure(structure, new NullStructureValidationFactory());
 
-			// Assert
-			act.Should()
-				.Throw<ArgumentNullException>()
-				.Which.ParamName.Should()
-				.Be(nameof(structure));
-		}
+            // Assert
+            act.Should()
+                .Throw<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(structure));
+        }
 
-		[Fact]
-		public void When_creating_with_null_structure_validation_factory_it_should_throw()
-		{
-			IStructureValidationFactory structureValidationFactory = null;
+        [Fact]
+        public void When_creating_with_null_structure_validation_factory_it_should_throw()
+        {
+            IStructureValidationFactory structureValidationFactory = null;
 
-			// Act
-			// ReSharper disable once ExpressionIsAlwaysNull
-			// ReSharper disable once ObjectCreationAsStatement
-			Action act = () => new BankStructure(string.Empty, structureValidationFactory);
+            // Act
+            // ReSharper disable once ObjectCreationAsStatement
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => new BankStructure(string.Empty, structureValidationFactory);
 
-			// Assert
-			act.Should()
-				.Throw<ArgumentNullException>()
-				.Which.ParamName.Should()
-				.Be(nameof(structureValidationFactory));
-		}
-	}
+            // Assert
+            act.Should()
+                .Throw<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(structureValidationFactory));
+        }
+    }
 }

@@ -8,264 +8,266 @@ using Xunit;
 
 namespace IbanNet.DataAnnotations
 {
-	[Collection(nameof(SetsStaticValidator))]
-	public class IbanAttributeTests : IbanTestFixture
-	{
-		private readonly Mock<IServiceProvider> _serviceProviderMock;
-		private readonly IbanAttribute _sut;
+    [Collection(nameof(SetsStaticValidator))]
+    public class IbanAttributeTests : IbanTestFixture
+    {
+        private readonly Mock<IServiceProvider> _serviceProviderMock;
+        private readonly IbanAttribute _sut;
 
-		private ValidationContext _validationContext;
+        private ValidationContext _validationContext;
 
-		public IbanAttributeTests()
-		{
-			_serviceProviderMock = new Mock<IServiceProvider>();
-			_serviceProviderMock
-				.Setup(m => m.GetService(typeof(IIbanValidator)))
-				.Returns(IbanValidatorMock.Object)
-				.Verifiable();
+        public IbanAttributeTests()
+        {
+            _serviceProviderMock = new Mock<IServiceProvider>();
+            _serviceProviderMock
+                .Setup(m => m.GetService(typeof(IIbanValidator)))
+                .Returns(IbanValidatorMock.Object)
+                .Verifiable();
 
-			_validationContext = new ValidationContext(new object(), _serviceProviderMock.Object, null);
+            _validationContext = new ValidationContext(new object(), _serviceProviderMock.Object, null);
 
-			_sut = new IbanAttribute();
-		}
+            _sut = new IbanAttribute();
+        }
 
-		public class When_validating_a_null_value : IbanAttributeTests
-		{
-			[Fact]
-			public void It_should_not_call_validator()
-			{
-				// Act
-				_sut.GetValidationResult(null, _validationContext);
+        public class When_validating_a_null_value : IbanAttributeTests
+        {
+            [Fact]
+            public void It_should_not_call_validator()
+            {
+                // Act
+                _sut.GetValidationResult(null, _validationContext);
 
-				// Assert
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
-			}
+                // Assert
+                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+            }
 
-			[Fact]
-			public void It_should_not_resolve_the_validator()
-			{
-				// Act
-				_sut.GetValidationResult(null, _validationContext);
+            [Fact]
+            public void It_should_not_resolve_the_validator()
+            {
+                // Act
+                _sut.GetValidationResult(null, _validationContext);
 
-				// Assert
-				_serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
-			}
+                // Assert
+                _serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
+            }
 
-			[Fact]
-			public void It_should_succeed()
-			{
-				// Act
-				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(null, _validationContext);
+            [Fact]
+            public void It_should_succeed()
+            {
+                // Act
+                System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(null, _validationContext);
 
-				// Assert
-				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
-			}
+                // Assert
+                result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
+            }
 
-			[Fact]
-			public void It_should_not_set_error_item()
-			{
-				// Act
-				_sut.GetValidationResult(null, _validationContext);
+            [Fact]
+            public void It_should_not_set_error_item()
+            {
+                // Act
+                _sut.GetValidationResult(null, _validationContext);
 
-				// Assert
-				_validationContext.Items.Should().NotContainKey("Error");
-			}
-		}
+                // Assert
+                _validationContext.Items.Should().NotContainKey("Error");
+            }
+        }
 
-		public class When_validating_a_valid_iban : IbanAttributeTests
-		{
-			[Fact]
-			public void It_should_call_validator()
-			{
-				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+        public class When_validating_a_valid_iban : IbanAttributeTests
+        {
+            [Fact]
+            public void It_should_call_validator()
+            {
+                // Act
+                _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
-				// Assert
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
-			}
+                // Assert
+                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+            }
 
-			[Fact]
-			public void It_should_resolve_the_validator()
-			{
-				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+            [Fact]
+            public void It_should_resolve_the_validator()
+            {
+                // Act
+                _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
-				// Assert
-				_serviceProviderMock.Verify();
-			}
+                // Assert
+                _serviceProviderMock.Verify();
+            }
 
-			[Fact]
-			public void It_should_succeed()
-			{
-				// Act
-				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+            [Fact]
+            public void It_should_succeed()
+            {
+                // Act
+                System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
-				// Assert
-				result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
-			}
+                // Assert
+                result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
+            }
 
-			[Fact]
-			public void It_should_not_set_error_item()
-			{
-				// Act
-				_sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+            [Fact]
+            public void It_should_not_set_error_item()
+            {
+                // Act
+                _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
-				// Assert
-				_validationContext.Items.Should().NotContainKey("Error");
-			}
-		}
+                // Assert
+                _validationContext.Items.Should().NotContainKey("Error");
+            }
+        }
 
-		public class When_validating_an_invalid_iban : IbanAttributeTests
-		{
-			[Fact]
-			public void It_should_call_validator()
-			{
-				// Act
-				_sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+        public class When_validating_an_invalid_iban : IbanAttributeTests
+        {
+            [Fact]
+            public void It_should_call_validator()
+            {
+                // Act
+                _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
-				// Assert
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
-			}
+                // Assert
+                IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
+            }
 
-			[Fact]
-			public void It_should_fail()
-			{
-				// Act
-				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            [Fact]
+            public void It_should_fail()
+            {
+                // Act
+                System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
-				// Assert
-				result.Should().NotBe(System.ComponentModel.DataAnnotations.ValidationResult.Success);
-			}
+                // Assert
+                result.Should().NotBe(System.ComponentModel.DataAnnotations.ValidationResult.Success);
+            }
 
-			[Fact]
-			public void It_should_have_error_message_with_displayName()
-			{
-				_validationContext.DisplayName = "Property";
+            [Fact]
+            public void It_should_have_error_message_with_displayName()
+            {
+                _validationContext.DisplayName = "Property";
 
-				// Act
-				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+                // Act
+                System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
-				// Assert
-				result.ErrorMessage.Should().Be(string.Format(Resources.IbanAttribute_Invalid, _validationContext.DisplayName));
-			}
+                // Assert
+                result.ErrorMessage.Should().Be(string.Format(Resources.IbanAttribute_Invalid, _validationContext.DisplayName));
+            }
 
-			[Fact]
-			public void It_should_resolve_the_validator()
-			{
-				// Act
-				_sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            [Fact]
+            public void It_should_resolve_the_validator()
+            {
+                // Act
+                _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
-				// Assert
-				_serviceProviderMock.Verify();
-			}
+                // Assert
+                _serviceProviderMock.Verify();
+            }
 
-			[Fact]
-			public void It_should_set_member_name()
-			{
-				// Act
-				System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            [Fact]
+            public void It_should_set_member_name()
+            {
+                // Act
+                System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
-				// Assert
-				if (string.IsNullOrEmpty(_validationContext.MemberName))
-				{
-					result.MemberNames.Should().BeNullOrEmpty();
-				}
-				else
-				{
-					result.MemberNames.Should()
-						.NotBeNull()
-						.And.BeEquivalentTo(_validationContext.MemberName);
-				}
-			}
+                // Assert
+                if (string.IsNullOrEmpty(_validationContext.MemberName))
+                {
+                    result.MemberNames.Should().BeNullOrEmpty();
+                }
+                else
+                {
+                    result.MemberNames.Should()
+                        .NotBeNull()
+                        .And.BeEquivalentTo(_validationContext.MemberName);
+                }
+            }
 
-			[Fact]
-			public void It_should_set_error_item()
-			{
-				// Act
-				_sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            [Fact]
+            public void It_should_set_error_item()
+            {
+                // Act
+                _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
-				// Assert
-				_validationContext.Items.Should()
-					.ContainKey("Error")
-					.WhichValue.Should()
-					.BeOfType<IllegalCharactersResult>();
-			}
+                // Assert
+                _validationContext.Items.Should()
+                    .ContainKey("Error")
+                    .WhichValue.Should()
+                    .BeOfType<IllegalCharactersResult>();
+            }
 
-			public class Given_context_with_member_name : When_validating_an_invalid_iban
-			{
-				public Given_context_with_member_name()
-				{
-					_validationContext.MemberName = "MyMemberName";
-				}
-			}
-		}
+            public class Given_context_with_member_name : When_validating_an_invalid_iban
+            {
+                public Given_context_with_member_name()
+                {
+                    _validationContext.MemberName = "MyMemberName";
+                }
+            }
+        }
 
-		public class When_validating_an_unsupported_type : IbanAttributeTests
-		{
-			private static readonly object InvalidTypeValue = new object();
+        public class When_validating_an_unsupported_type : IbanAttributeTests
+        {
+            private static readonly object InvalidTypeValue = new object();
 
-			[Fact]
-			public void It_should_throw()
-			{
-				// Act
-				Action act = () => _sut.GetValidationResult(InvalidTypeValue, _validationContext);
+            [Fact]
+            public void It_should_throw()
+            {
+                // Act
+                Action act = () => _sut.GetValidationResult(InvalidTypeValue, _validationContext);
 
-				// Assert
-				act.Should().Throw<NotImplementedException>();
+                // Assert
+                act.Should().Throw<NotImplementedException>();
 
-				_serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
-			}
-		}
+                _serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
+                IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
+            }
+        }
 
-		public class When_service_provider_does_not_return_validator : IbanAttributeTests
-		{
-			[Fact]
-			public void It_should_throw()
-			{
-				// Arrange
-				_serviceProviderMock
-					.Setup(m => m.GetService(typeof(IIbanValidator)))
-					.Returns(null)
-					.Verifiable();
+        public class When_service_provider_does_not_return_validator : IbanAttributeTests
+        {
+            [Fact]
+            public void It_should_throw()
+            {
+                // Arrange
+                _serviceProviderMock
+                    .Setup(m => m.GetService(typeof(IIbanValidator)))
+                    .Returns(null)
+                    .Verifiable();
 
-				// Act
-				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+                // Act
+                Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
-				// Assert
-				act.Should().Throw<InvalidOperationException>()
-					.WithMessage("Failed to get an instance of *");
-				_serviceProviderMock.Verify();
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
-			}
-		}
+                // Assert
+                act.Should()
+                    .Throw<InvalidOperationException>()
+                    .WithMessage("Failed to get an instance of *");
+                _serviceProviderMock.Verify();
+                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+            }
+        }
 
-		public class When_service_provider_is_null : IbanAttributeTests
-		{
-			[Fact]
-			public void It_should_throw()
-			{
-				// Arrange
-				_validationContext = new ValidationContext(new object(), null, null);
+        public class When_service_provider_is_null : IbanAttributeTests
+        {
+            [Fact]
+            public void It_should_throw()
+            {
+                // Arrange
+                _validationContext = new ValidationContext(new object(), null, null);
 
-				// Act
-				Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+                // Act
+                Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
-				// Assert
-				act.Should().Throw<InvalidOperationException>()
-					.WithMessage("Failed to get an instance of *");
-				IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
-			}
-		}
+                // Assert
+                act.Should()
+                    .Throw<InvalidOperationException>()
+                    .WithMessage("Failed to get an instance of *");
+                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+            }
+        }
 
-		public class Requires_validation_context : IbanAttributeTests
-		{
-			[Fact]
-			public void It_should_require()
-			{
-				// We don't support DynamicValidator, as we need context to resolve validator.
-				_sut.RequiresValidationContext.Should().BeTrue();
-			}
-		}
-	}
+        public class Requires_validation_context : IbanAttributeTests
+        {
+            [Fact]
+            public void It_should_require()
+            {
+                // We don't support DynamicValidator, as we need context to resolve validator.
+                _sut.RequiresValidationContext.Should().BeTrue();
+            }
+        }
+    }
 }
