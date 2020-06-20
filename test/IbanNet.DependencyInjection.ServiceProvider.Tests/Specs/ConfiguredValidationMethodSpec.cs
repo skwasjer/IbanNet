@@ -2,10 +2,10 @@
 
 namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 {
-	public class ConfiguredValidationMethodSpec : TestHelpers.Specs.ConfiguredValidationMethodSpec
-	{
-		public ConfiguredValidationMethodSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
-		{
-		}
-	}
+    public class ConfiguredValidationMethodSpec : TestHelpers.Specs.ConfiguredValidationMethodSpec
+    {
+        public ConfiguredValidationMethodSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
+        {
+        }
+    }
 }

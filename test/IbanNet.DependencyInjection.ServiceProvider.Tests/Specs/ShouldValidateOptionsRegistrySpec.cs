@@ -18,7 +18,8 @@ namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 		{
 			Fixture.Configure(builder =>
 			{
-				IIbanNetOptionsBuilder returnedBuilder = builder.Configure(options => options.Registry = null);
+                // ReSharper disable once AssignNullToNotNullAttribute
+                IIbanNetOptionsBuilder returnedBuilder = builder.Configure(options => options.Registry = null);
 
 				returnedBuilder.Should().BeSameAs(builder);
 			});
@@ -27,7 +28,7 @@ namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 		[Fact]
 		public void Given_registry_is_null_when_getting_options_it_should_ensure_not_null_through_validation()
 		{
-			Func<IbanValidatorOptions> act = () => Subject.GetService<IOptions<IbanValidatorOptions>>().Value;
+			Func<IbanValidatorOptions> act = () => Subject.GetService<IOptions<IbanValidatorOptions>>()?.Value;
 
 			// Assert
 			act.Should()

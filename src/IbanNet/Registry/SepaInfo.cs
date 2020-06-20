@@ -5,26 +5,26 @@ using System.Diagnostics;
 
 namespace IbanNet.Registry
 {
-	/// <summary>
-	/// Represents SEPA information.
-	/// </summary>
-	[DebuggerStepThrough]
-	public class SepaInfo
-	{
-		/// <summary>
-		/// Gets or sets whether this region is a SEPA country.
-		/// </summary>
-		public bool IsMember { get; set; }
+    /// <summary>
+    /// Represents SEPA information.
+    /// </summary>
+    [DebuggerStepThrough]
+    public class SepaInfo
+    {
+        /// <summary>
+        /// Gets or sets whether this region is a SEPA country.
+        /// </summary>
+        public bool IsMember { get; set; }
 
-		/// <summary>
-		/// Gets or sets a list of included SEPA countries.
-		/// </summary>
-		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(
+        /// <summary>
+        /// Gets or sets a list of included SEPA countries.
+        /// </summary>
+        public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(
 #if NET_LEGACY
 			new string[0]
 #else
-			Array.Empty<string>()
+            Array.Empty<string>()
 #endif
-			);
-	}
+        );
+    }
 }

@@ -2,10 +2,10 @@
 
 namespace IbanNet.DataAnnotations
 {
-	public class InputModel
-	{
-		[Required]
-		[Iban]
-		public string BankAccountNumber { get; set; }
-	}
+    public class InputModel
+    {
+        [Required]
+        [Iban]
+        public string BankAccountNumber { get; set; }
+    }
 }

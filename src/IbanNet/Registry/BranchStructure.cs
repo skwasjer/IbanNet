@@ -3,25 +3,25 @@ using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
-	/// <summary>
-	/// Defines a branch section of a structure.
-	/// </summary>
-	[DebuggerStepThrough]
-	public class BranchStructure : StructureSection
-	{
-		internal BranchStructure()
-		{
-		}
+    /// <summary>
+    /// Defines a branch section of a structure.
+    /// </summary>
+    [DebuggerStepThrough]
+    public class BranchStructure : StructureSection
+    {
+        internal BranchStructure()
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="BranchStructure"/> class using specified parameters.
-		/// </summary>
-		/// <param name="structure">The structure.</param>
-		/// <param name="structureValidationFactory">The structure validation factory.</param>
-		// ReSharper disable once UnusedMember.Global
-		public BranchStructure(string structure, IStructureValidationFactory structureValidationFactory)
-			: base(structure, structureValidationFactory)
-		{
-		}
-	}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BranchStructure" /> class using specified parameters.
+        /// </summary>
+        /// <param name="structure">The structure.</param>
+        /// <param name="structureValidationFactory">The structure validation factory.</param>
+        // ReSharper disable once UnusedMember.Global
+        public BranchStructure(string structure, IStructureValidationFactory structureValidationFactory)
+            : base(structure, structureValidationFactory)
+        {
+        }
+    }
 }

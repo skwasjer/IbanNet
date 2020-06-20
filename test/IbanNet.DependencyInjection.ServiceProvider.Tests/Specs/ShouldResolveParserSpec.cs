@@ -2,10 +2,10 @@
 
 namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 {
-	public class ShouldResolveParserSpec : TestHelpers.Specs.ShouldResolveParserSpec
-	{
-		public ShouldResolveParserSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
-		{
-		}
-	}
+    public class ShouldResolveParserSpec : TestHelpers.Specs.ShouldResolveParserSpec
+    {
+        public ShouldResolveParserSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
+        {
+        }
+    }
 }

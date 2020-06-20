@@ -17,7 +17,7 @@ insert_final_newline = true
 [*.{cs,csproj,tt}]
 charset = utf-8-bom
 end_of_line = crlf
-indent_style = tab
+indent_style = space
 
 [*.{csproj,props,targets}]
 indent_size = 2
