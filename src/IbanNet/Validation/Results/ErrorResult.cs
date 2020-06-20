@@ -3,7 +3,7 @@
 namespace IbanNet.Validation.Results
 {
 	/// <summary>
-	/// Describes the error that occurred for a validation rule.
+	/// Describes the error that occurred for a validation rule. Custom validation errors should derive from this class.
 	/// </summary>
 	public class ErrorResult : ValidationRuleResult
 	{
