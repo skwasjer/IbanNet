@@ -170,6 +170,33 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more providers is required..
+        /// </summary>
+        internal static string One_or_more_providers_is_required {
+            get {
+                return ResourceManager.GetString("One_or_more_providers_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one character to partition on is required..
+        /// </summary>
+        internal static string PartitionOn_At_least_one_character_to_partition_on_is_required {
+            get {
+                return ResourceManager.GetString("PartitionOn_At_least_one_character_to_partition_on_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registry has no providers..
+        /// </summary>
+        internal static string The_registry_has_no_providers {
+            get {
+                return ResourceManager.GetString("The_registry_has_no_providers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The country code is unknown/not supported..
         /// </summary>
         internal static string UnknownCountryCodeResult {

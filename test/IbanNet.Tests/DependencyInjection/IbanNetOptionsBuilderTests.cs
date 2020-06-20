@@ -66,7 +66,7 @@ namespace IbanNet.DependencyInjection
 				// Assert
 				act.Should()
 					.Throw<ArgumentException>()
-					.WithMessage("The registry has no providers.*")
+					.WithMessage(Resources.The_registry_has_no_providers + "*")
 					.And.ParamName.Should()
 					.Be(nameof(registry));
 			}

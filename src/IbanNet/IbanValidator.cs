@@ -96,7 +96,9 @@ namespace IbanNet
 				{
 					validationResult.Error = rule.Validate(context) as ErrorResult;
 				}
+#pragma warning disable CA1031 // Do not catch general exception types - justification: custom rules can throw unexpected exceptions. We handle it with ExceptionResult.
 				catch (Exception ex)
+#pragma warning restore CA1031 // Do not catch general exception types
 				{
 					validationResult.Error = new ExceptionResult(ex);
 				}

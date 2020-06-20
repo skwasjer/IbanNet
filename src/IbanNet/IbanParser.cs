@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using IbanNet.Extensions;
 
 namespace IbanNet
@@ -34,7 +35,7 @@ namespace IbanNet
 			}
 
 			string errorMessage = validationResult?.Error == null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
-				? string.Format(Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
+				? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
 				: validationResult.Error.ErrorMessage;
 
 			if (validationResult == null || exceptionThrown != null)
@@ -46,7 +47,7 @@ namespace IbanNet
 		}
 
 		/// <inheritdoc />
-		public bool TryParse(string? value, out Iban? iban)
+		public bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
 			return TryParse(value, out iban, out _, out _);
 		}
@@ -68,7 +69,9 @@ namespace IbanNet
 			{
 				validationResult = _ibanValidator.Validate(normalizedValue);
 			}
+#pragma warning disable CA1031 // Do not catch general exception types - justification: custom rules can throw any type of unexpected exception.
 			catch (Exception ex)
+#pragma warning restore CA1031 // Do not catch general exception types
 			{
 				validationResult = null;
 				exceptionThrown = ex;

@@ -68,7 +68,13 @@ namespace IbanNet.Registry
 		/// <summary>
 		/// Gets or sets the list of included countries.
 		/// </summary>
-		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(new string[0]);
+		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(
+#if NET_LEGACY
+			new string[0]
+#else
+			Array.Empty<string>()
+#endif
+		);
 
 		/// <summary>
 		/// Gets SEPA information.

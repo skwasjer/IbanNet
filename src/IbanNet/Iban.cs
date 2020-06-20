@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using IbanNet.Extensions;
@@ -18,7 +19,9 @@ namespace IbanNet
 		/// <summary>
 		/// The supported IBAN output formats.
 		/// </summary>
+#pragma warning disable CA1034 // Nested types should not be visible - justification: nested 'enumeration' using constants.
 		public static class Formats
+#pragma warning restore CA1034 // Nested types should not be visible
 		{
 			/// <summary>
 			/// Partitions an IBAN into 4 character segments separated with a space.
@@ -78,10 +81,23 @@ namespace IbanNet
 					return string.Join(" ", segments);
 
 				case null:
-					throw new ArgumentNullException(nameof(format), string.Format(Resources.ArgumentException_The_format_is_required_with_supported_formats, Formats.Flat, Formats.Partitioned));
+					throw new ArgumentNullException(
+						nameof(format),
+						string.Format(
+							CultureInfo.CurrentCulture,
+							Resources.ArgumentException_The_format_is_required_with_supported_formats,
+							Formats.Flat, Formats.Partitioned
+						)
+					);
 
 				default:
-					throw new ArgumentException(string.Format(Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats, format, Formats.Flat, Formats.Partitioned), nameof(format));
+					throw new ArgumentException(
+						string.Format(
+							CultureInfo.CurrentCulture,
+							Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats,
+							format, Formats.Flat, Formats.Partitioned
+						), nameof(format)
+					);
 			}
 		}
 
@@ -119,7 +135,7 @@ namespace IbanNet
 
 		private bool Equals(Iban other)
 		{
-			return string.Equals(_iban, other._iban);
+			return string.Equals(_iban, other._iban, StringComparison.Ordinal);
 		}
 
 		/// <summary>
@@ -148,7 +164,11 @@ namespace IbanNet
 		/// <returns>A hash code for the current object.</returns>
 		public override int GetHashCode()
 		{
+#if NETSTANDARD2_1
+			return _iban.GetHashCode(StringComparison.Ordinal);
+#else
 			return _iban.GetHashCode();
+#endif
 		}
 
 		/// <summary>

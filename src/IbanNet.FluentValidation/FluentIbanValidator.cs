@@ -23,7 +23,7 @@ namespace IbanNet.FluentValidation
 		/// <inheritdoc />
 		protected override bool IsValid(PropertyValidatorContext context)
 		{
-			if (context.PropertyValue == null)
+			if (context?.PropertyValue == null)
 			{
 				return true;
 			}

@@ -3,7 +3,9 @@
 	/// <summary>
 	/// Encapsulates the result of a validation rule.
 	/// </summary>
+#pragma warning disable CA1052 // Static holder types should be Static or NotInheritable - justification: inherited by ErrorResult, while also providing success singleton.
 	public class ValidationRuleResult
+#pragma warning restore CA1052 // Static holder types should be Static or NotInheritable
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ValidationRuleResult"/>.

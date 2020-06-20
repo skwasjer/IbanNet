@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using IbanNet.Extensions;
 
@@ -20,9 +21,14 @@ namespace IbanNet.Validation
 
 		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming
-		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
 		{
-			return new StructureValidator(structure.Substring(0, 2), GetSegments(structure.Substring(2)).ToList());
+			if (pattern is null)
+			{
+				throw new ArgumentNullException(nameof(pattern));
+			}
+
+			return new StructureValidator(pattern.Substring(0, 2), GetSegments(pattern.Substring(2)).ToList());
 		}
 
 		private IEnumerable<StructureSegmentTest> GetSegments(string structure)
@@ -43,13 +49,14 @@ namespace IbanNet.Validation
 			char segmentType = structureSegment[structureSegment.Length - 1];
 			if (!SegmentMap.TryGetValue(segmentType, out Func<char, bool> characterTest))
 			{
-				throw new ArgumentException(string.Format(Resources.ArgumentException_The_structure_segment_0_is_invalid, structureSegment), nameof(structureSegment));
+				throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, structureSegment), nameof(structureSegment));
 			}
 
 			string lengthDescriptor = structureSegment.Substring(0, structureSegment.Length - 1);
 			bool isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
 			int occurrences = int.Parse(
-				lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength))
+				lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength)),
+				CultureInfo.InvariantCulture
 			);
 
 			return new StructureSegmentTest

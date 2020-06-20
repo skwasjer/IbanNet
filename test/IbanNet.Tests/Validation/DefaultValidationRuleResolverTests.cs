@@ -11,18 +11,15 @@ namespace IbanNet.Validation
 	public class DefaultValidationRuleResolverTests
 	{
 		private readonly DefaultValidationRuleResolver _sut;
-		private readonly List<IIbanValidationRule> _customRules;
 		private readonly IbanValidatorOptions _options;
 
 		public DefaultValidationRuleResolverTests()
 		{
-			_customRules = new List<IIbanValidationRule>();
 			var registryMock = new Mock<IIbanRegistry>();
 			registryMock.Setup(m => m.Providers).Returns(new List<IIbanRegistryProvider>());
 			_options = new IbanValidatorOptions
 			{
-				Registry = registryMock.Object,
-				Rules = _customRules
+				Registry = registryMock.Object
 			};
 			_sut = new DefaultValidationRuleResolver(_options);
 		}
@@ -86,8 +83,8 @@ namespace IbanNet.Validation
 			_options.Method = method;
 			IIbanValidationRule rule1 = Mock.Of<IIbanValidationRule>();
 			IIbanValidationRule rule2 = Mock.Of<IIbanValidationRule>();
-			_customRules.Add(rule1);
-			_customRules.Add(rule2);
+			_options.Rules.Add(rule1);
+			_options.Rules.Add(rule2);
 
 			// Act
 			IEnumerable<IIbanValidationRule> rules = _sut.GetRules();

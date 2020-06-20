@@ -30,6 +30,7 @@ namespace IbanNet.DependencyInjection.Autofac
 			// Return component registration, request per dependency, owned by lifetime scope.
 			var registration = new ComponentRegistration(
 				Guid.NewGuid(),
+#pragma warning disable CA2000 // Dispose objects before losing scope - justification: Autofac takes care of it.
 				new ReflectionActivator(
 					swt.ServiceType,
 					new DefaultConstructorFinder(),
@@ -37,6 +38,7 @@ namespace IbanNet.DependencyInjection.Autofac
 					new List<Parameter>(),
 					new List<Parameter>()
 				),
+#pragma warning restore CA2000 // Dispose objects before losing scope
 				new CurrentScopeLifetime(),
 				InstanceSharing.None,
 				InstanceOwnership.OwnedByLifetimeScope,

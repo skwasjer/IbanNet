@@ -16,7 +16,7 @@
 		}
 
 		/// <inheritdoc />
-		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
 		{
 			return _structureValidator;
 		}
