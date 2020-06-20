@@ -70,7 +70,7 @@
 | SI | Slovenia | Yes | 19 | `SI56 2633 0001 2039 086` |
 | SK | Slovakia | Yes | 24 | `SK31 1200 0000 1987 4263 7541` |
 | SM | San Marino | Yes | 27 | `SM86 U032 2509 8000 0000 0270 100` |
-| ST | Sao Tome and Principe | No | 25 | `ST68 0001 0001 0051 8453 1011 2` |
+| ST | Sao Tome and Principe | No | 25 | `ST23 0001 0001 0051 8453 1014 6` |
 | SV | El Salvador | No | 28 | `SV62 CENR 0000 0000 0000 0070 0025` |
 | TL | Timor-Leste | No | 23 | `TL38 0080 0123 4567 8910 157` |
 | TN | Tunisia | No | 24 | `TN59 1000 6035 1835 9847 8831` |
