@@ -28,7 +28,7 @@ namespace IbanNet.DataAnnotations
 
 		public virtual void Configure(IApplicationBuilder app)
 		{
-#if NETCOREAPP3_1
+#if ENDPOINT_ROUTING
 			app.UseRouting();
 			app.UseEndpoints(endpoints =>
 			{
@@ -50,7 +50,7 @@ namespace IbanNet.DataAnnotations
 
 		public override IDictionary<string, string[]> MapToErrors(string jsonContent)
 		{
-#if NETCOREAPP2_2 || NETCOREAPP3_1
+#if PROBLEM_DETAILS
 			return JsonConvert.DeserializeObject<ValidationProblemDetails>(jsonContent).Errors;
 #else
 			return JsonConvert.DeserializeObject<Dictionary<string, string[]>>(jsonContent);
