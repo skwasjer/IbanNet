@@ -21,9 +21,9 @@ namespace IbanNet.Validation
 
 		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming
-		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
 		{
-			return new StructureValidator(structure.Substring(0, 2), GetSegments(structure.Substring(2)).ToList());
+			return new StructureValidator(pattern.Substring(0, 2), GetSegments(pattern.Substring(2)).ToList());
 		}
 
 		private IEnumerable<StructureSegmentTest> GetSegments(string structure)

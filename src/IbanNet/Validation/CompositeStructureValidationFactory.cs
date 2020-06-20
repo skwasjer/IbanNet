@@ -22,11 +22,11 @@ namespace IbanNet.Validation
 			InitStructureValidationFactories(providers, _structureValidationFactoriesByCountry);
 		}
 
-		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
 		{
 			if (_structureValidationFactoriesByCountry.TryGetValue(twoLetterISORegionName, out IStructureValidationFactory factory))
 			{
-				return factory.CreateValidator(twoLetterISORegionName, structure);
+				return factory.CreateValidator(twoLetterISORegionName, pattern);
 			}
 
 			throw new InvalidOperationException($"No structure validation factory for country code '{twoLetterISORegionName}'.");

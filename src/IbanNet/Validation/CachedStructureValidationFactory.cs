@@ -24,10 +24,10 @@ namespace IbanNet.Validation
 
 		/// <inheritdoc />
 		// ReSharper disable once InconsistentNaming
-		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
+		public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
 		{
-			string cacheKey = twoLetterISORegionName + "-" + structure;
-			return _cache.GetOrAdd(cacheKey, s => _innerFactory.CreateValidator(twoLetterISORegionName, structure));
+			string cacheKey = twoLetterISORegionName + "-" + pattern;
+			return _cache.GetOrAdd(cacheKey, s => _innerFactory.CreateValidator(twoLetterISORegionName, pattern));
 		}
 	}
 }
