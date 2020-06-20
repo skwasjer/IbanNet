@@ -90,7 +90,7 @@ namespace IbanNet.Extensions
 			// Assert
 			act.Should()
 				.Throw<ArgumentException>()
-				.WithMessage("At least one character to partition on is required.*")
+				.WithMessage(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required + "*")
 				.Which.ParamName.Should()
 				.Be(nameof(chars));
 		}

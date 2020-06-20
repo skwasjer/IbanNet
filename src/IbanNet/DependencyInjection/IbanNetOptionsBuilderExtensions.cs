@@ -53,7 +53,7 @@ namespace IbanNet.DependencyInjection
 
 			if (registry is IIbanRegistry ibanRegistry && ibanRegistry.Providers.Count == 0)
 			{
-				throw new ArgumentException("The registry has no providers.", nameof(registry));
+				throw new ArgumentException(Resources.The_registry_has_no_providers, nameof(registry));
 			}
 
 			builder.Configure(options =>
@@ -91,7 +91,7 @@ namespace IbanNet.DependencyInjection
 
 			if (registryProviders.Length == 0)
 			{
-				throw new ArgumentException("One or more providers is required.", nameof(registryProviders));
+				throw new ArgumentException(Resources.One_or_more_providers_is_required, nameof(registryProviders));
 			}
 
 			builder.UseRegistry(new IbanRegistry

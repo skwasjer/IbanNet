@@ -68,7 +68,7 @@ namespace IbanNet.Extensions
 
 			if (chars == null || chars.Length == 0)
 			{
-				throw new ArgumentException("At least one character to partition on is required.", nameof(chars));
+				throw new ArgumentException(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required, nameof(chars));
 			}
 
 			return PartitionOnIterator(sequence, chars);
