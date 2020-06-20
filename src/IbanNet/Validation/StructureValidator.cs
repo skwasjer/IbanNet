@@ -1,37 +1,49 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using IbanNet.Registry;
+using IbanNet.Registry.Parsing;
 
 namespace IbanNet.Validation
 {
     internal class StructureValidator : IStructureValidator
     {
-        private readonly List<StructureSegmentTest> _segmentTests;
-        private readonly bool _fixedLength;
+        private readonly IReadOnlyList<PatternToken> _tokens;
+        private readonly Func<string, bool> _validationFunc;
 
-        public StructureValidator(List<StructureSegmentTest> segmentTests)
+        public StructureValidator(IEnumerable<PatternToken> tokens)
         {
-            _segmentTests = segmentTests;
-            _fixedLength = _segmentTests.All(t => t.IsFixedLength);
+            var tokenList = new List<PatternToken>();
+            bool fixedLength = true;
+            foreach (PatternToken token in tokens)
+            {
+                tokenList.Add(token);
+                fixedLength &= token.IsFixedLength;
+            }
+
+            _tokens = tokenList;
+            _validationFunc = GetValidationMethod(fixedLength);
         }
 
-        public bool Validate(string iban)
+        public StructureValidator(Pattern pattern)
         {
-            // Short-circuit, if all tests are fixed length, use faster validation.
-            return _fixedLength ? ValidateFixedLength(iban) : ValidateNonFixedLength(iban);
+            _tokens = pattern.Tokens;
+            _validationFunc = GetValidationMethod(pattern.IsFixedLength);
         }
+
+        public bool Validate(string iban) => _validationFunc(iban);
 
         private bool ValidateFixedLength(string iban)
         {
             int pos = 0;
             int segmentIndex = 0;
             // ReSharper disable once ForCanBeConvertedToForeach - justification : performance critical
-            for (; segmentIndex < _segmentTests.Count; segmentIndex++)
+            for (; segmentIndex < _tokens.Count; segmentIndex++)
             {
-                StructureSegmentTest expectedStructureSegment = _segmentTests[segmentIndex];
-                for (int occurrence = 0; occurrence < expectedStructureSegment.Occurrences; occurrence++)
+                PatternToken expectedToken = _tokens[segmentIndex];
+                for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
                 {
                     char c = iban[pos];
-                    if (!expectedStructureSegment.Test(c, pos))
+                    if (!expectedToken.IsMatch(c))
                     {
                         return false;
                     }
@@ -40,43 +52,43 @@ namespace IbanNet.Validation
                 }
             }
 
-            return iban.Length == pos && segmentIndex == _segmentTests.Count;
+            return iban.Length == pos && segmentIndex == _tokens.Count;
         }
 
         private bool ValidateNonFixedLength(string iban)
         {
             int pos = 0;
             int segmentIndex = 0;
-            for (; segmentIndex < _segmentTests.Count; segmentIndex++)
+            for (; segmentIndex < _tokens.Count; segmentIndex++)
             {
-                StructureSegmentTest expectedStructureSegment = _segmentTests[segmentIndex];
-                if (expectedStructureSegment.IsFixedLength)
+                PatternToken? expectedToken = _tokens[segmentIndex];
+                if (expectedToken.IsFixedLength)
                 {
-                    if (!ProcessFixedLengthTest(expectedStructureSegment, iban, ref pos))
+                    if (!ProcessFixedLengthTest(expectedToken, iban, ref pos))
                     {
                         return false;
                     }
                 }
-                else
+                else if (!ProcessNonFixedLengthTest(expectedToken, iban, ref pos))
                 {
-                    ProcessNonFixedLengthTest(expectedStructureSegment, iban, ref pos);
+                    return false;
                 }
             }
 
-            return iban.Length == pos && segmentIndex == _segmentTests.Count;
+            return iban.Length == pos && segmentIndex == _tokens.Count;
         }
 
-        private static bool ProcessFixedLengthTest(StructureSegmentTest test, string value, ref int pos)
+        private static bool ProcessFixedLengthTest(PatternToken expectedToken, string value, ref int pos)
         {
-            if (pos + test.Occurrences > value.Length)
+            if (pos + expectedToken.MaxLength > value.Length)
             {
                 return false;
             }
 
-            for (int occurrence = 0; occurrence < test.Occurrences; occurrence++)
+            for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
             {
                 char c = value[pos];
-                if (!test.Test(c, pos))
+                if (!expectedToken.IsMatch(c))
                 {
                     return false;
                 }
@@ -87,17 +99,18 @@ namespace IbanNet.Validation
             return true;
         }
 
-        private static bool ProcessNonFixedLengthTest(StructureSegmentTest test, string value, ref int pos)
+        private static bool ProcessNonFixedLengthTest(PatternToken expectedToken, string value, ref int pos)
         {
-            for (int occurrence = 0; occurrence < test.Occurrences; occurrence++)
+            int startPos = pos;
+            for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
             {
                 if (pos >= value.Length)
                 {
-                    return true;
+                    return pos >= startPos + expectedToken.MinLength && pos <= startPos + expectedToken.MaxLength;
                 }
 
                 char c = value[pos];
-                if (!test.Test(c, pos))
+                if (!expectedToken.IsMatch(c))
                 {
                     return false;
                 }
@@ -105,7 +118,17 @@ namespace IbanNet.Validation
                 pos++;
             }
 
-            return true;
+            return pos >= startPos + expectedToken.MinLength && pos <= startPos + expectedToken.MaxLength;
+        }
+
+        private Func<string, bool> GetValidationMethod(bool fixedLength)
+        {
+            // Short-circuit, if all tests are fixed length, use faster validation.
+            if (fixedLength)
+            {
+                return ValidateFixedLength;
+            }
+            return ValidateNonFixedLength;
         }
     }
 }

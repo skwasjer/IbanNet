@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
 namespace IbanNet {
     using System;
     using System.Reflection;
@@ -134,6 +135,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enum value &apos;{0}&apos; should be defined in the &apos;{1}&apos; enum..
+        /// </summary>
+        internal static string Enum_value_0_should_be_defined_in_the_1_enum {
+            get {
+                return ResourceManager.GetString("Enum_value_0_should_be_defined_in_the_1_enum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A value for &apos;{0}&apos; is not supported for country code {1}..
         /// </summary>
         internal static string Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1 {
@@ -256,6 +266,24 @@ namespace IbanNet {
         internal static string The_registry_has_no_providers {
             get {
                 return ResourceManager.GetString("The_registry_has_no_providers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value cannot be less than {0}..
+        /// </summary>
+        internal static string The_value_cannot_be_less_than_0 {
+            get {
+                return ResourceManager.GetString("The_value_cannot_be_less_than_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value cannot be less than or equal to {0}..
+        /// </summary>
+        internal static string The_value_cannot_be_less_than_or_equal_to_0 {
+            get {
+                return ResourceManager.GetString("The_value_cannot_be_less_than_or_equal_to_0", resourceCulture);
             }
         }
         
