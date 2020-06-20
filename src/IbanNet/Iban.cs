@@ -19,7 +19,9 @@ namespace IbanNet
 		/// <summary>
 		/// The supported IBAN output formats.
 		/// </summary>
+#pragma warning disable CA1034 // Nested types should not be visible - justification: nested 'enumeration' using constants.
 		public static class Formats
+#pragma warning restore CA1034 // Nested types should not be visible
 		{
 			/// <summary>
 			/// Partitions an IBAN into 4 character segments separated with a space.
