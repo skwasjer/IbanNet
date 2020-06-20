@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -18,6 +19,12 @@ namespace IbanNet.Registry
 		/// <summary>
 		/// Gets or sets a list of included SEPA countries.
 		/// </summary>
-		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(new string[0]);
+		public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(
+#if NET_LEGACY
+			new string[0]
+#else
+			Array.Empty<string>()
+#endif
+			);
 	}
 }
