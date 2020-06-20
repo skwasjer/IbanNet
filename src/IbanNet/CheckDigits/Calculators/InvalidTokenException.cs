@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace IbanNet.CheckDigits.Calculators
 {
@@ -8,12 +9,9 @@ namespace IbanNet.CheckDigits.Calculators
 	public class InvalidTokenException : InvalidOperationException
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="InvalidTokenException"/> using specified <paramref name="position"/> and the character that was not expected..
+		/// Initializes a new instance of the <see cref="InvalidTokenException"/>.
 		/// </summary>
-		/// <param name="position">The position in the string/char buffer where the unexpected character is located.</param>
-		/// <param name="unexpectedChar">The character that was not expected.</param>
-		public InvalidTokenException(int position, char unexpectedChar)
-			: this(string.Format(Resources.InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1, position, unexpectedChar))
+		public InvalidTokenException()
 		{
 		}
 
@@ -23,6 +21,31 @@ namespace IbanNet.CheckDigits.Calculators
 		/// <param name="message">The error message.</param>
 		public InvalidTokenException(string message)
 			: base(message)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="InvalidTokenException"/> class using specified message and inner exception.
+		/// </summary>
+		/// <param name="message">The error message.</param>
+		/// <param name="innerException">The inner exception.</param>
+		public InvalidTokenException(string message, Exception? innerException)
+			: base(message, innerException)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="InvalidTokenException"/> using specified <paramref name="position"/> and the character that was not expected..
+		/// </summary>
+		/// <param name="position">The position in the string/char buffer where the unexpected character is located.</param>
+		/// <param name="unexpectedChar">The character that was not expected.</param>
+		public InvalidTokenException(int position, char unexpectedChar)
+			: this(string.Format(
+				CultureInfo.CurrentCulture,
+				Resources.InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1,
+				position,
+				unexpectedChar)
+			)
 		{
 		}
 	}
