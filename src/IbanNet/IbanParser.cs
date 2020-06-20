@@ -47,7 +47,7 @@ namespace IbanNet
 		}
 
 		/// <inheritdoc />
-		public bool TryParse(string? value, out Iban? iban)
+		public bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
 		{
 			return TryParse(value, out iban, out _, out _);
 		}
@@ -69,7 +69,9 @@ namespace IbanNet
 			{
 				validationResult = _ibanValidator.Validate(normalizedValue);
 			}
+#pragma warning disable CA1031 // Do not catch general exception types - justification: custom rules can throw any type of unexpected exception.
 			catch (Exception ex)
+#pragma warning restore CA1031 // Do not catch general exception types
 			{
 				validationResult = null;
 				exceptionThrown = ex;
