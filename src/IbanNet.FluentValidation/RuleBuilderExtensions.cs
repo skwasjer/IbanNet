@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 
 namespace IbanNet.FluentValidation
 {
@@ -18,6 +19,11 @@ namespace IbanNet.FluentValidation
 		public static IRuleBuilderOptions<T, string> Iban<T>(
 			this IRuleBuilder<T, string> ruleBuilder, IIbanValidator ibanValidator)
 		{
+			if (ruleBuilder is null)
+			{
+				throw new ArgumentNullException(nameof(ruleBuilder));
+			}
+
 			return ruleBuilder.SetValidator(new FluentIbanValidator(ibanValidator));
 		}
 	}

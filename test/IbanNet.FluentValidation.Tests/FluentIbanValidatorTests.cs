@@ -157,7 +157,8 @@ namespace IbanNet.FluentValidation
 				IIbanValidator ibanValidator = null;
 
 				// Act
-				// ReSharper disable once ExpressionIsAlwaysNull
+				// ReSharper disable once ObjectCreationAsStatement
+				// ReSharper disable once AssignNullToNotNullAttribute
 				Action act = () => new FluentIbanValidator(ibanValidator);
 
 				// Assert
@@ -165,6 +166,26 @@ namespace IbanNet.FluentValidation
 					.Throw<ArgumentNullException>()
 					.Which.ParamName.Should()
 					.Be(nameof(ibanValidator));
+			}
+		}
+
+		public class When_validator_context_is_null
+		{
+			[Fact]
+			public void It_should_not_throw_and_validate_succesfully()
+			{
+				var ibanValidator = new FluentIbanValidator(new IbanValidator());
+				PropertyValidatorContext context = null;
+
+				// Act
+				// ReSharper disable once ExpressionIsAlwaysNull
+				Func<IEnumerable<ValidationFailure>> act = () => ibanValidator.Validate(context);
+
+				// Assert
+				act.Should()
+					.NotThrow()
+					.Which.Should()
+					.BeEmpty();
 			}
 		}
 	}
