@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using IbanNet.Extensions;
@@ -78,10 +79,23 @@ namespace IbanNet
 					return string.Join(" ", segments);
 
 				case null:
-					throw new ArgumentNullException(nameof(format), string.Format(Resources.ArgumentException_The_format_is_required_with_supported_formats, Formats.Flat, Formats.Partitioned));
+					throw new ArgumentNullException(
+						nameof(format),
+						string.Format(
+							CultureInfo.CurrentCulture,
+							Resources.ArgumentException_The_format_is_required_with_supported_formats,
+							Formats.Flat, Formats.Partitioned
+						)
+					);
 
 				default:
-					throw new ArgumentException(string.Format(Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats, format, Formats.Flat, Formats.Partitioned), nameof(format));
+					throw new ArgumentException(
+						string.Format(
+							CultureInfo.CurrentCulture,
+							Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats,
+							format, Formats.Flat, Formats.Partitioned
+						), nameof(format)
+					);
 			}
 		}
 
