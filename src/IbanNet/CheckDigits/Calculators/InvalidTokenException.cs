@@ -6,6 +6,9 @@ namespace IbanNet.CheckDigits.Calculators
 	/// <summary>
 	/// Exception that is thrown when an unexpected token/character is encountered while computing check digits.
 	/// </summary>
+#if SERIALIZABLE
+	[Serializable]
+#endif
 	public class InvalidTokenException : InvalidOperationException
 	{
 		/// <summary>
@@ -35,7 +38,7 @@ namespace IbanNet.CheckDigits.Calculators
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="InvalidTokenException"/> using specified <paramref name="position"/> and the character that was not expected..
+		/// Initializes a new instance of the <see cref="InvalidTokenException"/> using specified <paramref name="position"/> and the character that was not expected.
 		/// </summary>
 		/// <param name="position">The position in the string/char buffer where the unexpected character is located.</param>
 		/// <param name="unexpectedChar">The character that was not expected.</param>
@@ -48,5 +51,16 @@ namespace IbanNet.CheckDigits.Calculators
 			)
 		{
 		}
+
+#if SERIALIZABLE
+		/// <summary>
+		/// Initializes a new instance of the <see cref="InvalidTokenException"/> with serialized data.
+		/// </summary>
+		/// <param name="info">The object that holds the serialized data.</param>
+		/// <param name="context">The contextual information about the source or destination.</param>
+		protected InvalidTokenException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+		{
+		}
+#endif
 	}
 }
