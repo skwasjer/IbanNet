@@ -37,6 +37,8 @@ namespace IbanNet
 		/// <summary>
 		/// Gets or sets custom rules to apply after built-in IBAN validation has taken place.
 		/// </summary>
+#pragma warning disable CA2227 // Collection properties should be read only - Fix in next major version
 		public ICollection<IIbanValidationRule> Rules { get; set; } = new List<IIbanValidationRule>();
+#pragma warning restore CA2227 // Collection properties should be read only
 	}
 }
