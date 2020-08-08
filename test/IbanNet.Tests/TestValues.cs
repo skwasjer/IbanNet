@@ -6,7 +6,7 @@
         public const string ValidIbanPartitioned = "AD12 0001 2030 2003 5910 0100";
         public const string ValidIbanPartitionedAndWithLowercase = "ad12 0001 2030 2003 5910 0100";
         public const string InvalidIban = "__INVALID_IBAN";
-        public const string IbanForCustomRuleFailure = "CustomRuleFailure";
-        public const string IbanForCustomRuleException = "CustomRuleException";
+        public static readonly string IbanForCustomRuleFailure = "CustomRuleFailure".ToUpperInvariant();
+        public static readonly  string IbanForCustomRuleException = "CustomRuleException".ToUpperInvariant();
     }
 }

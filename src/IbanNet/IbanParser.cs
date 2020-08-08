@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using IbanNet.Extensions;
 
 namespace IbanNet
 {
@@ -64,7 +63,7 @@ namespace IbanNet
             // Although our validator normalizes too, we can't rely on this fact if other implementations
             // are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
             // represents the IBAN value, we normalize inline here and take the penalty.
-            string? normalizedValue = value.StripWhitespaceOrNull();
+            string? normalizedValue = Iban.NormalizeOrNull(value);
             try
             {
                 validationResult = _ibanValidator.Validate(normalizedValue);

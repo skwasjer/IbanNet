@@ -55,5 +55,22 @@ namespace IbanNet.Validation
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [Theory]
+        [InlineData("NL2!n", "NL12", true)]
+        [InlineData("NL2!n", "nl12", false)]
+        [InlineData("nL2!n", "nL12", true)]
+        [InlineData("nL2!n", "NL12", false)]
+        [InlineData("nl2!n", "nl12", true)]
+        [InlineData("nl2!n", "NL12", false)]
+        public void It_should_match_country_code_exactly(string pattern, string value, bool expectedResult)
+        {
+            // Act
+            IStructureValidator validator = _sut.CreateValidator(string.Empty, pattern);
+            bool result = validator.Validate(value);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace IbanNet.Validation
             yield return new StructureSegmentTest
             {
                 Occurrences = 2,
-                Test = (c, i) => char.ToUpperInvariant(c) == char.ToUpperInvariant(pattern[i])
+                Test = (c, i) => c == pattern[i]
             };
 
             foreach (StructureSegmentTest test in pattern

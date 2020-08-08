@@ -11,11 +11,11 @@ namespace IbanNet
         {
         }
 
-        [Theory]
-        [InlineData("NL91abna0417164300")] // Lowercase not allowed.
-        [InlineData("NL91ABNA041716430A")] // Last character should be digit.
-        public void When_validating_iban_with_invalid_structure_should_not_validate(string ibanWithInvalidStructure)
+        [Fact]
+        public void When_validating_iban_with_invalid_structure_should_not_validate()
         {
+            const string ibanWithInvalidStructure = "NL91ABNA041716430A"; // Last character should be digit.
+
             // Act
             ValidationResult actual = Validator.Validate(ibanWithInvalidStructure);
 
@@ -39,7 +39,7 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithLowercase,
+                AttemptedValue = ibanWithLowercase.ToUpperInvariant(),
                 Country = Validator.SupportedCountries[ibanWithLowercase.Substring(0, 2)]
             });
         }

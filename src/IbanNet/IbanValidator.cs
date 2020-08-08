@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Extensions;
 using IbanNet.Registry;
 using IbanNet.Validation;
 using IbanNet.Validation.Results;
@@ -81,7 +80,7 @@ namespace IbanNet
         /// <returns>a validation result, indicating if the IBAN is valid or not</returns>
         public ValidationResult Validate(string? iban)
         {
-            string? normalizedIban = iban.StripWhitespaceOrNull();
+            string? normalizedIban = Iban.NormalizeOrNull(iban);
 
             var context = new ValidationRuleContext(normalizedIban ?? string.Empty);
             var validationResult = new ValidationResult
