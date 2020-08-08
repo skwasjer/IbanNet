@@ -83,7 +83,7 @@ namespace IbanNet
                 return false;
             }
 
-            iban = new Iban(normalizedValue!.ToUpperInvariant());
+            iban = new Iban(normalizedValue!);
             return true;
         }
     }

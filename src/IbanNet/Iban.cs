@@ -58,7 +58,14 @@ namespace IbanNet
 
         internal Iban(string iban)
         {
-            _iban = iban;
+            if (iban is null)
+            {
+                throw new ArgumentNullException(nameof(iban));
+            }
+
+            _iban = iban
+                .StripWhitespace()
+                .ToUpperInvariant();
         }
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>

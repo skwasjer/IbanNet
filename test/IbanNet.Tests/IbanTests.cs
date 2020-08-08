@@ -12,6 +12,39 @@ namespace IbanNet
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class IbanTests : IbanTestFixture
     {
+        public class When_creating : IbanTests
+        {
+            [Fact]
+            public void With_null_it_should_throw()
+            {
+                string iban = null;
+
+                // Act
+                // ReSharper disable once ObjectCreationAsStatement
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Action act = () => new Iban(iban);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(iban));
+            }
+
+            [Theory]
+            [InlineData(TestValues.ValidIbanPartitioned, TestValues.ValidIban)]
+            [InlineData(TestValues.ValidIbanPartitionedAndWithLowercase, TestValues.ValidIban)]
+            [InlineData(TestValues.ValidIban, TestValues.ValidIban)]
+            public void It_should_normalize(string iban, string expected)
+            {
+                // Act
+                var actual = new Iban(iban);
+
+                // Assert
+                actual.ToString().Should().Be(expected);
+            }
+        }
+
         public class When_parsing_iban : IbanTests
         {
             [Fact]
