@@ -82,9 +82,8 @@ namespace IbanNet
         public ValidationResult Validate(string? iban)
         {
             string? normalizedIban = iban.StripWhitespaceOrNull();
-            string valueToValidate = normalizedIban ?? string.Empty;
 
-            var context = new ValidationRuleContext(valueToValidate);
+            var context = new ValidationRuleContext(normalizedIban ?? string.Empty);
             var validationResult = new ValidationResult
             {
                 AttemptedValue = normalizedIban
