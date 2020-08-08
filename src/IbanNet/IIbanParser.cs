@@ -15,7 +15,7 @@ namespace IbanNet
         /// <returns>an <see cref="Iban" /> if the <paramref name="value" /> is parsed successfully</returns>
         /// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="value" /> is null.</exception>
         /// <exception cref="IbanFormatException">Thrown when the specified <paramref name="value" /> is not a valid IBAN.</exception>
-        Iban Parse(string? value);
+        Iban Parse(string value);
 
         /// <summary>
         /// Attempts to parse the specified <paramref name="value" /> into an <see cref="Iban" />.

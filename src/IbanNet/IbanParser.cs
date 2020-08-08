@@ -22,7 +22,7 @@ namespace IbanNet
         }
 
         /// <inheritdoc />
-        public Iban Parse(string? value)
+        public Iban Parse(string value)
         {
             if (value is null)
             {
