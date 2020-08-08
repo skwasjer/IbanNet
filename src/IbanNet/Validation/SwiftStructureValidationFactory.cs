@@ -11,12 +11,12 @@ namespace IbanNet.Validation
     /// </summary>
     public class SwiftStructureValidationFactory : IStructureValidationFactory
     {
-        private static readonly IDictionary<char, Func<char, bool>> SegmentMap = new Dictionary<char, Func<char, bool>>
+        private static readonly IDictionary<char, Func<char, int, bool>> SegmentMap = new Dictionary<char, Func<char, int, bool>>
         {
-            { 'n', c => c.IsAsciiDigit() },
-            { 'a', c => c.IsUpperAsciiLetter() },
-            { 'c', c => c.IsAlphaNumeric() },
-            { 'e', c => c == ' ' }
+            { 'n', (c, _) => c.IsAsciiDigit() },
+            { 'a', (c, _) => c.IsUpperAsciiLetter() },
+            { 'c', (c, _) => c.IsAlphaNumeric() },
+            { 'e', (c, _) => c == ' ' }
         };
 
         /// <inheritdoc />
@@ -36,14 +36,8 @@ namespace IbanNet.Validation
             // First 2 chars are country code.
             yield return new StructureSegmentTest
             {
-                Occurrences = 1,
-                Test = c => c == pattern[0]
-            };
-
-            yield return new StructureSegmentTest
-            {
-                Occurrences = 1,
-                Test = c => c == pattern[1]
+                Occurrences = 2,
+                Test = (c, i) => char.ToUpperInvariant(c) == char.ToUpperInvariant(pattern[i])
             };
 
             foreach (StructureSegmentTest test in pattern
@@ -64,7 +58,7 @@ namespace IbanNet.Validation
         private static StructureSegmentTest GetSegmentTest(string pattern)
         {
             char segmentType = pattern[pattern.Length - 1];
-            if (!SegmentMap.TryGetValue(segmentType, out Func<char, bool> characterTest))
+            if (!SegmentMap.TryGetValue(segmentType, out Func<char, int, bool> characterTest))
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, pattern), nameof(pattern));
             }
@@ -76,7 +70,11 @@ namespace IbanNet.Validation
                 CultureInfo.InvariantCulture
             );
 
-            return new StructureSegmentTest { Occurrences = occurrences, Test = characterTest };
+            return new StructureSegmentTest
+            {
+                Occurrences = occurrences,
+                Test = characterTest
+            };
         }
     }
 }

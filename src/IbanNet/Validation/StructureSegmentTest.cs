@@ -6,6 +6,6 @@ namespace IbanNet.Validation
     {
         public int Occurrences;
 
-        public Func<char, bool> Test;
+        public Func<char, int, bool> Test;
     }
 }

@@ -20,11 +20,13 @@ namespace IbanNet.Validation
                 StructureSegmentTest expectedStructureSegment = _segmentTests[segmentIndex];
                 for (int occurrence = 0; occurrence < expectedStructureSegment.Occurrences; occurrence++)
                 {
-                    char c = iban[pos++];
-                    if (!expectedStructureSegment.Test(c))
+                    char c = iban[pos];
+                    if (!expectedStructureSegment.Test(c, pos))
                     {
                         return false;
                     }
+
+                    pos++;
                 }
             }
 
