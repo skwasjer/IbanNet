@@ -22,7 +22,7 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithInvalidStructure.ToUpperInvariant(),
+                AttemptedValue = ibanWithInvalidStructure,
                 Error = new InvalidStructureResult(),
                 Country = Validator.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)]
             });
@@ -39,7 +39,7 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithLowercase.ToUpperInvariant(),
+                AttemptedValue = ibanWithLowercase,
                 Country = Validator.SupportedCountries[ibanWithLowercase.Substring(0, 2)]
             });
         }
