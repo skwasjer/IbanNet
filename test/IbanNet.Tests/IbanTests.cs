@@ -232,6 +232,34 @@ namespace IbanNet
                 // Assert
                 actual.Should().Be(TestValues.ValidIban);
             }
+
+            [Fact]
+            public void With_invalid_iban_format_should_throw()
+            {
+                const IbanFormat format = (IbanFormat)int.MaxValue;
+
+                // Act
+                Action act = () => _iban.ToString(format);
+
+                // Assert
+                act.Should()
+                    .Throw<ArgumentException>("the provided format was invalid")
+                    .Which.ParamName.Should()
+                    .Be(nameof(format));
+            }
+
+            [Theory]
+            [InlineData(IbanFormat.Electronic, TestValues.ValidIban)]
+            [InlineData(IbanFormat.Print, TestValues.ValidIbanPartitioned)]
+            [InlineData(IbanFormat.Obfuscated, "XXXXXXXXXXXXXXXXXXXX0100")]
+            public void With_valid_iban_format_should_succeed(IbanFormat format, string expected)
+            {
+                // Act
+                string actual = _iban.ToString(format);
+
+                // Assert
+                actual.Should().Be(expected);
+            }
         }
 
         public class When_comparing_for_equality : IbanTests

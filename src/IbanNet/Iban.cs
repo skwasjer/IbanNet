@@ -20,6 +20,7 @@ namespace IbanNet
         /// <summary>
         /// The supported IBAN output formats.
         /// </summary>
+        [Obsolete("Use the 'IbanFormat' enumeration.")]
 #pragma warning disable CA1034 // Nested types should not be visible - justification: nested 'enumeration' using constants.
         public static class Formats
 #pragma warning restore CA1034 // Nested types should not be visible
@@ -27,11 +28,13 @@ namespace IbanNet
             /// <summary>
             /// Partitions an IBAN into 4 character segments separated with a space.
             /// </summary>
+            [Obsolete("Use the 'IbanFormat.Print' enumeration.")]
             public const string Partitioned = "S";
 
             /// <summary>
             /// An IBAN without whitespace.
             /// </summary>
+            [Obsolete("Use the 'IbanFormat.Electronic' enumeration.")]
             public const string Flat = "F";
         }
 
@@ -73,39 +76,69 @@ namespace IbanNet
         /// </example>
         /// <param name="format">The format to use. F = flat, S = partitioned by space.</param>
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
+        [Obsolete("Use the overload accepting the 'IbanFormat' enumeration.")]
         public string ToString(string format)
+        {
+            return format switch
+            {
+                Formats.Flat => ToString(IbanFormat.Electronic),
+
+                Formats.Partitioned => ToString(IbanFormat.Print),
+
+                null => throw new ArgumentNullException(
+                    nameof(format),
+                    string.Format(
+                        CultureInfo.CurrentCulture,
+                        Resources.ArgumentException_The_format_is_required_with_supported_formats,
+                        Formats.Flat,
+                        Formats.Partitioned
+                    )
+                ),
+
+                _ => throw new ArgumentException(
+                    string.Format(
+                        CultureInfo.CurrentCulture,
+                        Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats,
+                        format,
+                        Formats.Flat,
+                        Formats.Partitioned
+                    ),
+                    nameof(format)
+                )
+            };
+        }
+
+        /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
+        /// <example>
+        /// <see cref="IbanFormat.Print"/> => NL91 ABNA 0417 1643 00
+        /// <see cref="IbanFormat.Electronic"/> => NL91ABNA0417164300
+        /// <see cref="IbanFormat.Obfuscated"/> => XXXXXXXXXXXXXXXXXX4300
+        /// </example>
+        /// <param name="format">The format to use.</param>
+        /// <returns>A string that represents the current <see cref="Iban" />.</returns>
+        public string ToString(IbanFormat format)
         {
             switch (format)
             {
-                // Flat
-                case Formats.Flat:
+                case IbanFormat.Electronic:
                     return _iban;
 
-                // Partitioned by space
-                case Formats.Partitioned:
+                case IbanFormat.Obfuscated:
+                    const int visibleChars = 4;
+                    return new string('X', _iban.Length - visibleChars)
+                      + _iban.Substring(_iban.Length - visibleChars, visibleChars);
+
+                case IbanFormat.Print:
                     // Split into 4 char segments.
                     IEnumerable<string> segments = _iban.Partition(4).Select(p => new string(p.ToArray()));
                     return string.Join(" ", segments);
-
-                case null:
-                    throw new ArgumentNullException(
-                        nameof(format),
-                        string.Format(
-                            CultureInfo.CurrentCulture,
-                            Resources.ArgumentException_The_format_is_required_with_supported_formats,
-                            Formats.Flat,
-                            Formats.Partitioned
-                        )
-                    );
 
                 default:
                     throw new ArgumentException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats,
-                            format,
-                            Formats.Flat,
-                            Formats.Partitioned
+                            Resources.ArgumentException_The_format_0_is_invalid,
+                            format
                         ),
                         nameof(format)
                     );
@@ -116,7 +149,7 @@ namespace IbanNet
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
         public override string ToString()
         {
-            return ToString(Formats.Flat);
+            return ToString(IbanFormat.Electronic);
         }
 
         /// <summary>

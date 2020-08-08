@@ -5,6 +5,7 @@
 ### Changes
 
 - IBAN's are now always converted to upper case prior to validation.
+- Replaced `Iban.ToString(string)` with `Iban.ToString(IbanFormat)`, and added obfuscated format.
 
 ### Fixes
 
