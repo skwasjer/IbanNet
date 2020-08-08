@@ -72,6 +72,7 @@ namespace IbanNet.Validation
 
             return new StructureSegmentTest
             {
+                IsFixedLength = isFixedLength,
                 Occurrences = occurrences,
                 Test = characterTest
             };
