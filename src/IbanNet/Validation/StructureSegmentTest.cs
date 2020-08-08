@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace IbanNet.Validation
 {
-	internal struct StructureSegmentTest
-	{
-		public int Occurrences;
+    internal class StructureSegmentTest
+    {
+        public int Occurrences;
 
-		public Func<char, bool> Test;
-	}
+        public bool IsFixedLength = true;
+
+        [AllowNull]
+        public Func<char, int, bool> Test = null;
+    }
 }

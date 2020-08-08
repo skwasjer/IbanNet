@@ -2,10 +2,10 @@
 
 namespace IbanNet.DependencyInjection.Autofac.Specs
 {
-	public class ConfiguredMultipleRulesSpec : TestHelpers.Specs.ConfiguredMultipleRulesSpec
-	{
-		public ConfiguredMultipleRulesSpec() : base(new AutofacDependencyInjectionFixture(true))
-		{
-		}
-	}
+    public class ConfiguredMultipleRulesSpec : TestHelpers.Specs.ConfiguredMultipleRulesSpec
+    {
+        public ConfiguredMultipleRulesSpec() : base(new AutofacDependencyInjectionFixture(true))
+        {
+        }
+    }
 }

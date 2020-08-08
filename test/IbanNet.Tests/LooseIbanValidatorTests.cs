@@ -1,12 +1,10 @@
-﻿using Xunit;
-
-namespace IbanNet
+﻿namespace IbanNet
 {
-	public class LooseIbanValidatorTests : IbanValidatorIntegrationTests
-	{
-		public LooseIbanValidatorTests()
-			: base(new IbanValidator(new IbanValidatorOptions { Method = ValidationMethod.Loose }))
-		{
-		}
-	}
+    public class LooseIbanValidatorTests : IbanValidatorIntegrationTests
+    {
+        public LooseIbanValidatorTests()
+            : base(new IbanValidator(new IbanValidatorOptions { Method = ValidationMethod.Loose }))
+        {
+        }
+    }
 }

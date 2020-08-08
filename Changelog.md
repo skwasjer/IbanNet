@@ -1,5 +1,18 @@
 # Changelog
 
+## v4.1.0
+
+### Changes
+
+- IBAN's are now always converted to upper case prior to validation.
+- Replaced `Iban.ToString(string)` with `Iban.ToString(IbanFormat)`, and added obfuscated format.
+
+### Fixes
+
+- [#19](https://github.com/skwasjer/IbanNet/issues/19) Parse should only allow non-nullable string.
+- [#23](https://github.com/skwasjer/IbanNet/issues/23) AttemptedValue did not match actual value used in validation.
+- [#24](https://github.com/skwasjer/IbanNet/issues/24) Structure test will ignore country code casing.
+
 ## v4.0.1
 
 - Upgraded registry to May '20 release 87 (changes to ST)

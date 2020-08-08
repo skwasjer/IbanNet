@@ -3,11 +3,11 @@ using IbanNet.Validation.Rules;
 
 namespace IbanNet.FakeRules
 {
-	public class TestValidationRule : IIbanValidationRule
-	{
-		public ValidationRuleResult Validate(ValidationRuleContext context)
-		{
-			return ValidationRuleResult.Success;
-		}
-	}
+    public class TestValidationRule : IIbanValidationRule
+    {
+        public ValidationRuleResult Validate(ValidationRuleContext context)
+        {
+            return ValidationRuleResult.Success;
+        }
+    }
 }

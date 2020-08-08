@@ -80,6 +80,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The format &apos;{0}&apos; is invalid..
+        /// </summary>
+        internal static string ArgumentException_The_format_0_is_invalid {
+            get {
+                return ResourceManager.GetString("ArgumentException_The_format_0_is_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The format &apos;{0}&apos; is invalid. Supported formats are &apos;{1}&apos; (flat) and &apos;{2}&apos; (partitioned by space)..
         /// </summary>
         internal static string ArgumentException_The_format_0_is_invalid_with_supported_formats {
@@ -166,6 +175,33 @@ namespace IbanNet {
         internal static string InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1 {
             get {
                 return ResourceManager.GetString("InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One or more providers is required..
+        /// </summary>
+        internal static string One_or_more_providers_is_required {
+            get {
+                return ResourceManager.GetString("One_or_more_providers_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one character to partition on is required..
+        /// </summary>
+        internal static string PartitionOn_At_least_one_character_to_partition_on_is_required {
+            get {
+                return ResourceManager.GetString("PartitionOn_At_least_one_character_to_partition_on_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registry has no providers..
+        /// </summary>
+        internal static string The_registry_has_no_providers {
+            get {
+                return ResourceManager.GetString("The_registry_has_no_providers", resourceCulture);
             }
         }
         

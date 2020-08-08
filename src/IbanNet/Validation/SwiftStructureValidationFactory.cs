@@ -1,62 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using IbanNet.Extensions;
 
 namespace IbanNet.Validation
 {
-	/// <summary>
-	/// A factory to create validators that are based on the Swift Registry its structure definitions.
-	/// </summary>
-	public class SwiftStructureValidationFactory : IStructureValidationFactory
-	{
-		private static readonly IDictionary<char, Func<char, bool>> SegmentMap = new Dictionary<char, Func<char, bool>>
-		{
-			{ 'n', c => c.IsAsciiDigit() },
-			{ 'a', c => c.IsUpperAsciiLetter() },
-			{ 'c', c => c.IsAlphaNumeric() },
-			{ 'e', c => c == ' ' }
-		};
+    /// <summary>
+    /// A factory to create validators that are based on the Swift Registry its structure definitions.
+    /// </summary>
+    public class SwiftStructureValidationFactory : IStructureValidationFactory
+    {
+        private static readonly IDictionary<char, Func<char, int, bool>> SegmentMap = new Dictionary<char, Func<char, int, bool>>
+        {
+            { 'n', (c, _) => c.IsAsciiDigit() },
+            { 'a', (c, _) => c.IsUpperAsciiLetter() },
+            { 'c', (c, _) => c.IsAlphaNumeric() },
+            { 'e', (c, _) => c == ' ' }
+        };
 
-		/// <inheritdoc />
-		// ReSharper disable once InconsistentNaming
-		public IStructureValidator CreateValidator(string twoLetterISORegionName, string structure)
-		{
-			return new StructureValidator(structure.Substring(0, 2), GetSegments(structure.Substring(2)).ToList());
-		}
+        /// <inheritdoc />
+        // ReSharper disable once InconsistentNaming
+        public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
+        {
+            if (pattern is null)
+            {
+                throw new ArgumentNullException(nameof(pattern));
+            }
 
-		private IEnumerable<StructureSegmentTest> GetSegments(string structure)
-		{
-			return structure
-				.PartitionOn(SegmentMap.Keys.ToArray())
-				.Select(GetSegmentInfo);
-		}
+            return new StructureValidator(GetSegmentTests(pattern).ToList());
+        }
 
-		/// <remarks>
-		/// https://www.swift.com/standards/data-standards/iban
-		/// length
-		/// ! = fixed
-		/// marker
-		/// </remarks>
-		private StructureSegmentTest GetSegmentInfo(string structureSegment)
-		{
-			char segmentType = structureSegment[structureSegment.Length - 1];
-			if (!SegmentMap.TryGetValue(segmentType, out Func<char, bool> characterTest))
-			{
-				throw new ArgumentException(string.Format(Resources.ArgumentException_The_structure_segment_0_is_invalid, structureSegment), nameof(structureSegment));
-			}
+        private static IEnumerable<StructureSegmentTest> GetSegmentTests(string pattern)
+        {
+            // First 2 chars are country code.
+            yield return new StructureSegmentTest
+            {
+                Occurrences = 2,
+                Test = (c, i) => c == pattern[i]
+            };
 
-			string lengthDescriptor = structureSegment.Substring(0, structureSegment.Length - 1);
-			bool isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
-			int occurrences = int.Parse(
-				lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength))
-			);
+            foreach (StructureSegmentTest test in pattern
+                .Substring(2)
+                .PartitionOn(SegmentMap.Keys.ToArray())
+                .Select(GetSegmentTest))
+            {
+                yield return test;
+            }
+        }
 
-			return new StructureSegmentTest
-			{
-				Occurrences = occurrences,
-				Test = characterTest
-			};
-		}
-	}
+        /// <remarks>
+        /// https://www.swift.com/standards/data-standards/iban
+        /// length
+        /// ! = fixed
+        /// marker
+        /// </remarks>
+        private static StructureSegmentTest GetSegmentTest(string pattern)
+        {
+            char segmentType = pattern[pattern.Length - 1];
+            if (!SegmentMap.TryGetValue(segmentType, out Func<char, int, bool> characterTest))
+            {
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, pattern), nameof(pattern));
+            }
+
+            string lengthDescriptor = pattern.Substring(0, pattern.Length - 1);
+            bool isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
+            int occurrences = int.Parse(
+                lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength)),
+                CultureInfo.InvariantCulture
+            );
+
+            return new StructureSegmentTest
+            {
+                IsFixedLength = isFixedLength,
+                Occurrences = occurrences,
+                Test = characterTest
+            };
+        }
+    }
 }
