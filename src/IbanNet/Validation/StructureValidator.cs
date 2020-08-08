@@ -4,23 +4,16 @@ namespace IbanNet.Validation
 {
     internal class StructureValidator : IStructureValidator
     {
-        private readonly string _expectedCountryCode;
         private readonly List<StructureSegmentTest> _segmentTests;
 
-        public StructureValidator(string expectedCountryCode, List<StructureSegmentTest> segmentTests)
+        public StructureValidator(List<StructureSegmentTest> segmentTests)
         {
-            _expectedCountryCode = expectedCountryCode;
             _segmentTests = segmentTests;
         }
 
         public bool Validate(string iban)
         {
-            if (iban[0] != _expectedCountryCode[0] && iban[1] != _expectedCountryCode[1])
-            {
-                return false;
-            }
-
-            int pos = 2;
+            int pos = 0;
             // ReSharper disable once ForCanBeConvertedToForeach - justification : performance critical
             for (int segmentIndex = 0; segmentIndex < _segmentTests.Count; segmentIndex++)
             {

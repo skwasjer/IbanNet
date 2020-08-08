@@ -28,14 +28,31 @@ namespace IbanNet.Validation
                 throw new ArgumentNullException(nameof(pattern));
             }
 
-            return new StructureValidator(pattern.Substring(0, 2), GetSegments(pattern.Substring(2)).ToList());
+            return new StructureValidator(GetSegmentTests(pattern).ToList());
         }
 
-        private IEnumerable<StructureSegmentTest> GetSegments(string structure)
+        private static IEnumerable<StructureSegmentTest> GetSegmentTests(string pattern)
         {
-            return structure
+            // First 2 chars are country code.
+            yield return new StructureSegmentTest
+            {
+                Occurrences = 1,
+                Test = c => c == pattern[0]
+            };
+
+            yield return new StructureSegmentTest
+            {
+                Occurrences = 1,
+                Test = c => c == pattern[1]
+            };
+
+            foreach (StructureSegmentTest test in pattern
+                .Substring(2)
                 .PartitionOn(SegmentMap.Keys.ToArray())
-                .Select(GetSegmentInfo);
+                .Select(GetSegmentTest))
+            {
+                yield return test;
+            }
         }
 
         /// <remarks>
@@ -44,15 +61,15 @@ namespace IbanNet.Validation
         /// ! = fixed
         /// marker
         /// </remarks>
-        private StructureSegmentTest GetSegmentInfo(string structureSegment)
+        private static StructureSegmentTest GetSegmentTest(string pattern)
         {
-            char segmentType = structureSegment[structureSegment.Length - 1];
+            char segmentType = pattern[pattern.Length - 1];
             if (!SegmentMap.TryGetValue(segmentType, out Func<char, bool> characterTest))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, structureSegment), nameof(structureSegment));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, pattern), nameof(pattern));
             }
 
-            string lengthDescriptor = structureSegment.Substring(0, structureSegment.Length - 1);
+            string lengthDescriptor = pattern.Substring(0, pattern.Length - 1);
             bool isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
             int occurrences = int.Parse(
                 lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength)),
