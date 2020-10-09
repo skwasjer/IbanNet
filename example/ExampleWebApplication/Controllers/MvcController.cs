@@ -32,7 +32,7 @@ namespace ExampleWebApplication.Controllers
 			Iban iban = _parser.Parse(model.BankAccountNumber);
 			// Do something with model...
 			ModelState.Clear();
-			model.BankAccountNumber = iban.ToString(Iban.Formats.Partitioned);
+			model.BankAccountNumber = iban.ToString(IbanFormat.Print);
 
 			return View("Index", model);
 		}

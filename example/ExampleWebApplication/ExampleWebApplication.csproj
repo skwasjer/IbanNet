@@ -2,23 +2,21 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Configurations>Debug DataAnnotations;Debug FluentValidation</Configurations>
-    <!--<DefineConstants Condition="'$(Configuration)' == 'Debug FluentValidation'">$(DefineConstants);FLUENT_VALIDATION</DefineConstants>
-    <DefineConstants Condition="'$(Configuration)' == 'Debug DataAnnotations'">$(DefineConstants);DATA_ANNOTATIONS</DefineConstants>-->
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug DataAnnotations'">
-    <PackageReference Include="IbanNet.DataAnnotations" Version="4.0.0-beta0227" />
+    <PackageReference Include="IbanNet.DataAnnotations" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug FluentValidation'">
-    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.1" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="8.6.1" />
-    <PackageReference Include="IbanNet.FluentValidation" Version="4.0.0-beta0227" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.2.0" />
+    <PackageReference Include="IbanNet.FluentValidation" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IbanNet.DependencyInjection.ServiceProvider" Version="1.0.0-beta0006" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="IbanNet.DependencyInjection.ServiceProvider" Version="4.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
