@@ -1,4 +1,4 @@
-## IbanNet supports 93 countries
+## IbanNet supports 94 countries
 
 | ISO country code | Country | SEPA | Length | IBAN example |
 |---|---|---|---|---|
@@ -48,6 +48,7 @@
 | LT | Lithuania | Yes | 20 | `LT12 1000 0111 0100 1000` |
 | LU | Luxembourg | Yes | 20 | `LU28 0019 4006 4475 0000` |
 | LV | Latvia | Yes | 21 | `LV80 BANK 0000 4351 9500 1` |
+| LY | Libya | No | 25 | `LY83 0020 4800 0020 1001 2036 1` |
 | MC | Monaco | Yes | 27 | `MC58 1122 2000 0101 2345 6789 030` |
 | MD | Moldova | No | 24 | `MD24 AG00 0225 1000 1310 4168` |
 | ME | Montenegro | No | 22 | `ME25 5050 0001 2345 6789 51` |
@@ -82,7 +83,7 @@
 
 ### Finland includes:
 
-- Unknown (AX)
+- Åland Islands (AX)
 
 ### France includes:
 
@@ -94,15 +95,15 @@
 - Unknown (TF)
 - Mayotte (YT)
 - New Caledonia (NC)
-- Saint Barthélemy (BL)
-- Saint Martin (MF)
-- Saint Pierre and Miquelon (PM)
-- Wallis and Futuna (WF)
+- St. Barthélemy (BL)
+- St. Martin (MF)
+- St. Pierre & Miquelon (PM)
+- Wallis & Futuna (WF)
 
 ### United Kingdom includes:
 
-- Unknown (IM)
-- Unknown (JE)
-- Unknown (GG)
+- Isle of Man (IM)
+- Jersey (JE)
+- Guernsey (GG)
 
 For more info visit [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
