@@ -152,6 +152,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The country is required..
+        /// </summary>
+        internal static string Exception_Builder_The_country_is_required {
+            get {
+                return ResourceManager.GetString("Exception_Builder_The_country_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The IBAN cannot be built..
         /// </summary>
         internal static string Exception_Builder_The_IBAN_cannot_be_built {

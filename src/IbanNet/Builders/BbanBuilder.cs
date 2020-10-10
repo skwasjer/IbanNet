@@ -71,7 +71,7 @@ namespace IbanNet.Builders
             {
                 if (_country is null)
                 {
-                    throw new InvalidOperationException("The country is required.");
+                    throw new InvalidOperationException(Resources.Exception_Builder_The_country_is_required);
                 }
 
                 buffer = new char[_country.Bban.Length].Fill('0');
