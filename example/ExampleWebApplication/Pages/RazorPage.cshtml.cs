@@ -29,7 +29,7 @@ namespace ExampleWebApplication.Pages
 
 			Iban iban = _parser.Parse(Model.BankAccountNumber);
 			// Do something with model...
-			Model.BankAccountNumber = iban.ToString(Iban.Formats.Partitioned);
+			Model.BankAccountNumber = iban.ToString(IbanFormat.Print);
 
 			return Page();
 		}

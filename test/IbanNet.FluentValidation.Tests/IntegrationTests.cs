@@ -4,10 +4,12 @@ using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
 using IbanNet.Validation.Results;
+using TestHelpers;
 using Xunit;
 
 namespace IbanNet.FluentValidation
 {
+    [Collection(nameof(SetsStaticValidator))]
     public class IntegrationTests : IbanTestFixture
     {
         private readonly TestModelValidator _sut;

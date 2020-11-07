@@ -36,6 +36,8 @@ ForEach($country in $countries)
     $markdown += "| $($country.TwoLetterISORegionName) | $($country.EnglishName) | $(If ($country.Sepa.IsMember) { "Yes" } else { "No" }) | $($country.Iban.Length) | ``$($iban.ToString("S"))`` |`r`n"
 }
 
+$overrideCountryDescription = @{ "AX" = "Åland Islands"; "IM" = "Isle of Man"; "JE" = "Jersey"; "GG" = "Guernsey" }
+
 ForEach($country in $countries)
 {
     If ($country.IncludedCountries.Count -gt 0)
@@ -48,15 +50,21 @@ ForEach($country in $countries)
         ForEach($ic in $country.IncludedCountries)
         {
             $regionInfo = New-Object System.Globalization.RegionInfo($ic)
-            If ($regionInfo.ThreeLetterISORegionName -eq "ZZZ")
+            # Resolve english name
+            $ccName = $overrideCountryDescription.Get_Item($regionInfo.TwoLetterISORegionName)
+            if ($ccName -eq $null)
             {
-                # Unknown
-                $markdown += "- Unknown ($($ic.Substring(3)))`r`n"
+                If ($regionInfo.ThreeLetterISORegionName -eq "ZZZ")
+                {
+                    $ccName = "Unknown"
+                }
+                Else
+                {
+                    $ccName = $regionInfo.EnglishName
+                }
             }
-            Else
-            {
-                $markdown += "- $($regionInfo.EnglishName) ($($ic.Substring(3)))`r`n"
-            }
+
+            $markdown += "- $($ccName) ($($ic.Substring(3)))`r`n"
         }
     }
 }

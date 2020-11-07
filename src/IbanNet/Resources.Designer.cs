@@ -62,6 +62,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The country code is not registered..
+        /// </summary>
+        internal static string ArgumentException_Builder_The_country_code_is_not_registered {
+            get {
+                return ResourceManager.GetString("ArgumentException_Builder_The_country_code_is_not_registered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid country code. must be exactly two characters long..
         /// </summary>
         internal static string ArgumentException_Invalid_country_code {
@@ -121,6 +130,51 @@ namespace IbanNet {
         internal static string ArgumentException_ValidationMethod_is_invalid {
             get {
                 return ResourceManager.GetString("ArgumentException_ValidationMethod_is_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A value for &apos;{0}&apos; is not supported for country code {1}..
+        /// </summary>
+        internal static string Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1 {
+            get {
+                return ResourceManager.GetString("Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The BBAN cannot be built..
+        /// </summary>
+        internal static string Exception_Builder_The_BBAN_cannot_be_built {
+            get {
+                return ResourceManager.GetString("Exception_Builder_The_BBAN_cannot_be_built", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country is required..
+        /// </summary>
+        internal static string Exception_Builder_The_country_is_required {
+            get {
+                return ResourceManager.GetString("Exception_Builder_The_country_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IBAN cannot be built..
+        /// </summary>
+        internal static string Exception_Builder_The_IBAN_cannot_be_built {
+            get {
+                return ResourceManager.GetString("Exception_Builder_The_IBAN_cannot_be_built", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value &apos;{0}&apos; does not have the correct length of {1}..
+        /// </summary>
+        internal static string Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1 {
+            get {
+                return ResourceManager.GetString("Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1", resourceCulture);
             }
         }
         

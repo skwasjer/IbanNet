@@ -12,9 +12,9 @@ namespace IbanNet.Registry
     /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
     /// </summary>
     /// <remarks>
-    /// Generated from: swift_iban_registry_202005.r87.txt
+    /// Generated from: swift_iban_registry_202009.r88.txt
     /// </remarks>
-    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r87")]
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r88")]
     public class SwiftRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1902,6 +1902,51 @@ namespace IbanNet.Registry
                 LastUpdatedDate = new DateTimeOffset(2009, 1, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
+            // Libya
+            yield return new IbanCountry("LY")
+            {
+                DisplayName = "Libya",
+                EnglishName = "Libya",
+                Iban = new IbanStructure
+                {
+                    Length = 25,
+                    Structure = "LY2!n3!n3!n15!n",
+                    ValidationFactory = validationFactory,
+                    Example = "LY83002048000020100120361",
+                    EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                },
+                Bban = new BbanStructure
+                {
+                    Position = 4,
+                    Length = 21,
+                    Structure = "3!n3!n15!n",
+                    ValidationFactory = validationFactory,
+                    Example = "002048000020100120361"
+                },
+                Bank = new BankStructure
+                {
+                    Position = 4,
+                    Length = 3,
+                    Structure = "3!n",
+                    ValidationFactory = validationFactory,
+                    Example = "002",
+                },
+                Branch = new BranchStructure
+                {
+                    Position = 7,
+                    Length = 3,
+                    Structure = "3!n",
+                    ValidationFactory = validationFactory,
+                    Example = "048",
+                },
+                Sepa = new SepaInfo
+                {
+                    IsMember = false,
+                },
+                DomesticAccountNumberExample = "000020100120361",
+                LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            };
+
             // Monaco
             yield return new IbanCountry("MC")
             {
@@ -2227,7 +2272,7 @@ namespace IbanNet.Registry
                     IsMember = true,
                 },
                 DomesticAccountNumberExample = "041 71 64 300",
-                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
             // Norway
@@ -2776,16 +2821,16 @@ namespace IbanNet.Registry
                 Iban = new IbanStructure
                 {
                     Length = 25,
-                    Structure = "ST2!n8!n11!n2!n",
+                    Structure = "ST2!n4!n4!n11!n2!n",
                     ValidationFactory = validationFactory,
                     Example = "ST23000100010051845310146",
-                    EffectiveDate = new DateTimeOffset(2020, 3, 1, 0, 0, 0, TimeSpan.Zero)
+                    EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
                 },
                 Bban = new BbanStructure
                 {
                     Position = 4,
                     Length = 21,
-                    Structure = "8!n11!n2!n",
+                    Structure = "4!n4!n11!n2!n",
                     ValidationFactory = validationFactory,
                     Example = "000100010051845310146"
                 },
@@ -2810,7 +2855,7 @@ namespace IbanNet.Registry
                     IsMember = false,
                 },
                 DomesticAccountNumberExample = "0051845310146",
-                LastUpdatedDate = new DateTimeOffset(2020, 5, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
             // El Salvador
