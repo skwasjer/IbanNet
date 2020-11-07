@@ -63,15 +63,6 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The country code is not registered..
-        /// </summary>
-        internal static string ArgumentException_Builder_The_country_code_is_not_registered {
-            get {
-                return ResourceManager.GetString("ArgumentException_Builder_The_country_code_is_not_registered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid country code. must be exactly two characters long..
         /// </summary>
         internal static string ArgumentException_Invalid_country_code {
@@ -86,6 +77,15 @@ namespace IbanNet {
         internal static string ArgumentException_Registry_is_required {
             get {
                 return ResourceManager.GetString("ArgumentException_Registry_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country code &apos;{0}&apos; is not registered..
+        /// </summary>
+        internal static string ArgumentException_The_country_code_0_is_not_registered {
+            get {
+                return ResourceManager.GetString("ArgumentException_The_country_code_0_is_not_registered", resourceCulture);
             }
         }
         
