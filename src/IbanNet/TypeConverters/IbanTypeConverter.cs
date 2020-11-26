@@ -36,7 +36,7 @@ namespace IbanNet.TypeConverters
                     IIbanValidator? validator = null;
                     if (context is IServiceProvider services)
                     {
-                        validator = (IIbanValidator)services.GetService(typeof(IIbanValidator));
+                        validator = (IIbanValidator?)services.GetService(typeof(IIbanValidator));
                     }
 
                     var parser = new IbanParser(validator ?? Iban.Validator);

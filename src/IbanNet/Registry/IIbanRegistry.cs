@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace IbanNet.Registry
 {
@@ -19,7 +20,7 @@ namespace IbanNet.Registry
         /// <param name="country"></param>
         /// <returns>true if the country was found, false otherwise</returns>
         // ReSharper disable once InconsistentNaming
-        bool TryGetValue(string twoLetterISORegionName, out IbanCountry country);
+        bool TryGetValue(string twoLetterISORegionName, [NotNullWhen(true)] out IbanCountry? country);
 
         /// <summary>
         /// Gets the <see cref="IbanCountry" /> by <paramref name="twoLetterISORegionName" />.

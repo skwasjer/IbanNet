@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace IbanNet.Registry
@@ -42,7 +43,7 @@ namespace IbanNet.Registry
 
         /// <inheritdoc />
         // ReSharper disable once InconsistentNaming
-        public bool TryGetValue(string twoLetterISORegionName, out IbanCountry country) => Dictionary.TryGetValue(twoLetterISORegionName, out country);
+        public bool TryGetValue(string twoLetterISORegionName, [NotNullWhen(true)] out IbanCountry? country) => Dictionary.TryGetValue(twoLetterISORegionName, out country);
 
         /// <inheritdoc />
         // ReSharper disable once InconsistentNaming
