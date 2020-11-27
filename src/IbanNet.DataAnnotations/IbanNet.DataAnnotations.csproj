@@ -12,9 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" Condition="'$(TargetFramework)'!='net5.0'">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" Condition="'$(TargetFramework)'!='net5.0'" />
   </ItemGroup>
 
