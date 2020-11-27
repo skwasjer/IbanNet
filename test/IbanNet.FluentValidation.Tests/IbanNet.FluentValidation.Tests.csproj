@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net472;net452</TargetFrameworks>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net472;net452</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
 
@@ -9,11 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="FluentValidation" Version="8.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IbanNet.Tests\IbanNet.Tests.csproj" />
+    <ProjectReference Include="..\..\src\IbanNet.FluentValidation\IbanNet.FluentValidation.csproj" AdditionalProperties="TargetFramework=net5.0" Condition="'$(TargetFramework)'=='net5.0'" />
     <ProjectReference Include="..\..\src\IbanNet.FluentValidation\IbanNet.FluentValidation.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />
     <ProjectReference Include="..\..\src\IbanNet.FluentValidation\IbanNet.FluentValidation.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp3.0'" />
     <ProjectReference Include="..\..\src\IbanNet.FluentValidation\IbanNet.FluentValidation.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.2'" />

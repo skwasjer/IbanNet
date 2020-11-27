@@ -47,7 +47,7 @@ namespace IbanNet.Builders
                 throw new ArgumentNullException(nameof(registry));
             }
 
-            if (!registry.TryGetValue(countryCode, out IbanCountry country))
+            if (!registry.TryGetValue(countryCode, out IbanCountry? country))
             {
                 throw new ArgumentException(Resources.ArgumentException_Builder_The_country_code_is_not_registered, nameof(countryCode));
             }

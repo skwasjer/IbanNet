@@ -20,7 +20,7 @@ namespace IbanNet.DataAnnotations
         }
 
         /// <inheritdoc />
-        protected override System.ComponentModel.DataAnnotations.ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override System.ComponentModel.DataAnnotations.ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value is null)
             {

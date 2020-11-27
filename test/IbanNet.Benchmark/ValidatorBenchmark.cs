@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
+using SinKien.IBAN4Net;
 
 namespace IbanNet.Benchmark
 {
@@ -71,14 +72,14 @@ namespace IbanNet.Benchmark
             }
         }
 
-        //[Benchmark]
-        //public void NuGet_IBAN4NET()
-        //{
-        //	// ReSharper disable once ForCanBeConvertedToForeach
-        //	for (int i = 0; i < _testData.Count; i++)
-        //	{
-        //		IbanUtils.IsValid(_testData[i], out IbanFormatViolation _);
-        //	}
-        //}
+        [Benchmark]
+        public void NuGet_IBAN4NET()
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (int i = 0; i < _testData.Count; i++)
+            {
+                IbanUtils.IsValid(_testData[i], out IbanFormatViolation _);
+            }
+        }
     }
 }

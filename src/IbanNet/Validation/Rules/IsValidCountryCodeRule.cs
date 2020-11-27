@@ -37,7 +37,7 @@ namespace IbanNet.Validation.Rules
                 return null;
             }
 
-            return _ibanRegistry.TryGetValue(countryCode, out IbanCountry country) ? country : null;
+            return _ibanRegistry.TryGetValue(countryCode, out IbanCountry? country) ? country : null;
         }
 
         private static string? GetCountryCode(string value)
