@@ -4,13 +4,15 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp3.0;netcoreapp2.2;net48</TargetFrameworks>
     <IsTestProject>false</IsTestProject>
+    <Configurations>Debug;Release;ComparisonRelease</Configurations>
+    <DefineConstants Condition="'$(Configuration)'=='ComparisonRelease'">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
     <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.12.1" />
-    <PackageReference Include="IBAN4Net" Version="2.0.5" />
-    <PackageReference Include="IbanValidation" Version="2.0.0" />
+    <PackageReference Include="IBAN4Net" Version="2.0.5" Condition="$(DefineConstants.Contains('VALIDATOR_COMPARISONS'))" />
+    <PackageReference Include="IbanValidation" Version="2.0.0" Condition="$(DefineConstants.Contains('VALIDATOR_COMPARISONS'))" />
   </ItemGroup>
 
   <ItemGroup>
