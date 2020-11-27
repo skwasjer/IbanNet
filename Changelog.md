@@ -4,7 +4,13 @@
 
 - Added .NET 5.0 target framework support ([benchmark](test/IbanNet.Benchmark/BenchmarkResults.md)).
 - Update several nullable reference type code contracts.
+
+### IbanNet.FluentValidation
+
 - Updated to FluentValidation v9.x. This also means dropping support for .NETStandard 1.1/1.6 for FluentValidation integration.
+
+### IbanNet.DependencyInjection.Autofac
+
 - (breaking) Updated to Autofac v6.x (one Autofac [interface changed](https://github.com/skwasjer/IbanNet/commit/3a9ec6f43fac943476124065ddbd8cf93ccaede6))
 
 ## v4.2.0
