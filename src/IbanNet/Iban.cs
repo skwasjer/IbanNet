@@ -162,7 +162,7 @@ namespace IbanNet
         [Obsolete("Use the `IbanParser` class.")]
         public static Iban Parse(string? value)
         {
-            return new IbanParser(Validator).Parse(value);
+            return new IbanParser(Validator).Parse(value!);
         }
 
         /// <summary>

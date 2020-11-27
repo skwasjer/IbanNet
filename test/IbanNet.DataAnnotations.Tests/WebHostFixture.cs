@@ -23,6 +23,7 @@ namespace IbanNet.DataAnnotations
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
             TestServer?.Dispose();
         }
 

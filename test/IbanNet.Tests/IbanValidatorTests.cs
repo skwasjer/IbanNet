@@ -16,7 +16,7 @@ namespace IbanNet
         {
             [Theory]
             [MemberData(nameof(CtorWithOptionsTestCases))]
-            public void When_creating_instance_it_should_throw(Action act, Type expectedExceptionType, string expectedParamName)
+            public void When_creating_instance_it_should_throw(Func<IbanValidator> act, Type expectedExceptionType, string expectedParamName)
             {
                 // Assert
                 act.Should()
@@ -29,11 +29,11 @@ namespace IbanNet
             public static IEnumerable<object[]> CtorWithOptionsTestCases()
             {
                 // ReSharper disable ObjectCreationAsStatement
-                yield return new object[] { (Action)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options" };
-                yield return new object[] { (Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options" };
-                yield return new object[] { (Action)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver" };
-                yield return new object[] { (Action)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options" };
-                yield return new object[] { (Action)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options" };
+                yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options" };
+                yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options" };
+                yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver" };
+                yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options" };
+                yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options" };
                 // ReSharper restore ObjectCreationAsStatement
             }
         }

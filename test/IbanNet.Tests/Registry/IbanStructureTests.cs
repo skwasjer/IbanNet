@@ -15,7 +15,7 @@ namespace IbanNet.Registry
             // Act
             // ReSharper disable once ObjectCreationAsStatement
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => new IbanStructure(structure, new NullStructureValidationFactory());
+            Func<IbanStructure> act = () => new IbanStructure(structure, new NullStructureValidationFactory());
 
             // Assert
             act.Should()
@@ -32,7 +32,7 @@ namespace IbanNet.Registry
             // Act
             // ReSharper disable once ObjectCreationAsStatement
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => new IbanStructure(string.Empty, structureValidationFactory);
+            Func<IbanStructure> act = () => new IbanStructure(string.Empty, structureValidationFactory);
 
             // Assert
             act.Should()

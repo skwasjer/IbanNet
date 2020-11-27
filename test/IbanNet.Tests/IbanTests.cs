@@ -22,7 +22,7 @@ namespace IbanNet
                 // Act
                 // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once AssignNullToNotNullAttribute
-                Action act = () => new Iban(iban);
+                Func<Iban> act = () => new Iban(iban);
 
                 // Assert
                 act.Should()

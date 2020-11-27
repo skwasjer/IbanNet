@@ -15,7 +15,7 @@ namespace IbanNet.Registry
         {
             // Act
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new IbanCountry(twoLetterISORegionName);
+            Func<IbanCountry> act = () => new IbanCountry(twoLetterISORegionName);
 
             // Assert
             act.Should()
@@ -29,7 +29,7 @@ namespace IbanNet.Registry
         {
             // Act
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new IbanCountry("ZA");
+            Func<IbanCountry> act = () => new IbanCountry("ZA");
 
             // Assert
             act.Should().NotThrow();
