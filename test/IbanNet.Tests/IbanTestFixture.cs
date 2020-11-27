@@ -4,11 +4,13 @@ using Moq;
 
 namespace IbanNet
 {
-    public class IbanTestFixture
+    public abstract class IbanTestFixture : IDisposable
     {
+        private IIbanValidator _originalValidator;
+
         protected Mock<IIbanValidator> IbanValidatorMock { get; }
 
-        public IbanTestFixture()
+        protected IbanTestFixture()
         {
             IbanValidatorMock = new Mock<IIbanValidator>();
 
@@ -47,7 +49,22 @@ namespace IbanNet
                 .Setup(m => m.Validate(TestValues.IbanForCustomRuleException))
                 .Throws(new InvalidOperationException("Custom message"));
 
+            _originalValidator = Iban.Validator;
             Iban.Validator = IbanValidatorMock.Object;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Iban.Validator = _originalValidator;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

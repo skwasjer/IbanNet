@@ -1,25 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net452;net472</TargetFrameworks>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;net452;net472</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
 
     <RootNamespace>IbanNet.DataAnnotations</RootNamespace>
-    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp'))">$(DefineConstants);ASPNET_INTEGRATION_TESTS</DefineConstants>
-    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp3'))">$(DefineConstants);ENDPOINT_ROUTING</DefineConstants>
-    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp3')) Or '$(TargetFramework)'=='netcoreapp2.2'">$(DefineConstants);PROBLEM_DETAILS</DefineConstants>
+    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp')) Or '$(TargetFramework)'=='net5.0'">$(DefineConstants);ASPNET_INTEGRATION_TESTS</DefineConstants>
+    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp3')) Or '$(TargetFramework)'=='net5.0'">$(DefineConstants);ENDPOINT_ROUTING</DefineConstants>
+    <DefineConstants Condition="$(TargetFramework.StartsWith('netcoreapp3')) Or '$(TargetFramework)'=='netcoreapp2.2' Or '$(TargetFramework)'=='net5.0'">$(DefineConstants);PROBLEM_DETAILS</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IbanNet.Tests\IbanNet.Tests.csproj" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj"     AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net5.0" Condition="'$(TargetFramework)'=='net5.0'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp3.0'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='netcoreapp2.2'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.3" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net45" Condition="'$(TargetFramework)'=='net452'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net47" Condition="'$(TargetFramework)'=='net472'" />
     <ProjectReference Include="..\TestHelpers\TestHelpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">

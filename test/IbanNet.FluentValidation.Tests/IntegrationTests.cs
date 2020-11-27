@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using FluentValidation;
@@ -34,7 +35,7 @@ namespace IbanNet.FluentValidation
             {
                 AttemptedValue = attemptedIbanValue,
                 ErrorCode = nameof(FluentIbanValidator),
-                FormattedMessageArguments = new object[0],
+                FormattedMessageArguments = Array.Empty<object>(),
                 FormattedMessagePlaceholderValues = new Dictionary<string, object>
                 {
                     { "PropertyName", expectedFormattedPropertyName },

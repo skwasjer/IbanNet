@@ -24,7 +24,7 @@ namespace IbanNet.Validation
 
         public IStructureValidator CreateValidator(string twoLetterISORegionName, string pattern)
         {
-            if (_structureValidationFactoriesByCountry.TryGetValue(twoLetterISORegionName, out IStructureValidationFactory factory))
+            if (_structureValidationFactoriesByCountry.TryGetValue(twoLetterISORegionName, out IStructureValidationFactory? factory))
             {
                 return factory.CreateValidator(twoLetterISORegionName, pattern);
             }

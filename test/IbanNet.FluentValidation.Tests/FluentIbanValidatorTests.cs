@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using FluentValidation;
 using FluentValidation.Internal;
 using FluentValidation.Results;
 using FluentValidation.Validators;
@@ -31,7 +32,8 @@ namespace IbanNet.FluentValidation
             {
                 var rule = PropertyRule.Create<TestModel, string>(x => x.BankAccountNumber);
 
-                _propertyValidatorContext = new PropertyValidatorContext(null, rule, null, AttemptedIbanValue);
+                var validationContext = new ValidationContext<TestModel>(new TestModel());
+                _propertyValidatorContext = new PropertyValidatorContext(validationContext, rule, null, AttemptedIbanValue);
             }
 
             [Fact]
@@ -159,7 +161,7 @@ namespace IbanNet.FluentValidation
                 // Act
                 // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once AssignNullToNotNullAttribute
-                Action act = () => new FluentIbanValidator(ibanValidator);
+                Func<FluentIbanValidator> act = () => new FluentIbanValidator(ibanValidator);
 
                 // Assert
                 act.Should()

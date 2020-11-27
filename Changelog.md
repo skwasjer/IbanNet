@@ -1,5 +1,18 @@
 # Changelog
 
+## v4.3.0
+
+- Added .NET 5.0 target framework support ([benchmark](test/IbanNet.Benchmark/BenchmarkResults.md)).
+- Update several nullable reference type code contracts.
+
+### IbanNet.FluentValidation
+
+- Updated to FluentValidation v9.x. This also means dropping support for .NETStandard 1.1/1.6 for FluentValidation integration.
+
+### IbanNet.DependencyInjection.Autofac
+
+- (breaking) Updated to Autofac v6.x (one Autofac [interface changed](https://github.com/skwasjer/IbanNet/commit/3a9ec6f43fac943476124065ddbd8cf93ccaede6))
+
 ## v4.2.0
 
 - Upgraded registry to September '20 release 88 (added Libya (LY))
@@ -32,7 +45,7 @@
 - Added abstraction to load registry from different sources.
 - Added `ICheckDigitsCalculator` abstraction.
 - Exposing `IIbanValidationRule` allowing custom validation rules.
-- [Performance improvements](test/IbanNet.Benchmark/BenchmarkResults.md)
+- [Performance improvements](test/IbanNet.Benchmark/BenchmarkResults-v4.x.md)
 
 ### Changes
 
@@ -72,7 +85,7 @@
 ## v3.1
 
 - Deprecated `IbanNet.IbanTypeConverter`, replaced by  `IbanNet.TypeConverters.IbanTypeConverter`.
-- Added [IbanNet.FluentValidation](src/IbanNet.FluentValidation/README.md)  package.
+- Added [IbanNet.FluentValidation](https://github.com/skwasjer/IbanNet/wiki/IbanNet.FluentValidation)  package.
 - Upgraded registry to April '19 release 83.
 - Added extra target frameworks `.NET 4.7`, `.NET Standard 1.6` and `.NET Standard 2.0`
 
@@ -86,7 +99,7 @@
 
 ## v2.1
 
-- Added [IbanNet.DataAnnotations](src/IbanNet.DataAnnotations/README.md) for DataAnnotation support.
+- Added [IbanNet.DataAnnotations](https://github.com/skwasjer/IbanNet/wiki/IbanNet.DataAnnotations) for DataAnnotation support.
 
 ## v2.0
 

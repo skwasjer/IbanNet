@@ -58,7 +58,7 @@ namespace IbanNet.Validation
         private static StructureSegmentTest GetSegmentTest(string pattern)
         {
             char segmentType = pattern[pattern.Length - 1];
-            if (!SegmentMap.TryGetValue(segmentType, out Func<char, int, bool> characterTest))
+            if (!SegmentMap.TryGetValue(segmentType, out Func<char, int, bool>? characterTest))
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, pattern), nameof(pattern));
             }

@@ -58,7 +58,7 @@ namespace IbanNet.Registry
             // Act
             // ReSharper disable once ExpressionIsAlwaysNull
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new TestStructureSection(structure);
+            Func<TestStructureSection> act = () => new TestStructureSection(structure);
 
             // Assert
             act.Should()

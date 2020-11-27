@@ -162,7 +162,7 @@ namespace IbanNet
         [Obsolete("Use the `IbanParser` class.")]
         public static Iban Parse(string? value)
         {
-            return new IbanParser(Validator).Parse(value);
+            return new IbanParser(Validator).Parse(value!);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace IbanNet
         /// </summary>
         /// <param name="obj">The object to compare with the current object. </param>
         /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
             {
@@ -208,7 +208,7 @@ namespace IbanNet
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-#if NETSTANDARD2_1
+#if NETSTANDARD2_1 || NET5_0
             return _iban.GetHashCode(StringComparison.Ordinal);
 #else
 			return _iban.GetHashCode();

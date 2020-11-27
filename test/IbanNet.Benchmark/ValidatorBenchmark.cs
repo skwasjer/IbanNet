@@ -2,6 +2,9 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
+#if VALIDATOR_COMPARISONS
+using SinKien.IBAN4Net;
+#endif
 
 namespace IbanNet.Benchmark
 {
@@ -12,7 +15,9 @@ namespace IbanNet.Benchmark
     public class ValidatorBenchmark
     {
         private IIbanValidator _strictValidator, _looseValidator;
+#if VALIDATOR_COMPARISONS
         private IbanValidation.IbanValidator _nugetIbanValidator;
+#endif
         private IList<string> _testData;
 
         [Params(1, 10)]
@@ -25,7 +30,9 @@ namespace IbanNet.Benchmark
             _strictValidator = new IbanValidator();
             _looseValidator = new IbanValidator(new IbanValidatorOptions { Method = ValidationMethod.Loose });
 
+#if VALIDATOR_COMPARISONS
             _nugetIbanValidator = new IbanValidation.IbanValidator();
+#endif
 
             _testData = TestSamples.GetIbanSamples(Count);
         }
@@ -61,6 +68,7 @@ namespace IbanNet.Benchmark
             }
         }
 
+#if VALIDATOR_COMPARISONS
         [Benchmark]
         public void NuGet_IbanValidator()
         {
@@ -71,14 +79,15 @@ namespace IbanNet.Benchmark
             }
         }
 
-        //[Benchmark]
-        //public void NuGet_IBAN4NET()
-        //{
-        //	// ReSharper disable once ForCanBeConvertedToForeach
-        //	for (int i = 0; i < _testData.Count; i++)
-        //	{
-        //		IbanUtils.IsValid(_testData[i], out IbanFormatViolation _);
-        //	}
-        //}
+        [Benchmark]
+        public void NuGet_IBAN4NET()
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (int i = 0; i < _testData.Count; i++)
+            {
+                IbanUtils.IsValid(_testData[i], out IbanFormatViolation _);
+            }
+        }
+#endif
     }
 }

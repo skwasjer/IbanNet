@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -10,6 +10,11 @@
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/Dependency-injection</PackageProjectUrl>
     <PackageTags>IBAN, IbanNet, IoC, dependencyinjection, di, servicecollection, serviceprovider</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net5.0'">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+  </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />

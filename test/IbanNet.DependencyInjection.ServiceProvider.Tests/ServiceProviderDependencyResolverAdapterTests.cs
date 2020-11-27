@@ -111,7 +111,7 @@ namespace IbanNet.DependencyInjection.ServiceProvider
 
             // ReSharper disable once ObjectCreationAsStatement
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => new ServiceProviderDependencyResolverAdapter(serviceProvider);
+            Func<ServiceProviderDependencyResolverAdapter> act = () => new ServiceProviderDependencyResolverAdapter(serviceProvider);
 
             act.Should()
                 .Throw<ArgumentNullException>()
