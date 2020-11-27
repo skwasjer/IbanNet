@@ -1,6 +1,5 @@
 image: Visual Studio 2019
 skip_branch_with_pr: true
-skip_tags: true
 configuration: Release
 install:
   - choco install gitversion.portable --pre -y
