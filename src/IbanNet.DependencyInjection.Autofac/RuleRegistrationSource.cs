@@ -17,7 +17,7 @@ namespace IbanNet.DependencyInjection.Autofac
     {
         private static readonly TypeInfo IbanValidationRuleType = typeof(IIbanValidationRule).GetTypeInfo();
 
-        public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
+        public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<ServiceRegistration>> registrationAccessor)
         {
             if (!(service is IServiceWithType swt)
              || !IbanValidationRuleType.IsAssignableFrom(swt.ServiceType.GetTypeInfo())

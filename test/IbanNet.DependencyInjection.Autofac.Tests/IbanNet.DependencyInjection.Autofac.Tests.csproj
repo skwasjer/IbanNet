@@ -8,6 +8,10 @@
     <RootNamespace>IbanNet.DependencyInjection.Autofac</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+  </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)'=='net5.0'">
     <ProjectReference Include="..\..\src\IbanNet.DependencyInjection.Autofac\IbanNet.DependencyInjection.Autofac.csproj" AdditionalProperties="TargetFramework=net5.0" />
   </ItemGroup>
