@@ -4,7 +4,7 @@
 
 - Added .NET 5.0 target framework support ([benchmark](test/IbanNet.Benchmark/BenchmarkResults.md))
 - Updated to FluentValidation v9.x
-- (breaking) Updated to Autofac v6.x (one Autofac [interface changed](https://github.com/skwasjer/IbanNet/commit/cd2bb49e4394dc835fe1ecb59cfd63884d994636))
+- (breaking) Updated to Autofac v6.x (one Autofac [interface changed](https://github.com/skwasjer/IbanNet/commit/3a9ec6f43fac943476124065ddbd8cf93ccaede6))
 
 ## v4.2.0
 
