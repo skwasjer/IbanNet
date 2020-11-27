@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard1.2;netstandard1.6;netstandard2.0;netstandard2.1;net47;net45</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1;net461</TargetFrameworks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="8.0.0" />
+    <PackageReference Include="FluentValidation" Version="9.0.1" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" Condition="'$(TargetFramework)'!='net5.0'">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
