@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>Provides an IBAN validator for verifying IBAN's.</Description>
+    <Description>Provides a strict International Bank Account Number (IBAN) validator, parser, builder and the Iban primitive type.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
