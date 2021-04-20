@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en" target-language="de" original="IBANNET/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6916.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="IBANNET/RESOURCES.RESX" datatype="resx">
+        <trans-unit id="IbanFormatException_The_value_0_is_not_a_valid_IBAN" translate="yes" xml:space="preserve">
+          <source>The value '{0}' is not a valid IBAN.</source>
+          <target state="new">The value '{0}' is not a valid IBAN.</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_The_format_is_required_with_supported_formats" translate="yes" xml:space="preserve">
+          <source>The format is required. Supported formats are '{0}' (flat) and '{1}' (partitioned by space).</source>
+          <target state="new">The format is required. Supported formats are '{0}' (flat) and '{1}' (partitioned by space).</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_The_format_0_is_invalid_with_supported_formats" translate="yes" xml:space="preserve">
+          <source>The format '{0}' is invalid. Supported formats are '{1}' (flat) and '{2}' (partitioned by space).</source>
+          <target state="new">The format '{0}' is invalid. Supported formats are '{1}' (flat) and '{2}' (partitioned by space).</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_The_format_0_is_invalid" translate="yes" xml:space="preserve">
+          <source>The format '{0}' is invalid.</source>
+          <target state="new">The format '{0}' is invalid.</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_Registry_is_required" translate="yes" xml:space="preserve">
+          <source>Provide the registry.</source>
+          <target state="new">Provide the registry.</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_ValidationMethod_is_invalid" translate="yes" xml:space="preserve">
+          <source>The validation method is invalid.</source>
+          <target state="new">The validation method is invalid.</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_Invalid_country_code" translate="yes" xml:space="preserve">
+          <source>Invalid country code. must be exactly two characters long.</source>
+          <target state="new">Invalid country code. must be exactly two characters long.</target>
+        </trans-unit>
+        <trans-unit id="IllegalCharactersResult" translate="yes" xml:space="preserve">
+          <source>The IBAN contains illegal characters.</source>
+          <target state="new">The IBAN contains illegal characters.</target>
+        </trans-unit>
+        <trans-unit id="InvalidCheckDigitsResult" translate="yes" xml:space="preserve">
+          <source>The IBAN check digits are incorrect.</source>
+          <target state="new">The IBAN check digits are incorrect.</target>
+        </trans-unit>
+        <trans-unit id="InvalidLengthResult" translate="yes" xml:space="preserve">
+          <source>The IBAN has an incorrect length.</source>
+          <target state="new">The IBAN has an incorrect length.</target>
+        </trans-unit>
+        <trans-unit id="InvalidStructureResult" translate="yes" xml:space="preserve">
+          <source>The structure of the IBAN is incorrect.</source>
+          <target state="new">The structure of the IBAN is incorrect.</target>
+        </trans-unit>
+        <trans-unit id="UnknownCountryCodeResult" translate="yes" xml:space="preserve">
+          <source>The country code is unknown/not supported.</source>
+          <target state="new">The country code is unknown/not supported.</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_The_structure_segment_0_is_invalid" translate="yes" xml:space="preserve">
+          <source>The structure segment '{0}' is invalid.</source>
+          <target state="new">The structure segment '{0}' is invalid.</target>
+        </trans-unit>
+        <trans-unit id="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" translate="yes" xml:space="preserve">
+          <source>Expected alphanumeric character at position {0}, but found '{1}'.</source>
+          <target state="new">Expected alphanumeric character at position {0}, but found '{1}'.</target>
+        </trans-unit>
+        <trans-unit id="PartitionOn_At_least_one_character_to_partition_on_is_required" translate="yes" xml:space="preserve">
+          <source>At least one character to partition on is required.</source>
+          <target state="new">At least one character to partition on is required.</target>
+        </trans-unit>
+        <trans-unit id="The_registry_has_no_providers" translate="yes" xml:space="preserve">
+          <source>The registry has no providers.</source>
+          <target state="new">The registry has no providers.</target>
+        </trans-unit>
+        <trans-unit id="One_or_more_providers_is_required" translate="yes" xml:space="preserve">
+          <source>One or more providers is required.</source>
+          <target state="new">One or more providers is required.</target>
+        </trans-unit>
+        <trans-unit id="ArgumentException_Builder_The_country_code_is_not_registered" translate="yes" xml:space="preserve">
+          <source>The country code is not registered.</source>
+          <target state="new">The country code is not registered.</target>
+        </trans-unit>
+        <trans-unit id="Exception_Builder_The_BBAN_cannot_be_built" translate="yes" xml:space="preserve">
+          <source>The BBAN cannot be built.</source>
+          <target state="new">The BBAN cannot be built.</target>
+        </trans-unit>
+        <trans-unit id="Exception_Builder_The_IBAN_cannot_be_built" translate="yes" xml:space="preserve">
+          <source>The IBAN cannot be built.</source>
+          <target state="new">The IBAN cannot be built.</target>
+        </trans-unit>
+        <trans-unit id="Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1" translate="yes" xml:space="preserve">
+          <source>A value for '{0}' is not supported for country code {1}.</source>
+          <target state="new">A value for '{0}' is not supported for country code {1}.</target>
+        </trans-unit>
+        <trans-unit id="Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1" translate="yes" xml:space="preserve">
+          <source>The value '{0}' does not have the correct length of {1}.</source>
+          <target state="new">The value '{0}' does not have the correct length of {1}.</target>
+        </trans-unit>
+        <trans-unit id="Exception_Builder_The_country_is_required" translate="yes" xml:space="preserve">
+          <source>The country is required.</source>
+          <target state="new">The country is required.</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
