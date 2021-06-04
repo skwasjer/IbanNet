@@ -35,7 +35,7 @@ test_script:
 deploy:
 - provider: NuGet
   api_key:
-    secure: oy2fo7oknen2t6aocxvadkply6zwzigunhxw3fdv2cgswq
+    secure: t2/l0pnxGqkmSAUF/246qpdeu0BcGYZbcrTvgyKD8ksY5oSFyrya+mkl7E26h5iP
   on:
     branch:
     - master
