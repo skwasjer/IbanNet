@@ -12,9 +12,9 @@ namespace IbanNet.Registry
     /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
     /// </summary>
     /// <remarks>
-    /// Generated from: swift_iban_registry_202009.r88.txt
+    /// Generated from: swift_iban_registry_202103.r89.txt
     /// </remarks>
-    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r88")]
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r89")]
     public class SwiftRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -83,10 +83,10 @@ namespace IbanNet.Registry
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = true,
                 },
                 DomesticAccountNumberExample = "2030200359100100",
-                LastUpdatedDate = new DateTimeOffset(2009, 11, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
             // United Arab Emirates (The)
@@ -2892,7 +2892,7 @@ namespace IbanNet.Registry
                     IsMember = false,
                 },
                 DomesticAccountNumberExample = "00000000000000700025",
-                LastUpdatedDate = new DateTimeOffset(2019, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
             // Timor-Leste
