@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.3.1
+
+- Upgraded registry to March '21 release 89 (updated Andorra (AD) and El Salvador (SV))
+
 ## v4.3.0
 
 - Added .NET 5.0 target framework support ([benchmark](test/IbanNet.Benchmark/BenchmarkResults.md)).

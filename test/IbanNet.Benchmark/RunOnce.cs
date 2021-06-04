@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
 
 namespace IbanNet.Benchmark
 {
-    [SimpleJob(RuntimeMoniker.HostProcess)]
     [MarkdownExporterAttribute.GitHub]
     [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
     [MemoryDiagnoser]

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
 #if VALIDATOR_COMPARISONS
 using SinKien.IBAN4Net;
@@ -8,7 +7,6 @@ using SinKien.IBAN4Net;
 
 namespace IbanNet.Benchmark
 {
-    [SimpleJob(RuntimeMoniker.HostProcess)]
     [MarkdownExporterAttribute.GitHub]
     [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
     [MemoryDiagnoser]

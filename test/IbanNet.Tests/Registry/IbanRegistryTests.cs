@@ -69,9 +69,9 @@ namespace IbanNet.Registry
                         ValidationFactory = validationFactory,
                         Example = "2030",
                     },
-                    Sepa = new SepaInfo { IsMember = false, },
+                    Sepa = new SepaInfo { IsMember = true },
                     DomesticAccountNumberExample = "2030200359100100",
-                    LastUpdatedDate = new DateTimeOffset(2009, 11, 1, 0, 0, 0, TimeSpan.Zero)
+                    LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
                 }
             };
 
