@@ -51,7 +51,7 @@ namespace IbanNet
             return TryParse(value, out iban, out _, out _);
         }
 
-        internal bool TryParse(
+        private bool TryParse(
             string? value,
             [NotNullWhen(true)] out Iban? iban,
             [MaybeNullWhen(false)] out ValidationResult? validationResult,

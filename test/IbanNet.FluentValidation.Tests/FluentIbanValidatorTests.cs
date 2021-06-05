@@ -14,13 +14,15 @@ using Xunit;
 namespace IbanNet.FluentValidation
 {
     [Collection(nameof(SetsStaticValidator))]
-    public class FluentIbanValidatorTests : IbanTestFixture
+    public class FluentIbanValidatorTests
     {
+        private readonly IbanValidatorMock _ibanValidatorMock;
         private readonly FluentIbanValidator _sut;
 
         public FluentIbanValidatorTests()
         {
-            _sut = new FluentIbanValidator(IbanValidatorMock.Object);
+            _ibanValidatorMock = new IbanValidatorMock();
+            _sut = new FluentIbanValidator(_ibanValidatorMock);
         }
 
         public class When_validating_an_invalid_iban : FluentIbanValidatorTests
@@ -43,7 +45,7 @@ namespace IbanNet.FluentValidation
                 _sut.Validate(_propertyValidatorContext);
 
                 // Assert
-                IbanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
+                _ibanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
             }
 
             [Fact]
@@ -84,7 +86,7 @@ namespace IbanNet.FluentValidation
                 _sut.Validate(_propertyValidatorContext);
 
                 // Assert
-                IbanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
+                _ibanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
             }
 
             [Fact]
@@ -115,7 +117,7 @@ namespace IbanNet.FluentValidation
                 _sut.Validate(_propertyValidatorContext);
 
                 // Assert
-                IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
+                _ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
             }
 
             [Fact]
@@ -147,7 +149,7 @@ namespace IbanNet.FluentValidation
 
                 // Assert
                 act.Should().Throw<InvalidCastException>();
-                IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
+                _ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
             }
         }
 
