@@ -914,7 +914,7 @@ namespace IbanNet.Registry
                 {
                     Position = 4,
                     Length = 3,
-                    Structure = "",
+                    Structure = "3!n",
                     ValidationFactory = validationFactory,
                     Example = "123",
                 },
@@ -1451,7 +1451,7 @@ namespace IbanNet.Registry
                 {
                     Position = 4,
                     Length = 4,
-                    Structure = "4",
+                    Structure = "4!a",
                     ValidationFactory = validationFactory,
                     Example = "NBIQ",
                 },
@@ -1459,7 +1459,7 @@ namespace IbanNet.Registry
                 {
                     Position = 8,
                     Length = 3,
-                    Structure = "3",
+                    Structure = "3!n",
                     ValidationFactory = validationFactory,
                     Example = "850",
                 },
