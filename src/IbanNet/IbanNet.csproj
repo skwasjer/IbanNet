@@ -1,37 +1,31 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net5.0;netstandard1.2;netstandard1.6;netstandard2.0;netstandard2.1;net47;net45</TargetFrameworks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <PropertyGroup>
     <Description>Provides a strict International Bank Account Number (IBAN) validator, parser, builder and the Iban primitive type.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
-
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="IFluentInterface" Version="2.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard1'))">
     <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
   </ItemGroup>
-
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <PackageReference Include="CsvHelper" Version="15.0.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Registry\SwiftRegistryProvider.cs">
       <DesignTime>True</DesignTime>
@@ -44,19 +38,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Registry\SwiftRegistryProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SwiftRegistryProvider.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
 </Project>
