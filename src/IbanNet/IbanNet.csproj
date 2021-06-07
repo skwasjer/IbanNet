@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Registry\SwiftRegistryProvider.cs">
+    <Compile Update="Registry\Swift\SwiftRegistryProvider.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>SwiftRegistryProvider.tt</DependentUpon>
@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Registry\SwiftRegistryProvider.tt">
+    <None Update="Registry\Swift\SwiftRegistryProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SwiftRegistryProvider.cs</LastGenOutput>
     </None>

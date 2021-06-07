@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using IbanNet.Registry;
 
 namespace IbanNet.Validation
@@ -38,7 +39,7 @@ namespace IbanNet.Validation
             {
                 foreach (IbanCountry country in provider)
                 {
-                    if (!factories.ContainsKey(country.TwoLetterISORegionName))
+                    if (country.Iban.ValidationFactory is { } && !factories.ContainsKey(country.TwoLetterISORegionName))
                     {
                         factories.Add(country.TwoLetterISORegionName, country.Iban.ValidationFactory);
                     }

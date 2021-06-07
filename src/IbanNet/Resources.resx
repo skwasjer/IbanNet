@@ -167,4 +167,13 @@
     <data name="Exception_Builder_The_country_is_required" xml:space="preserve">
         <value>The country is required.</value>
     </data>
+    <data name="The_value_cannot_be_less_than_0" xml:space="preserve">
+        <value>The value cannot be less than {0}.</value>
+    </data>
+    <data name="The_value_cannot_be_less_than_or_equal_to_0" xml:space="preserve">
+        <value>The value cannot be less than or equal to {0}.</value>
+    </data>
+    <data name="Enum_value_0_should_be_defined_in_the_1_enum" xml:space="preserve">
+        <value>Enum value '{0}' should be defined in the '{1}' enum.</value>
+    </data>
 </root>

@@ -1,11 +1,14 @@
 ﻿using System;
 using FluentAssertions;
+using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Swift;
 using IbanNet.Validation;
+using Moq;
 using Xunit;
 
 namespace IbanNet.Registry
 {
-    public class StructureTests
+    public class StructureSectionTests
     {
         private class TestStructureSection : StructureSection
         {
@@ -16,11 +19,15 @@ namespace IbanNet.Registry
             public TestStructureSection(string structure) : base(structure, new NullStructureValidationFactory())
             {
             }
+
+            public TestStructureSection(Pattern pattern, int position) : base(pattern, position)
+            {
+            }
         }
 
         private readonly StructureSection _sut;
 
-        public StructureTests()
+        public StructureSectionTests()
         {
             _sut = new TestStructureSection();
         }
@@ -138,6 +145,54 @@ namespace IbanNet.Registry
                 .Throw<ArgumentOutOfRangeException>()
                 .Which.ParamName.Should()
                 .Be(nameof(value));
+        }
+
+        [Fact]
+        public void When_creating_structureSection_with_pattern_it_should_set_properties()
+        {
+            var pattern = new SwiftPattern("2!n");
+            const int position = 12;
+
+            // Act
+            StructureSection structure = new TestStructureSection(pattern, position);
+
+            // Assert
+            structure.Pattern.Should().BeSameAs(pattern);
+            structure.Length.Should().Be(2);
+            structure.Position.Should().Be(position);
+        }
+
+        [Fact]
+        public void When_creating_structureSection_with_null_pattern_it_should_throw()
+        {
+            Pattern pattern = null;
+
+            // Act
+            // ReSharper disable once ExpressionIsAlwaysNull
+            // ReSharper disable once ObjectCreationAsStatement
+            Action act = () => new TestStructureSection(pattern, 0);
+
+            // Assert
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(pattern));
+        }
+
+        [Fact]
+        public void When_creating_structureSection_with_invalid_position_it_should_throw()
+        {
+            const int position = -1;
+
+            // Act
+            // ReSharper disable once ObjectCreationAsStatement
+            Action act = () => new TestStructureSection(new SwiftPattern("2!n"), position);
+
+            // Assert
+            act.Should()
+                .ThrowExactly<ArgumentOutOfRangeException>()
+                .Which.ParamName.Should()
+                .Be(nameof(position));
         }
     }
 }

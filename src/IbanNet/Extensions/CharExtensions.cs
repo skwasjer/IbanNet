@@ -30,6 +30,11 @@ namespace IbanNet.Extensions
             return IsInRange(ch, 'a', 'z');
         }
 
+        public static bool IsLowerAsciiLetter(this char ch)
+        {
+            return IsInRange(ch, 'a', 'z');
+        }
+
         public static bool IsUpperAsciiLetter(this char ch)
         {
             return IsInRange(ch, 'A', 'Z');

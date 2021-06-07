@@ -33,10 +33,11 @@ namespace IbanNet.Validation
         [InlineData("XY2!n", "XY12", true)]
         [InlineData("XY3!n", "XY1234", false)]
         [InlineData("XY2!n", "XY1A", false)]
-        [InlineData("XY2n", "XY", true)]
+        [InlineData("XY2n", "XY", false)]
         [InlineData("XY2n", "XY1", true)]
         [InlineData("XY2n", "XY12", true)]
         [InlineData("XY2n", "XY123", false)]
+        [InlineData("XY8n6a", "XYAB", false)]
         [InlineData("CD1!a", "CDA", true)]
         [InlineData("AB1!a1!n", "ABA1", true)]
         [InlineData("AB3!c", "ABd1F", true)]
@@ -46,6 +47,7 @@ namespace IbanNet.Validation
         [InlineData("EF2n3!a2c", "EF12123e1", false)]
         [InlineData("EF2n3a2c", "EF12123e1", false)]
         [InlineData("EF2n3a3!c", "EF", false)]
+        [InlineData("EF2n3a", "EF12ABCD", false)]
         public void Given_pattern_it_should_decompose_into_tests(string pattern, string value, bool expectedResult)
         {
             // Act
@@ -57,20 +59,20 @@ namespace IbanNet.Validation
         }
 
         [Theory]
-        [InlineData("NL2!n", "NL12", true)]
-        [InlineData("NL2!n", "nl12", false)]
-        [InlineData("nL2!n", "nL12", true)]
-        [InlineData("nL2!n", "NL12", false)]
-        [InlineData("nl2!n", "nl12", true)]
-        [InlineData("nl2!n", "NL12", false)]
-        public void It_should_match_country_code_exactly(string pattern, string value, bool expectedResult)
+        [InlineData("NL2!n", "NL12")]
+        [InlineData("NL2!n", "nl12")]
+        [InlineData("nL2!n", "nL12")]
+        [InlineData("nL2!n", "NL12")]
+        [InlineData("nl2!n", "nl12")]
+        [InlineData("nl2!n", "NL12")]
+        public void Given_mixed_case_country_code_it_should_always_match(string pattern, string value)
         {
             // Act
             IStructureValidator validator = _sut.CreateValidator(string.Empty, pattern);
             bool result = validator.Validate(value);
 
             // Assert
-            result.Should().Be(expectedResult);
+            result.Should().BeTrue();
         }
     }
 }
