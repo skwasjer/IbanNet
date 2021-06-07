@@ -149,8 +149,8 @@
     <data name="One_or_more_providers_is_required" xml:space="preserve">
         <value>One or more providers is required.</value>
     </data>
-    <data name="ArgumentException_Builder_The_country_code_is_not_registered" xml:space="preserve">
-        <value>The country code is not registered.</value>
+    <data name="ArgumentException_The_country_code_0_is_not_registered" xml:space="preserve">
+        <value>The country code '{0}' is not registered.</value>
     </data>
     <data name="Exception_Builder_The_BBAN_cannot_be_built" xml:space="preserve">
         <value>The BBAN cannot be built.</value>

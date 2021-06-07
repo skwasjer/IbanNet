@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using IbanNet.Registry;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
@@ -50,6 +51,11 @@ namespace IbanNet.DependencyInjection.ServiceProvider
                 }
 
                 return validator;
+            });
+            services.TryAddTransient<IIbanGenerator>(s =>
+            {
+                IbanValidatorOptions options = s.GetRequiredService<IOptions<IbanValidatorOptions>>().Value;
+                return new IbanGenerator(options.Registry);
             });
 
             return services;
