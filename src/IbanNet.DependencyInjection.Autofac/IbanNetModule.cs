@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Core;
+using IbanNet.Registry;
 
 namespace IbanNet.DependencyInjection.Autofac
 {
@@ -65,6 +66,16 @@ namespace IbanNet.DependencyInjection.Autofac
                 .As<IIbanValidator>()
                 .IfNotRegistered(typeof(IIbanValidator))
                 .SingleInstance();
+
+            builder
+                .Register(context =>
+                {
+                    IbanValidatorOptions options = context.Resolve<IbanValidatorOptions>();
+                    return new IbanGenerator(options.Registry);
+                })
+                .As<IIbanGenerator>()
+                .IfNotRegistered(typeof(IIbanGenerator))
+                .InstancePerDependency();
         }
     }
 }
