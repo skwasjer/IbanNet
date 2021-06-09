@@ -17,7 +17,7 @@ namespace TestHelpers.Specs
         protected sealed override Task GivenAsync()
         {
             Given();
-#if NET45
+#if NET452
 			var cts = new TaskCompletionSource<object>();
 			cts.SetResult(null);
 			return cts.Task;

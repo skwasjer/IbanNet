@@ -3,7 +3,7 @@
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <WarningsAsErrors>NU1605;CS1591</WarningsAsErrors>
-    <DefineConstants Condition="'$(TargetFramework)'=='netstandard1.2' Or '$(TargetFramework)'=='net45'">$(DefineConstants);NET_LEGACY</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='netstandard1.2' Or '$(TargetFramework)'=='net452'">$(DefineConstants);NET_LEGACY</DefineConstants>
     <DefineConstants Condition="$(TargetFramework.StartsWith('net4')) Or $(TargetFramework.StartsWith('netstandard2')) Or '$(TargetFramework)'=='net5.0'">$(DefineConstants);SERIALIZABLE</DefineConstants>
   </PropertyGroup>
 
