@@ -27,16 +27,27 @@ namespace IbanNet.Registry.Patterns
                 .Select(CreateToken);
         }
 
-        private PatternToken CreateToken(string token)
+        private PatternToken CreateToken(string token, int pos)
         {
-            AsciiCategory asciiCategory = GetCategory(token);
-            int occurrences = GetLength(token, out bool isFixedLength);
-            if (asciiCategory == AsciiCategory.Other || occurrences <= 0)
+            try
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token), nameof(token));
-            }
+                AsciiCategory asciiCategory = GetCategory(token);
+                int occurrences = GetLength(token, out bool isFixedLength);
+                if (asciiCategory == AsciiCategory.Other || occurrences <= 0)
+                {
+                    throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token, pos));
+                }
 
-            return new PatternToken(asciiCategory, isFixedLength ? occurrences : 1, occurrences);
+                return new PatternToken(asciiCategory, isFixedLength ? occurrences : 1, occurrences);
+            }
+            catch (Exception ex) when (
+                ex is ArgumentException
+             || ex is InvalidOperationException
+             || ex is IndexOutOfRangeException
+                )
+            {
+                throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token, pos), ex);
+            }
         }
 
         protected abstract AsciiCategory GetCategory(string token);

@@ -135,7 +135,7 @@
         <value>The country code is unknown/not supported.</value>
     </data>
     <data name="ArgumentException_The_structure_segment_0_is_invalid" xml:space="preserve">
-        <value>The structure segment '{0}' is invalid.</value>
+        <value>The pattern segment '{0}' is invalid at position {1}.</value>
     </data>
     <data name="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" xml:space="preserve">
         <value>Expected alphanumeric character at position {0}, but found '{1}'.</value>

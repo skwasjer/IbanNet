@@ -48,6 +48,7 @@ namespace IbanNet.Registry.Patterns
         /// <summary>
         /// Gets the individual tokens describing the pattern.
         /// </summary>
+        /// <exception cref="PatternException">Thrown when the pattern is invalid.</exception>
         public IReadOnlyList<PatternToken> Tokens =>
             _tokens ??= new ReadOnlyCollection<PatternToken>(_tokenizer!.Tokenize(_pattern!).ToList());
 

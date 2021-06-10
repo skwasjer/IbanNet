@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using FluentAssertions;
+using IbanNet.Registry.Patterns;
 using IbanNet.Validation;
 using Xunit;
 
@@ -111,20 +112,20 @@ namespace IbanNet.Registry.Swift
         }
 
         [Theory]
-        [InlineData("A", "A")]
-        [InlineData("2z", "2z")]
-        [InlineData("2!n2z", "2z")]
-        public void Given_invalid_pattern_when_tokenizing_it_should_throw(string pattern, string token)
+        [InlineData("A", "A", 0)]
+        [InlineData("2z", "2z", 0)]
+        [InlineData("2!n2z", "2z", 1)]
+        public void Given_invalid_pattern_when_tokenizing_it_should_throw(string pattern, string token, int pos)
         {
             // Act
             Action act = () => _sut.Tokenize(pattern);
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentException>()
-                .WithMessage(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token) + "*")
-                .Which.ParamName.Should()
-                .Be(nameof(token));
+                .ThrowExactly<PatternException>()
+                .WithMessage(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token, pos) + "*")
+                .Which.InnerException.Should()
+                .BeNull();
         }
     }
 }

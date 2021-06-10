@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 namespace IbanNet {
     using System;
     using System.Reflection;
@@ -117,7 +116,7 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The structure segment &apos;{0}&apos; is invalid..
+        ///   Looks up a localized string similar to The pattern segment &apos;{0}&apos; is invalid at position {1}..
         /// </summary>
         internal static string ArgumentException_The_structure_segment_0_is_invalid {
             get {
