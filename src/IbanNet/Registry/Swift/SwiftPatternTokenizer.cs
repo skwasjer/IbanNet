@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using IbanNet.Extensions;
-using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry.Swift
 {

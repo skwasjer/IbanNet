@@ -1,4 +1,6 @@
-﻿namespace IbanNet.Registry.Swift
+﻿using IbanNet.Registry.Patterns;
+
+namespace IbanNet.Registry.Swift
 {
     internal class SwiftPattern : Pattern
     {

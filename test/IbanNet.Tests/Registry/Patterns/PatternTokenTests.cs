@@ -4,7 +4,7 @@ using System.ComponentModel;
 using FluentAssertions;
 using Xunit;
 
-namespace IbanNet.Registry.Parsing
+namespace IbanNet.Registry.Patterns
 {
     public class PatternTokenTests
     {

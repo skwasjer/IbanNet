@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using IbanNet.Extensions;
 
-namespace IbanNet.Registry.Parsing
+namespace IbanNet.Registry.Patterns
 {
     /// <summary>
     /// Defines a token that spans one or more characters of the same <see cref="AsciiCategory" />.

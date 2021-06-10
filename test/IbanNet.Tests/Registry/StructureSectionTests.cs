@@ -1,9 +1,8 @@
 ﻿using System;
 using FluentAssertions;
-using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Patterns;
 using IbanNet.Registry.Swift;
 using IbanNet.Validation;
-using Moq;
 using Xunit;
 
 namespace IbanNet.Registry

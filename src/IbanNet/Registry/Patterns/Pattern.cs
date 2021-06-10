@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Registry.Parsing;
 
-namespace IbanNet.Registry
+namespace IbanNet.Registry.Patterns
 {
     /// <summary>
     /// Encapsulates the pattern or subsection of a pattern of an IBAN or BBAN. Patterns consist of one or more tokens, each which describes the expected character and number of occurrences in that pattern.

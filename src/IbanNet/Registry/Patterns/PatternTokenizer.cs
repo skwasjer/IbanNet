@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using IbanNet.Extensions;
 
-namespace IbanNet.Registry.Parsing
+namespace IbanNet.Registry.Patterns
 {
     internal abstract class PatternTokenizer : ITokenizer<PatternToken>
     {

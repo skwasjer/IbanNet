@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using IbanNet.Registry;
-using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Validation
 {

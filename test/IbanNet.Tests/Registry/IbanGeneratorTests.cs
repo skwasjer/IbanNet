@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Patterns;
 using Xunit;
 using Xunit.Abstractions;
 

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using IbanNet.Registry.Patterns;
 using IbanNet.Validation;
 
 namespace IbanNet.Registry

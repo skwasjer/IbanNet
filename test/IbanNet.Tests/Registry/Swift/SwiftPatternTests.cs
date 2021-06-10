@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Patterns;
 using Xunit;
 
 namespace IbanNet.Registry.Swift

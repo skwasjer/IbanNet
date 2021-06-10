@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using IbanNet.Builders;
-using IbanNet.Registry.Parsing;
+using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry
 {

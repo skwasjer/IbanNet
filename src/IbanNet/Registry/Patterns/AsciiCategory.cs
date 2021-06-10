@@ -1,4 +1,4 @@
-﻿namespace IbanNet.Registry.Parsing
+﻿namespace IbanNet.Registry.Patterns
 {
     /// <summary>
     /// Defines the ASCII category of a character.
