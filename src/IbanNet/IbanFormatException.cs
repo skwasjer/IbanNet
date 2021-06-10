@@ -18,7 +18,7 @@ namespace IbanNet
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IbanFormatException" /> class using specified message and validation result.
+        /// Initializes a new instance of the <see cref="IbanFormatException" /> class using specified message.
         /// </summary>
         /// <param name="message">The error message.</param>
         public IbanFormatException(string message)
