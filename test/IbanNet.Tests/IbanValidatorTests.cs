@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
+using IbanNet.Registry.Wikipedia;
 using IbanNet.Validation;
 using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
@@ -166,102 +168,59 @@ namespace IbanNet
             }
         }
 
-        //public class Given_multiple_providers : IbanValidatorTests
-        //{
-        //    private readonly IbanValidator _sut;
-        //    private readonly Mock<IStructureValidationFactory>[] _structureFactoryMocks;
+        public class Given_multiple_providers : IbanValidatorTests
+        {
+            private readonly IbanValidator _sut;
 
-        //    public Given_multiple_providers()
-        //    {
-        //        var structureValidatorMock = new Mock<IStructureValidator>();
-        //        structureValidatorMock.Setup(m => m.Validate(It.IsAny<string>())).Returns(true);
+            private readonly IbanCountry _correctNlCountry = new IbanCountry("NL") { Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n")) };
+            private readonly IbanCountry _ignoredNlCountry = new IbanCountry("NL") { Iban = new IbanStructure(new IbanWikipediaPattern("50a")) };
+            private readonly IbanCountry _correctGbCountry = new IbanCountry("GB") { Iban = new IbanStructure(new IbanWikipediaPattern("4a,14n")) };
 
-        //        _structureFactoryMocks = new[]
-        //        {
-        //            new Mock<IStructureValidationFactory>(),
-        //            new Mock<IStructureValidationFactory>(),
-        //            new Mock<IStructureValidationFactory>()
-        //        };
-        //        foreach (Mock<IStructureValidationFactory> mock in _structureFactoryMocks)
-        //        {
-        //            mock
-        //                .Setup(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()))
-        //                .Returns(structureValidatorMock.Object);
-        //        }
+            private readonly List<IbanCountry> _countries;
 
-        //        _sut = new IbanValidator(new IbanValidatorOptions
-        //        {
-        //            Registry = new IbanRegistry
-        //            {
-        //                Providers =
-        //                {
-        //                    new IbanRegistryListProvider(
-        //                        new[]
-        //                        {
-        //                            new IbanCountry("NL")
-        //                            {
-        //                                Iban =
-        //                                {
-        //                                    Length = 18,
-        //                                    Structure = "structure1",
-        //                                    ValidationFactory = _structureFactoryMocks[0].Object
-        //                                }
-        //                            }
-        //                        }
-        //                    ),
-        //                    new IbanRegistryListProvider(
-        //                        new[]
-        //                        {
-        //                            new IbanCountry("NL")
-        //                            {
-        //                                Iban =
-        //                                {
-        //                                    Length = 18,
-        //                                    Structure = "structure2",
-        //                                    ValidationFactory = _structureFactoryMocks[1].Object
-        //                                }
-        //                            }
-        //                        }
-        //                    ),
-        //                    new IbanRegistryListProvider(
-        //                        new[]
-        //                        {
-        //                            new IbanCountry("GB")
-        //                            {
-        //                                Iban =
-        //                                {
-        //                                    Length = 22,
-        //                                    Structure = "structure3",
-        //                                    ValidationFactory = _structureFactoryMocks[2].Object
-        //                                }
-        //                            }
-        //                        }
-        //                    )
-        //                }
-        //            }
-        //        });
-        //    }
+            public Given_multiple_providers()
+            {
+                _countries = new List<IbanCountry>
+                {
+                    _correctNlCountry,
+                    _ignoredNlCountry,
+                    _correctGbCountry
+                };
 
-        //    [Theory]
-        //    [InlineData("NL91ABNA0417164300", "structure1", 0)]
-        //    [InlineData("GB29NWBK60161331926819", "structure3", 2)]
-        //    public void When_validating_it_should_use_structure_validator_of_first_provider_that_supports_the_country_code(string iban, string expectedStructure, int expectedMockCalled)
-        //    {
-        //        string expectedCountryCode = iban.Substring(0, 2);
+                _sut = new IbanValidator(new IbanValidatorOptions
+                {
+                    Registry = new IbanRegistry
+                    {
+                        Providers =
+                        {
+                            new IbanRegistryListProvider(
+                                new[]
+                                {
+                                    _correctNlCountry
+                                }
+                            ),
+                            new IbanRegistryListProvider(
+                                new[]
+                                {
+                                    _ignoredNlCountry,
+                                    _correctGbCountry
+                                }
+                            )
+                        }
+                    }
+                });
+            }
 
-        //        ValidationResult actual = _sut.Validate(iban);
+            [Theory]
+            [InlineData("NL91ABNA0417164300", 0)]
+            [InlineData("GB29NWBK60161331926819", 2)]
+            public void When_validating_it_should_use_structure_validator_of_first_provider_that_supports_the_country_code(string iban, int expectedCountryIndex)
+            {
+                ValidationResult actual = _sut.Validate(iban);
 
-        //        actual.IsValid.Should().BeTrue();
-        //        for (int i = 0; i < _structureFactoryMocks.Length; i++)
-        //        {
-        //            _structureFactoryMocks[i]
-        //                .Verify(m => m.CreateValidator(
-        //                        expectedCountryCode,
-        //                        expectedStructure),
-        //                    i == expectedMockCalled ? Times.Once() : Times.Never()
-        //                );
-        //        }
-        //    }
-        //}
+                actual.IsValid.Should().BeTrue();
+                actual.Country.Should().BeSameAs(_countries[expectedCountryIndex]);
+            }
+        }
     }
 }
