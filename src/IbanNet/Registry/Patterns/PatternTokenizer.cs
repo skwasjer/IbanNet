@@ -18,10 +18,15 @@ namespace IbanNet.Registry.Patterns
         /// <inheritdoc />
 #if USE_SPANS
         public virtual IEnumerable<PatternToken> Tokenize(ReadOnlySpan<char> input)
+        {
 #else
         public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
-#endif
         {
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+#endif
             return input
                 .PartitionOn(_partitionOn)
                 .Select(CreateToken)

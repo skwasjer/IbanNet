@@ -46,7 +46,7 @@ namespace IbanNet.Registry
                 {
                     DisplayName = "Andorra",
                     EnglishName = "Andorra",
-                    Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
+                    Iban = new IbanStructure(new IbanSwiftPattern("AD2!n4!n4!n12!c"))
                     {
                         Example = "AD1200012030200359100100",
                         EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -75,7 +75,7 @@ namespace IbanNet.Registry
                 {
                     DisplayName = "Kosovo",
                     EnglishName = "Kosovo",
-                    Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
+                    Iban = new IbanStructure(new IbanSwiftPattern("XK2!n4!n10!n2!n"))
                     {
                         Example = "XK051212012345678906",
                         EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)

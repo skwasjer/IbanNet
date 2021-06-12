@@ -49,8 +49,8 @@ namespace IbanNet.Registry.Swift
         }
 
         [Theory]
-        [InlineData("BG2!n4!a4!n2!n8!c", true)]
-        [InlineData("BG2!n4!a4!n2n8!c", false)]
+        [InlineData("2!n4!a4!n2!n8!c", true)]
+        [InlineData("2!n4!a4!n2n8!c", false)]
         [InlineData("4!n", true)]
         [InlineData("4n", false)]
         public void Given_pattern_when_getting_isFixedLength_it_should_return_expected(string pattern, bool expectedIsFixedLength)
@@ -66,10 +66,9 @@ namespace IbanNet.Registry.Swift
         {
             yield return new object[]
             {
-                "BG2!n4!a4!n2!n8!c",
+                "2!n4!a4!n2!n8!c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.Letter, 2),
                     new PatternToken(AsciiCategory.Digit, 2),
                     new PatternToken(AsciiCategory.UppercaseLetter, 4),
                     new PatternToken(AsciiCategory.Digit, 4),

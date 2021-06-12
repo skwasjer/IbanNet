@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using IbanNet.Extensions;
 using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry.Swift
@@ -15,76 +13,11 @@ namespace IbanNet.Registry.Swift
     /// </remarks>
     internal class SwiftPatternTokenizer : PatternTokenizer
     {
-        private const int CountryCodeLength = 2;
         private static readonly char[] TokenChars = { 'n', 'a', 'c', 'e' };
-        private static readonly PatternToken CountryCodeToken = new PatternToken(AsciiCategory.Letter, CountryCodeLength);
 
         internal SwiftPatternTokenizer() : base(TokenChars.Contains)
         {
         }
-
-#if USE_SPANS
-        public override IEnumerable<PatternToken> Tokenize(ReadOnlySpan<char> input)
-        {
-            var tokens = new List<PatternToken>();
-
-            // Swift pattern starts with country code (e.g. first 2 char is a letter)?
-            if (input.Length >= CountryCodeLength && input[0].IsAsciiLetter() && input[1].IsAsciiLetter())
-            {
-                tokens.Add(CountryCodeToken);
-                input = input.Slice(CountryCodeLength);
-            }
-
-            tokens.AddRange(base.Tokenize(input));
-            return tokens;
-        }
-#else
-        public override IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
-        {
-            if (input == null)
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
-
-            if (input is char[] charBuffer)
-            {
-                return PatternTokensIterator(charBuffer);
-            }
-
-            if (input is string stringBuffer)
-            {
-                charBuffer = stringBuffer.ToCharArray();
-            }
-            else
-            {
-                charBuffer = input.ToArray();
-            }
-
-            return PatternTokensIterator(charBuffer).ToList();
-        }
-
-        private IEnumerable<PatternToken> PatternTokensIterator(char[] input)
-        {
-            char[] tokenizerInput = input;
-
-            // Swift pattern starts with country code (e.g. first 2 char is a letter)?
-            if (input.Length >= CountryCodeLength && input[0].IsAsciiLetter() && input[1].IsAsciiLetter())
-            {
-                yield return CountryCodeToken;
-
-                tokenizerInput = new char[input.Length - CountryCodeLength];
-                if (tokenizerInput.Length > 0)
-                {
-                    Array.Copy(input, CountryCodeLength, tokenizerInput, 0, tokenizerInput.Length);
-                }
-            }
-
-            foreach (var token in base.Tokenize(tokenizerInput))
-            {
-                yield return token;
-            }
-        }
-#endif
 
         protected override AsciiCategory GetCategory(string token)
         {

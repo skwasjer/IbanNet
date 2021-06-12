@@ -103,7 +103,7 @@ namespace IbanNet.Registry
 
                     int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
 #>
-                Iban = new IbanStructure(new SwiftPattern("<#= row[17] #>"))
+                Iban = new IbanStructure(new IbanSwiftPattern("<#= row[17] #>"))
                 {
                     Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
                     EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)

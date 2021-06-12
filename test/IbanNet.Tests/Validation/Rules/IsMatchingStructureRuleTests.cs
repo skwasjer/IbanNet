@@ -31,7 +31,7 @@ namespace IbanNet.Validation.Rules
             const string testValue = "AD1200012030200359100100";
             var country = new IbanCountry("AD")
             {
-                Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern("AD2!n4!n4!n12!c"))
             };
 
             // Act
@@ -50,7 +50,7 @@ namespace IbanNet.Validation.Rules
             const string testValue = "XXXX";
             var country = new IbanCountry("NL")
             {
-                Iban = new IbanStructure(new SwiftPattern("NL2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern("NL2!n"))
             };
 
             // Act
