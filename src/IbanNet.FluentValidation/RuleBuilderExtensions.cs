@@ -26,7 +26,7 @@ namespace IbanNet.FluentValidation
                 throw new ArgumentNullException(nameof(ruleBuilder));
             }
 
-            return ruleBuilder.SetValidator(new FluentIbanValidator(ibanValidator));
+            return ruleBuilder.SetValidator(new FluentIbanValidator<T>(ibanValidator));
         }
     }
 }

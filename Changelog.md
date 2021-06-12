@@ -2,9 +2,15 @@
 
 ## v5.0.0
 
+## IbanNet
+
 - Removed deprecated contracts/code `IStructureValidationFactory`, `IStructureValidation`, `IStructureSection`. Use the `Pattern` abstraction for custom registry providers.
 - Removed `Iban.Parse`, `Iban.TryParse`, use the `IbanParser` class.
 - Added support for [more countries](./SupportedCountries.md) based on Wikipedia.
+
+### IbanNet.FluentValidation
+
+- Updated to FluentValidation v10.x, dropping .NET 4.6.1.
 
 ## v4.4.1
 
