@@ -40,8 +40,6 @@ namespace IbanNet.Registry
 
         public static IEnumerable<object[]> GetExpectedDefinitions()
         {
-            var tokenizer = new SwiftPatternTokenizer();
-
             yield return new object[]
             {
                 new IbanCountry("AD")
