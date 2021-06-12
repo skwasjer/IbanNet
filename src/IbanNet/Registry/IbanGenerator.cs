@@ -51,7 +51,7 @@ namespace IbanNet.Registry
             }
 
             Pattern? bbanPattern = country.Bban.Pattern;
-            if (bbanPattern is null)
+            if (bbanPattern is null || bbanPattern is NullPattern)
             {
                 throw new InvalidOperationException($"The country '{countryCode}' does not have a BBAN pattern.");
             }

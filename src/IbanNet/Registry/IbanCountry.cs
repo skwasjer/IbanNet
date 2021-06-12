@@ -92,7 +92,7 @@ namespace IbanNet.Registry
         [AllowNull]
         public BbanStructure Bban
         {
-            get => _bbanStructure ??= new BbanStructure();
+            get => _bbanStructure ??= new BbanStructure(NullPattern.Instance);
             set => _bbanStructure = value;
         }
 
@@ -102,7 +102,7 @@ namespace IbanNet.Registry
         [AllowNull]
         public IbanStructure Iban
         {
-            get => _ibanStructure ??= new IbanStructure();
+            get => _ibanStructure ??= new IbanStructure(NullPattern.Instance);
             set => _ibanStructure = value;
         }
 
@@ -112,7 +112,7 @@ namespace IbanNet.Registry
         [AllowNull]
         public BankStructure Bank
         {
-            get => _bankStructure ??= new BankStructure();
+            get => _bankStructure ??= new BankStructure(NullPattern.Instance);
             set => _bankStructure = value;
         }
 
@@ -122,7 +122,7 @@ namespace IbanNet.Registry
         [AllowNull]
         public BranchStructure Branch
         {
-            get => _branchStructure ??= new BranchStructure();
+            get => _branchStructure ??= new BranchStructure(NullPattern.Instance);
             set => _branchStructure = value;
         }
 

@@ -57,7 +57,7 @@ namespace IbanNet.Registry.Swift
         public void Given_valid_pattern_without_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult)
         {
             // Act
-            IStructureValidator validator = new StructureValidator(_sut.Tokenize(pattern));
+            var validator = new PatternValidator(new FakePattern(_sut.Tokenize(pattern)));
             bool result = validator.Validate(value);
 
             // Assert
@@ -87,7 +87,7 @@ namespace IbanNet.Registry.Swift
         public void Given_valid_pattern_with_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult)
         {
             // Act
-            IStructureValidator validator = new StructureValidator(_sut.Tokenize(pattern));
+            var validator = new PatternValidator(new FakePattern(_sut.Tokenize(pattern)));
             bool result = validator.Validate(value);
 
             // Assert
@@ -104,7 +104,7 @@ namespace IbanNet.Registry.Swift
         public void Given_mixed_case_country_code_it_should_always_match(string pattern, string value)
         {
             // Act
-            IStructureValidator validator = new StructureValidator(_sut.Tokenize(pattern));
+            var validator = new PatternValidator(new FakePattern(_sut.Tokenize(pattern)));
             bool result = validator.Validate(value);
 
             // Assert

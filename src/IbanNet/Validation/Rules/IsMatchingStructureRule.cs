@@ -1,6 +1,4 @@
-﻿using System;
-using IbanNet.Registry.Patterns;
-using IbanNet.Validation.Results;
+﻿using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
 {
@@ -9,13 +7,6 @@ namespace IbanNet.Validation.Rules
     /// </summary>
     internal sealed class IsMatchingStructureRule : IIbanValidationRule
     {
-        private readonly IStructureValidationFactory _structureValidationFactory;
-
-        public IsMatchingStructureRule(IStructureValidationFactory structureValidationFactory)
-        {
-            _structureValidationFactory = structureValidationFactory ?? throw new ArgumentNullException(nameof(structureValidationFactory));
-        }
-
         /// <inheritdoc />
         public ValidationRuleResult Validate(ValidationRuleContext context)
         {
@@ -24,20 +15,7 @@ namespace IbanNet.Validation.Rules
                 return new InvalidStructureResult();
             }
 
-            IStructureValidator validator;
-            Pattern? pattern = context.Country.Iban.Pattern;
-            if (pattern is null)
-            {
-                validator = _structureValidationFactory.CreateValidator(
-                    context.Country.TwoLetterISORegionName,
-                    context.Country.Iban.Structure
-                );
-            }
-            else
-            {
-                validator = new StructureValidator(pattern);
-            }
-
+            var validator = new PatternValidator(context.Country.Iban.Pattern);
             return validator.Validate(context.Value)
                 ? ValidationRuleResult.Success
                 : new InvalidStructureResult();

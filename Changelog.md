@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.0.0
+
+- Removed deprecated contracts/code `IStructureValidationFactory`, `IStructureValidation`, `IStructureSection`. Use the `Pattern` abstraction for custom registry providers.
+- Removed `Iban.Parse`, `Iban.TryParse`, use the `IbanParser` class.
+
 ## v4.4.1
 
 - `IIbanRegistry.TryGetValue` now supports case insensitive country codes.

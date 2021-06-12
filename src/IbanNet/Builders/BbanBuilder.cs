@@ -88,7 +88,7 @@ namespace IbanNet.Builders
             return new string(buffer);
         }
 
-        private static void CopyToBuffer(char[]? source, char[] destination, IStructureSection structure, bool padding, string countryCode, string name)
+        private static void CopyToBuffer(char[]? source, char[] destination, StructureSection structure, bool padding, string countryCode, string name)
         {
             const int relativeToIbanPos = 4;
 

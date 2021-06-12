@@ -4,26 +4,12 @@ using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Validation
 {
-    internal class StructureValidator : IStructureValidator
+    internal class PatternValidator
     {
         private readonly IReadOnlyList<PatternToken> _tokens;
         private readonly Func<string, bool> _validationFunc;
 
-        public StructureValidator(IEnumerable<PatternToken> tokens)
-        {
-            var tokenList = new List<PatternToken>();
-            bool fixedLength = true;
-            foreach (PatternToken token in tokens)
-            {
-                tokenList.Add(token);
-                fixedLength &= token.IsFixedLength;
-            }
-
-            _tokens = tokenList;
-            _validationFunc = GetValidationMethod(fixedLength);
-        }
-
-        public StructureValidator(Pattern pattern)
+        public PatternValidator(Pattern pattern)
         {
             _tokens = pattern.Tokens;
             _validationFunc = GetValidationMethod(pattern.IsFixedLength);

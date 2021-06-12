@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using IbanNet.Registry.Patterns;
-using IbanNet.Validation;
 
 namespace IbanNet.Registry
 {
@@ -11,21 +10,6 @@ namespace IbanNet.Registry
     [DebuggerStepThrough]
     public class IbanStructure : StructureSection
     {
-        internal IbanStructure()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IbanStructure" /> class using specified parameters.
-        /// </summary>
-        /// <param name="structure">The structure.</param>
-        /// <param name="structureValidationFactory">The structure validation factory.</param>
-        [Obsolete("Will be removed in v5.0. Use the overload accepting Pattern.")]
-        public IbanStructure(string structure, IStructureValidationFactory structureValidationFactory)
-            : base(structure, structureValidationFactory)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanStructure" /> class using specified parameters.
         /// </summary>

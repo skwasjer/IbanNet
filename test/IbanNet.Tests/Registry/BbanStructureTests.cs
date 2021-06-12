@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentAssertions;
-using IbanNet.Validation;
+using IbanNet.Registry.Patterns;
 using Xunit;
 
 namespace IbanNet.Registry
@@ -8,37 +8,19 @@ namespace IbanNet.Registry
     public class BbanStructureTests
     {
         [Fact]
-        public void When_creating_with_null_structure_it_should_throw()
+        public void When_creating_with_null_pattern_it_should_throw()
         {
-            string structure = null;
+            Pattern pattern = null;
 
             // Act
-            // ReSharper disable once ObjectCreationAsStatement
             // ReSharper disable once AssignNullToNotNullAttribute
-            Func<BbanStructure> act = () => new BbanStructure(structure, new NullStructureValidationFactory());
+            Func<BbanStructure> act = () => new BbanStructure(pattern);
 
             // Assert
             act.Should()
                 .Throw<ArgumentNullException>()
                 .Which.ParamName.Should()
-                .Be(nameof(structure));
-        }
-
-        [Fact]
-        public void When_creating_with_null_structure_validation_factory_it_should_throw()
-        {
-            IStructureValidationFactory structureValidationFactory = null;
-
-            // Act
-            // ReSharper disable once ObjectCreationAsStatement
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<BbanStructure> act = () => new BbanStructure(string.Empty, structureValidationFactory);
-
-            // Assert
-            act.Should()
-                .Throw<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(structureValidationFactory));
+                .Be(nameof(pattern));
         }
     }
 }

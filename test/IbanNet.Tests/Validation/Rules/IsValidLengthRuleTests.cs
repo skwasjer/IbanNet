@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Registry.Patterns;
 using IbanNet.Validation.Results;
 using Xunit;
 
@@ -24,7 +25,7 @@ namespace IbanNet.Validation.Rules
             {
                 Country = new IbanCountry("XX")
                 {
-                    Iban = { Length = 10 }
+                    Iban = new IbanStructure(new FakePattern(new [] { new PatternToken(AsciiCategory.Digit, 10) }))
                 }
             };
 
@@ -43,7 +44,7 @@ namespace IbanNet.Validation.Rules
             {
                 Country = new IbanCountry("XX")
                 {
-                    Iban = { Length = 10 }
+                    Iban = new IbanStructure(new FakePattern(new [] { new PatternToken(AsciiCategory.Digit, 10) }))
                 }
             };
 

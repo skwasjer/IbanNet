@@ -193,16 +193,5 @@ namespace IbanNet.Registry.Patterns
                 throw new NotImplementedException();
             }
         }
-
-        private class FakePattern : Pattern
-        {
-            public FakePattern(string pattern, ITokenizer<PatternToken> tokenizer) : base(pattern, tokenizer)
-            {
-            }
-
-            public FakePattern(IEnumerable<PatternToken> tokens) : base(tokens)
-            {
-            }
-        }
     }
 }
