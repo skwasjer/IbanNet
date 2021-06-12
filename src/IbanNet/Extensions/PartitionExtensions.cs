@@ -72,7 +72,7 @@ namespace IbanNet.Extensions
                 throw new ArgumentException(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required, nameof(chars));
             }
 
-            return PartitionOnIterator(sequence, chars.Contains);
+            return PartitionOn(sequence, chars.Contains);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace IbanNet.Extensions
             var partition = new StringBuilder();
 
             int len = sequence.Length;
-            for (var index = 0; index < len; index++)
+            for (int index = 0; index < len; index++)
             {
                 char item = sequence[index];
                 partition.Append(item);
