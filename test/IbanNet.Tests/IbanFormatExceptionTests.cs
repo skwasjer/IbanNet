@@ -1,7 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
@@ -29,7 +26,7 @@ namespace IbanNet
 
 #if NETFRAMEWORK || NETCOREAPP3_0 || NETCOREAPP3_1 || NET5_0
         [Fact]
-        public void Given_validation_result_it_should_serialize_and_deserialize_and_ignore_result()
+        public void Given_exception_with_parameters_it_should_serialize_and_deserialize()
         {
             new IbanRegistry().TryGetValue("NL", out IbanCountry ibanCountry);
 

@@ -1,8 +1,11 @@
-﻿namespace IbanNet.Validation
+﻿using System;
+
+namespace IbanNet.Validation
 {
     /// <summary>
     /// Describes a validator that validates a specific IBAN.
     /// </summary>
+    [Obsolete("Will be removed in v5.0. For custom patterns, switch to Pattern/ITokenizer.")]
     public interface IStructureValidator
     {
         /// <summary>

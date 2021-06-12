@@ -1,8 +1,11 @@
-﻿namespace IbanNet.Registry
+﻿using System;
+
+namespace IbanNet.Registry
 {
     /// <summary>
     /// Describes a section of a structure.
     /// </summary>
+    [Obsolete("Will be removed in v5.0.")]
     public interface IStructureSection
     {
         /// <summary>

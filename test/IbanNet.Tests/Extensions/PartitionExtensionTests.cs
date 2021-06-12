@@ -109,5 +109,47 @@ namespace IbanNet.Extensions
             // Assert
             actual.Should().BeEquivalentTo(expectedPartitions, opts => opts.WithStrictOrdering());
         }
+
+        [Fact]
+        public void Given_that_when_is_null_when_partitioning_it_should_throw()
+        {
+            Func<char, bool> when = null;
+
+            // Act
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () =>
+            {
+#if USE_SPANS
+                ReadOnlySpan<char> sequence = string.Empty;
+#else
+            string sequence = string.Empty;
+#endif
+                sequence.PartitionOn(when);
+            };
+
+            // Assert
+            act.Should()
+                .Throw<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(when));
+        }
+
+#if !USE_SPANS
+        [Fact]
+        public void Given_that_sequence_is_null_when_partitioning_it_should_throw()
+        {
+            char[] sequence = null;
+
+            // Act
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => sequence.PartitionOn(c => false);
+
+            // Assert
+            act.Should()
+                .Throw<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(sequence));
+        }
+#endif
     }
 }

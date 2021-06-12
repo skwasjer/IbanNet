@@ -135,7 +135,7 @@
         <value>The country code is unknown/not supported.</value>
     </data>
     <data name="ArgumentException_The_structure_segment_0_is_invalid" xml:space="preserve">
-        <value>The structure segment '{0}' is invalid.</value>
+        <value>The pattern segment '{0}' is invalid at position {1}.</value>
     </data>
     <data name="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" xml:space="preserve">
         <value>Expected alphanumeric character at position {0}, but found '{1}'.</value>
@@ -149,8 +149,8 @@
     <data name="One_or_more_providers_is_required" xml:space="preserve">
         <value>One or more providers is required.</value>
     </data>
-    <data name="ArgumentException_Builder_The_country_code_is_not_registered" xml:space="preserve">
-        <value>The country code is not registered.</value>
+    <data name="ArgumentException_The_country_code_0_is_not_registered" xml:space="preserve">
+        <value>The country code '{0}' is not registered.</value>
     </data>
     <data name="Exception_Builder_The_BBAN_cannot_be_built" xml:space="preserve">
         <value>The BBAN cannot be built.</value>
@@ -166,5 +166,14 @@
     </data>
     <data name="Exception_Builder_The_country_is_required" xml:space="preserve">
         <value>The country is required.</value>
+    </data>
+    <data name="The_value_cannot_be_less_than_0" xml:space="preserve">
+        <value>The value cannot be less than {0}.</value>
+    </data>
+    <data name="The_value_cannot_be_less_than_or_equal_to_0" xml:space="preserve">
+        <value>The value cannot be less than or equal to {0}.</value>
+    </data>
+    <data name="Enum_value_0_should_be_defined_in_the_1_enum" xml:space="preserve">
+        <value>Enum value '{0}' should be defined in the '{1}' enum.</value>
     </data>
 </root>

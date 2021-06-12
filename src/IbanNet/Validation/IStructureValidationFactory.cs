@@ -1,8 +1,11 @@
-﻿namespace IbanNet.Validation
+﻿using System;
+
+namespace IbanNet.Validation
 {
     /// <summary>
     /// Describes a factory which is used to build a validator from a defined pattern/structure.
     /// </summary>
+    [Obsolete("Will be removed in v5.0. For custom patterns, switch to Pattern/ITokenizer.")]
     public interface IStructureValidationFactory
     {
         /// <summary>

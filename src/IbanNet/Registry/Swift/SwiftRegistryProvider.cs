@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Validation;
+using IbanNet.Registry.Swift;
 
 namespace IbanNet.Registry
 {
@@ -39,8 +39,6 @@ namespace IbanNet.Registry
 
         private static IEnumerable<IbanCountry> Load()
         {
-            var validationFactory = new SwiftStructureValidationFactory();
-
             // ReSharper disable CommentTypo
             // ReSharper disable StringLiteralTypo
 
@@ -49,37 +47,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Andorra",
                 EnglishName = "Andorra",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
                 {
-                    Length = 24,
-                    Structure = "AD2!n4!n4!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "AD1200012030200359100100",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!n4!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "00012030200359100100"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0001",
+                    Example = "0001"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "2030",
+                    Example = "2030"
                 },
                 Sepa = new SepaInfo
                 {
@@ -94,29 +77,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "United Arab Emirates (The)",
                 EnglishName = "United Arab Emirates (The)",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("AE2!n3!n16!n"))
                 {
-                    Length = 23,
-                    Structure = "AE2!n3!n16!n",
-                    ValidationFactory = validationFactory,
                     Example = "AE070331234567890123456",
                     EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n16!n"), 4)
                 {
-                    Position = 4,
-                    Length = 19,
-                    Structure = "3!n16!n",
-                    ValidationFactory = validationFactory,
                     Example = "0331234567890123456"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "033",
+                    Example = "033"
                 },
                 Sepa = new SepaInfo
                 {
@@ -131,37 +103,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Albania",
                 EnglishName = "Albania",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("AL2!n8!n16!c"))
                 {
-                    Length = 28,
-                    Structure = "AL2!n8!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "AL47212110090000000235698741",
                     EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("8!n16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "8!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "212110090000000235698741"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("8!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "8!n",
-                    ValidationFactory = validationFactory,
-                    Example = "21211009",
+                    Example = "21211009"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 7)
                 {
-                    Position = 7,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "1100",
+                    Example = "1100"
                 },
                 Sepa = new SepaInfo
                 {
@@ -176,29 +133,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Austria",
                 EnglishName = "Austria",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("AT2!n5!n11!n"))
                 {
-                    Length = 20,
-                    Structure = "AT2!n5!n11!n",
-                    ValidationFactory = validationFactory,
                     Example = "AT611904300234573201",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n11!n"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "5!n11!n",
-                    ValidationFactory = validationFactory,
                     Example = "1904300234573201"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "19043",
+                    Example = "19043"
                 },
                 Sepa = new SepaInfo
                 {
@@ -213,29 +159,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Azerbaijan",
                 EnglishName = "Azerbaijan",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("AZ2!n4!a20!c"))
                 {
-                    Length = 28,
-                    Structure = "AZ2!n4!a20!c",
-                    ValidationFactory = validationFactory,
                     Example = "AZ21NABZ00000000137010001944",
                     EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a20!c"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "4!a20!c",
-                    ValidationFactory = validationFactory,
                     Example = "NABZ00000000137010001944"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "NABZ",
+                    Example = "NABZ"
                 },
                 Sepa = new SepaInfo
                 {
@@ -250,37 +185,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Bosnia and Herzegovina",
                 EnglishName = "Bosnia and Herzegovina",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("BA2!n3!n3!n8!n2!n"))
                 {
-                    Length = 20,
-                    Structure = "BA2!n3!n3!n8!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "BA391290079401028494",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n3!n8!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "3!n3!n8!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "1990440001200279"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "199",
+                    Example = "199"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("3!n"), 7)
                 {
-                    Position = 7,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "044",
+                    Example = "044"
                 },
                 Sepa = new SepaInfo
                 {
@@ -295,29 +215,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Belgium",
                 EnglishName = "Belgium",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("BE2!n3!n7!n2!n"))
                 {
-                    Length = 16,
-                    Structure = "BE2!n3!n7!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "BE68539007547034",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n7!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 12,
-                    Structure = "3!n7!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "539007547034"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "539",
+                    Example = "539"
                 },
                 Sepa = new SepaInfo
                 {
@@ -332,37 +241,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Bulgaria",
                 EnglishName = "Bulgaria",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("BG2!n4!a4!n2!n8!c"))
                 {
-                    Length = 22,
-                    Structure = "BG2!n4!a4!n2!n8!c",
-                    ValidationFactory = validationFactory,
                     Example = "BG80BNBG96611020345678",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a4!n2!n8!c"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "4!a4!n2!n8!c",
-                    ValidationFactory = validationFactory,
                     Example = "BNBG96611020345678"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "BNBG",
+                    Example = "BNBG"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "9661",
+                    Example = "9661"
                 },
                 Sepa = new SepaInfo
                 {
@@ -377,29 +271,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Bahrain",
                 EnglishName = "Bahrain",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("BH2!n4!a14!c"))
                 {
-                    Length = 22,
-                    Structure = "BH2!n4!a14!c",
-                    ValidationFactory = validationFactory,
                     Example = "BH67BMAG00001299123456",
                     EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a14!c"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "4!a14!c",
-                    ValidationFactory = validationFactory,
                     Example = "BMAG00001299123456"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "BMAG",
+                    Example = "BMAG"
                 },
                 Sepa = new SepaInfo
                 {
@@ -414,37 +297,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Brazil",
                 EnglishName = "Brazil",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("BR2!n8!n5!n10!n1!a1!c"))
                 {
-                    Length = 29,
-                    Structure = "BR2!n8!n5!n10!n1!a1!c",
-                    ValidationFactory = validationFactory,
                     Example = "BR1800360305000010009795493C1",
                     EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("8!n5!n10!n1!a1!c"), 4)
                 {
-                    Position = 4,
-                    Length = 25,
-                    Structure = "8!n5!n10!n1!a1!c",
-                    ValidationFactory = validationFactory,
                     Example = "00360305000010009795493P1"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("8!n"), 4)
                 {
-                    Position = 4,
-                    Length = 8,
-                    Structure = "8!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00360305",
+                    Example = "00360305"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 12)
                 {
-                    Position = 12,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00001",
+                    Example = "00001"
                 },
                 Sepa = new SepaInfo
                 {
@@ -459,29 +327,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Republic of Belarus",
                 EnglishName = "Republic of Belarus",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("BY2!n4!c4!n16!c"))
                 {
-                    Length = 28,
-                    Structure = "BY2!n4!c4!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "BY13NBRB3600900000002Z00AB00",
                     EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!c4!n16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "4!c4!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "NBRB3600900000002Z00AB00"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!c"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!c",
-                    ValidationFactory = validationFactory,
-                    Example = "NBRB",
+                    Example = "NBRB"
                 },
                 Sepa = new SepaInfo
                 {
@@ -496,29 +353,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Switzerland",
                 EnglishName = "Switzerland",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("CH2!n5!n12!c"))
                 {
-                    Length = 21,
-                    Structure = "CH2!n5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "CH9300762011623852957",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n12!c"), 4)
                 {
-                    Position = 4,
-                    Length = 17,
-                    Structure = "5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "00762011623852957"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00762",
+                    Example = "00762"
                 },
                 Sepa = new SepaInfo
                 {
@@ -533,29 +379,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Costa Rica",
                 EnglishName = "Costa Rica",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("CR2!n4!n14!n"))
                 {
-                    Length = 22,
-                    Structure = "CR2!n4!n14!n",
-                    ValidationFactory = validationFactory,
                     Example = "CR05015202001026284066",
                     EffectiveDate = new DateTimeOffset(2011, 6, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n14!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "4!n14!n",
-                    ValidationFactory = validationFactory,
                     Example = "15202001026284066"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0152",
+                    Example = "0152"
                 },
                 Sepa = new SepaInfo
                 {
@@ -570,37 +405,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Cyprus",
                 EnglishName = "Cyprus",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("CY2!n3!n5!n16!c"))
                 {
-                    Length = 28,
-                    Structure = "CY2!n3!n5!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "CY17002001280000001200527600",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n5!n16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "3!n5!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "002001280000001200527600"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "002",
+                    Example = "002"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 7)
                 {
-                    Position = 7,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00128",
+                    Example = "00128"
                 },
                 Sepa = new SepaInfo
                 {
@@ -615,29 +435,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Czechia",
                 EnglishName = "Czechia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("CZ2!n4!n6!n10!n"))
                 {
-                    Length = 24,
-                    Structure = "CZ2!n4!n6!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "CZ6508000000192000145399",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n6!n10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!n6!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "08000000192000145399"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0800",
+                    Example = "0800"
                 },
                 Sepa = new SepaInfo
                 {
@@ -652,29 +461,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Germany",
                 EnglishName = "Germany",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("DE2!n8!n10!n"))
                 {
-                    Length = 22,
-                    Structure = "DE2!n8!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "DE89370400440532013000",
                     EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("8!n10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "8!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "370400440532013000"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("8!n"), 4)
                 {
-                    Position = 4,
-                    Length = 8,
-                    Structure = "8!n",
-                    ValidationFactory = validationFactory,
-                    Example = "37040044",
+                    Example = "37040044"
                 },
                 Sepa = new SepaInfo
                 {
@@ -689,29 +487,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Denmark",
                 EnglishName = "Denmark",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("DK2!n4!n9!n1!n"))
                 {
-                    Length = 18,
-                    Structure = "DK2!n4!n9!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "DK5000400440116243",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 14,
-                    Structure = "4!n9!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "00400440116243"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0040",
+                    Example = "0040"
                 },
                 Sepa = new SepaInfo
                 {
@@ -726,29 +513,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Dominican Republic",
                 EnglishName = "Dominican Republic",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("DO2!n4!c20!n"))
                 {
-                    Length = 28,
-                    Structure = "DO2!n4!c20!n",
-                    ValidationFactory = validationFactory,
                     Example = "DO28BAGR00000001212453611324",
                     EffectiveDate = new DateTimeOffset(2010, 12, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!c20!n"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "4!c20!n",
-                    ValidationFactory = validationFactory,
                     Example = "BAGR00000001212453611324"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!c"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!c",
-                    ValidationFactory = validationFactory,
-                    Example = "BAGR",
+                    Example = "BAGR"
                 },
                 Sepa = new SepaInfo
                 {
@@ -763,29 +539,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Estonia",
                 EnglishName = "Estonia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("EE2!n2!n2!n11!n1!n"))
                 {
-                    Length = 20,
-                    Structure = "EE2!n2!n2!n11!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "EE382200221020145685",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("2!n2!n11!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "2!n2!n11!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "2200221020145685"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "22",
+                    Example = "22"
                 },
                 Sepa = new SepaInfo
                 {
@@ -800,37 +565,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Egypt",
                 EnglishName = "Egypt",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("EG2!n4!n4!n17!n"))
                 {
-                    Length = 29,
-                    Structure = "EG2!n4!n4!n17!n",
-                    ValidationFactory = validationFactory,
                     Example = "EG380019000500000000263180002",
                     EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n4!n17!n"), 4)
                 {
-                    Position = 4,
-                    Length = 25,
-                    Structure = "4!n4!n17!n",
-                    ValidationFactory = validationFactory,
                     Example = "0019000500000000263180002"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0019",
+                    Example = "0019"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0005",
+                    Example = "0005"
                 },
                 Sepa = new SepaInfo
                 {
@@ -845,37 +595,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Spain",
                 EnglishName = "Spain",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("ES2!n4!n4!n1!n1!n10!n"))
                 {
-                    Length = 24,
-                    Structure = "ES2!n4!n4!n1!n1!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "ES9121000418450200051332",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n4!n1!n1!n10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!n4!n1!n1!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "21000418450200051332"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "2100",
+                    Example = "2100"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0418",
+                    Example = "0418"
                 },
                 Sepa = new SepaInfo
                 {
@@ -894,29 +629,18 @@ namespace IbanNet.Registry
                 {
                     "fi-AX"
                 },
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("FI2!n3!n11!n"))
                 {
-                    Length = 18,
-                    Structure = "FI2!n3!n11!n",
-                    ValidationFactory = validationFactory,
                     Example = "FI2112345600000785",
                     EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n11!n"), 4)
                 {
-                    Position = 4,
-                    Length = 14,
-                    Structure = "3!n11!n",
-                    ValidationFactory = validationFactory,
                     Example = ""
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "",
-                    ValidationFactory = validationFactory,
-                    Example = "123",
+                    Example = "123"
                 },
                 Sepa = new SepaInfo
                 {
@@ -935,29 +659,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Faroe Islands",
                 EnglishName = "Faroe Islands",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("FO2!n4!n9!n1!n"))
                 {
-                    Length = 18,
-                    Structure = "FO2!n4!n9!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "FO6264600001631634",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 14,
-                    Structure = "4!n9!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "64600001631634"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "6460",
+                    Example = "6460"
                 },
                 Sepa = new SepaInfo
                 {
@@ -976,29 +689,18 @@ namespace IbanNet.Registry
                 {
                     "fr-GF", "fr-GP", "fr-MQ", "fr-RE", "fr-PF", "fr-TF", "fr-YT", "fr-NC", "fr-BL", "fr-MF", "fr-PM", "fr-WF"
                 },
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("FR2!n5!n5!n11!c2!n"))
                 {
-                    Length = 27,
-                    Structure = "FR2!n5!n5!n11!c2!n",
-                    ValidationFactory = validationFactory,
                     Example = "FR1420041010050500013M02606",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n5!n11!c2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 23,
-                    Structure = "5!n5!n11!c2!n",
-                    ValidationFactory = validationFactory,
                     Example = "20041010050500013M02606"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "20041",
+                    Example = "20041"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1021,37 +723,22 @@ namespace IbanNet.Registry
                 {
                     "gb-IM", "gb-JE", "gb-GG"
                 },
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("GB2!n4!a6!n8!n"))
                 {
-                    Length = 22,
-                    Structure = "GB2!n4!a6!n8!n",
-                    ValidationFactory = validationFactory,
                     Example = "GB29NWBK60161331926819",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a6!n8!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "4!a6!n8!n",
-                    ValidationFactory = validationFactory,
                     Example = "NWBK60161331926819"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "NWBK",
+                    Example = "NWBK"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("6!n"), 8)
                 {
-                    Position = 8,
-                    Length = 6,
-                    Structure = "6!n",
-                    ValidationFactory = validationFactory,
-                    Example = "601613",
+                    Example = "601613"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1066,29 +753,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Georgia",
                 EnglishName = "Georgia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("GE2!n2!a16!n"))
                 {
-                    Length = 22,
-                    Structure = "GE2!n2!a16!n",
-                    ValidationFactory = validationFactory,
                     Example = "GE29NB0000000101904917",
                     EffectiveDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("2!a16!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "2!a16!n",
-                    ValidationFactory = validationFactory,
                     Example = "NB0000000101904917"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!a"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!a",
-                    ValidationFactory = validationFactory,
-                    Example = "NB",
+                    Example = "NB"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1103,29 +779,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Gibraltar",
                 EnglishName = "Gibraltar",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("GI2!n4!a15!c"))
                 {
-                    Length = 23,
-                    Structure = "GI2!n4!a15!c",
-                    ValidationFactory = validationFactory,
                     Example = "GI75NWBK000000007099453",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a15!c"), 4)
                 {
-                    Position = 4,
-                    Length = 19,
-                    Structure = "4!a15!c",
-                    ValidationFactory = validationFactory,
                     Example = "NWBK000000007099453"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "NWBK",
+                    Example = "NWBK"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1140,29 +805,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Greenland",
                 EnglishName = "Greenland",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("GL2!n4!n9!n1!n"))
                 {
-                    Length = 18,
-                    Structure = "GL2!n4!n9!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "GL8964710001000206",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 14,
-                    Structure = "4!n9!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "64710001000206"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "6471",
+                    Example = "6471"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1177,37 +831,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Greece",
                 EnglishName = "Greece",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("GR2!n3!n4!n16!c"))
                 {
-                    Length = 27,
-                    Structure = "GR2!n3!n4!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "GR1601101250000000012300695",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n4!n16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 23,
-                    Structure = "3!n4!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "01101250000000012300695"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "011",
+                    Example = "011"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 7)
                 {
-                    Position = 7,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0125",
+                    Example = "0125"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1222,29 +861,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Guatemala",
                 EnglishName = "Guatemala",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("GT2!n4!c20!c"))
                 {
-                    Length = 28,
-                    Structure = "GT2!n4!c20!c",
-                    ValidationFactory = validationFactory,
                     Example = "GT82TRAJ01020000001210029690",
                     EffectiveDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!c20!c"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "4!c20!c",
-                    ValidationFactory = validationFactory,
                     Example = "TRAJ01020000001210029690"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!c"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!c",
-                    ValidationFactory = validationFactory,
-                    Example = "TRAJ",
+                    Example = "TRAJ"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1259,29 +887,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Croatia",
                 EnglishName = "Croatia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("HR2!n7!n10!n"))
                 {
-                    Length = 21,
-                    Structure = "HR2!n7!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "HR1210010051863000160",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("7!n10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 17,
-                    Structure = "7!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "10010051863000160"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("7!n"), 4)
                 {
-                    Position = 4,
-                    Length = 7,
-                    Structure = "7!n",
-                    ValidationFactory = validationFactory,
-                    Example = "1001005",
+                    Example = "1001005"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1296,37 +913,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Hungary",
                 EnglishName = "Hungary",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("HU2!n3!n4!n1!n15!n1!n"))
                 {
-                    Length = 28,
-                    Structure = "HU2!n3!n4!n1!n15!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "HU42117730161111101800000000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n4!n1!n15!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "3!n4!n1!n15!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "117730161111101800000000"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "117",
+                    Example = "117"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 7)
                 {
-                    Position = 7,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "7301",
+                    Example = "7301"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1341,37 +943,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Ireland",
                 EnglishName = "Ireland",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("IE2!n4!a6!n8!n"))
                 {
-                    Length = 22,
-                    Structure = "IE2!n4!a6!n8!n",
-                    ValidationFactory = validationFactory,
                     Example = "IE29AIBK93115212345678",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a6!n8!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "4!a6!n8!n",
-                    ValidationFactory = validationFactory,
                     Example = "AIBK93115212345678"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "AIBK",
+                    Example = "AIBK"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("6!n"), 8)
                 {
-                    Position = 8,
-                    Length = 6,
-                    Structure = "6!n",
-                    ValidationFactory = validationFactory,
-                    Example = "931152",
+                    Example = "931152"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1386,37 +973,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Israel",
                 EnglishName = "Israel",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("IL2!n3!n3!n13!n"))
                 {
-                    Length = 23,
-                    Structure = "IL2!n3!n3!n13!n",
-                    ValidationFactory = validationFactory,
                     Example = "IL620108000000099999999",
                     EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n3!n13!n"), 4)
                 {
-                    Position = 4,
-                    Length = 19,
-                    Structure = "3!n3!n13!n",
-                    ValidationFactory = validationFactory,
                     Example = "010800000099999999"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "010",
+                    Example = "010"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("3!n"), 7)
                 {
-                    Position = 7,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "800",
+                    Example = "800"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1431,37 +1003,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Iraq",
                 EnglishName = "Iraq",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("IQ2!n4!a3!n12!n"))
                 {
-                    Length = 23,
-                    Structure = "IQ2!n4!a3!n12!n",
-                    ValidationFactory = validationFactory,
                     Example = "IQ98NBIQ850123456789012",
                     EffectiveDate = new DateTimeOffset(2017, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a3!n12!n"), 4)
                 {
-                    Position = 4,
-                    Length = 19,
-                    Structure = "4!a3!n12!n",
-                    ValidationFactory = validationFactory,
                     Example = "NBIQ850123456789012"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4",
-                    ValidationFactory = validationFactory,
-                    Example = "NBIQ",
+                    Example = "NBIQ"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("3!n"), 8)
                 {
-                    Position = 8,
-                    Length = 3,
-                    Structure = "3",
-                    ValidationFactory = validationFactory,
-                    Example = "850",
+                    Example = "850"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1476,37 +1033,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Iceland",
                 EnglishName = "Iceland",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("IS2!n4!n2!n6!n10!n"))
                 {
-                    Length = 26,
-                    Structure = "IS2!n4!n2!n6!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "IS140159260076545510730339",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n2!n6!n10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 22,
-                    Structure = "4!n2!n6!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "0159260076545510730339"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "01",
+                    Example = "01"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("2!n"), 6)
                 {
-                    Position = 6,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "59",
+                    Example = "59"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1521,37 +1063,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Italy",
                 EnglishName = "Italy",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("IT2!n1!a5!n5!n12!c"))
                 {
-                    Length = 27,
-                    Structure = "IT2!n1!a5!n5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "IT60X0542811101000000123456",
                     EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("1!a5!n5!n12!c"), 4)
                 {
-                    Position = 4,
-                    Length = 23,
-                    Structure = "1!a5!n5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "X0542811101000000123456"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 5)
                 {
-                    Position = 5,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "05428",
+                    Example = "05428"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 10)
                 {
-                    Position = 10,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "11101",
+                    Example = "11101"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1566,37 +1093,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Jordan",
                 EnglishName = "Jordan",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("JO2!n4!a4!n18!c"))
                 {
-                    Length = 30,
-                    Structure = "JO2!n4!a4!n18!c",
-                    ValidationFactory = validationFactory,
                     Example = "JO94CBJO0010000000000131000302",
                     EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a4!n18!c"), 4)
                 {
-                    Position = 4,
-                    Length = 26,
-                    Structure = "4!a4!n18!c",
-                    ValidationFactory = validationFactory,
                     Example = "CBJO0010000000000131000302"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "CBJO",
+                    Example = "CBJO"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "",
+                    Example = ""
                 },
                 Sepa = new SepaInfo
                 {
@@ -1611,29 +1123,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Kuwait",
                 EnglishName = "Kuwait",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("KW2!n4!a22!c"))
                 {
-                    Length = 30,
-                    Structure = "KW2!n4!a22!c",
-                    ValidationFactory = validationFactory,
                     Example = "KW81CBKU0000000000001234560101",
                     EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a22!c"), 4)
                 {
-                    Position = 4,
-                    Length = 26,
-                    Structure = "4!a22!c",
-                    ValidationFactory = validationFactory,
                     Example = "CBKU0000000000001234560101"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "CBKU",
+                    Example = "CBKU"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1648,29 +1149,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Kazakhstan",
                 EnglishName = "Kazakhstan",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("KZ2!n3!n13!c"))
                 {
-                    Length = 20,
-                    Structure = "KZ2!n3!n13!c",
-                    ValidationFactory = validationFactory,
                     Example = "KZ86125KZT5004100100",
                     EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n13!c"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "3!n13!c",
-                    ValidationFactory = validationFactory,
                     Example = "125KZT5004100100"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "125",
+                    Example = "125"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1685,29 +1175,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Lebanon",
                 EnglishName = "Lebanon",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LB2!n4!n20!c"))
                 {
-                    Length = 28,
-                    Structure = "LB2!n4!n20!c",
-                    ValidationFactory = validationFactory,
                     Example = "LB62099900000001001901229114",
                     EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n20!c"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "4!n20!c",
-                    ValidationFactory = validationFactory,
                     Example = "099900000001001901229114"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "0999",
+                    Example = "0999"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1722,29 +1201,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Saint Lucia",
                 EnglishName = "Saint Lucia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LC2!n4!a24!c"))
                 {
-                    Length = 32,
-                    Structure = "LC2!n4!a24!c",
-                    ValidationFactory = validationFactory,
                     Example = "LC55HEMM000100010012001200023015",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a24!c"), 4)
                 {
-                    Position = 4,
-                    Length = 28,
-                    Structure = "4!a24!c",
-                    ValidationFactory = validationFactory,
                     Example = "HEMM000100010012001200023015"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "HEMM",
+                    Example = "HEMM"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1759,29 +1227,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Liechtenstein",
                 EnglishName = "Liechtenstein",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LI2!n5!n12!c"))
                 {
-                    Length = 21,
-                    Structure = "LI2!n5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "LI21088100002324013AA",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n12!c"), 4)
                 {
-                    Position = 4,
-                    Length = 17,
-                    Structure = "5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "088100002324013AA"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "08810",
+                    Example = "08810"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1796,29 +1253,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Lithuania",
                 EnglishName = "Lithuania",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LT2!n5!n11!n"))
                 {
-                    Length = 20,
-                    Structure = "LT2!n5!n11!n",
-                    ValidationFactory = validationFactory,
                     Example = "LT121000011101001000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n11!n"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "5!n11!n",
-                    ValidationFactory = validationFactory,
                     Example = "1000011101001000"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "10000",
+                    Example = "10000"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1833,29 +1279,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Luxembourg",
                 EnglishName = "Luxembourg",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LU2!n3!n13!c"))
                 {
-                    Length = 20,
-                    Structure = "LU2!n3!n13!c",
-                    ValidationFactory = validationFactory,
                     Example = "LU280019400644750000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n13!c"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "3!n13!c",
-                    ValidationFactory = validationFactory,
                     Example = "0019400644750000"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "001",
+                    Example = "001"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1870,29 +1305,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Latvia",
                 EnglishName = "Latvia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LV2!n4!a13!c"))
                 {
-                    Length = 21,
-                    Structure = "LV2!n4!a13!c",
-                    ValidationFactory = validationFactory,
                     Example = "LV80BANK0000435195001",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a13!c"), 4)
                 {
-                    Position = 4,
-                    Length = 17,
-                    Structure = "4!a13!c",
-                    ValidationFactory = validationFactory,
                     Example = "BANK0000435195001"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "BANK",
+                    Example = "BANK"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1907,37 +1331,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Libya",
                 EnglishName = "Libya",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("LY2!n3!n3!n15!n"))
                 {
-                    Length = 25,
-                    Structure = "LY2!n3!n3!n15!n",
-                    ValidationFactory = validationFactory,
                     Example = "LY83002048000020100120361",
                     EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n3!n15!n"), 4)
                 {
-                    Position = 4,
-                    Length = 21,
-                    Structure = "3!n3!n15!n",
-                    ValidationFactory = validationFactory,
                     Example = "002048000020100120361"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "002",
+                    Example = "002"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("3!n"), 7)
                 {
-                    Position = 7,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "048",
+                    Example = "048"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1952,37 +1361,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Monaco",
                 EnglishName = "Monaco",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("MC2!n5!n5!n11!c2!n"))
                 {
-                    Length = 27,
-                    Structure = "MC2!n5!n5!n11!c2!n",
-                    ValidationFactory = validationFactory,
                     Example = "MC5811222000010123456789030",
                     EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n5!n11!c2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 23,
-                    Structure = "5!n5!n11!c2!n",
-                    ValidationFactory = validationFactory,
                     Example = "11222000010123456789030"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "11222",
+                    Example = "11222"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
                 {
-                    Position = 9,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00001",
+                    Example = "00001"
                 },
                 Sepa = new SepaInfo
                 {
@@ -1997,29 +1391,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Moldova",
                 EnglishName = "Moldova",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("MD2!n2!c18!c"))
                 {
-                    Length = 24,
-                    Structure = "MD2!n2!c18!c",
-                    ValidationFactory = validationFactory,
                     Example = "MD24AG000225100013104168",
                     EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("2!c18!c"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "2!c18!c",
-                    ValidationFactory = validationFactory,
                     Example = "AG000225100013104168"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!c"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!c",
-                    ValidationFactory = validationFactory,
-                    Example = "AG",
+                    Example = "AG"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2034,29 +1417,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Montenegro",
                 EnglishName = "Montenegro",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("ME2!n3!n13!n2!n"))
                 {
-                    Length = 22,
-                    Structure = "ME2!n3!n13!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "ME25505000012345678951",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n13!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "3!n13!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "505000012345678951"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "505",
+                    Example = "505"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2071,29 +1443,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Macedonia",
                 EnglishName = "Macedonia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("MK2!n3!n10!c2!n"))
                 {
-                    Length = 19,
-                    Structure = "MK2!n3!n10!c2!n",
-                    ValidationFactory = validationFactory,
                     Example = "MK07250120000058984",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n10!c2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 15,
-                    Structure = "3!n10!c2!n",
-                    ValidationFactory = validationFactory,
                     Example = "250120000058984"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "300",
+                    Example = "300"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2108,37 +1469,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Mauritania",
                 EnglishName = "Mauritania",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("MR2!n5!n5!n11!n2!n"))
                 {
-                    Length = 27,
-                    Structure = "MR2!n5!n5!n11!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "MR1300020001010000123456753",
                     EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 23,
-                    Structure = "5!n5!n11!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "00020001010000123456753"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00020",
+                    Example = "00020"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
                 {
-                    Position = 9,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00101",
+                    Example = "00101"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2153,37 +1499,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Malta",
                 EnglishName = "Malta",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("MT2!n4!a5!n18!c"))
                 {
-                    Length = 31,
-                    Structure = "MT2!n4!a5!n18!c",
-                    ValidationFactory = validationFactory,
                     Example = "MT84MALT011000012345MTLCAST001S",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a5!n18!c"), 4)
                 {
-                    Position = 4,
-                    Length = 27,
-                    Structure = "4!a5!n18!c",
-                    ValidationFactory = validationFactory,
                     Example = "MALT011000012345MTLCAST001S"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "MALT",
+                    Example = "MALT"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 8)
                 {
-                    Position = 8,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "01100",
+                    Example = "01100"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2198,37 +1529,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Mauritius",
                 EnglishName = "Mauritius",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("MU2!n4!a2!n2!n12!n3!n3!a"))
                 {
-                    Length = 30,
-                    Structure = "MU2!n4!a2!n2!n12!n3!n3!a",
-                    ValidationFactory = validationFactory,
                     Example = "MU17BOMM0101101030300200000MUR",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a2!n2!n12!n3!n3!a"), 4)
                 {
-                    Position = 4,
-                    Length = 26,
-                    Structure = "4!a2!n2!n12!n3!n3!a",
-                    ValidationFactory = validationFactory,
                     Example = "BOMM0101101030300200000MUR"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("6!c"), 4)
                 {
-                    Position = 4,
-                    Length = 6,
-                    Structure = "6!c",
-                    ValidationFactory = validationFactory,
-                    Example = "BOMM01",
+                    Example = "BOMM01"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("2!n"), 10)
                 {
-                    Position = 10,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "01",
+                    Example = "01"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2243,29 +1559,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Netherlands (The)",
                 EnglishName = "Netherlands (The)",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n"))
                 {
-                    Length = 18,
-                    Structure = "NL2!n4!a10!n",
-                    ValidationFactory = validationFactory,
                     Example = "NL91ABNA0417164300",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 14,
-                    Structure = "4!a10!n",
-                    ValidationFactory = validationFactory,
                     Example = "ABNA0417164300"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "ABNA",
+                    Example = "ABNA"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2280,29 +1585,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Norway",
                 EnglishName = "Norway",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("NO2!n4!n6!n1!n"))
                 {
-                    Length = 15,
-                    Structure = "NO2!n4!n6!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "NO9386011117947",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n6!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 11,
-                    Structure = "4!n6!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "86011117947"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "8601",
+                    Example = "8601"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2317,29 +1611,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Pakistan",
                 EnglishName = "Pakistan",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("PK2!n4!a16!c"))
                 {
-                    Length = 24,
-                    Structure = "PK2!n4!a16!c",
-                    ValidationFactory = validationFactory,
                     Example = "PK36SCBL0000001123456702",
                     EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!a16!c",
-                    ValidationFactory = validationFactory,
                     Example = "SCBL0000001123456702"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "SCBL",
+                    Example = "SCBL"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2354,29 +1637,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Poland",
                 EnglishName = "Poland",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("PL2!n8!n16!n"))
                 {
-                    Length = 28,
-                    Structure = "PL2!n8!n16!n",
-                    ValidationFactory = validationFactory,
                     Example = "PL61109010140000071219812874",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("8!n16!n"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "8!n16!n",
-                    ValidationFactory = validationFactory,
                     Example = "109010140000071219812874"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("8!n"), 4)
                 {
-                    Position = 4,
-                    Length = 8,
-                    Structure = "8!n",
-                    ValidationFactory = validationFactory,
-                    Example = "10901014",
+                    Example = "10901014"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2391,29 +1663,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Palestine, State of",
                 EnglishName = "Palestine, State of",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("PS2!n4!a21!c"))
                 {
-                    Length = 29,
-                    Structure = "PS2!n4!a21!c",
-                    ValidationFactory = validationFactory,
                     Example = "PS92PALS000000000400123456702",
                     EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a21!c"), 4)
                 {
-                    Position = 4,
-                    Length = 25,
-                    Structure = "4!a21!c",
-                    ValidationFactory = validationFactory,
                     Example = "PALS000000000400123456702"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "PALS",
+                    Example = "PALS"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2428,29 +1689,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Portugal",
                 EnglishName = "Portugal",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("PT2!n4!n4!n11!n2!n"))
                 {
-                    Length = 25,
-                    Structure = "PT2!n4!n4!n11!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "PT50000201231234567890154",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n4!n11!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 21,
-                    Structure = "4!n4!n11!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "000201231234567890154"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0002",
+                    Example = "0002"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2469,29 +1719,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Qatar",
                 EnglishName = "Qatar",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("QA2!n4!a21!c"))
                 {
-                    Length = 29,
-                    Structure = "QA2!n4!a21!c",
-                    ValidationFactory = validationFactory,
                     Example = "QA58DOHB00001234567890ABCDEFG",
                     EffectiveDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a21!c"), 4)
                 {
-                    Position = 4,
-                    Length = 25,
-                    Structure = "4!a21!c",
-                    ValidationFactory = validationFactory,
                     Example = "DOHB00001234567890ABCDEFG"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "DOHB",
+                    Example = "DOHB"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2506,29 +1745,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Romania",
                 EnglishName = "Romania",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("RO2!n4!a16!c"))
                 {
-                    Length = 24,
-                    Structure = "RO2!n4!a16!c",
-                    ValidationFactory = validationFactory,
                     Example = "RO49AAAA1B31007593840000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!a16!c",
-                    ValidationFactory = validationFactory,
                     Example = "AAAA1B31007593840000"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "AAAA",
+                    Example = "AAAA"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2543,29 +1771,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Serbia",
                 EnglishName = "Serbia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("RS2!n3!n13!n2!n"))
                 {
-                    Length = 22,
-                    Structure = "RS2!n3!n13!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "RS35260005601001611379",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n13!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "3!n13!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "260005601001611379"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "260",
+                    Example = "260"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2580,29 +1797,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Saudi Arabia",
                 EnglishName = "Saudi Arabia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SA2!n2!n18!c"))
                 {
-                    Length = 24,
-                    Structure = "SA2!n2!n18!c",
-                    ValidationFactory = validationFactory,
                     Example = "SA0380000000608010167519",
                     EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("2!n18!c"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "2!n18!c",
-                    ValidationFactory = validationFactory,
                     Example = "80000000608010167519"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "80",
+                    Example = "80"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2617,37 +1823,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Seychelles",
                 EnglishName = "Seychelles",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SC2!n4!a2!n2!n16!n3!a"))
                 {
-                    Length = 31,
-                    Structure = "SC2!n4!a2!n2!n16!n3!a",
-                    ValidationFactory = validationFactory,
                     Example = "SC18SSCB11010000000000001497USD",
                     EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a2!n2!n16!n3!a"), 4)
                 {
-                    Position = 4,
-                    Length = 27,
-                    Structure = "4!a2!n2!n16!n3!a",
-                    ValidationFactory = validationFactory,
                     Example = "SSCB11010000000000001497USD"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 6,
-                    Structure = "4!a2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "SSCB11",
+                    Example = "SSCB11"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("2!n"), 10)
                 {
-                    Position = 10,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "01",
+                    Example = "01"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2662,29 +1853,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Sweden",
                 EnglishName = "Sweden",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SE2!n3!n16!n1!n"))
                 {
-                    Length = 24,
-                    Structure = "SE2!n3!n16!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "SE4550000000058398257466",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n16!n1!n"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "3!n16!n1!n",
-                    ValidationFactory = validationFactory,
                     Example = "50000000058398257466"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "123",
+                    Example = "123"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2699,29 +1879,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Slovenia",
                 EnglishName = "Slovenia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SI2!n5!n8!n2!n"))
                 {
-                    Length = 19,
-                    Structure = "SI2!n5!n8!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "SI56263300012039086",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n8!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 15,
-                    Structure = "5!n8!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "263300012039086"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "26330",
+                    Example = "26330"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2736,29 +1905,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Slovakia",
                 EnglishName = "Slovakia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SK2!n4!n6!n10!n"))
                 {
-                    Length = 24,
-                    Structure = "SK2!n4!n6!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "SK3112000000198742637541",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n6!n10!n"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!n6!n10!n",
-                    ValidationFactory = validationFactory,
                     Example = "12000000198742637541"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "1200",
+                    Example = "1200"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2773,37 +1931,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "San Marino",
                 EnglishName = "San Marino",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SM2!n1!a5!n5!n12!c"))
                 {
-                    Length = 27,
-                    Structure = "SM2!n1!a5!n5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "SM86U0322509800000000270100",
                     EffectiveDate = new DateTimeOffset(2007, 8, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("1!a5!n5!n12!c"), 4)
                 {
-                    Position = 4,
-                    Length = 23,
-                    Structure = "1!a5!n5!n12!c",
-                    ValidationFactory = validationFactory,
                     Example = "U0322509800000000270100"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 5)
                 {
-                    Position = 5,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "03225",
+                    Example = "03225"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 10)
                 {
-                    Position = 10,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "09800",
+                    Example = "09800"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2818,37 +1961,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Sao Tome and Principe",
                 EnglishName = "Sao Tome and Principe",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("ST2!n4!n4!n11!n2!n"))
                 {
-                    Length = 25,
-                    Structure = "ST2!n4!n4!n11!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "ST23000100010051845310146",
                     EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n4!n11!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 21,
-                    Structure = "4!n4!n11!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "000100010051845310146"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0001",
+                    Example = "0001"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                 {
-                    Position = 8,
-                    Length = 4,
-                    Structure = "4!n",
-                    ValidationFactory = validationFactory,
-                    Example = "0001",
+                    Example = "0001"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2863,29 +1991,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "El Salvador",
                 EnglishName = "El Salvador",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("SV2!n4!a20!n"))
                 {
-                    Length = 28,
-                    Structure = "SV2!n4!a20!n",
-                    ValidationFactory = validationFactory,
                     Example = "SV62CENR00000000000000700025",
                     EffectiveDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
                 {
-                    Position = 4,
-                    Length = 24,
-                    Structure = "4!a20!n",
-                    ValidationFactory = validationFactory,
                     Example = "CENR00000000000000700025"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "CENR",
+                    Example = "CENR"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2900,29 +2017,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Timor-Leste",
                 EnglishName = "Timor-Leste",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("TL2!n3!n14!n2!n"))
                 {
-                    Length = 23,
-                    Structure = "TL2!n3!n14!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "TL380080012345678910157",
                     EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n14!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 19,
-                    Structure = "3!n14!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "0080012345678910157"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "008",
+                    Example = "008"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2937,37 +2043,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Tunisia",
                 EnglishName = "Tunisia",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("TN2!n2!n3!n13!n2!n"))
                 {
-                    Length = 24,
-                    Structure = "TN2!n2!n3!n13!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "TN5910006035183598478831",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("2!n3!n13!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "2!n3!n13!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "10006035183598478831"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "10",
+                    Example = "10"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("3!n"), 6)
                 {
-                    Position = 6,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "006",
+                    Example = "006"
                 },
                 Sepa = new SepaInfo
                 {
@@ -2982,29 +2073,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Turkey",
                 EnglishName = "Turkey",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("TR2!n5!n1!n16!c"))
                 {
-                    Length = 26,
-                    Structure = "TR2!n5!n1!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "TR330006100519786457841326",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("5!n1!n16!c"), 4)
                 {
-                    Position = 4,
-                    Length = 22,
-                    Structure = "5!n1!n16!c",
-                    ValidationFactory = validationFactory,
                     Example = "0006100519786457841326"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
                 {
-                    Position = 4,
-                    Length = 5,
-                    Structure = "5!n",
-                    ValidationFactory = validationFactory,
-                    Example = "00061",
+                    Example = "00061"
                 },
                 Sepa = new SepaInfo
                 {
@@ -3019,29 +2099,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Ukraine",
                 EnglishName = "Ukraine",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("UA2!n6!n19!c"))
                 {
-                    Length = 29,
-                    Structure = "UA2!n6!n19!c",
-                    ValidationFactory = validationFactory,
                     Example = "UA213223130000026007233566001",
                     EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("6!n19!c"), 4)
                 {
-                    Position = 4,
-                    Length = 25,
-                    Structure = "6!n19!c",
-                    ValidationFactory = validationFactory,
                     Example = "3223130000026007233566001"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("6!n"), 4)
                 {
-                    Position = 4,
-                    Length = 6,
-                    Structure = "6!n",
-                    ValidationFactory = validationFactory,
-                    Example = "322313",
+                    Example = "322313"
                 },
                 Sepa = new SepaInfo
                 {
@@ -3056,29 +2125,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Vatican City State",
                 EnglishName = "Vatican City State",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("VA2!n3!n15!n"))
                 {
-                    Length = 22,
-                    Structure = "VA2!n3!n15!n",
-                    ValidationFactory = validationFactory,
                     Example = "VA59001123000012345678",
                     EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("3!n15!n"), 4)
                 {
-                    Position = 4,
-                    Length = 18,
-                    Structure = "3!n15!n",
-                    ValidationFactory = validationFactory,
                     Example = "001123000012345678"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("3!n"), 4)
                 {
-                    Position = 4,
-                    Length = 3,
-                    Structure = "3!n",
-                    ValidationFactory = validationFactory,
-                    Example = "001",
+                    Example = "001"
                 },
                 Sepa = new SepaInfo
                 {
@@ -3093,29 +2151,18 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Virgin Islands",
                 EnglishName = "Virgin Islands",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("VG2!n4!a16!n"))
                 {
-                    Length = 24,
-                    Structure = "VG2!n4!a16!n",
-                    ValidationFactory = validationFactory,
                     Example = "VG96VPVG0000012345678901",
                     EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!a16!n"), 4)
                 {
-                    Position = 4,
-                    Length = 20,
-                    Structure = "4!a16!n",
-                    ValidationFactory = validationFactory,
                     Example = "VPVG0000012345678901"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("4!a"), 4)
                 {
-                    Position = 4,
-                    Length = 4,
-                    Structure = "4!a",
-                    ValidationFactory = validationFactory,
-                    Example = "VPVG",
+                    Example = "VPVG"
                 },
                 Sepa = new SepaInfo
                 {
@@ -3130,37 +2177,22 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Kosovo",
                 EnglishName = "Kosovo",
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
                 {
-                    Length = 20,
-                    Structure = "XK2!n4!n10!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "XK051212012345678906",
                     EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 16,
-                    Structure = "4!n10!n2!n",
-                    ValidationFactory = validationFactory,
                     Example = "1212012345678906"
                 },
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
                 {
-                    Position = 4,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "12",
+                    Example = "12"
                 },
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("2!n"), 6)
                 {
-                    Position = 6,
-                    Length = 2,
-                    Structure = "2!n",
-                    ValidationFactory = validationFactory,
-                    Example = "12",
+                    Example = "12"
                 },
                 Sepa = new SepaInfo
                 {

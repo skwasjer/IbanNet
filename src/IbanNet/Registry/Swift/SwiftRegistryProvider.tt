@@ -1,6 +1,7 @@
 ﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="NetStandard" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)src\IbanNet\bin\Debug\net45\CsvHelper.dll" #>
+<#@ assembly name="$(PkgCsvHelper)\lib\netstandard2.0\CsvHelper.dll" #>
 <#@ import namespace="CsvHelper" #>
 <#@ import namespace="CsvHelper.Configuration" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -15,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Validation;
+using IbanNet.Registry.Swift;
 <#
     string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
     string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
@@ -56,8 +57,6 @@ namespace IbanNet.Registry
 
         private static IEnumerable<IbanCountry> Load()
         {
-            var validationFactory = new SwiftStructureValidationFactory();
-
             // ReSharper disable CommentTypo
             // ReSharper disable StringLiteralTypo
 
@@ -104,45 +103,30 @@ namespace IbanNet.Registry
 
                     int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
 #>
-                Iban = new IbanStructure
+                Iban = new IbanStructure(new SwiftPattern("<#= row[17] #>"))
                 {
-                    Length = <#= getNumber(row[18]) #>,
-                    Structure = "<#= row[17] ?? string.Empty #>",
-                    ValidationFactory = validationFactory,
                     Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
                     EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure
+                Bban = new BbanStructure(new SwiftPattern("<#= row[7] #>"), <#= bbanOffset #>)
                 {
-                    Position = <#= bbanOffset #>,
-                    Length = <#= getNumber(row[8]) #>,
-                    Structure = "<#= row[7] ?? string.Empty #>",
-                    ValidationFactory = validationFactory,
                     Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
                 },
 <#
                         if (row[9] is { }) {
 #>
-                Bank = new BankStructure
+                Bank = new BankStructure(new SwiftPattern("<#= row[10] #>"), <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>)
                 {
-                    Position = <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>,
-                    Length = <#= getNumber(row[9].Split('-', ' ')[1]) - getNumber(row[9].Split('-')[0]) + 1 #>,
-                    Structure = "<#= row[10] ?? string.Empty #>",
-                    ValidationFactory = validationFactory,
-                    Example = "<#= normalizeExample(row[13]) ?? string.Empty #>",
+                    Example = "<#= normalizeExample(row[13]) ?? string.Empty #>"
                 },
 <#
                         }
 
                         if (row[11] is { }) {
 #>
-                Branch = new BranchStructure
+                Branch = new BranchStructure(new SwiftPattern("<#= row[12] #>"), <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>)
                 {
-                    Position = <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>,
-                    Length = <#= getNumber(row[11].Split('-', ' ')[1]) - getNumber(row[11].Split('-')[0]) + 1 #>,
-                    Structure = "<#= row[12] ?? string.Empty #>",
-                    ValidationFactory = validationFactory,
-                    Example = "<#= normalizeExample(row[14]) ?? string.Empty #>",
+                    Example = "<#= normalizeExample(row[14]) ?? string.Empty #>"
                 },
 <#
                         }

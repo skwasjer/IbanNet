@@ -1,4 +1,5 @@
 ﻿using System;
+using IbanNet.Registry.Patterns;
 using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules
@@ -23,10 +24,19 @@ namespace IbanNet.Validation.Rules
                 return new InvalidStructureResult();
             }
 
-            IStructureValidator validator = _structureValidationFactory.CreateValidator(
-                context.Country.TwoLetterISORegionName,
-                context.Country.Iban.Structure
-            );
+            IStructureValidator validator;
+            Pattern? pattern = context.Country.Iban.Pattern;
+            if (pattern is null)
+            {
+                validator = _structureValidationFactory.CreateValidator(
+                    context.Country.TwoLetterISORegionName,
+                    context.Country.Iban.Structure
+                );
+            }
+            else
+            {
+                validator = new StructureValidator(pattern);
+            }
 
             return validator.Validate(context.Value)
                 ? ValidationRuleResult.Success

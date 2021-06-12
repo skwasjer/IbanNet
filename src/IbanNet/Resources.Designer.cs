@@ -62,15 +62,6 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The country code is not registered..
-        /// </summary>
-        internal static string ArgumentException_Builder_The_country_code_is_not_registered {
-            get {
-                return ResourceManager.GetString("ArgumentException_Builder_The_country_code_is_not_registered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid country code. must be exactly two characters long..
         /// </summary>
         internal static string ArgumentException_Invalid_country_code {
@@ -85,6 +76,15 @@ namespace IbanNet {
         internal static string ArgumentException_Registry_is_required {
             get {
                 return ResourceManager.GetString("ArgumentException_Registry_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country code &apos;{0}&apos; is not registered..
+        /// </summary>
+        internal static string ArgumentException_The_country_code_0_is_not_registered {
+            get {
+                return ResourceManager.GetString("ArgumentException_The_country_code_0_is_not_registered", resourceCulture);
             }
         }
         
@@ -116,7 +116,7 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The structure segment &apos;{0}&apos; is invalid..
+        ///   Looks up a localized string similar to The pattern segment &apos;{0}&apos; is invalid at position {1}..
         /// </summary>
         internal static string ArgumentException_The_structure_segment_0_is_invalid {
             get {
@@ -130,6 +130,15 @@ namespace IbanNet {
         internal static string ArgumentException_ValidationMethod_is_invalid {
             get {
                 return ResourceManager.GetString("ArgumentException_ValidationMethod_is_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enum value &apos;{0}&apos; should be defined in the &apos;{1}&apos; enum..
+        /// </summary>
+        internal static string Enum_value_0_should_be_defined_in_the_1_enum {
+            get {
+                return ResourceManager.GetString("Enum_value_0_should_be_defined_in_the_1_enum", resourceCulture);
             }
         }
         
@@ -256,6 +265,24 @@ namespace IbanNet {
         internal static string The_registry_has_no_providers {
             get {
                 return ResourceManager.GetString("The_registry_has_no_providers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value cannot be less than {0}..
+        /// </summary>
+        internal static string The_value_cannot_be_less_than_0 {
+            get {
+                return ResourceManager.GetString("The_value_cannot_be_less_than_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value cannot be less than or equal to {0}..
+        /// </summary>
+        internal static string The_value_cannot_be_less_than_or_equal_to_0 {
+            get {
+                return ResourceManager.GetString("The_value_cannot_be_less_than_or_equal_to_0", resourceCulture);
             }
         }
         

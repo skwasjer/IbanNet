@@ -5,10 +5,12 @@ using System.Globalization;
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
+using TestHelpers;
 using Xunit;
 
 namespace IbanNet.TypeConverters
 {
+    [Collection(nameof(SetsStaticValidator))]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class IbanTypeConverterTests
     {

@@ -72,16 +72,69 @@ namespace IbanNet.Extensions
                 throw new ArgumentException(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required, nameof(chars));
             }
 
-            return PartitionOnIterator(sequence, chars);
+            return PartitionOn(sequence, chars.Contains);
         }
 
-        private static IEnumerable<string> PartitionOnIterator(this string sequence, params char[] markers)
+        /// <summary>
+        /// Splits a given <paramref name="sequence" /> into partitions where the delegate <paramref name="when" /> returns true for a given character.
+        /// </summary>
+        /// <param name="sequence">The sequence to partition.</param>
+        /// <param name="when">A delegate that determines when to partition.</param>
+        /// <returns>an enumerable of partitions</returns>
+#if USE_SPANS
+        public static IEnumerable<string> PartitionOn(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+        {
+#else
+        public static IEnumerable<string> PartitionOn(this IEnumerable<char> sequence, Func<char, bool> when)
+        {
+            if (sequence is null)
+            {
+                throw new ArgumentNullException(nameof(sequence));
+            }
+#endif
+
+            if (when is null)
+            {
+                throw new ArgumentNullException(nameof(when));
+            }
+
+            return PartitionOnIterator(sequence, when);
+        }
+
+#if USE_SPANS
+        private static IEnumerable<string> PartitionOnIterator(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+        {
+            var partitions = new List<string>();
+            var partition = new StringBuilder();
+
+            int len = sequence.Length;
+            for (int index = 0; index < len; index++)
+            {
+                char item = sequence[index];
+                partition.Append(item);
+                if (when(item))
+                {
+                    partitions.Add(partition.ToString());
+
+                    partition.Clear();
+                }
+            }
+
+            if (partition.Length > 0)
+            {
+                partitions.Add(partition.ToString());
+            }
+
+            return partitions;
+        }
+#else
+        private static IEnumerable<string> PartitionOnIterator(this IEnumerable<char> sequence, Func<char, bool> when)
         {
             var partition = new StringBuilder();
             foreach (char item in sequence)
             {
                 partition.Append(item);
-                if (markers.Contains(item))
+                if (when(item))
                 {
                     yield return partition.ToString();
 
@@ -94,5 +147,6 @@ namespace IbanNet.Extensions
                 yield return partition.ToString();
             }
         }
+#endif
     }
 }

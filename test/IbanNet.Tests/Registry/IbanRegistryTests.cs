@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using IbanNet.Validation;
+using IbanNet.Registry.Swift;
 using Xunit;
 
 namespace IbanNet.Registry
@@ -29,7 +29,7 @@ namespace IbanNet.Registry
 
         public static IEnumerable<object[]> GetExpectedDefinitions()
         {
-            var validationFactory = new SwiftStructureValidationFactory();
+            var tokenizer = new SwiftPatternTokenizer();
 
             yield return new object[]
             {
@@ -37,37 +37,29 @@ namespace IbanNet.Registry
                 {
                     DisplayName = "Andorra",
                     EnglishName = "Andorra",
-                    Iban = new IbanStructure
+                    Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
                     {
                         Length = 24,
-                        Structure = "AD2!n4!n4!n12!c",
-                        ValidationFactory = validationFactory,
                         Example = "AD1200012030200359100100",
                         EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                     },
-                    Bban = new BbanStructure
+                    Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"))
                     {
                         Position = 4,
                         Length = 20,
-                        Structure = "4!n4!n12!c",
-                        ValidationFactory = validationFactory,
                         Example = "00012030200359100100"
                     },
-                    Bank = new BankStructure
+                    Bank = new BankStructure(new SwiftPattern("4!n"))
                     {
                         Position = 4,
                         Length = 4,
-                        Structure = "4!n",
-                        ValidationFactory = validationFactory,
-                        Example = "0001",
+                        Example = "0001"
                     },
-                    Branch = new BranchStructure
+                    Branch = new BranchStructure(new SwiftPattern("4!n"))
                     {
                         Position = 8,
                         Length = 4,
-                        Structure = "4!n",
-                        ValidationFactory = validationFactory,
-                        Example = "2030",
+                        Example = "2030"
                     },
                     Sepa = new SepaInfo { IsMember = true },
                     DomesticAccountNumberExample = "2030200359100100",
@@ -81,37 +73,29 @@ namespace IbanNet.Registry
                 {
                     DisplayName = "Kosovo",
                     EnglishName = "Kosovo",
-                    Iban = new IbanStructure
+                    Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
                     {
                         Length = 20,
-                        Structure = "XK2!n4!n10!n2!n",
-                        ValidationFactory = validationFactory,
                         Example = "XK051212012345678906",
                         EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
                     },
-                    Bban = new BbanStructure
+                    Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"))
                     {
                         Position = 4,
                         Length = 16,
-                        Structure = "4!n10!n2!n",
-                        ValidationFactory = validationFactory,
                         Example = "1212012345678906"
                     },
-                    Bank = new BankStructure
+                    Bank = new BankStructure(new SwiftPattern("2!n"))
                     {
                         Position = 4,
                         Length = 2,
-                        Structure = "2!n",
-                        ValidationFactory = validationFactory,
-                        Example = "12",
+                        Example = "12"
                     },
-                    Branch = new BranchStructure
+                    Branch = new BranchStructure(new SwiftPattern("2!n"))
                     {
                         Position = 6,
                         Length = 2,
-                        Structure = "2!n",
-                        ValidationFactory = validationFactory,
-                        Example = "12",
+                        Example = "12"
                     },
                     Sepa = new SepaInfo { IsMember = false, },
                     DomesticAccountNumberExample = "1212 0123456789 06",

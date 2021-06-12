@@ -1,9 +1,11 @@
 ﻿using System;
 using IbanNet.DependencyInjection;
 using TestHelpers.Fixtures;
+using Xunit;
 
 namespace TestHelpers.Specs
 {
+    [Collection(nameof(SetsStaticValidator))]
     public abstract class DiSpec : SyncSpec<DependencyResolverAdapter>
     {
         protected DiSpec(IDependencyInjectionFixture fixture)

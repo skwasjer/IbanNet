@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.4.0
+
+- [#21](https://github.com/skwasjer/IbanNet/issues/21) [#31](https://github.com/skwasjer/IbanNet/pull/31) Added `IbanGenerator`.
+- LTS: change target frameworks .NET 4.5 and 4.7 to 4.5.2 and 4.7.2 respectively.
+- Fix Iraq (IQ) and Finland (FI) patterns (does not affect validation outcome).
+-  Introduce pattern abstraction for registry which encapsulates a pattern string and tokenizer. Deprecates `IStructureValidationFactory`, but keeps backwards compatible. Patterns are useful when implementing more/future providers to extend country support.
+
 ## v4.3.1
 
 - Upgraded registry to March '21 release 89 (updated Andorra (AD) and El Salvador (SV))
