@@ -1,18 +1,19 @@
 ﻿using System;
 using FluentAssertions;
+using IbanNet.CheckDigits.Calculators;
 using Newtonsoft.Json;
 using TestHelpers.Specs;
 using Xunit;
 
-namespace IbanNet.CheckDigits.Calculators
+namespace IbanNet.Registry.Patterns
 {
-    public class InvalidTokenExceptionTests : BaseExceptionTests<InvalidTokenException>
+    public class PatternExceptionTests : BaseExceptionTests<PatternException>
     {
 #if NETFRAMEWORK || NETCOREAPP3_0 || NETCOREAPP3_1 || NET5_0
         [Fact]
-        public void Given_exception_with_parameters_it_should_serialize_and_deserialize()
+        public void Given_validation_result_it_should_serialize_and_deserialize_and_ignore_result()
         {
-            var exception = new InvalidTokenException(23, 'c');
+            var exception = new PatternException("some message");
 
             string jsonWithException = JsonConvert.SerializeObject(exception);
 
