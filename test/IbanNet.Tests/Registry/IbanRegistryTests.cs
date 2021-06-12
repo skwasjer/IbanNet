@@ -27,6 +27,17 @@ namespace IbanNet.Registry
             _sut.Count.Should().Be(78);
         }
 
+        [Theory]
+        [InlineData("nl")]
+        [InlineData("GB")]
+        [InlineData("fR")]
+        public void Given_mixed_case_countryCode_when_trying_to_get_it_should_return(string countryCode)
+        {
+            _sut.TryGetValue(countryCode, out IbanCountry country).Should().BeTrue();
+            country.Should().NotBeNull();
+            country.TwoLetterISORegionName.Should().Be(countryCode.ToUpperInvariant());
+        }
+
         public static IEnumerable<object[]> GetExpectedDefinitions()
         {
             var tokenizer = new SwiftPatternTokenizer();
