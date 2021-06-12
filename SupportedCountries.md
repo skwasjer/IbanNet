@@ -1,8 +1,12 @@
-## IbanNet supports 94 countries
+## IbanNet supports 120 countries
+
+### SWIFT registry
+
+See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-international-bank-account-number) for more information.
 
 | ISO country code | Country | SEPA | Length | IBAN example |
 |---|---|---|---|---|
-| AD | Andorra | No | 24 | `AD12 0001 2030 2003 5910 0100` |
+| AD | Andorra | Yes | 24 | `AD12 0001 2030 2003 5910 0100` |
 | AE | United Arab Emirates (The) | No | 23 | `AE07 0331 2345 6789 0123 456` |
 | AL | Albania | No | 28 | `AL47 2121 1009 0000 0002 3569 8741` |
 | AT | Austria | Yes | 20 | `AT61 1904 3002 3457 3201` |
@@ -106,4 +110,39 @@
 - Jersey (JE)
 - Guernsey (GG)
 
-For more info visit [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
+
+### Wikipedia
+
+Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):
+
+| ISO country code | Country | SEPA | Length | IBAN example |
+|---|---|---|---|---|
+| DZ | Algeria | - | 26 |  |
+| AO | Angola | - | 25 |  |
+| BJ | Benin | - | 28 |  |
+| BF | Burkina Faso | - | 28 |  |
+| BI | Burundi | - | 16 |  |
+| CV | Cabo Verde | - | 25 |  |
+| CM | Cameroon | - | 27 |  |
+| CF | Central African Republic | - | 27 |  |
+| TD | Chad | - | 27 |  |
+| KM | Comoros | - | 27 |  |
+| CG | Congo, Republic of the | - | 27 |  |
+| CI | Côte d'Ivoire | - | 28 |  |
+| DJ | Djibouti | - | 27 |  |
+| GQ | Equatorial Guinea | - | 27 |  |
+| GA | Gabon | - | 27 |  |
+| GW | Guinea-Bissau | - | 25 |  |
+| HN | Honduras | - | 28 |  |
+| IR | Iran | - | 26 |  |
+| MG | Madagascar | - | 27 |  |
+| ML | Mali | - | 28 |  |
+| MA | Morocco | - | 28 |  |
+| MZ | Mozambique | - | 25 |  |
+| NI | Nicaragua | - | 32 |  |
+| NE | Niger | - | 28 |  |
+| SN | Senegal | - | 28 |  |
+| TG | Togo | - | 28 |  |
+
+> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the `WikipediaRegistryProvider`.
+

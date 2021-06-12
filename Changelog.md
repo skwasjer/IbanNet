@@ -4,6 +4,7 @@
 
 - Removed deprecated contracts/code `IStructureValidationFactory`, `IStructureValidation`, `IStructureSection`. Use the `Pattern` abstraction for custom registry providers.
 - Removed `Iban.Parse`, `Iban.TryParse`, use the `IbanParser` class.
+- Added support for [more countries](./SupportedCountries.md) based on Wikipedia.
 
 ## v4.4.1
 
