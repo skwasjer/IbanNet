@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
 using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry
@@ -15,8 +14,6 @@ namespace IbanNet.Registry
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string _example;
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private int? _length;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StructureSection" /> class using specified parameters.
@@ -48,7 +45,7 @@ namespace IbanNet.Registry
         /// </summary>
         public int Length
         {
-            get => _length ??= Pattern.Tokens.Sum(t => t.MaxLength);
+            get => Pattern.MaxLength;
         }
 
         /// <summary>

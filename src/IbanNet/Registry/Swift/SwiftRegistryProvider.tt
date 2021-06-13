@@ -2,6 +2,7 @@
 <#@ assembly name="NetStandard" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(PkgCsvHelper)\lib\netstandard2.0\CsvHelper.dll" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet\bin\Debug\netstandard2.0\IbanNet.dll" #>
 <#@ import namespace="CsvHelper" #>
 <#@ import namespace="CsvHelper.Configuration" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -10,12 +11,16 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="IbanNet.Registry" #>
+<#@ import namespace="IbanNet.Registry.Patterns" #>
+<#@ import namespace="IbanNet.Registry.Swift" #>
 using System;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using IbanNet.Registry.Patterns;
 using IbanNet.Registry.Swift;
 <#
     string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
@@ -103,7 +108,18 @@ namespace IbanNet.Registry
 
                     int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
 #>
-                Iban = new IbanStructure(new IbanSwiftPattern("<#= row[17] #>"))
+                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                {
+<#
+                    var p = new IbanSwiftPattern(row[17]);
+                    foreach (var t in p.Tokens)
+                    {
+#>
+                    new(AsciiCategory.<#= t.Category #>, <#= t.MinLength #>, <#= t.MaxLength #>),
+<#
+                    }
+#>
+                }))
                 {
                     Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
                     EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
@@ -140,7 +156,7 @@ namespace IbanNet.Registry
 #>
                     IncludedCountries = new[]
                     {
-                                <#
+                        <#
                         WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
                         #>
                     }
@@ -159,9 +175,16 @@ namespace IbanNet.Registry
             // ReSharper restore StringLiteralTypo
             // ReSharper restore CommentTypo
         }
+
+        private class PretokenizedPattern : Pattern
+        {
+            public PretokenizedPattern(IEnumerable<PatternToken> tokens)
+                : base(tokens)
+            {
+            }
+        }
     }
 }
-
 
 <#+
 private string[][] Transpose(string[][] arr)
