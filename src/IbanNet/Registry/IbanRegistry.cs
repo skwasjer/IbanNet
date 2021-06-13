@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
@@ -60,7 +61,7 @@ namespace IbanNet.Registry
                     .SelectMany(p => p)
                     // In case of duplicate country codes, select the first.
                     .GroupBy(c => c.TwoLetterISORegionName)
-                    .ToDictionary(g => g.Key, g => g.First())
+                    .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase)
                 );
             }
         }

@@ -24,7 +24,8 @@ namespace IbanNet.Registry.Patterns
         {
             return input
                 .PartitionOn(_partitionOn)
-                .Select(CreateToken);
+                .Select(CreateToken)
+                .ToList();
         }
 
         private PatternToken CreateToken(string token, int pos)
@@ -43,6 +44,7 @@ namespace IbanNet.Registry.Patterns
             catch (Exception ex) when (
                 ex is ArgumentException
              || ex is InvalidOperationException
+             || ex is FormatException && !(ex is PatternException)
              || ex is IndexOutOfRangeException
                 )
             {
@@ -58,10 +60,6 @@ namespace IbanNet.Registry.Patterns
         /// <param name="token">The token to get length for.</param>
         /// <param name="isFixedLength"><see langword="true"/> if the token is fixed length; otherwise, <see langword="false"/></param>
         /// <returns></returns>
-        protected virtual int GetLength(string token, out bool isFixedLength)
-        {
-            isFixedLength = true;
-            return token.Length;
-        }
+        protected abstract int GetLength(string token, out bool isFixedLength);
     }
 }

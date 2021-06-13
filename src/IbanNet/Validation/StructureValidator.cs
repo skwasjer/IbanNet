@@ -39,6 +39,11 @@ namespace IbanNet.Validation
             for (; segmentIndex < _tokens.Count; segmentIndex++)
             {
                 PatternToken expectedToken = _tokens[segmentIndex];
+                if (pos + expectedToken.MaxLength > iban.Length)
+                {
+                    return false;
+                }
+
                 for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
                 {
                     char c = iban[pos];

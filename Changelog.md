@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.4.1
+
+- `IIbanRegistry.TryGetValue` now supports case insensitive country codes.
+
 ## v4.4.0
 
 - [#21](https://github.com/skwasjer/IbanNet/issues/21) [#31](https://github.com/skwasjer/IbanNet/pull/31) Added `IbanGenerator`.
