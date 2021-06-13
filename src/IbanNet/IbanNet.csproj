@@ -39,6 +39,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SwiftRegistryProvider.tt</DependentUpon>
     </Compile>
+    <Compile Update="Registry\Wikipedia\WikipediaRegistryProvider.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WikipediaRegistryProvider.tt</DependentUpon>
+    </Compile>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -57,6 +62,10 @@
     <None Update="Registry\Swift\SwiftRegistryProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SwiftRegistryProvider.cs</LastGenOutput>
+    </None>
+    <None Update="Registry\Wikipedia\WikipediaRegistryProvider.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WikipediaRegistryProvider.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
