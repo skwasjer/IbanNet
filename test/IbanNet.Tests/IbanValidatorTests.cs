@@ -172,9 +172,9 @@ namespace IbanNet
         {
             private readonly IbanValidator _sut;
 
-            private readonly IbanCountry _correctNlCountry = new IbanCountry("NL") { Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n")) };
-            private readonly IbanCountry _ignoredNlCountry = new IbanCountry("NL") { Iban = new IbanStructure(new IbanWikipediaPattern("50a")) };
-            private readonly IbanCountry _correctGbCountry = new IbanCountry("GB") { Iban = new IbanStructure(new IbanWikipediaPattern("4a,14n")) };
+            private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n")) };
+            private readonly IbanCountry _ignoredNlCountry = new("NL") { Iban = new IbanStructure(new IbanWikipediaPattern("50a")) };
+            private readonly IbanCountry _correctGbCountry = new("GB") { Iban = new IbanStructure(new IbanWikipediaPattern("4a,14n")) };
 
             private readonly List<IbanCountry> _countries;
 

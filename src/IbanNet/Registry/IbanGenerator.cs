@@ -65,8 +65,8 @@ namespace IbanNet.Registry
 
         internal static class Generator
         {
-            private static readonly Random Rng = new Random(DateTime.UtcNow.Ticks.GetHashCode());
-            private static readonly object RngLock = new object();
+            private static readonly Random Rng = new(DateTime.UtcNow.Ticks.GetHashCode());
+            private static readonly object RngLock = new();
 
             private static readonly AsciiCategory[] LetterCategories = { AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };
             private static readonly AsciiCategory[] AlphaNumericCategories = { AsciiCategory.Digit, AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };

@@ -5,6 +5,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using IbanNet.Validation.Results;
 using Xunit;
+using ValidationResultAlias = FluentValidation.Results.ValidationResult;
 
 namespace IbanNet.FluentValidation
 {
@@ -41,7 +42,7 @@ namespace IbanNet.FluentValidation
             };
 
             // Act
-            var actual = _sut.Validate(_testModel);
+            ValidationResultAlias actual = _sut.Validate(_testModel);
 
             // Assert
             actual.IsValid.Should().BeFalse("because one validation error should have occurred");
@@ -60,7 +61,7 @@ namespace IbanNet.FluentValidation
             _testModel.BankAccountNumber = attemptedIbanValue;
 
             // Act
-            var actual = _sut.Validate(_testModel);
+            ValidationResultAlias actual = _sut.Validate(_testModel);
 
             // Assert
             actual.IsValid.Should().BeTrue("because no validation errors should have occurred");

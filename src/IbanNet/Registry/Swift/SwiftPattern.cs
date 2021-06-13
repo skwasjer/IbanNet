@@ -4,9 +4,9 @@ namespace IbanNet.Registry.Swift
 {
     internal class SwiftPattern : Pattern
     {
-        private static readonly SwiftPatternTokenizer _tokenizer = new SwiftPatternTokenizer();
+        private static readonly SwiftPatternTokenizer Tokenizer = new();
 
-        public SwiftPattern(string pattern) : base(pattern, _tokenizer)
+        public SwiftPattern(string pattern) : base(pattern, Tokenizer)
         {
         }
     }

@@ -7,7 +7,7 @@ namespace TestHelpers.FluentAssertions
     {
         public static DelegateAssertions Should(this Delegate instance)
         {
-            return new DelegateAssertions(instance, new AggregateExceptionExtractor());
+            return new(instance, new AggregateExceptionExtractor());
         }
     }
 }

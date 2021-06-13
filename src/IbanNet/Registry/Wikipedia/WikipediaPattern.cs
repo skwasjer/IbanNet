@@ -6,9 +6,9 @@ namespace IbanNet.Registry.Wikipedia
 {
     internal class WikipediaPattern : Pattern
     {
-        private static readonly WikipediaPatternTokenizer _tokenizer = new WikipediaPatternTokenizer();
+        private static readonly WikipediaPatternTokenizer Tokenizer = new();
 
-        public WikipediaPattern(string pattern) : base(pattern?.Replace(",", "")!, _tokenizer)
+        public WikipediaPattern(string pattern) : base(pattern?.Replace(",", "")!, Tokenizer)
         {
         }
 

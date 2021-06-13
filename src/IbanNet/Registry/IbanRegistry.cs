@@ -17,7 +17,7 @@ namespace IbanNet.Registry
         /// <summary>
         /// Gets the default IBAN registry initialized with all the built-in countries.
         /// </summary>
-        public static IbanRegistry Default { get; } = new IbanRegistry
+        public static IbanRegistry Default { get; } = new()
         {
             // Read-only, so default can not be modified.
             Providers = new ReadOnlyCollection<IIbanRegistryProvider>(new IIbanRegistryProvider[] { new SwiftRegistryProvider() })

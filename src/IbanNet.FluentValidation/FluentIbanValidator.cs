@@ -35,7 +35,7 @@ namespace IbanNet.FluentValidation
             }
 
             ValidationResult result = _ibanValidator.Validate(value);
-            if (result.Error is { })
+            if (result.Error is not null)
             {
                 // ReSharper disable once ConstantConditionalAccessQualifier
                 context?.MessageFormatter.AppendArgument("Error", result.Error);

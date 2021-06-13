@@ -20,7 +20,7 @@ namespace IbanNet.Extensions
                 throw new ArgumentNullException(nameof(value));
             }
 
-            var buffer = new char[value.Length];
+            char[] buffer = new char[value.Length];
             int pos = 0;
             // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
             for (int i = 0; i < value.Length; i++)

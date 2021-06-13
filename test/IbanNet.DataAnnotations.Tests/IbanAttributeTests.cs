@@ -204,7 +204,7 @@ namespace IbanNet.DataAnnotations
 
         public class When_validating_an_unsupported_type : IbanAttributeTests
         {
-            private static readonly object InvalidTypeValue = new object();
+            private static readonly object InvalidTypeValue = new();
 
             [Fact]
             public void It_should_throw()

@@ -53,7 +53,7 @@ namespace IbanNet.DataAnnotations
 
         private static HttpRequestMessage CreateSaveRequest(string iban)
         {
-            return new HttpRequestMessage(HttpMethod.Post, "test/save")
+            return new(HttpMethod.Post, "test/save")
             {
                 Headers =
                 {

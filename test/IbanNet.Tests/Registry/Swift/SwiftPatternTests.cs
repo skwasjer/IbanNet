@@ -15,8 +15,7 @@ namespace IbanNet.Registry.Swift
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new SwiftPattern(pattern);
+            Func<SwiftPattern> act = () => new SwiftPattern(pattern);
 
             // Assert
             act.Should()
@@ -69,11 +68,11 @@ namespace IbanNet.Registry.Swift
                 "2!n4!a4!n2!n8!c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.Digit, 2),
-                    new PatternToken(AsciiCategory.UppercaseLetter, 4),
-                    new PatternToken(AsciiCategory.Digit, 4),
-                    new PatternToken(AsciiCategory.Digit, 2),
-                    new PatternToken(AsciiCategory.AlphaNumeric, 8)
+                    new(AsciiCategory.Digit, 2),
+                    new(AsciiCategory.UppercaseLetter, 4),
+                    new(AsciiCategory.Digit, 4),
+                    new(AsciiCategory.Digit, 2),
+                    new(AsciiCategory.AlphaNumeric, 8)
                 }
             };
 
@@ -82,10 +81,10 @@ namespace IbanNet.Registry.Swift
                 "4!n10a1!e2!c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.Digit, 4),
-                    new PatternToken(AsciiCategory.UppercaseLetter, 1, 10),
-                    new PatternToken(AsciiCategory.Space, 1),
-                    new PatternToken(AsciiCategory.AlphaNumeric, 2)
+                    new(AsciiCategory.Digit, 4),
+                    new(AsciiCategory.UppercaseLetter, 1, 10),
+                    new(AsciiCategory.Space, 1),
+                    new(AsciiCategory.AlphaNumeric, 2)
                 }
             };
         }

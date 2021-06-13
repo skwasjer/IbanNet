@@ -22,7 +22,7 @@ namespace IbanNet.Registry.Patterns
 #else
         public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
         {
-            if (input == null)
+            if (input is null)
             {
                 throw new ArgumentNullException(nameof(input));
             }

@@ -27,7 +27,7 @@ namespace IbanNet.DataAnnotations
                 return System.ComponentModel.DataAnnotations.ValidationResult.Success;
             }
 
-            if (!(value is string strValue))
+            if (value is not string strValue)
             {
                 return base.IsValid(value, validationContext);
             }
@@ -42,7 +42,7 @@ namespace IbanNet.DataAnnotations
             validationContext.Items.Add("Error", result.Error);
 
             IEnumerable<string>? memberNames = null;
-            if (validationContext.MemberName is { })
+            if (validationContext.MemberName is not null)
             {
                 memberNames = new[] { validationContext.MemberName };
             }

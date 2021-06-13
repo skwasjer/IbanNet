@@ -20,7 +20,7 @@ namespace IbanNet.Validation.Rules
         [InlineData(11)]
         public void Given_value_of_invalid_length_when_validating_it_should_return_error(int count)
         {
-            string value = new string('0', count);
+            string value = new('0', count);
             var context = new ValidationRuleContext(value)
             {
                 Country = new IbanCountry("XX")
@@ -39,7 +39,7 @@ namespace IbanNet.Validation.Rules
         [Fact]
         public void Given_value_of_valid_length_when_validating_it_should_return_success()
         {
-            string value = new string('0', 10);
+            string value = new('0', 10);
             var context = new ValidationRuleContext(value)
             {
                 Country = new IbanCountry("XX")

@@ -19,7 +19,7 @@ namespace IbanNet
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string _iban;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Lazy<IIbanValidator> _validatorInstance = new Lazy<IIbanValidator>(
+        private static Lazy<IIbanValidator> _validatorInstance = new(
             () => new IbanValidator(),
             LazyThreadSafetyMode.ExecutionAndPublication
         );

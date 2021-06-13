@@ -15,8 +15,7 @@ namespace IbanNet.Registry.Wikipedia
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new WikipediaPattern(pattern);
+            Func<WikipediaPattern> act = () => new WikipediaPattern(pattern);
 
             // Assert
             act.Should()
@@ -67,9 +66,9 @@ namespace IbanNet.Registry.Wikipedia
                 "6a,4n,16c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.UppercaseLetter, 6),
-                    new PatternToken(AsciiCategory.Digit, 4),
-                    new PatternToken(AsciiCategory.AlphaNumeric, 16)
+                    new(AsciiCategory.UppercaseLetter, 6),
+                    new(AsciiCategory.Digit, 4),
+                    new(AsciiCategory.AlphaNumeric, 16)
                 }
             };
 
@@ -78,9 +77,9 @@ namespace IbanNet.Registry.Wikipedia
                 "1n2a3c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.Digit, 1),
-                    new PatternToken(AsciiCategory.UppercaseLetter, 2),
-                    new PatternToken(AsciiCategory.AlphaNumeric, 3)
+                    new(AsciiCategory.Digit, 1),
+                    new(AsciiCategory.UppercaseLetter, 2),
+                    new(AsciiCategory.AlphaNumeric, 3)
                 }
             };
         }
