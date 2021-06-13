@@ -16,35 +16,43 @@ namespace IbanNet.Registry.Patterns
 
         public bool Validate(string iban) => _validationFunc(iban);
 
-        private bool ValidateFixedLength(string iban)
+        private unsafe bool ValidateFixedLength(string value)
         {
+            int length = value.Length;
+            int tokenCount = _tokens.Count;
             int pos = 0;
             int segmentIndex = 0;
-            // ReSharper disable once ForCanBeConvertedToForeach - justification : performance critical
-            for (; segmentIndex < _tokens.Count; segmentIndex++)
+            fixed (char* ptr = value)
             {
-                PatternToken expectedToken = _tokens[segmentIndex];
-                if (pos + expectedToken.MaxLength > iban.Length)
+                // ReSharper disable once ForCanBeConvertedToForeach - justification : performance critical
+                for (; segmentIndex < tokenCount; segmentIndex++)
                 {
-                    return false;
-                }
+                    PatternToken expectedToken = _tokens[segmentIndex];
+                    int maxLength = expectedToken.MaxLength;
 
-                for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
-                {
-                    char c = iban[pos];
-                    if (!expectedToken.IsMatch(c))
+                    if (pos + maxLength > length)
                     {
                         return false;
                     }
 
-                    pos++;
+                    Func<char, bool> isMatch = expectedToken.IsMatch;
+                    for (int occurrence = 0; occurrence < maxLength; occurrence++)
+                    {
+                        char c = ptr[pos];
+                        if (!isMatch(c))
+                        {
+                            return false;
+                        }
+
+                        pos++;
+                    }
                 }
             }
 
-            return iban.Length == pos && segmentIndex == _tokens.Count;
+            return length == pos && segmentIndex == tokenCount;
         }
 
-        private bool ValidateNonFixedLength(string iban)
+        private bool ValidateNonFixedLength(string value)
         {
             int pos = 0;
             int segmentIndex = 0;
@@ -53,18 +61,18 @@ namespace IbanNet.Registry.Patterns
                 PatternToken? expectedToken = _tokens[segmentIndex];
                 if (expectedToken.IsFixedLength)
                 {
-                    if (!ProcessFixedLengthTest(expectedToken, iban, ref pos))
+                    if (!ProcessFixedLengthTest(expectedToken, value, ref pos))
                     {
                         return false;
                     }
                 }
-                else if (!ProcessNonFixedLengthTest(expectedToken, iban, ref pos))
+                else if (!ProcessNonFixedLengthTest(expectedToken, value, ref pos))
                 {
                     return false;
                 }
             }
 
-            return iban.Length == pos && segmentIndex == _tokens.Count;
+            return value.Length == pos && segmentIndex == _tokens.Count;
         }
 
         private static bool ProcessFixedLengthTest(PatternToken expectedToken, string value, ref int pos)

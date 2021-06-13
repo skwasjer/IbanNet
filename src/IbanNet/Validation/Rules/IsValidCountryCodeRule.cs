@@ -40,15 +40,14 @@ namespace IbanNet.Validation.Rules
             return _ibanRegistry.TryGetValue(countryCode, out IbanCountry? country) ? country : null;
         }
 
-        private static string? GetCountryCode(string value)
+        private static unsafe string? GetCountryCode(string value)
         {
-            return value.Length < 2
-                ? null
-                : new string(new[]
-                {
-                    char.ToUpperInvariant(value[0]),
-                    char.ToUpperInvariant(value[1])
-                });
+            fixed (char* ch = value)
+            {
+                return value.Length < 2
+                    ? null
+                    : new string(ch, 0, 2);
+            }
         }
     }
 }
