@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using FluentValidation;
-using FluentValidation.Internal;
 using FluentValidation.Results;
-using FluentValidation.Validators;
+using FluentValidation.TestHelper;
 using IbanNet.Validation.Results;
 using Moq;
 using TestHelpers;
@@ -17,32 +16,26 @@ namespace IbanNet.FluentValidation
     public class FluentIbanValidatorTests
     {
         private readonly IbanValidatorMock _ibanValidatorMock;
-        private readonly FluentIbanValidator _sut;
+        private readonly TestModelValidator _validator;
 
-        public FluentIbanValidatorTests()
+        protected FluentIbanValidatorTests()
         {
             _ibanValidatorMock = new IbanValidatorMock();
-            _sut = new FluentIbanValidator(_ibanValidatorMock);
+            var sut = new FluentIbanValidator<TestModel>(_ibanValidatorMock);
+            _validator = new TestModelValidator(sut);
         }
 
         public class When_validating_an_invalid_iban : FluentIbanValidatorTests
         {
             private const string AttemptedIbanValue = TestValues.InvalidIban;
-            private readonly PropertyValidatorContext _propertyValidatorContext;
-
-            public When_validating_an_invalid_iban()
-            {
-                var rule = PropertyRule.Create<TestModel, string>(x => x.BankAccountNumber);
-
-                var validationContext = new ValidationContext<TestModel>(new TestModel());
-                _propertyValidatorContext = new PropertyValidatorContext(validationContext, rule, null, AttemptedIbanValue);
-            }
 
             [Fact]
             public void It_should_call_validator()
             {
+                var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
+
                 // Act
-                _sut.Validate(_propertyValidatorContext);
+                _validator.Validate(obj);
 
                 // Assert
                 _ibanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
@@ -53,9 +46,10 @@ namespace IbanNet.FluentValidation
             {
                 const string expectedPropertyName = "Bank Account Number";
                 string expectedErrorMessage = $"'{expectedPropertyName}' is not a valid IBAN.";
+                var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
 
                 // Act
-                IEnumerable<ValidationFailure> actual = _sut.Validate(_propertyValidatorContext);
+                IEnumerable<ValidationFailure> actual = _validator.ShouldHaveValidationErrorFor(x => x.BankAccountNumber, obj);
 
                 // Assert
                 ValidationFailure error = actual.Should()
@@ -72,18 +66,15 @@ namespace IbanNet.FluentValidation
         public class When_validating_a_valid_iban : FluentIbanValidatorTests
         {
             private const string AttemptedIbanValue = TestValues.ValidIban;
-            private readonly PropertyValidatorContext _propertyValidatorContext;
 
-            public When_validating_a_valid_iban()
-            {
-                _propertyValidatorContext = new PropertyValidatorContext(null, PropertyRule.Create<string, object>(_ => null), null, AttemptedIbanValue);
-            }
 
             [Fact]
             public void It_should_call_validator()
             {
+                var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
+
                 // Act
-                _sut.Validate(_propertyValidatorContext);
+                _validator.Validate(obj);
 
                 // Assert
                 _ibanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
@@ -92,29 +83,24 @@ namespace IbanNet.FluentValidation
             [Fact]
             public void It_should_succeed()
             {
-                // Act
-                IEnumerable<ValidationFailure> actual = _sut.Validate(_propertyValidatorContext);
+                var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
 
-                // Assert
-                actual.Should().BeEmpty($"because no validation errors should have occurred");
+                _validator.ShouldNotHaveValidationErrorFor(x => x.BankAccountNumber, obj);
             }
         }
 
         public class When_validating_a_null_value : FluentIbanValidatorTests
         {
             private const string AttemptedIbanValue = null;
-            private readonly PropertyValidatorContext _propertyValidatorContext;
 
-            public When_validating_a_null_value()
-            {
-                _propertyValidatorContext = new PropertyValidatorContext(null, PropertyRule.Create<string, object>(_ => null), null, AttemptedIbanValue);
-            }
 
             [Fact]
             public void It_should_not_call_validator()
             {
+                var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
+
                 // Act
-                _sut.Validate(_propertyValidatorContext);
+                _validator.Validate(obj);
 
                 // Assert
                 _ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
@@ -123,33 +109,9 @@ namespace IbanNet.FluentValidation
             [Fact]
             public void It_should_succeed()
             {
-                // Act
-                IEnumerable<ValidationFailure> actual = _sut.Validate(_propertyValidatorContext);
+                var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
 
-                // Assert
-                actual.Should().BeEmpty("because a null iban is valid");
-            }
-        }
-
-        public class When_validating_an_unsupported_type : FluentIbanValidatorTests
-        {
-            private static readonly object InvalidTypeValue = new object();
-            private readonly PropertyValidatorContext _propertyValidatorContext;
-
-            public When_validating_an_unsupported_type()
-            {
-                _propertyValidatorContext = new PropertyValidatorContext(null, PropertyRule.Create<string, object>(_ => null), null, InvalidTypeValue);
-            }
-
-            [Fact]
-            public void It_should_throw()
-            {
-                // Act
-                Action act = () => _sut.Validate(_propertyValidatorContext);
-
-                // Assert
-                act.Should().Throw<InvalidCastException>();
-                _ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
+                _validator.ShouldNotHaveValidationErrorFor(x => x.BankAccountNumber, obj);
             }
         }
 
@@ -161,9 +123,8 @@ namespace IbanNet.FluentValidation
                 IIbanValidator ibanValidator = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once AssignNullToNotNullAttribute
-                Func<FluentIbanValidator> act = () => new FluentIbanValidator(ibanValidator);
+                Func<FluentIbanValidator<TestModel>> act = () => new FluentIbanValidator<TestModel>(ibanValidator);
 
                 // Assert
                 act.Should()
@@ -173,23 +134,28 @@ namespace IbanNet.FluentValidation
             }
         }
 
-        public class When_validator_context_is_null
+        public class When_validator_context_is_null : FluentIbanValidatorTests
         {
             [Fact]
             public void It_should_not_throw_and_validate_successfully()
             {
-                var ibanValidator = new FluentIbanValidator(new IbanValidator());
-                PropertyValidatorContext context = null;
+                var fluentIbanValidator = new FluentIbanValidator<TestModel>(new IbanValidator());
+                ValidationContext<TestModel> context = null;
 
                 // Act
-                // ReSharper disable once ExpressionIsAlwaysNull
-                Func<IEnumerable<ValidationFailure>> act = () => ibanValidator.Validate(context);
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<bool> act = () => fluentIbanValidator.IsValid(context, string.Empty);
 
                 // Assert
-                act.Should()
-                    .NotThrow()
-                    .Which.Should()
-                    .BeEmpty();
+                act.Should().NotThrow();
+            }
+        }
+
+        private class TestModelValidator : AbstractValidator<TestModel>
+        {
+            public TestModelValidator(FluentIbanValidator<TestModel> validator)
+            {
+                RuleFor(x => x.BankAccountNumber).SetValidator(validator);
             }
         }
     }
