@@ -230,5 +230,23 @@ namespace IbanNet
                 actual.Should().Be(expectedHashCode);
             }
         }
+
+        public class When_normalizing
+        {
+            [Theory]
+            [InlineData("no-whitespace", "NO-WHITESPACE")]
+            [InlineData(" \tin-\nstr ing\r", "IN-STRING")]
+            [InlineData("(&*!S #%t", "(&*!S#%T")]
+            [InlineData("", "")]
+            [InlineData(null, null)]
+            public void Given_string_when_normalizing_it_should_return_expected_value(string input, string expected)
+            {
+                // Act
+                string actual = Iban.NormalizeOrNull(input);
+
+                // Assert
+                actual.Should().Be(expected);
+            }
+        }
     }
 }

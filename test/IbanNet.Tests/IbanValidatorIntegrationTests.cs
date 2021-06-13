@@ -144,7 +144,7 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithWhitespace.StripWhitespaceOrNull(),
+                AttemptedValue = Iban.NormalizeOrNull(ibanWithWhitespace),
                 Country = Validator.SupportedCountries["NL"]
             });
         }

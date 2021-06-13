@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -40,11 +41,6 @@ namespace IbanNet
         internal Iban(string iban)
         {
             _iban = NormalizeOrNull(iban) ?? throw new ArgumentNullException(nameof(iban));
-        }
-
-        internal static string? NormalizeOrNull(string? iban)
-        {
-            return iban.StripWhitespaceOrNull()?.ToUpperInvariant();
         }
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
@@ -149,6 +145,39 @@ namespace IbanNet
         public static bool operator !=(Iban left, Iban right)
         {
             return !Equals(left, right);
+        }
+
+        internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
+        {
+            if (value is null)
+            {
+                return null;
+            }
+
+            int length = value.Length;
+            char[] buffer = new char[length];
+            int pos = 0;
+            // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
+            for (int i = 0; i < length; i++)
+            {
+                char ch = value[i];
+                if (ch.IsWhitespace())
+                {
+                    continue;
+                }
+
+                if (ch.IsAsciiLetter())
+                {
+                    // Inline upper case.
+                    buffer[pos++] = (char)(ch & ~' ');
+                }
+                else
+                {
+                    buffer[pos++] = ch;
+                }
+            }
+
+            return new string(buffer, 0, pos);
         }
     }
 }
