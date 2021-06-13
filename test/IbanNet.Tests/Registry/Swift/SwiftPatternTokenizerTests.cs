@@ -2,7 +2,6 @@
 using System.Globalization;
 using FluentAssertions;
 using IbanNet.Registry.Patterns;
-using IbanNet.Validation;
 using Xunit;
 
 namespace IbanNet.Registry.Swift

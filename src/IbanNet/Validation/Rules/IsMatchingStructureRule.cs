@@ -15,8 +15,7 @@ namespace IbanNet.Validation.Rules
                 return new InvalidStructureResult();
             }
 
-            var validator = new PatternValidator(context.Country.Iban.Pattern);
-            return validator.Validate(context.Value)
+            return context.Country.Iban.Pattern.IsMatch(context.Value)
                 ? ValidationRuleResult.Success
                 : new InvalidStructureResult();
         }

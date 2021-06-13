@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using IbanNet.Validation;
 
 namespace IbanNet.Registry.Patterns
 {
@@ -17,6 +18,8 @@ namespace IbanNet.Registry.Patterns
         private ReadOnlyCollection<PatternToken>? _tokens;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool? _fixedLength;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private PatternValidator? _patternValidator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Pattern" /> class using a <paramref name="pattern" /> and <paramref name="tokenizer" />.
@@ -65,6 +68,17 @@ namespace IbanNet.Registry.Patterns
 #else
             return _pattern ??= string.Join(",", Tokens);
 #endif
+        }
+
+        internal bool IsMatch(string value)
+        {
+            if (value is null!)
+            {
+                return false;
+            }
+
+            _patternValidator ??= new PatternValidator(this);
+            return _patternValidator.Validate(value);
         }
     }
 }

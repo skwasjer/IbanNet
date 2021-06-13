@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Validation
+namespace IbanNet.Registry.Patterns
 {
     internal class PatternValidator
     {
