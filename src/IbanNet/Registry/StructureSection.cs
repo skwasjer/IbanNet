@@ -13,7 +13,7 @@ namespace IbanNet.Registry
     public abstract class StructureSection
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string _example;
+        private readonly string? _example;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StructureSection" /> class using specified parameters.
@@ -31,7 +31,6 @@ namespace IbanNet.Registry
             }
 
             Position = position;
-            _example = string.Empty;
         }
 
         /// <summary>
@@ -49,13 +48,13 @@ namespace IbanNet.Registry
         }
 
         /// <summary>
-        /// Gets or sets the section example.
+        /// Gets the section example.
         /// </summary>
         [AllowNull]
         public string Example
         {
-            get => _example;
-            set => _example = value ?? string.Empty;
+            get => _example ?? string.Empty;
+            init => _example = value;
         }
 
         /// <summary>

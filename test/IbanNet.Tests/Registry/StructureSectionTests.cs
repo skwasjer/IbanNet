@@ -15,13 +15,6 @@ namespace IbanNet.Registry
             }
         }
 
-        private readonly StructureSection _sut;
-
-        public StructureSectionTests()
-        {
-            _sut = new TestStructureSection(NullPattern.Instance);
-        }
-
         [Fact]
         public void When_creating_structureSection_it_should_initialize_properties()
         {
@@ -58,10 +51,10 @@ namespace IbanNet.Registry
         {
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            _sut.Example = null;
+            var sut = new TestStructureSection(NullPattern.Instance) { Example = null };
 
             // Assert
-            _sut.Example.Should().BeEmpty();
+            sut.Example.Should().BeEmpty();
         }
 
         [Fact]
@@ -87,7 +80,7 @@ namespace IbanNet.Registry
             // Act
             // ReSharper disable once ExpressionIsAlwaysNull
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new TestStructureSection(pattern, 0);
+            Func<TestStructureSection> act = () => new TestStructureSection(pattern, 0);
 
             // Assert
             act.Should()
@@ -103,7 +96,7 @@ namespace IbanNet.Registry
 
             // Act
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new TestStructureSection(new SwiftPattern("2!n"), position);
+            Func<TestStructureSection> act = () => new TestStructureSection(new SwiftPattern("2!n"), position);
 
             // Assert
             act.Should()

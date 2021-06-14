@@ -20,8 +20,8 @@ namespace IbanNet.Registry
         }
 
         /// <summary>
-        /// Gets or sets the date the IBAN came in effect.
+        /// Gets the date the IBAN came in effect.
         /// </summary>
-        public DateTimeOffset EffectiveDate { get; set; }
+        public DateTimeOffset EffectiveDate { get; init; }
     }
 }

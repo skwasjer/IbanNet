@@ -40,7 +40,7 @@ namespace IbanNet.Registry
         public int Count => Dictionary.Count;
 
         /// <inheritdoc />
-        public IList<IIbanRegistryProvider> Providers { get; internal set; } = new List<IIbanRegistryProvider>();
+        public IList<IIbanRegistryProvider> Providers { get; internal init; } = new List<IIbanRegistryProvider>();
 
         /// <inheritdoc />
         // ReSharper disable once InconsistentNaming

@@ -83,30 +83,31 @@ namespace IbanNet
             string? normalizedIban = Iban.NormalizeOrNull(iban);
 
             var context = new ValidationRuleContext(normalizedIban ?? string.Empty);
-            var validationResult = new ValidationResult
-            {
-                AttemptedValue = normalizedIban
-            };
+            ErrorResult? error = null;
 
             foreach (IIbanValidationRule rule in _rules)
             {
                 try
                 {
-                    validationResult.Error = rule.Validate(context) as ErrorResult;
+                    error = rule.Validate(context) as ErrorResult;
                 }
                 catch (Exception ex)
                 {
-                    validationResult.Error = new ExceptionResult(ex);
+                    error = new ExceptionResult(ex);
                 }
 
-                if (!validationResult.IsValid)
+                if (error is not null)
                 {
                     break;
                 }
             }
 
-            validationResult.Country = context.Country;
-            return validationResult;
+            return new ValidationResult
+            {
+                AttemptedValue = normalizedIban,
+                Country = context.Country,
+                Error = error
+            };
         }
     }
 }
