@@ -11,7 +11,7 @@ namespace IbanNet.Registry.Patterns
         public PatternValidator(Pattern pattern)
         {
             _tokens = pattern.Tokens;
-            _validationFunc = GetValidationMethod(pattern.IsFixedLength);
+            _validationFunc = GetValidationMethod(pattern);
         }
 
         public bool Validate(string iban) => _validationFunc(iban);
@@ -24,7 +24,6 @@ namespace IbanNet.Registry.Patterns
             int segmentIndex = 0;
             fixed (char* ptr = value)
             {
-                // ReSharper disable once ForCanBeConvertedToForeach - justification : performance critical
                 for (; segmentIndex < tokenCount; segmentIndex++)
                 {
                     PatternToken expectedToken = _tokens[segmentIndex];
@@ -38,13 +37,10 @@ namespace IbanNet.Registry.Patterns
                     Func<char, bool> isMatch = expectedToken.IsMatch;
                     for (int occurrence = 0; occurrence < maxLength; occurrence++)
                     {
-                        char c = ptr[pos];
-                        if (!isMatch(c))
+                        if (!isMatch(ptr[pos++]))
                         {
                             return false;
                         }
-
-                        pos++;
                     }
                 }
             }
@@ -118,13 +114,20 @@ namespace IbanNet.Registry.Patterns
             return pos >= startPos + expectedToken.MinLength && pos <= startPos + expectedToken.MaxLength;
         }
 
-        private Func<string, bool> GetValidationMethod(bool fixedLength)
+        private Func<string, bool> GetValidationMethod(Pattern pattern)
         {
+            // If no tokens, always fail.
+            if (pattern.Tokens.Count == 0)
+            {
+                return _ => false;
+            }
+
             // Short-circuit, if all tests are fixed length, use faster validation.
-            if (fixedLength)
+            if (pattern.IsFixedLength)
             {
                 return ValidateFixedLength;
             }
+
             return ValidateNonFixedLength;
         }
     }
