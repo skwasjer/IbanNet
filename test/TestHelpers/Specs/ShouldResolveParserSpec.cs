@@ -26,5 +26,16 @@ namespace TestHelpers.Specs
             // Act
             act.Should().NotThrow().Which.Should().NotBeNull();
         }
+
+        [Fact]
+        public void When_resolving_twice_it_should_return_same_instance()
+        {
+            // Assert
+            IIbanParser first = Subject.GetService<IIbanParser>();
+            IIbanParser second = Subject.GetService<IIbanParser>();
+
+            // Act
+            first.Should().BeSameAs(second);
+        }
     }
 }

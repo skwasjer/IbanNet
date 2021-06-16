@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using IbanNet.Registry;
 using IbanNet.Validation.Results;
 using Moq;
 using Xunit;
@@ -19,13 +20,11 @@ namespace IbanNet
 
         public class Integration
         {
-            private readonly IbanValidator _ibanValidator;
             private readonly IbanParser _sut;
 
             public Integration()
             {
-                _ibanValidator = new IbanValidator();
-                _sut = new IbanParser(_ibanValidator);
+                _sut = new IbanParser(new IbanValidator());
             }
 
             [Theory]
@@ -57,6 +56,41 @@ namespace IbanNet
 
                 // Assert
                 act.Should().NotThrow().Which.Should().BeFalse();
+            }
+        }
+
+        public class When_creating_instance
+        {
+            [Fact]
+            public void With_null_validator_it_should_throw()
+            {
+                IIbanValidator ibanValidator = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<IbanParser> parser = () => new IbanParser(ibanValidator);
+
+                // Assert
+                parser.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(ibanValidator));
+            }
+
+            [Fact]
+            public void With_null_registry_it_should_throw()
+            {
+                IIbanRegistry registry = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<IbanParser> parser = () => new IbanParser(registry);
+
+                // Assert
+                parser.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(registry));
             }
         }
 

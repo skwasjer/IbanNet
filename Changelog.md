@@ -12,6 +12,10 @@
 
 - Updated to FluentValidation v10.x, dropping .NET 4.6.1.
 
+### IbanNet.DependencyInjection.*
+
+- `IIbanParser` and `IIbanGenerator` are now registered as singletons.
+
 ## v4.4.1
 
 - `IIbanRegistry.TryGetValue` now supports case insensitive country codes.

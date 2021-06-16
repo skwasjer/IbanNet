@@ -32,7 +32,7 @@ namespace IbanNet.DependencyInjection.Autofac
             IRegistrationBuilder<IbanValidatorOptions, ConcreteReflectionActivatorData, SingleRegistrationStyle> optionsRegistration = builder
                 .RegisterType<IbanValidatorOptions>()
                 .AsSelf()
-                .InstancePerDependency();
+                .SingleInstance();
 
             foreach (Action<IActivatingEventArgs<IbanValidatorOptions>> handler in _ibanValidatorOptionsHandlers)
             {
@@ -49,7 +49,7 @@ namespace IbanNet.DependencyInjection.Autofac
                 .RegisterType<IbanParser>()
                 .As<IIbanParser>()
                 .IfNotRegistered(typeof(IIbanParser))
-                .InstancePerDependency();
+                .SingleInstance();
 
             builder
                 .Register(context =>
@@ -75,7 +75,7 @@ namespace IbanNet.DependencyInjection.Autofac
                 })
                 .As<IIbanGenerator>()
                 .IfNotRegistered(typeof(IIbanGenerator))
-                .InstancePerDependency();
+                .SingleInstance();
         }
     }
 }

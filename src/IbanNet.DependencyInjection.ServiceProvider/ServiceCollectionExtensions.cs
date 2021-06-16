@@ -40,7 +40,7 @@ namespace IbanNet.DependencyInjection.ServiceProvider
 
             services.TryAddTransient<DependencyResolverAdapter, ServiceProviderDependencyResolverAdapter>();
 
-            services.TryAddTransient<IIbanParser, IbanParser>();
+            services.TryAddSingleton<IIbanParser, IbanParser>();
             services.TryAddSingleton<IIbanValidator>(s =>
             {
                 IbanValidatorOptions options = s.GetRequiredService<IOptions<IbanValidatorOptions>>().Value;
@@ -52,7 +52,7 @@ namespace IbanNet.DependencyInjection.ServiceProvider
 
                 return validator;
             });
-            services.TryAddTransient<IIbanGenerator>(s =>
+            services.TryAddSingleton<IIbanGenerator>(s =>
             {
                 IbanValidatorOptions options = s.GetRequiredService<IOptions<IbanValidatorOptions>>().Value;
                 return new IbanGenerator(options.Registry);
