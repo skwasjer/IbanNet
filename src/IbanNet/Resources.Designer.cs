@@ -125,15 +125,6 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The validation method is invalid..
-        /// </summary>
-        internal static string ArgumentException_ValidationMethod_is_invalid {
-            get {
-                return ResourceManager.GetString("ArgumentException_ValidationMethod_is_invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enum value &apos;{0}&apos; should be defined in the &apos;{1}&apos; enum..
         /// </summary>
         internal static string Enum_value_0_should_be_defined_in_the_1_enum {

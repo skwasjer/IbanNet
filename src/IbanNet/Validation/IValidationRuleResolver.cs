@@ -4,7 +4,7 @@ using IbanNet.Validation.Rules;
 namespace IbanNet.Validation
 {
     /// <summary>
-    /// Describes how validation rules are resolved by validation method.
+    /// Resolves validation rules.
     /// </summary>
     internal interface IValidationRuleResolver
     {

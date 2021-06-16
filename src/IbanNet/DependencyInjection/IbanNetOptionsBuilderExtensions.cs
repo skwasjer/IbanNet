@@ -101,36 +101,6 @@ namespace IbanNet.DependencyInjection
         }
 
         /// <summary>
-        /// Configures the <see cref="IbanValidator" /> to use strict validation.
-        /// </summary>
-        /// <param name="builder">The builder instance.</param>
-        /// <returns>The <see cref="IIbanNetOptionsBuilder" /> so that additional calls can be chained.</returns>
-        public static IIbanNetOptionsBuilder UseStrictValidation(this IIbanNetOptionsBuilder builder)
-        {
-            return builder.UseValidationMethod(ValidationMethod.Strict);
-        }
-
-        /// <summary>
-        /// Configures the <see cref="IbanValidator" /> to use loose validation.
-        /// </summary>
-        /// <param name="builder">The builder instance.</param>
-        /// <returns>The <see cref="IIbanNetOptionsBuilder" /> so that additional calls can be chained.</returns>
-        public static IIbanNetOptionsBuilder UseLooseValidation(this IIbanNetOptionsBuilder builder)
-        {
-            return builder.UseValidationMethod(ValidationMethod.Loose);
-        }
-
-        private static IIbanNetOptionsBuilder UseValidationMethod(this IIbanNetOptionsBuilder builder, ValidationMethod validationMethod)
-        {
-            if (builder is null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
-
-            return builder.Configure(options => options.Method = validationMethod);
-        }
-
-        /// <summary>
         /// Registers a custom validation rule that is executed after built-in validation has passed.
         /// </summary>
         /// <param name="builder">The builder instance.</param>

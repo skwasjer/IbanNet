@@ -5,7 +5,7 @@ using IbanNet.Validation.Rules;
 namespace IbanNet.Validation
 {
     /// <summary>
-    /// Resolves validation rules by validation method.
+    /// Resolves all validation rules, built-in first, followed by custom rules.
     /// </summary>
     internal class DefaultValidationRuleResolver : IValidationRuleResolver
     {
@@ -28,11 +28,7 @@ namespace IbanNet.Validation
             yield return new HasIbanChecksumRule();
             yield return new IsValidCountryCodeRule(_options.Registry);
             yield return new IsValidLengthRule();
-
-            if (_options.Method == ValidationMethod.Strict)
-            {
-                yield return new IsMatchingStructureRule();
-            }
+            yield return new IsMatchingStructureRule();
 
             yield return new Mod97Rule();
 

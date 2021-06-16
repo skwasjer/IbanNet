@@ -12,21 +12,20 @@ namespace IbanNet.Benchmark
     [MemoryDiagnoser]
     public class ValidatorBenchmark
     {
-        private IIbanValidator _strictValidator, _looseValidator;
+        private IIbanValidator _validator;
 #if VALIDATOR_COMPARISONS
         private IbanValidation.IbanValidator _nugetIbanValidator;
 #endif
         private IList<string> _testData;
 
-        [Params(1, 10)]
+        [Params(10000)]
         public int Count { get; set; }
 
         [GlobalSetup]
         public void GlobalSetup()
         {
             // IbanNet setup
-            _strictValidator = new IbanValidator();
-            _looseValidator = new IbanValidator(new IbanValidatorOptions { Method = ValidationMethod.Loose });
+            _validator = new IbanValidator();
 
 #if VALIDATOR_COMPARISONS
             _nugetIbanValidator = new IbanValidation.IbanValidator();
@@ -41,7 +40,7 @@ namespace IbanNet.Benchmark
             // ReSharper disable once ForCanBeConvertedToForeach
             for (int i = 0; i < _testData.Count; i++)
             {
-                _strictValidator.Validate(_testData[i]);
+                _validator.Validate(_testData[i]);
             }
         }
 
@@ -52,17 +51,7 @@ namespace IbanNet.Benchmark
             for (int i = 0; i < _testData.Count; i++)
             {
                 // Validate same IBAN to hit structure validator cache.
-                _strictValidator.Validate(_testData[0]);
-            }
-        }
-
-        [Benchmark]
-        public void IbanNet_Loose()
-        {
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (int i = 0; i < _testData.Count; i++)
-            {
-                _looseValidator.Validate(_testData[i]);
+                _validator.Validate(_testData[0]);
             }
         }
 

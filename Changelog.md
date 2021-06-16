@@ -7,6 +7,7 @@
 - Removed deprecated contracts/code `IStructureValidationFactory`, `IStructureValidation`, `IStructureSection`. Use the `Pattern` abstraction for custom registry providers.
 - Removed `Iban.Parse`, `Iban.TryParse`, use the `IbanParser` class.
 - Added support for [more countries](./SupportedCountries.md) based on Wikipedia.
+- Removed `ValidationMethod`, since performance in strict (= default) is now significantly faster (compared to v4.x, even in loose mode). The maintenance is not worth the little gains anymore.
 
 ### IbanNet.FluentValidation
 
