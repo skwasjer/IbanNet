@@ -32,8 +32,12 @@ if (validationResult.IsValid)
 
 ```csharp
 Iban iban;
-IIbanParser parser = new IbanParser(new IbanValidator());
+IIbanParser parser = new IbanParser(IbanRegistry.Default);
 bool success = parser.TryParse("NL91 ABNA 0417 1643 00", out iban);
+if (success)
+{
+    Console.WriteLine(iban.ToString(IbanFormat.Obfuscated)); // XXXXXXXXXXXXXX4300
+}
 ```
 
 ### Contributions
