@@ -108,7 +108,7 @@ namespace IbanNet.Registry
 
                     int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
 #>
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
 <#
                     var p = new IbanSwiftPattern(row[17]);
@@ -174,14 +174,6 @@ namespace IbanNet.Registry
 #>
             // ReSharper restore StringLiteralTypo
             // ReSharper restore CommentTypo
-        }
-
-        private class PretokenizedPattern : Pattern
-        {
-            public PretokenizedPattern(IEnumerable<PatternToken> tokens)
-                : base(tokens)
-            {
-            }
         }
     }
 }

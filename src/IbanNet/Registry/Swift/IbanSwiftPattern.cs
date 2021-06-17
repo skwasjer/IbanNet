@@ -1,4 +1,6 @@
-﻿using IbanNet.Extensions;
+﻿using System.Collections.Generic;
+using IbanNet.Extensions;
+using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry.Swift
 {
@@ -7,6 +9,10 @@ namespace IbanNet.Registry.Swift
         private const int CountryCodeLength = 2;
 
         public IbanSwiftPattern(string pattern) : base(AdjustPattern(pattern)!)
+        {
+        }
+
+        internal IbanSwiftPattern(IEnumerable<PatternToken> tokens) : base(tokens)
         {
         }
 

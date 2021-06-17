@@ -48,7 +48,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Andorra",
                 EnglishName = "Andorra",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -85,7 +85,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "United Arab Emirates (The)",
                 EnglishName = "United Arab Emirates (The)",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -117,7 +117,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Albania",
                 EnglishName = "Albania",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -153,7 +153,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Austria",
                 EnglishName = "Austria",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -185,7 +185,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Azerbaijan",
                 EnglishName = "Azerbaijan",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -217,7 +217,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Bosnia and Herzegovina",
                 EnglishName = "Bosnia and Herzegovina",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -255,7 +255,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Belgium",
                 EnglishName = "Belgium",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -288,7 +288,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Bulgaria",
                 EnglishName = "Bulgaria",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -326,7 +326,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Bahrain",
                 EnglishName = "Bahrain",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -358,7 +358,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Brazil",
                 EnglishName = "Brazil",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -397,7 +397,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Republic of Belarus",
                 EnglishName = "Republic of Belarus",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -430,7 +430,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Switzerland",
                 EnglishName = "Switzerland",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -462,7 +462,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Costa Rica",
                 EnglishName = "Costa Rica",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -494,7 +494,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Cyprus",
                 EnglishName = "Cyprus",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -531,7 +531,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Czechia",
                 EnglishName = "Czechia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -564,7 +564,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Germany",
                 EnglishName = "Germany",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -596,7 +596,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Denmark",
                 EnglishName = "Denmark",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -629,7 +629,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Dominican Republic",
                 EnglishName = "Dominican Republic",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -661,7 +661,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Estonia",
                 EnglishName = "Estonia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -695,7 +695,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Egypt",
                 EnglishName = "Egypt",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -732,7 +732,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Spain",
                 EnglishName = "Spain",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -775,7 +775,7 @@ namespace IbanNet.Registry
                 {
                     "fi-AX"
                 },
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -811,7 +811,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Faroe Islands",
                 EnglishName = "Faroe Islands",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -848,7 +848,7 @@ namespace IbanNet.Registry
                 {
                     "fr-GF", "fr-GP", "fr-MQ", "fr-RE", "fr-PF", "fr-TF", "fr-YT", "fr-NC", "fr-BL", "fr-MF", "fr-PM", "fr-WF"
                 },
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -890,7 +890,7 @@ namespace IbanNet.Registry
                 {
                     "gb-IM", "gb-JE", "gb-GG"
                 },
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -927,7 +927,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Georgia",
                 EnglishName = "Georgia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -959,7 +959,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Gibraltar",
                 EnglishName = "Gibraltar",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -991,7 +991,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Greenland",
                 EnglishName = "Greenland",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1024,7 +1024,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Greece",
                 EnglishName = "Greece",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1061,7 +1061,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Guatemala",
                 EnglishName = "Guatemala",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1093,7 +1093,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Croatia",
                 EnglishName = "Croatia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1125,7 +1125,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Hungary",
                 EnglishName = "Hungary",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1164,7 +1164,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Ireland",
                 EnglishName = "Ireland",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1201,7 +1201,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Israel",
                 EnglishName = "Israel",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1238,7 +1238,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Iraq",
                 EnglishName = "Iraq",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1275,7 +1275,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Iceland",
                 EnglishName = "Iceland",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1313,7 +1313,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Italy",
                 EnglishName = "Italy",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1351,7 +1351,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Jordan",
                 EnglishName = "Jordan",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1388,7 +1388,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Kuwait",
                 EnglishName = "Kuwait",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1420,7 +1420,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Kazakhstan",
                 EnglishName = "Kazakhstan",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1452,7 +1452,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Lebanon",
                 EnglishName = "Lebanon",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1484,7 +1484,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Saint Lucia",
                 EnglishName = "Saint Lucia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1516,7 +1516,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Liechtenstein",
                 EnglishName = "Liechtenstein",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1548,7 +1548,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Lithuania",
                 EnglishName = "Lithuania",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1580,7 +1580,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Luxembourg",
                 EnglishName = "Luxembourg",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1612,7 +1612,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Latvia",
                 EnglishName = "Latvia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1644,7 +1644,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Libya",
                 EnglishName = "Libya",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1681,7 +1681,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Monaco",
                 EnglishName = "Monaco",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1719,7 +1719,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Moldova",
                 EnglishName = "Moldova",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1751,7 +1751,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Montenegro",
                 EnglishName = "Montenegro",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1784,7 +1784,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Macedonia",
                 EnglishName = "Macedonia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1817,7 +1817,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Mauritania",
                 EnglishName = "Mauritania",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1855,7 +1855,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Malta",
                 EnglishName = "Malta",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1892,7 +1892,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Mauritius",
                 EnglishName = "Mauritius",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1932,7 +1932,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Netherlands (The)",
                 EnglishName = "Netherlands (The)",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1964,7 +1964,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Norway",
                 EnglishName = "Norway",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -1997,7 +1997,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Pakistan",
                 EnglishName = "Pakistan",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2029,7 +2029,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Poland",
                 EnglishName = "Poland",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2061,7 +2061,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Palestine, State of",
                 EnglishName = "Palestine, State of",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2093,7 +2093,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Portugal",
                 EnglishName = "Portugal",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2131,7 +2131,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Qatar",
                 EnglishName = "Qatar",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2163,7 +2163,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Romania",
                 EnglishName = "Romania",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2195,7 +2195,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Serbia",
                 EnglishName = "Serbia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2228,7 +2228,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Saudi Arabia",
                 EnglishName = "Saudi Arabia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2260,7 +2260,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Seychelles",
                 EnglishName = "Seychelles",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2299,7 +2299,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Sweden",
                 EnglishName = "Sweden",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2332,7 +2332,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Slovenia",
                 EnglishName = "Slovenia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2365,7 +2365,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Slovakia",
                 EnglishName = "Slovakia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2398,7 +2398,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "San Marino",
                 EnglishName = "San Marino",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2436,7 +2436,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Sao Tome and Principe",
                 EnglishName = "Sao Tome and Principe",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2474,7 +2474,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "El Salvador",
                 EnglishName = "El Salvador",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2506,7 +2506,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Timor-Leste",
                 EnglishName = "Timor-Leste",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2539,7 +2539,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Tunisia",
                 EnglishName = "Tunisia",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2577,7 +2577,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Turkey",
                 EnglishName = "Turkey",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2610,7 +2610,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Ukraine",
                 EnglishName = "Ukraine",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2642,7 +2642,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Vatican City State",
                 EnglishName = "Vatican City State",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2674,7 +2674,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Virgin Islands",
                 EnglishName = "Virgin Islands",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2706,7 +2706,7 @@ namespace IbanNet.Registry
             {
                 DisplayName = "Kosovo",
                 EnglishName = "Kosovo",
-                Iban = new IbanStructure(new PretokenizedPattern(new List<PatternToken>
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
                     new(AsciiCategory.UppercaseLetter, 2, 2),
                     new(AsciiCategory.Digit, 2, 2),
@@ -2740,14 +2740,6 @@ namespace IbanNet.Registry
 
             // ReSharper restore StringLiteralTypo
             // ReSharper restore CommentTypo
-        }
-
-        private class PretokenizedPattern : Pattern
-        {
-            public PretokenizedPattern(IEnumerable<PatternToken> tokens)
-                : base(tokens)
-            {
-            }
         }
     }
 }
