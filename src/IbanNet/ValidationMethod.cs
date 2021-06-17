@@ -1,14 +1,18 @@
-﻿namespace IbanNet
+﻿using System;
+
+namespace IbanNet
 {
     /// <summary>
     /// The validation method to use.
     /// </summary>
+    [Obsolete("From v5.0 onwards, IbanNet will always validate in strict mode.")]
     public enum ValidationMethod
     {
         /// <summary>
         /// Strict validation consists of all built-in IBAN validation rules.
         /// <para>This is the recommended validation method for user input, imports, etc.</para>
         /// </summary>
+        [Obsolete("From v5.0 onwards, IbanNet will always validate in strict mode.")]
         Strict,
 
         /// <summary>
@@ -20,6 +24,7 @@
         /// Loose validation is around 15%-20% faster than strict validation.
         /// F.ex. a use case is parsing IBANs from a well known source that previously have been validated using strict validation.
         /// </remarks>
+        [Obsolete("From v5.0 onwards, IbanNet will always validate in strict mode.")]
         Loose
     }
 }

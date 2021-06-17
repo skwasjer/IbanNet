@@ -105,6 +105,7 @@ namespace IbanNet.DependencyInjection
         /// </summary>
         /// <param name="builder">The builder instance.</param>
         /// <returns>The <see cref="IIbanNetOptionsBuilder" /> so that additional calls can be chained.</returns>
+        [Obsolete("From v5.0 onwards, IbanNet will always validate in strict mode.")]
         public static IIbanNetOptionsBuilder UseStrictValidation(this IIbanNetOptionsBuilder builder)
         {
             return builder.UseValidationMethod(ValidationMethod.Strict);
@@ -115,6 +116,7 @@ namespace IbanNet.DependencyInjection
         /// </summary>
         /// <param name="builder">The builder instance.</param>
         /// <returns>The <see cref="IIbanNetOptionsBuilder" /> so that additional calls can be chained.</returns>
+        [Obsolete("From v5.0 onwards, IbanNet will always validate in strict mode.")]
         public static IIbanNetOptionsBuilder UseLooseValidation(this IIbanNetOptionsBuilder builder)
         {
             return builder.UseValidationMethod(ValidationMethod.Loose);

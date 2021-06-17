@@ -20,6 +20,7 @@ namespace IbanNet
         /// <summary>
         /// Gets or sets the validation method. Defaults to <see cref="IbanNet.ValidationMethod.Strict" />.
         /// </summary>
+        [Obsolete("From v5.0 onwards, IbanNet will always validate in strict mode.")]
         public ValidationMethod Method
         {
             get => _method;
