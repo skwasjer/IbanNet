@@ -36,17 +36,6 @@ namespace IbanNet.Registry.Wikipedia
             actual.ToString().Should().Be(expectedPattern);
         }
 
-        //[Theory]
-        //[MemberData(nameof(GetTestCases))]
-        //public void Given_pattern_tokens_when_calling_to_string_should_return_same_pattern(string expectedPattern, IEnumerable<PatternToken> tokens)
-        //{
-        //    // Act
-        //    var actual = new SwiftPattern(tokens);
-
-        //    // Assert
-        //    actual.ToString().Should().Be(expectedPattern);
-        //}
-
         [Theory]
         [MemberData(nameof(GetTestCases))]
         public void Given_pattern_when_getting_tokens_it_should_return_expected(string pattern, IEnumerable<PatternToken> expectedTokens)

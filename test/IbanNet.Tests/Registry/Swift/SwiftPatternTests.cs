@@ -24,11 +24,10 @@ namespace IbanNet.Registry.Swift
                 .Be(nameof(pattern));
         }
 
-        [Fact]
-        public void Given_pattern_when_calling_to_string_should_return_same_pattern()
+        [Theory]
+        [MemberData(nameof(GetTestCases))]
+        public void Given_pattern_when_calling_to_string_should_return_same_pattern(string pattern, IEnumerable<PatternToken> _)
         {
-            const string pattern = "BG2!n4!a4!n2!n8!c";
-
             // Act
             var actual = new SwiftPattern(pattern);
 
