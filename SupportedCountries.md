@@ -117,31 +117,31 @@ Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/Inte
 
 | ISO country code | Country | SEPA | Length | IBAN example |
 |---|---|---|---|---|
-| DZ | Algeria | - | 26 |  |
 | AO | Angola | - | 25 |  |
-| BJ | Benin | - | 28 |  |
 | BF | Burkina Faso | - | 28 |  |
 | BI | Burundi | - | 16 |  |
-| CV | Cabo Verde | - | 25 |  |
-| CM | Cameroon | - | 27 |  |
+| BJ | Benin | - | 28 |  |
 | CF | Central African Republic | - | 27 |  |
-| TD | Chad | - | 27 |  |
-| KM | Comoros | - | 27 |  |
 | CG | Congo, Republic of the | - | 27 |  |
 | CI | Côte d'Ivoire | - | 28 |  |
+| CM | Cameroon | - | 27 |  |
+| CV | Cabo Verde | - | 25 |  |
 | DJ | Djibouti | - | 27 |  |
-| GQ | Equatorial Guinea | - | 27 |  |
+| DZ | Algeria | - | 26 |  |
 | GA | Gabon | - | 27 |  |
+| GQ | Equatorial Guinea | - | 27 |  |
 | GW | Guinea-Bissau | - | 25 |  |
 | HN | Honduras | - | 28 |  |
 | IR | Iran | - | 26 |  |
+| KM | Comoros | - | 27 |  |
+| MA | Morocco | - | 28 |  |
 | MG | Madagascar | - | 27 |  |
 | ML | Mali | - | 28 |  |
-| MA | Morocco | - | 28 |  |
 | MZ | Mozambique | - | 25 |  |
-| NI | Nicaragua | - | 32 |  |
 | NE | Niger | - | 28 |  |
+| NI | Nicaragua | - | 32 |  |
 | SN | Senegal | - | 28 |  |
+| TD | Chad | - | 27 |  |
 | TG | Togo | - | 28 |  |
 
 > The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the `WikipediaRegistryProvider`.

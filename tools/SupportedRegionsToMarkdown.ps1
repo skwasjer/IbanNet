@@ -104,7 +104,7 @@ ForEach($country in $registry)
 $markdown += "`r`n### Wikipedia`r`n`r`nExtra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):`r`n`r`n"
 
 $comparer = New-Object IbanNet.Registry.IbanCountryCodeComparer;
-$filteredWikiCountries = [System.Linq.Enumerable]::Except($wikiProvider, $swiftProvider, $comparer)
+$filteredWikiCountries = [System.Linq.Enumerable]::Except($wikiProvider, $swiftProvider, $comparer) | Sort-Object -Property TwoLetterISORegionName
 $markdown += Render-Table($filteredWikiCountries);
 
 $markdown += "> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the ``WikipediaRegistryProvider``.`r`n"
