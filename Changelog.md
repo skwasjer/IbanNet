@@ -17,6 +17,10 @@
 
 - `IIbanParser` and `IIbanGenerator` are now registered as singletons.
 
+## v4.4.2
+
+- Deprecate loose validation mode. Will be removed in v5.x.
+
 ## v4.4.1
 
 - `IIbanRegistry.TryGetValue` now supports case insensitive country codes.
