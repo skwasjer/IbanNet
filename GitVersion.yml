@@ -4,4 +4,12 @@ continuous-delivery-fallback-tag: ''
 branches:
   develop: {}
 ignore:
-  sha: []
+  sha:
+  - 39f9b9adf2b5158903d1a738ee4f4f6cc2372a85
+  - 67746fcd6a9a348dd81b0ce8375d244f907d8a9d
+  - cd2bb49e4394dc835fe1ecb59cfd63884d994636
+  - 904fd5063d88ba9522bbb7f88a9584057e3f6077
+  - a10cd4a9a3d50bb46a0369ed67501f6648c6c6cd
+  - 61ba373fc76cf76a57e8e2ed5b2cc2c925f616b2
+  - 30bfe3f78adb54017ad11039e3dafc05286fa6e4
+  - f01e6dfe8e85427872c19f2d020a53528298067f
