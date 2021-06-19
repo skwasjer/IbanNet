@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using IbanNet.CheckDigits.Calculators;
 using IbanNet.Registry;
 
@@ -20,7 +22,7 @@ namespace IbanNet.Builders
         private IbanCountry _country = null!;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IbanBuilder"/> class.
+        /// Initializes a new instance of the <see cref="IbanBuilder" /> class.
         /// </summary>
         public IbanBuilder()
         {
@@ -67,6 +69,13 @@ namespace IbanNet.Builders
             try
             {
                 bban = _bbanBuilder.Build();
+                if (!_country.Iban.Pattern.Tokens.Any())
+                {
+                    throw new InvalidOperationException(string.Format(
+                        CultureInfo.CurrentCulture,
+                        Resources.Exception_The_country_0_does_not_define_a_IBAN_pattern,
+                        _country.TwoLetterISORegionName));
+                }
 
                 countryCode = _country.TwoLetterISORegionName;
                 buffer = new char[_country.Iban.Length];
@@ -80,9 +89,10 @@ namespace IbanNet.Builders
                     checkDigitPos: bban.Length + countryCode.Length,
                     bbanPos: 0);
             }
-            catch (BankAccountBuilderException ex)
+            catch (InvalidOperationException ex)
             {
-                throw new BankAccountBuilderException(Resources.Exception_Builder_The_IBAN_cannot_be_built, ex.InnerException);
+                Exception? innerEx = ex is BankAccountBuilderException bex ? bex.InnerException : ex;
+                throw new BankAccountBuilderException(Resources.Exception_Builder_The_IBAN_cannot_be_built, innerEx);
             }
 
             // Return IBAN.

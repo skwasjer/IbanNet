@@ -179,6 +179,24 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; does not define a BBAN pattern..
+        /// </summary>
+        internal static string Exception_The_country_0_does_not_define_a_BBAN_pattern {
+            get {
+                return ResourceManager.GetString("Exception_The_country_0_does_not_define_a_BBAN_pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; does not define a IBAN pattern..
+        /// </summary>
+        internal static string Exception_The_country_0_does_not_define_a_IBAN_pattern {
+            get {
+                return ResourceManager.GetString("Exception_The_country_0_does_not_define_a_IBAN_pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value &apos;{0}&apos; is not a valid IBAN..
         /// </summary>
         internal static string IbanFormatException_The_value_0_is_not_a_valid_IBAN {
