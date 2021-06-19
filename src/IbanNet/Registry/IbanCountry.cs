@@ -69,7 +69,7 @@ namespace IbanNet.Registry
         /// Gets the list of included countries.
         /// </summary>
         public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>(
-#if NET_LEGACY
+#if NET452 || NETSTANDARD1_2
 			new string[0]
 #else
             Array.Empty<string>()
