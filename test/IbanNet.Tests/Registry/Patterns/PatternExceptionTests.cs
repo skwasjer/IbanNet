@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentAssertions;
-using IbanNet.CheckDigits.Calculators;
 using Newtonsoft.Json;
 using TestHelpers.Specs;
 using Xunit;
@@ -18,7 +17,7 @@ namespace IbanNet.Registry.Patterns
             string jsonWithException = JsonConvert.SerializeObject(exception);
 
             // Act
-            Exception actual = JsonConvert.DeserializeObject<InvalidTokenException>(jsonWithException);
+            Exception actual = JsonConvert.DeserializeObject<PatternException>(jsonWithException);
 
             // Assert
             actual.Should().BeEquivalentTo(exception);
