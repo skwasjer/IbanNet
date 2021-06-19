@@ -1,4 +1,6 @@
-﻿namespace IbanNet.Extensions
+﻿using System;
+
+namespace IbanNet.Extensions
 {
     internal static class ArrayExtensions
     {
@@ -11,18 +13,17 @@
         /// <returns>The filled array.</returns>
         public static T[] Fill<T>(this T[] array, T fillWith)
         {
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            if (array is null)
-            {
-                return null!;
-            }
-
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+            Array.Fill(array, fillWith);
+            return array;
+#else
             for (int i = 0; i < array.Length; ++i)
             {
                 array[i] = fillWith;
             }
 
             return array;
+#endif
         }
     }
 }
