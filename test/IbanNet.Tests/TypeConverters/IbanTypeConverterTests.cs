@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using FluentAssertions;
 using Moq;
@@ -11,7 +10,6 @@ using Xunit;
 namespace IbanNet.TypeConverters
 {
     [Collection(nameof(SetsStaticValidator))]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class IbanTypeConverterTests
     {
         private readonly IbanTypeConverter _sut;
