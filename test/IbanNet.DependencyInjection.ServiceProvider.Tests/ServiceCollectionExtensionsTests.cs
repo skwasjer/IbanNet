@@ -20,7 +20,10 @@ namespace IbanNet.DependencyInjection.ServiceProvider
             public static IEnumerable<object[]> AddIbanNetNullTestCases()
             {
                 IServiceCollection services = new ServiceCollection();
+#pragma warning disable IDE0039 // Use local function
+                // ReSharper disable once ConvertToLocalFunction
                 Action<IIbanNetOptionsBuilder> builder = _ => { };
+#pragma warning restore IDE0039 // Use local function
 
                 return new NullArgumentTestCases
                 {

@@ -26,7 +26,9 @@ namespace IbanNet.Registry.Swift
 
         [Theory]
         [MemberData(nameof(GetTestCases))]
+#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
         public void Given_pattern_when_calling_to_string_should_return_same_pattern(string pattern, IEnumerable<PatternToken> _)
+#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
             // Act
             var actual = new SwiftPattern(pattern);
