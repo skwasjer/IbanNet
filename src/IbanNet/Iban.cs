@@ -118,7 +118,7 @@ namespace IbanNet
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-#if NETSTANDARD2_1 || NET5_0
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
             return _iban.GetHashCode(StringComparison.Ordinal);
 #else
 			return _iban.GetHashCode();

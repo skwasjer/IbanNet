@@ -8,7 +8,7 @@ namespace IbanNet.Registry.Patterns
 {
     public class PatternExceptionTests : BaseExceptionTests<PatternException>
     {
-#if NETFRAMEWORK || NETCOREAPP3_0 || NETCOREAPP3_1 || NET5_0
+#if NETFRAMEWORK || NETCOREAPP3_0_OR_GREATER
         [Fact]
         public void Given_validation_result_it_should_serialize_and_deserialize_and_ignore_result()
         {

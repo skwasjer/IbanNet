@@ -98,7 +98,7 @@ namespace IbanNet.Registry.Patterns
         /// <inheritdoc />
         public override string ToString()
         {
-#if NET5_0_OR_GREATER || NETSTANDARD2_1
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
             return _pattern ??= string.Join(',', Tokens);
 #else
             return _pattern ??= string.Join(",", Tokens);
