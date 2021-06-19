@@ -5,7 +5,7 @@ namespace IbanNet.Builders
     /// <summary>
     /// The exception that is thrown when building a bank account number fails.
     /// </summary>
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
     [Serializable]
 #endif
     public class BankAccountBuilderException : InvalidOperationException
@@ -36,7 +36,7 @@ namespace IbanNet.Builders
         {
         }
 
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountBuilderException" /> with serialized data.
         /// </summary>
