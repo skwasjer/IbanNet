@@ -15,13 +15,13 @@ namespace IbanNet.FluentValidation
     [Collection(nameof(SetsStaticValidator))]
     public class FluentIbanValidatorTests
     {
-        private readonly IbanValidatorMock _ibanValidatorMock;
+        private readonly IbanValidatorStub _ibanValidatorStub;
         private readonly TestModelValidator _validator;
 
         protected FluentIbanValidatorTests()
         {
-            _ibanValidatorMock = new IbanValidatorMock();
-            var sut = new FluentIbanValidator<TestModel>(_ibanValidatorMock);
+            _ibanValidatorStub = new IbanValidatorStub();
+            var sut = new FluentIbanValidator<TestModel>(_ibanValidatorStub);
             _validator = new TestModelValidator(sut);
         }
 
@@ -38,7 +38,7 @@ namespace IbanNet.FluentValidation
                 _validator.Validate(obj);
 
                 // Assert
-                _ibanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
             }
 
             [Fact]
@@ -77,7 +77,7 @@ namespace IbanNet.FluentValidation
                 _validator.Validate(obj);
 
                 // Assert
-                _ibanValidatorMock.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
             }
 
             [Fact]
@@ -103,7 +103,7 @@ namespace IbanNet.FluentValidation
                 _validator.Validate(obj);
 
                 // Assert
-                _ibanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
             }
 
             [Fact]

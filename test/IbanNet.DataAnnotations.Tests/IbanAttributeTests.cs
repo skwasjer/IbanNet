@@ -13,17 +13,17 @@ namespace IbanNet.DataAnnotations
     {
         private readonly Mock<IServiceProvider> _serviceProviderMock;
         private readonly IbanAttribute _sut;
-        private readonly IbanValidatorMock _ibanValidatorMock;
+        private readonly IbanValidatorStub _ibanValidatorStub;
 
         private ValidationContext _validationContext;
 
         public IbanAttributeTests()
         {
-            _ibanValidatorMock = new IbanValidatorMock();
+            _ibanValidatorStub = new IbanValidatorStub();
             _serviceProviderMock = new Mock<IServiceProvider>();
             _serviceProviderMock
                 .Setup(m => m.GetService(typeof(IIbanValidator)))
-                .Returns(_ibanValidatorMock)
+                .Returns(_ibanValidatorStub)
                 .Verifiable();
 
             _validationContext = new ValidationContext(new object(), _serviceProviderMock.Object, null);
@@ -40,7 +40,7 @@ namespace IbanNet.DataAnnotations
                 _sut.GetValidationResult(null, _validationContext);
 
                 // Assert
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
             }
 
             [Fact]
@@ -83,7 +83,7 @@ namespace IbanNet.DataAnnotations
                 _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
                 // Assert
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
             }
 
             [Fact]
@@ -126,7 +126,7 @@ namespace IbanNet.DataAnnotations
                 _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
                 // Assert
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
             }
 
             [Fact]
@@ -216,7 +216,7 @@ namespace IbanNet.DataAnnotations
                 act.Should().Throw<NotImplementedException>();
 
                 _serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
             }
         }
 
@@ -239,7 +239,7 @@ namespace IbanNet.DataAnnotations
                     .Throw<InvalidOperationException>()
                     .WithMessage("Failed to get an instance of *");
                 _serviceProviderMock.Verify();
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
             }
         }
 
@@ -258,7 +258,7 @@ namespace IbanNet.DataAnnotations
                 act.Should()
                     .Throw<InvalidOperationException>()
                     .WithMessage("Failed to get an instance of *");
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
             }
         }
 

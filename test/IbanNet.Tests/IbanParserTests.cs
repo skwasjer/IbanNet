@@ -3,19 +3,20 @@ using FluentAssertions;
 using IbanNet.Registry;
 using IbanNet.Validation.Results;
 using Moq;
+using TestHelpers;
 using Xunit;
 
 namespace IbanNet
 {
     public class IbanParserTests
     {
-        private readonly IbanValidatorMock _ibanValidatorMock;
+        private readonly IbanValidatorStub _ibanValidatorStub;
         private readonly IbanParser _sut;
 
         protected IbanParserTests()
         {
-            _ibanValidatorMock = new IbanValidatorMock();
-            _sut = new IbanParser(_ibanValidatorMock);
+            _ibanValidatorStub = new IbanValidatorStub();
+            _sut = new IbanParser(_ibanValidatorStub);
         }
 
         public class Integration
@@ -175,7 +176,7 @@ namespace IbanNet
                 ex.Result.Should().BeNull();
                 ex.InnerException.Should().NotBeNull();
                 ex.Message.Should().Contain("is not a valid IBAN.");
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.IbanForCustomRuleException), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.IbanForCustomRuleException), Times.Once);
             }
         }
 
@@ -202,7 +203,7 @@ namespace IbanNet
                 actual.Should().BeFalse("the provided value was invalid");
                 iban.Should().BeNull("parsing did not succeed");
 
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
             }
 
             [Fact]
@@ -220,7 +221,7 @@ namespace IbanNet
                     .Should()
                     .Be(TestValues.ValidIban);
 
-                _ibanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
             }
         }
     }

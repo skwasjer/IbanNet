@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using TestHelpers;
 using Xunit;
 
 namespace IbanNet
@@ -95,7 +96,7 @@ namespace IbanNet
 
             public When_comparing_for_equality()
             {
-                var ibanParser = new IbanParser(new IbanValidatorMock());
+                var ibanParser = new IbanParser(new IbanValidatorStub());
 
                 _iban = ibanParser.Parse(TestValues.ValidIban);
                 _equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
@@ -177,7 +178,7 @@ namespace IbanNet
 
             public When_comparing_for_inequality()
             {
-                var ibanParser = new IbanParser(new IbanValidatorMock());
+                var ibanParser = new IbanParser(new IbanValidatorStub());
 
                 _iban = ibanParser.Parse(TestValues.ValidIban);
                 _equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
