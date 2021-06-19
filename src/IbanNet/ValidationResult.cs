@@ -6,7 +6,7 @@ namespace IbanNet
     /// <summary>
     /// Represents the validator result.
     /// </summary>
-    public class ValidationResult
+    public sealed class ValidationResult
     {
         /// <summary>
         /// Gets whether validation is successful.

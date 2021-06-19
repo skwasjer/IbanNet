@@ -12,7 +12,7 @@ namespace IbanNet
     /// <summary>
     /// Represents the default IBAN validator.
     /// </summary>
-    public class IbanValidator : IIbanValidator
+    public sealed class IbanValidator : IIbanValidator
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly List<IIbanValidationRule> _rules;
