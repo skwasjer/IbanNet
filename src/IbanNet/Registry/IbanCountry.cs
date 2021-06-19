@@ -11,7 +11,7 @@ namespace IbanNet.Registry
     /// </summary>
     [DebuggerDisplay("\\{{" + nameof(TwoLetterISORegionName) + ",nq} - {" + nameof(EnglishName) + ",nq}\\}")]
     [DebuggerStepThrough]
-    public class IbanCountry
+    public sealed class IbanCountry
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string? _displayName;

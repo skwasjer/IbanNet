@@ -7,7 +7,7 @@ namespace IbanNet.TypeConverters
     /// <summary>
     /// Provides a way of converting an <see cref="Iban" /> from and to other types.
     /// </summary>
-    public class IbanTypeConverter : TypeConverter
+    public sealed class IbanTypeConverter : TypeConverter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanTypeConverter" /> class.

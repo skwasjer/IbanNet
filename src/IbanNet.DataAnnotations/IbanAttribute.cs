@@ -9,7 +9,7 @@ namespace IbanNet.DataAnnotations
     /// When applied to a <see cref="string" /> property or parameter, validates that a valid IBAN is provided.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
-    public class IbanAttribute : ValidationAttribute
+    public sealed class IbanAttribute : ValidationAttribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAttribute" /> class.

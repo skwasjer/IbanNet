@@ -7,7 +7,7 @@ namespace IbanNet.FluentValidation
     /// <summary>
     /// A property validator for international bank account numbers.
     /// </summary>
-    public class FluentIbanValidator<T> : PropertyValidator<T, string>
+    public sealed class FluentIbanValidator<T> : PropertyValidator<T, string>
     {
         private readonly IIbanValidator _ibanValidator;
 
