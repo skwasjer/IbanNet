@@ -6,7 +6,7 @@ namespace IbanNet.CheckDigits.Calculators
     /// <summary>
     /// Exception that is thrown when an unexpected token/character is encountered while computing check digits.
     /// </summary>
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
     [Serializable]
 #endif
     public class InvalidTokenException : InvalidOperationException
@@ -52,7 +52,7 @@ namespace IbanNet.CheckDigits.Calculators
         {
         }
 
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidTokenException" /> with serialized data.
         /// </summary>

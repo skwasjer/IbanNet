@@ -66,7 +66,7 @@ namespace IbanNet.Registry.Patterns
 
             // Assert
             act.Should()
-#if NETCOREAPP2_1 || NETCOREAPP2_2
+#if NETSTD_LEGACY
                 .ThrowExactly<ArgumentException>()
                 .WithMessage(string.Format(Resources.Enum_value_0_should_be_defined_in_the_1_enum, category, nameof(AsciiCategory)) + "*")
 #else

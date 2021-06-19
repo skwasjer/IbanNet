@@ -5,7 +5,7 @@ namespace IbanNet
     /// <summary>
     /// The exception that is thrown when the format of an IBAN is invalid.
     /// </summary>
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
     [Serializable]
 #endif
     public class IbanFormatException : FormatException
@@ -52,7 +52,7 @@ namespace IbanNet
         /// </summary>
         public ValidationResult? Result { get; }
 
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanFormatException" /> with serialized data.
         /// </summary>
