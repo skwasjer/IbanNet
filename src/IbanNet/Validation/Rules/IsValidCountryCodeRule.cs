@@ -29,7 +29,11 @@ namespace IbanNet.Validation.Rules
             return ValidationRuleResult.Success;
         }
 
+#if USE_SPANS
+        private IbanCountry? GetMatchingCountry(ReadOnlySpan<char> iban)
+#else
         private IbanCountry? GetMatchingCountry(string iban)
+#endif
         {
             string? countryCode = GetCountryCode(iban);
             if (countryCode is null)
@@ -40,6 +44,14 @@ namespace IbanNet.Validation.Rules
             return _ibanRegistry.TryGetValue(countryCode, out IbanCountry? country) ? country : null;
         }
 
+#if USE_SPANS
+        private static string? GetCountryCode(ReadOnlySpan<char> value)
+        {
+            return value.Length < 2
+                ? null
+                : new string(value.Slice(0, 2));
+        }
+#else
         private static unsafe string? GetCountryCode(string value)
         {
             fixed (char* ch = value)
@@ -49,5 +61,6 @@ namespace IbanNet.Validation.Rules
                     : new string(ch, 0, 2);
             }
         }
+#endif
     }
 }

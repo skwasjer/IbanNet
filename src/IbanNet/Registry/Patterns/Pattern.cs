@@ -105,13 +105,17 @@ namespace IbanNet.Registry.Patterns
 #endif
         }
 
+#if USE_SPANS
+        internal bool IsMatch(ReadOnlySpan<char> value)
+        {
+#else
         internal bool IsMatch(string value)
         {
             if (value is null!)
             {
                 return false;
             }
-
+#endif
             _patternValidator ??= new PatternValidator(this);
             return _patternValidator.Validate(value);
         }
