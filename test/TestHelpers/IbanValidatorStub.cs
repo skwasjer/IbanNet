@@ -1,12 +1,13 @@
 ﻿using System;
+using IbanNet;
 using IbanNet.Validation.Results;
 using Moq;
 
-namespace IbanNet
+namespace TestHelpers
 {
-    public class IbanValidatorMock : Mock<IIbanValidator>, IIbanValidator
+    public class IbanValidatorStub : Mock<IIbanValidator>, IIbanValidator
     {
-        public IbanValidatorMock()
+        public IbanValidatorStub()
         {
             Setup(m => m.Validate(It.IsAny<string>()))
                 .Returns<string>(iban => new ValidationResult { AttemptedValue = iban });
