@@ -43,12 +43,24 @@ namespace IbanNet.DependencyInjection.Autofac
                 .RegisterType<AutofacDependencyResolverAdapter>()
                 .As<DependencyResolverAdapter>()
                 .IfNotRegistered(typeof(DependencyResolverAdapter))
-                .InstancePerDependency();
+                .SingleInstance();
+
+            builder
+                .Register(context => context.Resolve<IbanValidatorOptions>().Registry)
+                .IfNotRegistered(typeof(IIbanParser))
+                .SingleInstance();
 
             builder
                 .RegisterType<IbanParser>()
+                .UsingConstructor(() => new IbanParser((IIbanValidator)null!))
                 .As<IIbanParser>()
                 .IfNotRegistered(typeof(IIbanParser))
+                .SingleInstance();
+
+            builder
+                .RegisterType<IbanGenerator>()
+                .As<IIbanGenerator>()
+                .IfNotRegistered(typeof(IIbanGenerator))
                 .SingleInstance();
 
             builder
@@ -65,16 +77,6 @@ namespace IbanNet.DependencyInjection.Autofac
                 })
                 .As<IIbanValidator>()
                 .IfNotRegistered(typeof(IIbanValidator))
-                .SingleInstance();
-
-            builder
-                .Register(context =>
-                {
-                    IbanValidatorOptions options = context.Resolve<IbanValidatorOptions>();
-                    return new IbanGenerator(options.Registry);
-                })
-                .As<IIbanGenerator>()
-                .IfNotRegistered(typeof(IIbanGenerator))
                 .SingleInstance();
         }
     }

@@ -16,6 +16,7 @@
 ### IbanNet.DependencyInjection.*
 
 - `IIbanParser` and `IIbanGenerator` are now registered as singletons.
+- Added `IIbanRegistry` as resolveable service (singleton).
 
 ## v4.4.2
 
