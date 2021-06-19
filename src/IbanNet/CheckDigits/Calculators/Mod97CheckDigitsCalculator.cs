@@ -16,7 +16,7 @@ namespace IbanNet.CheckDigits.Calculators
                 throw new ArgumentNullException(nameof(value));
             }
 
-            ulong current = 0;
+            uint current = 0;
 
             // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
             for (int i = 0; i < value.Length; i++)
