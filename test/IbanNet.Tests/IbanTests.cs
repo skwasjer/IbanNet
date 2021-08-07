@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using IbanNet.Registry;
 using TestHelpers;
 using Xunit;
 
@@ -46,7 +47,7 @@ namespace IbanNet
 
             public When_formatting()
             {
-                _iban = new Iban(TestValues.ValidIban);
+                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
             }
 
             [Fact]
@@ -221,7 +222,7 @@ namespace IbanNet
             [Fact]
             public void It_should_be_same_as_underlying_string_value()
             {
-                var iban = new Iban(TestValues.ValidIban);
+                Iban iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
                 int expectedHashCode = TestValues.ValidIban.GetHashCode();
 
                 // Act
