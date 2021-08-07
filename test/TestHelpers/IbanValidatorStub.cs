@@ -1,5 +1,6 @@
 ﻿using System;
 using IbanNet;
+using IbanNet.Registry;
 using IbanNet.Validation.Results;
 using Moq;
 
@@ -10,7 +11,11 @@ namespace TestHelpers
         public IbanValidatorStub()
         {
             Setup(m => m.Validate(It.IsAny<string>()))
-                .Returns<string>(iban => new ValidationResult { AttemptedValue = iban });
+                .Returns<string>(iban => new ValidationResult
+                {
+                    AttemptedValue = iban,
+                    Country = IbanRegistry.Default[iban.Substring(0, 2)]
+                });
 
             Setup(m => m.Validate(null))
                 .Returns(new ValidationResult { AttemptedValue = null, Error = new InvalidLengthResult() });

@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using IbanNet.Extensions;
+using IbanNet.Registry;
 using IbanNet.TypeConverters;
 
 namespace IbanNet
@@ -38,10 +39,16 @@ namespace IbanNet
             set => _validatorInstance = new Lazy<IIbanValidator>(() => value, true);
         }
 
-        internal Iban(string iban)
+        internal Iban(string iban, IbanCountry ibanCountry)
         {
             _iban = NormalizeOrNull(iban) ?? throw new ArgumentNullException(nameof(iban));
+            Country = ibanCountry ?? throw new ArgumentNullException(nameof(ibanCountry));
         }
+
+        /// <summary>
+        /// Gets the country.
+        /// </summary>
+        public IbanCountry Country { get; }
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
         /// <example>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
 using IbanNet.Registry;
 using TestHelpers;
@@ -11,20 +12,35 @@ namespace IbanNet
         public class When_creating : IbanTests
         {
             [Fact]
-            public void With_null_it_should_throw()
+            public void With_null_iban_it_should_throw()
             {
                 string iban = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once AssignNullToNotNullAttribute
-                Func<Iban> act = () => new Iban(iban);
+                Func<Iban> act = () => new Iban(iban, IbanRegistry.Default.First());
 
                 // Assert
                 act.Should()
                     .ThrowExactly<ArgumentNullException>()
                     .Which.ParamName.Should()
                     .Be(nameof(iban));
+            }
+
+            [Fact]
+            public void With_null_country_it_should_throw()
+            {
+                IbanCountry ibanCountry = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<Iban> act = () => new Iban(TestValues.ValidIban, ibanCountry);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(ibanCountry));
             }
 
             [Theory]
@@ -34,7 +50,7 @@ namespace IbanNet
             public void It_should_normalize(string iban, string expected)
             {
                 // Act
-                var actual = new Iban(iban);
+                var actual = new Iban(iban, IbanRegistry.Default[iban.Substring(0, 2)]);
 
                 // Assert
                 actual.ToString().Should().Be(expected);
@@ -248,6 +264,24 @@ namespace IbanNet
 
                 // Assert
                 actual.Should().Be(expected);
+            }
+        }
+
+        public class When_getting_properties : IbanTests
+        {
+            private readonly Iban _iban;
+            private readonly IbanCountry _ibanCountry;
+
+            public When_getting_properties()
+            {
+                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
+                _ibanCountry = IbanRegistry.Default[TestValues.ValidIban.Substring(0, 2)];
+            }
+
+            [Fact]
+            public void It_should_return_country()
+            {
+                _iban.Country.Should().BeSameAs(_ibanCountry);
             }
         }
     }

@@ -60,7 +60,7 @@ namespace IbanNet.Registry
                 .GetIbanBuilder()
                 .WithBankAccountNumber(Generator.Random(bbanPattern))
                 .Build();
-            return new Iban(ibanStr);
+            return new Iban(ibanStr, country);
         }
 
         internal static class Generator
