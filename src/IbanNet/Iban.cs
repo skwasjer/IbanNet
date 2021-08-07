@@ -50,6 +50,22 @@ namespace IbanNet
         /// </summary>
         public IbanCountry Country { get; }
 
+        /// <summary>
+        /// Gets the BBAN.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown if the BBAN pattern is not defined in the registry.</exception>
+        public string Bban => Extract(Country.Bban) ?? throw new InvalidOperationException("An error occurred extracting the BBAN.");
+
+        /// <summary>
+        /// Gets the bank identifier, or null if bank identifier cannot be extracted.
+        /// </summary>
+        public string? BankIdentifier => Extract(Country.Bank);
+
+        /// <summary>
+        /// Gets the branch identifier, or null if branch identifier cannot be extracted.
+        /// </summary>
+        public string? BranchIdentifier => Extract(Country.Branch);
+
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
         /// <example>
         /// <see cref="IbanFormat.Print" /> => NL91 ABNA 0417 1643 00
@@ -185,6 +201,27 @@ namespace IbanNet
             }
 
             return new string(buffer, 0, pos);
+        }
+
+        private string? Extract(StructureSection? structure)
+        {
+            if (structure?.Pattern is null or NullPattern)
+            {
+                return null;
+            }
+
+            if (structure.Position + structure.Length > _iban.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(structure));
+            }
+
+            return structure.Length == 0
+                ? null
+#if USE_SPANS
+                : new string(_iban.AsSpan(structure.Position, structure.Length));
+#else
+                : _iban.Substring(structure.Position, structure.Length);
+#endif
         }
     }
 }

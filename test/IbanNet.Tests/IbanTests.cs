@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
+using FluentAssertions.Primitives;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using TestHelpers;
 using Xunit;
 
@@ -269,19 +271,63 @@ namespace IbanNet
 
         public class When_getting_properties : IbanTests
         {
-            private readonly Iban _iban;
-            private readonly IbanCountry _ibanCountry;
-
-            public When_getting_properties()
+            [Fact]
+            public void Given_that_structure_sections_are_known_it_should_return_extracted_properties()
             {
-                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
-                _ibanCountry = IbanRegistry.Default[TestValues.ValidIban.Substring(0, 2)];
+                IbanCountry ibanCountry = IbanRegistry.Default["AD"];
+                Iban iban = new IbanParser(IbanRegistry.Default).Parse(ibanCountry.Iban.Example);
+                iban.Country.Should().BeSameAs(ibanCountry);
+
+                // Act & Assert
+                iban.Bban.Should().Be(ibanCountry.Bban.Example);
+                iban.BankIdentifier.Should().Be(ibanCountry.Bank.Example);
+                iban.BranchIdentifier.Should().Be(ibanCountry.Branch.Example);
             }
 
             [Fact]
-            public void It_should_return_country()
+            public void Given_that_structure_sections_are_not_known_it_should_return_null()
             {
-                _iban.Country.Should().BeSameAs(_ibanCountry);
+                var ibanCountry = new IbanCountry("NL")
+                {
+                    Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                    {
+                        Example = "NL91ABNA0417164300"
+                    },
+                    Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
+                    {
+                        Example = "ABNA0417164300"
+                    }
+                };
+
+                var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
+                iban.Country.Should().BeSameAs(ibanCountry);
+
+                // Act & Assert
+                iban.Bban.Should().Be(ibanCountry.Bban.Example);
+                iban.BankIdentifier.Should().BeNull();
+                iban.BranchIdentifier.Should().BeNull();
+            }
+
+            [Fact]
+            public void Given_that_bban_structure_section_is_not_known_it_should_throw()
+            {
+                var ibanCountry = new IbanCountry("NL")
+                {
+                    Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                    {
+                        Example = "NL91ABNA0417164300"
+                    }
+                };
+
+                var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
+
+                // Act
+                Func<string> act = () => iban.Bban;
+
+                // Assert
+                act.Should()
+                    .Throw<InvalidOperationException>()
+                    .WithMessage("An error occurred extracting the BBAN.");
             }
         }
     }
