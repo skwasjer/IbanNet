@@ -4,9 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Registry.Swift;
 
-namespace IbanNet.Registry
+namespace IbanNet.Registry.Swift
 {
     /// <summary>
     /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
