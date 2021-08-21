@@ -24,7 +24,7 @@ namespace IbanNet.Registry
         [Fact]
         public void When_definitions_are_loaded_should_contain_exactly_n_items()
         {
-            _sut.Count.Should().Be(78);
+            _sut.Count.Should().Be(new SwiftRegistryProvider().Count);
         }
 
         [Theory]

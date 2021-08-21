@@ -5,17 +5,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using IbanNet.Registry.Patterns;
-using IbanNet.Registry.Swift;
 
-namespace IbanNet.Registry
+namespace IbanNet.Registry.Swift
 {
     /// <summary>
     /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
     /// </summary>
     /// <remarks>
-    /// Generated from: swift_iban_registry_202103.r89.txt
+    /// Generated from: swift_iban_registry_202106.r90.txt
     /// </remarks>
-    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r89")]
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r90")]
     public class SwiftRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2292,6 +2291,42 @@ namespace IbanNet.Registry
                 },
                 DomesticAccountNumberExample = "0000000000001497",
                 LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            };
+
+            // Sudan
+            yield return new IbanCountry("SD")
+            {
+                DisplayName = "Sudan",
+                EnglishName = "Sudan",
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 12, 12),
+                }))
+                {
+                    Example = "SD2129010501234001",
+                    EffectiveDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                },
+                Bban = new BbanStructure(new SwiftPattern("2!n12!n"), 4)
+                {
+                    Example = "29010501234001"
+                },
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+                {
+                    Example = "29"
+                },
+                Branch = new BranchStructure(new SwiftPattern("12!n"), 6)
+                {
+                    Example = "010501234001"
+                },
+                Sepa = new SepaInfo
+                {
+                    IsMember = false,
+                },
+                DomesticAccountNumberExample = "010501234001",
+                LastUpdatedDate = new DateTimeOffset(2021, 6, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
             // Sweden

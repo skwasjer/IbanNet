@@ -94,7 +94,7 @@ namespace IbanNet
                 return false;
             }
 
-            iban = new Iban(validationResult.AttemptedValue!);
+            iban = new Iban(validationResult.AttemptedValue!, validationResult.Country!);
             return true;
         }
     }

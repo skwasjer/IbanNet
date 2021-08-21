@@ -5,6 +5,7 @@ using FluentAssertions;
 using IbanNet.DependencyInjection.FluentAssertions;
 using IbanNet.FakeRules;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using Moq;
 using TestHelpers;
 using Xunit;

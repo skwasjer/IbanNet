@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
+using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using TestHelpers;
 using Xunit;
 
@@ -10,20 +13,35 @@ namespace IbanNet
         public class When_creating : IbanTests
         {
             [Fact]
-            public void With_null_it_should_throw()
+            public void With_null_iban_it_should_throw()
             {
                 string iban = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once AssignNullToNotNullAttribute
-                Func<Iban> act = () => new Iban(iban);
+                Func<Iban> act = () => new Iban(iban, IbanRegistry.Default.First());
 
                 // Assert
                 act.Should()
                     .ThrowExactly<ArgumentNullException>()
                     .Which.ParamName.Should()
                     .Be(nameof(iban));
+            }
+
+            [Fact]
+            public void With_null_country_it_should_throw()
+            {
+                IbanCountry ibanCountry = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<Iban> act = () => new Iban(TestValues.ValidIban, ibanCountry);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(ibanCountry));
             }
 
             [Theory]
@@ -33,7 +51,7 @@ namespace IbanNet
             public void It_should_normalize(string iban, string expected)
             {
                 // Act
-                var actual = new Iban(iban);
+                var actual = new Iban(iban, IbanRegistry.Default[iban.Substring(0, 2)]);
 
                 // Assert
                 actual.ToString().Should().Be(expected);
@@ -46,7 +64,7 @@ namespace IbanNet
 
             public When_formatting()
             {
-                _iban = new Iban(TestValues.ValidIban);
+                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
             }
 
             [Fact]
@@ -221,7 +239,7 @@ namespace IbanNet
             [Fact]
             public void It_should_be_same_as_underlying_string_value()
             {
-                var iban = new Iban(TestValues.ValidIban);
+                Iban iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
                 int expectedHashCode = TestValues.ValidIban.GetHashCode();
 
                 // Act
@@ -247,6 +265,66 @@ namespace IbanNet
 
                 // Assert
                 actual.Should().Be(expected);
+            }
+        }
+
+        public class When_getting_properties : IbanTests
+        {
+            [Fact]
+            public void Given_that_structure_sections_are_known_it_should_return_extracted_properties()
+            {
+                IbanCountry ibanCountry = IbanRegistry.Default["AD"];
+                Iban iban = new IbanParser(IbanRegistry.Default).Parse(ibanCountry.Iban.Example);
+                iban.Country.Should().BeSameAs(ibanCountry);
+
+                // Act & Assert
+                iban.Bban.Should().Be(ibanCountry.Bban.Example);
+                iban.BankIdentifier.Should().Be(ibanCountry.Bank.Example);
+                iban.BranchIdentifier.Should().Be(ibanCountry.Branch.Example);
+    }
+
+            [Fact]
+            public void Given_that_structure_sections_are_not_known_it_should_return_null()
+            {
+                var ibanCountry = new IbanCountry("NL")
+                {
+                    Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                    {
+                        Example = "NL91ABNA0417164300"
+                    },
+                    Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
+                    {
+                        Example = "ABNA0417164300"
+                    }
+                };
+
+                var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
+                iban.Country.Should().BeSameAs(ibanCountry);
+
+                // Act & Assert
+                iban.Bban.Should().Be(ibanCountry.Bban.Example);
+                iban.BankIdentifier.Should().BeNull();
+                iban.BranchIdentifier.Should().BeNull();
+            }
+
+            [Fact]
+            public void Given_that_bban_structure_section_is_not_known_it_should_not_throw_and_return_iban_substr()
+            {
+                var ibanCountry = new IbanCountry("NL")
+                {
+                    Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                    {
+                        Example = "NL91ABNA0417164300"
+                    }
+                };
+
+                var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
+
+                // Act
+                Func<string> act = () => iban.Bban;
+
+                // Assert
+                act.Should().NotThrow().Which.Should().Be("ABNA0417164300");
             }
         }
     }

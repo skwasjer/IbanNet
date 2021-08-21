@@ -18,9 +18,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Registry.Wikipedia;
 
-namespace IbanNet.Registry
+namespace IbanNet.Registry.Wikipedia
 {
 <#
     // Generate provider from Wikipedia.

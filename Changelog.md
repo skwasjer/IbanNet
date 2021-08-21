@@ -9,6 +9,9 @@
 - Added support for [more countries](./SupportedCountries.md) based on Wikipedia.
 - Removed `ValidationMethod`, since performance in strict (= default) is now significantly faster (compared to v4.x, even in loose mode). The maintenance is not worth the little gains anymore.
 - Cleaned up API surface/sealed several types.
+- Added `Country`, `Bban`, `BankIdentifier` and `BranchIdentifier` properties to the `Iban` value type.
+- Removed obsolete facade for `SwiftRegistryProvider`.
+- Upgraded registry to June '21 release 90 (added Sudan (SD))
 
 ### IbanNet.FluentValidation
 
@@ -19,9 +22,13 @@
 - `IIbanParser` and `IIbanGenerator` are now registered as singletons.
 - Added `IIbanRegistry` as resolveable service (singleton).
 
+## v4.4.3
+
+- Moved `SwiftRegistryProvider` to new namespace, kept facade for backwards compatibility. The facade will be removed in v5.0.
+
 ## v4.4.2
 
-- Deprecate loose validation mode. Will be removed in v5.x.
+- Deprecate loose validation mode. Will be removed in v5.0.
 
 ## v4.4.1
 

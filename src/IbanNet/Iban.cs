@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using IbanNet.Extensions;
+using IbanNet.Registry;
 using IbanNet.TypeConverters;
 
 namespace IbanNet
@@ -38,10 +39,31 @@ namespace IbanNet
             set => _validatorInstance = new Lazy<IIbanValidator>(() => value, true);
         }
 
-        internal Iban(string iban)
+        internal Iban(string iban, IbanCountry ibanCountry)
         {
             _iban = NormalizeOrNull(iban) ?? throw new ArgumentNullException(nameof(iban));
+            Country = ibanCountry ?? throw new ArgumentNullException(nameof(ibanCountry));
         }
+
+        /// <summary>
+        /// Gets the country.
+        /// </summary>
+        public IbanCountry Country { get; }
+
+        /// <summary>
+        /// Gets the BBAN.
+        /// </summary>
+        public string Bban => Extract(Country.Bban) ?? _iban.Substring(4);
+
+        /// <summary>
+        /// Gets the bank identifier, or null if bank identifier cannot be extracted.
+        /// </summary>
+        public string? BankIdentifier => Extract(Country.Bank);
+
+        /// <summary>
+        /// Gets the branch identifier, or null if branch identifier cannot be extracted.
+        /// </summary>
+        public string? BranchIdentifier => Extract(Country.Branch);
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
         /// <example>
@@ -178,6 +200,27 @@ namespace IbanNet
             }
 
             return new string(buffer, 0, pos);
+        }
+
+        private string? Extract(StructureSection? structure)
+        {
+            if (structure?.Pattern is null or NullPattern)
+            {
+                return null;
+            }
+
+            if (structure.Position + structure.Length > _iban.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(structure));
+            }
+
+            return structure.Length == 0
+                ? null
+#if USE_SPANS
+                : new string(_iban.AsSpan(structure.Position, structure.Length));
+#else
+                : _iban.Substring(structure.Position, structure.Length);
+#endif
         }
     }
 }

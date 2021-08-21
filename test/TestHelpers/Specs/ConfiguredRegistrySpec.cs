@@ -2,7 +2,7 @@
 using FluentAssertions;
 using IbanNet;
 using IbanNet.DependencyInjection;
-using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using TestHelpers.Fixtures;
 using Xunit;
 
