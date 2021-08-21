@@ -10,6 +10,7 @@
 - Removed `ValidationMethod`, since performance in strict (= default) is now significantly faster (compared to v4.x, even in loose mode). The maintenance is not worth the little gains anymore.
 - Cleaned up API surface/sealed several types.
 - Added `Country`, `Bban`, `BankIdentifier` and `BranchIdentifier` properties to the `Iban` value type.
+- Removed obsolete facade for `SwiftRegistryProvider`.
 
 ### IbanNet.FluentValidation
 

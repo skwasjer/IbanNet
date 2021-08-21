@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using IbanNet.Registry.Wikipedia;
 
-namespace IbanNet.Registry
+namespace IbanNet.Registry.Wikipedia
 {
     /// <summary>
     /// This IBAN registry provider is derived from Wikipedia.
@@ -15,10 +14,10 @@ namespace IbanNet.Registry
     /// <para>
     /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
     /// Page ID: 15253
-    /// Rev ID: 1026666335
+    /// Rev ID: 1036918399
     /// </para>
     /// </remarks>
-    [GeneratedCode("WikiRegistryProviderT4", "1.15253-1026666335")]
+    [GeneratedCode("WikiRegistryProviderT4", "1.15253-1036918399")]
     public class WikipediaRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
