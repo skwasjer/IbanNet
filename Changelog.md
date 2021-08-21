@@ -20,9 +20,13 @@
 - `IIbanParser` and `IIbanGenerator` are now registered as singletons.
 - Added `IIbanRegistry` as resolveable service (singleton).
 
+## v4.4.3
+
+- Moved `SwiftRegistryProvider` to new namespace, kept facade for backwards compatibility. The facade will be removed in v5.0.
+
 ## v4.4.2
 
-- Deprecate loose validation mode. Will be removed in v5.x.
+- Deprecate loose validation mode. Will be removed in v5.0.
 
 ## v4.4.1
 
