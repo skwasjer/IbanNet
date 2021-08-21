@@ -1,8 +1,6 @@
 ﻿#if DEBUG_FLUENTVALIDATION
-using FluentValidation;
 using FluentValidation.AspNetCore;
 #endif
-using IbanNet.DependencyInjection;
 using IbanNet.DependencyInjection.ServiceProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,14 +23,13 @@ namespace ExampleWebApplication
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// Register IbanNet.
-			services.AddIbanNet(opts => opts.UseStrictValidation());
+			services.AddIbanNet();
 			services
 				.AddRazorPages()
 #if DEBUG_FLUENTVALIDATION
 				.AddFluentValidation(fv => fv
 					.RegisterValidatorsFromAssemblyContaining<Startup>()
-					// Disable DataAnnotations/IValidateObject (not required, but to isolate this as only validation framework)
-					.RunDefaultMvcValidationAfterFluentValidationExecutes = false
+                    .DisableDataAnnotationsValidation = true
 				)
 #endif
 				;
