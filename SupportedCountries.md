@@ -1,4 +1,4 @@
-## IbanNet supports 120 countries
+## IbanNet supports 121 countries
 
 ### SWIFT registry
 
@@ -71,6 +71,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | RS | Serbia | No | 22 | `RS35 2600 0560 1001 6113 79` |
 | SA | Saudi Arabia | No | 24 | `SA03 8000 0000 6080 1016 7519` |
 | SC | Seychelles | No | 31 | `SC18 SSCB 1101 0000 0000 0000 1497 USD` |
+| SD | Sudan | No | 18 | `SD21 2901 0501 2340 01` |
 | SE | Sweden | Yes | 24 | `SE45 5000 0000 0583 9825 7466` |
 | SI | Slovenia | Yes | 19 | `SI56 2633 0001 2039 086` |
 | SK | Slovakia | Yes | 24 | `SK31 1200 0000 1987 4263 7541` |

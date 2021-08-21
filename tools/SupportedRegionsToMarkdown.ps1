@@ -48,8 +48,8 @@ $parser = New-Object IbanNet.IbanParser($validator);
 
 $registry = New-Object IbanNet.Registry.IbanRegistry;
 
-$swiftProvider = New-Object IbanNet.Registry.SwiftRegistryProvider;
-$wikiProvider = New-Object IbanNet.Registry.WikipediaRegistryProvider;
+$swiftProvider = New-Object IbanNet.Registry.Swift.SwiftRegistryProvider;
+$wikiProvider = New-Object IbanNet.Registry.Wikipedia.WikipediaRegistryProvider;
 
 $registry.Providers.Add($swiftProvider);
 $registry.Providers.Add($wikiProvider);

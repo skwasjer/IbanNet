@@ -11,6 +11,7 @@
 - Cleaned up API surface/sealed several types.
 - Added `Country`, `Bban`, `BankIdentifier` and `BranchIdentifier` properties to the `Iban` value type.
 - Removed obsolete facade for `SwiftRegistryProvider`.
+- Upgraded registry to June '21 release 90 (added Sudan (SD))
 
 ### IbanNet.FluentValidation
 
