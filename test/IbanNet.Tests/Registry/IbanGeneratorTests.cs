@@ -227,12 +227,5 @@ namespace IbanNet.Registry
                 yield return new object[] { AsciiCategory.AlphaNumeric, (Func<char, bool>)char.IsLetterOrDigit };
             }
         }
-
-        private class FakePattern : Pattern
-        {
-            public FakePattern(IEnumerable<PatternToken> tokens) : base(tokens)
-            {
-            }
-        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using IbanNet.Registry.Swift;
 
 namespace IbanNet.Registry
 {
@@ -17,7 +18,7 @@ namespace IbanNet.Registry
         /// <summary>
         /// Gets the default IBAN registry initialized with all the built-in countries.
         /// </summary>
-        public static IbanRegistry Default { get; } = new IbanRegistry
+        public static IbanRegistry Default { get; } = new()
         {
             // Read-only, so default can not be modified.
             Providers = new ReadOnlyCollection<IIbanRegistryProvider>(new IIbanRegistryProvider[] { new SwiftRegistryProvider() })
@@ -40,7 +41,7 @@ namespace IbanNet.Registry
         public int Count => Dictionary.Count;
 
         /// <inheritdoc />
-        public IList<IIbanRegistryProvider> Providers { get; internal set; } = new List<IIbanRegistryProvider>();
+        public IList<IIbanRegistryProvider> Providers { get; internal init; } = new List<IIbanRegistryProvider>();
 
         /// <inheritdoc />
         // ReSharper disable once InconsistentNaming

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
+using IbanNet.Registry.Wikipedia;
 using IbanNet.Validation;
 using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
@@ -166,90 +168,24 @@ namespace IbanNet
             }
         }
 
-        public class Given_validator_is_called_multiple_times : IbanValidatorTests
-        {
-            private readonly IbanValidator _sut;
-            private readonly Mock<IStructureValidationFactory> _structureFactoryMock;
-
-            public Given_validator_is_called_multiple_times()
-            {
-                var structureValidatorMock = new Mock<IStructureValidator>();
-                structureValidatorMock.Setup(m => m.Validate(It.IsAny<string>())).Returns(true);
-
-                _structureFactoryMock = new Mock<IStructureValidationFactory>();
-                _structureFactoryMock
-                    .Setup(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()))
-                    .Returns(structureValidatorMock.Object);
-
-                _sut = new IbanValidator(new IbanValidatorOptions
-                {
-                    Registry = new IbanRegistry
-                    {
-                        Providers =
-                        {
-                            new IbanRegistryListProvider(
-                                new[]
-                                {
-                                    new IbanCountry("NL")
-                                    {
-                                        Iban =
-                                        {
-                                            Length = 18,
-                                            Structure = "structure1",
-                                            ValidationFactory = _structureFactoryMock.Object
-                                        }
-                                    }
-                                }
-                            )
-                        }
-                    }
-                });
-            }
-
-            [Fact]
-            public void It_should_call_factory_once()
-            {
-                const string iban = "NL91ABNA0417164300";
-                string expectedCountryCode = iban.Substring(0, 2);
-
-                // Act
-                for (int i = 0; i < 3; i++)
-                {
-                    ValidationResult actual = _sut.Validate(iban);
-                    actual.IsValid.Should().BeTrue();
-                }
-
-                // Assert
-                _structureFactoryMock.Verify(m => m.CreateValidator(
-                        expectedCountryCode,
-                        "structure1"),
-                    Times.Once
-                );
-            }
-        }
-
         public class Given_multiple_providers : IbanValidatorTests
         {
             private readonly IbanValidator _sut;
-            private readonly Mock<IStructureValidationFactory>[] _structureFactoryMocks;
+
+            private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n")) };
+            private readonly IbanCountry _ignoredNlCountry = new("NL") { Iban = new IbanStructure(new IbanWikipediaPattern("50a")) };
+            private readonly IbanCountry _correctGbCountry = new("GB") { Iban = new IbanStructure(new IbanWikipediaPattern("4a,14n")) };
+
+            private readonly List<IbanCountry> _countries;
 
             public Given_multiple_providers()
             {
-                var structureValidatorMock = new Mock<IStructureValidator>();
-                structureValidatorMock.Setup(m => m.Validate(It.IsAny<string>())).Returns(true);
-
-                _structureFactoryMocks = new[]
+                _countries = new List<IbanCountry>
                 {
-                    new Mock<IStructureValidationFactory>(),
-                    new Mock<IStructureValidationFactory>(),
-                    new Mock<IStructureValidationFactory>()
+                    _correctNlCountry,
+                    _ignoredNlCountry,
+                    _correctGbCountry
                 };
-                foreach (Mock<IStructureValidationFactory> mock in _structureFactoryMocks)
-                {
-                    mock
-                        .Setup(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()))
-                        .Returns(structureValidatorMock.Object);
-                }
 
                 _sut = new IbanValidator(new IbanValidatorOptions
                 {
@@ -260,43 +196,14 @@ namespace IbanNet
                             new IbanRegistryListProvider(
                                 new[]
                                 {
-                                    new IbanCountry("NL")
-                                    {
-                                        Iban =
-                                        {
-                                            Length = 18,
-                                            Structure = "structure1",
-                                            ValidationFactory = _structureFactoryMocks[0].Object
-                                        }
-                                    }
+                                    _correctNlCountry
                                 }
                             ),
                             new IbanRegistryListProvider(
                                 new[]
                                 {
-                                    new IbanCountry("NL")
-                                    {
-                                        Iban =
-                                        {
-                                            Length = 18,
-                                            Structure = "structure2",
-                                            ValidationFactory = _structureFactoryMocks[1].Object
-                                        }
-                                    }
-                                }
-                            ),
-                            new IbanRegistryListProvider(
-                                new[]
-                                {
-                                    new IbanCountry("GB")
-                                    {
-                                        Iban =
-                                        {
-                                            Length = 22,
-                                            Structure = "structure3",
-                                            ValidationFactory = _structureFactoryMocks[2].Object
-                                        }
-                                    }
+                                    _ignoredNlCountry,
+                                    _correctGbCountry
                                 }
                             )
                         }
@@ -305,24 +212,14 @@ namespace IbanNet
             }
 
             [Theory]
-            [InlineData("NL91ABNA0417164300", "structure1", 0)]
-            [InlineData("GB29NWBK60161331926819", "structure3", 2)]
-            public void When_validating_it_should_use_structure_validator_of_first_provider_that_supports_the_country_code(string iban, string expectedStructure, int expectedMockCalled)
+            [InlineData("NL91ABNA0417164300", 0)]
+            [InlineData("GB29NWBK60161331926819", 2)]
+            public void When_validating_it_should_use_structure_validator_of_first_provider_that_supports_the_country_code(string iban, int expectedCountryIndex)
             {
-                string expectedCountryCode = iban.Substring(0, 2);
-
                 ValidationResult actual = _sut.Validate(iban);
 
                 actual.IsValid.Should().BeTrue();
-                for (int i = 0; i < _structureFactoryMocks.Length; i++)
-                {
-                    _structureFactoryMocks[i]
-                        .Verify(m => m.CreateValidator(
-                                expectedCountryCode,
-                                expectedStructure),
-                            i == expectedMockCalled ? Times.Once() : Times.Never()
-                        );
-                }
+                actual.Country.Should().BeSameAs(_countries[expectedCountryIndex]);
             }
         }
     }

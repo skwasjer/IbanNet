@@ -49,10 +49,10 @@ namespace IbanNet.Registry
         public void Getters_should_return_set_properties()
         {
             const string twoLetterIsoRegionName = "nl";
-            var ibanStructure = new IbanStructure();
-            var bankStructure = new BankStructure();
-            var bbanStructure = new BbanStructure();
-            var branchStructure = new BranchStructure();
+            var ibanStructure = new IbanStructure(NullPattern.Instance);
+            var bankStructure = new BankStructure(NullPattern.Instance);
+            var bbanStructure = new BbanStructure(NullPattern.Instance);
+            var branchStructure = new BranchStructure(NullPattern.Instance);
             const string displayName = "name";
             const string domesticAccountNumberExample = "example";
             const string englishName = "english name";

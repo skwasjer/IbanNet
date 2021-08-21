@@ -5,7 +5,7 @@ namespace IbanNet.Registry.Patterns
     /// <summary>
     /// The exception that is thrown when a pattern is invalid.
     /// </summary>
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
     [Serializable]
 #endif
     public class PatternException : FormatException
@@ -36,7 +36,7 @@ namespace IbanNet.Registry.Patterns
         {
         }
 
-#if SERIALIZABLE
+#if !NETSTD_LEGACY
         /// <summary>
         /// Initializes a new instance of the <see cref="PatternException" /> with serialized data.
         /// </summary>
@@ -44,7 +44,6 @@ namespace IbanNet.Registry.Patterns
         /// <param name="context">The contextual information about the source or destination.</param>
         protected PatternException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
         {
-            // Note: Result property info is lost since it is not serializable.
         }
 #endif
     }

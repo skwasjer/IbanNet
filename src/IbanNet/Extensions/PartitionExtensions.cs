@@ -105,24 +105,25 @@ namespace IbanNet.Extensions
         private static IEnumerable<string> PartitionOnIterator(this ReadOnlySpan<char> sequence, Func<char, bool> when)
         {
             var partitions = new List<string>();
-            var partition = new StringBuilder();
 
             int len = sequence.Length;
+            int startPos = 0;
+            int count = 0;
             for (int index = 0; index < len; index++)
             {
                 char item = sequence[index];
-                partition.Append(item);
+                count++;
                 if (when(item))
                 {
-                    partitions.Add(partition.ToString());
-
-                    partition.Clear();
+                    partitions.Add(new string(sequence.Slice(startPos, count)));
+                    startPos += count;
+                    count = 0;
                 }
             }
 
-            if (partition.Length > 0)
+            if (count > 0)
             {
-                partitions.Add(partition.ToString());
+                partitions.Add(new string(sequence.Slice(startPos, count)));
             }
 
             return partitions;

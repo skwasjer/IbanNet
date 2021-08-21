@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
 using IbanNet.Validation.Results;
-using TestHelpers;
 using Xunit;
+using ValidationResultAlias = FluentValidation.Results.ValidationResult;
 
 namespace IbanNet.FluentValidation
 {
-    [Collection(nameof(SetsStaticValidator))]
-    public class IntegrationTests : IbanTestFixture
+    public class IntegrationTests
     {
         private readonly TestModelValidator _sut;
         private readonly TestModel _testModel;
@@ -34,8 +32,7 @@ namespace IbanNet.FluentValidation
             var expectedValidationFailure = new ValidationFailure(nameof(_testModel.BankAccountNumber), $"'{expectedFormattedPropertyName}' is not a valid IBAN.")
             {
                 AttemptedValue = attemptedIbanValue,
-                ErrorCode = nameof(FluentIbanValidator),
-                FormattedMessageArguments = Array.Empty<object>(),
+                ErrorCode = "FluentIbanValidator",
                 FormattedMessagePlaceholderValues = new Dictionary<string, object>
                 {
                     { "PropertyName", expectedFormattedPropertyName },
@@ -45,7 +42,7 @@ namespace IbanNet.FluentValidation
             };
 
             // Act
-            var actual = _sut.Validate(_testModel);
+            ValidationResultAlias actual = _sut.Validate(_testModel);
 
             // Assert
             actual.IsValid.Should().BeFalse("because one validation error should have occurred");
@@ -64,7 +61,7 @@ namespace IbanNet.FluentValidation
             _testModel.BankAccountNumber = attemptedIbanValue;
 
             // Act
-            var actual = _sut.Validate(_testModel);
+            ValidationResultAlias actual = _sut.Validate(_testModel);
 
             // Assert
             actual.IsValid.Should().BeTrue("because no validation errors should have occurred");

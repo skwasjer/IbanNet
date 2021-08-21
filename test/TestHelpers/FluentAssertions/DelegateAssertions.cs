@@ -39,7 +39,7 @@ namespace TestHelpers.FluentAssertions
             where TException : Exception
         {
             Execute.Assertion
-                .ForCondition((object)Subject is { })
+                .ForCondition(Subject is not null)
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context} to throw {0}{reason}, but found <null>.", (object)typeof(TException));
 
@@ -63,7 +63,7 @@ namespace TestHelpers.FluentAssertions
         )
         {
             Execute.Assertion
-                .ForCondition(Subject is { })
+                .ForCondition(Subject is not null)
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context} not to throw{reason}, but found <null>.");
             try
@@ -71,7 +71,7 @@ namespace TestHelpers.FluentAssertions
                 // ReSharper disable once PossibleNullReferenceException
                 return new AndWhichConstraint<DelegateAssertions, object>(this, Subject.DynamicInvoke());
             }
-            catch (TargetInvocationException ex) when (ex.InnerException is { })
+            catch (TargetInvocationException ex) when (ex.InnerException is not null)
             {
                 NotThrow(ex.InnerException, because, becauseArgs);
                 return new AndWhichConstraint<DelegateAssertions, object>(this, default);
@@ -102,7 +102,7 @@ namespace TestHelpers.FluentAssertions
         )
         {
             Execute.Assertion
-                .ForCondition(Subject is { })
+                .ForCondition(Subject is not null)
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context} not to throw{reason}, but found <null>.");
             try
@@ -110,7 +110,7 @@ namespace TestHelpers.FluentAssertions
                 // ReSharper disable once PossibleNullReferenceException
                 return new AndWhichConstraint<DelegateAssertions, object>(this, Subject.DynamicInvoke(args));
             }
-            catch (TargetInvocationException ex) when (ex.InnerException is { })
+            catch (TargetInvocationException ex) when (ex.InnerException is not null)
             {
                 NotThrow(ex.InnerException, because, becauseArgs);
                 return new AndWhichConstraint<DelegateAssertions, object>(this, default);
@@ -129,7 +129,7 @@ namespace TestHelpers.FluentAssertions
             {
                 Subject.DynamicInvoke(args);
             }
-            catch (TargetInvocationException ex) when (ex.InnerException is { })
+            catch (TargetInvocationException ex) when (ex.InnerException is not null)
             {
                 exception = ex.InnerException;
             }

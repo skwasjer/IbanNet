@@ -20,9 +20,6 @@ namespace IbanNet.DataAnnotations
 #if NETCOREAPP2_1
 				.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
 #endif
-#if NETCOREAPP2_2
-				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-#endif
                 .AddControllersAsServices();
         }
 

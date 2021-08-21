@@ -1,34 +1,47 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using FluentAssertions;
-using IbanNet.Validation.Results;
-using Moq;
+using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using TestHelpers;
 using Xunit;
 
 namespace IbanNet
 {
-    [Collection(nameof(SetsStaticValidator))]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class IbanTests : IbanTestFixture
+    public class IbanTests
     {
         public class When_creating : IbanTests
         {
             [Fact]
-            public void With_null_it_should_throw()
+            public void With_null_iban_it_should_throw()
             {
                 string iban = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once AssignNullToNotNullAttribute
-                Func<Iban> act = () => new Iban(iban);
+                Func<Iban> act = () => new Iban(iban, IbanRegistry.Default.First());
 
                 // Assert
                 act.Should()
                     .ThrowExactly<ArgumentNullException>()
                     .Which.ParamName.Should()
                     .Be(nameof(iban));
+            }
+
+            [Fact]
+            public void With_null_country_it_should_throw()
+            {
+                IbanCountry ibanCountry = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<Iban> act = () => new Iban(TestValues.ValidIban, ibanCountry);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(ibanCountry));
             }
 
             [Theory]
@@ -38,133 +51,10 @@ namespace IbanNet
             public void It_should_normalize(string iban, string expected)
             {
                 // Act
-                var actual = new Iban(iban);
+                var actual = new Iban(iban, IbanRegistry.Default[iban.Substring(0, 2)]);
 
                 // Assert
                 actual.ToString().Should().Be(expected);
-            }
-        }
-
-        public class When_parsing_iban : IbanTests
-        {
-            [Fact]
-            public void With_null_value_should_throw()
-            {
-                // Act
-                Action act = () => Iban.Parse(null);
-
-                // Assert
-                act.Should().Throw<ArgumentNullException>("the provided value was null").Which.ParamName.Should().Be("value");
-            }
-
-            [Fact]
-            public void With_invalid_value_should_throw()
-            {
-                // Act
-                Action act = () => Iban.Parse(TestValues.InvalidIban);
-
-                // Assert
-                IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-                ex.Result.Should().BeEquivalentTo(new ValidationResult
-                {
-                    Error = new IllegalCharactersResult(),
-                    AttemptedValue = TestValues.InvalidIban
-                });
-                ex.InnerException.Should().BeNull();
-                ex.Message.Should().Be("The IBAN contains illegal characters.");
-            }
-
-            [Fact]
-            public void With_valid_value_should_return_iban()
-            {
-                Iban iban = null;
-
-                // Act
-                Action act = () => iban = Iban.Parse(TestValues.ValidIban);
-
-                // Assert
-                act.Should().NotThrow<IbanFormatException>();
-                iban.Should()
-                    .NotBeNull("the value should be parsed")
-                    .And.BeOfType<Iban>()
-                    .Which.ToString()
-                    .Should()
-                    .Be(TestValues.ValidIban, "the returned value should match the provided value");
-            }
-
-            [Fact]
-            public void With_value_that_fails_custom_rule_should_throw()
-            {
-                // Act
-                Action act = () => Iban.Parse(TestValues.IbanForCustomRuleFailure);
-
-                // Assert
-                IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-                ex.Result.Should().BeEquivalentTo(new ValidationResult
-                {
-                    Error = new ErrorResult("Custom message"),
-                    AttemptedValue = TestValues.IbanForCustomRuleFailure
-                });
-                ex.InnerException.Should().BeNull();
-                ex.Message.Should().Be("Custom message");
-            }
-
-            [Fact]
-            public void With_value_that_causes_custom_rule_to_throw_should_rethrow()
-            {
-                // Act
-                Action act = () => Iban.Parse(TestValues.IbanForCustomRuleException);
-
-                // Assert
-                IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-                ex.Result.Should().BeNull();
-                ex.InnerException.Should().NotBeNull();
-                ex.Message.Should().Contain("is not a valid IBAN.");
-            }
-        }
-
-        public class When_trying_to_parse_iban : IbanTests
-        {
-            [Fact]
-            public void With_null_value_should_return_false()
-            {
-                // Act
-                bool actual = Iban.TryParse(null, out Iban iban);
-
-                // Assert
-                actual.Should().BeFalse("the provided value was null which is not valid");
-                iban.Should().BeNull("parsing did not succeed");
-            }
-
-            [Fact]
-            public void With_invalid_value_should_return_false()
-            {
-                // Act
-                bool actual = Iban.TryParse(TestValues.InvalidIban, out Iban iban);
-
-                // Assert
-                actual.Should().BeFalse("the provided value was invalid");
-                iban.Should().BeNull("parsing did not succeed");
-
-                IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
-            }
-
-            [Fact]
-            public void With_valid_value_should_pass()
-            {
-                // Act
-                bool actual = Iban.TryParse(TestValues.ValidIban, out Iban iban);
-
-                // Assert
-                actual.Should().BeTrue("the provided value was valid");
-                iban.Should()
-                    .NotBeNull()
-                    .And.BeOfType<Iban>()
-                    .Which.ToString()
-                    .Should()
-                    .Be(TestValues.ValidIban);
-
-                IbanValidatorMock.Verify(m => m.Validate(It.IsAny<string>()), Times.Once);
             }
         }
 
@@ -174,53 +64,7 @@ namespace IbanNet
 
             public When_formatting()
             {
-                _iban = new Iban(TestValues.ValidIban);
-            }
-
-            [Fact]
-            public void With_null_format_should_throw()
-            {
-                string format = null;
-
-                // Act
-                // ReSharper disable once AssignNullToNotNullAttribute
-                Action act = () => _iban.ToString(format);
-
-                // Assert
-                act.Should()
-                    .Throw<ArgumentNullException>("the provided format was null")
-                    .Which.ParamName.Should()
-                    .Be(nameof(format));
-            }
-
-            [Theory]
-            [InlineData("f")]
-            [InlineData("s")]
-            [InlineData("invalid_format")]
-            [InlineData("")]
-            [InlineData(null)]
-            public void With_invalid_format_should_throw(string format)
-            {
-                // Act
-                Action act = () => _iban.ToString(format);
-
-                // Assert
-                act.Should()
-                    .Throw<ArgumentException>("the provided format was invalid")
-                    .Which.ParamName.Should()
-                    .Be("format");
-            }
-
-            [Theory]
-            [InlineData(Iban.Formats.Flat, TestValues.ValidIban)]
-            [InlineData(Iban.Formats.Partitioned, TestValues.ValidIbanPartitioned)]
-            public void With_valid_format_should_succeed(string format, string expected)
-            {
-                // Act
-                string actual = _iban.ToString(format);
-
-                // Assert
-                actual.Should().Be(expected);
+                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
             }
 
             [Fact]
@@ -270,7 +114,7 @@ namespace IbanNet
 
             public When_comparing_for_equality()
             {
-                var ibanParser = new IbanParser(IbanValidatorMock.Object);
+                var ibanParser = new IbanParser(new IbanValidatorStub());
 
                 _iban = ibanParser.Parse(TestValues.ValidIban);
                 _equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
@@ -352,7 +196,7 @@ namespace IbanNet
 
             public When_comparing_for_inequality()
             {
-                var ibanParser = new IbanParser(IbanValidatorMock.Object);
+                var ibanParser = new IbanParser(new IbanValidatorStub());
 
                 _iban = ibanParser.Parse(TestValues.ValidIban);
                 _equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
@@ -395,7 +239,7 @@ namespace IbanNet
             [Fact]
             public void It_should_be_same_as_underlying_string_value()
             {
-                var iban = new Iban(TestValues.ValidIban);
+                Iban iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
                 int expectedHashCode = TestValues.ValidIban.GetHashCode();
 
                 // Act
@@ -403,6 +247,84 @@ namespace IbanNet
 
                 // Assert
                 actual.Should().Be(expectedHashCode);
+            }
+        }
+
+        public class When_normalizing
+        {
+            [Theory]
+            [InlineData("no-whitespace", "NO-WHITESPACE")]
+            [InlineData(" \tin-\nstr ing\r", "IN-STRING")]
+            [InlineData("(&*!S #%t", "(&*!S#%T")]
+            [InlineData("", "")]
+            [InlineData(null, null)]
+            public void Given_string_when_normalizing_it_should_return_expected_value(string input, string expected)
+            {
+                // Act
+                string actual = Iban.NormalizeOrNull(input);
+
+                // Assert
+                actual.Should().Be(expected);
+            }
+        }
+
+        public class When_getting_properties : IbanTests
+        {
+            [Fact]
+            public void Given_that_structure_sections_are_known_it_should_return_extracted_properties()
+            {
+                IbanCountry ibanCountry = IbanRegistry.Default["AD"];
+                Iban iban = new IbanParser(IbanRegistry.Default).Parse(ibanCountry.Iban.Example);
+                iban.Country.Should().BeSameAs(ibanCountry);
+
+                // Act & Assert
+                iban.Bban.Should().Be(ibanCountry.Bban.Example);
+                iban.BankIdentifier.Should().Be(ibanCountry.Bank.Example);
+                iban.BranchIdentifier.Should().Be(ibanCountry.Branch.Example);
+    }
+
+            [Fact]
+            public void Given_that_structure_sections_are_not_known_it_should_return_null()
+            {
+                var ibanCountry = new IbanCountry("NL")
+                {
+                    Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                    {
+                        Example = "NL91ABNA0417164300"
+                    },
+                    Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
+                    {
+                        Example = "ABNA0417164300"
+                    }
+                };
+
+                var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
+                iban.Country.Should().BeSameAs(ibanCountry);
+
+                // Act & Assert
+                iban.Bban.Should().Be(ibanCountry.Bban.Example);
+                iban.BankIdentifier.Should().BeNull();
+                iban.BranchIdentifier.Should().BeNull();
+            }
+
+            [Fact]
+            public void Given_that_bban_structure_section_is_not_known_it_should_not_throw_and_return_iban_substr()
+            {
+                var ibanCountry = new IbanCountry("NL")
+                {
+                    Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                    {
+                        Example = "NL91ABNA0417164300"
+                    }
+                };
+
+                var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
+
+                // Act
+                Func<string> act = () => iban.Bban;
+
+                // Assert
+                act.Should().NotThrow().Which.Should().Be("ABNA0417164300");
             }
         }
     }

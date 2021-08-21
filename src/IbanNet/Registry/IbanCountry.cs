@@ -11,10 +11,10 @@ namespace IbanNet.Registry
     /// </summary>
     [DebuggerDisplay("\\{{" + nameof(TwoLetterISORegionName) + ",nq} - {" + nameof(EnglishName) + ",nq}\\}")]
     [DebuggerStepThrough]
-    public class IbanCountry
+    public sealed class IbanCountry
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private string? _displayName;
+        private readonly string? _displayName;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private IbanStructure? _ibanStructure;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -46,30 +46,30 @@ namespace IbanNet.Registry
         }
 
         /// <summary>
-        /// Gets or sets the country code.
+        /// Gets the country code.
         /// </summary>
         // ReSharper disable once InconsistentNaming
         public string TwoLetterISORegionName { get; }
 
         /// <summary>
-        /// Gets or sets the display name.
+        /// Gets the display name.
         /// </summary>
         public string DisplayName
         {
             get => _displayName ?? EnglishName;
-            set => _displayName = value;
+            init => _displayName = value;
         }
 
         /// <summary>
-        /// Gets or sets the English name.
+        /// Gets the English name.
         /// </summary>
-        public string EnglishName { get; set; }
+        public string EnglishName { get; init; }
 
         /// <summary>
-        /// Gets or sets the list of included countries.
+        /// Gets the list of included countries.
         /// </summary>
-        public IReadOnlyCollection<string> IncludedCountries { get; set; } = new ReadOnlyCollection<string>(
-#if NET_LEGACY
+        public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>(
+#if NET452 || NETSTANDARD1_2
 			new string[0]
 #else
             Array.Empty<string>()
@@ -79,57 +79,57 @@ namespace IbanNet.Registry
         /// <summary>
         /// Gets SEPA information.
         /// </summary>
-        public SepaInfo? Sepa { get; set; }
+        public SepaInfo? Sepa { get; init; }
 
         /// <summary>
-        /// Gets or sets a domestic account number example.
+        /// Gets a domestic account number example.
         /// </summary>
-        public string? DomesticAccountNumberExample { get; set; }
+        public string? DomesticAccountNumberExample { get; init; }
 
         /// <summary>
-        /// Gets or sets the structure of the BBAN.
+        /// Gets the structure of the BBAN.
         /// </summary>
         [AllowNull]
         public BbanStructure Bban
         {
-            get => _bbanStructure ??= new BbanStructure();
-            set => _bbanStructure = value;
+            get => _bbanStructure ??= new BbanStructure(NullPattern.Instance);
+            init => _bbanStructure = value;
         }
 
         /// <summary>
-        /// Gets or sets the structure of the IBAN.
+        /// Gets the structure of the IBAN.
         /// </summary>
         [AllowNull]
         public IbanStructure Iban
         {
-            get => _ibanStructure ??= new IbanStructure();
-            set => _ibanStructure = value;
+            get => _ibanStructure ??= new IbanStructure(NullPattern.Instance);
+            init => _ibanStructure = value;
         }
 
         /// <summary>
-        /// Gets or sets the bank identifier structure section.
+        /// Gets the bank identifier structure section.
         /// </summary>
         [AllowNull]
         public BankStructure Bank
         {
-            get => _bankStructure ??= new BankStructure();
-            set => _bankStructure = value;
+            get => _bankStructure ??= new BankStructure(NullPattern.Instance);
+            init => _bankStructure = value;
         }
 
         /// <summary>
-        /// Gets or sets the branch identifier structure section.
+        /// Gets the branch identifier structure section.
         /// </summary>
         [AllowNull]
         public BranchStructure Branch
         {
-            get => _branchStructure ??= new BranchStructure();
-            set => _branchStructure = value;
+            get => _branchStructure ??= new BranchStructure(NullPattern.Instance);
+            init => _branchStructure = value;
         }
 
         /// <summary>
-        /// Gets or sets when this <see cref="IbanCountry" /> was last updated in the Iban Registry.
+        /// Gets when this <see cref="IbanCountry" /> was last updated in the Iban Registry.
         /// </summary>
-        public DateTimeOffset LastUpdatedDate { get; set; }
+        public DateTimeOffset LastUpdatedDate { get; init; }
 
         /// <inheritdoc />
         public override string ToString()

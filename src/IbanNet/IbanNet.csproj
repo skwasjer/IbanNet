@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>net5.0;netstandard1.2;netstandard1.6;netstandard2.0;netstandard2.1;net472;net452</TargetFrameworks>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks Condition="!$(DefineConstants.Contains('USE_SPANS'))">true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>Provides a strict International Bank Account Number (IBAN) validator, parser, builder and the Iban primitive type.</Description>
+    <Description>Provides a strict International Bank Account Number (IBAN) validator, parser, builder, generator and the Iban primitive type.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
   </PropertyGroup>
@@ -39,6 +40,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SwiftRegistryProvider.tt</DependentUpon>
     </Compile>
+    <Compile Update="Registry\Wikipedia\WikipediaRegistryProvider.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WikipediaRegistryProvider.tt</DependentUpon>
+    </Compile>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -57,6 +63,10 @@
     <None Update="Registry\Swift\SwiftRegistryProvider.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SwiftRegistryProvider.cs</LastGenOutput>
+    </None>
+    <None Update="Registry\Wikipedia\WikipediaRegistryProvider.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WikipediaRegistryProvider.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

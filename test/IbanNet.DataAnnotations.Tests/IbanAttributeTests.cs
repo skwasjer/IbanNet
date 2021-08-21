@@ -9,19 +9,21 @@ using Xunit;
 namespace IbanNet.DataAnnotations
 {
     [Collection(nameof(SetsStaticValidator))]
-    public class IbanAttributeTests : IbanTestFixture
+    public class IbanAttributeTests
     {
         private readonly Mock<IServiceProvider> _serviceProviderMock;
         private readonly IbanAttribute _sut;
+        private readonly IbanValidatorStub _ibanValidatorStub;
 
         private ValidationContext _validationContext;
 
         public IbanAttributeTests()
         {
+            _ibanValidatorStub = new IbanValidatorStub();
             _serviceProviderMock = new Mock<IServiceProvider>();
             _serviceProviderMock
                 .Setup(m => m.GetService(typeof(IIbanValidator)))
-                .Returns(IbanValidatorMock.Object)
+                .Returns(_ibanValidatorStub)
                 .Verifiable();
 
             _validationContext = new ValidationContext(new object(), _serviceProviderMock.Object, null);
@@ -38,7 +40,7 @@ namespace IbanNet.DataAnnotations
                 _sut.GetValidationResult(null, _validationContext);
 
                 // Assert
-                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
             }
 
             [Fact]
@@ -81,7 +83,7 @@ namespace IbanNet.DataAnnotations
                 _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
                 // Assert
-                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
             }
 
             [Fact]
@@ -124,7 +126,7 @@ namespace IbanNet.DataAnnotations
                 _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
                 // Assert
-                IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
             }
 
             [Fact]
@@ -202,7 +204,7 @@ namespace IbanNet.DataAnnotations
 
         public class When_validating_an_unsupported_type : IbanAttributeTests
         {
-            private static readonly object InvalidTypeValue = new object();
+            private static readonly object InvalidTypeValue = new();
 
             [Fact]
             public void It_should_throw()
@@ -214,7 +216,7 @@ namespace IbanNet.DataAnnotations
                 act.Should().Throw<NotImplementedException>();
 
                 _serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
-                IbanValidatorMock.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Never);
             }
         }
 
@@ -237,7 +239,7 @@ namespace IbanNet.DataAnnotations
                     .Throw<InvalidOperationException>()
                     .WithMessage("Failed to get an instance of *");
                 _serviceProviderMock.Verify();
-                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
             }
         }
 
@@ -256,7 +258,7 @@ namespace IbanNet.DataAnnotations
                 act.Should()
                     .Throw<InvalidOperationException>()
                     .WithMessage("Failed to get an instance of *");
-                IbanValidatorMock.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
+                _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Never);
             }
         }
 

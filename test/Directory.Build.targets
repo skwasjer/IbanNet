@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
+
+    <DefineConstants Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462'">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

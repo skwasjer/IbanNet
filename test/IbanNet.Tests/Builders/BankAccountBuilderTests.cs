@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Registry.Patterns;
 using Xunit;
 
 namespace IbanNet.Builders
@@ -45,6 +46,60 @@ namespace IbanNet.Builders
                 .WithMessage($"The {exSource} cannot be built.")
                 .WithInnerException<InvalidOperationException>()
                 .WithMessage("The country is required.");
+        }
+
+        [Theory]
+        [InlineData(typeof(BbanBuilder))]
+        [InlineData(typeof(IbanBuilder))]
+        public void Given_country_does_not_have_bban_pattern_when_building_it_should_throw(Type builderType)
+        {
+            string exSource = builderType.Name.Substring(0, 4).ToUpperInvariant();
+
+            IBankAccountBuilder builder = CreateBuilder(builderType)
+                .WithCountry(new IbanCountry("XX"));
+
+            // Act
+            Action act = () => builder.Build();
+
+            // Assert
+            act.Should()
+                .ThrowExactly<BankAccountBuilderException>()
+                .WithMessage($"The {exSource} cannot be built.")
+                .WithInnerException<InvalidOperationException>()
+                .WithMessage("The country 'XX' does not define a BBAN pattern.");
+        }
+
+        [Theory]
+        [InlineData(typeof(BbanBuilder), false)]
+        [InlineData(typeof(IbanBuilder), true)]
+        public void Given_country_does_not_have_iban_pattern_when_building_it_should_throw(Type builderType, bool shouldThrow)
+        {
+            string exSource = builderType.Name.Substring(0, 4).ToUpperInvariant();
+
+            IBankAccountBuilder builder = CreateBuilder(builderType)
+                .WithCountry(new IbanCountry("XX")
+                {
+                    Bban = new BbanStructure(
+                        new FakePattern(new[] { new PatternToken(AsciiCategory.Digit, 10) })
+                    )
+                });
+
+            // Act
+            Action act = () => builder.Build();
+
+            // Assert
+            if (shouldThrow)
+            {
+                act.Should()
+                    .ThrowExactly<BankAccountBuilderException>()
+                    .WithMessage($"The {exSource} cannot be built.")
+                    .WithInnerException<InvalidOperationException>()
+                    .WithMessage("The country 'XX' does not define a IBAN pattern.");
+            }
+            else
+            {
+                act.Should().NotThrow();
+            }
         }
 
         [Theory]

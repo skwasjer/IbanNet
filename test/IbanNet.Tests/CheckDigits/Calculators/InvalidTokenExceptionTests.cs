@@ -8,7 +8,7 @@ namespace IbanNet.CheckDigits.Calculators
 {
     public class InvalidTokenExceptionTests : BaseExceptionTests<InvalidTokenException>
     {
-#if NETFRAMEWORK || NETCOREAPP3_0 || NETCOREAPP3_1 || NET5_0
+#if !NETSTD_LEGACY
         [Fact]
         public void Given_exception_with_parameters_it_should_serialize_and_deserialize()
         {

@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using IbanNet.Extensions;
+using IbanNet.Registry;
 using IbanNet.TypeConverters;
 
 namespace IbanNet
@@ -17,31 +18,10 @@ namespace IbanNet
     [TypeConverter(typeof(IbanTypeConverter))]
     public sealed class Iban
     {
-        /// <summary>
-        /// The supported IBAN output formats.
-        /// </summary>
-        [Obsolete("Use the 'IbanFormat' enumeration.")]
-#pragma warning disable CA1034 // Nested types should not be visible - justification: nested 'enumeration' using constants.
-        public static class Formats
-#pragma warning restore CA1034 // Nested types should not be visible
-        {
-            /// <summary>
-            /// Partitions an IBAN into 4 character segments separated with a space.
-            /// </summary>
-            [Obsolete("Use the 'IbanFormat.Print' enumeration.")]
-            public const string Partitioned = "S";
-
-            /// <summary>
-            /// An IBAN without whitespace.
-            /// </summary>
-            [Obsolete("Use the 'IbanFormat.Electronic' enumeration.")]
-            public const string Flat = "F";
-        }
-
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string _iban;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Lazy<IIbanValidator> _validatorInstance = new Lazy<IIbanValidator>(
+        private static Lazy<IIbanValidator> _validatorInstance = new(
             () => new IbanValidator(),
             LazyThreadSafetyMode.ExecutionAndPublication
         );
@@ -59,60 +39,37 @@ namespace IbanNet
             set => _validatorInstance = new Lazy<IIbanValidator>(() => value, true);
         }
 
-        internal Iban(string iban)
+        internal Iban(string iban, IbanCountry ibanCountry)
         {
             _iban = NormalizeOrNull(iban) ?? throw new ArgumentNullException(nameof(iban));
+            Country = ibanCountry ?? throw new ArgumentNullException(nameof(ibanCountry));
         }
 
-        internal static string? NormalizeOrNull(string? iban)
-        {
-            return iban.StripWhitespaceOrNull()?.ToUpperInvariant();
-        }
+        /// <summary>
+        /// Gets the country.
+        /// </summary>
+        public IbanCountry Country { get; }
+
+        /// <summary>
+        /// Gets the BBAN.
+        /// </summary>
+        public string Bban => Extract(Country.Bban) ?? _iban.Substring(4);
+
+        /// <summary>
+        /// Gets the bank identifier, or null if bank identifier cannot be extracted.
+        /// </summary>
+        public string? BankIdentifier => Extract(Country.Bank);
+
+        /// <summary>
+        /// Gets the branch identifier, or null if branch identifier cannot be extracted.
+        /// </summary>
+        public string? BranchIdentifier => Extract(Country.Branch);
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
         /// <example>
-        /// F => NL91ABNA0417164300
-        /// S => NL91 ABNA 0417 1643 00
-        /// </example>
-        /// <param name="format">The format to use. F = flat, S = partitioned by space.</param>
-        /// <returns>A string that represents the current <see cref="Iban" />.</returns>
-        [Obsolete("Use the overload accepting the 'IbanFormat' enumeration.")]
-        public string ToString(string format)
-        {
-            return format switch
-            {
-                Formats.Flat => ToString(IbanFormat.Electronic),
-
-                Formats.Partitioned => ToString(IbanFormat.Print),
-
-                null => throw new ArgumentNullException(
-                    nameof(format),
-                    string.Format(
-                        CultureInfo.CurrentCulture,
-                        Resources.ArgumentException_The_format_is_required_with_supported_formats,
-                        Formats.Flat,
-                        Formats.Partitioned
-                    )
-                ),
-
-                _ => throw new ArgumentException(
-                    string.Format(
-                        CultureInfo.CurrentCulture,
-                        Resources.ArgumentException_The_format_0_is_invalid_with_supported_formats,
-                        format,
-                        Formats.Flat,
-                        Formats.Partitioned
-                    ),
-                    nameof(format)
-                )
-            };
-        }
-
-        /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
-        /// <example>
-        /// <see cref="IbanFormat.Print"/> => NL91 ABNA 0417 1643 00
-        /// <see cref="IbanFormat.Electronic"/> => NL91ABNA0417164300
-        /// <see cref="IbanFormat.Obfuscated"/> => XXXXXXXXXXXXXXXXXX4300
+        /// <see cref="IbanFormat.Print" /> => NL91 ABNA 0417 1643 00
+        /// <see cref="IbanFormat.Electronic" /> => NL91ABNA0417164300
+        /// <see cref="IbanFormat.Obfuscated" /> => XXXXXXXXXXXXXXXXXX4300
         /// </example>
         /// <param name="format">The format to use.</param>
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
@@ -152,31 +109,6 @@ namespace IbanNet
             return ToString(IbanFormat.Electronic);
         }
 
-        /// <summary>
-        /// Parses the specified <paramref name="value" /> into an <see cref="Iban" />.
-        /// </summary>
-        /// <param name="value">The IBAN value to parse.</param>
-        /// <returns>an <see cref="Iban" /> if the <paramref name="value" /> is parsed successfully</returns>
-        /// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="value" /> is null.</exception>
-        /// <exception cref="IbanFormatException">Thrown when the specified <paramref name="value" /> is not a valid IBAN.</exception>
-        [Obsolete("Use the `IbanParser` class.")]
-        public static Iban Parse(string? value)
-        {
-            return new IbanParser(Validator).Parse(value!);
-        }
-
-        /// <summary>
-        /// Attempts to parse the specified <paramref name="value" /> into an <see cref="Iban" />.
-        /// </summary>
-        /// <param name="value">The IBAN value to parse.</param>
-        /// <param name="iban">The <see cref="Iban" /> if the <paramref name="value" /> is parsed successfully.</param>
-        /// <returns>true if the <paramref name="value" /> is parsed successfully, or false otherwise</returns>
-        [Obsolete("Use the `IbanParser` class.")]
-        public static bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
-        {
-            return new IbanParser(Validator).TryParse(value, out iban);
-        }
-
         private bool Equals(Iban other)
         {
             return string.Equals(_iban, other._iban, StringComparison.Ordinal);
@@ -208,7 +140,7 @@ namespace IbanNet
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-#if NETSTANDARD2_1 || NET5_0
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
             return _iban.GetHashCode(StringComparison.Ordinal);
 #else
 			return _iban.GetHashCode();
@@ -235,6 +167,60 @@ namespace IbanNet
         public static bool operator !=(Iban left, Iban right)
         {
             return !Equals(left, right);
+        }
+
+        internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
+        {
+            if (value is null)
+            {
+                return null;
+            }
+
+            int length = value.Length;
+            char[] buffer = new char[length];
+            int pos = 0;
+            // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
+            for (int i = 0; i < length; i++)
+            {
+                char ch = value[i];
+                if (ch.IsWhitespace())
+                {
+                    continue;
+                }
+
+                if (ch.IsAsciiLetter())
+                {
+                    // Inline upper case.
+                    buffer[pos++] = (char)(ch & ~' ');
+                }
+                else
+                {
+                    buffer[pos++] = ch;
+                }
+            }
+
+            return new string(buffer, 0, pos);
+        }
+
+        private string? Extract(StructureSection? structure)
+        {
+            if (structure?.Pattern is null or NullPattern)
+            {
+                return null;
+            }
+
+            if (structure.Position + structure.Length > _iban.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(structure));
+            }
+
+            return structure.Length == 0
+                ? null
+#if USE_SPANS
+                : new string(_iban.AsSpan(structure.Position, structure.Length));
+#else
+                : _iban.Substring(structure.Position, structure.Length);
+#endif
         }
     }
 }

@@ -12,8 +12,8 @@ namespace IbanNet.Registry
         {
             var ibanCountries = new List<IbanCountry>
             {
-                new IbanCountry("AA"),
-                new IbanCountry("BB")
+                new("AA"),
+                new("BB")
             };
             var sut = new IbanRegistryListProvider(ibanCountries);
 

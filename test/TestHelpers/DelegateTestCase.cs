@@ -59,12 +59,12 @@ namespace TestHelpers
 
         public static DelegateTestCase Create<TOut>(Func<TOut> @delegate)
         {
-            return new DelegateTestCase(@delegate);
+            return new(@delegate);
         }
 
         public static DelegateTestCase Create<T1, TOut>(Func<T1, TOut> @delegate, T1 arg1)
         {
-            return new DelegateTestCase(@delegate)
+            return new(@delegate)
             {
                 arg1,
             };
@@ -72,7 +72,7 @@ namespace TestHelpers
 
         public static DelegateTestCase Create<T1, T2, TOut>(Func<T1, T2, TOut> @delegate, T1 arg1, T2 arg2)
         {
-            return new DelegateTestCase(@delegate)
+            return new(@delegate)
             {
                 arg1, arg2
             };
@@ -80,7 +80,7 @@ namespace TestHelpers
 
         public static DelegateTestCase Create<T1, T2, T3, TOut>(Func<T1, T2, T3, TOut> @delegate, T1 arg1, T2 arg2, T3 arg3)
         {
-            return new DelegateTestCase(@delegate)
+            return new(@delegate)
             {
                 arg1, arg2, arg3
             };
@@ -88,7 +88,7 @@ namespace TestHelpers
 
         public static DelegateTestCase Create<T1, T2, T3, T4, TOut>(Func<T1, T2, T3, T4, TOut> @delegate, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
         {
-            return new DelegateTestCase(@delegate)
+            return new(@delegate)
             {
                 arg1, arg2, arg3, arg4
             };
@@ -96,7 +96,7 @@ namespace TestHelpers
 
         public static DelegateTestCase Create<T1, T2, T3, T4, T5, TOut>(Func<T1, T2, T3, T4, T5, TOut> @delegate, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
         {
-            return new DelegateTestCase(@delegate)
+            return new(@delegate)
             {
                 arg1, arg2, arg3, arg4, arg5
             };

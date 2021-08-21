@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry.Swift
 {
@@ -11,9 +12,9 @@ namespace IbanNet.Registry.Swift
     /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
     /// </summary>
     /// <remarks>
-    /// Generated from: swift_iban_registry_202103.r89.txt
+    /// Generated from: swift_iban_registry_202106.r90.txt
     /// </remarks>
-    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r89")]
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r90")]
     public class SwiftRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -46,7 +47,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Andorra",
                 EnglishName = "Andorra",
-                Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 12, 12),
+                }))
                 {
                     Example = "AD1200012030200359100100",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -76,7 +84,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "United Arab Emirates (The)",
                 EnglishName = "United Arab Emirates (The)",
-                Iban = new IbanStructure(new SwiftPattern("AE2!n3!n16!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 16, 16),
+                }))
                 {
                     Example = "AE070331234567890123456",
                     EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -102,7 +116,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Albania",
                 EnglishName = "Albania",
-                Iban = new IbanStructure(new SwiftPattern("AL2!n8!n16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 8, 8),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "AL47212110090000000235698741",
                     EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -132,7 +152,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Austria",
                 EnglishName = "Austria",
-                Iban = new IbanStructure(new SwiftPattern("AT2!n5!n11!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 11, 11),
+                }))
                 {
                     Example = "AT611904300234573201",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -158,7 +184,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Azerbaijan",
                 EnglishName = "Azerbaijan",
-                Iban = new IbanStructure(new SwiftPattern("AZ2!n4!a20!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 20, 20),
+                }))
                 {
                     Example = "AZ21NABZ00000000137010001944",
                     EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -184,7 +216,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Bosnia and Herzegovina",
                 EnglishName = "Bosnia and Herzegovina",
-                Iban = new IbanStructure(new SwiftPattern("BA2!n3!n3!n8!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 8, 8),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "BA391290079401028494",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -214,7 +254,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Belgium",
                 EnglishName = "Belgium",
-                Iban = new IbanStructure(new SwiftPattern("BE2!n3!n7!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 7, 7),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "BE68539007547034",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -240,7 +287,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Bulgaria",
                 EnglishName = "Bulgaria",
-                Iban = new IbanStructure(new SwiftPattern("BG2!n4!a4!n2!n8!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 8, 8),
+                }))
                 {
                     Example = "BG80BNBG96611020345678",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -270,7 +325,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Bahrain",
                 EnglishName = "Bahrain",
-                Iban = new IbanStructure(new SwiftPattern("BH2!n4!a14!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 14, 14),
+                }))
                 {
                     Example = "BH67BMAG00001299123456",
                     EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -296,7 +357,16 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Brazil",
                 EnglishName = "Brazil",
-                Iban = new IbanStructure(new SwiftPattern("BR2!n8!n5!n10!n1!a1!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 8, 8),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 10, 10),
+                    new(AsciiCategory.UppercaseLetter, 1, 1),
+                    new(AsciiCategory.AlphaNumeric, 1, 1),
+                }))
                 {
                     Example = "BR1800360305000010009795493C1",
                     EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -326,7 +396,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Republic of Belarus",
                 EnglishName = "Republic of Belarus",
-                Iban = new IbanStructure(new SwiftPattern("BY2!n4!c4!n16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "BY13NBRB3600900000002Z00AB00",
                     EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -352,7 +429,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Switzerland",
                 EnglishName = "Switzerland",
-                Iban = new IbanStructure(new SwiftPattern("CH2!n5!n12!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 12, 12),
+                }))
                 {
                     Example = "CH9300762011623852957",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -378,7 +461,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Costa Rica",
                 EnglishName = "Costa Rica",
-                Iban = new IbanStructure(new SwiftPattern("CR2!n4!n14!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 14, 14),
+                }))
                 {
                     Example = "CR05015202001026284066",
                     EffectiveDate = new DateTimeOffset(2011, 6, 1, 0, 0, 0, TimeSpan.Zero)
@@ -404,7 +493,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Cyprus",
                 EnglishName = "Cyprus",
-                Iban = new IbanStructure(new SwiftPattern("CY2!n3!n5!n16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "CY17002001280000001200527600",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -434,7 +530,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Czechia",
                 EnglishName = "Czechia",
-                Iban = new IbanStructure(new SwiftPattern("CZ2!n4!n6!n10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "CZ6508000000192000145399",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -460,7 +563,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Germany",
                 EnglishName = "Germany",
-                Iban = new IbanStructure(new SwiftPattern("DE2!n8!n10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 8, 8),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "DE89370400440532013000",
                     EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -486,7 +595,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Denmark",
                 EnglishName = "Denmark",
-                Iban = new IbanStructure(new SwiftPattern("DK2!n4!n9!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 9, 9),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "DK5000400440116243",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -512,7 +628,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Dominican Republic",
                 EnglishName = "Dominican Republic",
-                Iban = new IbanStructure(new SwiftPattern("DO2!n4!c20!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 4, 4),
+                    new(AsciiCategory.Digit, 20, 20),
+                }))
                 {
                     Example = "DO28BAGR00000001212453611324",
                     EffectiveDate = new DateTimeOffset(2010, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -538,7 +660,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Estonia",
                 EnglishName = "Estonia",
-                Iban = new IbanStructure(new SwiftPattern("EE2!n2!n2!n11!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 11, 11),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "EE382200221020145685",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -564,7 +694,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Egypt",
                 EnglishName = "Egypt",
-                Iban = new IbanStructure(new SwiftPattern("EG2!n4!n4!n17!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 17, 17),
+                }))
                 {
                     Example = "EG380019000500000000263180002",
                     EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -594,7 +731,16 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Spain",
                 EnglishName = "Spain",
-                Iban = new IbanStructure(new SwiftPattern("ES2!n4!n4!n1!n1!n10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 1, 1),
+                    new(AsciiCategory.Digit, 1, 1),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "ES9121000418450200051332",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -628,7 +774,13 @@ namespace IbanNet.Registry.Swift
                 {
                     "fi-AX"
                 },
-                Iban = new IbanStructure(new SwiftPattern("FI2!n3!n11!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 11, 11),
+                }))
                 {
                     Example = "FI2112345600000785",
                     EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -646,7 +798,7 @@ namespace IbanNet.Registry.Swift
                     IsMember = true,
                     IncludedCountries = new[]
                     {
-                                "fi-AX"
+                        "fi-AX"
                     }
                 },
                 DomesticAccountNumberExample = "",
@@ -658,7 +810,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Faroe Islands",
                 EnglishName = "Faroe Islands",
-                Iban = new IbanStructure(new SwiftPattern("FO2!n4!n9!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 9, 9),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "FO6264600001631634",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -688,7 +847,15 @@ namespace IbanNet.Registry.Swift
                 {
                     "fr-GF", "fr-GP", "fr-MQ", "fr-RE", "fr-PF", "fr-TF", "fr-YT", "fr-NC", "fr-BL", "fr-MF", "fr-PM", "fr-WF"
                 },
-                Iban = new IbanStructure(new SwiftPattern("FR2!n5!n5!n11!c2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 11, 11),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "FR1420041010050500013M02606",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -706,7 +873,7 @@ namespace IbanNet.Registry.Swift
                     IsMember = true,
                     IncludedCountries = new[]
                     {
-                                "fr-GF", "fr-GP", "fr-MQ", "fr-YT", "fr-RE", "fr-PM", "fr-BL", "fr-MF"
+                        "fr-GF", "fr-GP", "fr-MQ", "fr-YT", "fr-RE", "fr-PM", "fr-BL", "fr-MF"
                     }
                 },
                 DomesticAccountNumberExample = "20041 01005 0500013M026 06",
@@ -722,7 +889,14 @@ namespace IbanNet.Registry.Swift
                 {
                     "gb-IM", "gb-JE", "gb-GG"
                 },
-                Iban = new IbanStructure(new SwiftPattern("GB2!n4!a6!n8!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.Digit, 8, 8),
+                }))
                 {
                     Example = "GB29NWBK60161331926819",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -752,7 +926,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Georgia",
                 EnglishName = "Georgia",
-                Iban = new IbanStructure(new SwiftPattern("GE2!n2!a16!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 16, 16),
+                }))
                 {
                     Example = "GE29NB0000000101904917",
                     EffectiveDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
@@ -778,7 +958,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Gibraltar",
                 EnglishName = "Gibraltar",
-                Iban = new IbanStructure(new SwiftPattern("GI2!n4!a15!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 15, 15),
+                }))
                 {
                     Example = "GI75NWBK000000007099453",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -804,7 +990,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Greenland",
                 EnglishName = "Greenland",
-                Iban = new IbanStructure(new SwiftPattern("GL2!n4!n9!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 9, 9),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "GL8964710001000206",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -830,7 +1023,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Greece",
                 EnglishName = "Greece",
-                Iban = new IbanStructure(new SwiftPattern("GR2!n3!n4!n16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "GR1601101250000000012300695",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -860,7 +1060,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Guatemala",
                 EnglishName = "Guatemala",
-                Iban = new IbanStructure(new SwiftPattern("GT2!n4!c20!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 20, 20),
+                }))
                 {
                     Example = "GT82TRAJ01020000001210029690",
                     EffectiveDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -886,7 +1092,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Croatia",
                 EnglishName = "Croatia",
-                Iban = new IbanStructure(new SwiftPattern("HR2!n7!n10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 7, 7),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "HR1210010051863000160",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -912,7 +1124,16 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Hungary",
                 EnglishName = "Hungary",
-                Iban = new IbanStructure(new SwiftPattern("HU2!n3!n4!n1!n15!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 1, 1),
+                    new(AsciiCategory.Digit, 15, 15),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "HU42117730161111101800000000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -942,7 +1163,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Ireland",
                 EnglishName = "Ireland",
-                Iban = new IbanStructure(new SwiftPattern("IE2!n4!a6!n8!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.Digit, 8, 8),
+                }))
                 {
                     Example = "IE29AIBK93115212345678",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -972,7 +1200,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Israel",
                 EnglishName = "Israel",
-                Iban = new IbanStructure(new SwiftPattern("IL2!n3!n3!n13!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 13, 13),
+                }))
                 {
                     Example = "IL620108000000099999999",
                     EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1002,7 +1237,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Iraq",
                 EnglishName = "Iraq",
-                Iban = new IbanStructure(new SwiftPattern("IQ2!n4!a3!n12!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 12, 12),
+                }))
                 {
                     Example = "IQ98NBIQ850123456789012",
                     EffectiveDate = new DateTimeOffset(2017, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1032,7 +1274,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Iceland",
                 EnglishName = "Iceland",
-                Iban = new IbanStructure(new SwiftPattern("IS2!n4!n2!n6!n10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "IS140159260076545510730339",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1062,7 +1312,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Italy",
                 EnglishName = "Italy",
-                Iban = new IbanStructure(new SwiftPattern("IT2!n1!a5!n5!n12!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 1, 1),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 12, 12),
+                }))
                 {
                     Example = "IT60X0542811101000000123456",
                     EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1092,7 +1350,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Jordan",
                 EnglishName = "Jordan",
-                Iban = new IbanStructure(new SwiftPattern("JO2!n4!a4!n18!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 18, 18),
+                }))
                 {
                     Example = "JO94CBJO0010000000000131000302",
                     EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1122,7 +1387,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Kuwait",
                 EnglishName = "Kuwait",
-                Iban = new IbanStructure(new SwiftPattern("KW2!n4!a22!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 22, 22),
+                }))
                 {
                     Example = "KW81CBKU0000000000001234560101",
                     EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1148,7 +1419,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Kazakhstan",
                 EnglishName = "Kazakhstan",
-                Iban = new IbanStructure(new SwiftPattern("KZ2!n3!n13!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.AlphaNumeric, 13, 13),
+                }))
                 {
                     Example = "KZ86125KZT5004100100",
                     EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1174,7 +1451,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Lebanon",
                 EnglishName = "Lebanon",
-                Iban = new IbanStructure(new SwiftPattern("LB2!n4!n20!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 20, 20),
+                }))
                 {
                     Example = "LB62099900000001001901229114",
                     EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1200,7 +1483,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Saint Lucia",
                 EnglishName = "Saint Lucia",
-                Iban = new IbanStructure(new SwiftPattern("LC2!n4!a24!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 24, 24),
+                }))
                 {
                     Example = "LC55HEMM000100010012001200023015",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1226,7 +1515,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Liechtenstein",
                 EnglishName = "Liechtenstein",
-                Iban = new IbanStructure(new SwiftPattern("LI2!n5!n12!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 12, 12),
+                }))
                 {
                     Example = "LI21088100002324013AA",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1252,7 +1547,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Lithuania",
                 EnglishName = "Lithuania",
-                Iban = new IbanStructure(new SwiftPattern("LT2!n5!n11!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 11, 11),
+                }))
                 {
                     Example = "LT121000011101001000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1278,7 +1579,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Luxembourg",
                 EnglishName = "Luxembourg",
-                Iban = new IbanStructure(new SwiftPattern("LU2!n3!n13!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.AlphaNumeric, 13, 13),
+                }))
                 {
                     Example = "LU280019400644750000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1304,7 +1611,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Latvia",
                 EnglishName = "Latvia",
-                Iban = new IbanStructure(new SwiftPattern("LV2!n4!a13!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 13, 13),
+                }))
                 {
                     Example = "LV80BANK0000435195001",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1330,7 +1643,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Libya",
                 EnglishName = "Libya",
-                Iban = new IbanStructure(new SwiftPattern("LY2!n3!n3!n15!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 15, 15),
+                }))
                 {
                     Example = "LY83002048000020100120361",
                     EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1360,7 +1680,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Monaco",
                 EnglishName = "Monaco",
-                Iban = new IbanStructure(new SwiftPattern("MC2!n5!n5!n11!c2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 11, 11),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "MC5811222000010123456789030",
                     EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1390,7 +1718,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Moldova",
                 EnglishName = "Moldova",
-                Iban = new IbanStructure(new SwiftPattern("MD2!n2!c18!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 18, 18),
+                }))
                 {
                     Example = "MD24AG000225100013104168",
                     EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1416,7 +1750,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Montenegro",
                 EnglishName = "Montenegro",
-                Iban = new IbanStructure(new SwiftPattern("ME2!n3!n13!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 13, 13),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "ME25505000012345678951",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1442,7 +1783,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Macedonia",
                 EnglishName = "Macedonia",
-                Iban = new IbanStructure(new SwiftPattern("MK2!n3!n10!c2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.AlphaNumeric, 10, 10),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "MK07250120000058984",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1468,7 +1816,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Mauritania",
                 EnglishName = "Mauritania",
-                Iban = new IbanStructure(new SwiftPattern("MR2!n5!n5!n11!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 11, 11),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "MR1300020001010000123456753",
                     EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1498,7 +1854,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Malta",
                 EnglishName = "Malta",
-                Iban = new IbanStructure(new SwiftPattern("MT2!n4!a5!n18!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 18, 18),
+                }))
                 {
                     Example = "MT84MALT011000012345MTLCAST001S",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1528,7 +1891,17 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Mauritius",
                 EnglishName = "Mauritius",
-                Iban = new IbanStructure(new SwiftPattern("MU2!n4!a2!n2!n12!n3!n3!a"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 12, 12),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.UppercaseLetter, 3, 3),
+                }))
                 {
                     Example = "MU17BOMM0101101030300200000MUR",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1558,7 +1931,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Netherlands (The)",
                 EnglishName = "Netherlands (The)",
-                Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "NL91ABNA0417164300",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1584,7 +1963,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Norway",
                 EnglishName = "Norway",
-                Iban = new IbanStructure(new SwiftPattern("NO2!n4!n6!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "NO9386011117947",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1610,7 +1996,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Pakistan",
                 EnglishName = "Pakistan",
-                Iban = new IbanStructure(new SwiftPattern("PK2!n4!a16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "PK36SCBL0000001123456702",
                     EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1636,7 +2028,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Poland",
                 EnglishName = "Poland",
-                Iban = new IbanStructure(new SwiftPattern("PL2!n8!n16!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 8, 8),
+                    new(AsciiCategory.Digit, 16, 16),
+                }))
                 {
                     Example = "PL61109010140000071219812874",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1662,7 +2060,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Palestine, State of",
                 EnglishName = "Palestine, State of",
-                Iban = new IbanStructure(new SwiftPattern("PS2!n4!a21!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 21, 21),
+                }))
                 {
                     Example = "PS92PALS000000000400123456702",
                     EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1688,7 +2092,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Portugal",
                 EnglishName = "Portugal",
-                Iban = new IbanStructure(new SwiftPattern("PT2!n4!n4!n11!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 11, 11),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "PT50000201231234567890154",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1706,7 +2118,7 @@ namespace IbanNet.Registry.Swift
                     IsMember = true,
                     IncludedCountries = new[]
                     {
-                                "pt-Az", "pt-Ma"
+                        "pt-Az", "pt-Ma"
                     }
                 },
                 DomesticAccountNumberExample = "0002.0123.12345678901.54",
@@ -1718,7 +2130,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Qatar",
                 EnglishName = "Qatar",
-                Iban = new IbanStructure(new SwiftPattern("QA2!n4!a21!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 21, 21),
+                }))
                 {
                     Example = "QA58DOHB00001234567890ABCDEFG",
                     EffectiveDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1744,7 +2162,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Romania",
                 EnglishName = "Romania",
-                Iban = new IbanStructure(new SwiftPattern("RO2!n4!a16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "RO49AAAA1B31007593840000",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1770,7 +2194,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Serbia",
                 EnglishName = "Serbia",
-                Iban = new IbanStructure(new SwiftPattern("RS2!n3!n13!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 13, 13),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "RS35260005601001611379",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1796,7 +2227,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Saudi Arabia",
                 EnglishName = "Saudi Arabia",
-                Iban = new IbanStructure(new SwiftPattern("SA2!n2!n18!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.AlphaNumeric, 18, 18),
+                }))
                 {
                     Example = "SA0380000000608010167519",
                     EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1822,7 +2259,16 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Seychelles",
                 EnglishName = "Seychelles",
-                Iban = new IbanStructure(new SwiftPattern("SC2!n4!a2!n2!n16!n3!a"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 16, 16),
+                    new(AsciiCategory.UppercaseLetter, 3, 3),
+                }))
                 {
                     Example = "SC18SSCB11010000000000001497USD",
                     EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1847,12 +2293,55 @@ namespace IbanNet.Registry.Swift
                 LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
+            // Sudan
+            yield return new IbanCountry("SD")
+            {
+                DisplayName = "Sudan",
+                EnglishName = "Sudan",
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 12, 12),
+                }))
+                {
+                    Example = "SD2129010501234001",
+                    EffectiveDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                },
+                Bban = new BbanStructure(new SwiftPattern("2!n12!n"), 4)
+                {
+                    Example = "29010501234001"
+                },
+                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+                {
+                    Example = "29"
+                },
+                Branch = new BranchStructure(new SwiftPattern("12!n"), 6)
+                {
+                    Example = "010501234001"
+                },
+                Sepa = new SepaInfo
+                {
+                    IsMember = false,
+                },
+                DomesticAccountNumberExample = "010501234001",
+                LastUpdatedDate = new DateTimeOffset(2021, 6, 1, 0, 0, 0, TimeSpan.Zero)
+            };
+
             // Sweden
             yield return new IbanCountry("SE")
             {
                 DisplayName = "Sweden",
                 EnglishName = "Sweden",
-                Iban = new IbanStructure(new SwiftPattern("SE2!n3!n16!n1!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 16, 16),
+                    new(AsciiCategory.Digit, 1, 1),
+                }))
                 {
                     Example = "SE4550000000058398257466",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1878,7 +2367,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Slovenia",
                 EnglishName = "Slovenia",
-                Iban = new IbanStructure(new SwiftPattern("SI2!n5!n8!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 8, 8),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "SI56263300012039086",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1904,7 +2400,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Slovakia",
                 EnglishName = "Slovakia",
-                Iban = new IbanStructure(new SwiftPattern("SK2!n4!n6!n10!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.Digit, 10, 10),
+                }))
                 {
                     Example = "SK3112000000198742637541",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1930,7 +2433,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "San Marino",
                 EnglishName = "San Marino",
-                Iban = new IbanStructure(new SwiftPattern("SM2!n1!a5!n5!n12!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 1, 1),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.AlphaNumeric, 12, 12),
+                }))
                 {
                     Example = "SM86U0322509800000000270100",
                     EffectiveDate = new DateTimeOffset(2007, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1960,7 +2471,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Sao Tome and Principe",
                 EnglishName = "Sao Tome and Principe",
-                Iban = new IbanStructure(new SwiftPattern("ST2!n4!n4!n11!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 11, 11),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "ST23000100010051845310146",
                     EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1990,7 +2509,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "El Salvador",
                 EnglishName = "El Salvador",
-                Iban = new IbanStructure(new SwiftPattern("SV2!n4!a20!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 20, 20),
+                }))
                 {
                     Example = "SV62CENR00000000000000700025",
                     EffectiveDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2016,7 +2541,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Timor-Leste",
                 EnglishName = "Timor-Leste",
-                Iban = new IbanStructure(new SwiftPattern("TL2!n3!n14!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 14, 14),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "TL380080012345678910157",
                     EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2042,7 +2574,15 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Tunisia",
                 EnglishName = "Tunisia",
-                Iban = new IbanStructure(new SwiftPattern("TN2!n2!n3!n13!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 13, 13),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "TN5910006035183598478831",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2072,7 +2612,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Turkey",
                 EnglishName = "Turkey",
-                Iban = new IbanStructure(new SwiftPattern("TR2!n5!n1!n16!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 1, 1),
+                    new(AsciiCategory.AlphaNumeric, 16, 16),
+                }))
                 {
                     Example = "TR330006100519786457841326",
                     EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2098,7 +2645,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Ukraine",
                 EnglishName = "Ukraine",
-                Iban = new IbanStructure(new SwiftPattern("UA2!n6!n19!c"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 6, 6),
+                    new(AsciiCategory.AlphaNumeric, 19, 19),
+                }))
                 {
                     Example = "UA213223130000026007233566001",
                     EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2124,7 +2677,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Vatican City State",
                 EnglishName = "Vatican City State",
-                Iban = new IbanStructure(new SwiftPattern("VA2!n3!n15!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 3, 3),
+                    new(AsciiCategory.Digit, 15, 15),
+                }))
                 {
                     Example = "VA59001123000012345678",
                     EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2150,7 +2709,13 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Virgin Islands",
                 EnglishName = "Virgin Islands",
-                Iban = new IbanStructure(new SwiftPattern("VG2!n4!a16!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.UppercaseLetter, 4, 4),
+                    new(AsciiCategory.Digit, 16, 16),
+                }))
                 {
                     Example = "VG96VPVG0000012345678901",
                     EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2176,7 +2741,14 @@ namespace IbanNet.Registry.Swift
             {
                 DisplayName = "Kosovo",
                 EnglishName = "Kosovo",
-                Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 4, 4),
+                    new(AsciiCategory.Digit, 10, 10),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
                 {
                     Example = "XK051212012345678906",
                     EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2206,5 +2778,4 @@ namespace IbanNet.Registry.Swift
         }
     }
 }
-
 

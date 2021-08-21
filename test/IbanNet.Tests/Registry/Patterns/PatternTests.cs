@@ -24,8 +24,8 @@ namespace IbanNet.Registry.Patterns
             {
                 _tokens = new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.AlphaNumeric, 3),
-                    new PatternToken(AsciiCategory.Digit, 2)
+                    new(AsciiCategory.AlphaNumeric, 3),
+                    new(AsciiCategory.Digit, 2)
                 };
             }
 
@@ -35,9 +35,8 @@ namespace IbanNet.Registry.Patterns
                 IEnumerable<PatternToken> tokens = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once ExpressionIsAlwaysNull
-                Action act = () => new FakePattern(tokens);
+                Func<FakePattern> act = () => new FakePattern(tokens);
 
                 // Assert
                 act.Should()
@@ -90,8 +89,8 @@ namespace IbanNet.Registry.Patterns
             {
                 _tokens = new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.AlphaNumeric, 3),
-                    new PatternToken(AsciiCategory.Digit, 2)
+                    new(AsciiCategory.AlphaNumeric, 3),
+                    new(AsciiCategory.Digit, 2)
                 };
 
                 _tokenizerMock
@@ -103,11 +102,11 @@ namespace IbanNet.Registry.Patterns
             [Fact]
             public void When_creating_with_null_pattern_it_should_throw()
             {
-                const string pattern = null;
+                string pattern = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
-                Action act = () => new FakePattern(pattern, Mock.Of<ITokenizer<PatternToken>>());
+                // ReSharper disable once ExpressionIsAlwaysNull
+                Func<FakePattern> act = () => new FakePattern(pattern, Mock.Of<ITokenizer<PatternToken>>());
 
                 // Assert
                 act.Should()
@@ -122,9 +121,8 @@ namespace IbanNet.Registry.Patterns
                 ITokenizer<PatternToken> tokenizer = null;
 
                 // Act
-                // ReSharper disable once ObjectCreationAsStatement
                 // ReSharper disable once ExpressionIsAlwaysNull
-                Action act = () => new FakePattern(string.Empty, tokenizer);
+                Func<FakePattern> act = () => new FakePattern(string.Empty, tokenizer);
 
                 // Assert
                 act.Should()
@@ -191,17 +189,6 @@ namespace IbanNet.Registry.Patterns
             public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
             {
                 throw new NotImplementedException();
-            }
-        }
-
-        private class FakePattern : Pattern
-        {
-            public FakePattern(string pattern, ITokenizer<PatternToken> tokenizer) : base(pattern, tokenizer)
-            {
-            }
-
-            public FakePattern(IEnumerable<PatternToken> tokens) : base(tokens)
-            {
             }
         }
     }

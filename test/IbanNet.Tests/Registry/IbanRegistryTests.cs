@@ -24,7 +24,7 @@ namespace IbanNet.Registry
         [Fact]
         public void When_definitions_are_loaded_should_contain_exactly_n_items()
         {
-            _sut.Count.Should().Be(78);
+            _sut.Count.Should().Be(new SwiftRegistryProvider().Count);
         }
 
         [Theory]
@@ -46,28 +46,21 @@ namespace IbanNet.Registry
                 {
                     DisplayName = "Andorra",
                     EnglishName = "Andorra",
-                    Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
+                    Iban = new IbanStructure(new IbanSwiftPattern("AD2!n4!n4!n12!c"))
                     {
-                        Length = 24,
                         Example = "AD1200012030200359100100",
                         EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
                     },
-                    Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"))
+                    Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"), 4)
                     {
-                        Position = 4,
-                        Length = 20,
                         Example = "00012030200359100100"
                     },
-                    Bank = new BankStructure(new SwiftPattern("4!n"))
+                    Bank = new BankStructure(new SwiftPattern("4!n"), 4)
                     {
-                        Position = 4,
-                        Length = 4,
                         Example = "0001"
                     },
-                    Branch = new BranchStructure(new SwiftPattern("4!n"))
+                    Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
                     {
-                        Position = 8,
-                        Length = 4,
                         Example = "2030"
                     },
                     Sepa = new SepaInfo { IsMember = true },
@@ -82,28 +75,21 @@ namespace IbanNet.Registry
                 {
                     DisplayName = "Kosovo",
                     EnglishName = "Kosovo",
-                    Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
+                    Iban = new IbanStructure(new IbanSwiftPattern("XK2!n4!n10!n2!n"))
                     {
-                        Length = 20,
                         Example = "XK051212012345678906",
                         EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
                     },
-                    Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"))
+                    Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"), 4)
                     {
-                        Position = 4,
-                        Length = 16,
                         Example = "1212012345678906"
                     },
-                    Bank = new BankStructure(new SwiftPattern("2!n"))
+                    Bank = new BankStructure(new SwiftPattern("2!n"), 4)
                     {
-                        Position = 4,
-                        Length = 2,
                         Example = "12"
                     },
-                    Branch = new BranchStructure(new SwiftPattern("2!n"))
+                    Branch = new BranchStructure(new SwiftPattern("2!n"), 6)
                     {
-                        Position = 6,
-                        Length = 2,
                         Example = "12"
                     },
                     Sepa = new SepaInfo { IsMember = false, },

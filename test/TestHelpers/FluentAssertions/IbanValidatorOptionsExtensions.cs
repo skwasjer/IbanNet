@@ -6,7 +6,7 @@ namespace TestHelpers.FluentAssertions
     {
         public static IbanValidatorOptionsAssertions Should(this IbanValidatorOptions instance)
         {
-            return new IbanValidatorOptionsAssertions(instance);
+            return new(instance);
         }
     }
 }

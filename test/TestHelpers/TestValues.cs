@@ -1,6 +1,6 @@
-﻿namespace IbanNet
+﻿namespace TestHelpers
 {
-    internal static class TestValues
+    public static class TestValues
     {
         public const string ValidIban = "AD1200012030200359100100";
         public const string ValidIbanPartitioned = "AD12 0001 2030 2003 5910 0100";

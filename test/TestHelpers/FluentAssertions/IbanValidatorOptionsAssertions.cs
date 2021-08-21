@@ -33,42 +33,6 @@ namespace TestHelpers.FluentAssertions
             );
         }
 
-        public AndConstraint<IbanValidatorOptionsAssertions> HaveValidationMethod
-        (
-            ValidationMethod method,
-            string because = "",
-            params object[] becauseArgs
-        )
-        {
-            Execute.Assertion
-                .BecauseOf(because, becauseArgs)
-                .Given(() => Subject.Method)
-                .ForCondition(vm => vm == method)
-                .FailWith("Expected {context:options} to use {0}{reason}, but found {1}.",
-                    _ => method,
-                    m => m);
-
-            return new AndConstraint<IbanValidatorOptionsAssertions>(this);
-        }
-
-        public AndConstraint<IbanValidatorOptionsAssertions> HaveStrictValidation
-        (
-            string because = "",
-            params object[] becauseArgs
-        )
-        {
-            return HaveValidationMethod(ValidationMethod.Strict, because, becauseArgs);
-        }
-
-        public AndConstraint<IbanValidatorOptionsAssertions> HaveLooseValidation
-        (
-            string because = "",
-            params object[] becauseArgs
-        )
-        {
-            return HaveValidationMethod(ValidationMethod.Loose, because, becauseArgs);
-        }
-
         public AndConstraint<GenericCollectionAssertions<TRule>> HaveRule<TRule>
         (
             string because = "",

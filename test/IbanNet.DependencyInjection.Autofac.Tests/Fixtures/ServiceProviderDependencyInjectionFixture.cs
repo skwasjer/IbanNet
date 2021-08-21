@@ -15,7 +15,7 @@ namespace IbanNet.DependencyInjection.Autofac.Fixtures
 
         protected override ContainerBuilder CreateContainerBuilder()
         {
-            return new ContainerBuilder();
+            return new();
         }
 
         protected override void Configure(ContainerBuilder containerBuilder, Action<IIbanNetOptionsBuilder> configurer)

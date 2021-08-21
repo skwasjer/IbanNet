@@ -15,8 +15,7 @@ namespace IbanNet.Registry.Swift
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new SwiftPattern(pattern);
+            Func<SwiftPattern> act = () => new SwiftPattern(pattern);
 
             // Assert
             act.Should()
@@ -25,16 +24,28 @@ namespace IbanNet.Registry.Swift
                 .Be(nameof(pattern));
         }
 
-        [Fact]
-        public void Given_pattern_when_calling_to_string_should_return_same_pattern()
+        [Theory]
+        [MemberData(nameof(GetTestCases))]
+#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
+        public void Given_pattern_when_calling_to_string_should_return_same_pattern(string pattern, IEnumerable<PatternToken> _)
+#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
-            const string pattern = "BG2!n4!a4!n2!n8!c";
-
             // Act
             var actual = new SwiftPattern(pattern);
 
             // Assert
             actual.ToString().Should().Be(pattern);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetTestCases))]
+        public void Given_pattern_tokens_when_calling_to_string_should_return_same_pattern(string expectedPattern, IEnumerable<PatternToken> tokens)
+        {
+            // Act
+            var actual = new SwiftPattern(tokens);
+
+            // Assert
+            actual.ToString().Should().Be(expectedPattern);
         }
 
         [Theory]
@@ -49,8 +60,8 @@ namespace IbanNet.Registry.Swift
         }
 
         [Theory]
-        [InlineData("BG2!n4!a4!n2!n8!c", true)]
-        [InlineData("BG2!n4!a4!n2n8!c", false)]
+        [InlineData("2!n4!a4!n2!n8!c", true)]
+        [InlineData("2!n4!a4!n2n8!c", false)]
         [InlineData("4!n", true)]
         [InlineData("4n", false)]
         public void Given_pattern_when_getting_isFixedLength_it_should_return_expected(string pattern, bool expectedIsFixedLength)
@@ -66,15 +77,14 @@ namespace IbanNet.Registry.Swift
         {
             yield return new object[]
             {
-                "BG2!n4!a4!n2!n8!c",
+                "2!n4!a4!n2!n8!c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.Letter, 2),
-                    new PatternToken(AsciiCategory.Digit, 2),
-                    new PatternToken(AsciiCategory.UppercaseLetter, 4),
-                    new PatternToken(AsciiCategory.Digit, 4),
-                    new PatternToken(AsciiCategory.Digit, 2),
-                    new PatternToken(AsciiCategory.AlphaNumeric, 8)
+                    new(AsciiCategory.Digit, 2),
+                    new(AsciiCategory.UppercaseLetter, 4),
+                    new(AsciiCategory.Digit, 4),
+                    new(AsciiCategory.Digit, 2),
+                    new(AsciiCategory.AlphaNumeric, 8)
                 }
             };
 
@@ -83,10 +93,10 @@ namespace IbanNet.Registry.Swift
                 "4!n10a1!e2!c",
                 new List<PatternToken>
                 {
-                    new PatternToken(AsciiCategory.Digit, 4),
-                    new PatternToken(AsciiCategory.UppercaseLetter, 1, 10),
-                    new PatternToken(AsciiCategory.Space, 1),
-                    new PatternToken(AsciiCategory.AlphaNumeric, 2)
+                    new(AsciiCategory.Digit, 4),
+                    new(AsciiCategory.UppercaseLetter, 1, 10),
+                    new(AsciiCategory.Space, 1),
+                    new(AsciiCategory.AlphaNumeric, 2)
                 }
             };
         }

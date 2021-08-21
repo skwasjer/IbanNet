@@ -5,6 +5,7 @@ using FluentAssertions;
 using IbanNet.DependencyInjection.FluentAssertions;
 using IbanNet.FakeRules;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using Moq;
 using TestHelpers;
 using Xunit;
@@ -98,28 +99,6 @@ namespace IbanNet.DependencyInjection
             }
 
             [Fact]
-            public void Given_strict_validation_is_configured_it_should_set_validation_method()
-            {
-                // Act
-                IIbanNetOptionsBuilder returnedBuilder = _builder.UseStrictValidation();
-
-                // Assert
-                _builderStub.Should().HaveConfiguredValidationMethod(ValidationMethod.Strict);
-                returnedBuilder.Should().BeSameAs(_builderStub.Object);
-            }
-
-            [Fact]
-            public void Given_loose_validation_is_configured_it_should_set_validation_method()
-            {
-                // Act
-                IIbanNetOptionsBuilder returnedBuilder = _builder.UseLooseValidation();
-
-                // Assert
-                _builderStub.Should().HaveConfiguredValidationMethod(ValidationMethod.Loose);
-                returnedBuilder.Should().BeSameAs(_builderStub.Object);
-            }
-
-            [Fact]
             public void Given_rule_is_configured_via_factory_it_should_add_instance_to_rule_collection()
             {
                 var configuredRule = new TestValidationRule();
@@ -168,12 +147,6 @@ namespace IbanNet.DependencyInjection
                         new IIbanRegistryProvider[0]),
                     DelegateTestCase.Create(
                         IbanNetOptionsBuilderExtensions.WithRule<TestValidationRule>,
-                        instance),
-                    DelegateTestCase.Create(
-                        IbanNetOptionsBuilderExtensions.UseStrictValidation,
-                        instance),
-                    DelegateTestCase.Create(
-                        IbanNetOptionsBuilderExtensions.UseLooseValidation,
                         instance),
                     DelegateTestCase.Create<IIbanNetOptionsBuilder, Func<TestValidationRule>, IIbanNetOptionsBuilder>(
                         IbanNetOptionsBuilderExtensions.WithRule,

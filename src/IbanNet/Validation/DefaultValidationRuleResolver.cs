@@ -5,12 +5,11 @@ using IbanNet.Validation.Rules;
 namespace IbanNet.Validation
 {
     /// <summary>
-    /// Resolves validation rules by validation method.
+    /// Resolves all validation rules, built-in first, followed by custom rules.
     /// </summary>
     internal class DefaultValidationRuleResolver : IValidationRuleResolver
     {
         private readonly IbanValidatorOptions _options;
-        private readonly IStructureValidationFactory _structureValidationFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultValidationRuleResolver" />.
@@ -18,12 +17,6 @@ namespace IbanNet.Validation
         public DefaultValidationRuleResolver(IbanValidatorOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
-
-            _structureValidationFactory = new CachedStructureValidationFactory(
-                new CompositeStructureValidationFactory(
-                    (options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options))).Providers
-                )
-            );
         }
 
         /// <inheritdoc />
@@ -35,15 +28,11 @@ namespace IbanNet.Validation
             yield return new HasIbanChecksumRule();
             yield return new IsValidCountryCodeRule(_options.Registry);
             yield return new IsValidLengthRule();
-
-            if (_options.Method == ValidationMethod.Strict)
-            {
-                yield return new IsMatchingStructureRule(_structureValidationFactory);
-            }
+            yield return new IsMatchingStructureRule();
 
             yield return new Mod97Rule();
 
-            if (_options.Rules is null)
+            if (_options.Rules is null!)
             {
                 yield break;
             }

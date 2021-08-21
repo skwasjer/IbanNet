@@ -1,67 +1,60 @@
 # IbanNet Benchmark Results
 
-## Release 4.4
+## Performance for v5.x
+
+A single validation:
 
 ```
-BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.985 (2004/?/20H1)
+BenchmarkDotNet=v0.13.0, OS=Windows 10.0.19041.1052 (2004/May2020Update/20H1)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET Core SDK=5.0.203
-  [Host]     : .NET Core 5.0.6 (CoreCLR 5.0.621.22011, CoreFX 5.0.621.22011), X64 RyuJIT
-  Job-JZWPKX : .NET Core 5.0.6 (CoreCLR 5.0.621.22011, CoreFX 5.0.621.22011), X64 RyuJIT
-  Job-USMEXX : .NET Core 3.1.15 (CoreCLR 4.700.21.21202, CoreFX 4.700.21.21402), X64 RyuJIT
-  Job-BHSBZT : .NET Core 2.1.28 (CoreCLR 4.6.30015.01, CoreFX 4.6.30015.01), X64 RyuJIT
-  Job-SQNNCW : .NET Framework 4.8 (4.8.4341.0), X64 RyuJIT
+.NET SDK=5.0.204
+  [Host]     : .NET 5.0.7 (5.0.721.25508), X64 RyuJIT
+  Job-VAFPOR : .NET 5.0.7 (5.0.721.25508), X64 RyuJIT
+  Job-SUPFRH : .NET Core 3.1.16 (CoreCLR 4.700.21.26205, CoreFX 4.700.21.26205), X64 RyuJIT
+  Job-DVBDQH : .NET Framework 4.8 (4.8.4360.0), X64 RyuJIT
+  Job-WCAPRC : .NET Core 2.1.28 (CoreCLR 4.6.30015.01, CoreFX 4.6.30015.01), X64 RyuJIT
 ```
 
-### Strict vs Loose validation
-
-|   Method |        Job |       Runtime |    Toolchain |      validator |     Mean |    Error |   StdDev | Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|--------- |----------- |-------------- |------------- |--------------- |---------:|---------:|---------:|------:|--------:|-------:|------:|------:|----------:|
-| Validate | Job-JZWPKX | .NET Core 5.0 | netcoreapp50 |  IbanNet Loose | 476.5 ns |  2.24 ns |  1.98 ns |  1.00 |    0.00 | 0.1097 |     - |     - |     688 B |
-| Validate | Job-USMEXX | .NET Core 3.1 | netcoreapp31 |  IbanNet Loose | 567.7 ns |  2.85 ns |  2.66 ns |  1.19 |    0.01 | 0.1097 |     - |     - |     688 B |
-| Validate | Job-BHSBZT | .NET Core 2.1 | netcoreapp21 |  IbanNet Loose | 608.5 ns |  4.72 ns |  4.42 ns |  1.28 |    0.01 | 0.1097 |     - |     - |     696 B |
-| Validate | Job-SQNNCW |      .NET 4.8 |        net48 |  IbanNet Loose | 678.1 ns |  3.21 ns |  3.00 ns |  1.42 |    0.01 | 0.0925 |     - |     - |     586 B |
-|          |            |               |              |                |          |          |          |       |         |        |       |       |           |
-| Validate | Job-JZWPKX | .NET Core 5.0 | netcoreapp50 | IbanNet Strict | 637.0 ns |  8.46 ns |  7.50 ns |  1.00 |    0.00 | 0.1249 |     - |     - |     784 B |
-| Validate | Job-USMEXX | .NET Core 3.1 | netcoreapp31 | IbanNet Strict | 727.6 ns |  3.85 ns |  3.41 ns |  1.14 |    0.02 | 0.1249 |     - |     - |     784 B |
-| Validate | Job-BHSBZT | .NET Core 2.1 | netcoreapp21 | IbanNet Strict | 800.7 ns | 13.82 ns | 12.93 ns |  1.26 |    0.03 | 0.1249 |     - |     - |     792 B |
-| Validate | Job-SQNNCW |      .NET 4.8 |        net48 | IbanNet Strict | 871.5 ns | 16.78 ns | 13.10 ns |  1.37 |    0.03 | 0.1078 |     - |     - |     682 B |
+|   Method |        Job |            Runtime |    Toolchain |     Mean |   Error |  StdDev | Ratio |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------- |----------- |------------------- |------------- |---------:|--------:|--------:|------:|-------:|------:|------:|----------:|
+| Validate | Job-VAFPOR |           .NET 5.0 | netcoreapp50 | 441.0 ns | 3.20 ns | 2.99 ns |  1.00 | 0.0505 |     - |     - |     320 B |
+| Validate | Job-SUPFRH |      .NET Core 3.1 | netcoreapp31 | 459.0 ns | 1.11 ns | 0.98 ns |  1.04 | 0.0505 |     - |     - |     320 B |
+| Validate | Job-DVBDQH | .NET Framework 4.8 |        net48 | 461.9 ns | 3.11 ns | 2.75 ns |  1.05 | 0.0520 |     - |     - |     329 B |
+| Validate | Job-WCAPRC |      .NET Core 2.1 | netcoreapp21 | 491.4 ns | 2.39 ns | 1.87 ns |  1.12 | 0.0515 |     - |     - |     328 B |
 
 ### Comparison with other validators
 
+> Worth mentioning is that IbanNet validates more strictly than the other alternative (competing) libraries, yet comes out quite a lot faster and has a much lower memory footprint.
+
 ```
-BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.985 (2004/?/20H1)
+BenchmarkDotNet=v0.13.0, OS=Windows 10.0.19041.1052 (2004/May2020Update/20H1)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET Core SDK=5.0.203
-  [Host]     : .NET Core 5.0.6 (CoreCLR 5.0.621.22011, CoreFX 5.0.621.22011), X64 RyuJIT
-  Job-TRNOOX : .NET Core 3.1.15 (CoreCLR 4.700.21.21202, CoreFX 4.700.21.21402), X64 RyuJIT
-  Job-PGOFTL : .NET Core 5.0.6 (CoreCLR 5.0.621.22011, CoreFX 5.0.621.22011), X64 RyuJIT
-  Job-YWTJNJ : .NET Core 2.1.28 (CoreCLR 4.6.30015.01, CoreFX 4.6.30015.01), X64 RyuJIT
-  Job-ZMNWCT : .NET Framework 4.8 (4.8.4341.0), X64 RyuJIT
+.NET SDK=5.0.204
+  [Host]     : .NET 5.0.7 (5.0.721.25508), X64 RyuJIT
+  Job-TESZCN : .NET 5.0.7 (5.0.721.25508), X64 RyuJIT
+  Job-JFOJBI : .NET Core 3.1.16 (CoreCLR 4.700.21.26205, CoreFX 4.700.21.26205), X64 RyuJIT
+  Job-AMQDFL : .NET Framework 4.8 (4.8.4360.0), X64 RyuJIT
+  Job-FSRDZX : .NET Core 2.1.28 (CoreCLR 4.6.30015.01, CoreFX 4.6.30015.01), X64 RyuJIT
 ```
 
-|                    Method |        Job |       Runtime |    Toolchain | Count |        Mean |     Error |    StdDev | Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
-|-------------------------- |----------- |-------------- |------------- |------ |------------:|----------:|----------:|------:|--------:|-------:|------:|------:|----------:|
-|             IbanNet_Loose | Job-PGOFTL | .NET Core 5.0 | netcoreapp50 |    10 |  6,154.3 ns |  42.31 ns |    37.51 ns |  0.83 |    0.01 | 1.1215 |     - |     - |    7056 B |
-|             IbanNet_Loose | Job-TRNOOX | .NET Core 3.1 | netcoreapp31 |    10 |  6,221.6 ns |  22.44 ns |    19.90 ns |  0.84 |    0.01 | 1.1215 |     - |     - |    7056 B |
-|             IbanNet_Loose | Job-YWTJNJ | .NET Core 2.1 | netcoreapp21 |    10 |  6,692.0 ns |  40.28 ns |    35.71 ns |  0.91 |    0.01 | 1.1292 |     - |     - |    7112 B |
-| IbanNet_Strict_CacheReuse | Job-PGOFTL | .NET Core 5.0 | netcoreapp50 |    10 |  6,938.7 ns | 136.96 ns |   192.00 ns |  0.95 |    0.03 | 1.2436 |     - |     - |    7840 B |
-|             IbanNet_Loose | Job-ZMNWCT |      .NET 4.8 |        net48 |    10 |  7,087.1 ns | 138.30 ns |   135.83 ns |  0.96 |    0.02 | 0.9613 |     - |     - |    6058 B |
-| IbanNet_Strict_CacheReuse | Job-TRNOOX | .NET Core 3.1 | netcoreapp31 |    10 |  7,312.7 ns |  49.40 ns |    43.79 ns |  0.99 |    0.01 | 1.2436 |     - |     - |    7840 B |
-|            IbanNet_Strict | Job-PGOFTL | .NET Core 5.0 | netcoreapp50 |    10 |  7,372.2 ns |  98.76 ns |    77.10 ns |  1.00 |    0.00 | 1.2741 |     - |     - |    8016 B |
-|            IbanNet_Strict | Job-TRNOOX | .NET Core 3.1 | netcoreapp31 |    10 |  7,691.1 ns |  26.97 ns |    22.53 ns |  1.04 |    0.01 | 1.2665 |     - |     - |    8016 B |
-| IbanNet_Strict_CacheReuse | Job-YWTJNJ | .NET Core 2.1 | netcoreapp21 |    10 |  7,984.6 ns |  28.90 ns |    22.56 ns |  1.08 |    0.01 | 1.2512 |     - |     - |    7920 B |
-|            IbanNet_Strict | Job-YWTJNJ | .NET Core 2.1 | netcoreapp21 |    10 |  8,454.6 ns |  38.04 ns |    31.76 ns |  1.15 |    0.01 | 1.2817 |     - |     - |    8072 B |
-| IbanNet_Strict_CacheReuse | Job-ZMNWCT |      .NET 4.8 |        net48 |    10 |  8,483.5 ns |  32.29 ns |    26.97 ns |  1.15 |    0.01 | 1.0834 |     - |     - |    6820 B |
-|            IbanNet_Strict | Job-ZMNWCT |      .NET 4.8 |        net48 |    10 |  9,001.0 ns | 137.47 ns |   209.93 ns |  1.23 |    0.04 | 1.1139 |     - |     - |    7021 B |
-|       NuGet_IbanValidator | Job-PGOFTL | .NET Core 5.0 | netcoreapp50 |    10 | 27,928.8 ns | 226.90 ns |   201.14 ns |  3.79 |    0.05 | 6.0730 |     - |     - |   38112 B |
-|       NuGet_IbanValidator | Job-TRNOOX | .NET Core 3.1 | netcoreapp31 |    10 | 32,962.9 ns | 578.62 ns |   483.17 ns |  4.47 |    0.09 | 6.1646 |     - |     - |   38912 B |
-|            NuGet_IBAN4NET | Job-PGOFTL | .NET Core 5.0 | netcoreapp50 |    10 | 35,207.1 ns | 534.17 ns |   499.66 ns |  4.75 |    0.09 | 1.8311 |     - |     - |   11592 B |
-|       NuGet_IbanValidator | Job-YWTJNJ | .NET Core 2.1 | netcoreapp21 |    10 | 37,544.1 ns | 160.19 ns |   149.84 ns |  5.09 |    0.06 | 6.2256 |     - |     - |   39400 B |
-|            NuGet_IBAN4NET | Job-TRNOOX | .NET Core 3.1 | netcoreapp31 |    10 | 37,687.2 ns | 212.29 ns |   177.27 ns |  5.11 |    0.05 | 1.8311 |     - |     - |   11592 B |
-|       NuGet_IbanValidator | Job-ZMNWCT |      .NET 4.8 |        net48 |    10 | 43,333.1 ns | 439.69 ns |   389.78 ns |  5.87 |    0.06 | 5.0049 |     - |     - |   31549 B |
-|            NuGet_IBAN4NET | Job-ZMNWCT |      .NET 4.8 |        net48 |    10 | 51,977.6 ns | 867.16 ns | 1,186.98 ns |  7.08 |    0.19 | 2.0752 |     - |     - |   13689 B |
-|            NuGet_IBAN4NET | Job-YWTJNJ | .NET Core 2.1 | netcoreapp21 |    10 | 52,996.8 ns | 248.96 ns |   207.90 ns |  7.19 |    0.09 | 1.8921 |     - |     - |   12208 B |
+|                    Method |        Job |            Runtime |    Toolchain | Count |      Mean |     Error |    StdDev | Ratio | RatioSD |     Gen 0 | Gen 1 | Gen 2 | Allocated |
+|-------------------------- |----------- |------------------- |------------- |------ |----------:|----------:|----------:|------:|--------:|----------:|------:|------:|----------:|
+| IbanNet_Strict_CacheReuse | Job-TESZCN |           .NET 5.0 | netcoreapp50 | 10000 |  4.455 ms | 0.0354 ms | 0.0331 ms |  0.92 |    0.01 |  507.8125 |     - |     - |      3 MB |
+| IbanNet_Strict_CacheReuse | Job-JFOJBI |      .NET Core 3.1 | netcoreapp31 | 10000 |  4.743 ms | 0.0108 ms | 0.0096 ms |  0.98 |    0.00 |  507.8125 |     - |     - |      3 MB |
+| IbanNet_Strict_CacheReuse | Job-AMQDFL | .NET Framework 4.8 |        net48 | 10000 |  4.822 ms | 0.0140 ms | 0.0131 ms |  1.00 |    0.00 |  515.6250 |     - |     - |      3 MB |
+|            IbanNet_Strict | Job-TESZCN |           .NET 5.0 | netcoreapp50 | 10000 |  4.828 ms | 0.0097 ms | 0.0086 ms |  1.00 |    0.00 |  515.6250 |     - |     - |      3 MB |
+|            IbanNet_Strict | Job-AMQDFL | .NET Framework 4.8 |        net48 | 10000 |  4.910 ms | 0.0182 ms | 0.0162 ms |  1.02 |    0.00 |  523.4375 |     - |     - |      3 MB |
+|            IbanNet_Strict | Job-JFOJBI |      .NET Core 3.1 | netcoreapp31 | 10000 |  4.924 ms | 0.0073 ms | 0.0061 ms |  1.02 |    0.00 |  515.6250 |     - |     - |      3 MB |
+| IbanNet_Strict_CacheReuse | Job-FSRDZX |      .NET Core 2.1 | netcoreapp21 | 10000 |  4.974 ms | 0.0101 ms | 0.0094 ms |  1.03 |    0.00 |  515.6250 |     - |     - |      3 MB |
+|            IbanNet_Strict | Job-FSRDZX |      .NET Core 2.1 | netcoreapp21 | 10000 |  5.310 ms | 0.0128 ms | 0.0120 ms |  1.10 |    0.00 |  523.4375 |     - |     - |      3 MB |
+|       NuGet_IbanValidator | Job-TESZCN |           .NET 5.0 | netcoreapp50 | 10000 | 22.355 ms | 0.1944 ms | 0.1819 ms |  4.63 |    0.04 | 6437.5000 |     - |     - |     39 MB |
+|       NuGet_IbanValidator | Job-JFOJBI |      .NET Core 3.1 | netcoreapp31 | 10000 | 30.720 ms | 0.0573 ms | 0.0479 ms |  6.36 |    0.02 | 6562.5000 |     - |     - |     39 MB |
+|            NuGet_IBAN4NET | Job-TESZCN |           .NET 5.0 | netcoreapp50 | 10000 | 35.475 ms | 0.1463 ms | 0.1297 ms |  7.35 |    0.02 | 1733.3333 |     - |     - |     11 MB |
+|       NuGet_IbanValidator | Job-FSRDZX |      .NET Core 2.1 | netcoreapp21 | 10000 | 35.744 ms | 0.0731 ms | 0.0610 ms |  7.40 |    0.02 | 6642.8571 |     - |     - |     40 MB |
+|            NuGet_IBAN4NET | Job-JFOJBI |      .NET Core 3.1 | netcoreapp31 | 10000 | 37.151 ms | 0.3005 ms | 0.2811 ms |  7.69 |    0.06 | 1714.2857 |     - |     - |     11 MB |
+|       NuGet_IbanValidator | Job-AMQDFL | .NET Framework 4.8 |        net48 | 10000 | 43.087 ms | 0.0523 ms | 0.0489 ms |  8.92 |    0.02 | 5166.6667 |     - |     - |     31 MB |
+|            NuGet_IBAN4NET | Job-AMQDFL | .NET Framework 4.8 |        net48 | 10000 | 53.713 ms | 0.1241 ms | 0.1160 ms | 11.12 |    0.03 | 2000.0000 |     - |     - |     12 MB |
+|            NuGet_IBAN4NET | Job-FSRDZX |      .NET Core 2.1 | netcoreapp21 | 10000 | 53.852 ms | 0.0885 ms | 0.0828 ms | 11.15 |    0.03 | 1800.0000 |     - |     - |     11 MB |
 
 ### CLI
 

@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 
 namespace IbanNet.Benchmark
 {

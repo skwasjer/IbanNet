@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentValidation;
 using FluentValidation.Validators;
 
 namespace IbanNet.FluentValidation
@@ -6,35 +7,44 @@ namespace IbanNet.FluentValidation
     /// <summary>
     /// A property validator for international bank account numbers.
     /// </summary>
-    public class FluentIbanValidator : PropertyValidator
+    public sealed class FluentIbanValidator<T> : PropertyValidator<T, string>
     {
         private readonly IIbanValidator _ibanValidator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FluentIbanValidator" /> class using specified validator.
+        /// Initializes a new instance of the <see cref="FluentIbanValidator{T}" /> class using specified validator.
         /// </summary>
         /// <param name="ibanValidator">The IBAN validator to use.</param>
         public FluentIbanValidator(IIbanValidator ibanValidator)
-            : base(Resources.Not_a_valid_IBAN)
         {
             _ibanValidator = ibanValidator ?? throw new ArgumentNullException(nameof(ibanValidator));
         }
 
         /// <inheritdoc />
-        protected override bool IsValid(PropertyValidatorContext context)
+        protected override string GetDefaultMessageTemplate(string errorCode)
         {
-            if (context?.PropertyValue is null)
+            return Resources.Not_a_valid_IBAN;
+        }
+
+        /// <inheritdoc />
+        public override bool IsValid(ValidationContext<T> context, string value)
+        {
+            if (value is null!)
             {
                 return true;
             }
 
-            ValidationResult result = _ibanValidator.Validate((string)context.PropertyValue);
-            if (result.Error is { })
+            ValidationResult result = _ibanValidator.Validate(value);
+            if (result.Error is not null)
             {
-                context.MessageFormatter.AppendArgument("Error", result.Error);
+                // ReSharper disable once ConstantConditionalAccessQualifier
+                context?.MessageFormatter.AppendArgument("Error", result.Error);
             }
 
             return result.IsValid;
         }
+
+        /// <inheritdoc />
+        public override string Name => nameof(FluentIbanValidator<object>);
     }
 }

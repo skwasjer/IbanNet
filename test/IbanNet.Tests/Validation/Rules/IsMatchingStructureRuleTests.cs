@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using IbanNet.Registry;
+using IbanNet.Registry.Swift;
 using IbanNet.Validation.Results;
 using Moq;
 using Xunit;
@@ -9,20 +10,10 @@ namespace IbanNet.Validation.Rules
     public class IsMatchingStructureRuleTests
     {
         private readonly IsMatchingStructureRule _sut;
-        private readonly Mock<IStructureValidator> _structureValidatorMock;
-        private readonly Mock<IStructureValidationFactory> _structureValidationFactoryMock;
 
         public IsMatchingStructureRuleTests()
         {
-            _structureValidatorMock = new Mock<IStructureValidator>();
-
-            _structureValidationFactoryMock = new Mock<IStructureValidationFactory>();
-            _structureValidationFactoryMock
-                .Setup(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(_structureValidatorMock.Object)
-                .Verifiable();
-
-            _sut = new IsMatchingStructureRule(_structureValidationFactoryMock.Object);
+            _sut = new IsMatchingStructureRule();
         }
 
         [Fact]
@@ -32,24 +23,16 @@ namespace IbanNet.Validation.Rules
 
             // Assert
             actual.Should().BeOfType<InvalidStructureResult>();
-            _structureValidationFactoryMock.Verify(m => m.CreateValidator(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Fact]
         public void Given_valid_value_when_validating_it_should_return_success()
         {
-            const string testValue = "XX";
-            var country = new IbanCountry("NL")
+            const string testValue = "AD1200012030200359100100";
+            var country = new IbanCountry("AD")
             {
-                Iban =
-                {
-                    Structure = "my-structure"
-                }
+                Iban = new IbanStructure(new IbanSwiftPattern("AD2!n4!n4!n12!c"))
             };
-            _structureValidatorMock
-                .Setup(m => m.Validate(testValue))
-                .Returns(true)
-                .Verifiable();
 
             // Act
             ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue)
@@ -59,25 +42,16 @@ namespace IbanNet.Validation.Rules
 
             // Assert
             actual.Should().Be(ValidationRuleResult.Success);
-            _structureValidatorMock.Verify();
-            _structureValidationFactoryMock.Verify(m => m.CreateValidator(country.TwoLetterISORegionName, country.Iban.Structure), Times.Once);
         }
 
         [Fact]
         public void Given_invalid_value_when_validating_it_should_return_error()
         {
-            const string testValue = "XX";
+            const string testValue = "XXXX";
             var country = new IbanCountry("NL")
             {
-                Iban =
-                {
-                    Structure = "my-structure"
-                }
+                Iban = new IbanStructure(new IbanSwiftPattern("NL2!n"))
             };
-            _structureValidatorMock
-                .Setup(m => m.Validate(testValue))
-                .Returns(false)
-                .Verifiable();
 
             // Act
             ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue)
@@ -87,8 +61,6 @@ namespace IbanNet.Validation.Rules
 
             // Assert
             actual.Should().BeOfType<InvalidStructureResult>();
-            _structureValidatorMock.Verify();
-            _structureValidationFactoryMock.Verify(m => m.CreateValidator(country.TwoLetterISORegionName, country.Iban.Structure), Times.Once);
         }
     }
 }

@@ -125,15 +125,6 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The validation method is invalid..
-        /// </summary>
-        internal static string ArgumentException_ValidationMethod_is_invalid {
-            get {
-                return ResourceManager.GetString("ArgumentException_ValidationMethod_is_invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enum value &apos;{0}&apos; should be defined in the &apos;{1}&apos; enum..
         /// </summary>
         internal static string Enum_value_0_should_be_defined_in_the_1_enum {
@@ -184,6 +175,24 @@ namespace IbanNet {
         internal static string Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1 {
             get {
                 return ResourceManager.GetString("Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; does not define a BBAN pattern..
+        /// </summary>
+        internal static string Exception_The_country_0_does_not_define_a_BBAN_pattern {
+            get {
+                return ResourceManager.GetString("Exception_The_country_0_does_not_define_a_BBAN_pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; does not define a IBAN pattern..
+        /// </summary>
+        internal static string Exception_The_country_0_does_not_define_a_IBAN_pattern {
+            get {
+                return ResourceManager.GetString("Exception_The_country_0_does_not_define_a_IBAN_pattern", resourceCulture);
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using IbanNet.Registry;
 
 namespace IbanNet
 {
@@ -10,6 +11,23 @@ namespace IbanNet
     public sealed class IbanParser : IIbanParser
     {
         private readonly IIbanValidator _ibanValidator;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IbanParser" /> class using specified <paramref name="registry" />.
+        /// </summary>
+        /// <param name="registry">The registry.</param>
+        public IbanParser(IIbanRegistry registry)
+        {
+            if (registry is null)
+            {
+                throw new ArgumentNullException(nameof(registry));
+            }
+
+            _ibanValidator = new IbanValidator(new IbanValidatorOptions
+            {
+                Registry = registry
+            });
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanParser" /> class using specified <paramref name="ibanValidator" />.
@@ -37,7 +55,7 @@ namespace IbanNet
                 ? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
                 : validationResult.Error.ErrorMessage;
 
-            if (validationResult is null || exceptionThrown is { })
+            if (validationResult is null || exceptionThrown is not null)
             {
                 throw new IbanFormatException(errorMessage, exceptionThrown);
             }
@@ -51,7 +69,7 @@ namespace IbanNet
             return TryParse(value, out iban, out _, out _);
         }
 
-        internal bool TryParse(
+        private bool TryParse(
             string? value,
             [NotNullWhen(true)] out Iban? iban,
             [MaybeNullWhen(false)] out ValidationResult? validationResult,
@@ -60,17 +78,11 @@ namespace IbanNet
             iban = null;
             exceptionThrown = null;
 
-            // Although our validator normalizes too, we can't rely on this fact if other implementations
-            // are provided (like mocks, or maybe faster validators). Thus, to ensure this class correctly
-            // represents the IBAN value, we normalize inline here and take the penalty.
-            string? normalizedValue = Iban.NormalizeOrNull(value);
             try
             {
-                validationResult = _ibanValidator.Validate(normalizedValue);
+                validationResult = _ibanValidator.Validate(value);
             }
-#pragma warning disable CA1031 // Do not catch general exception types - justification: custom rules can throw any type of unexpected exception.
             catch (Exception ex)
-#pragma warning restore CA1031 // Do not catch general exception types
             {
                 validationResult = null;
                 exceptionThrown = ex;
@@ -82,7 +94,7 @@ namespace IbanNet
                 return false;
             }
 
-            iban = new Iban(normalizedValue!);
+            iban = new Iban(validationResult.AttemptedValue!, validationResult.Country!);
             return true;
         }
     }

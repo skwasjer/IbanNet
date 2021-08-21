@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using FluentAssertions;
+using IbanNet.Registry;
 using Moq;
 using Newtonsoft.Json;
 using TestHelpers;
@@ -11,7 +11,6 @@ using Xunit;
 namespace IbanNet.TypeConverters
 {
     [Collection(nameof(SetsStaticValidator))]
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class IbanTypeConverterTests
     {
         private readonly IbanTypeConverter _sut;
@@ -96,7 +95,7 @@ namespace IbanNet.TypeConverters
 
             public When_converting_to_string()
             {
-                _iban = new Iban(TestValues.ValidIban);
+                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
             }
 
             [Fact]
@@ -138,7 +137,7 @@ namespace IbanNet.TypeConverters
             [Fact]
             public void It_should_succeed()
             {
-                var bankAccountNumber1 = new Iban(TestValues.ValidIban);
+                Iban bankAccountNumber1 = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
                 string json = JsonConvert.SerializeObject(bankAccountNumber1);
 
                 json.Should().Be($"\"{TestValues.ValidIban}\"");

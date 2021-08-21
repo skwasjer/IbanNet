@@ -1,5 +1,27 @@
 # Changelog
 
+## v5.0.0
+
+## IbanNet
+
+- Removed deprecated contracts/code `IStructureValidationFactory`, `IStructureValidation`, `IStructureSection`. Use the `Pattern` abstraction for custom registry providers.
+- Removed `Iban.Parse`, `Iban.TryParse`, use the `IbanParser` class.
+- Added support for [more countries](./SupportedCountries.md) based on Wikipedia.
+- Removed `ValidationMethod`, since performance in strict (= default) is now significantly faster (compared to v4.x, even in loose mode). The maintenance is not worth the little gains anymore.
+- Cleaned up API surface/sealed several types.
+- Added `Country`, `Bban`, `BankIdentifier` and `BranchIdentifier` properties to the `Iban` value type.
+- Removed obsolete facade for `SwiftRegistryProvider`.
+- Upgraded registry to June '21 release 90 (added Sudan (SD))
+
+### IbanNet.FluentValidation
+
+- Updated to FluentValidation v10.x, dropping .NET 4.6.1.
+
+### IbanNet.DependencyInjection.*
+
+- `IIbanParser` and `IIbanGenerator` are now registered as singletons.
+- Added `IIbanRegistry` as resolveable service (singleton).
+
 ## v4.4.3
 
 - Moved `SwiftRegistryProvider` to new namespace, kept facade for backwards compatibility. The facade will be removed in v5.0.
@@ -17,7 +39,7 @@
 - [#21](https://github.com/skwasjer/IbanNet/issues/21) [#31](https://github.com/skwasjer/IbanNet/pull/31) Added `IbanGenerator`.
 - LTS: change target frameworks .NET 4.5 and 4.7 to 4.5.2 and 4.7.2 respectively.
 - Fix Iraq (IQ) and Finland (FI) patterns (does not affect validation outcome).
-- Introduce pattern abstraction for registry which encapsulates a pattern string and tokenizer. Deprecates `IStructureValidationFactory`, but keeps backwards compatible. Patterns are useful when implementing more/future providers to extend country support.
+-  Introduce pattern abstraction for registry which encapsulates a pattern string and tokenizer. Deprecates `IStructureValidationFactory`, but keeps backwards compatible. Patterns are useful when implementing more/future providers to extend country support.
 
 ## v4.3.1
 

@@ -51,7 +51,7 @@ namespace IbanNet.Registry
             }
 
             Pattern? bbanPattern = country.Bban.Pattern;
-            if (bbanPattern is null)
+            if (bbanPattern is null || bbanPattern is NullPattern)
             {
                 throw new InvalidOperationException($"The country '{countryCode}' does not have a BBAN pattern.");
             }
@@ -60,13 +60,13 @@ namespace IbanNet.Registry
                 .GetIbanBuilder()
                 .WithBankAccountNumber(Generator.Random(bbanPattern))
                 .Build();
-            return new Iban(ibanStr);
+            return new Iban(ibanStr, country);
         }
 
         internal static class Generator
         {
-            private static readonly Random Rng = new Random(DateTime.UtcNow.Ticks.GetHashCode());
-            private static readonly object RngLock = new object();
+            private static readonly Random Rng = new(DateTime.UtcNow.Ticks.GetHashCode());
+            private static readonly object RngLock = new();
 
             private static readonly AsciiCategory[] LetterCategories = { AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };
             private static readonly AsciiCategory[] AlphaNumericCategories = { AsciiCategory.Digit, AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };

@@ -1,17 +1,44 @@
 ﻿using FluentAssertions;
-using IbanNet.Extensions;
 using IbanNet.Validation.Results;
 using Xunit;
 
 namespace IbanNet
 {
-    public abstract class IbanValidatorIntegrationTests
+    public class IbanValidatorIntegrationTests
     {
-        protected readonly IbanValidator Validator;
+        private readonly IbanValidator _sut = new();
 
-        protected IbanValidatorIntegrationTests(IbanValidator validator)
+        [Fact]
+        public void When_validating_iban_with_invalid_structure_should_not_validate()
         {
-            Validator = validator;
+            const string ibanWithInvalidStructure = "NL91ABNA041716430A"; // Last character should be digit.
+
+            // Act
+            ValidationResult actual = _sut.Validate(ibanWithInvalidStructure);
+
+            // Assert
+            actual.Should().BeEquivalentTo(new ValidationResult
+            {
+                AttemptedValue = ibanWithInvalidStructure,
+                Error = new InvalidStructureResult(),
+                Country = _sut.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)]
+            });
+        }
+
+        [Fact]
+        public void When_validating_iban_that_allows_lowercase_it_should_validate()
+        {
+            const string ibanWithLowercase = "MT84MALT011000012345mtlcast001S";
+
+            // Act
+            ValidationResult actual = _sut.Validate(ibanWithLowercase);
+
+            // Assert
+            actual.Should().BeEquivalentTo(new ValidationResult
+            {
+                AttemptedValue = ibanWithLowercase.ToUpperInvariant(),
+                Country = _sut.SupportedCountries[ibanWithLowercase.Substring(0, 2)]
+            });
         }
 
         [Theory]
@@ -20,7 +47,7 @@ namespace IbanNet
         public void When_validating_null_or_empty_value_should_not_validate(string iban)
         {
             // Act
-            ValidationResult actual = Validator.Validate(iban);
+            ValidationResult actual = _sut.Validate(iban);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
@@ -36,7 +63,7 @@ namespace IbanNet
         public void When_validating_iban_with_illegal_characters_should_not_validate(string ibanWithIllegalChars)
         {
             // Act
-            ValidationResult actual = Validator.Validate(ibanWithIllegalChars);
+            ValidationResult actual = _sut.Validate(ibanWithIllegalChars);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
@@ -53,7 +80,7 @@ namespace IbanNet
         public void When_validating_iban_with_illegal_country_code_should_not_validate(string ibanWithIllegalCountryCode)
         {
             // Act
-            ValidationResult actual = Validator.Validate(ibanWithIllegalCountryCode);
+            ValidationResult actual = _sut.Validate(ibanWithIllegalCountryCode);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
@@ -70,7 +97,7 @@ namespace IbanNet
         public void When_validating_iban_with_invalid_checksum_should_not_validate(string ibanWithInvalidChecksum)
         {
             // Act
-            ValidationResult actual = Validator.Validate(ibanWithInvalidChecksum);
+            ValidationResult actual = _sut.Validate(ibanWithInvalidChecksum);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
@@ -88,14 +115,14 @@ namespace IbanNet
         public void When_validating_iban_with_incorrect_length_should_not_validate(string ibanWithIncorrectLength)
         {
             // Act
-            ValidationResult actual = Validator.Validate(ibanWithIncorrectLength);
+            ValidationResult actual = _sut.Validate(ibanWithIncorrectLength);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
                 {
                     AttemptedValue = ibanWithIncorrectLength,
                     Error = new InvalidLengthResult(),
-                    Country = Validator.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
+                    Country = _sut.SupportedCountries[ibanWithIncorrectLength.Substring(0, 2)]
                 });
         }
 
@@ -105,7 +132,7 @@ namespace IbanNet
         public void When_validating_iban_with_unknown_country_code_should_not_validate(string ibanWithUnknownCountryCode)
         {
             // Act
-            ValidationResult actual = Validator.Validate(ibanWithUnknownCountryCode);
+            ValidationResult actual = _sut.Validate(ibanWithUnknownCountryCode);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
@@ -121,14 +148,14 @@ namespace IbanNet
         public void When_validating_tampered_iban_should_not_validate(string tamperedIban)
         {
             // Act
-            ValidationResult actual = Validator.Validate(tamperedIban);
+            ValidationResult actual = _sut.Validate(tamperedIban);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
                 AttemptedValue = tamperedIban,
                 Error = new InvalidCheckDigitsResult(),
-                Country = Validator.SupportedCountries[tamperedIban.Substring(0, 2)]
+                Country = _sut.SupportedCountries[tamperedIban.Substring(0, 2)]
             });
         }
 
@@ -139,32 +166,30 @@ namespace IbanNet
         public void When_iban_contains_whitespace_should_validate(string ibanWithWhitespace)
         {
             // Act
-            ValidationResult actual = Validator.Validate(ibanWithWhitespace);
+            ValidationResult actual = _sut.Validate(ibanWithWhitespace);
 
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithWhitespace.StripWhitespaceOrNull(),
-                Country = Validator.SupportedCountries["NL"]
+                AttemptedValue = Iban.NormalizeOrNull(ibanWithWhitespace),
+                Country = _sut.SupportedCountries["NL"]
             });
         }
 
         [Theory]
         [MemberData(nameof(IbanTestCaseData.GetValidIbanPerCountry), MemberType = typeof(IbanTestCaseData))]
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
-#pragma warning disable IDE0060 // Remove unused parameter
-        public void When_validating_good_iban_should_validate(string countryCode, string iban)
-#pragma warning restore IDE0060 // Remove unused parameter
+        public void When_validating_good_iban_should_validate(string _, string iban)
 #pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
             var expectedResult = new ValidationResult
             {
                 AttemptedValue = iban,
-                Country = Validator.SupportedCountries[iban.Substring(0, 2)]
+                Country = _sut.SupportedCountries[iban.Substring(0, 2)]
             };
 
             // Act
-            ValidationResult actual = Validator.Validate(iban);
+            ValidationResult actual = _sut.Validate(iban);
 
             // Assert
             actual.Should().BeEquivalentTo(expectedResult);

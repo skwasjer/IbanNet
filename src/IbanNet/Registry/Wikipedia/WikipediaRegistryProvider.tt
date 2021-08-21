@@ -1,0 +1,124 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Memory" #>
+<#@ assembly name="System.Text.Json" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Xml.XPath" #>
+<#@ import namespace="System.Text.Json" #>
+using System.CodeDom.Compiler;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+namespace IbanNet.Registry.Wikipedia
+{
+<#
+    // Generate provider from Wikipedia.
+
+    const string url = "https://en.wikipedia.org/w/api.php?format=json&action=parse&page=International_Bank_Account_Number&section=16";
+    HttpWebRequest req = WebRequest.CreateHttp(url);
+    using WebResponse response = req.GetResponse();
+    using var ms = new MemoryStream();
+    response.GetResponseStream().CopyTo(ms);
+    byte[] buffer = ms.ToArray();
+
+    WikiResponse wikiResponse = JsonSerializer.Deserialize<WikiResponse>(buffer, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+#>
+    /// <summary>
+    /// This IBAN registry provider is derived from Wikipedia.
+    /// </summary>
+    /// <remarks>
+    /// <para>Note: this provider does not conform to the official spec, and is provided as an add-on. Use at your own risk.</para>
+    /// <para>
+    /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
+    /// Page ID: <#= wikiResponse.Parse.PageId #>
+    /// Rev ID: <#= wikiResponse.Parse.RevId #>
+    /// </para>
+    /// </remarks>
+    [GeneratedCode("WikiRegistryProviderT4", "1.<#= wikiResponse.Parse.PageId #>-<#= wikiResponse.Parse.RevId #>")]
+    public class WikipediaRegistryProvider : IIbanRegistryProvider
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private ICollection<IbanCountry>? _countries;
+
+        /// <inheritdoc />
+        public IEnumerator<IbanCountry> GetEnumerator()
+        {
+            _countries = _countries ??= Load().ToList();
+
+            return _countries.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <inheritdoc />
+        // ReSharper disable once UseCollectionCountProperty - justification: need to init _countries first.
+        public int Count => _countries?.Count ?? this.Count();
+
+        private static IEnumerable<IbanCountry> Load()
+        {
+            // ReSharper disable CommentTypo
+            // ReSharper disable StringLiteralTypo
+<#
+            using var reader = new StringReader(wikiResponse.Parse.Text["*"]);
+
+            var doc = XDocument.Load(reader);
+            var wikiSpecs = doc.XPathSelectElements("//tr")
+                .GroupBy(e => e.Parent)
+                .Select(g => g.Where(e => e.Element("td") != null))
+                .Select(rows => rows.Select(r =>
+                {
+                    var cells = r.Elements("td").ToList();
+                    return new
+                    {
+                        Code = cells[3].XPathSelectElement("code").Value.Substring(0, 2).Trim(),
+                        EnglishName = cells[0].Element("a").Value.Trim(),
+                        Pattern = cells[2].Value.Trim().Replace(" ", "")
+                    };
+                }))
+                .ToList();
+
+            foreach (var x in wikiSpecs.SelectMany(_ => _))
+            {
+#>
+            yield return new IbanCountry("<#= x.Code #>")
+            {
+                DisplayName = "<#= x.EnglishName #>",
+                EnglishName = "<#= x.EnglishName #>",
+                Iban = new IbanStructure(new IbanWikipediaPattern("<#= x.Pattern #>")),
+                Bban = new BbanStructure(new WikipediaPattern("<#= x.Pattern #>"), 4)
+            };
+
+<#
+            }
+#>
+            // ReSharper restore StringLiteralTypo
+            // ReSharper restore CommentTypo
+        }
+    }
+}
+<#+
+public class WikiResponse
+{
+    public ParseResult Parse { get; set; }
+}
+
+public class ParseResult
+{
+    public int PageId { get; set; }
+    public int RevId { get; set; }
+    public Dictionary<string, string> Text { get; set; }
+}
+#>

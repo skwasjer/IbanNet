@@ -2,7 +2,6 @@
 using FluentAssertions;
 using IbanNet.Registry.Patterns;
 using IbanNet.Registry.Swift;
-using IbanNet.Validation;
 using Xunit;
 
 namespace IbanNet.Registry
@@ -11,98 +10,40 @@ namespace IbanNet.Registry
     {
         private class TestStructureSection : StructureSection
         {
-            internal TestStructureSection()
+            public TestStructureSection(Pattern pattern, int position = 0) : base(pattern, position)
             {
             }
-
-            public TestStructureSection(string structure) : base(structure, new NullStructureValidationFactory())
-            {
-            }
-
-            public TestStructureSection(Pattern pattern, int position) : base(pattern, position)
-            {
-            }
-        }
-
-        private readonly StructureSection _sut;
-
-        public StructureSectionTests()
-        {
-            _sut = new TestStructureSection();
         }
 
         [Fact]
         public void When_creating_structureSection_it_should_initialize_properties()
         {
+            Pattern pattern = NullPattern.Instance;
+
             // Act
-            StructureSection structure = new TestStructureSection();
+            StructureSection structure = new TestStructureSection(pattern);
 
             // Assert
-            structure.Structure.Should().BeEmpty();
+            structure.Pattern.Should().BeSameAs(pattern);
             structure.Example.Should().BeEmpty();
             structure.Length.Should().Be(0);
             structure.Position.Should().Be(0);
         }
 
         [Fact]
-        public void When_creating_structureSection_with_structure_it_should_set_property()
-        {
-            const string myStructure = nameof(myStructure);
-
-            // Act
-            StructureSection structure = new TestStructureSection(myStructure);
-
-            // Assert
-            structure.Structure.Should().Be(myStructure);
-        }
-
-        [Fact]
         public void When_creating_structureSection_with_null_structure_it_should_throw()
         {
-            string structure = null;
+            Pattern pattern = null;
 
             // Act
             // ReSharper disable once ExpressionIsAlwaysNull
-            // ReSharper disable once ObjectCreationAsStatement
-            Func<TestStructureSection> act = () => new TestStructureSection(structure);
+            Func<TestStructureSection> act = () => new TestStructureSection(pattern);
 
             // Assert
             act.Should()
                 .Throw<ArgumentNullException>()
                 .Which.ParamName.Should()
-                .Be(nameof(structure));
-        }
-
-        [Fact]
-        public void When_setting_structure_to_null_it_should_throw()
-        {
-            string value = null;
-
-            // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => _sut.Structure = value;
-
-            // Assert
-            act.Should()
-                .Throw<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(value));
-        }
-
-        [Fact]
-        public void When_creating_with_null_structure_validation_factory_it_should_throw()
-        {
-            IStructureValidationFactory value = null;
-
-            // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => _sut.ValidationFactory = value;
-
-            // Assert
-            act.Should()
-                .Throw<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(value));
+                .Be(nameof(pattern));
         }
 
         [Fact]
@@ -110,40 +51,10 @@ namespace IbanNet.Registry
         {
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            _sut.Example = null;
+            var sut = new TestStructureSection(NullPattern.Instance) { Example = null };
 
             // Assert
-            _sut.Example.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void When_setting_position_to_negative_value_it_should_throw()
-        {
-            const int value = -1;
-
-            // Act
-            Action act = () => _sut.Position = value;
-
-            // Assert
-            act.Should()
-                .Throw<ArgumentOutOfRangeException>()
-                .Which.ParamName.Should()
-                .Be(nameof(value));
-        }
-
-        [Fact]
-        public void When_setting_length_to_negative_value_it_should_throw()
-        {
-            const int value = -1;
-
-            // Act
-            Action act = () => _sut.Length = value;
-
-            // Assert
-            act.Should()
-                .Throw<ArgumentOutOfRangeException>()
-                .Which.ParamName.Should()
-                .Be(nameof(value));
+            sut.Example.Should().BeEmpty();
         }
 
         [Fact]
@@ -169,7 +80,7 @@ namespace IbanNet.Registry
             // Act
             // ReSharper disable once ExpressionIsAlwaysNull
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new TestStructureSection(pattern, 0);
+            Func<TestStructureSection> act = () => new TestStructureSection(pattern, 0);
 
             // Assert
             act.Should()
@@ -185,7 +96,7 @@ namespace IbanNet.Registry
 
             // Act
             // ReSharper disable once ObjectCreationAsStatement
-            Action act = () => new TestStructureSection(new SwiftPattern("2!n"), position);
+            Func<TestStructureSection> act = () => new TestStructureSection(new SwiftPattern("2!n"), position);
 
             // Assert
             act.Should()

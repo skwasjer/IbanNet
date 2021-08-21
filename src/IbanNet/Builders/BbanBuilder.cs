@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using IbanNet.Extensions;
 using IbanNet.Registry;
 
@@ -22,7 +23,7 @@ namespace IbanNet.Builders
         private bool _branchIdentifierPadding = true;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BbanBuilder"/> class.
+        /// Initializes a new instance of the <see cref="BbanBuilder" /> class.
         /// </summary>
         // ReSharper disable once EmptyConstructor
         public BbanBuilder()
@@ -74,6 +75,14 @@ namespace IbanNet.Builders
                     throw new InvalidOperationException(Resources.Exception_Builder_The_country_is_required);
                 }
 
+                if (!_country.Bban.Pattern.Tokens.Any())
+                {
+                    throw new InvalidOperationException(string.Format(
+                        CultureInfo.CurrentCulture,
+                        Resources.Exception_The_country_0_does_not_define_a_BBAN_pattern,
+                        _country.TwoLetterISORegionName));
+                }
+
                 buffer = new char[_country.Bban.Length].Fill('0');
 
                 CopyToBuffer(_bankAccountNumber, buffer, _country.Bban, _bankAccountNumberPadding, _country.TwoLetterISORegionName, nameof(_country.Bban));
@@ -88,7 +97,7 @@ namespace IbanNet.Builders
             return new string(buffer);
         }
 
-        private static void CopyToBuffer(char[]? source, char[] destination, IStructureSection structure, bool padding, string countryCode, string name)
+        private static void CopyToBuffer(char[]? source, char[] destination, StructureSection structure, bool padding, string countryCode, string name)
         {
             const int relativeToIbanPos = 4;
 
@@ -113,7 +122,7 @@ namespace IbanNet.Builders
             }
 
             int srcPos = count - source.Length;
-            if (srcPos < 0 || srcPos > 0 && !padding)
+            if (srcPos < 0 || (srcPos > 0 && !padding))
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1, new string(source), count));
             }

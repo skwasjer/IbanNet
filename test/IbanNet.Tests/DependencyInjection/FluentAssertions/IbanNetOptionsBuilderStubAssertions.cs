@@ -34,18 +34,6 @@ namespace IbanNet.DependencyInjection.FluentAssertions
             return innerAssertion;
         }
 
-        public AndConstraint<IbanNetOptionsBuilderStubAssertions<T>> HaveConfiguredValidationMethod
-        (
-            ValidationMethod method,
-            string because = "",
-            params object[] becauseArgs
-        )
-        {
-            VerifyCalled(should => should.HaveValidationMethod(method, because, becauseArgs));
-
-            return new AndConstraint<IbanNetOptionsBuilderStubAssertions<T>>(this);
-        }
-
         public AndConstraint<GenericCollectionAssertions<TRule>> HaveConfiguredRule<TRule>
         (
             string because = "",

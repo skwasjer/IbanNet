@@ -12,21 +12,23 @@ namespace IbanNet.Builders
         /// <summary>
         /// Gets an <see cref="IbanBuilder" /> for this country.
         /// </summary>
-        /// <param name="ibanCountry">The country.</param>
-        /// <returns>An instance of <see cref="IbanBuilder" /> for the country specified in <paramref name="ibanCountry" />.</returns>
-        public static IbanBuilder GetIbanBuilder(this IbanCountry ibanCountry)
+        /// <param name="country">The country.</param>
+        /// <returns>An instance of <see cref="IbanBuilder" /> for the country specified in <paramref name="country" />.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="country" /> is null.</exception>
+        public static IbanBuilder GetIbanBuilder(this IbanCountry country)
         {
-            return (IbanBuilder)new IbanBuilder().WithCountry(ibanCountry);
+            return (IbanBuilder)new IbanBuilder().WithCountry(country);
         }
 
         /// <summary>
         /// Gets an <see cref="BbanBuilder" /> for this country.
         /// </summary>
-        /// <param name="ibanCountry">The country.</param>
-        /// <returns>An instance of <see cref="BbanBuilder" /> for the country specified in <paramref name="ibanCountry" />.</returns>
-        public static BbanBuilder GetBbanBuilder(this IbanCountry ibanCountry)
+        /// <param name="country">The country.</param>
+        /// <returns>An instance of <see cref="BbanBuilder" /> for the country specified in <paramref name="country" />.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="country" /> is null.</exception>
+        public static BbanBuilder GetBbanBuilder(this IbanCountry country)
         {
-            return (BbanBuilder)new BbanBuilder().WithCountry(ibanCountry);
+            return (BbanBuilder)new BbanBuilder().WithCountry(country);
         }
 
         /// <summary>
@@ -36,11 +38,18 @@ namespace IbanNet.Builders
         /// <param name="countryCode">The country code.</param>
         /// <param name="registry">The IBAN registry to resolve the country from.</param>
         /// <returns>The builder to continue chaining.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="countryCode" /> or <paramref name="registry" /> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="countryCode" /> is not defined in the <paramref name="registry" />.</exception>
         public static IBankAccountBuilder WithCountry(this IBankAccountBuilder builder, string countryCode, IIbanRegistry registry)
         {
             if (builder is null)
             {
                 throw new ArgumentNullException(nameof(builder));
+            }
+
+            if (countryCode is null)
+            {
+                throw new ArgumentNullException(nameof(countryCode));
             }
 
             if (registry is null)

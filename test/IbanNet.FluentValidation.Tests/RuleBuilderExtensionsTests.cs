@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using FluentValidation;
+using FluentValidation.Validators;
 using Moq;
 using Xunit;
 
@@ -52,7 +53,7 @@ namespace IbanNet.FluentValidation
             ruleBuilderMock.Object.Iban(ibanValidator);
 
             // Assert
-            ruleBuilderMock.Verify(m => m.SetValidator(It.IsAny<FluentIbanValidator>()), Times.Once);
+            ruleBuilderMock.Verify(m => m.SetValidator(It.Is<IPropertyValidator<object, string>>(x => x.GetType() == typeof(FluentIbanValidator<object>))), Times.Once);
         }
     }
 }

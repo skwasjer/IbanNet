@@ -1,8 +1,12 @@
-## IbanNet supports 94 countries
+## IbanNet supports 121 countries
+
+### SWIFT registry
+
+See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-international-bank-account-number) for more information.
 
 | ISO country code | Country | SEPA | Length | IBAN example |
 |---|---|---|---|---|
-| AD | Andorra | No | 24 | `AD12 0001 2030 2003 5910 0100` |
+| AD | Andorra | Yes | 24 | `AD12 0001 2030 2003 5910 0100` |
 | AE | United Arab Emirates (The) | No | 23 | `AE07 0331 2345 6789 0123 456` |
 | AL | Albania | No | 28 | `AL47 2121 1009 0000 0002 3569 8741` |
 | AT | Austria | Yes | 20 | `AT61 1904 3002 3457 3201` |
@@ -67,6 +71,7 @@
 | RS | Serbia | No | 22 | `RS35 2600 0560 1001 6113 79` |
 | SA | Saudi Arabia | No | 24 | `SA03 8000 0000 6080 1016 7519` |
 | SC | Seychelles | No | 31 | `SC18 SSCB 1101 0000 0000 0000 1497 USD` |
+| SD | Sudan | No | 18 | `SD21 2901 0501 2340 01` |
 | SE | Sweden | Yes | 24 | `SE45 5000 0000 0583 9825 7466` |
 | SI | Slovenia | Yes | 19 | `SI56 2633 0001 2039 086` |
 | SK | Slovakia | Yes | 24 | `SK31 1200 0000 1987 4263 7541` |
@@ -106,4 +111,39 @@
 - Jersey (JE)
 - Guernsey (GG)
 
-For more info visit [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
+
+### Wikipedia
+
+Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):
+
+| ISO country code | Country | SEPA | Length | IBAN example |
+|---|---|---|---|---|
+| AO | Angola | - | 25 |  |
+| BF | Burkina Faso | - | 28 |  |
+| BI | Burundi | - | 16 |  |
+| BJ | Benin | - | 28 |  |
+| CF | Central African Republic | - | 27 |  |
+| CG | Congo, Republic of the | - | 27 |  |
+| CI | Côte d'Ivoire | - | 28 |  |
+| CM | Cameroon | - | 27 |  |
+| CV | Cabo Verde | - | 25 |  |
+| DJ | Djibouti | - | 27 |  |
+| DZ | Algeria | - | 26 |  |
+| GA | Gabon | - | 27 |  |
+| GQ | Equatorial Guinea | - | 27 |  |
+| GW | Guinea-Bissau | - | 25 |  |
+| HN | Honduras | - | 28 |  |
+| IR | Iran | - | 26 |  |
+| KM | Comoros | - | 27 |  |
+| MA | Morocco | - | 28 |  |
+| MG | Madagascar | - | 27 |  |
+| ML | Mali | - | 28 |  |
+| MZ | Mozambique | - | 25 |  |
+| NE | Niger | - | 28 |  |
+| NI | Nicaragua | - | 32 |  |
+| SN | Senegal | - | 28 |  |
+| TD | Chad | - | 27 |  |
+| TG | Togo | - | 28 |  |
+
+> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the `WikipediaRegistryProvider`.
+

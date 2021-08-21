@@ -17,6 +17,10 @@ namespace IbanNet.Registry.Patterns
         private ReadOnlyCollection<PatternToken>? _tokens;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool? _fixedLength;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private PatternValidator? _patternValidator;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private int? _maxLength;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Pattern" /> class using a <paramref name="pattern" /> and <paramref name="tokenizer" />.
@@ -42,29 +46,97 @@ namespace IbanNet.Registry.Patterns
                 throw new ArgumentNullException(nameof(tokens));
             }
 
-            _tokens = new ReadOnlyCollection<PatternToken>(tokens.ToList());
+            var asList = tokens as IList<PatternToken>;
+            _tokens = new ReadOnlyCollection<PatternToken>(asList ?? tokens.ToList());
+            InitLength(_tokens);
         }
 
         /// <summary>
         /// Gets the individual tokens describing the pattern.
         /// </summary>
         /// <exception cref="PatternException">Thrown when the pattern is invalid.</exception>
-        public IReadOnlyList<PatternToken> Tokens =>
-            _tokens ??= new ReadOnlyCollection<PatternToken>(_tokenizer!.Tokenize(_pattern!).ToList());
+        public IReadOnlyList<PatternToken> Tokens
+        {
+            get
+            {
+                if (_tokens is not null)
+                {
+                    return _tokens;
+                }
+
+                // Deferred load.
+                _tokens = new ReadOnlyCollection<PatternToken>(_tokenizer!.Tokenize(_pattern!).ToList());
+                InitLength(_tokens);
+                return _tokens;
+            }
+        }
 
         /// <summary>
         /// Gets whether or not the pattern is of fixed length.
         /// </summary>
-        public bool IsFixedLength => _fixedLength ??= Tokens.Aggregate(true, (current, token) => current & token.IsFixedLength);
+        public bool IsFixedLength
+        {
+            get
+            {
+                InitLength(Tokens);
+                return _fixedLength!.Value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the maximum length of this pattern.
+        /// </summary>
+        public int MaxLength
+        {
+            get
+            {
+                InitLength(Tokens);
+                return _maxLength!.Value;
+            }
+        }
 
         /// <inheritdoc />
         public override string ToString()
         {
-#if NET5_0_OR_GREATER || NETSTANDARD2_1
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
             return _pattern ??= string.Join(',', Tokens);
 #else
             return _pattern ??= string.Join(",", Tokens);
 #endif
+        }
+
+#if USE_SPANS
+        internal bool IsMatch(ReadOnlySpan<char> value)
+        {
+#else
+        internal bool IsMatch(string value)
+        {
+            if (value is null!)
+            {
+                return false;
+            }
+#endif
+            _patternValidator ??= new PatternValidator(this);
+            return _patternValidator.Validate(value);
+        }
+
+        private void InitLength(IEnumerable<PatternToken> tokens)
+        {
+            if (_fixedLength.HasValue)
+            {
+                return;
+            }
+
+            bool fixedLength = true;
+            int maxLength = 0;
+            foreach (PatternToken token in tokens)
+            {
+                fixedLength &= token.IsFixedLength;
+                maxLength += token.MaxLength;
+            }
+
+            _fixedLength = fixedLength;
+            _maxLength = maxLength;
         }
     }
 }

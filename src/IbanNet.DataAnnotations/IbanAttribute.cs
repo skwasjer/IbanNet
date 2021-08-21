@@ -9,7 +9,7 @@ namespace IbanNet.DataAnnotations
     /// When applied to a <see cref="string" /> property or parameter, validates that a valid IBAN is provided.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
-    public class IbanAttribute : ValidationAttribute
+    public sealed class IbanAttribute : ValidationAttribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAttribute" /> class.
@@ -27,7 +27,7 @@ namespace IbanNet.DataAnnotations
                 return System.ComponentModel.DataAnnotations.ValidationResult.Success;
             }
 
-            if (!(value is string strValue))
+            if (value is not string strValue)
             {
                 return base.IsValid(value, validationContext);
             }
@@ -42,7 +42,7 @@ namespace IbanNet.DataAnnotations
             validationContext.Items.Add("Error", result.Error);
 
             IEnumerable<string>? memberNames = null;
-            if (validationContext.MemberName is { })
+            if (validationContext.MemberName is not null)
             {
                 memberNames = new[] { validationContext.MemberName };
             }
