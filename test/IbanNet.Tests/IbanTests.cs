@@ -309,7 +309,7 @@ namespace IbanNet
             }
 
             [Fact]
-            public void Given_that_bban_structure_section_is_not_known_it_should_throw()
+            public void Given_that_bban_structure_section_is_not_known_it_should_not_throw_and_return_iban_substr()
             {
                 var ibanCountry = new IbanCountry("NL")
                 {
@@ -325,9 +325,7 @@ namespace IbanNet
                 Func<string> act = () => iban.Bban;
 
                 // Assert
-                act.Should()
-                    .Throw<InvalidOperationException>()
-                    .WithMessage("An error occurred extracting the BBAN.");
+                act.Should().NotThrow().Which.Should().Be("ABNA0417164300");
             }
         }
     }

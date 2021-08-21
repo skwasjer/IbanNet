@@ -54,7 +54,7 @@ namespace IbanNet
         /// Gets the BBAN.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if the BBAN pattern is not defined in the registry.</exception>
-        public string Bban => Extract(Country.Bban) ?? throw new InvalidOperationException("An error occurred extracting the BBAN.");
+        public string Bban => Extract(Country.Bban) ?? _iban.Substring(4);
 
         /// <summary>
         /// Gets the bank identifier, or null if bank identifier cannot be extracted.
