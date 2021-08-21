@@ -53,7 +53,6 @@ namespace IbanNet
         /// <summary>
         /// Gets the BBAN.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown if the BBAN pattern is not defined in the registry.</exception>
         public string Bban => Extract(Country.Bban) ?? _iban.Substring(4);
 
         /// <summary>
