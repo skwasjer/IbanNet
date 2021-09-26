@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using IbanNet.Registry.Swift;
@@ -13,6 +14,7 @@ namespace IbanNet.Registry
     /// </summary>
     public class IbanRegistry : IIbanRegistry
     {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private IDictionary<string, IbanCountry>? _dictionary;
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace IbanNet.Registry
         /// <summary>
         /// Gets the registry mapped as dictionary by country code.
         /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private IDictionary<string, IbanCountry> Dictionary
         {
             get
