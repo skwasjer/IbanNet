@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1;net48;net472;net462;net452</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netcoreapp2.1;net48;net472;net462;net452</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
     <NoWarn>$(NoWarn);xUnit1026</NoWarn>
@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" Condition="'$(TargetFramework)'=='net5.0'" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" Condition="'$(TargetFramework)'!='net5.0'" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0'" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" Condition="'$(TargetFramework)'!='net6.0' And '$(TargetFramework)'!='net5.0'" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net462'">
@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net6.0" Condition="'$(TargetFramework)'=='net6.0'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net5.0" Condition="'$(TargetFramework)'=='net5.0'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp2.1'" />

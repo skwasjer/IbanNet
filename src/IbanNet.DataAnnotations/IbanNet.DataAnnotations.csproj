@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard1.3;netstandard1.6;netstandard2.0;netstandard2.1;net472;net452</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netstandard1.3;netstandard1.6;netstandard2.0;netstandard2.1;net472;net452</TargetFrameworks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" Condition="'$(TargetFramework)'!='net5.0'" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" Condition="'$(TargetFramework)'!='net5.0' And '$(TargetFramework)'!='net6.0'" />
   </ItemGroup>
 
   <ItemGroup>
