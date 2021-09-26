@@ -4,13 +4,13 @@ on: [push, pull_request]
 
 jobs:
   dotnet:
-    name: ${{ matrix.dotnet-version }} - ${{ matrix.framework-version }} on ${{ matrix.os }}
+    name: ${{ matrix.framework-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         dotnet-version: [5.0.x, 3.1.x]
         framework-version: [net5.0, netcoreapp3.1]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
           - dotnet-version: 3.1.x
             framework-version: net5.0
