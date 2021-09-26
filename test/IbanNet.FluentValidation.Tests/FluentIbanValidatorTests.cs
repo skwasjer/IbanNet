@@ -49,10 +49,11 @@ namespace IbanNet.FluentValidation
                 var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
 
                 // Act
-                IEnumerable<ValidationFailure> actual = _validator.ShouldHaveValidationErrorFor(x => x.BankAccountNumber, obj);
+                TestValidationResult<TestModel> result = _validator.TestValidate(obj);
 
                 // Assert
-                ValidationFailure error = actual.Should()
+                ValidationFailure error = result.ShouldHaveValidationErrorFor(x => x.BankAccountNumber)
+                    .Should()
                     .HaveCount(1, "because one validation error should have occurred")
                     .And.Subject.First();
                 error.FormattedMessagePlaceholderValues.Should()
@@ -85,7 +86,9 @@ namespace IbanNet.FluentValidation
             {
                 var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
 
-                _validator.ShouldNotHaveValidationErrorFor(x => x.BankAccountNumber, obj);
+                TestValidationResult<TestModel> result = _validator.TestValidate(obj);
+
+                result.ShouldNotHaveValidationErrorFor(x => x.BankAccountNumber);
             }
         }
 
@@ -111,7 +114,9 @@ namespace IbanNet.FluentValidation
             {
                 var obj = new TestModel { BankAccountNumber = AttemptedIbanValue };
 
-                _validator.ShouldNotHaveValidationErrorFor(x => x.BankAccountNumber, obj);
+                TestValidationResult<TestModel> result = _validator.TestValidate(obj);
+
+                result.ShouldNotHaveValidationErrorFor(x => x.BankAccountNumber);
             }
         }
 
