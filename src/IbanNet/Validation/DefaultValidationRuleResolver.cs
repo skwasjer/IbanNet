@@ -32,7 +32,8 @@ namespace IbanNet.Validation
 
             yield return new Mod97Rule();
 
-            if (_options.Rules is null!)
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (_options.Rules is null)
             {
                 yield break;
             }
