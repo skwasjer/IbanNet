@@ -2,11 +2,14 @@
 
 ## v5.1.0
 
+### IbanNet
+
+- Added JSON converter support for `System.Text.Json` to the `Iban` type (>= .NET 5 only)
 - Added `iban.IsQrIban()` extension method. A Swiss or Liechtenstein QR-IBAN must have a valid QR-IID, i.e. the bank number must be within the [30000, 31999] range.
 
 ## v5.0.0
 
-## IbanNet
+### IbanNet
 
 - Removed deprecated contracts/code `IStructureValidationFactory`, `IStructureValidation`, `IStructureSection`. Use the `Pattern` abstraction for custom registry providers.
 - Removed `Iban.Parse`, `Iban.TryParse`, use the `IbanParser` class.

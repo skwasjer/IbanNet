@@ -16,6 +16,9 @@ namespace IbanNet
     /// Represents an IBAN.
     /// </summary>
     [TypeConverter(typeof(IbanTypeConverter))]
+#if NET5_0_OR_GREATER
+    [System.Text.Json.Serialization.JsonConverter(typeof(JsonConverters.IbanJsonConverter))]
+#endif
     public sealed class Iban
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
