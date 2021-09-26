@@ -58,7 +58,11 @@ namespace IbanNet.FluentValidation
                     .And.Subject.First();
                 error.FormattedMessagePlaceholderValues.Should()
                     .ContainKey("Error")
+#if FlUENT_ASSERTIONS_5
                     .WhichValue.Should()
+#else
+                    .WhoseValue.Should()
+#endif
                     .BeOfType<IllegalCharactersResult>();
                 error.ErrorMessage.Should().Be(expectedErrorMessage);
             }

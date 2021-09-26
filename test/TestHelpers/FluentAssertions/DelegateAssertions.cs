@@ -6,7 +6,12 @@ using FluentAssertions.Specialized;
 
 namespace TestHelpers.FluentAssertions
 {
-    public class DelegateAssertions : DelegateAssertions<Delegate>
+    public class DelegateAssertions
+#if FlUENT_ASSERTIONS_5
+        : DelegateAssertions<Delegate>
+#else
+        : DelegateAssertions<Delegate, DelegateAssertions>
+#endif
     {
         public DelegateAssertions(Delegate @delegate, IExtractExceptions extractor) : base(@delegate, extractor)
         {
@@ -43,7 +48,15 @@ namespace TestHelpers.FluentAssertions
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context} to throw {0}{reason}, but found <null>.", (object)typeof(TException));
 
-            return Throw<TException>(InvokeSubjectWithInterception(args), because, becauseArgs);
+#if FlUENT_ASSERTIONS_5
+            return Throw<TException>(
+#else
+            return ThrowInternal<TException>(
+#endif
+                InvokeSubjectWithInterception(args),
+                because,
+                becauseArgs
+            );
         }
 
         /// <summary>
@@ -73,12 +86,12 @@ namespace TestHelpers.FluentAssertions
             }
             catch (TargetInvocationException ex) when (ex.InnerException is not null)
             {
-                NotThrow(ex.InnerException, because, becauseArgs);
+                NotThrowV6(ex.InnerException, because, becauseArgs);
                 return new AndWhichConstraint<DelegateAssertions, object>(this, default);
             }
             catch (Exception ex)
             {
-                NotThrow(ex, because, becauseArgs);
+                NotThrowV6(ex, because, becauseArgs);
                 return new AndWhichConstraint<DelegateAssertions, object>(this, default);
             }
         }
@@ -112,12 +125,12 @@ namespace TestHelpers.FluentAssertions
             }
             catch (TargetInvocationException ex) when (ex.InnerException is not null)
             {
-                NotThrow(ex.InnerException, because, becauseArgs);
+                NotThrowV6(ex.InnerException, because, becauseArgs);
                 return new AndWhichConstraint<DelegateAssertions, object>(this, default);
             }
             catch (Exception ex)
             {
-                NotThrow(ex, because, becauseArgs);
+                NotThrowV6(ex, because, becauseArgs);
                 return new AndWhichConstraint<DelegateAssertions, object>(this, default);
             }
         }
@@ -139,6 +152,15 @@ namespace TestHelpers.FluentAssertions
             }
 
             return exception;
+        }
+
+        private void NotThrowV6(Exception ex, string because, object[] becauseArgs)
+        {
+#if FlUENT_ASSERTIONS_5
+            NotThrow(ex, because, becauseArgs);
+#else
+            NotThrowInternal(ex, because, becauseArgs);
+#endif
         }
     }
 }

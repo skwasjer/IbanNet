@@ -47,7 +47,11 @@ namespace IbanNet.DataAnnotations
             _fixture.MapToErrors(responseContent)
                 .Should()
                 .ContainKey("BankAccountNumber")
+#if FlUENT_ASSERTIONS_5
                 .WhichValue.Should()
+#else
+                .WhoseValue.Should()
+#endif
                 .Contain("The field 'BankAccountNumber' is not a valid IBAN.");
         }
 
