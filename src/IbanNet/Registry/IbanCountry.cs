@@ -52,13 +52,18 @@ namespace IbanNet.Registry
         public string TwoLetterISORegionName { get; }
 
         /// <summary>
-        /// Gets the display name.
+        /// Gets the display name. If no value is set on init, then returns the <see cref="NativeName" />, if available; otherwise returns the <see cref="EnglishName" />.
         /// </summary>
         public string DisplayName
         {
-            get => _displayName ?? EnglishName;
+            get => _displayName ?? NativeName ?? EnglishName;
             init => _displayName = value;
         }
+
+        /// <summary>
+        /// Gets the native name, if available.
+        /// </summary>
+        public string? NativeName { get; init; }
 
         /// <summary>
         /// Gets the English name.

@@ -83,7 +83,7 @@ namespace IbanNet.Registry.Wikipedia
                     var cells = r.Elements("td").ToList();
                     return new
                     {
-                        Code = cells[3].XPathSelectElement("code").Value.Substring(0, 2).Trim(),
+                        CountryCode = cells[3].XPathSelectElement("code").Value.Substring(0, 2).Trim(),
                         EnglishName = cells[0].Element("a").Value.Trim(),
                         Pattern = cells[2].Value.Trim().Replace(" ", "")
                     };
@@ -93,9 +93,9 @@ namespace IbanNet.Registry.Wikipedia
             foreach (var x in wikiSpecs.SelectMany(_ => _))
             {
 #>
-            yield return new IbanCountry("<#= x.Code #>")
+            yield return new IbanCountry("<#= x.CountryCode #>")
             {
-                DisplayName = "<#= x.EnglishName #>",
+                NativeName = "<#= GetNativeName(x.CountryCode) ?? x.EnglishName #>",
                 EnglishName = "<#= x.EnglishName #>",
                 Iban = new IbanStructure(new IbanWikipediaPattern("<#= x.Pattern #>")),
                 Bban = new BbanStructure(new WikipediaPattern("<#= x.Pattern #>"), 4)
@@ -110,6 +110,18 @@ namespace IbanNet.Registry.Wikipedia
     }
 }
 <#+
+private string GetNativeName(string countryCode)
+{
+    try
+    {
+        return new RegionInfo(countryCode).NativeName;
+    }
+    catch (ArgumentException)
+    {
+        return null;
+    }
+}
+
 public class WikiResponse
 {
     public ParseResult Parse { get; set; }

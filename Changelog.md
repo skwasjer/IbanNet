@@ -1,6 +1,9 @@
 # Changelog
 
 ## v5.x.x
+
+- Added `IbanCountry.NativeName` property which returns the country name in native language, if available.
+- Changed the `IbanCountry.DisplayName` property to return the native name, if available; otherwise returns the English name.
 - Regenerated `WikipediaRegistryProvider` to include Sudan (SD).
 
 ## v5.1.0

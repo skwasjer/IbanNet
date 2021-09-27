@@ -86,12 +86,14 @@ namespace IbanNet.Registry.Swift
         {
             var effectiveDate = DateTime.ParseExact(row[19], "MMM-yy", CultureInfo.InvariantCulture);
             var lastUpdatedDate = DateTime.ParseExact(row[42], "MMM-yy", CultureInfo.InvariantCulture);
+            var countryCode = row[1].ToUpperInvariant();
+            var englishName = row[0];
 #>
-            // <#= row[0] #>
-            yield return new IbanCountry("<#= row[1].ToUpperInvariant() #>")
+            // <#= englishName #>
+            yield return new IbanCountry("<#= countryCode #>")
             {
-                DisplayName = "<#= row[0] #>",
-                EnglishName = "<#= row[0] #>",
+                NativeName = "<#= GetNativeName(countryCode) ?? englishName #>",
+                EnglishName = "<#= englishName #>",
 <#
                     includedCountries = row[2] is null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
                     if (includedCountries.Length > 0) {
@@ -99,7 +101,7 @@ namespace IbanNet.Registry.Swift
                 IncludedCountries = new[]
                 {
                     <#
-                WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+                WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{countryCode.ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
                 #>
                 },
 <#
@@ -156,7 +158,7 @@ namespace IbanNet.Registry.Swift
                     IncludedCountries = new[]
                     {
                         <#
-                        WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{row[1].ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+                        WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{countryCode.ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
                         #>
                     }
 <#
@@ -178,6 +180,18 @@ namespace IbanNet.Registry.Swift
 }
 
 <#+
+private string GetNativeName(string countryCode)
+{
+    try
+    {
+        return new RegionInfo(countryCode).NativeName;
+    }
+    catch (ArgumentException)
+    {
+        return null;
+    }
+}
+
 private string[][] Transpose(string[][] arr)
 {
     // Init target buffer.
