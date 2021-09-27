@@ -4,7 +4,7 @@ namespace IbanNet.Registry.Wikipedia
 {
     public class WikipediaRegistryProviderTests : BaseRegistryProviderSpec<WikipediaRegistryProvider>
     {
-        public WikipediaRegistryProviderTests() : base(104)
+        public WikipediaRegistryProviderTests() : base(105)
         {
         }
 

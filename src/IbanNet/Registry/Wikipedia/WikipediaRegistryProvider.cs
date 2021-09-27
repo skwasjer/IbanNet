@@ -14,10 +14,10 @@ namespace IbanNet.Registry.Wikipedia
     /// <para>
     /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
     /// Page ID: 15253
-    /// Rev ID: 1036918399
+    /// Rev ID: 1046194849
     /// </para>
     /// </remarks>
-    [GeneratedCode("WikiRegistryProviderT4", "1.15253-1036918399")]
+    [GeneratedCode("WikiRegistryProviderT4", "1.15253-1046194849")]
     public class WikipediaRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -594,6 +594,14 @@ namespace IbanNet.Registry.Wikipedia
                 EnglishName = "Spain",
                 Iban = new IbanStructure(new IbanWikipediaPattern("20n")),
                 Bban = new BbanStructure(new WikipediaPattern("20n"), 4)
+            };
+
+            yield return new IbanCountry("SD")
+            {
+                DisplayName = "Sudan",
+                EnglishName = "Sudan",
+                Iban = new IbanStructure(new IbanWikipediaPattern("14n")),
+                Bban = new BbanStructure(new WikipediaPattern("14n"), 4)
             };
 
             yield return new IbanCountry("SE")

@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.x.x
+- Regenerated `WikipediaRegistryProvider` to include Sudan (SD).
+
 ## v5.1.0
 
 ### IbanNet
