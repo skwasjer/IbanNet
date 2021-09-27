@@ -22,7 +22,7 @@ namespace IbanNet
         /// </summary>
         /// <param name="value">The IBAN value to parse.</param>
         /// <param name="iban">The <see cref="Iban" /> if the <paramref name="value" /> is parsed successfully.</param>
-        /// <returns>true if the <paramref name="value" /> is parsed successfully, or false otherwise</returns>
+        /// <returns><see langword="true" /> if the <paramref name="value" /> is parsed successfully, or <see langword="false" /> otherwise</returns>
         bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban);
     }
 }

@@ -16,13 +16,19 @@ namespace IbanNet
     /// Represents an IBAN.
     /// </summary>
     [TypeConverter(typeof(IbanTypeConverter))]
+#if NET5_0_OR_GREATER
+    [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
+#endif
     public sealed class Iban
     {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static readonly Func<IIbanValidator> DefaultFactory = () => new IbanValidator();
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string _iban;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Lazy<IIbanValidator> _validatorInstance = new(
-            () => new IbanValidator(),
+            DefaultFactory,
             LazyThreadSafetyMode.ExecutionAndPublication
         );
 
@@ -36,7 +42,10 @@ namespace IbanNet
         public static IIbanValidator Validator
         {
             get => _validatorInstance.Value;
-            set => _validatorInstance = new Lazy<IIbanValidator>(() => value, true);
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            set => _validatorInstance = value is null
+                ? new Lazy<IIbanValidator>(DefaultFactory, true)
+                : new Lazy<IIbanValidator>(() => value, true);
         }
 
         internal Iban(string iban, IbanCountry ibanCountry)

@@ -111,7 +111,8 @@ namespace IbanNet.Registry.Patterns
 #else
         internal bool IsMatch(string value)
         {
-            if (value is null!)
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (value is null)
             {
                 return false;
             }

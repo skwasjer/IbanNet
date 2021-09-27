@@ -13,7 +13,8 @@ namespace IbanNet.DependencyInjection.ServiceProvider
             _validatorOptionsBuilder = services.AddOptions<IbanValidatorOptions>();
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
-            _validatorOptionsBuilder.Validate(opts => opts.Registry is not null!, "The 'Registry' is required.");
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            _validatorOptionsBuilder.Validate(opts => opts.Registry is not null, "The 'Registry' is required.");
 #endif
         }
 

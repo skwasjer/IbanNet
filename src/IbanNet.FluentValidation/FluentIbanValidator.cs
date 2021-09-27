@@ -29,7 +29,8 @@ namespace IbanNet.FluentValidation
         /// <inheritdoc />
         public override bool IsValid(ValidationContext<T> context, string value)
         {
-            if (value is null!)
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (value is null)
             {
                 return true;
             }

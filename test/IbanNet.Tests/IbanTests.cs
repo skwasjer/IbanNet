@@ -327,5 +327,52 @@ namespace IbanNet
                 act.Should().NotThrow().Which.Should().Be("ABNA0417164300");
             }
         }
+
+#if NET5_0_OR_GREATER
+        public class When_system_text_json_converting : IbanTests
+        {
+            [Theory]
+            [InlineData(TestValues.ValidIban, "\""+ TestValues.ValidIban + "\"")]
+            [InlineData(null, "null")]
+            public void Given_an_iban_when_serializing_it_should_return_expected_json(string ibanStr, string expectedJson)
+            {
+                Iban iban = ibanStr is null ? null : new IbanParser(IbanRegistry.Default).Parse(ibanStr);
+
+                // Act
+                string json = System.Text.Json.JsonSerializer.Serialize(iban);
+
+                // Assert
+                json.Should().Be(expectedJson);
+            }
+
+            [Theory]
+            [InlineData(TestValues.ValidIban, "\""+ TestValues.ValidIban + "\"")]
+            [InlineData(null, "null")]  // JSON null.
+            [InlineData(null, "\"\"")]  // Empty string
+            [InlineData(null, "\" \"")] // String with whitespace
+            public void Given_a_valid_jsonString_when_deserializing_it_should_return_expected_iban(string expectedIban, string json)
+            {
+                // Act
+                Iban iban = System.Text.Json.JsonSerializer.Deserialize<Iban>(json);
+
+                // Assert
+                iban?.ToString().Should().Be(expectedIban);
+            }
+
+            [Fact]
+            public void Given_that_json_iban_is_invalid_when_deserializing_it_should_throw()
+            {
+                const string jsonStrWithInvalidIban = "\"123\"";
+
+                // Act
+                Action act = () => System.Text.Json.JsonSerializer.Deserialize<Iban>(jsonStrWithInvalidIban);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<System.Text.Json.JsonException>()
+                    .WithMessage("The JSON value could not be converted to IbanNet.Iban*");
+            }
+        }
+#endif
     }
 }
