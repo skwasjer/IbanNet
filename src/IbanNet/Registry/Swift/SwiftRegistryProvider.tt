@@ -92,7 +92,7 @@ namespace IbanNet.Registry.Swift
             // <#= englishName #>
             yield return new IbanCountry("<#= countryCode #>")
             {
-                NativeName = "<#= GetNativeName(countryCode) ?? englishName #>",
+                NativeName = "<#= GetNativeName(countryCode) #>",
                 EnglishName = "<#= englishName #>",
 <#
                     includedCountries = row[2] is null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
