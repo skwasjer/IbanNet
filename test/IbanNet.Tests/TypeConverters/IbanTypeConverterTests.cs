@@ -67,9 +67,37 @@ namespace IbanNet.TypeConverters
             }
 
             [Fact]
-            public void Given_type_descriptor_context_when_converting_from_string_it_should_request_validator()
+            public void Given_that_parser_can_be_resolved_when_converting_from_string_it_should_not_resolve_validator()
             {
                 var typeDescriptorContextMock = new Mock<ITypeDescriptorContext>();
+                typeDescriptorContextMock
+                    .Setup(m => m.GetService(It.Is<Type>(t => t == typeof(IIbanParser))))
+                    .Returns(new IbanParser(IbanRegistry.Default))
+                    .Verifiable();
+
+                // Act
+                object resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
+
+                // Assert
+                typeDescriptorContextMock.Verify();
+                typeDescriptorContextMock
+                    .Verify(m => m.GetService(It.Is<Type>(t => t == typeof(IIbanValidator))), Times.Never);
+                resultObj.Should()
+                    .NotBeNull()
+                    .And.BeOfType<Iban>()
+                    .Which.ToString()
+                    .Should()
+                    .Be(TestValues.ValidIban);
+            }
+
+            [Fact]
+            public void Given_that_parser_cannot_be_resolved_when_converting_from_string_it_should_request_validator_next()
+            {
+                var typeDescriptorContextMock = new Mock<ITypeDescriptorContext>();
+                typeDescriptorContextMock
+                    .Setup(m => m.GetService(It.Is<Type>(t => t == typeof(IIbanParser))))
+                    .Returns(null)
+                    .Verifiable();
                 typeDescriptorContextMock
                     .Setup(m => m.GetService(It.Is<Type>(t => t == typeof(IIbanValidator))))
                     .Returns(new IbanValidator())

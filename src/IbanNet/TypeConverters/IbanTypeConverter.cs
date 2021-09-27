@@ -32,7 +32,7 @@ namespace IbanNet.TypeConverters
                     return null;
 
                 case string strValue:
-                    IbanParser parser = GetParser(context);
+                    IIbanParser parser = GetParser(context);
                     if (parser.TryParse(strValue, out Iban? iban))
                     {
                         return iban;
@@ -44,8 +44,13 @@ namespace IbanNet.TypeConverters
             return base.ConvertFrom(context, culture, value);
         }
 
-        private static IbanParser GetParser(IServiceProvider? services)
+        private static IIbanParser GetParser(IServiceProvider? services)
         {
+            if (services?.GetService(typeof(IIbanParser)) is IIbanParser parser)
+            {
+                return parser;
+            }
+
             // Request validator from service provider if available.
             IIbanValidator validator = (IIbanValidator?)services?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
             return new IbanParser(validator);
