@@ -4,12 +4,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using IbanNet.Registry;
 
-namespace IbanNet.JsonConverters
+namespace IbanNet.Json
 {
     /// <summary>
-    /// A JSON converter for the <see cref="Iban" /> type.
+    /// A JSON converter for the <see cref="Iban" /> type (and for the System.Text.Json namespace).
     /// </summary>
-    public class IbanJsonConverter : JsonConverter<Iban>
+    public sealed class IbanJsonConverter : JsonConverter<Iban>
     {
         private readonly IIbanParser _ibanParser;
 

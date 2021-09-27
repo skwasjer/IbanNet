@@ -17,7 +17,7 @@ namespace IbanNet
     /// </summary>
     [TypeConverter(typeof(IbanTypeConverter))]
 #if NET5_0_OR_GREATER
-    [System.Text.Json.Serialization.JsonConverter(typeof(JsonConverters.IbanJsonConverter))]
+    [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
     public sealed class Iban
     {
