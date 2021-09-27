@@ -17,7 +17,7 @@ namespace IbanNet.Json
         /// Initializes a new instance of the <see cref="IbanJsonConverter" /> class using the <see cref="IbanRegistry.Default" />.
         /// </summary>
         public IbanJsonConverter()
-            : this(new IbanParser(IbanRegistry.Default))
+            : this(new IbanParser(Iban.Validator))
         {
         }
 
