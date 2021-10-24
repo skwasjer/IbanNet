@@ -39,7 +39,6 @@ namespace IbanNet
         /// Note: avoid using this member, it's only use case is allowing type conversion and may be obsolete in future.
         /// </para>
         /// </summary>
-        // ReSharper disable once MemberCanBePrivate.Global
         public static IIbanValidator Validator
         {
             get => _validatorInstance.Value;
@@ -61,17 +60,17 @@ namespace IbanNet
         public IbanCountry Country { get; }
 
         /// <summary>
-        /// Gets the BBAN.
+        /// Gets the BBAN part of the IBAN.
         /// </summary>
         public string Bban => Extract(Country.Bban) ?? _iban.Substring(4);
 
         /// <summary>
-        /// Gets the bank identifier, or null if bank identifier cannot be extracted.
+        /// Gets the bank identifier, or <see langword="null" /> if bank identifier cannot be extracted.
         /// </summary>
         public string? BankIdentifier => Extract(Country.Bank);
 
         /// <summary>
-        /// Gets the branch identifier, or null if branch identifier cannot be extracted.
+        /// Gets the branch identifier, or <see langword="null" /> if branch identifier cannot be extracted.
         /// </summary>
         public string? BranchIdentifier => Extract(Country.Branch);
 
