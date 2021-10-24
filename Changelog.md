@@ -1,12 +1,13 @@
 # Changelog
 
-## v5.x.x
+## v5.2.x
 
 - Added `IbanCountry.NativeName` property which returns the country name in native language, if available.
 - Changed the `IbanCountry.DisplayName` property to return the native name, if available; otherwise returns the English name.
 - Regenerated `WikipediaRegistryProvider` to include Sudan (SD).
 - Implemented `IEquatable<T>`.
 - Implemented `IFormattable` with format strings `E`, `P` and `O` for `Electronic`, `Print` and `Obfuscated` respectively.
+- Upgraded registry to October '21 release 91 (added Burundi (BI) and updated Sudan (SD))
 
 ## v5.1.0
 

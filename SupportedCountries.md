@@ -15,6 +15,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | BE | Belgium | Yes | 16 | `BE68 5390 0754 7034` |
 | BG | Bulgaria | Yes | 22 | `BG80 BNBG 9661 1020 3456 78` |
 | BH | Bahrain | No | 22 | `BH67 BMAG 0000 1299 1234 56` |
+| BI | Burundi | No | 27 | `BI42 1000 0100 0100 0033 2045 181` |
 | BR | Brazil | No | 29 | `BR18 0036 0305 0000 1000 9795 493C 1` |
 | BY | Republic of Belarus | No | 28 | `BY13 NBRB 3600 9000 0000 2Z00 AB00` |
 | CH | Switzerland | Yes | 21 | `CH93 0076 2011 6238 5295 7` |
@@ -120,7 +121,6 @@ Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/Inte
 |---|---|---|---|---|
 | AO | Angola | - | 25 |  |
 | BF | Burkina Faso | - | 28 |  |
-| BI | Burundi | - | 16 |  |
 | BJ | Benin | - | 28 |  |
 | CF | Central African Republic | - | 27 |  |
 | CG | Congo, Republic of the | - | 27 |  |

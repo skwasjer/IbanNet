@@ -4,7 +4,7 @@ namespace IbanNet.Registry.Swift
 {
     public class SwiftRegistryProviderTests : BaseRegistryProviderSpec<SwiftRegistryProvider>
     {
-        public SwiftRegistryProviderTests() : base(79)
+        public SwiftRegistryProviderTests() : base(80)
         {
         }
 
