@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -20,7 +19,8 @@ namespace IbanNet
     [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
     public sealed class Iban
-        : IEquatable<Iban>
+        : IEquatable<Iban>,
+          IFormattable
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static readonly Func<IIbanValidator> DefaultFactory = () => new IbanValidator();
@@ -85,38 +85,69 @@ namespace IbanNet
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
         public string ToString(IbanFormat format)
         {
-            switch (format)
+            IFormattable fmt = this;
+            return format switch
             {
-                case IbanFormat.Electronic:
-                    return _iban;
-
-                case IbanFormat.Obfuscated:
-                    const int visibleChars = 4;
-                    return new string('X', _iban.Length - visibleChars)
-                      + _iban.Substring(_iban.Length - visibleChars, visibleChars);
-
-                case IbanFormat.Print:
-                    // Split into 4 char segments.
-                    IEnumerable<string> segments = _iban.Partition(4).Select(p => new string(p.ToArray()));
-                    return string.Join(" ", segments);
-
-                default:
-                    throw new ArgumentException(
-                        string.Format(
-                            CultureInfo.CurrentCulture,
-                            Resources.ArgumentException_The_format_0_is_invalid,
-                            format
-                        ),
-                        nameof(format)
-                    );
-            }
+                IbanFormat.Electronic => fmt.ToString("E", null),
+                IbanFormat.Obfuscated => fmt.ToString("O", null),
+                IbanFormat.Print => fmt.ToString("P", null),
+                _ => throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format), nameof(format))
+            };
         }
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
         public override string ToString()
         {
-            return ToString(IbanFormat.Electronic);
+            return ((IFormattable)this).ToString(null, null);
+        }
+
+        /// <summary>Formats the value of the current instance using the specified format.</summary>
+        /// <example>
+        /// P => NL91 ABNA 0417 1643 00
+        /// E => NL91ABNA0417164300
+        /// O => XXXXXXXXXXXXXXXXXX4300
+        /// </example>
+        /// <param name="format">The format to use.
+        /// -or-
+        /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
+        /// </param>
+        /// <returns>The value of the current instance in the specified format.</returns>
+        public string ToString(string? format)
+        {
+            return ((IFormattable)this).ToString(format, null);
+        }
+
+        /// <summary>Formats the value of the current instance using the specified format.</summary>
+        /// <example>
+        /// P => NL91 ABNA 0417 1643 00
+        /// E => NL91ABNA0417164300
+        /// O => XXXXXXXXXXXXXXXXXX4300
+        /// </example>
+        /// <param name="format">The format to use.
+        /// -or-
+        /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
+        /// </param>
+        /// <param name="formatProvider">The provider to use to format the value.
+        /// -or-
+        /// A <see langword="null"/> reference to obtain the numeric format information from the current locale setting of the operating system.</param>
+        /// <returns>The value of the current instance in the specified format.</returns>
+        string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
+        {
+            const int visibleChars = 4;
+            const int segmentSize = 4;
+            return (format ?? "E").ToUpper() switch
+            {
+                "E" => _iban,
+                "O" => new string('X', _iban.Length - visibleChars)
+                  + _iban.Substring(_iban.Length - visibleChars, visibleChars),
+                "P" => string.Join(" ",
+                    _iban
+                        .Partition(segmentSize)
+                        .Select(p => new string(p.ToArray()))
+                ),
+                _ => throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format), nameof(format))
+            };
         }
 
         /// <summary>

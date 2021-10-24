@@ -60,21 +60,25 @@ namespace IbanNet
 
         public class When_formatting : IbanTests
         {
+            private const string IbanElectronic = "AD1200012030200359100100";
+            private const string IbanPrint = "AD12 0001 2030 2003 5910 0100";
+            private const string IbanObfuscated = "XXXXXXXXXXXXXXXXXXXX0100";
+
             private readonly Iban _iban;
 
             public When_formatting()
             {
-                _iban = new IbanParser(IbanRegistry.Default).Parse(TestValues.ValidIban);
+                _iban = new IbanParser(IbanRegistry.Default).Parse(IbanElectronic);
             }
 
             [Fact]
-            public void With_default_format_should_return_flat()
+            public void With_default_format_should_return_electronic()
             {
                 // Act
                 string actual = _iban.ToString();
 
                 // Assert
-                actual.Should().Be(TestValues.ValidIban);
+                actual.Should().Be(IbanElectronic);
             }
 
             [Fact]
@@ -93,13 +97,41 @@ namespace IbanNet
             }
 
             [Theory]
-            [InlineData(IbanFormat.Electronic, TestValues.ValidIban)]
-            [InlineData(IbanFormat.Print, TestValues.ValidIbanPartitioned)]
-            [InlineData(IbanFormat.Obfuscated, "XXXXXXXXXXXXXXXXXXXX0100")]
+            [InlineData(IbanFormat.Electronic, IbanElectronic)]
+            [InlineData(IbanFormat.Print, IbanPrint)]
+            [InlineData(IbanFormat.Obfuscated, IbanObfuscated)]
             public void With_valid_iban_format_should_succeed(IbanFormat format, string expected)
             {
                 // Act
                 string actual = _iban.ToString(format);
+
+                // Assert
+                actual.Should().Be(expected);
+            }
+
+            [Fact]
+            public void With_invalid_iban_string_format_should_throw()
+            {
+                const string format = "bad";
+
+                // Act
+                Action act = () => _iban.ToString(format);
+
+                // Assert
+                act.Should()
+                    .Throw<ArgumentException>("the provided format was invalid")
+                    .Which.ParamName.Should()
+                    .Be(nameof(format));
+            }
+
+            [Theory]
+            [InlineData("E", IbanElectronic)]
+            [InlineData("P", IbanPrint)]
+            [InlineData("O", IbanObfuscated)]
+            public void With_valid_iban_format_when_string_formatting_it_should_succeed(string format, string expected)
+            {
+                // Act
+                string actual = string.Format($"{{0:{format}}}", _iban);
 
                 // Assert
                 actual.Should().Be(expected);
@@ -147,7 +179,7 @@ namespace IbanNet
                 Iban nullIban = null;
 
                 // Act
-                // ReSharper disable once AssignNullToNotNullAttribute
+                // ReSharper disable once ExpressionIsAlwaysNull
                 bool actual = _iban.Equals(nullIban);
 
                 // Assert
@@ -168,7 +200,7 @@ namespace IbanNet
             [Fact]
             public void By_reference_when_other_is_wrong_type_should_return_false()
             {
-                var otherType = new object();
+                object otherType = new();
 
                 // Act
                 bool actual = _iban.Equals(otherType);

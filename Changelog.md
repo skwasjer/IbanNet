@@ -6,6 +6,7 @@
 - Changed the `IbanCountry.DisplayName` property to return the native name, if available; otherwise returns the English name.
 - Regenerated `WikipediaRegistryProvider` to include Sudan (SD).
 - Implemented `IEquatable<T>`.
+- Implemented `IFormattable` with format strings `E`, `P` and `O` for `Electronic`, `Print` and `Obfuscated` respectively.
 
 ## v5.1.0
 
