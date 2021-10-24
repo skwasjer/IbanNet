@@ -118,10 +118,7 @@ namespace IbanNet
                 Action act = () => _iban.ToString(format);
 
                 // Assert
-                act.Should()
-                    .Throw<ArgumentException>("the provided format was invalid")
-                    .Which.ParamName.Should()
-                    .Be(nameof(format));
+                act.Should().Throw<IbanFormatException>("the provided format was invalid");
             }
 
             [Theory]

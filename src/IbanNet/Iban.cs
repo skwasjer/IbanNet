@@ -90,12 +90,19 @@ namespace IbanNet
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
         public string ToString(IbanFormat format)
         {
-            IFormattable fmt = this;
+            const int visibleChars = 4;
+            const int segmentSize = 4;
             return format switch
             {
-                IbanFormat.Electronic => fmt.ToString("E", null),
-                IbanFormat.Obfuscated => fmt.ToString("O", null),
-                IbanFormat.Print => fmt.ToString("P", null),
+                IbanFormat.Electronic => _iban,
+                IbanFormat.Obfuscated => new string('X', _iban.Length - visibleChars)
+                  + _iban.Substring(_iban.Length - visibleChars, visibleChars),
+                IbanFormat.Print => string.Join(" ",
+                    _iban
+                        .Partition(segmentSize)
+                        .Select(p => new string(p.ToArray()))
+                ),
+                // TODO: change to IbanFormatException in future major release.
                 _ => throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format), nameof(format))
             };
         }
@@ -139,19 +146,12 @@ namespace IbanNet
         /// <returns>The value of the current instance in the specified format.</returns>
         string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
         {
-            const int visibleChars = 4;
-            const int segmentSize = 4;
             return (format ?? "E").ToUpper() switch
             {
-                "E" => _iban,
-                "O" => new string('X', _iban.Length - visibleChars)
-                  + _iban.Substring(_iban.Length - visibleChars, visibleChars),
-                "P" => string.Join(" ",
-                    _iban
-                        .Partition(segmentSize)
-                        .Select(p => new string(p.ToArray()))
-                ),
-                _ => throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format), nameof(format))
+                "E" => ToString(IbanFormat.Electronic),
+                "O" => ToString(IbanFormat.Obfuscated),
+                "P" => ToString(IbanFormat.Print),
+                _ => throw new IbanFormatException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format))
             };
         }
 
