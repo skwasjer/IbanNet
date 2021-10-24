@@ -178,9 +178,7 @@ namespace IbanNet
 
         [Theory]
         [MemberData(nameof(IbanTestCaseData.GetValidIbanPerCountry), MemberType = typeof(IbanTestCaseData))]
-#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
         public void When_validating_good_iban_should_validate(string _, string iban)
-#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
             var expectedResult = new ValidationResult
             {
