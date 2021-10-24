@@ -22,6 +22,12 @@ namespace IbanNet
         : IEquatable<Iban>,
           IFormattable
     {
+        /// <summary>
+        /// The maximum length of any IBAN, from any country.
+        /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal const int MaxLength = 34;
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static readonly Func<IIbanValidator> DefaultFactory = () => new IbanValidator();
 

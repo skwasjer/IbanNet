@@ -69,5 +69,24 @@ namespace IbanNet.Validation.Rules
             // Assert
             actual.Should().BeOfType<InvalidLengthResult>();
         }
+
+        [Fact]
+        public void Given_that_value_exceeds_max_length_when_validating_it_should_return_error()
+        {
+            string value = new('0', 40);
+            var context = new ValidationRuleContext(value)
+            {
+                Country = new IbanCountry("XX")
+                {
+                    Iban = new IbanStructure(new FakePattern(new [] { new PatternToken(AsciiCategory.Digit, 40) }))
+                }
+            };
+
+            // Act
+            ValidationRuleResult actual = _sut.Validate(context);
+
+            // Assert
+            actual.Should().BeOfType<InvalidLengthResult>();
+        }
     }
 }
