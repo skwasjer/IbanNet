@@ -220,6 +220,11 @@ namespace IbanNet
             return !Equals(left, right);
         }
 
+        /// <summary>
+        /// Normalizes an IBAN by removing whitespace, removing non-alphanumerics and upper casing each character.
+        /// </summary>
+        /// <param name="value">The input value to normalize.</param>
+        /// <returns>The normalized IBAN.</returns>
         internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
         {
             if (value is null)
@@ -228,7 +233,15 @@ namespace IbanNet
             }
 
             int length = value.Length;
+#if USE_SPANS
+            // Use stack but clamp to avoid excessive stackalloc buffer.
+            const int stackallocMaxSize = MaxLength + 6;
+            Span<char> buffer = length <= stackallocMaxSize
+                ? stackalloc char[length]
+                : new char[length];
+#else
             char[] buffer = new char[length];
+#endif
             int pos = 0;
             // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
             for (int i = 0; i < length; i++)
@@ -250,7 +263,11 @@ namespace IbanNet
                 }
             }
 
+#if USE_SPANS
+            return new string(buffer[..pos]);
+#else
             return new string(buffer, 0, pos);
+#endif
         }
 
         private string? Extract(StructureSection? structure)

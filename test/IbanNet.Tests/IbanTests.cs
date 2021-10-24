@@ -298,6 +298,23 @@ namespace IbanNet
                 // Assert
                 actual.Should().Be(expected);
             }
+
+#if USE_SPANS
+            [Fact]
+            public void Given_that_string_exceeds_max_stackalloc_length_when_normalizing_it_should_return_expected_value()
+            {
+                string spaces = new(' ', 50);
+                string input = spaces + " \tin-\nstr ing\r" + spaces;
+                input.Length.Should().BeGreaterThan(Iban.MaxLength * 2);
+                const string expected = "IN-STRING";
+
+                // Act
+                string actual = Iban.NormalizeOrNull(input);
+
+                // Assert
+                actual.Should().Be(expected);
+            }
+#endif
         }
 
         public class When_getting_properties : IbanTests
