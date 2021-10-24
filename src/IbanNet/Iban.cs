@@ -20,6 +20,7 @@ namespace IbanNet
     [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
     public sealed class Iban
+        : IEquatable<Iban>
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static readonly Func<IIbanValidator> DefaultFactory = () => new IbanValidator();
@@ -118,16 +119,21 @@ namespace IbanNet
             return ToString(IbanFormat.Electronic);
         }
 
-        private bool Equals(Iban other)
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns><see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+        public bool Equals(Iban? other)
         {
-            return string.Equals(_iban, other._iban, StringComparison.Ordinal);
+            return string.Equals(_iban, other?._iban, StringComparison.Ordinal);
         }
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
-        /// <param name="obj">The object to compare with the current object. </param>
-        /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true" /> if the specified object  is equal to the current object; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
