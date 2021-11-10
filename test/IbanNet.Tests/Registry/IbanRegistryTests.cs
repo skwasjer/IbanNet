@@ -45,6 +45,7 @@ namespace IbanNet.Registry
                 new IbanCountry("AD")
                 {
                     DisplayName = "Andorra",
+                    NativeName = "Andorra",
                     EnglishName = "Andorra",
                     Iban = new IbanStructure(new IbanSwiftPattern("AD2!n4!n4!n12!c"))
                     {
@@ -73,7 +74,8 @@ namespace IbanNet.Registry
             {
                 new IbanCountry("XK")
                 {
-                    DisplayName = "Kosovo",
+                    DisplayName = "Kosovë",
+                    NativeName = "Kosovë",
                     EnglishName = "Kosovo",
                     Iban = new IbanStructure(new IbanSwiftPattern("XK2!n4!n10!n2!n"))
                     {

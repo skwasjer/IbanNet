@@ -12,9 +12,9 @@ namespace IbanNet.Registry.Swift
     /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
     /// </summary>
     /// <remarks>
-    /// Generated from: swift_iban_registry_202106.r90.txt
+    /// Generated from: swift_iban_registry_202110.r91.txt
     /// </remarks>
-    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r90")]
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r91")]
     public class SwiftRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -45,7 +45,7 @@ namespace IbanNet.Registry.Swift
             // Andorra
             yield return new IbanCountry("AD")
             {
-                DisplayName = "Andorra",
+                NativeName = "Andorra",
                 EnglishName = "Andorra",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -82,7 +82,7 @@ namespace IbanNet.Registry.Swift
             // United Arab Emirates (The)
             yield return new IbanCountry("AE")
             {
-                DisplayName = "United Arab Emirates (The)",
+                NativeName = "الإمارات العربية المتحدة",
                 EnglishName = "United Arab Emirates (The)",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -114,7 +114,7 @@ namespace IbanNet.Registry.Swift
             // Albania
             yield return new IbanCountry("AL")
             {
-                DisplayName = "Albania",
+                NativeName = "Shqipëri",
                 EnglishName = "Albania",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -150,7 +150,7 @@ namespace IbanNet.Registry.Swift
             // Austria
             yield return new IbanCountry("AT")
             {
-                DisplayName = "Austria",
+                NativeName = "Österreich",
                 EnglishName = "Austria",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -182,7 +182,7 @@ namespace IbanNet.Registry.Swift
             // Azerbaijan
             yield return new IbanCountry("AZ")
             {
-                DisplayName = "Azerbaijan",
+                NativeName = "Азәрбајҹан",
                 EnglishName = "Azerbaijan",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -214,7 +214,7 @@ namespace IbanNet.Registry.Swift
             // Bosnia and Herzegovina
             yield return new IbanCountry("BA")
             {
-                DisplayName = "Bosnia and Herzegovina",
+                NativeName = "Bosna i Hercegovina",
                 EnglishName = "Bosnia and Herzegovina",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -252,7 +252,7 @@ namespace IbanNet.Registry.Swift
             // Belgium
             yield return new IbanCountry("BE")
             {
-                DisplayName = "Belgium",
+                NativeName = "België",
                 EnglishName = "Belgium",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -285,7 +285,7 @@ namespace IbanNet.Registry.Swift
             // Bulgaria
             yield return new IbanCountry("BG")
             {
-                DisplayName = "Bulgaria",
+                NativeName = "България",
                 EnglishName = "Bulgaria",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -323,7 +323,7 @@ namespace IbanNet.Registry.Swift
             // Bahrain
             yield return new IbanCountry("BH")
             {
-                DisplayName = "Bahrain",
+                NativeName = "البحرين",
                 EnglishName = "Bahrain",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -352,10 +352,48 @@ namespace IbanNet.Registry.Swift
                 LastUpdatedDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
+            // Burundi
+            yield return new IbanCountry("BI")
+            {
+                NativeName = "Burundi",
+                EnglishName = "Burundi",
+                Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+                {
+                    new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new(AsciiCategory.Digit, 2, 2),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 5, 5),
+                    new(AsciiCategory.Digit, 11, 11),
+                    new(AsciiCategory.Digit, 2, 2),
+                }))
+                {
+                    Example = "BI4210000100010000332045181",
+                    EffectiveDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
+                },
+                Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
+                {
+                    Example = "10000100010000332045181"
+                },
+                Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+                {
+                    Example = "10000"
+                },
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+                {
+                    Example = "10001"
+                },
+                Sepa = new SepaInfo
+                {
+                    IsMember = false,
+                },
+                DomesticAccountNumberExample = "00003320451 81",
+                LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            };
+
             // Brazil
             yield return new IbanCountry("BR")
             {
-                DisplayName = "Brazil",
+                NativeName = "Brasil",
                 EnglishName = "Brazil",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -394,7 +432,7 @@ namespace IbanNet.Registry.Swift
             // Republic of Belarus
             yield return new IbanCountry("BY")
             {
-                DisplayName = "Republic of Belarus",
+                NativeName = "Беларусь",
                 EnglishName = "Republic of Belarus",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -427,7 +465,7 @@ namespace IbanNet.Registry.Swift
             // Switzerland
             yield return new IbanCountry("CH")
             {
-                DisplayName = "Switzerland",
+                NativeName = "Svizzera",
                 EnglishName = "Switzerland",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -459,7 +497,7 @@ namespace IbanNet.Registry.Swift
             // Costa Rica
             yield return new IbanCountry("CR")
             {
-                DisplayName = "Costa Rica",
+                NativeName = "Costa Rica",
                 EnglishName = "Costa Rica",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -491,7 +529,7 @@ namespace IbanNet.Registry.Swift
             // Cyprus
             yield return new IbanCountry("CY")
             {
-                DisplayName = "Cyprus",
+                NativeName = "Κύπρος",
                 EnglishName = "Cyprus",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -528,7 +566,7 @@ namespace IbanNet.Registry.Swift
             // Czechia
             yield return new IbanCountry("CZ")
             {
-                DisplayName = "Czechia",
+                NativeName = "Česko",
                 EnglishName = "Czechia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -561,7 +599,7 @@ namespace IbanNet.Registry.Swift
             // Germany
             yield return new IbanCountry("DE")
             {
-                DisplayName = "Germany",
+                NativeName = "Deutschland",
                 EnglishName = "Germany",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -593,7 +631,7 @@ namespace IbanNet.Registry.Swift
             // Denmark
             yield return new IbanCountry("DK")
             {
-                DisplayName = "Denmark",
+                NativeName = "Danmark",
                 EnglishName = "Denmark",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -626,7 +664,7 @@ namespace IbanNet.Registry.Swift
             // Dominican Republic
             yield return new IbanCountry("DO")
             {
-                DisplayName = "Dominican Republic",
+                NativeName = "República Dominicana",
                 EnglishName = "Dominican Republic",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -658,7 +696,7 @@ namespace IbanNet.Registry.Swift
             // Estonia
             yield return new IbanCountry("EE")
             {
-                DisplayName = "Estonia",
+                NativeName = "Eesti",
                 EnglishName = "Estonia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -692,7 +730,7 @@ namespace IbanNet.Registry.Swift
             // Egypt
             yield return new IbanCountry("EG")
             {
-                DisplayName = "Egypt",
+                NativeName = "مصر",
                 EnglishName = "Egypt",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -729,7 +767,7 @@ namespace IbanNet.Registry.Swift
             // Spain
             yield return new IbanCountry("ES")
             {
-                DisplayName = "Spain",
+                NativeName = "España",
                 EnglishName = "Spain",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -768,7 +806,7 @@ namespace IbanNet.Registry.Swift
             // Finland
             yield return new IbanCountry("FI")
             {
-                DisplayName = "Finland",
+                NativeName = "Suomi",
                 EnglishName = "Finland",
                 IncludedCountries = new[]
                 {
@@ -808,7 +846,7 @@ namespace IbanNet.Registry.Swift
             // Faroe Islands
             yield return new IbanCountry("FO")
             {
-                DisplayName = "Faroe Islands",
+                NativeName = "Føroyar",
                 EnglishName = "Faroe Islands",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -841,7 +879,7 @@ namespace IbanNet.Registry.Swift
             // France
             yield return new IbanCountry("FR")
             {
-                DisplayName = "France",
+                NativeName = "France",
                 EnglishName = "France",
                 IncludedCountries = new[]
                 {
@@ -883,7 +921,7 @@ namespace IbanNet.Registry.Swift
             // United Kingdom
             yield return new IbanCountry("GB")
             {
-                DisplayName = "United Kingdom",
+                NativeName = "United Kingdom",
                 EnglishName = "United Kingdom",
                 IncludedCountries = new[]
                 {
@@ -924,7 +962,7 @@ namespace IbanNet.Registry.Swift
             // Georgia
             yield return new IbanCountry("GE")
             {
-                DisplayName = "Georgia",
+                NativeName = "საქართველო",
                 EnglishName = "Georgia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -956,7 +994,7 @@ namespace IbanNet.Registry.Swift
             // Gibraltar
             yield return new IbanCountry("GI")
             {
-                DisplayName = "Gibraltar",
+                NativeName = "Gibraltar",
                 EnglishName = "Gibraltar",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -988,7 +1026,7 @@ namespace IbanNet.Registry.Swift
             // Greenland
             yield return new IbanCountry("GL")
             {
-                DisplayName = "Greenland",
+                NativeName = "Kalaallit Nunaat",
                 EnglishName = "Greenland",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1021,7 +1059,7 @@ namespace IbanNet.Registry.Swift
             // Greece
             yield return new IbanCountry("GR")
             {
-                DisplayName = "Greece",
+                NativeName = "Ελλάδα",
                 EnglishName = "Greece",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1058,7 +1096,7 @@ namespace IbanNet.Registry.Swift
             // Guatemala
             yield return new IbanCountry("GT")
             {
-                DisplayName = "Guatemala",
+                NativeName = "Guatemala",
                 EnglishName = "Guatemala",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1090,7 +1128,7 @@ namespace IbanNet.Registry.Swift
             // Croatia
             yield return new IbanCountry("HR")
             {
-                DisplayName = "Croatia",
+                NativeName = "Hrvatska",
                 EnglishName = "Croatia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1122,7 +1160,7 @@ namespace IbanNet.Registry.Swift
             // Hungary
             yield return new IbanCountry("HU")
             {
-                DisplayName = "Hungary",
+                NativeName = "Magyarország",
                 EnglishName = "Hungary",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1161,7 +1199,7 @@ namespace IbanNet.Registry.Swift
             // Ireland
             yield return new IbanCountry("IE")
             {
-                DisplayName = "Ireland",
+                NativeName = "Ireland",
                 EnglishName = "Ireland",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1198,7 +1236,7 @@ namespace IbanNet.Registry.Swift
             // Israel
             yield return new IbanCountry("IL")
             {
-                DisplayName = "Israel",
+                NativeName = "ישראל",
                 EnglishName = "Israel",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1235,7 +1273,7 @@ namespace IbanNet.Registry.Swift
             // Iraq
             yield return new IbanCountry("IQ")
             {
-                DisplayName = "Iraq",
+                NativeName = "العراق",
                 EnglishName = "Iraq",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1272,7 +1310,7 @@ namespace IbanNet.Registry.Swift
             // Iceland
             yield return new IbanCountry("IS")
             {
-                DisplayName = "Iceland",
+                NativeName = "Ísland",
                 EnglishName = "Iceland",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1310,7 +1348,7 @@ namespace IbanNet.Registry.Swift
             // Italy
             yield return new IbanCountry("IT")
             {
-                DisplayName = "Italy",
+                NativeName = "Italia",
                 EnglishName = "Italy",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1348,7 +1386,7 @@ namespace IbanNet.Registry.Swift
             // Jordan
             yield return new IbanCountry("JO")
             {
-                DisplayName = "Jordan",
+                NativeName = "الأردن",
                 EnglishName = "Jordan",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1385,7 +1423,7 @@ namespace IbanNet.Registry.Swift
             // Kuwait
             yield return new IbanCountry("KW")
             {
-                DisplayName = "Kuwait",
+                NativeName = "الكويت",
                 EnglishName = "Kuwait",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1417,7 +1455,7 @@ namespace IbanNet.Registry.Swift
             // Kazakhstan
             yield return new IbanCountry("KZ")
             {
-                DisplayName = "Kazakhstan",
+                NativeName = "Қазақстан",
                 EnglishName = "Kazakhstan",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1449,7 +1487,7 @@ namespace IbanNet.Registry.Swift
             // Lebanon
             yield return new IbanCountry("LB")
             {
-                DisplayName = "Lebanon",
+                NativeName = "لبنان",
                 EnglishName = "Lebanon",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1481,7 +1519,7 @@ namespace IbanNet.Registry.Swift
             // Saint Lucia
             yield return new IbanCountry("LC")
             {
-                DisplayName = "Saint Lucia",
+                NativeName = "St. Lucia",
                 EnglishName = "Saint Lucia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1513,7 +1551,7 @@ namespace IbanNet.Registry.Swift
             // Liechtenstein
             yield return new IbanCountry("LI")
             {
-                DisplayName = "Liechtenstein",
+                NativeName = "Liechtenstein",
                 EnglishName = "Liechtenstein",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1545,7 +1583,7 @@ namespace IbanNet.Registry.Swift
             // Lithuania
             yield return new IbanCountry("LT")
             {
-                DisplayName = "Lithuania",
+                NativeName = "Lietuva",
                 EnglishName = "Lithuania",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1577,7 +1615,7 @@ namespace IbanNet.Registry.Swift
             // Luxembourg
             yield return new IbanCountry("LU")
             {
-                DisplayName = "Luxembourg",
+                NativeName = "Lëtzebuerg",
                 EnglishName = "Luxembourg",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1609,7 +1647,7 @@ namespace IbanNet.Registry.Swift
             // Latvia
             yield return new IbanCountry("LV")
             {
-                DisplayName = "Latvia",
+                NativeName = "Latvija",
                 EnglishName = "Latvia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1641,7 +1679,7 @@ namespace IbanNet.Registry.Swift
             // Libya
             yield return new IbanCountry("LY")
             {
-                DisplayName = "Libya",
+                NativeName = "ليبيا",
                 EnglishName = "Libya",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1678,7 +1716,7 @@ namespace IbanNet.Registry.Swift
             // Monaco
             yield return new IbanCountry("MC")
             {
-                DisplayName = "Monaco",
+                NativeName = "Monaco",
                 EnglishName = "Monaco",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1716,7 +1754,7 @@ namespace IbanNet.Registry.Swift
             // Moldova
             yield return new IbanCountry("MD")
             {
-                DisplayName = "Moldova",
+                NativeName = "Republica Moldova",
                 EnglishName = "Moldova",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1748,7 +1786,7 @@ namespace IbanNet.Registry.Swift
             // Montenegro
             yield return new IbanCountry("ME")
             {
-                DisplayName = "Montenegro",
+                NativeName = "Crna Gora",
                 EnglishName = "Montenegro",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1781,7 +1819,7 @@ namespace IbanNet.Registry.Swift
             // Macedonia
             yield return new IbanCountry("MK")
             {
-                DisplayName = "Macedonia",
+                NativeName = "Северна Македонија",
                 EnglishName = "Macedonia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1814,7 +1852,7 @@ namespace IbanNet.Registry.Swift
             // Mauritania
             yield return new IbanCountry("MR")
             {
-                DisplayName = "Mauritania",
+                NativeName = "موريتانيا",
                 EnglishName = "Mauritania",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1852,7 +1890,7 @@ namespace IbanNet.Registry.Swift
             // Malta
             yield return new IbanCountry("MT")
             {
-                DisplayName = "Malta",
+                NativeName = "Malta",
                 EnglishName = "Malta",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1889,7 +1927,7 @@ namespace IbanNet.Registry.Swift
             // Mauritius
             yield return new IbanCountry("MU")
             {
-                DisplayName = "Mauritius",
+                NativeName = "Mauritius",
                 EnglishName = "Mauritius",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1929,7 +1967,7 @@ namespace IbanNet.Registry.Swift
             // Netherlands (The)
             yield return new IbanCountry("NL")
             {
-                DisplayName = "Netherlands (The)",
+                NativeName = "Nederland",
                 EnglishName = "Netherlands (The)",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1961,7 +1999,7 @@ namespace IbanNet.Registry.Swift
             // Norway
             yield return new IbanCountry("NO")
             {
-                DisplayName = "Norway",
+                NativeName = "Noreg",
                 EnglishName = "Norway",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -1994,7 +2032,7 @@ namespace IbanNet.Registry.Swift
             // Pakistan
             yield return new IbanCountry("PK")
             {
-                DisplayName = "Pakistan",
+                NativeName = "پاکستان",
                 EnglishName = "Pakistan",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2026,7 +2064,7 @@ namespace IbanNet.Registry.Swift
             // Poland
             yield return new IbanCountry("PL")
             {
-                DisplayName = "Poland",
+                NativeName = "Polska",
                 EnglishName = "Poland",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2058,7 +2096,7 @@ namespace IbanNet.Registry.Swift
             // Palestine, State of
             yield return new IbanCountry("PS")
             {
-                DisplayName = "Palestine, State of",
+                NativeName = "السلطة الفلسطينية",
                 EnglishName = "Palestine, State of",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2090,7 +2128,7 @@ namespace IbanNet.Registry.Swift
             // Portugal
             yield return new IbanCountry("PT")
             {
-                DisplayName = "Portugal",
+                NativeName = "Portugal",
                 EnglishName = "Portugal",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2128,7 +2166,7 @@ namespace IbanNet.Registry.Swift
             // Qatar
             yield return new IbanCountry("QA")
             {
-                DisplayName = "Qatar",
+                NativeName = "قطر",
                 EnglishName = "Qatar",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2160,7 +2198,7 @@ namespace IbanNet.Registry.Swift
             // Romania
             yield return new IbanCountry("RO")
             {
-                DisplayName = "Romania",
+                NativeName = "România",
                 EnglishName = "Romania",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2192,7 +2230,7 @@ namespace IbanNet.Registry.Swift
             // Serbia
             yield return new IbanCountry("RS")
             {
-                DisplayName = "Serbia",
+                NativeName = "Srbija",
                 EnglishName = "Serbia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2225,7 +2263,7 @@ namespace IbanNet.Registry.Swift
             // Saudi Arabia
             yield return new IbanCountry("SA")
             {
-                DisplayName = "Saudi Arabia",
+                NativeName = "المملكة العربية السعودية",
                 EnglishName = "Saudi Arabia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2257,7 +2295,7 @@ namespace IbanNet.Registry.Swift
             // Seychelles
             yield return new IbanCountry("SC")
             {
-                DisplayName = "Seychelles",
+                NativeName = "Seychelles",
                 EnglishName = "Seychelles",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2296,7 +2334,7 @@ namespace IbanNet.Registry.Swift
             // Sudan
             yield return new IbanCountry("SD")
             {
-                DisplayName = "Sudan",
+                NativeName = "السودان",
                 EnglishName = "Sudan",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2317,22 +2355,18 @@ namespace IbanNet.Registry.Swift
                 {
                     Example = "29"
                 },
-                Branch = new BranchStructure(new SwiftPattern("12!n"), 6)
-                {
-                    Example = "010501234001"
-                },
                 Sepa = new SepaInfo
                 {
                     IsMember = false,
                 },
                 DomesticAccountNumberExample = "010501234001",
-                LastUpdatedDate = new DateTimeOffset(2021, 6, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
             // Sweden
             yield return new IbanCountry("SE")
             {
-                DisplayName = "Sweden",
+                NativeName = "Sverige",
                 EnglishName = "Sweden",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2365,7 +2399,7 @@ namespace IbanNet.Registry.Swift
             // Slovenia
             yield return new IbanCountry("SI")
             {
-                DisplayName = "Slovenia",
+                NativeName = "Slovenija",
                 EnglishName = "Slovenia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2398,7 +2432,7 @@ namespace IbanNet.Registry.Swift
             // Slovakia
             yield return new IbanCountry("SK")
             {
-                DisplayName = "Slovakia",
+                NativeName = "Slovensko",
                 EnglishName = "Slovakia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2431,7 +2465,7 @@ namespace IbanNet.Registry.Swift
             // San Marino
             yield return new IbanCountry("SM")
             {
-                DisplayName = "San Marino",
+                NativeName = "San Marino",
                 EnglishName = "San Marino",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2469,7 +2503,7 @@ namespace IbanNet.Registry.Swift
             // Sao Tome and Principe
             yield return new IbanCountry("ST")
             {
-                DisplayName = "Sao Tome and Principe",
+                NativeName = "São Tomé e Príncipe",
                 EnglishName = "Sao Tome and Principe",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2507,7 +2541,7 @@ namespace IbanNet.Registry.Swift
             // El Salvador
             yield return new IbanCountry("SV")
             {
-                DisplayName = "El Salvador",
+                NativeName = "El Salvador",
                 EnglishName = "El Salvador",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2539,7 +2573,7 @@ namespace IbanNet.Registry.Swift
             // Timor-Leste
             yield return new IbanCountry("TL")
             {
-                DisplayName = "Timor-Leste",
+                NativeName = "Timor-Leste",
                 EnglishName = "Timor-Leste",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2572,7 +2606,7 @@ namespace IbanNet.Registry.Swift
             // Tunisia
             yield return new IbanCountry("TN")
             {
-                DisplayName = "Tunisia",
+                NativeName = "تونس",
                 EnglishName = "Tunisia",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2610,7 +2644,7 @@ namespace IbanNet.Registry.Swift
             // Turkey
             yield return new IbanCountry("TR")
             {
-                DisplayName = "Turkey",
+                NativeName = "Türkiye",
                 EnglishName = "Turkey",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2643,7 +2677,7 @@ namespace IbanNet.Registry.Swift
             // Ukraine
             yield return new IbanCountry("UA")
             {
-                DisplayName = "Ukraine",
+                NativeName = "Україна",
                 EnglishName = "Ukraine",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2675,7 +2709,7 @@ namespace IbanNet.Registry.Swift
             // Vatican City State
             yield return new IbanCountry("VA")
             {
-                DisplayName = "Vatican City State",
+                NativeName = "Città del Vaticano",
                 EnglishName = "Vatican City State",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2707,7 +2741,7 @@ namespace IbanNet.Registry.Swift
             // Virgin Islands
             yield return new IbanCountry("VG")
             {
-                DisplayName = "Virgin Islands",
+                NativeName = "British Virgin Islands",
                 EnglishName = "Virgin Islands",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2739,7 +2773,7 @@ namespace IbanNet.Registry.Swift
             // Kosovo
             yield return new IbanCountry("XK")
             {
-                DisplayName = "Kosovo",
+                NativeName = "Kosovë",
                 EnglishName = "Kosovo",
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {

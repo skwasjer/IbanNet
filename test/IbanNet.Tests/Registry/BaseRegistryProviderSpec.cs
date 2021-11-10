@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using TestHelpers.Specs;
 using Xunit;
@@ -31,6 +32,15 @@ namespace IbanNet.Registry
         {
             Subject.Should().NotBeEmpty();
             Subject.Count.Should().Be(_expectedCount);
+        }
+
+        [Fact]
+        public void Max_length_should_be_less_or_equal_for_all_countries()
+        {
+            int maxLengthOfAllCountries = Subject.Max(c => c.Iban.Length);
+
+            // Assert
+            Iban.MaxLength.Should().BeGreaterOrEqualTo(maxLengthOfAllCountries);
         }
     }
 }

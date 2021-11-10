@@ -10,9 +10,14 @@ namespace IbanNet.Validation.Rules
         /// <inheritdoc />
         public ValidationRuleResult Validate(ValidationRuleContext context)
         {
-            return context.Country is not null && context.Value.Length == context.Country.Iban.Length
-                ? ValidationRuleResult.Success
-                : new InvalidLengthResult();
+            int inputLength = context.Value.Length;
+            return context.Country is null
+                // Must match defined.
+             || inputLength != context.Country.Iban.Length
+                // Short circuit, in case of faulty country IBAN structure and excessively long input.
+             || inputLength > Iban.MaxLength
+                    ? new InvalidLengthResult()
+                    : ValidationRuleResult.Success;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -20,7 +19,15 @@ namespace IbanNet
     [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
     public sealed class Iban
+        : IEquatable<Iban>,
+          IFormattable
     {
+        /// <summary>
+        /// The maximum length of any IBAN, from any country.
+        /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        internal const int MaxLength = 34;
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static readonly Func<IIbanValidator> DefaultFactory = () => new IbanValidator();
 
@@ -38,7 +45,6 @@ namespace IbanNet
         /// Note: avoid using this member, it's only use case is allowing type conversion and may be obsolete in future.
         /// </para>
         /// </summary>
-        // ReSharper disable once MemberCanBePrivate.Global
         public static IIbanValidator Validator
         {
             get => _validatorInstance.Value;
@@ -60,17 +66,17 @@ namespace IbanNet
         public IbanCountry Country { get; }
 
         /// <summary>
-        /// Gets the BBAN.
+        /// Gets the BBAN part of the IBAN.
         /// </summary>
         public string Bban => Extract(Country.Bban) ?? _iban.Substring(4);
 
         /// <summary>
-        /// Gets the bank identifier, or null if bank identifier cannot be extracted.
+        /// Gets the bank identifier, or <see langword="null" /> if bank identifier cannot be extracted.
         /// </summary>
         public string? BankIdentifier => Extract(Country.Bank);
 
         /// <summary>
-        /// Gets the branch identifier, or null if branch identifier cannot be extracted.
+        /// Gets the branch identifier, or <see langword="null" /> if branch identifier cannot be extracted.
         /// </summary>
         public string? BranchIdentifier => Extract(Country.Branch);
 
@@ -84,50 +90,86 @@ namespace IbanNet
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
         public string ToString(IbanFormat format)
         {
-            switch (format)
+            const int visibleChars = 4;
+            const int segmentSize = 4;
+            return format switch
             {
-                case IbanFormat.Electronic:
-                    return _iban;
-
-                case IbanFormat.Obfuscated:
-                    const int visibleChars = 4;
-                    return new string('X', _iban.Length - visibleChars)
-                      + _iban.Substring(_iban.Length - visibleChars, visibleChars);
-
-                case IbanFormat.Print:
-                    // Split into 4 char segments.
-                    IEnumerable<string> segments = _iban.Partition(4).Select(p => new string(p.ToArray()));
-                    return string.Join(" ", segments);
-
-                default:
-                    throw new ArgumentException(
-                        string.Format(
-                            CultureInfo.CurrentCulture,
-                            Resources.ArgumentException_The_format_0_is_invalid,
-                            format
-                        ),
-                        nameof(format)
-                    );
-            }
+                IbanFormat.Electronic => _iban,
+                IbanFormat.Obfuscated => new string('X', _iban.Length - visibleChars)
+                  + _iban.Substring(_iban.Length - visibleChars, visibleChars),
+                IbanFormat.Print => string.Join(" ",
+                    _iban
+                        .Partition(segmentSize)
+                        .Select(p => new string(p.ToArray()))
+                ),
+                // TODO: change to IbanFormatException in future major release.
+                _ => throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format), nameof(format))
+            };
         }
 
         /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
         /// <returns>A string that represents the current <see cref="Iban" />.</returns>
         public override string ToString()
         {
-            return ToString(IbanFormat.Electronic);
+            return ((IFormattable)this).ToString(null, null);
         }
 
-        private bool Equals(Iban other)
+        /// <summary>Formats the value of the current instance using the specified format.</summary>
+        /// <example>
+        /// P => NL91 ABNA 0417 1643 00
+        /// E => NL91ABNA0417164300
+        /// O => XXXXXXXXXXXXXXXXXX4300
+        /// </example>
+        /// <param name="format">The format to use.
+        /// -or-
+        /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
+        /// </param>
+        /// <returns>The value of the current instance in the specified format.</returns>
+        public string ToString(string? format)
         {
-            return string.Equals(_iban, other._iban, StringComparison.Ordinal);
+            return ((IFormattable)this).ToString(format, null);
+        }
+
+        /// <summary>Formats the value of the current instance using the specified format.</summary>
+        /// <example>
+        /// P => NL91 ABNA 0417 1643 00
+        /// E => NL91ABNA0417164300
+        /// O => XXXXXXXXXXXXXXXXXX4300
+        /// </example>
+        /// <param name="format">The format to use.
+        /// -or-
+        /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
+        /// </param>
+        /// <param name="formatProvider">The provider to use to format the value.
+        /// -or-
+        /// A <see langword="null"/> reference to obtain the numeric format information from the current locale setting of the operating system.</param>
+        /// <returns>The value of the current instance in the specified format.</returns>
+        string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
+        {
+            return (format ?? "E").ToUpper() switch
+            {
+                "E" => ToString(IbanFormat.Electronic),
+                "O" => ToString(IbanFormat.Obfuscated),
+                "P" => ToString(IbanFormat.Print),
+                _ => throw new IbanFormatException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format))
+            };
+        }
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns><see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+        public bool Equals(Iban? other)
+        {
+            return string.Equals(_iban, other?._iban, StringComparison.Ordinal);
         }
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
-        /// <param name="obj">The object to compare with the current object. </param>
-        /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true" /> if the specified object  is equal to the current object; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj))
@@ -178,6 +220,11 @@ namespace IbanNet
             return !Equals(left, right);
         }
 
+        /// <summary>
+        /// Normalizes an IBAN by removing whitespace, removing non-alphanumerics and upper casing each character.
+        /// </summary>
+        /// <param name="value">The input value to normalize.</param>
+        /// <returns>The normalized IBAN.</returns>
         internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
         {
             if (value is null)
@@ -186,7 +233,15 @@ namespace IbanNet
             }
 
             int length = value.Length;
+#if USE_SPANS
+            // Use stack but clamp to avoid excessive stackalloc buffer.
+            const int stackallocMaxSize = MaxLength + 6;
+            Span<char> buffer = length <= stackallocMaxSize
+                ? stackalloc char[length]
+                : new char[length];
+#else
             char[] buffer = new char[length];
+#endif
             int pos = 0;
             // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
             for (int i = 0; i < length; i++)
@@ -208,7 +263,11 @@ namespace IbanNet
                 }
             }
 
+#if USE_SPANS
+            return new string(buffer[..pos]);
+#else
             return new string(buffer, 0, pos);
+#endif
         }
 
         private string? Extract(StructureSection? structure)

@@ -28,7 +28,7 @@ namespace IbanNet.Validation.Rules
         {
             string iban = context.Value;
             int length = iban.Length;
-            var buffer = new char[length];
+            char[] buffer = new char[length];
             // Reorder (first 4 chars at end).
             iban.CopyTo(4, buffer, 0, length - 4);
             iban.CopyTo(0, buffer, length - 4, 4);
