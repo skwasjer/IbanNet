@@ -144,11 +144,15 @@ namespace IbanNet.DependencyInjection
                     DelegateTestCase.Create(
                         IbanNetOptionsBuilderExtensions.UseRegistryProvider,
                         instance,
+#if NET452
                         new IIbanRegistryProvider[0]),
+#else
+                        Array.Empty<IIbanRegistryProvider>()),
+#endif
                     DelegateTestCase.Create(
                         IbanNetOptionsBuilderExtensions.WithRule<TestValidationRule>,
                         instance),
-                    DelegateTestCase.Create<IIbanNetOptionsBuilder, Func<TestValidationRule>, IIbanNetOptionsBuilder>(
+                    DelegateTestCase.Create(
                         IbanNetOptionsBuilderExtensions.WithRule,
                         instance,
                         () => new TestValidationRule())

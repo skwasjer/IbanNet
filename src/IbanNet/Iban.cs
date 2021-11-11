@@ -95,8 +95,12 @@ namespace IbanNet
             return format switch
             {
                 IbanFormat.Electronic => _iban,
-                IbanFormat.Obfuscated => new string('X', _iban.Length - visibleChars)
-                  + _iban.Substring(_iban.Length - visibleChars, visibleChars),
+                IbanFormat.Obfuscated =>
+#if NET5_0_OR_GREATER
+                    string.Concat(new string('X', _iban.Length - visibleChars), _iban.AsSpan(_iban.Length - visibleChars, visibleChars)),
+#else
+                    new string('X', _iban.Length - visibleChars) + _iban.Substring(_iban.Length - visibleChars, visibleChars),
+#endif
                 IbanFormat.Print => string.Join(" ",
                     _iban
                         .Partition(segmentSize)

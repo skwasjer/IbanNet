@@ -1,6 +1,8 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+
+    <NoWarn>$(NoWarn);IDE0079</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>

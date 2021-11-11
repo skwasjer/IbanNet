@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 using IbanNet.Registry.Patterns;
+using System;
 
 namespace IbanNet.Registry.Wikipedia
 {
@@ -39,7 +40,11 @@ namespace IbanNet.Registry.Wikipedia
             }
 
             return int.Parse(
+#if USE_SPANS
+                token.AsSpan(0, token.Length - 1),
+#else
                 token.Substring(0, token.Length - 1),
+#endif
                 NumberStyles.None,
                 CultureInfo.InvariantCulture
             );
