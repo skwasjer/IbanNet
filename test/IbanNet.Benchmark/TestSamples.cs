@@ -8,10 +8,13 @@ namespace IbanNet.Benchmark
     {
         public static IList<string> GetIbanSamples(int count)
         {
-            var examples = IbanRegistry.Default.Select(d => d.Iban.Example).ToList();
+            var generator = new IbanGenerator();
+            var countryCodes = IbanRegistry.Default
+                .Select(d => d.TwoLetterISORegionName)
+                .ToList();
 
             return Enumerable.Range(0, count)
-                .Select((i, index) => examples[index % examples.Count])
+                .Select((i, index) => generator.Generate(countryCodes[index % countryCodes.Count]).ToString())
                 .ToList();
         }
     }
