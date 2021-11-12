@@ -1,6 +1,6 @@
 # Changelog
 
-## v5.2.x
+## v5.2.0
 
 - Added `IbanCountry.NativeName` property which returns the country name in native language, if available.
 - Changed the `IbanCountry.DisplayName` property to return the native name, if available; otherwise returns the English name.
