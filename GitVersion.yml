@@ -1,8 +1,6 @@
 assembly-versioning-scheme: MajorMinorPatch
-mode: ContinuousDeployment
-continuous-delivery-fallback-tag: ''
-branches:
-  develop: {}
+mode: ContinuousDelivery
+continuous-delivery-fallback-tag: 'ci'
 ignore:
   sha:
   - 39f9b9adf2b5158903d1a738ee4f4f6cc2372a85
