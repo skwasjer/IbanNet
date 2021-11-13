@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.3.0
+
+- Added .NET 6 target
+
 ## v5.2.0
 
 - Added `IbanCountry.NativeName` property which returns the country name in native language, if available.
