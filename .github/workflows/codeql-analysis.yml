@@ -41,6 +41,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    # Workaround: CodeQL does not have .NET 6 support yet
+    - name: Setup .NET 6.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
