@@ -44,12 +44,8 @@ if (success)
 
 Please check out the [contribution guidelines](./CONTRIBUTING.md).
 
-### Contributors
+### Other info
 
-- skwas (author/maintainer)
-
-### Useful info
-
-- [Changelog](Changelog.md)
+- [Changelog](./CHANGELOG.md)
 - [IbanNet supported countries](SupportedCountries.md)
 - [Fiddle](https://dotnetfiddle.net/JeGa9x)
