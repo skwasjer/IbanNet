@@ -49,7 +49,7 @@ namespace IbanNet.Registry.Patterns
             catch (Exception ex) when (
                 ex is ArgumentException
              || ex is InvalidOperationException
-             || ex is FormatException && !(ex is PatternException)
+             || ex is FormatException and not PatternException
              || ex is IndexOutOfRangeException
                 )
             {

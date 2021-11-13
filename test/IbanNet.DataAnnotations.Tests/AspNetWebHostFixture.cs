@@ -12,7 +12,9 @@ namespace IbanNet.DataAnnotations
 {
     public class TestStartup
     {
+#pragma warning disable CA1822 // Mark members as static
         public void ConfigureServices(IServiceCollection services)
+#pragma warning restore CA1822 // Mark members as static
         {
             services
                 .AddSingleton<IIbanValidator, IbanValidator>()
@@ -23,7 +25,9 @@ namespace IbanNet.DataAnnotations
                 .AddControllersAsServices();
         }
 
-        public virtual void Configure(IApplicationBuilder app)
+#pragma warning disable CA1822 // Mark members as static
+        public void Configure(IApplicationBuilder app)
+#pragma warning restore CA1822 // Mark members as static
         {
 #if ENDPOINT_ROUTING
             app.UseRouting();
