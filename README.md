@@ -42,7 +42,7 @@ if (success)
 
 ### Contributions
 
-PR's are welcome. Please rebase before submitting, provide test coverage, and ensure the AppVeyor build passes. I will not consider PR's otherwise.
+Please check out the [contribution guidelines](./CONTRIBUTING.md).
 
 ### Contributors
 
