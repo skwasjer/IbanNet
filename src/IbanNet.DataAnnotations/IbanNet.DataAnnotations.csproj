@@ -9,7 +9,12 @@
     <Description>Data annotations to validate IBAN user input.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/IbanNet.DataAnnotations</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, Web API, MVC</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" Condition="'$(TargetFramework)'!='net5.0' And '$(TargetFramework)'!='net6.0'" />

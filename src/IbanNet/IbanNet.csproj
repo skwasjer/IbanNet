@@ -11,7 +11,12 @@
     <Description>Provides a strict International Bank Account Number (IBAN) validator, parser, builder, generator and the Iban primitive type.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
