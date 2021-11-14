@@ -9,9 +9,9 @@ Additionally, IbanNet provides:
 
 ---
 
-[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l/branch/master?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
-[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet/master.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
-[![codecov](https://codecov.io/gh/skwasjer/IbanNet/branch/master/graph/badge.svg)](https://codecov.io/gh/skwasjer/IbanNet)
+[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l/branch/main?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
+[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet/main.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
+[![codecov](https://codecov.io/gh/skwasjer/IbanNet/branch/main/graph/badge.svg)](https://codecov.io/gh/skwasjer/IbanNet)
 
 | | | |
 |---|---|---|

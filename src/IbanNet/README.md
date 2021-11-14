@@ -30,10 +30,10 @@ if (success)
 
 ## Other info
 
-- [Changelog](https://github.com/skwasjer/IbanNet/blob/master/CHANGELOG.md)
-- [IbanNet supported countries](https://github.com/skwasjer/IbanNet/blob/master/SupportedCountries.md)
+- [Changelog](https://github.com/skwasjer/IbanNet/blob/main/CHANGELOG.md)
+- [IbanNet supported countries](https://github.com/skwasjer/IbanNet/blob/main/SupportedCountries.md)
 - [Fiddle](https://dotnetfiddle.net/JeGa9x)
 
 ### Contributions
 
-Please check out the [contribution guidelines](https://github.com/skwasjer/IbanNet/blob/master/CONTRIBUTING.md).
+Please check out the [contribution guidelines](https://github.com/skwasjer/IbanNet/blob/main/CONTRIBUTING.md).

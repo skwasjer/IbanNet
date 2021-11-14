@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.3.2
+
+- Change `master` branch to `main`, requiring update to CI scripts, and update all external page references.
+
+## v5.3.1
+
+- Add package README's
+
 ## v5.3.0
 
 - Added .NET 6 target
