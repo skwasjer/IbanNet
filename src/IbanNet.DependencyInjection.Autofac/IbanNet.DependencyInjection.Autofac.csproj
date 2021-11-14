@@ -9,7 +9,12 @@
     <Description>Autofac IoC container integration for IbanNet; IbanNet provides an IBAN validator and parser.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/Dependency-injection</PackageProjectUrl>
     <PackageTags>IBAN, IoC, Autofac, IbanNet, dependencyinjection</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />

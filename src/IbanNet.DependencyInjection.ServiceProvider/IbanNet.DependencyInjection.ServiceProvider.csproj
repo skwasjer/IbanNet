@@ -9,7 +9,12 @@
     <Description>Microsoft.Extensions.DependencyInjection integration for IbanNet; IbanNet provides an IBAN validator and parser.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/Dependency-injection</PackageProjectUrl>
     <PackageTags>IBAN, IbanNet, IoC, dependencyinjection, di, servicecollection, serviceprovider</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsVersion)" />

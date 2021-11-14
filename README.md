@@ -1,6 +1,11 @@
 # IbanNet <img align="right" width="64" height="64" src="IbanNet64.png">
 
-IbanNet is a .NET library providing functionality to validate and parse an [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) also known as IBAN.
+IbanNet is a .NET library providing functionality to validate and parse an [International Bank Account Number](https://en.wikipedia.org/wiki/International_Bank_Account_Number) also known as IBAN. 
+
+Additionally, IbanNet provides:
+- the `Iban` primitive type, which can be used as a drop in replacement for a `string` in your domain. 
+- a builder to construct IBAN's from a Basic Bank Account Number (BBAN).
+- a generator to assist with (unit) testing.
 
 ---
 

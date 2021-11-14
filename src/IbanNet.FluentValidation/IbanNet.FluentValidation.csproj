@@ -9,7 +9,12 @@
     <Description>FluentValidation support to validate IBAN user input.</Description>
     <PackageProjectUrl>https://github.com/skwasjer/IbanNet/wiki/IbanNet.FluentValidation</PackageProjectUrl>
     <PackageTags>IBAN, International Bank Account Number, FluentValidation, Web API, MVC</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.2.3" />
