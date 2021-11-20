@@ -47,7 +47,7 @@ Building/developing IbanNet requires:
 - dotnet tooling / .NET 6 SDK / MSBuild 17.x
 - [T4 templating](https://docs.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022) support (only if updating registry providers)
 - PowerShell 2.0
-- SDK's/targetting packs of any of the [supported target frameworks](./wiki/Installation#target-frameworks), plus additionally, for running unit tests:
+- SDK's/targetting packs of any of the [supported target frameworks](../../wiki/Installation#target-frameworks), plus additionally, for running unit tests:
   - .NET Core 3.1
   - .NET Core 2.1
   - .NET Framework 4.8
