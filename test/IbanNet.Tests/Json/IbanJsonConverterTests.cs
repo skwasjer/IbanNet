@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using System.Text.Json;
+using FluentAssertions;
 using IbanNet.Registry;
 using Moq;
 using TestHelpers;
@@ -63,6 +64,25 @@ namespace IbanNet.Json
             // Assert
             parserMock.Verify();
         }
+
+        [Fact]
+        public void Given_that_a_complex_record_has_an_iban_when_deserializing_it_should_equal_expected()
+        {
+            var parser = new IbanParser(IbanRegistry.Default);
+
+            var payment1 = new Payment(parser.Parse("NL91 ABNA 0417 1643 00"), 100M);
+            const string expectedJson = "{\"BankAccountNumber\":\"NL91ABNA0417164300\",\"Amount\":100}";
+
+            // Act
+            string json = JsonSerializer.Serialize(payment1);
+            Payment payment2 = JsonSerializer.Deserialize<Payment>(json);
+
+            // Assert
+            json.Should().Be(expectedJson);
+            payment2.Should().Be(payment1);
+        }
+
+        public record Payment(Iban BankAccountNumber, decimal Amount) { }
     }
 }
 #endif
