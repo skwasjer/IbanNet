@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateIbans", "GenerateIbans.csproj", "{123B3F78-97CE-46F1-A32C-AC30A28A29E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{123B3F78-97CE-46F1-A32C-AC30A28A29E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{123B3F78-97CE-46F1-A32C-AC30A28A29E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{123B3F78-97CE-46F1-A32C-AC30A28A29E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{123B3F78-97CE-46F1-A32C-AC30A28A29E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6A5265E-820A-4410-A534-D65CED3EE3B0}
+	EndGlobalSection
+EndGlobal
