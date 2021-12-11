@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreExample", "AspNetCoreExample.csproj", "{492B2C57-E7F4-491F-B872-F3E2387CEDFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug DataAnnotations|Any CPU = Debug DataAnnotations|Any CPU
+		Debug FluentValidation|Any CPU = Debug FluentValidation|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{492B2C57-E7F4-491F-B872-F3E2387CEDFC}.Debug DataAnnotations|Any CPU.ActiveCfg = Debug DataAnnotations|Any CPU
+		{492B2C57-E7F4-491F-B872-F3E2387CEDFC}.Debug DataAnnotations|Any CPU.Build.0 = Debug DataAnnotations|Any CPU
+		{492B2C57-E7F4-491F-B872-F3E2387CEDFC}.Debug FluentValidation|Any CPU.ActiveCfg = Debug FluentValidation|Any CPU
+		{492B2C57-E7F4-491F-B872-F3E2387CEDFC}.Debug FluentValidation|Any CPU.Build.0 = Debug FluentValidation|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F2EC457-0C67-4ED2-A4A7-7C77878C2017}
+	EndGlobalSection
+EndGlobal
