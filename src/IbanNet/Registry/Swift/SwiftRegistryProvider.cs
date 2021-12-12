@@ -2847,4 +2847,3 @@ namespace IbanNet.Registry.Swift
         }
     }
 }
-

@@ -33,13 +33,6 @@
     <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net6.0'">
-    <PackageReference Include="CsvHelper" Version="15.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <GeneratePathProperty>true</GeneratePathProperty>
-    </PackageReference>
-  </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Registry\Swift\SwiftRegistryProvider.cs">
       <DesignTime>True</DesignTime>

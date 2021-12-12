@@ -50,6 +50,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.DependencyInjection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.DependencyInjection.ServiceProvider.Tests", "test\IbanNet.DependencyInjection.ServiceProvider.Tests\IbanNet.DependencyInjection.ServiceProvider.Tests.csproj", "{227A0F7B-FED0-49F5-BAFB-E259425024C1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.CodeGen", "src\IbanNet.CodeGen\IbanNet.CodeGen.csproj", "{42C5FA1C-58F8-4057-965C-1D04759053E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IbanNet.CodeGen.Tests", "test\IbanNet.CodeGen.Tests\IbanNet.CodeGen.Tests.csproj", "{A42DAED5-82AF-47FB-A10C-D3FD38C8EDC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +108,12 @@ Global
 		{227A0F7B-FED0-49F5-BAFB-E259425024C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{227A0F7B-FED0-49F5-BAFB-E259425024C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{227A0F7B-FED0-49F5-BAFB-E259425024C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C5FA1C-58F8-4057-965C-1D04759053E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C5FA1C-58F8-4057-965C-1D04759053E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C5FA1C-58F8-4057-965C-1D04759053E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42DAED5-82AF-47FB-A10C-D3FD38C8EDC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42DAED5-82AF-47FB-A10C-D3FD38C8EDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42DAED5-82AF-47FB-A10C-D3FD38C8EDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +131,8 @@ Global
 		{A55DA44E-F3BC-497B-92C0-66594164B94A} = {6DDAB3B8-F745-42DD-B3E7-B2EAEEBF79B4}
 		{DCC418DB-CF16-421C-A696-12F21206CC37} = {D19A7B97-1063-40A0-90FD-D88CCAE710AD}
 		{227A0F7B-FED0-49F5-BAFB-E259425024C1} = {D19A7B97-1063-40A0-90FD-D88CCAE710AD}
+		{42C5FA1C-58F8-4057-965C-1D04759053E6} = {6DDAB3B8-F745-42DD-B3E7-B2EAEEBF79B4}
+		{A42DAED5-82AF-47FB-A10C-D3FD38C8EDC2} = {D19A7B97-1063-40A0-90FD-D88CCAE710AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {294339CD-FA4F-4798-8BA7-EB37812136AC}

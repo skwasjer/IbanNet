@@ -1,26 +1,25 @@
-﻿<#@ template hostspecific="true" language="C#" #>
+﻿<#@ template hostspecific="true" language="C#" visibility="internal" debug="true" #>
 <#@ assembly name="NetStandard" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(PkgCsvHelper)\lib\netstandard2.0\CsvHelper.dll" #>
-<#@ assembly name="$(SolutionDir)\src\IbanNet\bin\Debug\netstandard2.0\IbanNet.dll" #>
-<#@ import namespace="CsvHelper" #>
-<#@ import namespace="CsvHelper.Configuration" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Globalization" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet.CodeGen\bin\$(Configuration)\netstandard2.0\IbanNet.CodeGen.dll" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet.CodeGen\bin\$(Configuration)\netstandard2.0\CsvHelper.dll" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet\bin\$(Configuration)\netstandard2.0\IbanNet.dll" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
-<#@ import namespace="System.Text.RegularExpressions" #>
-<#@ import namespace="IbanNet.Registry" #>
-<#@ import namespace="IbanNet.Registry.Patterns" #>
+<#@ import namespace="IbanNet.CodeGen.Swift" #>
 <#@ import namespace="IbanNet.Registry.Swift" #>
+<#@ output extension=".cs" #>
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Diagnostics;
 using IbanNet.Registry.Patterns;
 <#
     string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
-    string registryPath = Directory.GetFiles(dataFolder).OrderBy(s => s).Last();
+    string registryPath = Directory.GetFiles(dataFolder)
+        .Where(s => s.EndsWith(".txt"))
+        .OrderBy(s => s)
+        .Last();
     string registryFile = Path.GetFileName(registryPath);
     string registryReleaseVersion = registryFile.Split('.')[1];
 #>
@@ -62,114 +61,92 @@ namespace IbanNet.Registry.Swift
             // ReSharper disable StringLiteralTypo
 
 <#
-    Func<string, string> checkValue = (value) => value is null || value == "" || value.Trim() == "N/A" ? null : value.Trim();
-    Func<string, string> normalizeExample = (value) => string.IsNullOrEmpty(value) ? value : Regex.Replace(value, @"[^\w]", "");
-    Func<string, int> getNumber = (value) => value is null || value == "" || value == "N/A" ? 0 : int.Parse(Regex.Replace(value, @"[^\d]", ""));
+    var csv = new SwiftCsvReader(new StreamReader(registryPath, Encoding.GetEncoding(1252)));
+    var records = csv.GetRecords<SwiftCsvRecord>();
 
-    CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture)
+    foreach (var record in records)
     {
-        Delimiter = "\t"
-    };
-    using (var csv = new CsvReader(new StreamReader(registryPath, Encoding.GetEncoding(1252)), config)) {
-        List<string[]> records = new List<string[]>();
-        while (csv.Read())
-        {
-            records.Add(csv.Context.Record.Select(s => checkValue(s)).ToArray());
-        }
-
-        string[][] table = Transpose(records.Skip(1).ToArray()).Skip(1).ToArray();
-        string[] includedCountries;
-        foreach (string[] row in table)
-        {
-            var countryCode = row[1].ToUpperInvariant();
-            if (Boycott(countryCode)) continue;
-
-            var effectiveDate = DateTime.ParseExact(row[19], "MMM-yy", CultureInfo.InvariantCulture);
-            var lastUpdatedDate = DateTime.ParseExact(row[42], "MMM-yy", CultureInfo.InvariantCulture);
-            var englishName = row[0];
+        int bbanOffset = record.Iban.Length - record.Bban.Length;
+        if (Boycott(record.CountryCode)) continue;
 #>
-            // <#= englishName #>
-            yield return new IbanCountry("<#= countryCode #>")
+            // <#= record.EnglishName #>
+            yield return new IbanCountry("<#= record.CountryCode #>")
             {
-                NativeName = "<#= GetNativeName(countryCode) #>",
-                EnglishName = "<#= englishName #>",
+                NativeName = "<#= record.NativeName #>",
+                EnglishName = "<#= record.EnglishName #>",
 <#
-                    includedCountries = row[2] is null ? new string[0] : row[2].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
-                    if (includedCountries.Length > 0) {
+        if (record.OtherTerritories.Count > 0) {
 #>
                 IncludedCountries = new[]
                 {
                     <#
-                WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
-                #>
+                    WriteLine(string.Join(", ", record.OtherTerritories.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
+#>
                 },
 <#
-                    }
+        }
 
-                    int bbanOffset = getNumber(row[18]) - getNumber(row[8]);
 #>
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
 <#
-                    var p = new IbanSwiftPattern(row[17]);
-                    foreach (var t in p.Tokens)
-                    {
+        var pattern = new IbanSwiftPattern(record.Iban.Pattern);
+        foreach (var token in pattern.Tokens)
+        {
 #>
-                    new(AsciiCategory.<#= t.Category #>, <#= t.MinLength #>, <#= t.MaxLength #>),
+                    new(AsciiCategory.<#= token.Category #>, <#= token.MinLength #>, <#= token.MaxLength #>),
 <#
-                    }
+        }
 #>
                 }))
                 {
-                    Example = "<#= normalizeExample(row[20]) ?? string.Empty #>",
-                    EffectiveDate = new DateTimeOffset(<#= effectiveDate.Year #>, <#= effectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+                    Example = "<#= record.Iban.ElectronicFormatExample ?? string.Empty #>",
+                    EffectiveDate = new DateTimeOffset(<#= record.EffectiveDate.Year #>, <#= record.EffectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
                 },
-                Bban = new BbanStructure(new SwiftPattern("<#= row[7] #>"), <#= bbanOffset #>)
+                Bban = new BbanStructure(new SwiftPattern("<#= record.Bban.Pattern #>"), <#= bbanOffset #>)
                 {
-                    Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
+                    Example = "<#= record.Bban.Example ?? string.Empty #>"
                 },
 <#
-                        if (row[9] is not null && row[10] is not null) {
+        if (record.Bank.Pattern is not null && record.Bank.Position.HasValue) {
 #>
-                Bank = new BankStructure(new SwiftPattern("<#= row[10] #>"), <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>)
+                Bank = new BankStructure(new SwiftPattern("<#= record.Bank.Pattern #>"), <#= bbanOffset + record.Bank.Position.Value.StartPos - 1 #>)
                 {
-                    Example = "<#= normalizeExample(row[13]) ?? string.Empty #>"
+                    Example = "<#= record.Bank.Example ?? string.Empty #>"
                 },
 <#
-                        }
+        }
 
-                        if (row[11] is not null && row[12] is not null) {
+        if (record.Branch.Pattern is not null && record.Branch.Position.HasValue) {
 #>
-                Branch = new BranchStructure(new SwiftPattern("<#= row[12] #>"), <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>)
+                Branch = new BranchStructure(new SwiftPattern("<#= record.Branch.Pattern #>"), <#= bbanOffset + record.Branch.Position.Value.StartPos - 1 #>)
                 {
-                    Example = "<#= normalizeExample(row[14]) ?? string.Empty #>"
+                    Example = "<#= record.Branch.Example ?? string.Empty #>"
                 },
 <#
-                        }
+        }
 #>
                 Sepa = new SepaInfo
                 {
-                    IsMember = <#= ((row[3] ?? string.Empty).ToLowerInvariant() == "yes").ToString().ToLowerInvariant() + (row[4] is null ? "" : ",") #>
+                    IsMember = <#= record.Sepa.IsMember.ToString().ToLowerInvariant() + (record.Sepa.OtherTerritories.Count > 0 ? "," : "") #>
 <#
-                    includedCountries = row[4] is null ? new string[0] : row[4].Split(new [] { ", " }, StringSplitOptions.RemoveEmptyEntries);
-                    if (includedCountries.Length > 0) {
+        if (record.Sepa.OtherTerritories.Count > 0) {
 #>
                     IncludedCountries = new[]
                     {
                         <#
-                        WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
-                        #>
+                        WriteLine(string.Join(", ", record.Sepa.OtherTerritories.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
+#>
                     }
 <#
-                    }
+        }
 #>
                 },
-                DomesticAccountNumberExample = "<#= row[5] ?? string.Empty #>",
-                LastUpdatedDate = new DateTimeOffset(<#= lastUpdatedDate.Year #>, <#= lastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+                DomesticAccountNumberExample = "<#= record.DomesticExample ?? string.Empty #>",
+                LastUpdatedDate = new DateTimeOffset(<#= record.LastUpdatedDate.Year #>, <#= record.LastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
             };
 
 <#
-        }
     }
 #>
             // ReSharper restore StringLiteralTypo
@@ -177,42 +154,7 @@ namespace IbanNet.Registry.Swift
         }
     }
 }
-
 <#+
-private string GetNativeName(string countryCode)
-{
-    try
-    {
-        return new RegionInfo(countryCode).NativeName;
-    }
-    catch (ArgumentException)
-    {
-        return null;
-    }
-}
-
-private string[][] Transpose(string[][] arr)
-{
-    // Init target buffer.
-    var buffer = new string[arr[0].Length][];
-    for (int i = 0; i < buffer.Length; i++)
-    {
-        buffer[i] = new string[arr.Length];
-    }
-
-    // Copy and transpose to target buffer.
-    for (int i = 0; i < arr.Length; i++)
-    {
-        var line = arr[i];
-        for (int j = 0; j < line.Length; j++)
-        {
-            buffer[j][i] = arr[i][j];
-        }
-    }
-
-    return buffer;
-}
-
 private static bool Boycott(string countryCode)
 {
     return countryCode == "RU"; // Go Ukraine!
