@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using IbanNet.Extensions;
+﻿using IbanNet.Extensions;
 using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry.Swift

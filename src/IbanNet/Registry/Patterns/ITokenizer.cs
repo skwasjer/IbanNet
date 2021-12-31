@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace IbanNet.Registry.Patterns
+﻿namespace IbanNet.Registry.Patterns
 {
     /// <summary>
     /// Provides a way to classify sections of an input string into separate tokens.

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using IbanNet.Registry.Patterns;
+﻿using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry
 {

@@ -1,7 +1,4 @@
-﻿using System;
-using FluentAssertions;
-using IbanNet.Registry.Patterns;
-using Xunit;
+﻿using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry
 {

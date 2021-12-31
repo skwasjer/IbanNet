@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using IbanNet.Validation.Rules;
 using Microsoft.Extensions.DependencyInjection;
 

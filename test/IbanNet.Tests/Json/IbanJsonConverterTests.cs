@@ -1,12 +1,8 @@
 ﻿#if NET5_0_OR_GREATER
-using System;
 using System.Text;
 using System.Text.Json;
-using FluentAssertions;
 using IbanNet.Registry;
-using Moq;
 using TestHelpers;
-using Xunit;
 
 namespace IbanNet.Json
 {

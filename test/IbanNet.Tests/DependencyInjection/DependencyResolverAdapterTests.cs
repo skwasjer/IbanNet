@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using Moq;
-using TestHelpers;
+﻿using TestHelpers;
 using TestHelpers.FluentAssertions;
-using Xunit;
 
 namespace IbanNet.DependencyInjection
 {

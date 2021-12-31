@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using FluentAssertions;
-using Xunit;
+﻿using System.ComponentModel;
 
 namespace IbanNet.Registry.Patterns
 {

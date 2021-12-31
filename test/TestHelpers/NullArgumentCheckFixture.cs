@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using FluentAssertions;
+﻿using System.Reflection;
 using TestHelpers.FluentAssertions;
 
 namespace TestHelpers

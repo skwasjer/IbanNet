@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.Validation.Results
+﻿namespace IbanNet.Validation.Results
 {
     /// <summary>
     /// Describes the error that occurred for a validation rule.

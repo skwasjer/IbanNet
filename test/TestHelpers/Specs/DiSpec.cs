@@ -1,7 +1,5 @@
-﻿using System;
-using IbanNet.DependencyInjection;
+﻿using IbanNet.DependencyInjection;
 using TestHelpers.Fixtures;
-using Xunit;
 
 namespace TestHelpers.Specs
 {

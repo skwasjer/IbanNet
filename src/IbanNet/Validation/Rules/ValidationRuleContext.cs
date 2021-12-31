@@ -1,5 +1,4 @@
-﻿using System;
-using IbanNet.Registry;
+﻿using IbanNet.Registry;
 
 namespace IbanNet.Validation.Rules
 {

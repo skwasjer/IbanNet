@@ -1,6 +1,4 @@
-﻿using Moq;
-
-namespace IbanNet.DependencyInjection.FluentAssertions
+﻿namespace IbanNet.DependencyInjection.FluentAssertions
 {
     public static class IbanNetOptionsBuilderStubExtensions
     {

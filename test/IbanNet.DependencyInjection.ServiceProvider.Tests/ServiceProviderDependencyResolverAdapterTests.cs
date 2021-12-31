@@ -1,9 +1,6 @@
-﻿using System;
-using FluentAssertions;
-using IbanNet.Validation.Results;
+﻿using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 
 namespace IbanNet.DependencyInjection.ServiceProvider
 {

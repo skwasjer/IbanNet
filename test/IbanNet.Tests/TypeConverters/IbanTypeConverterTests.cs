@@ -1,12 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using FluentAssertions;
 using IbanNet.Registry;
-using Moq;
 using Newtonsoft.Json;
 using TestHelpers;
-using Xunit;
 
 namespace IbanNet.TypeConverters
 {

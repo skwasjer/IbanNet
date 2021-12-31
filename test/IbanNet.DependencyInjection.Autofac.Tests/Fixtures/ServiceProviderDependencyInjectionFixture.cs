@@ -1,5 +1,4 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using TestHelpers.Fixtures;
 
 namespace IbanNet.DependencyInjection.Autofac.Fixtures

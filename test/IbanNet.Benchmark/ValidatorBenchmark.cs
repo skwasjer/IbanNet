@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 #if VALIDATOR_COMPARISONS
 using SinKien.IBAN4Net;

@@ -1,5 +1,4 @@
-﻿using System;
-using IbanNet.DependencyInjection;
+﻿using IbanNet.DependencyInjection;
 
 namespace TestHelpers.Fixtures
 {

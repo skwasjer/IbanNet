@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using Moq;
-using Xunit;
-
-namespace IbanNet.Registry.Patterns
+﻿namespace IbanNet.Registry.Patterns
 {
     public class PatternTests
     {

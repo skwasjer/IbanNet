@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using Xunit;
-
-namespace IbanNet.Extensions
+﻿namespace IbanNet.Extensions
 {
     public class ArrayExtensionsTests
     {

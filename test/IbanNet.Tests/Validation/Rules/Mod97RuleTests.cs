@@ -1,9 +1,5 @@
-﻿using System.Linq;
-using FluentAssertions;
-using IbanNet.CheckDigits.Calculators;
+﻿using IbanNet.CheckDigits.Calculators;
 using IbanNet.Validation.Results;
-using Moq;
-using Xunit;
 
 namespace IbanNet.Validation.Rules
 {

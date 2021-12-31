@@ -1,12 +1,9 @@
 ﻿#if ASPNET_INTEGRATION_TESTS
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Xunit;
 
 namespace IbanNet.DataAnnotations
 {

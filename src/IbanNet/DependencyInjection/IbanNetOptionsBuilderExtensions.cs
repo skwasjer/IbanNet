@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using IbanNet.Registry;
 using IbanNet.Validation.Rules;
 

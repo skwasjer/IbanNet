@@ -1,8 +1,4 @@
-﻿using System;
-using FluentAssertions;
-using Xunit;
-
-namespace IbanNet.Registry
+﻿namespace IbanNet.Registry
 {
     public class IbanCountryTests
     {

@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
-using System.Threading;
 using IbanNet.Extensions;
 using IbanNet.Registry;
 using IbanNet.TypeConverters;

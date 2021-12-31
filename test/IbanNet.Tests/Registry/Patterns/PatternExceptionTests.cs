@@ -1,8 +1,5 @@
-﻿using System;
-using FluentAssertions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using TestHelpers.Specs;
-using Xunit;
 
 namespace IbanNet.Registry.Patterns
 {

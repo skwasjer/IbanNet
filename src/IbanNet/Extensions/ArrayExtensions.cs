@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.Extensions
+﻿namespace IbanNet.Extensions
 {
     internal static class ArrayExtensions
     {

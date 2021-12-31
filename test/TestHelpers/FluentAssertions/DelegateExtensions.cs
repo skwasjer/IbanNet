@@ -1,7 +1,4 @@
-﻿using System;
-using FluentAssertions;
-
-namespace TestHelpers.FluentAssertions
+﻿namespace TestHelpers.FluentAssertions
 {
     public static class DelegateExtensions
     {

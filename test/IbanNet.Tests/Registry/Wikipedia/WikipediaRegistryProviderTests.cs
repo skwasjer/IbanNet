@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace IbanNet.Registry.Wikipedia
+﻿namespace IbanNet.Registry.Wikipedia
 {
     public class WikipediaRegistryProviderTests : BaseRegistryProviderSpec<WikipediaRegistryProvider>
     {

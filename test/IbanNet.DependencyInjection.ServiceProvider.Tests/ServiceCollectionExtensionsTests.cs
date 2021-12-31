@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TestHelpers;
-using Xunit;
 
 namespace IbanNet.DependencyInjection.ServiceProvider
 {

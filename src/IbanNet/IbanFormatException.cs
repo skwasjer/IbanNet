@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet
+﻿namespace IbanNet
 {
     /// <summary>
     /// The exception that is thrown when the format of an IBAN is invalid.

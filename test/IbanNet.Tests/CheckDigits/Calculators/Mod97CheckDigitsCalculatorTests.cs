@@ -1,8 +1,4 @@
-﻿using System;
-using FluentAssertions;
-using Xunit;
-
-namespace IbanNet.CheckDigits.Calculators
+﻿namespace IbanNet.CheckDigits.Calculators
 {
     public class Mod97CheckDigitsCalculatorTests
     {

@@ -1,5 +1,4 @@
-﻿using System;
-using IbanNet.Validation.Rules;
+﻿using IbanNet.Validation.Rules;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IbanNet.DependencyInjection.ServiceProvider

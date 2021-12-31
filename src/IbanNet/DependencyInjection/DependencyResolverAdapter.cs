@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.DependencyInjection
+﻿namespace IbanNet.DependencyInjection
 {
     /// <summary>
     /// A base adapter for dependency injection implementations to implement.

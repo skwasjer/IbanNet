@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentAssertions;
-using IbanNet.Registry;
+﻿using IbanNet.Registry;
 using IbanNet.Registry.Patterns;
-using Xunit;
 
 namespace IbanNet.Builders
 {

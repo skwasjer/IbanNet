@@ -2,6 +2,7 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <ImplicitUsings>enable</ImplicitUsings>
 
     <NoWarn>$(NoWarn);IDE0079</NoWarn>
   </PropertyGroup>

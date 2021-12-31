@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using IbanNet.Validation.Rules;
+﻿using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation
 {

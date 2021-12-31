@@ -1,10 +1,7 @@
 ﻿#if NETCOREAPP3_1_OR_GREATER
-using System;
-using FluentAssertions;
 using IbanNet.DependencyInjection.ServiceProvider.Fixtures;
 using Microsoft.Extensions.Options;
 using TestHelpers.Specs;
-using Xunit;
 
 namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 {

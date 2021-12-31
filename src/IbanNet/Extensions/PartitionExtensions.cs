@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace IbanNet.Extensions
 {
@@ -131,7 +127,7 @@ namespace IbanNet.Extensions
 #else
         private static IEnumerable<string> PartitionOnIterator(this IEnumerable<char> sequence, Func<char, bool> when)
         {
-            var partition = new StringBuilder();
+            var partition = new System.Text.StringBuilder();
             foreach (char item in sequence)
             {
                 partition.Append(item);

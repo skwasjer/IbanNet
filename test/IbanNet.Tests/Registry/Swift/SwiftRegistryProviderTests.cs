@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace IbanNet.Registry.Swift
+﻿namespace IbanNet.Registry.Swift
 {
     public class SwiftRegistryProviderTests : BaseRegistryProviderSpec<SwiftRegistryProvider>
     {

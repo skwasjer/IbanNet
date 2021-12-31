@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Autofac;
-using FluentAssertions;
+﻿using Autofac;
 using IbanNet.Validation.Rules;
 using TestHelpers;
 using TestHelpers.FakeRules;
 using TestHelpers.FluentAssertions;
-using Xunit;
 
 namespace IbanNet.DependencyInjection.Autofac
 {

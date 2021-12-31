@@ -1,7 +1,5 @@
 ﻿using System.Globalization;
-using System.Linq;
 using IbanNet.Registry.Patterns;
-using System;
 
 namespace IbanNet.Registry.Wikipedia
 {

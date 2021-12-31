@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace IbanNet.Registry
+﻿namespace IbanNet.Registry
 {
     /// <summary>
     /// Provides IBAN registry data.

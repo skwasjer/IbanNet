@@ -1,5 +1,4 @@
 ﻿#if DEBUG // Only used atm. by PS script, so exclude from all build configs except debug.
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace IbanNet.Registry

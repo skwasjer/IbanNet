@@ -1,8 +1,6 @@
-﻿using FluentAssertions;
-using IbanNet.Registry;
+﻿using IbanNet.Registry;
 using IbanNet.Registry.Patterns;
 using IbanNet.Validation.Results;
-using Xunit;
 
 namespace IbanNet.Validation.Rules
 {

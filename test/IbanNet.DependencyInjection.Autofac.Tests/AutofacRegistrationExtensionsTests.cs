@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Autofac;
-using FluentAssertions;
-using Xunit;
+﻿using Autofac;
 
 namespace IbanNet.DependencyInjection.Autofac
 {

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using IbanNet.Validation.Rules;
+﻿using IbanNet.Validation.Rules;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using TestHelpers;
 using TestHelpers.FakeRules;
 using TestHelpers.FluentAssertions;
-using Xunit;
 
 namespace IbanNet.DependencyInjection.ServiceProvider
 {

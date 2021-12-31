@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.Registry.Patterns
+﻿namespace IbanNet.Registry.Patterns
 {
     /// <summary>
     /// The exception that is thrown when a pattern is invalid.

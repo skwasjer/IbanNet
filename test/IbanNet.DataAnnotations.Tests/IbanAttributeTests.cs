@@ -1,10 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using FluentAssertions;
+﻿using System.ComponentModel.DataAnnotations;
 using IbanNet.Validation.Results;
-using Moq;
 using TestHelpers;
-using Xunit;
 
 namespace IbanNet.DataAnnotations
 {

@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xunit;
-
-namespace TestHelpers.Specs
+﻿namespace TestHelpers.Specs
 {
     public abstract class AsyncSpec<TSubject> : IAsyncLifetime
     {

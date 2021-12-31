@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
 using IbanNet.Validation.Results;
-using Xunit;
 using ValidationResultAlias = FluentValidation.Results.ValidationResult;
 
 namespace IbanNet.FluentValidation

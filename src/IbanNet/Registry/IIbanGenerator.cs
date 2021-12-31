@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.Registry
+﻿namespace IbanNet.Registry
 {
     /// <summary>
     /// Describes a way to generate test IBAN's.

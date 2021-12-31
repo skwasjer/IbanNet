@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.Builders
+﻿namespace IbanNet.Builders
 {
     /// <summary>
     /// The exception that is thrown when building a bank account number fails.

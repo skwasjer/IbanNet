@@ -1,5 +1,4 @@
-﻿using System;
-using IbanNet.Extensions;
+﻿using IbanNet.Extensions;
 
 namespace IbanNet.CheckDigits.Calculators
 {

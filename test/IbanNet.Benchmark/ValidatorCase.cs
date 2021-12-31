@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IbanNet.Benchmark
+﻿namespace IbanNet.Benchmark
 {
     public class ValidatorCase
     {

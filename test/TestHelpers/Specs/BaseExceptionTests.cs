@@ -1,9 +1,6 @@
-﻿using System;
-using System.Reflection;
-using FluentAssertions;
+﻿using System.Reflection;
 using FluentAssertions.Common;
 using TestHelpers.FluentAssertions;
-using Xunit;
 
 namespace TestHelpers.Specs
 {

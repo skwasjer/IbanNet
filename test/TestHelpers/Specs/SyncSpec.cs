@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace TestHelpers.Specs
+﻿namespace TestHelpers.Specs
 {
     public abstract class SyncSpec<TSubject> : AsyncSpec<TSubject>
     {
