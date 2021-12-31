@@ -1,8 +1,9 @@
 # Changelog
 
-## v5.3.3
+## v5.4.0
 
 - Use new `Chunk()` LINQ API for .NET 6 and change own `Partition()` method into polyfill for older framework targets.
+- Added `AcceptCountryRule` to restrict validation to a specific set of countries. The rule can be added via the validator options or dependency registration extensions.
 
 ## v5.3.2
 

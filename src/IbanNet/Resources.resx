@@ -179,4 +179,10 @@
     <data name="Exception_The_country_0_does_not_define_a_IBAN_pattern" xml:space="preserve">
         <value>The country '{0}' does not define a IBAN pattern.</value>
     </data>
+    <data name="CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted" xml:space="preserve">
+        <value>Bank account numbers from country {0} are not accepted.</value>
+    </data>
+    <data name="ArgumentException_At_least_one_country_code_must_be_provided" xml:space="preserve">
+        <value>At least one country code must be provided.</value>
+    </data>
 </root>

@@ -8,9 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Reflection;
+
 namespace IbanNet {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -20,7 +21,7 @@ namespace IbanNet {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -58,6 +59,15 @@ namespace IbanNet {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one country code must be provided..
+        /// </summary>
+        internal static string ArgumentException_At_least_one_country_code_must_be_provided {
+            get {
+                return ResourceManager.GetString("ArgumentException_At_least_one_country_code_must_be_provided", resourceCulture);
             }
         }
         
@@ -121,6 +131,15 @@ namespace IbanNet {
         internal static string ArgumentException_The_structure_segment_0_is_invalid {
             get {
                 return ResourceManager.GetString("ArgumentException_The_structure_segment_0_is_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank account numbers from country {0} are not accepted..
+        /// </summary>
+        internal static string CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted {
+            get {
+                return ResourceManager.GetString("CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted", resourceCulture);
             }
         }
         
