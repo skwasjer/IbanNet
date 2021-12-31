@@ -17,7 +17,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageIcon>IbanNet64.png</PackageIcon>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AnalysisLevel>latest-Recommended</AnalysisLevel>
+    <AnalysisLevel>latest-All</AnalysisLevel>
   </PropertyGroup>
 
   <ItemGroup>

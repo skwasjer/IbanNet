@@ -60,6 +60,7 @@ namespace IbanNet.Registry
             return new Iban(ibanStr, country);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "CA5394:Do not use insecure randomness", Justification = "Not used in secure context.")]
         internal static class Generator
         {
             private static readonly Random Rng = new(DateTime.UtcNow.Ticks.GetHashCode());

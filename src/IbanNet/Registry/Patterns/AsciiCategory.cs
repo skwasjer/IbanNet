@@ -3,12 +3,15 @@
     /// <summary>
     /// Defines the ASCII category of a character.
     /// </summary>
+    [Flags]
     public enum AsciiCategory
     {
         /// <summary>
         /// Other ASCII category.
         /// </summary>
+#pragma warning disable CA1008 // Enums should have zero value - renaming to None is a breaking change
         Other = 0,
+#pragma warning restore CA1008 // Enums should have zero value
 
         /// <summary>
         /// The space character.

@@ -32,6 +32,11 @@ public class AcceptCountryRule : IIbanValidationRule
     /// <inheritdoc />
     public ValidationRuleResult Validate(ValidationRuleContext context)
     {
+        if (context is null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
+
         return _acceptedCountryCodes.Contains(context.Country!.TwoLetterISORegionName)
             ? ValidationRuleResult.Success
             : new CountryNotAcceptedResult(context.Country);

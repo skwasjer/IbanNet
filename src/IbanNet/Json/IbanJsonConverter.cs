@@ -50,6 +50,16 @@ namespace IbanNet.Json
         /// <inheritdoc />
         public override void Write(Utf8JsonWriter writer, Iban value, JsonSerializerOptions options)
         {
+            if (writer is null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             writer.WriteStringValue(value.ToString(IbanFormat.Electronic));
         }
     }

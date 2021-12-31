@@ -69,4 +69,21 @@ public class AcceptCountryRuleTests
             .Which.ParamName.Should()
             .Be(nameof(acceptedCountryCodes));
     }
+
+    [Fact]
+    public void Given_that_context_is_null_when_validating_it_should_throw()
+    {
+        var sut = new AcceptCountryRule(new[] { "DE", "FR" });
+        ValidationRuleContext context = null;
+
+        // Act
+        // ReSharper disable once AssignNullToNotNullAttribute
+        Func<ValidationRuleResult> act = () => sut.Validate(context);
+
+        // Assert
+        act.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .Which.ParamName.Should()
+            .Be(nameof(context));
+    }
 }

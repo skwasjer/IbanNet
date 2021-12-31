@@ -1,4 +1,4 @@
-﻿#if DEBUG // Only used atm. by PS script, so exclude from all build configs except debug.
+﻿#if DEBUG && NETSTANDARD1_2 // Only used atm. by PS script, so exclude from all build configs except debug.
 using System.Diagnostics;
 
 namespace IbanNet.Registry
@@ -38,7 +38,7 @@ namespace IbanNet.Registry
         /// <inheritdoc />
         public int GetHashCode(IbanCountry obj)
         {
-            return obj.TwoLetterISORegionName.GetHashCode();
+            return obj?.TwoLetterISORegionName.GetHashCode() ?? 0;
         }
     }
 }
