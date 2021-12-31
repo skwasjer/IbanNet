@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("TemporaryT4Assembly")]
 #endif
 [assembly: NeutralResourcesLanguage("en")]
+[assembly: CLSCompliant(true)]
 
 #if !NET5_0_OR_GREATER
 // https://stackoverflow.com/questions/64749385/predefined-type-system-runtime-compilerservices-isexternalinit-is-not-defined
