@@ -19,8 +19,11 @@ namespace IbanNet.Registry.Swift
         {
             return pattern is null || !(pattern.Length >= CountryCodeLength && pattern[0].IsAsciiLetter() && pattern[1].IsAsciiLetter())
                 ? null
-                // ReSharper disable once ReplaceSubstringWithRangeIndexer
+#if NET5_0_OR_GREATER
+                : string.Concat("2!a", pattern.AsSpan(2));
+#else
                 : "2!a" + pattern.Substring(2);
+#endif
         }
     }
 }

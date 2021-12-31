@@ -1,4 +1,5 @@
-﻿using IbanNet.Registry;
+﻿using System.Globalization;
+using IbanNet.Registry;
 
 namespace IbanNet.Validation.Results;
 
@@ -10,7 +11,7 @@ public class CountryNotAcceptedResult : ErrorResult
     /// </summary>
     /// <param name="country">The country that was rejected.</param>
     public CountryNotAcceptedResult(IbanCountry country)
-        : base(string.Format(Resources.CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted, country.DisplayName))
+        : base(string.Format(CultureInfo.CurrentCulture, Resources.CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted, country.DisplayName))
     {
     }
 }

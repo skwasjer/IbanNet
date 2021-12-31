@@ -147,7 +147,7 @@ namespace IbanNet
         /// <returns>The value of the current instance in the specified format.</returns>
         string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
         {
-            return (format ?? "E").ToUpper() switch
+            return (format ?? "E").ToUpperInvariant() switch
             {
                 "E" => ToString(IbanFormat.Electronic),
                 "O" => ToString(IbanFormat.Obfuscated),
