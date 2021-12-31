@@ -4,7 +4,7 @@
     <IsPackable>false</IsPackable>
 
     <DefineConstants Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462'">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
-    <FluentAssertionsVersion>6.1.0</FluentAssertionsVersion>
+    <FluentAssertionsVersion>6.2.0</FluentAssertionsVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net452'">
