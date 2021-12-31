@@ -100,7 +100,7 @@ namespace IbanNet
 #endif
                 IbanFormat.Print => string.Join(" ",
                     _iban
-                        .Partition(segmentSize)
+                        .Chunk(segmentSize)
                         .Select(p => new string(p.ToArray()))
                 ),
                 // TODO: change to IbanFormatException in future major release.

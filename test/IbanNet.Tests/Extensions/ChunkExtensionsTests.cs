@@ -1,33 +1,33 @@
 ﻿namespace IbanNet.Extensions
 {
-    public class PartitionExtensionTests
+    public class ChunkExtensionsTests
     {
         [Fact]
-        public void Given_null_collection_when_partitioning_it_should_throw()
+        public void Given_null_collection_when_chunking_it_should_throw()
         {
-            IEnumerable<object> sequence = null;
+            IEnumerable<object> source = null;
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => sequence.Partition(2);
+            Action act = () => source.Chunk(2);
 
             // Assert
             act.Should()
                 .Throw<ArgumentNullException>()
                 .Which.ParamName.Should()
-                .Be(nameof(sequence));
+                .Be(nameof(source));
         }
 
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
         [InlineData(int.MinValue)]
-        public void Given_invalid_size_when_partitioning_it_should_throw(int size)
+        public void Given_invalid_size_when_chunking_it_should_throw(int size)
         {
-            IEnumerable<object> sequence = new List<object>();
+            IEnumerable<object> source = new List<object>();
 
             // Act
-            Action act = () => sequence.Partition(size);
+            Action act = () => source.Chunk(size);
 
             // Assert
             act.Should()
@@ -40,18 +40,18 @@
         [InlineData(1, 50, 1)]
         [InlineData(3, 17, 2)]
         [InlineData(9, 6, 5)]
-        public void Given_collection_when_partitioning_it_should_return_correct_partitioned_enumerable(int size, int expectedPartitions, int expectedLastPartitionSize)
+        public void Given_collection_when_chunking_it_should_return_expected_chunks(int size, int expectedPartitions, int expectedLastPartitionSize)
         {
-            IEnumerable<int> sequence = Enumerable.Range(0, 50).Select((_, i) => i).ToList();
+            IEnumerable<int> source = Enumerable.Range(0, 50).Select((_, i) => i).ToList();
 
             // Act
-            var actual = sequence.Partition(size).ToList();
+            var actual = source.Chunk(size).ToList();
 
             // Assert
             actual.Should().HaveCount(expectedPartitions);
             actual.Take(actual.Count - 1).Should().OnlyContain(inner => inner.Count() == size, "all but the last should at least be of the requested size");
             actual.Last().Should().HaveCount(expectedLastPartitionSize, "the last partition can be less than or equal to the requested size");
-            actual.SelectMany(i => i).Should().BeEquivalentTo(sequence, opts => opts.WithStrictOrdering(), "joined back together it should be same as original sequence");
+            actual.SelectMany(i => i).Should().BeEquivalentTo(source, opts => opts.WithStrictOrdering(), "joined back together it should be same as original source");
         }
 
         [Fact]
@@ -116,7 +116,7 @@
 #if USE_SPANS
                 ReadOnlySpan<char> sequence = string.Empty;
 #else
-            string sequence = string.Empty;
+                string sequence = string.Empty;
 #endif
                 sequence.PartitionOn(when);
             };

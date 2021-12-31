@@ -3,23 +3,25 @@
 namespace IbanNet.Extensions
 {
     [DebuggerStepThrough]
-    internal static class PartitionExtensions
+    internal static class ChunkExtensions
     {
+#if !NET6_0_OR_GREATER
         /// <summary>
-        /// Splits a given <paramref name="sequence" /> into partitions of specified <paramref name="size" />.
+        /// Split the elements of a sequence into chunks of size at most <paramref name="size"/>.
         /// </summary>
         /// <remarks>
-        /// If the number of elements in the <paramref name="sequence" /> is not an exact multiple of <paramref name="size" />, the last partition of the returned partition set is smaller.
+        /// Every chunk except the last will be of size <paramref name="size"/>.
+        /// The last chunk will contain the remaining elements and may be of a smaller size.
         /// </remarks>
-        /// <typeparam name="TSource">The type of the sequence elements.</typeparam>
-        /// <param name="sequence">The sequence to partition.</param>
-        /// <param name="size">The size of each partition to split the <paramref name="sequence" /> into.</param>
-        /// <returns>an enumerable of partitions</returns>
-        public static IEnumerable<IEnumerable<TSource>> Partition<TSource>(this IEnumerable<TSource> sequence, int size)
+        /// <typeparam name="TSource">The type of the source elements.</typeparam>
+        /// <param name="source">The source sequence.</param>
+        /// <param name="size">The size of each chunk to split the <paramref name="source" /> into.</param>
+        /// <returns>an enumerable of chunks</returns>
+        public static IEnumerable<IEnumerable<TSource>> Chunk<TSource>(this IEnumerable<TSource> source, int size)
         {
-            if (sequence is null)
+            if (source is null)
             {
-                throw new ArgumentNullException(nameof(sequence));
+                throw new ArgumentNullException(nameof(source));
             }
 
             if (size <= 0)
@@ -27,28 +29,29 @@ namespace IbanNet.Extensions
                 throw new ArgumentOutOfRangeException(nameof(size));
             }
 
-            return PartitionIterator(sequence, size);
+            return ChunkIterator(source, size);
         }
 
-        private static IEnumerable<IEnumerable<TSource>> PartitionIterator<TSource>(this IEnumerable<TSource> sequence, int size)
+        private static IEnumerable<IEnumerable<TSource>> ChunkIterator<TSource>(this IEnumerable<TSource> source, int size)
         {
-            var partition = new List<TSource>(size);
-            foreach (TSource item in sequence)
+            var chunks = new List<TSource>(size);
+            foreach (TSource item in source)
             {
-                partition.Add(item);
-                if (partition.Count == size)
+                chunks.Add(item);
+                if (chunks.Count == size)
                 {
-                    yield return partition;
+                    yield return chunks;
 
-                    partition = new List<TSource>(size);
+                    chunks = new List<TSource>(size);
                 }
             }
 
-            if (partition.Count > 0)
+            if (chunks.Count > 0)
             {
-                yield return partition;
+                yield return chunks;
             }
         }
+#endif
 
         /// <summary>
         /// Splits a given <paramref name="sequence" /> into partitions when encountering any of the <paramref name="chars" />.

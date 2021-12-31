@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.3.3
+
+- Use new `Chunk()` LINQ API for .NET 6 and change own `Partition()` method into polyfill for older framework targets.
+
 ## v5.3.2
 
 - Change `master` branch to `main`, requiring update to CI scripts, and update all external page references.
