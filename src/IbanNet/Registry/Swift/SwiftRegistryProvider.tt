@@ -14,12 +14,9 @@
 <#@ import namespace="IbanNet.Registry" #>
 <#@ import namespace="IbanNet.Registry.Patterns" #>
 <#@ import namespace="IbanNet.Registry.Swift" #>
-using System;
 using System.CodeDom.Compiler;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using IbanNet.Registry.Patterns;
 <#
     string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
