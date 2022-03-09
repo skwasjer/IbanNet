@@ -67,7 +67,7 @@ $markdown += Render-Table($swiftProvider);
 
 # Included countries
 
-$overrideCountryDescription = @{ "AX" = "Åland Islands"; "IM" = "Isle of Man"; "JE" = "Jersey"; "GG" = "Guernsey"; "TF" = "French Southern and Antarctic Lands" }
+$overrideCountryDescription = @{ "TF" = "French Southern and Antarctic Lands" }
 
 ForEach($country in $registry)
 {
@@ -79,9 +79,21 @@ ForEach($country in $registry)
         
         ForEach($ic in $country.IncludedCountries)
         {
-            $regionInfo = New-Object System.Globalization.RegionInfo($ic)
+            Try
+            {
+                $regionInfo = New-Object System.Globalization.RegionInfo($ic)
+            }
+            Catch
+            {
+                $regionInfo = $null
+                $regionInfo = New-Object System.Globalization.RegionInfo($country.TwoLetterISORegionName + "-" + $ic)
+            }
+
+
             # Resolve english name
-            $ccName = $overrideCountryDescription.Get_Item($regionInfo.TwoLetterISORegionName)
+            $ccName = $null
+            $ccName = $overrideCountryDescription.Get_Item($ic)
+
             if ($ccName -eq $null)
             {
                 If ($regionInfo.ThreeLetterISORegionName -eq "ZZZ")
@@ -94,7 +106,7 @@ ForEach($country in $registry)
                 }
             }
 
-            $markdown += "- $($ccName) ($($ic.Substring(3)))`r`n"
+            $markdown += "- $($ccName) ($($ic))`r`n"
         }
 
         $markdown += "`r`n"

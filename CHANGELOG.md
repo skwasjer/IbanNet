@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.5.0
+
+- Fixed SWIFT country definitions for which the 'included country codes' contained inferred locales. The list now actually contains the expected country codes.
+
 ## v5.4.0
 
 - Use new `Chunk()` LINQ API for .NET 6 and change own `Partition()` method into polyfill for older framework targets.

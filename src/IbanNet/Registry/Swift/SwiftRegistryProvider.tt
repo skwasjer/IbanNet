@@ -98,7 +98,7 @@ namespace IbanNet.Registry.Swift
                 IncludedCountries = new[]
                 {
                     <#
-                WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{countryCode.ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+                WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
                 #>
                 },
 <#
@@ -155,7 +155,7 @@ namespace IbanNet.Registry.Swift
                     IncludedCountries = new[]
                     {
                         <#
-                        WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{countryCode.ToLowerInvariant()}-{r.Substring(0, 2)}\"")));
+                        WriteLine(string.Join(", ", includedCountries.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
                         #>
                     }
 <#

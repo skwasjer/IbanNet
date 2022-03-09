@@ -807,7 +807,7 @@ namespace IbanNet.Registry.Swift
                 EnglishName = "Finland",
                 IncludedCountries = new[]
                 {
-                    "fi-AX"
+                    "AX"
                 },
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -833,7 +833,7 @@ namespace IbanNet.Registry.Swift
                     IsMember = true,
                     IncludedCountries = new[]
                     {
-                        "fi-AX"
+                        "AX"
                     }
                 },
                 DomesticAccountNumberExample = "",
@@ -880,7 +880,7 @@ namespace IbanNet.Registry.Swift
                 EnglishName = "France",
                 IncludedCountries = new[]
                 {
-                    "fr-GF", "fr-GP", "fr-MQ", "fr-RE", "fr-PF", "fr-TF", "fr-YT", "fr-NC", "fr-BL", "fr-MF", "fr-PM", "fr-WF"
+                    "GF", "GP", "MQ", "RE", "PF", "TF", "YT", "NC", "BL", "MF", "PM", "WF"
                 },
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -908,7 +908,7 @@ namespace IbanNet.Registry.Swift
                     IsMember = true,
                     IncludedCountries = new[]
                     {
-                        "fr-GF", "fr-GP", "fr-MQ", "fr-YT", "fr-RE", "fr-PM", "fr-BL", "fr-MF"
+                        "GF", "GP", "MQ", "YT", "RE", "PM", "BL", "MF"
                     }
                 },
                 DomesticAccountNumberExample = "20041 01005 0500013M026 06",
@@ -922,7 +922,7 @@ namespace IbanNet.Registry.Swift
                 EnglishName = "United Kingdom",
                 IncludedCountries = new[]
                 {
-                    "gb-IM", "gb-JE", "gb-GG"
+                    "IM", "JE", "GG"
                 },
                 Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
                 {
@@ -2153,7 +2153,7 @@ namespace IbanNet.Registry.Swift
                     IsMember = true,
                     IncludedCountries = new[]
                     {
-                        "pt-Az", "pt-Ma"
+                        "AZ", "MA"
                     }
                 },
                 DomesticAccountNumberExample = "0002.0123.12345678901.54",
