@@ -70,7 +70,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "2030200359100100",
                 LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -102,7 +102,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "1234567890123456",
                 LastUpdatedDate = new DateTimeOffset(2015, 2, 1, 0, 0, 0, TimeSpan.Zero)
@@ -138,7 +138,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0000000235698741",
                 LastUpdatedDate = new DateTimeOffset(2011, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -170,7 +170,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "BLZ 19043 Kto 234573201",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -202,7 +202,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "NABZ00000000137010001944",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -240,7 +240,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "199-044-00012002-79",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -273,7 +273,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "BE68 5390 0754 7034",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -311,7 +311,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -343,7 +343,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00001299123456",
                 LastUpdatedDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -381,7 +381,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00003320451 81",
                 LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -420,7 +420,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0009795493C1",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -453,7 +453,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "3600 0000 0000 0Z00 AB00",
                 LastUpdatedDate = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -485,7 +485,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "762 1162-3852.957",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -517,7 +517,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "02001026284066",
                 LastUpdatedDate = new DateTimeOffset(2019, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -554,7 +554,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "0000001200527600",
                 LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -587,7 +587,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "19-2000145399/0800",
                 LastUpdatedDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -619,7 +619,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "532013000",
                 LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -652,7 +652,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "0040 0440116243",
                 LastUpdatedDate = new DateTimeOffset(2018, 11, 1, 0, 0, 0, TimeSpan.Zero)
@@ -684,7 +684,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00000001212453611324",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -718,7 +718,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "221020145685",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -755,7 +755,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "000263180002",
                 LastUpdatedDate = new DateTimeOffset(2020, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -794,7 +794,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "2100 0418 45 0200051332",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -867,7 +867,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "6460 0001631634",
                 LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero)
@@ -950,7 +950,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "60-16-13 31926819",
                 LastUpdatedDate = new DateTimeOffset(2017, 5, 1, 0, 0, 0, TimeSpan.Zero)
@@ -982,7 +982,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0000000101904917",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1014,7 +1014,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "0000 00007099 453",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1047,7 +1047,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "6471 0001000206",
                 LastUpdatedDate = new DateTimeOffset(2018, 11, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1084,7 +1084,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "01250000000012300695",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1116,7 +1116,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "01020000001210029690",
                 LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1148,7 +1148,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "1001005-1863000160",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1187,7 +1187,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "11773016-11111018-00000000",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1224,7 +1224,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "93-11-52 12345678",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1261,7 +1261,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "10-800-99999999",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1298,7 +1298,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "123456789012",
                 LastUpdatedDate = new DateTimeOffset(2016, 11, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1336,7 +1336,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0159-26-007654-551073-0339",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1374,7 +1374,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "X 05428 11101 000000123456",
                 LastUpdatedDate = new DateTimeOffset(2013, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1411,7 +1411,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0001310000302",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1443,7 +1443,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "1234560101",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1475,7 +1475,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "KZ86 125K ZT50 0410 0100",
                 LastUpdatedDate = new DateTimeOffset(2016, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1507,7 +1507,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "01 001 901229114",
                 LastUpdatedDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1539,7 +1539,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0001 0001 0012 0012 0002 3015",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1571,7 +1571,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "8810 2324013AA",
                 LastUpdatedDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1603,7 +1603,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1635,7 +1635,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1667,7 +1667,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "LV80 BANK 0000 4351 9500 1",
                 LastUpdatedDate = new DateTimeOffset(2009, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1704,7 +1704,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "000020100120361",
                 LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1742,7 +1742,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "0011111000h",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1774,7 +1774,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "000225100013104168",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1807,7 +1807,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "505 0000123456789 51",
                 LastUpdatedDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1840,7 +1840,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "MK07 300 0000000424 25",
                 LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1878,7 +1878,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00020 00101 00001234567 53",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1915,7 +1915,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "12345MTLCAST001S",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1955,7 +1955,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "MU17 BOMM 0101 1010 3030 0200 000M UR",
                 LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1987,7 +1987,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "041 71 64 300",
                 LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2020,7 +2020,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "8601 11 17947",
                 LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2052,7 +2052,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00260101036360",
                 LastUpdatedDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2084,7 +2084,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "61 1090 1014 0000 0712 1981 2874",
                 LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2116,7 +2116,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "400123456702",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2186,7 +2186,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00001234567890ABCDEFG",
                 LastUpdatedDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2218,7 +2218,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "RO49 AAAA 1B31 0075 9384 0000",
                 LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2251,7 +2251,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "260-0056010016113-79",
                 LastUpdatedDate = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2283,7 +2283,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "608010167519",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2322,7 +2322,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0000000000001497",
                 LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2354,7 +2354,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "010501234001",
                 LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2387,7 +2387,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "1234 12 3456 1",
                 LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2420,7 +2420,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "2633 0001 2039 086",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2453,7 +2453,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "19-8742637541/1200",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2491,7 +2491,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "",
                 LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2529,7 +2529,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "0051845310146",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2561,7 +2561,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00000000000000700025",
                 LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2594,7 +2594,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "008 00123456789101 57",
                 LastUpdatedDate = new DateTimeOffset(2014, 11, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2632,7 +2632,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "10 006 0351835984788 31",
                 LastUpdatedDate = new DateTimeOffset(2016, 5, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2665,7 +2665,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2697,7 +2697,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "26007233566001",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2729,7 +2729,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = true,
+                    IsMember = true
                 },
                 DomesticAccountNumberExample = "123000012345678",
                 LastUpdatedDate = new DateTimeOffset(2018, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2761,7 +2761,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "00000 12 345 678 901",
                 LastUpdatedDate = new DateTimeOffset(2014, 6, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2798,7 +2798,7 @@ namespace IbanNet.Registry.Swift
                 },
                 Sepa = new SepaInfo
                 {
-                    IsMember = false,
+                    IsMember = false
                 },
                 DomesticAccountNumberExample = "1212 0123456789 06",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
