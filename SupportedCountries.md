@@ -98,7 +98,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 - Martinique (MQ)
 - Réunion (RE)
 - French Polynesia (PF)
-- Unknown (TF)
+- French Southern and Antarctic Lands (TF)
 - Mayotte (YT)
 - New Caledonia (NC)
 - St. Barthélemy (BL)

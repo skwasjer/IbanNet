@@ -67,7 +67,7 @@ $markdown += Render-Table($swiftProvider);
 
 # Included countries
 
-$overrideCountryDescription = @{ "AX" = "Åland Islands"; "IM" = "Isle of Man"; "JE" = "Jersey"; "GG" = "Guernsey" }
+$overrideCountryDescription = @{ "AX" = "Åland Islands"; "IM" = "Isle of Man"; "JE" = "Jersey"; "GG" = "Guernsey"; "TF" = "French Southern and Antarctic Lands" }
 
 ForEach($country in $registry)
 {
