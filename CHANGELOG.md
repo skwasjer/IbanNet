@@ -3,6 +3,7 @@
 ## v5.5.0
 
 - Fixed SWIFT country definitions for which the 'included country codes' contained inferred locales. The list now actually contains the expected country codes.
+- LTS: dropped support for .NET 4.5.2 and .NET Standard 1.2/1.3. Added .NET 4.6.2.
 
 ## v5.4.0
 

@@ -185,11 +185,7 @@ namespace IbanNet.DataAnnotations
                 // Assert
                 _validationContext.Items.Should()
                     .ContainKey("Error")
-#if FlUENT_ASSERTIONS_5
-                    .WhichValue.Should()
-#else
                     .WhoseValue.Should()
-#endif
                     .BeOfType<IllegalCharactersResult>();
             }
 

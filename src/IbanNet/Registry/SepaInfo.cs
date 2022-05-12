@@ -17,12 +17,6 @@ namespace IbanNet.Registry
         /// <summary>
         /// Gets a list of included SEPA countries.
         /// </summary>
-        public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>(
-#if NET452 || NETSTANDARD1_2
-			new string[0]
-#else
-            Array.Empty<string>()
-#endif
-        );
+        public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>(Array.Empty<string>());
     }
 }

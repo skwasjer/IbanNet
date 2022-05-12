@@ -15,13 +15,7 @@
         protected sealed override Task GivenAsync()
         {
             Given();
-#if NET452
-			var cts = new TaskCompletionSource<object>();
-			cts.SetResult(null);
-			return cts.Task;
-#else
             return Task.CompletedTask;
-#endif
         }
 
         protected sealed override Task<TSubject> CreateSubjectAsync()
