@@ -22,13 +22,7 @@
 
         protected virtual Task DisposeAsync()
         {
-#if NET452
-			var cts = new TaskCompletionSource<object>();
-			cts.SetResult(null);
-			return cts.Task;
-#else
             return Task.CompletedTask;
-#endif
         }
 
         protected abstract Task GivenAsync();

@@ -3,13 +3,7 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
 
-    <DefineConstants Condition="'$(TargetFramework)'=='net48' Or '$(TargetFramework)'=='net462'">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
-    <FluentAssertionsVersion>6.5.1</FluentAssertionsVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)'=='net462' Or '$(TargetFramework)'=='net452'">
-    <FluentAssertionsVersion>5.10.3</FluentAssertionsVersion>
-    <DefineConstants>$(DefineConstants);FlUENT_ASSERTIONS_5</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net48'">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="$(FluentAssertionsVersion)" />
+    <PackageReference Include="FluentAssertions" Version="6.5.1" />
     <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>

@@ -11,13 +11,7 @@ namespace TestHelpers.FluentAssertions
         : ReferenceTypeAssertions<IbanValidatorOptions, IbanValidatorOptionsAssertions>
     {
         public IbanValidatorOptionsAssertions(IbanValidatorOptions instance)
-#if FlUENT_ASSERTIONS_5
-        {
-            Subject = instance;
-        }
-#else
             : base(instance) { }
-#endif
 
         protected override string Identifier => "ibanValidatorOptions";
 

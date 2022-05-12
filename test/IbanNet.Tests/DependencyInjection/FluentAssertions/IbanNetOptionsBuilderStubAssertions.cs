@@ -11,13 +11,7 @@ namespace IbanNet.DependencyInjection.FluentAssertions
         where T : class, IIbanNetOptionsBuilder
     {
         public IbanNetOptionsBuilderStubAssertions(Mock<T> instance)
-#if FlUENT_ASSERTIONS_5
-        {
-            Subject = instance;
-        }
-#else
             : base(instance) { }
-#endif
 
         protected override string Identifier => typeof(T).Name;
 

@@ -9,7 +9,7 @@ namespace IbanNet.Registry.Patterns
     /// </summary>
     public sealed class PatternToken
     {
-#if NETSTANDARD1_2 || NETSTANDARD1_6
+#if NETSTANDARD1_6
         /// <summary>
         /// Initializes a new instance of the pattern token.
         /// </summary>
@@ -31,7 +31,7 @@ namespace IbanNet.Registry.Patterns
         {
         }
 
-#if NETSTANDARD1_2 || NETSTANDARD1_6
+#if NETSTANDARD1_6
         /// <summary>
         /// Initializes a new instance of the pattern token.
         /// </summary>
@@ -74,7 +74,7 @@ namespace IbanNet.Registry.Patterns
 
             if (!Enum.IsDefined(typeof(AsciiCategory), category))
             {
-#if NETSTANDARD1_2 || NETSTANDARD1_6
+#if NETSTANDARD1_6
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.Enum_value_0_should_be_defined_in_the_1_enum, category, nameof(AsciiCategory)), nameof(category));
 #else
                 throw new InvalidEnumArgumentException(nameof(category), (int)category, typeof(AsciiCategory));

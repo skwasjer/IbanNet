@@ -13,11 +13,7 @@ namespace IbanNet.Validation.Rules
             {
                 Providers =
                 {
-#if NET452
-                    new IbanRegistryListProvider(new IbanCountry[0])
-#else
                     new IbanRegistryListProvider(Array.Empty<IbanCountry>())
-#endif
                 }
             });
 
@@ -58,11 +54,7 @@ namespace IbanNet.Validation.Rules
             {
                 Providers =
                 {
-#if NET452
-                    new IbanRegistryListProvider(new IbanCountry[0])
-#else
                     new IbanRegistryListProvider(Array.Empty<IbanCountry>())
-#endif
                 }
             });
 

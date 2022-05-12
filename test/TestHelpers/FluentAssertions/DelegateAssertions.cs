@@ -5,11 +5,7 @@ using FluentAssertions.Specialized;
 namespace TestHelpers.FluentAssertions
 {
     public class DelegateAssertions
-#if FlUENT_ASSERTIONS_5
-        : DelegateAssertions<Delegate>
-#else
         : DelegateAssertions<Delegate, DelegateAssertions>
-#endif
     {
         public DelegateAssertions(Delegate @delegate, IExtractExceptions extractor) : base(@delegate, extractor)
         {
@@ -46,11 +42,7 @@ namespace TestHelpers.FluentAssertions
                 .BecauseOf(because, becauseArgs)
                 .FailWith("Expected {context} to throw {0}{reason}, but found <null>.", (object)typeof(TException));
 
-#if FlUENT_ASSERTIONS_5
-            return Throw<TException>(
-#else
             return ThrowInternal<TException>(
-#endif
                 InvokeSubjectWithInterception(args),
                 because,
                 becauseArgs
@@ -154,11 +146,7 @@ namespace TestHelpers.FluentAssertions
 
         private void NotThrowV6(Exception ex, string because, object[] becauseArgs)
         {
-#if FlUENT_ASSERTIONS_5
-            NotThrow(ex, because, becauseArgs);
-#else
             NotThrowInternal(ex, because, becauseArgs);
-#endif
         }
     }
 }

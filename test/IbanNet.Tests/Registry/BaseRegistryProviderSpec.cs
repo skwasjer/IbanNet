@@ -14,13 +14,7 @@ namespace IbanNet.Registry
 
         protected override Task GivenAsync()
         {
-#if NET452
-			var cts = new TaskCompletionSource<object>();
-			cts.SetResult(null);
-			return cts.Task;
-#else
             return Task.CompletedTask;
-#endif
         }
 
         [Fact]
