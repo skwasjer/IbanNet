@@ -202,3 +202,4 @@ cordova.js
 .vs/
 /coverage.xml
 BenchmarkDotNet.Artifacts
+/.sonarqube
