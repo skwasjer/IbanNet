@@ -33,10 +33,10 @@
         /// </summary>
         /// <typeparam name="T">The service type.</typeparam>
         /// <returns>An instance of type <typeparamref name="T" />.</returns>
-        public T? GetService<T>()
+        public T GetRequiredService<T>()
             where T : class
         {
-            return GetService(typeof(T)) as T;
+            return (T)GetRequiredService(typeof(T));
         }
 
         /// <summary>
@@ -44,10 +44,10 @@
         /// </summary>
         /// <typeparam name="T">The service type.</typeparam>
         /// <returns>An instance of type <typeparamref name="T" />.</returns>
-        public T GetRequiredService<T>()
+        public T? GetService<T>()
             where T : class
         {
-            return (T)GetRequiredService(typeof(T));
+            return GetService(typeof(T)) as T;
         }
     }
 }

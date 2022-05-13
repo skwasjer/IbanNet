@@ -4,13 +4,17 @@
     /// Defines the ASCII category of a character.
     /// </summary>
     [Flags]
+#pragma warning disable S2342 // Enumeration types should comply with a naming convention - justification: breaking change
     public enum AsciiCategory
+#pragma warning restore S2342
     {
         /// <summary>
         /// Other ASCII category.
         /// </summary>
 #pragma warning disable CA1008 // Enums should have zero value - renaming to None is a breaking change
+#pragma warning disable S2346 // Flags enumerations zero-value members should be named "None"
         Other = 0,
+#pragma warning restore S2346 // Flags enumerations zero-value members should be named "None"
 #pragma warning restore CA1008 // Enums should have zero value
 
         /// <summary>
