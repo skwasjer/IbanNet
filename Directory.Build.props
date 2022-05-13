@@ -4,7 +4,7 @@
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
     <ImplicitUsings>enable</ImplicitUsings>
 
-    <NoWarn>$(NoWarn);IDE0079</NoWarn>
+    <NoWarn>$(NoWarn);IDE0079;S1135</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>

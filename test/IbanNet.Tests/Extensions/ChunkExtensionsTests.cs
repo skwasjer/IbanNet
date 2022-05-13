@@ -9,7 +9,7 @@
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => source.Chunk(2);
+            Func<IEnumerable<object>> act = () => source.Chunk(2);
 
             // Assert
             act.Should()
@@ -27,7 +27,7 @@
             IEnumerable<object> source = new List<object>();
 
             // Act
-            Action act = () => source.Chunk(size);
+            Func<IEnumerable<object>> act = () => source.Chunk(size);
 
             // Assert
             act.Should()
@@ -49,7 +49,16 @@
 
             // Assert
             actual.Should().HaveCount(expectedPartitions);
-            actual.Take(actual.Count - 1).Should().OnlyContain(inner => inner.Count() == size, "all but the last should at least be of the requested size");
+            actual.Take(actual.Count - 1)
+                .Should()
+                .OnlyContain(inner =>
+#if NET6_0_OR_GREATER
+                        inner.Length == size,
+#else
+                        inner.Count() == size,
+#endif
+                    "all but the last should at least be of the requested size"
+                );
             actual.Last().Should().HaveCount(expectedLastPartitionSize, "the last partition can be less than or equal to the requested size");
             actual.SelectMany(i => i).Should().BeEquivalentTo(source, opts => opts.WithStrictOrdering(), "joined back together it should be same as original source");
         }
@@ -61,7 +70,7 @@
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => sequence.PartitionOn(' ');
+            Func<IEnumerable<string>> act = () => sequence.PartitionOn(' ');
 
             // Assert
             act.Should()
@@ -79,7 +88,7 @@
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => string.Empty.PartitionOn(chars);
+            Func<IEnumerable<string>> act = () => string.Empty.PartitionOn(chars);
 
             // Assert
             act.Should()
@@ -136,7 +145,7 @@
 
             // Act
             // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => sequence.PartitionOn(c => false);
+            Func<IEnumerable<string>> act = () => sequence.PartitionOn(c => false);
 
             // Assert
             act.Should()
