@@ -12,10 +12,10 @@ namespace IbanNet.Registry.Wikipedia
     /// <para>
     /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
     /// Page ID: 15253
-    /// Rev ID: 1075964754
+    /// Rev ID: 1094048747
     /// </para>
     /// </remarks>
-    [GeneratedCode("WikiRegistryProviderT4", "1.15253-1075964754")]
+    [GeneratedCode("WikiRegistryProviderT4", "1.15253-1094048747")]
     public class WikipediaRegistryProvider : IIbanRegistryProvider
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -541,7 +541,7 @@ namespace IbanNet.Registry.Wikipedia
             yield return new IbanCountry("ST")
             {
                 NativeName = "São Tomé e Príncipe",
-                EnglishName = "Sao Tome and Principe",
+                EnglishName = "São Tomé and Príncipe",
                 Iban = new IbanStructure(new IbanWikipediaPattern("21n")),
                 Bban = new BbanStructure(new WikipediaPattern("21n"), 4)
             };
