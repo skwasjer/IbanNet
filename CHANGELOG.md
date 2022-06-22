@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.5.1
+
+- Upgraded SWIFT registry to May '22 release 92, which adds Djibouti (DJ), fixes the bank pattern for Bahrain (BH).
+- Upgraded Wikipedia registry which adjusts English name for ST.
+
 ## v5.5.0
 
 - Fixed SWIFT country definitions for which the 'included country codes' contained inferred locales. The list now actually contains the expected country codes.
