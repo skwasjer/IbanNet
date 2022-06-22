@@ -10,7 +10,7 @@ function Load-IbanNet()
         [string]
         $configuration
     )
-    Add-Type -Path (Join-Path $repoPath "src\IbanNet\bin\$configuration\netstandard1.2\IbanNet.dll")
+    Add-Type -Path (Join-Path $repoPath "src\IbanNet\bin\$configuration\netstandard1.6\IbanNet.dll")
 }
 
 Try

@@ -1,4 +1,4 @@
-﻿#if DEBUG && NETSTANDARD1_2 // Only used atm. by PS script, so exclude from all build configs except debug.
+﻿#if DEBUG && NETSTANDARD1_6 // Only used atm. by PS script, so exclude from all build configs except debug.
 using System.Diagnostics;
 
 namespace IbanNet.Registry
