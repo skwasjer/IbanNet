@@ -81,9 +81,11 @@ namespace IbanNet.Registry.Swift
         string[] includedCountries;
         foreach (string[] row in table)
         {
+            var countryCode = row[1].ToUpperInvariant();
+            if (Boycott(countryCode)) continue;
+
             var effectiveDate = DateTime.ParseExact(row[19], "MMM-yy", CultureInfo.InvariantCulture);
             var lastUpdatedDate = DateTime.ParseExact(row[42], "MMM-yy", CultureInfo.InvariantCulture);
-            var countryCode = row[1].ToUpperInvariant();
             var englishName = row[0];
 #>
             // <#= englishName #>
@@ -127,7 +129,7 @@ namespace IbanNet.Registry.Swift
                     Example = "<#= normalizeExample(row[15]) ?? string.Empty #>"
                 },
 <#
-                        if (row[9] is not null) {
+                        if (row[9] is not null && row[10] is not null) {
 #>
                 Bank = new BankStructure(new SwiftPattern("<#= row[10] #>"), <#= bbanOffset + getNumber(row[9].Split('-')[0]) - 1 #>)
                 {
@@ -136,7 +138,7 @@ namespace IbanNet.Registry.Swift
 <#
                         }
 
-                        if (row[11] is not null) {
+                        if (row[11] is not null && row[12] is not null) {
 #>
                 Branch = new BranchStructure(new SwiftPattern("<#= row[12] #>"), <#= bbanOffset + getNumber(row[11].Split('-')[0]) - 1 #>)
                 {
@@ -167,8 +169,8 @@ namespace IbanNet.Registry.Swift
             };
 
 <#
+        }
     }
-}
 #>
             // ReSharper restore StringLiteralTypo
             // ReSharper restore CommentTypo
@@ -209,5 +211,10 @@ private string[][] Transpose(string[][] arr)
     }
 
     return buffer;
+}
+
+private static bool Boycott(string countryCode)
+{
+    return countryCode == "RU"; // Go Ukraine!
 }
 #>

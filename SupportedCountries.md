@@ -23,6 +23,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | CY | Cyprus | Yes | 28 | `CY17 0020 0128 0000 0012 0052 7600` |
 | CZ | Czechia | Yes | 24 | `CZ65 0800 0000 1920 0014 5399` |
 | DE | Germany | Yes | 22 | `DE89 3704 0044 0532 0130 00` |
+| DJ | Djibouti | No | 27 | `DJ21 0001 0000 0001 5400 0100 186` |
 | DK | Denmark | Yes | 18 | `DK50 0040 0440 1162 43` |
 | DO | Dominican Republic | No | 28 | `DO28 BAGR 0000 0001 2124 5361 1324` |
 | EE | Estonia | Yes | 20 | `EE38 2200 2210 2014 5685` |
@@ -127,7 +128,6 @@ Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/Inte
 | CI | Côte d'Ivoire | - | 28 |  |
 | CM | Cameroon | - | 27 |  |
 | CV | Cabo Verde | - | 25 |  |
-| DJ | Djibouti | - | 27 |  |
 | DZ | Algeria | - | 26 |  |
 | GA | Gabon | - | 27 |  |
 | GQ | Equatorial Guinea | - | 27 |  |
