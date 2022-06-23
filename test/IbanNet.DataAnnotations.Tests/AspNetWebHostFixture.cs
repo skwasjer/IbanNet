@@ -16,9 +16,6 @@ namespace IbanNet.DataAnnotations
             services
                 .AddSingleton<IIbanValidator, IbanValidator>()
                 .AddMvc()
-#if NETCOREAPP2_1
-				.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-#endif
                 .AddControllersAsServices();
         }
 
@@ -26,15 +23,11 @@ namespace IbanNet.DataAnnotations
         public void Configure(IApplicationBuilder app)
 #pragma warning restore CA1822 // Mark members as static
         {
-#if ENDPOINT_ROUTING
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-#else
-			app.UseMvc();
-#endif
         }
     }
 
@@ -44,15 +37,6 @@ namespace IbanNet.DataAnnotations
         {
             webHostBuilder.UseStartup<TestStartup>();
             base.Configure(webHostBuilder);
-        }
-
-        public override IDictionary<string, string[]> MapToErrors(string jsonContent)
-        {
-#if PROBLEM_DETAILS
-            return JsonConvert.DeserializeObject<ValidationProblemDetails>(jsonContent).Errors;
-#else
-			return JsonConvert.DeserializeObject<Dictionary<string, string[]>>(jsonContent);
-#endif
         }
 
         public Task InitializeAsync()

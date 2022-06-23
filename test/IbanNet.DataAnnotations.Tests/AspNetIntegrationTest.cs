@@ -2,7 +2,12 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+#if NET5_0_OR_GREATER
+using System.Net.Http.Json;
+#endif
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace IbanNet.DataAnnotations
 {
@@ -40,8 +45,13 @@ namespace IbanNet.DataAnnotations
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-            string responseContent = await response.Content.ReadAsStringAsync();
-            _fixture.MapToErrors(responseContent)
+#if NET5_0_OR_GREATER
+            ValidationProblemDetails problemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
+#else
+            ValidationProblemDetails problemDetails = JsonConvert.DeserializeObject<ValidationProblemDetails>(await response.Content.ReadAsStringAsync());
+#endif
+            problemDetails.Should().NotBeNull();
+            problemDetails.Errors
                 .Should()
                 .ContainKey("BankAccountNumber")
                 .WhoseValue.Should()

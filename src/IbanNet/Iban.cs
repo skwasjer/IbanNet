@@ -12,7 +12,7 @@ namespace IbanNet
     /// Represents an IBAN.
     /// </summary>
     [TypeConverter(typeof(IbanTypeConverter))]
-#if NET5_0_OR_GREATER
+#if NET6_0_OR_GREATER
     [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
     public sealed class Iban
@@ -93,7 +93,7 @@ namespace IbanNet
             {
                 IbanFormat.Electronic => _iban,
                 IbanFormat.Obfuscated =>
-#if NET5_0_OR_GREATER
+#if NET6_0_OR_GREATER
                     string.Concat(new string('X', _iban.Length - visibleChars), _iban.AsSpan(_iban.Length - visibleChars, visibleChars)),
 #else
                     new string('X', _iban.Length - visibleChars) + _iban.Substring(_iban.Length - visibleChars, visibleChars),
@@ -192,7 +192,7 @@ namespace IbanNet
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+#if NETSTANDARD2_1 || NET6_0_OR_GREATER
             return _iban.GetHashCode(StringComparison.Ordinal);
 #else
 			return _iban.GetHashCode();

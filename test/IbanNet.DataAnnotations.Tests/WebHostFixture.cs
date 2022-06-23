@@ -24,8 +24,6 @@ namespace IbanNet.DataAnnotations
             GC.SuppressFinalize(this);
             TestServer?.Dispose();
         }
-
-        public abstract IDictionary<string, string[]> MapToErrors(string jsonContent);
     }
 }
 #endif

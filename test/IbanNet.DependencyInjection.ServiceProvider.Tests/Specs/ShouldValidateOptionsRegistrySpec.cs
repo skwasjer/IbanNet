@@ -22,7 +22,7 @@ namespace IbanNet.DependencyInjection.ServiceProvider.Specs
 			});
 		}
 
-		[Fact]
+		[Fact(Skip = "Currently targeting .NET Standard 2.0 which does not support options validation.")]
 		public void Given_registry_is_null_when_getting_options_it_should_ensure_not_null_through_validation()
 		{
 			Func<IbanValidatorOptions> act = () => Subject.GetService<IOptions<IbanValidatorOptions>>()?.Value;
