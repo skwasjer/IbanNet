@@ -5,138 +5,135 @@ namespace IbanNet.Registry
 {
     public class IbanGeneratorTests
     {
-        private readonly ITestOutputHelper _testOutputHelper;
-        private readonly IbanValidator _validator;
-        private readonly IbanGenerator _sut;
-
-        public IbanGeneratorTests(ITestOutputHelper testOutputHelper)
-        {
-            _testOutputHelper = testOutputHelper;
-            _validator = new IbanValidator();
-            _sut = new IbanGenerator();
-        }
-
-        [Fact]
-        public void Given_null_registry_when_creating_instance_it_should_throw()
-        {
-            IIbanRegistry registry = null;
-
-            // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<IbanGenerator> act = () => new IbanGenerator(registry);
-
-            // Assert
-            act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(registry));
-        }
-
-        [Fact]
-        public void Given_null_countryCode_when_generating_it_should_throw()
-        {
-            string countryCode = null;
-
-            // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<Iban> act = () => _sut.Generate(countryCode);
-
-            // Assert
-            act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(countryCode));
-        }
-
-        [Fact]
-        public void Given_that_countryCode_is_unregistered_when_generating_it_should_throw()
-        {
-            const string countryCode = "ZZZ";
-
-            // Act
-            Func<Iban> act = () => _sut.Generate(countryCode);
-
-            // Assert
-            act.Should()
-                .ThrowExactly<ArgumentException>()
-                .WithMessage("*is not registered*")
-                .Which.ParamName.Should()
-                .Be(nameof(countryCode));
-        }
-
-        [Fact]
-        public void Given_that_countryCode_has_no_bban_pattern_when_generating_it_should_throw()
-        {
-            const string countryCode = "ZZ";
-            var registry = new IbanRegistry
-            {
-                Providers =
-                {
-                    new IbanRegistryListProvider(new[] { new IbanCountry(countryCode) })
-                }
-            };
-            var sut = new IbanGenerator(registry);
-
-            // Act
-            Func<Iban> act = () => sut.Generate(countryCode);
-
-            // Assert
-            act.Should()
-                .ThrowExactly<InvalidOperationException>()
-                .WithMessage("*does not have a BBAN pattern*");
-        }
-
-        [Theory]
-        [InlineData("nl")]
-        [InlineData("GB")]
-        [InlineData("fR")]
-        public void Given_mixed_case_country_code_when_generating_it_should_return_valid_iban(string countryCode)
-        {
-            // Act
-            Iban actual = _sut.Generate(countryCode);
-
-            // Assert
-            actual.Should().NotBeNull();
-            _validator.Validate(actual.ToString()).IsValid.Should().BeTrue();
-        }
-
-        [Theory]
-        [MemberData(nameof(GetIbanCountries))]
-        public void When_generating_iban_it_should_return_valid_iban(IbanCountry country)
-        {
-            // Act
-            Iban actual = _sut.Generate(country.TwoLetterISORegionName);
-            _testOutputHelper.WriteLine(actual.ToString());
-
-            // Assert
-            actual.Should().NotBeNull();
-            string iban = actual.ToString();
-            iban.Length.Should().Be(country.Iban.Length);
-            _validator.Validate(iban).IsValid.Should().BeTrue();
-        }
-
-        [Fact]
-        public void When_generating_ibans_it_should_never_generate_same()
-        {
-            const int count = 1000;
-
-            // Act
-            var ibans = new HashSet<Iban>(
-                Enumerable
-                    .Range(0, count)
-                    .Select(_ => _sut.Generate("NL"))
-            );
-
-            // Assert
-            ibans.Should().HaveCount(count);
-        }
-
-        public static IEnumerable<object[]> GetIbanCountries()
-        {
-            return IbanRegistry.Default.Select(country => new object[] { country });
-        }
-
         public class GeneratorTests
+        {
+            private readonly ITestOutputHelper _testOutputHelper;
+            private readonly IbanValidator _validator;
+            private readonly IbanGenerator _sut;
+
+            public GeneratorTests(ITestOutputHelper testOutputHelper)
+            {
+                _testOutputHelper = testOutputHelper;
+                _validator = new IbanValidator();
+                _sut = new IbanGenerator();
+            }
+
+            [Fact]
+            public void Given_null_registry_when_creating_instance_it_should_throw()
+            {
+                IIbanRegistry registry = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<IbanGenerator> act = () => new IbanGenerator(registry);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(registry));
+            }
+
+            [Fact]
+            public void Given_null_countryCode_when_generating_it_should_throw()
+            {
+                string countryCode = null;
+
+                // Act
+                // ReSharper disable once AssignNullToNotNullAttribute
+                Func<Iban> act = () => _sut.Generate(countryCode);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentNullException>()
+                    .Which.ParamName.Should()
+                    .Be(nameof(countryCode));
+            }
+
+            [Fact]
+            public void Given_that_countryCode_is_unregistered_when_generating_it_should_throw()
+            {
+                const string countryCode = "ZZZ";
+
+                // Act
+                Func<Iban> act = () => _sut.Generate(countryCode);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<ArgumentException>()
+                    .WithMessage("*is not registered*")
+                    .Which.ParamName.Should()
+                    .Be(nameof(countryCode));
+            }
+
+            [Fact]
+            public void Given_that_countryCode_has_no_bban_pattern_when_generating_it_should_throw()
+            {
+                const string countryCode = "ZZ";
+                var registry = new IbanRegistry { Providers = { new IbanRegistryListProvider(new[] { new IbanCountry(countryCode) }) } };
+                var sut = new IbanGenerator(registry);
+
+                // Act
+                Func<Iban> act = () => sut.Generate(countryCode);
+
+                // Assert
+                act.Should()
+                    .ThrowExactly<InvalidOperationException>()
+                    .WithMessage("*does not have a BBAN pattern*");
+            }
+
+            [Theory]
+            [InlineData("nl")]
+            [InlineData("GB")]
+            [InlineData("fR")]
+            public void Given_mixed_case_country_code_when_generating_it_should_return_valid_iban(string countryCode)
+            {
+                // Act
+                Iban actual = _sut.Generate(countryCode);
+
+                // Assert
+                actual.Should().NotBeNull();
+                _validator.Validate(actual.ToString()).IsValid.Should().BeTrue();
+            }
+
+            [Theory]
+            [MemberData(nameof(GetIbanCountries))]
+            public void When_generating_iban_it_should_return_valid_iban(IbanCountry country)
+            {
+                // Act
+                Iban actual = _sut.Generate(country.TwoLetterISORegionName);
+                _testOutputHelper.WriteLine(actual.ToString());
+
+                // Assert
+                actual.Should().NotBeNull();
+                string iban = actual.ToString();
+                iban.Length.Should().Be(country.Iban.Length);
+                _validator.Validate(iban).IsValid.Should().BeTrue();
+            }
+
+            [Fact]
+            public void When_generating_ibans_it_should_never_generate_same()
+            {
+                const int count = 1000;
+
+                // Act
+                var ibans = new HashSet<Iban>(
+                    Enumerable
+                        .Range(0, count)
+                        .Select(_ => _sut.Generate("NL"))
+                );
+
+                // Assert
+                ibans.Should().HaveCount(count);
+            }
+
+            public static IEnumerable<object[]> GetIbanCountries()
+            {
+                return IbanRegistry.Default.Select(country => new object[] { country });
+            }
+        }
+
+        public class InternalGeneratorTests
         {
             [Fact]
             public void Given_a_pattern_of_multiple_tokens_when_generating_it_should_return_expected()

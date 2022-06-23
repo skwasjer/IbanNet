@@ -188,13 +188,13 @@ namespace IbanNet.DataAnnotations
                     .WhoseValue.Should()
                     .BeOfType<IllegalCharactersResult>();
             }
+        }
 
-            public class Given_context_with_member_name : When_validating_an_invalid_iban
+        public class Given_context_with_member_name : When_validating_an_invalid_iban
+        {
+            public Given_context_with_member_name()
             {
-                public Given_context_with_member_name()
-                {
-                    _validationContext.MemberName = "MyMemberName";
-                }
+                _validationContext.MemberName = "MyMemberName";
             }
         }
 
