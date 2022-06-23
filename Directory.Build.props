@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DefineConstants Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netcoreapp3.1' Or '$(TargetFramework)'=='netstandard2.1'">$(DefineConstants);USE_SPANS</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netstandard2.1'">$(DefineConstants);USE_SPANS</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net6.0'">
@@ -23,7 +23,7 @@
     <MicrosoftExtensionsVersion>3.1.0</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0' Or $(TargetFramework.StartsWith('netcoreapp2'))">
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <MicrosoftExtensionsVersion>2.1.0</MicrosoftExtensionsVersion>
   </PropertyGroup>
 

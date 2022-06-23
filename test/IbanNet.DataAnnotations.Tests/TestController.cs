@@ -10,13 +10,6 @@ namespace IbanNet.DataAnnotations
         [HttpPost("save")]
         public IActionResult Save(InputModel iban)
         {
-#if NETCOREAPP2_1
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-#endif
-
             return Ok(iban.BankAccountNumber);
         }
     }

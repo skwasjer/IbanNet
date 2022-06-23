@@ -19,7 +19,7 @@ namespace IbanNet.Registry.Swift
         {
             return pattern is null || !(pattern.Length >= CountryCodeLength && pattern[0].IsAsciiLetter() && pattern[1].IsAsciiLetter())
                 ? null
-#if NET5_0_OR_GREATER
+#if NET6_0_OR_GREATER
                 : string.Concat("2!a", pattern.AsSpan(2));
 #else
                 : "2!a" + pattern.Substring(2);

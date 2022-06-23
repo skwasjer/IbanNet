@@ -1,4 +1,4 @@
-﻿#if NET5_0_OR_GREATER
+﻿#if NET6_0_OR_GREATER
 using System.Text;
 using System.Text.Json;
 using IbanNet.Registry;

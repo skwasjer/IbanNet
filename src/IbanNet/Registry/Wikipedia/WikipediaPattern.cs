@@ -7,7 +7,7 @@ namespace IbanNet.Registry.Wikipedia
         private static readonly WikipediaPatternTokenizer Tokenizer = new();
 
         public WikipediaPattern(string pattern) : base(
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
             pattern?.Replace(",", null, StringComparison.Ordinal)!,
 #else
             pattern?.Replace(",", null)!,

@@ -370,7 +370,7 @@ namespace IbanNet
             }
         }
 
-#if NET5_0_OR_GREATER
+#if NET6_0_OR_GREATER
         public class When_system_text_json_converting : IbanTests
         {
             [Theory]
