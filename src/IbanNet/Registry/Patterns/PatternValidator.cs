@@ -3,16 +3,18 @@
     internal class PatternValidator
     {
         private readonly IReadOnlyList<PatternToken> _tokens;
+#if USE_SPANS
         private readonly bool _isFixedLength;
-#if !USE_SPANS
+#else
         private readonly Func<string, bool> _validationFunc;
 #endif
 
         public PatternValidator(Pattern pattern)
         {
             _tokens = pattern.Tokens;
+#if USE_SPANS
             _isFixedLength = pattern.IsFixedLength;
-#if !USE_SPANS
+#else
             _validationFunc = GetValidationMethod(pattern);
 #endif
         }
