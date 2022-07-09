@@ -195,7 +195,7 @@ namespace IbanNet
 #if NETSTANDARD2_1 || NET6_0_OR_GREATER
             return _iban.GetHashCode(StringComparison.Ordinal);
 #else
-			return _iban.GetHashCode();
+            return _iban.GetHashCode();
 #endif
         }
 
