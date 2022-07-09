@@ -1,5 +1,12 @@
 # Changelog
 
+## v5.6.0
+
+- LTS: dropped support for .NET 5.0
+- Updated System.ComponentModel.Annotations to v5.0.0
+- Updated Autofac to 6.4.0
+- Updated FluentValidation to 11.1.0
+
 ## v5.5.1
 
 - Upgraded SWIFT registry to May '22 release 92, which adds Djibouti (DJ), fixes the bank pattern for Bahrain (BH).
