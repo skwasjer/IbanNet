@@ -941,6 +941,10 @@ namespace IbanNet.Registry.Swift
                 {
                     Example = "20041"
                 },
+                Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+                {
+                    Example = "01005"
+                },
                 Sepa = new SepaInfo
                 {
                     IsMember = true,
