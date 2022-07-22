@@ -64,7 +64,7 @@ namespace IbanNet.Registry.Swift
     var csv = new SwiftCsvReader(new StreamReader(registryPath, Encoding.GetEncoding(1252)));
     var records = csv.GetRecords<SwiftCsvRecord>();
 
-    foreach (var record in records)
+    foreach (var record in records.Select(IbanNet.CodeGen.Swift.Patches.RecordPatcher.ApplyAll))
     {
         int bbanOffset = record.Iban.Length - record.Bban.Length;
         if (Boycott(record.CountryCode)) continue;

@@ -4,7 +4,7 @@ using IbanNet.CodeGen.Swift.Converters;
 
 namespace IbanNet.CodeGen.Swift;
 
-public sealed class SwiftCsvRecord
+public sealed record SwiftCsvRecord
 {
     private string _countryCode = default!;
 
@@ -73,7 +73,7 @@ public record struct Position
     public int EndPos { get; set; }
 }
 
-public class IbanCsvData
+public record IbanCsvData
 {
     [Name("IBAN structure")]
     public string Pattern { get; set; } = default!;
@@ -88,7 +88,7 @@ public class IbanCsvData
     public string? PrintFormatExample { get; set; }
 }
 
-public abstract class PatternCsvData
+public abstract record PatternCsvData
 {
     public virtual string? Pattern { get; set; }
 
@@ -98,7 +98,7 @@ public abstract class PatternCsvData
     public virtual string? Example { get; set; }
 }
 
-public class BbanCsvData : PatternCsvData
+public record BbanCsvData : PatternCsvData
 {
     [Name("BBAN structure")]
     public override string? Pattern { get; set; }
@@ -117,7 +117,7 @@ public class BbanCsvData : PatternCsvData
     public override string? Example { get; set; }
 }
 
-public class BankCsvData : PatternCsvData
+public record BankCsvData : PatternCsvData
 {
     [Name("Bank identifier pattern")]
     public override string? Pattern { get; set; }
@@ -129,7 +129,7 @@ public class BankCsvData : PatternCsvData
     public override string? Example { get; set; }
 }
 
-public class BranchCsvData : PatternCsvData
+public record BranchCsvData : PatternCsvData
 {
     [Name("Branch identifier pattern")]
     public override string? Pattern { get; set; }
@@ -141,7 +141,7 @@ public class BranchCsvData : PatternCsvData
     public override string? Example { get; set; }
 }
 
-public class SepaCsvData
+public record SepaCsvData
 {
     [Name("SEPA country")]
     [BooleanTrueValues("Yes")]
