@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.6.1
+
+- Adds branch information to FR (#78)
+
 ## v5.6.0
 
 - LTS: dropped support for .NET 5.0
