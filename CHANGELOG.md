@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.6.2
+
+- Regenerated Wikipedia registry which corrects IBAN pattern for Senegal (SN).
+- Add code gen SWIFT CSV record patchers (so that this no longer requires manual work on each registry update)
+
 ## v5.6.1
 
 - Adds branch information to FR (#78)
@@ -14,7 +19,7 @@
 ## v5.5.1
 
 - Upgraded SWIFT registry to May '22 release 92, which adds Djibouti (DJ), fixes the bank pattern for Bahrain (BH).
-- Upgraded Wikipedia registry which adjusts English name for ST.
+- Upgraded Wikipedia registry which corrects English name for Sao Tome (ST).
 
 ## v5.5.0
 
