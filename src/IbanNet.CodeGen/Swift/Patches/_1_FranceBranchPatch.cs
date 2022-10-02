@@ -3,7 +3,7 @@
 /// <summary>
 /// See https://github.com/skwasjer/IbanNet/issues/77
 /// </summary>
-internal class FranceBranchPatch : RecordPatcher
+internal class _1_FranceBranchPatch : RecordPatcher
 {
     protected override SwiftCsvRecord Apply(SwiftCsvRecord record)
     {
