@@ -34,7 +34,7 @@ namespace IbanNet.Benchmark
         }
 
         [Benchmark(Baseline = true)]
-        public void IbanNet_Strict()
+        public void Singleton()
         {
             // ReSharper disable once ForCanBeConvertedToForeach
             for (int i = 0; i < _testData.Count; i++)
@@ -43,8 +43,22 @@ namespace IbanNet.Benchmark
             }
         }
 
+        /// <summary>
+        /// Not recommended: to show the difference.
+        /// </summary>
         [Benchmark]
-        public void IbanNet_Strict_CacheReuse()
+        public void Transient()
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (int i = 0; i < _testData.Count; i++)
+            {
+                var validator = new IbanValidator();
+                validator.Validate(_testData[i]);
+            }
+        }
+
+        [Benchmark]
+        public void Singleton_CacheReuse()
         {
             // ReSharper disable once ForCanBeConvertedToForeach
             for (int i = 0; i < _testData.Count; i++)
