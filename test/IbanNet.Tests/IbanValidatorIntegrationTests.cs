@@ -6,11 +6,11 @@ namespace IbanNet
     {
         private readonly IbanValidator _sut = new();
 
-        [Fact]
-        public void When_validating_iban_with_invalid_structure_should_not_validate()
+        [Theory]
+        [InlineData("nl91ABNA0417164300")] // Lower case country code.
+        [InlineData("NL91ABNA041716430A")] // Last character should be digit.
+        public void When_validating_iban_with_invalid_structure_should_not_validate(string ibanWithInvalidStructure)
         {
-            const string ibanWithInvalidStructure = "NL91ABNA041716430A"; // Last character should be digit.
-
             // Act
             ValidationResult actual = _sut.Validate(ibanWithInvalidStructure);
 
@@ -34,7 +34,7 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithLowercase.ToUpperInvariant(),
+                AttemptedValue = ibanWithLowercase,
                 Country = _sut.SupportedCountries[ibanWithLowercase.Substring(0, 2)]
             });
         }
@@ -161,7 +161,7 @@ namespace IbanNet
         [InlineData("NL91 ABNA 0417 1643 00")]
         [InlineData("NL91\tABNA\t0417\t1643\t00")]
         [InlineData(" NL91 ABNA041 716 4300 ")]
-        public void When_iban_contains_whitespace_should_validate(string ibanWithWhitespace)
+        public void Given_that_iban_contains_whitespace_when_validating_it_should_fail(string ibanWithWhitespace)
         {
             // Act
             ValidationResult actual = _sut.Validate(ibanWithWhitespace);
@@ -169,8 +169,8 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = Iban.NormalizeOrNull(ibanWithWhitespace),
-                Country = _sut.SupportedCountries["NL"]
+                AttemptedValue = ibanWithWhitespace,
+                Error = new IllegalCharactersResult()
             });
         }
 

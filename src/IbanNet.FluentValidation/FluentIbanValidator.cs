@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
+using IbanNet.Internal;
 
 namespace IbanNet.FluentValidation
 {
@@ -19,6 +20,14 @@ namespace IbanNet.FluentValidation
             _ibanValidator = ibanValidator ?? throw new ArgumentNullException(nameof(ibanValidator));
         }
 
+        /// <summary>
+        /// Gets or sets whether to perform strict validation. When true, the input must strictly match the IBAN format rules.
+        /// When false, whitespace is ignored and strict character casing enforcement is disabled (meaning, the user can input in lower and uppercase). This mode is a bit more forgiving when dealing with user-input. However it does require after successful validation, that you parse the user input with <see cref="IIbanParser" /> to normalize/sanitize the input and to be able to format the IBAN in correct electronic format.
+        ///
+        /// <para>Default is <see langword="true" />. (this may change in future major release)</para>
+        /// </summary>
+        public bool Strict { get; init; } = true;
+
         /// <inheritdoc />
         protected override string GetDefaultMessageTemplate(string errorCode)
         {
@@ -28,16 +37,20 @@ namespace IbanNet.FluentValidation
         /// <inheritdoc />
         public override bool IsValid(ValidationContext<T> context, string value)
         {
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             if (value is null)
             {
                 return true;
             }
 
-            ValidationResult result = _ibanValidator.Validate(value);
+            ValidationResult result = _ibanValidator.Validate(
+                Strict
+                    ? value
+                    : InputNormalization.NormalizeOrNull(value)
+            );
             if (result.Error is not null)
             {
-                // ReSharper disable once ConstantConditionalAccessQualifier
+                // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
                 context?.MessageFormatter.AppendArgument("Error", result.Error);
             }
 

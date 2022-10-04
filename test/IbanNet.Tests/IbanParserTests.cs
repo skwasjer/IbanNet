@@ -126,6 +126,27 @@ namespace IbanNet
                 ex.Message.Should().Be("The IBAN contains illegal characters.");
             }
 
+            [Theory]
+            [InlineData("NL91 ABNA 0417 1643 00")]
+            [InlineData("NL91\tABNA\t0417\t1643\t00")]
+            [InlineData(" NL91 ABNA041 716 4300 ")]
+            [InlineData("nl91 ABNA041716\t4300")]
+            public void Given_that_iban_contains_whitespace_or_lowercase_when_parsing_it_should_succeed(string iban)
+            {
+                const string expectedNormalizedIban = "NL91ABNA0417164300";
+                _ibanValidatorStub
+                    .Setup(m => m.Validate(expectedNormalizedIban))
+                    .Returns(new ValidationResult { AttemptedValue = iban, Country = new IbanCountry("NL") })
+                    .Verifiable();
+
+                // Act
+                Iban actual = _sut.Parse(iban);
+
+                // Assert
+                actual.ToString().Should().Be(expectedNormalizedIban);
+                _ibanValidatorStub.Verify();
+            }
+
             [Fact]
             public void With_valid_value_should_return_iban()
             {

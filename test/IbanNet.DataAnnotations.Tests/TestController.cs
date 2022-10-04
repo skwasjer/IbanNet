@@ -12,6 +12,12 @@ namespace IbanNet.DataAnnotations
         {
             return Ok(iban.BankAccountNumber);
         }
+
+        [HttpPost("save-strict")]
+        public IActionResult Save(StrictInputModel iban)
+        {
+            return Ok(iban.BankAccountNumber);
+        }
     }
 }
 #endif

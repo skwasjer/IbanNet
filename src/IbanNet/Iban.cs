@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using IbanNet.Extensions;
+using IbanNet.Internal;
 using IbanNet.Registry;
 using IbanNet.TypeConverters;
 
@@ -23,7 +23,7 @@ namespace IbanNet
         /// The maximum length of any IBAN, from any country.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal const int MaxLength = 34;
+        public const int MaxLength = 34;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static readonly Func<IIbanValidator> DefaultFactory = () => new IbanValidator();
@@ -51,9 +51,12 @@ namespace IbanNet
                 : new Lazy<IIbanValidator>(() => value, true);
         }
 
-        internal Iban(string iban, IbanCountry ibanCountry)
+        internal Iban(string iban, IbanCountry ibanCountry, bool skipNormalize = false)
         {
-            _iban = NormalizeOrNull(iban) ?? throw new ArgumentNullException(nameof(iban));
+            _iban = (skipNormalize
+                    ? iban
+                    : InputNormalization.NormalizeOrNull(iban)
+                ) ?? throw new ArgumentNullException(nameof(iban));
             Country = ibanCountry ?? throw new ArgumentNullException(nameof(ibanCountry));
         }
 
@@ -219,56 +222,6 @@ namespace IbanNet
         public static bool operator !=(Iban left, Iban right)
         {
             return !Equals(left, right);
-        }
-
-        /// <summary>
-        /// Normalizes an IBAN by removing whitespace, removing non-alphanumerics and upper casing each character.
-        /// </summary>
-        /// <param name="value">The input value to normalize.</param>
-        /// <returns>The normalized IBAN.</returns>
-        internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
-        {
-            if (value is null)
-            {
-                return null;
-            }
-
-            int length = value.Length;
-#if USE_SPANS
-            // Use stack but clamp to avoid excessive stackalloc buffer.
-            const int stackallocMaxSize = MaxLength + 6;
-            Span<char> buffer = length <= stackallocMaxSize
-                ? stackalloc char[length]
-                : new char[length];
-#else
-            char[] buffer = new char[length];
-#endif
-            int pos = 0;
-            // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
-            for (int i = 0; i < length; i++)
-            {
-                char ch = value[i];
-                if (ch.IsWhitespace())
-                {
-                    continue;
-                }
-
-                if (ch.IsAsciiLetter())
-                {
-                    // Inline upper case.
-                    buffer[pos++] = (char)(ch & ~' ');
-                }
-                else
-                {
-                    buffer[pos++] = ch;
-                }
-            }
-
-#if USE_SPANS
-            return new string(buffer[..pos]);
-#else
-            return new string(buffer, 0, pos);
-#endif
         }
 
         private string? Extract(StructureSection? structure)

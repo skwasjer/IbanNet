@@ -1,9 +1,8 @@
 ﻿#if ASPNET_INTEGRATION_TESTS
+using IbanNet.DependencyInjection.ServiceProvider;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
 namespace IbanNet.DataAnnotations
 {
@@ -14,7 +13,7 @@ namespace IbanNet.DataAnnotations
 #pragma warning restore CA1822 // Mark members as static
         {
             services
-                .AddSingleton<IIbanValidator, IbanValidator>()
+                .AddIbanNet()
                 .AddMvc()
                 .AddControllersAsServices();
         }

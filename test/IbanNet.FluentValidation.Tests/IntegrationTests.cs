@@ -7,20 +7,21 @@ namespace IbanNet.FluentValidation
 {
     public class IntegrationTests
     {
-        private readonly TestModelValidator _sut;
         private readonly TestModel _testModel;
 
         public IntegrationTests()
         {
-            _sut = new TestModelValidator(new IbanValidator());
-
             _testModel = new TestModel();
         }
 
         [Theory]
-        [InlineData("PL611090101400000712198128741")]
-        [InlineData("AE07033123456789012345")]
-        public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors(string attemptedIbanValue)
+        [MemberData(nameof(InvalidTestCases))]
+        public void Given_a_model_with_invalid_iban_when_validating_should_contain_validation_errors
+        (
+            string attemptedIbanValue,
+            bool strict,
+            ErrorResult expectedError
+        )
         {
             _testModel.BankAccountNumber = attemptedIbanValue;
 
@@ -33,12 +34,13 @@ namespace IbanNet.FluentValidation
                 {
                     { "PropertyName", expectedFormattedPropertyName },
                     { "PropertyValue", attemptedIbanValue },
-                    { "Error", new InvalidLengthResult() }
+                    { "Error", expectedError }
                 }
             };
 
             // Act
-            ValidationResultAlias actual = _sut.Validate(_testModel);
+            var sut = new TestModelValidator(new IbanValidator(), strict);
+            ValidationResultAlias actual = sut.Validate(_testModel);
 
             // Assert
             actual.IsValid.Should().BeFalse("because one validation error should have occurred");
@@ -49,15 +51,35 @@ namespace IbanNet.FluentValidation
                 .BeEquivalentTo(expectedValidationFailure);
         }
 
+        public static IEnumerable<object[]> InvalidTestCases()
+        {
+            yield return new object[] { "nl91ABNA0417164300", true, new InvalidStructureResult() };
+            yield return new object[] { "PL611090101400000712198128741", true, new InvalidLengthResult() };
+            yield return new object[] { "PL611090101400000712198128741", false, new InvalidLengthResult() };
+            yield return new object[] { "PL61 1090 10140000071219812874", true, new IllegalCharactersResult() };
+            yield return new object[] { "AE07033123456789012345", true, new InvalidLengthResult() };
+            yield return new object[] { "AE07033123456789012345", false, new InvalidLengthResult() };
+            yield return new object[] { "AE07 0331 234567890123456", true, new IllegalCharactersResult() };
+            yield return new object[] { "MT84malt011000012345mtlcast001S", true, new InvalidStructureResult() };
+        }
+
         [Theory]
-        [InlineData("PL61109010140000071219812874")]
-        [InlineData("AE070331234567890123456")]
-        public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string attemptedIbanValue)
+        [InlineData("nl91ABNA0417164300", false)]
+        [InlineData("PL61109010140000071219812874", true)]
+        [InlineData("PL61109010140000071219812874", false)]
+        [InlineData("PL61 1090 10140000071219812874", false)]
+        [InlineData("AE070331234567890123456", true)]
+        [InlineData("AE070331234567890123456", false)]
+        [InlineData("AE07 0331 234567890123456", false)]
+        [InlineData("MT84MALT011000012345mtlcast001S", true)]
+        [InlineData("MT84malt011000012345mtlcast001S", false)]
+        public void Given_a_model_with_iban_when_validating_should_not_contain_validation_errors(string attemptedIbanValue, bool strict)
         {
             _testModel.BankAccountNumber = attemptedIbanValue;
 
             // Act
-            ValidationResultAlias actual = _sut.Validate(_testModel);
+            var sut = new TestModelValidator(new IbanValidator(), strict);
+            ValidationResultAlias actual = sut.Validate(_testModel);
 
             // Assert
             actual.IsValid.Should().BeTrue("because no validation errors should have occurred");
@@ -65,9 +87,9 @@ namespace IbanNet.FluentValidation
 
         private class TestModelValidator : AbstractValidator<TestModel>
         {
-            public TestModelValidator(IIbanValidator ibanValidator)
+            public TestModelValidator(IIbanValidator ibanValidator, bool strict)
             {
-                RuleFor(x => x.BankAccountNumber).Iban(ibanValidator);
+                RuleFor(x => x.BankAccountNumber).Iban(ibanValidator, strict);
             }
         }
     }
