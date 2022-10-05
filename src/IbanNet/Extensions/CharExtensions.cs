@@ -45,9 +45,9 @@ namespace IbanNet.Extensions
             return IsInRange(ch, '0', '9');
         }
 
-        public static bool IsWhitespace(this char ch)
+        public static bool IsSingleLineWhitespace(this char ch)
         {
-            return ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n';
+            return ch is ' ' or '\t';
         }
     }
 }

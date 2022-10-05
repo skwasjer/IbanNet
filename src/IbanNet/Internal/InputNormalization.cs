@@ -25,14 +25,14 @@ internal static class InputNormalization
             ? stackalloc char[length]
             : new char[length];
 #else
-            char[] buffer = new char[length];
+        char[] buffer = new char[length];
 #endif
         int pos = 0;
         // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
         for (int i = 0; i < length; i++)
         {
             char ch = value[i];
-            if (ch.IsWhitespace())
+            if (ch.IsSingleLineWhitespace())
             {
                 continue;
             }
@@ -51,7 +51,7 @@ internal static class InputNormalization
 #if USE_SPANS
         return new string(buffer[..pos]);
 #else
-            return new string(buffer, 0, pos);
+        return new string(buffer, 0, pos);
 #endif
     }
 }
