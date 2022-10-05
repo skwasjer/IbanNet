@@ -119,7 +119,7 @@ namespace IbanNet
                 IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
                 ex.Result.Should().BeEquivalentTo(new ValidationResult
                 {
-                    Error = new IllegalCharactersResult(),
+                    Error = new IllegalCharactersResult(0),
                     AttemptedValue = TestValues.InvalidIban
                 });
                 ex.InnerException.Should().BeNull();

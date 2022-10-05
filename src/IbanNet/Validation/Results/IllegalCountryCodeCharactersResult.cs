@@ -9,8 +9,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="IllegalCountryCodeCharactersResult" /> class.
         /// </summary>
-        public IllegalCountryCodeCharactersResult()
-            : base(Resources.IllegalCountryCodeCharactersResult)
+        /// <param name="position">The position of the illegal character.</param>
+        public IllegalCountryCodeCharactersResult(int position)
+            : base(Resources.IllegalCountryCodeCharactersResult, position)
         {
         }
     }

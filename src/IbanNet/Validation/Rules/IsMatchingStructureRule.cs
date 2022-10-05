@@ -12,12 +12,12 @@ namespace IbanNet.Validation.Rules
         {
             if (context.Country is null)
             {
-                return new InvalidStructureResult();
+                return new InvalidStructureResult(0);
             }
 
-            return context.Country.Iban.Pattern.IsMatch(context.Value, out _)
+            return context.Country.Iban.Pattern.IsMatch(context.Value, out int? errorPos)
                 ? ValidationRuleResult.Success
-                : new InvalidStructureResult();
+                : new InvalidStructureResult(errorPos.Value);
         }
     }
 }

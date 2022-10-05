@@ -41,13 +41,15 @@ namespace IbanNet.Validation.Rules
             actual.Should().Be(ValidationRuleResult.Success);
         }
 
-        [Fact]
-        public void Given_invalid_value_when_validating_it_should_return_error()
+        [Theory]
+        [InlineData("XXXX", 2, "the country code is only being tested against upper case")]
+        [InlineData("XX12ABCD", 7, "the input is too long")]
+        [InlineData("XX12AB", 6, "the input is not long enough")]
+        public void Given_invalid_value_when_validating_it_should_return_error(string testValue, int expectedErrorPos, string because)
         {
-            const string testValue = "XXXX";
             var country = new IbanCountry("NL")
             {
-                Iban = new IbanStructure(new IbanSwiftPattern("NL2!n"))
+                Iban = new IbanStructure(new IbanSwiftPattern("NL2!n3!a"))
             };
 
             // Act
@@ -57,7 +59,10 @@ namespace IbanNet.Validation.Rules
             });
 
             // Assert
-            actual.Should().BeOfType<InvalidStructureResult>();
+            actual.Should()
+                .BeOfType<InvalidStructureResult>()
+                .Which.Position.Should()
+                .Be(expectedErrorPos, because);
         }
     }
 }

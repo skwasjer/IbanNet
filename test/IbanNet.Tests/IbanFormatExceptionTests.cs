@@ -33,7 +33,7 @@ namespace IbanNet
             {
                 AttemptedValue = "iban",
                 Country = ibanCountry,
-                Error = new IllegalCharactersResult()
+                Error = new IllegalCharactersResult(7)
             };
 
             var exception = new IbanFormatException(message, result);

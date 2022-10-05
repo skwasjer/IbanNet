@@ -8,9 +8,16 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidStructureResult" /> class.
         /// </summary>
-        public InvalidStructureResult()
+        /// <param name="position">The position of the illegal character.</param>
+        public InvalidStructureResult(int position)
             : base(Resources.InvalidStructureResult)
         {
+            Position = position;
         }
+
+        /// <summary>
+        /// Gets the character position where the first illegal character was encountered.
+        /// </summary>
+        public int Position { get; }
     }
 }

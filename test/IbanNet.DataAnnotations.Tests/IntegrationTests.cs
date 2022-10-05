@@ -36,14 +36,14 @@ namespace IbanNet.DataAnnotations
 
         public static IEnumerable<object[]> InvalidTestCases()
         {
-            yield return new object[] { "nl91ABNA0417164300", true, new InvalidStructureResult() };
+            yield return new object[] { "nl91ABNA0417164300", true, new InvalidStructureResult(0) };
             yield return new object[] { "PL611090101400000712198128741", true, new InvalidLengthResult() };
             yield return new object[] { "PL611090101400000712198128741", false, new InvalidLengthResult() };
-            yield return new object[] { "PL61 1090 10140000071219812874", true, new IllegalCharactersResult() };
+            yield return new object[] { "PL61 1090 10140000071219812874", true, new IllegalCharactersResult(4) };
             yield return new object[] { "AE07033123456789012345", true, new InvalidLengthResult() };
             yield return new object[] { "AE07033123456789012345", false, new InvalidLengthResult() };
-            yield return new object[] { "AE07 0331 234567890123456", true, new IllegalCharactersResult() };
-            yield return new object[] { "MT84malt011000012345mtlcast001S", true, new InvalidStructureResult() };
+            yield return new object[] { "AE070 331 234567890123456", true, new IllegalCharactersResult(5) };
+            yield return new object[] { "MT84malt011000012345mtlcast001S", true, new InvalidStructureResult(4) };
         }
 
         [Theory]

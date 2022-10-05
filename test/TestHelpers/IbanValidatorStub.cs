@@ -19,7 +19,7 @@ namespace TestHelpers
                 .Returns(new ValidationResult { AttemptedValue = null, Error = new InvalidLengthResult() });
 
             Setup(m => m.Validate(TestValues.InvalidIban))
-                .Returns<string>(iban => new ValidationResult { AttemptedValue = iban, Error = new IllegalCharactersResult() });
+                .Returns<string>(iban => new ValidationResult { AttemptedValue = iban, Error = new IllegalCharactersResult(0) });
 
             Setup(m => m.Validate(TestValues.IbanForCustomRuleFailure))
                 .Returns<string>(iban => new ValidationResult { AttemptedValue = iban, Error = new ErrorResult("Custom message") });

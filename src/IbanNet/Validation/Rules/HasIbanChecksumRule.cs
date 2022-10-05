@@ -17,7 +17,7 @@ namespace IbanNet.Validation.Rules
                 // 99 is invalid.
              || iban[2] == '9' && iban[3] == '9')
             {
-                return new IllegalCharactersResult();
+                return new IllegalCharactersResult(3);
             }
 
             return ValidationRuleResult.Success;
