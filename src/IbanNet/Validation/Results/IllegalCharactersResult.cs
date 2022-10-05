@@ -9,7 +9,16 @@
         /// Initializes a new instance of the <see cref="IllegalCharactersResult" /> class.
         /// </summary>
         public IllegalCharactersResult()
-            : base(Resources.IllegalCharactersResult)
+            : this(Resources.IllegalCharactersResult)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IllegalCharactersResult" /> class.
+        /// </summary>
+        /// <param name="errorMessage">The error message.</param>
+        protected IllegalCharactersResult(string errorMessage)
+            : base(errorMessage)
         {
         }
     }

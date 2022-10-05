@@ -158,10 +158,10 @@ namespace IbanNet
         }
 
         [Theory]
-        [InlineData("NL91 ABNA 0417 1643 00")]
-        [InlineData("NL91\tABNA\t0417\t1643\t00")]
-        [InlineData(" NL91 ABNA041 716 4300 ")]
-        public void Given_that_iban_contains_whitespace_when_validating_it_should_fail(string ibanWithWhitespace)
+        [InlineData("NL91 ABNA 0417 1643 00", typeof(IllegalCharactersResult))]
+        [InlineData("NL91\tABNA\t0417\t1643\t00", typeof(IllegalCharactersResult))]
+        [InlineData(" NL91 ABNA041 716 4300 ", typeof(IllegalCountryCodeCharactersResult))]
+        public void Given_that_iban_contains_whitespace_when_validating_it_should_fail(string ibanWithWhitespace, Type expectedErrorType)
         {
             // Act
             ValidationResult actual = _sut.Validate(ibanWithWhitespace);
@@ -170,7 +170,7 @@ namespace IbanNet
             actual.Should().BeEquivalentTo(new ValidationResult
             {
                 AttemptedValue = ibanWithWhitespace,
-                Error = new IllegalCharactersResult()
+                Error = (ErrorResult)Activator.CreateInstance(expectedErrorType)
             });
         }
 
