@@ -27,7 +27,7 @@ namespace IbanNet.DataAnnotations
             using HttpClient client = _fixture.TestServer.CreateClient();
 
             // Act
-            HttpResponseMessage response = await client.SendAsync(CreateSaveRequest(validIban));
+            HttpResponseMessage response = await client.SendAsync(CreateSaveRequest(validIban, false));
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -35,13 +35,13 @@ namespace IbanNet.DataAnnotations
         }
 
         [Fact]
-        public async Task Given_invalid_iban_when_posting_with_attribute_validation_it_should_validate()
+        public async Task Given_invalid_iban_when_posting_with_attribute_validation_it_should_not_validate()
         {
             const string invalidIban = "invalid-iban";
             using HttpClient client = _fixture.TestServer.CreateClient();
 
             // Act
-            HttpResponseMessage response = await client.SendAsync(CreateSaveRequest(invalidIban));
+            HttpResponseMessage response = await client.SendAsync(CreateSaveRequest(invalidIban, false));
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -58,9 +58,9 @@ namespace IbanNet.DataAnnotations
                 .Contain("The field 'BankAccountNumber' is not a valid IBAN.");
         }
 
-        private static HttpRequestMessage CreateSaveRequest(string iban)
+        private static HttpRequestMessage CreateSaveRequest(string iban, bool strict)
         {
-            return new(HttpMethod.Post, "test/save")
+            return new(HttpMethod.Post, "test/save" + (strict ? "-strict" : ""))
             {
                 Headers =
                 {

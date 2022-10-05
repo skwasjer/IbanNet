@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using IbanNet.Internal;
 using IbanNet.Registry;
 
 namespace IbanNet
@@ -77,9 +78,11 @@ namespace IbanNet
             iban = null;
             exceptionThrown = null;
 
+            string? normalizedValue = InputNormalization.NormalizeOrNull(value);
+
             try
             {
-                validationResult = _ibanValidator.Validate(value);
+                validationResult = _ibanValidator.Validate(normalizedValue);
             }
             catch (Exception ex)
             {
@@ -93,7 +96,7 @@ namespace IbanNet
                 return false;
             }
 
-            iban = new Iban(validationResult.AttemptedValue!, validationResult.Country!);
+            iban = new Iban(normalizedValue!, validationResult.Country!, true);
             return true;
         }
     }

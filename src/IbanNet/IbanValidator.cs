@@ -77,9 +77,7 @@ namespace IbanNet
         /// <returns>a validation result, indicating if the IBAN is valid or not</returns>
         public ValidationResult Validate(string? iban)
         {
-            string? normalizedIban = Iban.NormalizeOrNull(iban);
-
-            var context = new ValidationRuleContext(normalizedIban ?? string.Empty);
+            var context = new ValidationRuleContext(iban ?? string.Empty);
             ErrorResult? error = null;
 
             foreach (IIbanValidationRule rule in _rules)
@@ -101,7 +99,7 @@ namespace IbanNet
 
             return new ValidationResult
             {
-                AttemptedValue = normalizedIban,
+                AttemptedValue = iban,
                 Country = context.Country,
                 Error = error
             };
