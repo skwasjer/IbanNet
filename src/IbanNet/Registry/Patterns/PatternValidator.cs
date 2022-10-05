@@ -1,4 +1,6 @@
-﻿namespace IbanNet.Registry.Patterns
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace IbanNet.Registry.Patterns
 {
     internal class PatternValidator
     {
@@ -11,36 +13,48 @@
             _isFixedLength = pattern.IsFixedLength;
         }
 
-        public bool Validate
+        public bool TryValidate
         (
 #if USE_SPANS
             ReadOnlySpan<char> value
 #else
             string value
 #endif
+            ,
+            [NotNullWhen(false)]
+            out int? errorPos
         )
         {
             // If no tokens, always fail.
             if (_tokens.Count == 0)
             {
+                errorPos = value.Length;
                 return false;
             }
 
+            errorPos = null;
+            int cursor = 0;
             // Short-circuit, if all tests are fixed length, use faster validation.
-            return _isFixedLength
-                ? ValidateFixedLength(value)
-                : ValidateNonFixedLength(value);
+            bool isValid = _isFixedLength
+                ? ValidateFixedLength(value, ref cursor)
+                : ValidateNonFixedLength(value, ref cursor);
+
+            if (!isValid)
+            {
+                errorPos = cursor;
+            }
+
+            return isValid;
         }
 
 #if USE_SPANS
-        private bool ValidateFixedLength(ReadOnlySpan<char> value)
+        private bool ValidateFixedLength(ReadOnlySpan<char> value, ref int cursor)
 #else
-        private unsafe bool ValidateFixedLength(string value)
+        private unsafe bool ValidateFixedLength(string value, ref int cursor)
 #endif
         {
             int length = value.Length;
             int tokenCount = _tokens.Count;
-            int pos = 0;
             int segmentIndex = 0;
 #if USE_SPANS
             // ReSharper disable once InlineTemporaryVariable
@@ -54,50 +68,52 @@
                     PatternToken expectedToken = _tokens[segmentIndex];
                     int maxLength = expectedToken.MaxLength;
 
-                    if (pos + maxLength > length)
+                    if (cursor + maxLength > length)
                     {
+                        cursor = length;
                         return false;
                     }
 
                     Func<char, bool> isMatch = expectedToken.IsMatch;
                     for (int occurrence = 0; occurrence < maxLength; occurrence++)
                     {
-                        if (!isMatch(ptr[pos++]))
+                        if (!isMatch(ptr[cursor]))
                         {
                             return false;
                         }
+
+                        cursor++;
                     }
                 }
             }
 
-            return length == pos && segmentIndex == tokenCount;
+            return length == cursor && segmentIndex == tokenCount;
         }
 
 #if USE_SPANS
-        private bool ValidateNonFixedLength(ReadOnlySpan<char> value)
+        private bool ValidateNonFixedLength(ReadOnlySpan<char> value, ref int cursor)
 #else
-        private bool ValidateNonFixedLength(string value)
+        private bool ValidateNonFixedLength(string value, ref int cursor)
 #endif
         {
-            int pos = 0;
             int segmentIndex = 0;
             for (; segmentIndex < _tokens.Count; segmentIndex++)
             {
-                PatternToken? expectedToken = _tokens[segmentIndex];
+                PatternToken expectedToken = _tokens[segmentIndex];
                 if (expectedToken.IsFixedLength)
                 {
-                    if (!ProcessFixedLengthTest(expectedToken, value, ref pos))
+                    if (!ProcessFixedLengthTest(expectedToken, value, ref cursor))
                     {
                         return false;
                     }
                 }
-                else if (!ProcessNonFixedLengthTest(expectedToken, value, ref pos))
+                else if (!ProcessNonFixedLengthTest(expectedToken, value, ref cursor))
                 {
                     return false;
                 }
             }
 
-            return value.Length == pos && segmentIndex == _tokens.Count;
+            return value.Length == cursor && segmentIndex == _tokens.Count;
         }
 
         private static bool ProcessFixedLengthTest(
@@ -107,23 +123,24 @@
 #else
             string value,
 #endif
-            ref int pos
+            ref int cursor
         )
         {
-            if (pos + expectedToken.MaxLength > value.Length)
+            if (cursor + expectedToken.MaxLength > value.Length)
             {
+                cursor = value.Length;
                 return false;
             }
 
             for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
             {
-                char c = value[pos];
+                char c = value[cursor];
                 if (!expectedToken.IsMatch(c))
                 {
                     return false;
                 }
 
-                pos++;
+                cursor++;
             }
 
             return true;
@@ -136,27 +153,27 @@
 #else
             string value,
 #endif
-            ref int pos
+            ref int cursor
         )
         {
-            int startPos = pos;
+            int startPos = cursor;
             for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
             {
-                if (pos >= value.Length)
+                if (cursor >= value.Length)
                 {
-                    return pos >= startPos + expectedToken.MinLength && pos <= startPos + expectedToken.MaxLength;
+                    return cursor >= startPos + expectedToken.MinLength && cursor <= startPos + expectedToken.MaxLength;
                 }
 
-                char c = value[pos];
+                char c = value[cursor];
                 if (!expectedToken.IsMatch(c))
                 {
                     return false;
                 }
 
-                pos++;
+                cursor++;
             }
 
-            return pos >= startPos + expectedToken.MinLength && pos <= startPos + expectedToken.MaxLength;
+            return cursor >= startPos + expectedToken.MinLength && cursor <= startPos + expectedToken.MaxLength;
         }
     }
 }

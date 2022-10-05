@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace IbanNet.Registry.Patterns
 {
@@ -103,19 +104,20 @@ namespace IbanNet.Registry.Patterns
         }
 
 #if USE_SPANS
-        internal bool IsMatch(ReadOnlySpan<char> value)
+        internal bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
         {
 #else
-        internal bool IsMatch(string value)
+        internal bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
         {
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             if (value is null)
             {
+                errorPos = -1;
                 return false;
             }
 #endif
             _patternValidator ??= new PatternValidator(this);
-            return _patternValidator.Validate(value);
+            return _patternValidator.TryValidate(value, out errorPos);
         }
 
         private void InitLength(IEnumerable<PatternToken> tokens)

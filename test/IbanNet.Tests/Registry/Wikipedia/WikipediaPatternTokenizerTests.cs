@@ -32,29 +32,30 @@ namespace IbanNet.Registry.Wikipedia
 #endif
 
         [Theory]
-        [InlineData("2n", "12", true)]
-        [InlineData("3n", "1234", false)]
-        [InlineData("2n", "1A", false)]
-        [InlineData("2n", "", false)]
-        [InlineData("2n", "1", false)]
-        [InlineData("2n", "123", false)]
-        [InlineData("8n6a", "AB", false)]
-        [InlineData("1a", "A", true)]
-        [InlineData("1a1n", "A1", true)]
-        [InlineData("3c", "d1F", true)]
-        [InlineData("2n", "@#", false)]
-        [InlineData("2n3a2c", "12ABCe1", true)]
-        [InlineData("2n3a2c", "12123e1", false)]
-        [InlineData("2n3a3c", "", false)]
-        [InlineData("2n3a", "12ABCD", false)]
-        public void Given_valid_pattern_without_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult)
+        [InlineData("2n", "12", true, null)]
+        [InlineData("3n", "1234", false, 3)]
+        [InlineData("2n", "1A", false, 1)]
+        [InlineData("2n", "", false, 0)]
+        [InlineData("2n", "1", false, 1)]
+        [InlineData("2n", "123", false, 2)]
+        [InlineData("8n6a", "AB", false, 2)]
+        [InlineData("1a", "A", true, null)]
+        [InlineData("1a1n", "A1", true, null)]
+        [InlineData("3c", "d1F", true, null)]
+        [InlineData("2n", "@#", false, 0)]
+        [InlineData("2n3a2c", "12ABCe1", true, null)]
+        [InlineData("2n3a2c", "12123e1", false, 2)]
+        [InlineData("2n3a3c", "", false, 0)]
+        [InlineData("2n3a", "12ABCD", false, 5)]
+        public void Given_valid_pattern_without_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult, int? expectedErrorPos)
         {
             // Act
             var validator = new PatternValidator(new FakePattern(_sut.Tokenize(pattern)));
-            bool result = validator.Validate(value);
+            bool isValid = validator.TryValidate(value, out int? errorPos);
 
             // Assert
-            result.Should().Be(expectedResult);
+            isValid.Should().Be(expectedResult);
+            errorPos.Should().Be(expectedErrorPos);
         }
 
         [Theory]
