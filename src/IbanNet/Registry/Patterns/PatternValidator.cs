@@ -7,10 +7,10 @@ namespace IbanNet.Registry.Patterns
         private readonly IReadOnlyList<PatternToken> _tokens;
         private readonly bool _isFixedLength;
 
-        public PatternValidator(Pattern pattern)
+        internal PatternValidator(IReadOnlyList<PatternToken> tokens, bool isFixedLength)
         {
-            _tokens = pattern.Tokens;
-            _isFixedLength = pattern.IsFixedLength;
+            _tokens = tokens;
+            _isFixedLength = isFixedLength;
         }
 
         public bool TryValidate
