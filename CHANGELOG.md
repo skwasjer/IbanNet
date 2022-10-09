@@ -1,5 +1,17 @@
 # Changelog
 
+## v5.7.0
+
+- Move normalization to IbanParser from IbanValidator. This means that the validator is now validating 100% strict according to whitespace/character casing pattern rules. ValidationResult.AttemptedValue will now also have the raw input. Whitespace/casing is still ignored by the IbanParser.
+- Add Strict-property (default true) to `IbanAttribute` and `FluentIbanValidator` extension. When Strict=true, the input must strictly match the IBAN format rules. When Strict=false, whitespace is ignored and strict character casing enforcement is disabled (meaning, the user can input in lower and uppercase). This mode is a bit more forgiving when dealing with user-input. However it does require after successful validation, that you parse the user input with `IbanParser` to normalize/sanitize the input and to be able to format the IBAN in correct electronic format.
+- When normalizating, carriage return (CR) and line feed (LF) are no longer stripped.
+- `IllegalCharactersResult` and `InvalidStructureResult` have a property `Position` which indicates the 0-based position at which the first invalid character was encountered.
+- Performance improvements to pattern validator.
+
+### IbanNet.FluentValidation
+
+- Fix registration bug where if custom registry was registered, it would still additionally register IbanNet instead of ignoring.
+
 ## v5.6.2
 
 - Regenerated Wikipedia registry which corrects IBAN pattern for Senegal (SN).
