@@ -9,7 +9,7 @@ Additionally, IbanNet provides:
 
 ```csharp
 IIbanValidator validator = new IbanValidator();
-ValidationResult validationResult = validator.Validate("NL91 ABNA 0417 1643 00");
+ValidationResult validationResult = validator.Validate("NL91ABNA0417164300");
 if (validationResult.IsValid)
 {
     // ..
