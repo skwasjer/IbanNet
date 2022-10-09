@@ -104,9 +104,9 @@ namespace IbanNet.Registry.Patterns
         public int MaxLength { get; }
 
         /// <summary>
-        /// Gets whether or not this token is fixed length.
+        /// Gets whether or not this token is of fixed length.
         /// </summary>
-        internal bool IsFixedLength { get; }
+        public bool IsFixedLength { get; }
 
         internal Func<char, bool> IsMatch { get; }
 
