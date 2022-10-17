@@ -12,14 +12,18 @@ namespace IbanNet.Validation.Rules
         }
 
         [Theory]
-        [InlineData("")]
-        [InlineData("N")]
-        [InlineData("@#")]
-        public void Given_invalid_value_when_validating_it_should_return_error(string value)
+        [InlineData("", -1)]
+        [InlineData("N", 1)]
+        [InlineData("@#", 0)]
+        [InlineData("N#", 1)]
+        public void Given_invalid_value_when_validating_it_should_return_error(string value, int position)
         {
             ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
 
-            actual.Should().BeOfType<IllegalCountryCodeCharactersResult>();
+            actual.Should()
+                .BeOfType<IllegalCountryCodeCharactersResult>()
+                .Which.Position.Should()
+                .Be(position);
         }
 
         [Fact]

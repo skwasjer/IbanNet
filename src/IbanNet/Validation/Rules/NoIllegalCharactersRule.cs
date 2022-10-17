@@ -20,7 +20,7 @@ namespace IbanNet.Validation.Rules
                 // All chars must be 0-9, a-z or A-Z.
                 if (!c.IsAlphaNumeric())
                 {
-                    return new IllegalCharactersResult();
+                    return new IllegalCharactersResult(i);
                 }
             }
 

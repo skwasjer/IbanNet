@@ -116,7 +116,7 @@ namespace IbanNet.Registry.Patterns
                 return false;
             }
 #endif
-            _patternValidator ??= new PatternValidator(this);
+            _patternValidator ??= new PatternValidator(Compress(Tokens), IsFixedLength);
             return _patternValidator.TryValidate(value, out errorPos);
         }
 
@@ -137,6 +137,37 @@ namespace IbanNet.Registry.Patterns
 
             _fixedLength = fixedLength;
             _maxLength = maxLength;
+        }
+
+        /// <summary>
+        /// Compresses a sequence of pattern tokens by combining aligned tokens of same ASCII type into a single token.
+        /// </summary>
+        /// <param name="tokens">A list of tokens.</param>
+        /// <returns>A compressed list of tokens.</returns>
+        internal static IReadOnlyList<PatternToken> Compress(IReadOnlyList<PatternToken> tokens)
+        {
+            if (tokens.Count == 0)
+            {
+                throw new ArgumentException("Expected list of tokens.", nameof(tokens));
+            }
+
+            var compressedTokens = new List<PatternToken>();
+            PatternToken current = tokens[0];
+            foreach (PatternToken token in tokens.Skip(1))
+            {
+                if (current.Category == token.Category)
+                {
+                    current = new PatternToken(token.Category, current.MinLength + token.MinLength, current.MaxLength + token.MaxLength);
+                    continue;
+                }
+
+                compressedTokens.Add(current);
+
+                current = token;
+            }
+
+            compressedTokens.Add(current);
+            return compressedTokens;
         }
     }
 }

@@ -131,6 +131,9 @@
     <data name="UnknownCountryCodeResult" xml:space="preserve">
         <value>The country code is unknown/not supported.</value>
     </data>
+    <data name="IllegalCountryCodeCharactersResult" xml:space="preserve">
+        <value>The IBAN contains illegal characters in the position where the country code is expected.</value>
+    </data>
     <data name="ArgumentException_The_structure_segment_0_is_invalid" xml:space="preserve">
         <value>The pattern segment '{0}' is invalid at position {1}.</value>
     </data>

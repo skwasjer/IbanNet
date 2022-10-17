@@ -12,13 +12,17 @@ namespace IbanNet.Validation.Rules
         }
 
         [Theory]
-        [InlineData("AB!C")]
-        [InlineData("é")]
-        public void Given_invalid_value_when_validating_it_should_return_error(string value)
+        [InlineData("AB!C", 2)]
+        [InlineData("é", 0)]
+        [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!", 36)]
+        public void Given_invalid_value_when_validating_it_should_return_error(string value, int expectedErrorPos)
         {
             ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(value));
 
-            actual.Should().BeOfType<IllegalCharactersResult>();
+            actual.Should()
+                .BeOfType<IllegalCharactersResult>()
+                .Which.Position.Should()
+                .Be(expectedErrorPos);
         }
 
         [Fact]

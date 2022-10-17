@@ -45,7 +45,7 @@ namespace IbanNet.DependencyInjection.Autofac
 
             builder
                 .Register(context => context.Resolve<IbanValidatorOptions>().Registry)
-                .IfNotRegistered(typeof(IIbanParser))
+                .IfNotRegistered(typeof(IIbanRegistry))
                 .SingleInstance();
 
             builder

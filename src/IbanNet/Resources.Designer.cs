@@ -234,6 +234,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The IBAN contains illegal characters in the position where the country code is expected..
+        /// </summary>
+        internal static string IllegalCountryCodeCharactersResult {
+            get {
+                return ResourceManager.GetString("IllegalCountryCodeCharactersResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The IBAN check digits are incorrect..
         /// </summary>
         internal static string InvalidCheckDigitsResult {

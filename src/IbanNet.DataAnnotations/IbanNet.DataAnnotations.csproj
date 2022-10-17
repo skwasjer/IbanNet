@@ -13,6 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\IbanNet\Extensions\CharExtensions.cs" Link="Internal\Extensions\CharExtensions.cs" />
+    <Compile Include="..\IbanNet\Internal\InputNormalization.cs" Link="Internal\InputNormalization.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 

@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard1.6" Condition="'$(TargetFramework)'=='net48'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net472" Condition="'$(TargetFramework)'=='net472'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net462" Condition="'$(TargetFramework)'=='net462'" />
+    <ProjectReference Include="..\..\src\IbanNet.DependencyInjection.ServiceProvider\IbanNet.DependencyInjection.ServiceProvider.csproj" />
     <ProjectReference Include="..\TestHelpers\TestHelpers.csproj" />
   </ItemGroup>
 

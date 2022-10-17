@@ -41,6 +41,7 @@ namespace IbanNet.Registry.Swift
         [InlineData("2n", "123", false, 2)]
         [InlineData("8n6a", "AB", false, 0)]
         [InlineData("1!a", "A", true, null)]
+        [InlineData("1!a2!a1!a1!n2!n", "ABCD123", true, null)]
         [InlineData("1!a1!n", "A1", true, null)]
         [InlineData("3!c", "d1F", true, null)]
         [InlineData("2!n", "@#", false, 0)]
@@ -52,8 +53,10 @@ namespace IbanNet.Registry.Swift
         [InlineData("2n3a", "12ABCD", false, 5)]
         public void Given_valid_pattern_without_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult, int? expectedErrorPos)
         {
+            var fakePattern = new FakePattern(_sut.Tokenize(pattern));
+
             // Act
-            var validator = new PatternValidator(new FakePattern(_sut.Tokenize(pattern)));
+            var validator = new PatternValidator(fakePattern.Tokens, fakePattern.IsFixedLength);
             bool isValid = validator.TryValidate(value, out int? errorPos);
 
             // Assert

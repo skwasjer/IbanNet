@@ -5,8 +5,9 @@
 This library registers the following services:
 
 - `IIbanValidator`
-- `IIbanGenerator`
 - `IIbanParser`
+- `IIbanRegistry`
+- `IIbanGenerator`
 
 ## Example
 

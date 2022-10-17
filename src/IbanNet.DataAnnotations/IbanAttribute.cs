@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using IbanNet.Internal;
 
 namespace IbanNet.DataAnnotations
 {
@@ -17,6 +18,14 @@ namespace IbanNet.DataAnnotations
         {
         }
 
+        /// <summary>
+        /// Gets or sets whether to perform strict validation. When true, the input must strictly match the IBAN format rules.
+        /// When false, whitespace is ignored and strict character casing enforcement is disabled (meaning, the user can input in lower and uppercase). This mode is a bit more forgiving when dealing with user-input. However it does require after successful validation, that you parse the user input with <see cref="IIbanParser" /> to normalize/sanitize the input and to be able to format the IBAN in correct electronic format.
+        ///
+        /// <para>Default is <see langword="true" />. (this may change in future major release)</para>
+        /// </summary>
+        public bool Strict { get; init; } = true;
+
         /// <inheritdoc />
         protected override System.ComponentModel.DataAnnotations.ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
@@ -31,7 +40,11 @@ namespace IbanNet.DataAnnotations
             }
 
             IIbanValidator ibanValidator = GetValidator(validationContext);
-            ValidationResult result = ibanValidator.Validate(strValue);
+            ValidationResult result = ibanValidator.Validate(
+                Strict
+                    ? strValue
+                    : InputNormalization.NormalizeOrNull(strValue)
+            );
             if (result.IsValid)
             {
                 return System.ComponentModel.DataAnnotations.ValidationResult.Success;
@@ -54,7 +67,7 @@ namespace IbanNet.DataAnnotations
         /// <summary>
         /// Gets the validator from IoC container.
         /// </summary>
-        private static IIbanValidator GetValidator(IServiceProvider serviceProvider)
+        private static IIbanValidator GetValidator(IServiceProvider? serviceProvider)
         {
             var ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
             if (ibanValidator is null)

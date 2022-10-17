@@ -13,9 +13,10 @@ namespace IbanNet.Validation.Rules
         {
             string iban = context.Value;
             // First 2 chars must be a-z or A-Z.
-            if (iban.Length < 2 || !iban[0].IsAsciiLetter() || !iban[1].IsAsciiLetter())
+            int pos = -1;
+            if (iban.Length < 2 || !iban[++pos].IsAsciiLetter() || !iban[++pos].IsAsciiLetter())
             {
-                return new IllegalCountryCodeCharactersResult();
+                return new IllegalCountryCodeCharactersResult(iban.Length == 1 ? 1 : pos);
             }
 
             return ValidationRuleResult.Success;

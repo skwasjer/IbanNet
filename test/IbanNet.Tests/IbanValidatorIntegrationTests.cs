@@ -1,4 +1,5 @@
-﻿using IbanNet.Validation.Results;
+﻿using System.Reflection;
+using IbanNet.Validation.Results;
 
 namespace IbanNet
 {
@@ -6,11 +7,13 @@ namespace IbanNet
     {
         private readonly IbanValidator _sut = new();
 
-        [Fact]
-        public void When_validating_iban_with_invalid_structure_should_not_validate()
+        [Theory]
+        [InlineData("nl91ABNA0417164300", 0)]  // Lower case country code.
+        [InlineData("Nl91ABNA0417164300", 1)]  // Lower case country code.
+        [InlineData("NL91ABNA041716430A", 18)] // Last character should be digit.
+        [InlineData("NL91AB1A041716430A", 6)]
+        public void When_validating_iban_with_invalid_structure_should_not_validate(string ibanWithInvalidStructure, int expectedErrorPos)
         {
-            const string ibanWithInvalidStructure = "NL91ABNA041716430A"; // Last character should be digit.
-
             // Act
             ValidationResult actual = _sut.Validate(ibanWithInvalidStructure);
 
@@ -18,7 +21,7 @@ namespace IbanNet
             actual.Should().BeEquivalentTo(new ValidationResult
             {
                 AttemptedValue = ibanWithInvalidStructure,
-                Error = new InvalidStructureResult(),
+                Error = new InvalidStructureResult(expectedErrorPos),
                 Country = _sut.SupportedCountries[ibanWithInvalidStructure.Substring(0, 2)]
             });
         }
@@ -34,7 +37,7 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = ibanWithLowercase.ToUpperInvariant(),
+                AttemptedValue = ibanWithLowercase,
                 Country = _sut.SupportedCountries[ibanWithLowercase.Substring(0, 2)]
             });
         }
@@ -56,9 +59,9 @@ namespace IbanNet
         }
 
         [Theory]
-        [InlineData("NL91ABNA041716430!")]
-        [InlineData("NL91ABNA^417164300")]
-        public void When_validating_iban_with_illegal_characters_should_not_validate(string ibanWithIllegalChars)
+        [InlineData("NL91ABNA041716430!", 16)]
+        [InlineData("NL91ABNA^417164300", 8)]
+        public void When_validating_iban_with_illegal_characters_should_not_validate(string ibanWithIllegalChars, int position)
         {
             // Act
             ValidationResult actual = _sut.Validate(ibanWithIllegalChars);
@@ -67,15 +70,16 @@ namespace IbanNet
             actual.Should().BeEquivalentTo(new ValidationResult
             {
                 AttemptedValue = ibanWithIllegalChars,
-                Error = new IllegalCharactersResult()
+                Error = new IllegalCharactersResult(position)
             });
         }
 
         [Theory]
-        [InlineData("0091ABNA0417164300")]
-        [InlineData("4591ABNA0417164300")]
-        [InlineData("#L91ABNA0417164300")]
-        public void When_validating_iban_with_illegal_country_code_should_not_validate(string ibanWithIllegalCountryCode)
+        [InlineData("0091ABNA0417164300", 0)]
+        [InlineData("A591ABNA0417164300", 1)]
+        [InlineData("#L91ABNA0417164300", 0)]
+        [InlineData("A#91ABNA0417164300", 1)]
+        public void When_validating_iban_with_illegal_country_code_should_not_validate(string ibanWithIllegalCountryCode, int position)
         {
             // Act
             ValidationResult actual = _sut.Validate(ibanWithIllegalCountryCode);
@@ -84,7 +88,7 @@ namespace IbanNet
             actual.Should().BeEquivalentTo(new ValidationResult
             {
                 AttemptedValue = ibanWithIllegalCountryCode,
-                Error = new IllegalCountryCodeCharactersResult()
+                Error = new IllegalCountryCodeCharactersResult(position)
             });
         }
 
@@ -101,7 +105,7 @@ namespace IbanNet
             actual.Should().BeEquivalentTo(new ValidationResult
             {
                 AttemptedValue = ibanWithInvalidChecksum,
-                Error = new IllegalCharactersResult()
+                Error = new IllegalCharactersResult(3)
             });
         }
 
@@ -158,10 +162,10 @@ namespace IbanNet
         }
 
         [Theory]
-        [InlineData("NL91 ABNA 0417 1643 00")]
-        [InlineData("NL91\tABNA\t0417\t1643\t00")]
-        [InlineData(" NL91 ABNA041 716 4300 ")]
-        public void When_iban_contains_whitespace_should_validate(string ibanWithWhitespace)
+        [InlineData("NL91 ABNA 0417 1643 00", 4, typeof(IllegalCharactersResult))]
+        [InlineData("NL91\tABNA\t0417\t1643\t00", 4, typeof(IllegalCharactersResult))]
+        [InlineData(" NL91 ABNA041 716 4300 ", 0, typeof(IllegalCountryCodeCharactersResult))]
+        public void Given_that_iban_contains_whitespace_when_validating_it_should_fail(string ibanWithWhitespace, int expectedCharPos, Type expectedErrorType)
         {
             // Act
             ValidationResult actual = _sut.Validate(ibanWithWhitespace);
@@ -169,8 +173,8 @@ namespace IbanNet
             // Assert
             actual.Should().BeEquivalentTo(new ValidationResult
             {
-                AttemptedValue = Iban.NormalizeOrNull(ibanWithWhitespace),
-                Country = _sut.SupportedCountries["NL"]
+                AttemptedValue = ibanWithWhitespace,
+                Error = (ErrorResult)Activator.CreateInstance(expectedErrorType, expectedCharPos)
             });
         }
 

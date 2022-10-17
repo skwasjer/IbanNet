@@ -5,7 +5,7 @@ namespace IbanNet.DataAnnotations
     public class InputModel
     {
         [Required]
-        [Iban]
+        [Iban(Strict = false)]
         public string BankAccountNumber { get; set; }
     }
 }
