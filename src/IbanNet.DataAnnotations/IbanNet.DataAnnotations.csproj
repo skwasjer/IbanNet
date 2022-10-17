@@ -42,6 +42,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources.nl.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

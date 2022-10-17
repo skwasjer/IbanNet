@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="IbanFormatException_The_value_0_is_not_a_valid_IBAN" xml:space="preserve">
+    <value>De waarde '{0}' is geen geldige IBAN.</value>
+  </data>
+  <data name="ArgumentException_The_format_is_required_with_supported_formats" xml:space="preserve">
+    <value>Format is verplicht. Ondersteunde formaten zijn '{0}' (flat) and '{1}' (partitioned by space).</value>
+  </data>
+  <data name="ArgumentException_The_format_0_is_invalid_with_supported_formats" xml:space="preserve">
+    <value>Het format '{0}' is niet valide. Ondersteunde formaten zijn '{1}' (flat) en '{2}' (partitioned by space).</value>
+  </data>
+  <data name="ArgumentException_The_format_0_is_invalid" xml:space="preserve">
+    <value>Het format '{0}' is niet valide.</value>
+  </data>
+  <data name="ArgumentException_Registry_is_required" xml:space="preserve">
+    <value>Registry is verplicht</value>
+  </data>
+  <data name="ArgumentException_Invalid_country_code" xml:space="preserve">
+    <value>Incorrecte landcode, code moet exact twee tekens lang zijn.</value>
+  </data>
+  <data name="IllegalCharactersResult" xml:space="preserve">
+    <value>Dit IBAN bevat niet toegestane tekens.</value>
+  </data>
+  <data name="InvalidCheckDigitsResult" xml:space="preserve">
+    <value>De 'check digits' van deze IBAN zijn incorrect.</value>
+  </data>
+  <data name="InvalidLengthResult" xml:space="preserve">
+    <value>Dit IBAN heeft een ongeldige lengte.</value>
+  </data>
+  <data name="InvalidStructureResult" xml:space="preserve">
+    <value>De structuur van dit IBAN is ongeldig.</value>
+  </data>
+  <data name="UnknownCountryCodeResult" xml:space="preserve">
+    <value>Deze landcode is onbekend of niet ondersteund.</value>
+  </data>
+  <data name="ArgumentException_The_structure_segment_0_is_invalid" xml:space="preserve">
+    <value>Het segment '{0}' is invalide op positie {1}.</value>
+  </data>
+  <data name="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" xml:space="preserve">
+    <value>Een alfa-numeriek teken was verwacht op {0}, waar het was '{1}'.</value>
+  </data>
+  <data name="PartitionOn_At_least_one_character_to_partition_on_is_required" xml:space="preserve">
+    <value>Tenministe één teken om op te partitioneren is verplicht.</value>
+  </data>
+  <data name="The_registry_has_no_providers" xml:space="preserve">
+    <value>Het Registry heeft geen Providers.</value>
+  </data>
+  <data name="One_or_more_providers_is_required" xml:space="preserve">
+    <value>Een of meer providers is verplicht.</value>
+  </data>
+  <data name="ArgumentException_The_country_code_0_is_not_registered" xml:space="preserve">
+    <value>De landcode '{0}' is niet geregistreerd.</value>
+  </data>
+  <data name="Exception_Builder_The_BBAN_cannot_be_built" xml:space="preserve">
+    <value>De BBAN kon niet worden opgebouwd.</value>
+  </data>
+  <data name="Exception_Builder_The_IBAN_cannot_be_built" xml:space="preserve">
+    <value>Het IBAN kon niet worden opgebouwd.</value>
+  </data>
+  <data name="Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1" xml:space="preserve">
+    <value>Waarde '{0}' is niet ondersteund voor landcode {1}.</value>
+  </data>
+  <data name="Exception_Builder_The_value_0_does_not_have_the_correct_length_of_1" xml:space="preserve">
+    <value>De waarde '{0}' heeft niet de correcte lengte van {1}.</value>
+  </data>
+  <data name="Exception_Builder_The_country_is_required" xml:space="preserve">
+    <value>Het land is verplicht.</value>
+  </data>
+  <data name="The_value_cannot_be_less_than_0" xml:space="preserve">
+    <value>De waarde kan niet minder zijn dan {0}.</value>
+  </data>
+  <data name="The_value_cannot_be_less_than_or_equal_to_0" xml:space="preserve">
+    <value>De waarde kan niet minder dan- of gelijk zijn aan {0}.</value>
+  </data>
+  <data name="Enum_value_0_should_be_defined_in_the_1_enum" xml:space="preserve">
+    <value>Enum waarde '{0}' dient gedefinieerd te zijn in de '{1}' enum.</value>
+  </data>
+  <data name="Exception_The_country_0_does_not_define_a_BBAN_pattern" xml:space="preserve">
+    <value>Het land '{0}' heeft geen BBAN-patroon gedefinieerd.</value>
+  </data>
+  <data name="Exception_The_country_0_does_not_define_a_IBAN_pattern" xml:space="preserve">
+    <value>Het land '{0}' heeft geen IBAN-patroon gedefinieerd.</value>
+  </data>
+  <data name="CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted" xml:space="preserve">
+    <value>Bankrekeningnummers van het land {0} worden niet geaccepteerd.</value>
+  </data>
+  <data name="ArgumentException_At_least_one_country_code_must_be_provided" xml:space="preserve">
+    <value>Tenminste één landcode moet worden opgegeven.</value>
+  </data>
+</root>
