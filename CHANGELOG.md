@@ -8,7 +8,7 @@
 - `IllegalCharactersResult` and `InvalidStructureResult` have a property `Position` which indicates the 0-based position at which the first invalid character was encountered.
 - ~15-20% Performance improvements to pattern validator.
 
-### IbanNet.FluentValidation
+### IbanNet.DependencyInjection.Autofac
 
 - Fix registration bug where if custom registry was registered, it would still additionally register IbanNet instead of ignoring.
 
