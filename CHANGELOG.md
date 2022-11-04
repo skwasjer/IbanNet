@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.7.1
+
+- [#97](https://github.com/skwasjer/IbanNet/pull/97) Add Dutch localized exception/result messages.
+
 ## v5.7.0
 
 - Move normalization to `IbanParser` from `IbanValidator`. This means that the validator is now validating 100% strict according to character pattern rules (character class, case and whitespace, etc.). `ValidationResult.AttemptedValue` will now also have the raw input. Whitespace/casing is still ignored by the `IbanParser`.
@@ -19,7 +23,7 @@
 
 ## v5.6.1
 
-- Adds branch information to FR (#78)
+- [#78](https://github.com/skwasjer/IbanNet/pull/78) Adds branch information to FR
 
 ## v5.6.0
 

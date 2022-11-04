@@ -73,7 +73,7 @@ namespace IbanNet.Registry.Wikipedia
             // Assert
             act.Should()
                 .ThrowExactly<PatternException>()
-                .WithMessage(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token, pos) + "*");
+                .WithMessage(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos) + "*");
         }
     }
 }

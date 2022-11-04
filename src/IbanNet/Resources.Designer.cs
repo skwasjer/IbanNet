@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 using System.Reflection;
-
 namespace IbanNet {
     using System;
     
@@ -72,7 +71,7 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid country code. must be exactly two characters long..
+        ///   Looks up a localized string similar to Invalid country code, expected code of exactly two letters..
         /// </summary>
         internal static string ArgumentException_Invalid_country_code {
             get {
@@ -104,33 +103,6 @@ namespace IbanNet {
         internal static string ArgumentException_The_format_0_is_invalid {
             get {
                 return ResourceManager.GetString("ArgumentException_The_format_0_is_invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The format &apos;{0}&apos; is invalid. Supported formats are &apos;{1}&apos; (flat) and &apos;{2}&apos; (partitioned by space)..
-        /// </summary>
-        internal static string ArgumentException_The_format_0_is_invalid_with_supported_formats {
-            get {
-                return ResourceManager.GetString("ArgumentException_The_format_0_is_invalid_with_supported_formats", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The format is required. Supported formats are &apos;{0}&apos; (flat) and &apos;{1}&apos; (partitioned by space)..
-        /// </summary>
-        internal static string ArgumentException_The_format_is_required_with_supported_formats {
-            get {
-                return ResourceManager.GetString("ArgumentException_The_format_is_required_with_supported_formats", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The pattern segment &apos;{0}&apos; is invalid at position {1}..
-        /// </summary>
-        internal static string ArgumentException_The_structure_segment_0_is_invalid {
-            get {
-                return ResourceManager.GetString("ArgumentException_The_structure_segment_0_is_invalid", resourceCulture);
             }
         }
         
@@ -261,7 +233,7 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The structure of the IBAN is incorrect..
+        ///   Looks up a localized string similar to The pattern of the IBAN is incorrect..
         /// </summary>
         internal static string InvalidStructureResult {
             get {
@@ -293,6 +265,15 @@ namespace IbanNet {
         internal static string PartitionOn_At_least_one_character_to_partition_on_is_required {
             get {
                 return ResourceManager.GetString("PartitionOn_At_least_one_character_to_partition_on_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The pattern token &apos;{0}&apos; is invalid at position {1}..
+        /// </summary>
+        internal static string PatternException_Invalid_token_0_at_position_1 {
+            get {
+                return ResourceManager.GetString("PatternException_Invalid_token_0_at_position_1", resourceCulture);
             }
         }
         

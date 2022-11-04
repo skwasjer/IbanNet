@@ -101,12 +101,6 @@
     <data name="IbanFormatException_The_value_0_is_not_a_valid_IBAN" xml:space="preserve">
         <value>The value '{0}' is not a valid IBAN.</value>
     </data>
-    <data name="ArgumentException_The_format_is_required_with_supported_formats" xml:space="preserve">
-        <value>The format is required. Supported formats are '{0}' (flat) and '{1}' (partitioned by space).</value>
-    </data>
-    <data name="ArgumentException_The_format_0_is_invalid_with_supported_formats" xml:space="preserve">
-        <value>The format '{0}' is invalid. Supported formats are '{1}' (flat) and '{2}' (partitioned by space).</value>
-    </data>
     <data name="ArgumentException_The_format_0_is_invalid" xml:space="preserve">
         <value>The format '{0}' is invalid.</value>
     </data>
@@ -114,7 +108,7 @@
         <value>Provide the registry.</value>
     </data>
     <data name="ArgumentException_Invalid_country_code" xml:space="preserve">
-        <value>Invalid country code. must be exactly two characters long.</value>
+        <value>Invalid country code, expected code of exactly two letters.</value>
     </data>
     <data name="IllegalCharactersResult" xml:space="preserve">
         <value>The IBAN contains illegal characters.</value>
@@ -126,7 +120,7 @@
         <value>The IBAN has an incorrect length.</value>
     </data>
     <data name="InvalidStructureResult" xml:space="preserve">
-        <value>The structure of the IBAN is incorrect.</value>
+        <value>The pattern of the IBAN is incorrect.</value>
     </data>
     <data name="UnknownCountryCodeResult" xml:space="preserve">
         <value>The country code is unknown/not supported.</value>
@@ -134,8 +128,8 @@
     <data name="IllegalCountryCodeCharactersResult" xml:space="preserve">
         <value>The IBAN contains illegal characters in the position where the country code is expected.</value>
     </data>
-    <data name="ArgumentException_The_structure_segment_0_is_invalid" xml:space="preserve">
-        <value>The pattern segment '{0}' is invalid at position {1}.</value>
+    <data name="PatternException_Invalid_token_0_at_position_1" xml:space="preserve">
+        <value>The pattern token '{0}' is invalid at position {1}.</value>
     </data>
     <data name="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" xml:space="preserve">
         <value>Expected alphanumeric character at position {0}, but found '{1}'.</value>

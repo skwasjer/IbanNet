@@ -38,7 +38,7 @@ namespace IbanNet.Registry.Patterns
                 int occurrences = GetLength(token, out bool isFixedLength);
                 if (asciiCategory == AsciiCategory.Other || occurrences <= 0)
                 {
-                    throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token, pos));
+                    throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos));
                 }
 
                 return new PatternToken(asciiCategory, isFixedLength ? occurrences : 1, occurrences);
@@ -50,7 +50,7 @@ namespace IbanNet.Registry.Patterns
              || ex is IndexOutOfRangeException
                 )
             {
-                throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_structure_segment_0_is_invalid, token, pos), ex);
+                throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos), ex);
             }
         }
 
