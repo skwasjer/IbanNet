@@ -21,11 +21,10 @@ public class BuilderExtensionsTests
         [Fact]
         public void Given_null_country_when_getting_iban_builder_it_should_throw()
         {
-            IbanCountry country = null;
+            IbanCountry? country = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => country.GetIbanBuilder();
+            Func<IbanBuilder> act = () => country!.GetIbanBuilder();
 
             // Assert
             act.Should()
@@ -52,11 +51,10 @@ public class BuilderExtensionsTests
         [Fact]
         public void Given_null_country_when_getting_bban_builder_it_should_throw()
         {
-            IbanCountry country = null;
+            IbanCountry? country = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => country.GetBbanBuilder();
+            Func<BbanBuilder> act = () => country!.GetBbanBuilder();
 
             // Assert
             act.Should()
@@ -97,21 +95,21 @@ public class BuilderExtensionsTests
             iban.Should().StartWith(countryCode);
         }
 
-        public static IEnumerable<object[]> WithCountryTestCases()
+        public static IEnumerable<object?[]> WithCountryTestCases()
         {
             IBankAccountBuilder builder = Mock.Of<IBankAccountBuilder>();
             const string countryCode = "NL";
             IIbanRegistry registry = Mock.Of<IIbanRegistry>();
 
-            IbanCountry other = null;
+            IbanCountry? other = null;
             var nl = new IbanCountry(countryCode);
             Mock.Get(registry).Setup(m => m.TryGetValue(It.IsAny<string>(), out other));
             Mock.Get(registry).Setup(m => m.TryGetValue("NL", out nl));
 
-            yield return new object[] { null, countryCode, registry, nameof(builder) };
-            yield return new object[] { builder, null, registry, nameof(countryCode) };
-            yield return new object[] { builder, countryCode, null, nameof(registry) };
-            yield return new object[] { builder, "ZZ", registry, nameof(countryCode) };
+            yield return new object?[] { null, countryCode, registry, nameof(builder) };
+            yield return new object?[] { builder, null, registry, nameof(countryCode) };
+            yield return new object?[] { builder, countryCode, null, nameof(registry) };
+            yield return new object?[] { builder, "ZZ", registry, nameof(countryCode) };
         }
     }
 }

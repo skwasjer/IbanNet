@@ -33,7 +33,7 @@ public class IbanNetOptionsBuilderTests
         public void Given_registry_is_configured_it_should_set_registry()
         {
             IEnumerable<IbanCountry> limitedCountries = IbanRegistry.Default
-                .Where((country, i) => i % 2 == 0)
+                .Where((_, i) => i % 2 == 0)
                 .ToList();
 
             // Act
@@ -117,7 +117,7 @@ public class IbanNetOptionsBuilderTests
             NullArgumentTest.Execute(args);
         }
 
-        public static IEnumerable<object[]> NullArgumentTestCases()
+        public static IEnumerable<object?[]> NullArgumentTestCases()
         {
             IIbanNetOptionsBuilder instance = GetBuilderStub();
 

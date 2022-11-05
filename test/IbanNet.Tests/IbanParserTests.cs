@@ -61,11 +61,10 @@ public class IbanParserTests
         [Fact]
         public void With_null_validator_it_should_throw()
         {
-            IIbanValidator ibanValidator = null;
+            IIbanValidator? ibanValidator = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<IbanParser> parser = () => new IbanParser(ibanValidator);
+            Func<IbanParser> parser = () => new IbanParser(ibanValidator!);
 
             // Assert
             parser.Should()
@@ -77,11 +76,10 @@ public class IbanParserTests
         [Fact]
         public void With_null_registry_it_should_throw()
         {
-            IIbanRegistry registry = null;
+            IIbanRegistry? registry = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<IbanParser> parser = () => new IbanParser(registry);
+            Func<IbanParser> parser = () => new IbanParser(registry!);
 
             // Assert
             parser.Should()
@@ -96,11 +94,10 @@ public class IbanParserTests
         [Fact]
         public void With_null_value_should_throw()
         {
-            string value = null;
+            string? value = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Action act = () => _sut.Parse(value);
+            Action act = () => _sut.Parse(value!);
 
             // Assert
             act.Should()
@@ -150,7 +147,7 @@ public class IbanParserTests
         [Fact]
         public void With_valid_value_should_return_iban()
         {
-            Iban iban = null;
+            Iban? iban = null;
 
             // Act
             Action act = () => iban = _sut.Parse(TestValues.ValidIban);
@@ -203,7 +200,7 @@ public class IbanParserTests
         public void With_null_value_should_return_false()
         {
             // Act
-            bool actual = _sut.TryParse(null, out Iban iban);
+            bool actual = _sut.TryParse(null, out Iban? iban);
 
             // Assert
             actual.Should().BeFalse("the provided value was null which is not valid");
@@ -214,7 +211,7 @@ public class IbanParserTests
         public void With_invalid_value_should_return_false()
         {
             // Act
-            bool actual = _sut.TryParse(TestValues.InvalidIban, out Iban iban);
+            bool actual = _sut.TryParse(TestValues.InvalidIban, out Iban? iban);
 
             // Assert
             actual.Should().BeFalse("the provided value was invalid");
@@ -227,7 +224,7 @@ public class IbanParserTests
         public void With_valid_value_should_pass()
         {
             // Act
-            bool actual = _sut.TryParse(TestValues.ValidIban, out Iban iban);
+            bool actual = _sut.TryParse(TestValues.ValidIban, out Iban? iban);
 
             // Assert
             actual.Should().BeTrue("the provided value was valid");

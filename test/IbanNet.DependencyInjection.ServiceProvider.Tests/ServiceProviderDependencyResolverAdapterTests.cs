@@ -40,7 +40,7 @@ public class ServiceProviderDependencyResolverAdapterTests
         var sut = new ServiceProviderDependencyResolverAdapter(serviceCollection.BuildServiceProvider());
 
         // Act
-        Func<object> act = () => sut.GetService(typeof(object));
+        Func<object?> act = () => sut.GetService(typeof(object));
 
         // Assert
         act.Should().NotThrow().Which.Should().BeNull();
@@ -53,7 +53,7 @@ public class ServiceProviderDependencyResolverAdapterTests
         var sut = new ServiceProviderDependencyResolverAdapter(serviceCollection.BuildServiceProvider());
 
         // Act
-        Func<object> act = () => sut.GetService(typeof(TestRuleWithDefaultCtor));
+        Func<object?> act = () => sut.GetService(typeof(TestRuleWithDefaultCtor));
 
         // Assert
         act.Should().NotThrow().Which.Should().BeOfType<TestRuleWithDefaultCtor>();
@@ -66,7 +66,7 @@ public class ServiceProviderDependencyResolverAdapterTests
         var sut = new ServiceProviderDependencyResolverAdapter(serviceCollection.BuildServiceProvider());
 
         // Act
-        Func<object> act = () => sut.GetService(typeof(TestRuleWithDependency));
+        Func<object?> act = () => sut.GetService(typeof(TestRuleWithDependency));
 
         // Assert
         act.Should().Throw<InvalidOperationException>();
@@ -80,7 +80,7 @@ public class ServiceProviderDependencyResolverAdapterTests
         var sut = new ServiceProviderDependencyResolverAdapter(serviceCollection.BuildServiceProvider());
 
         // Act
-        Func<object> act = () => sut.GetService(typeof(TestRuleWithDependency));
+        Func<object?> act = () => sut.GetService(typeof(TestRuleWithDependency));
 
         // Assert
         act.Should().NotThrow().Which.Should().BeOfType<TestRuleWithDependency>();
@@ -95,7 +95,7 @@ public class ServiceProviderDependencyResolverAdapterTests
         var sut = new ServiceProviderDependencyResolverAdapter(serviceCollection.BuildServiceProvider());
 
         // Act
-        Func<object> act = () => sut.GetService(typeof(TestRuleWithDependency));
+        Func<object?> act = () => sut.GetService(typeof(TestRuleWithDependency));
 
         // Assert
         act.Should().NotThrow().Which.Should().BeOfType<TestRuleWithDependency>();
@@ -104,11 +104,9 @@ public class ServiceProviderDependencyResolverAdapterTests
     [Fact]
     public void Given_null_argument_when_creating_instance_it_should_throw()
     {
-        IServiceProvider serviceProvider = null;
+        IServiceProvider? serviceProvider = null;
 
-        // ReSharper disable once ObjectCreationAsStatement
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<ServiceProviderDependencyResolverAdapter> act = () => new ServiceProviderDependencyResolverAdapter(serviceProvider);
+        Func<ServiceProviderDependencyResolverAdapter> act = () => new ServiceProviderDependencyResolverAdapter(serviceProvider!);
 
         act.Should()
             .Throw<ArgumentNullException>()

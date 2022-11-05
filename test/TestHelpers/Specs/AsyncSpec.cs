@@ -13,7 +13,7 @@ public abstract class AsyncSpec<TSubject> : IAsyncLifetime
         Subject = await CreateSubjectAsync();
     }
 
-    protected TSubject Subject { get; private set; }
+    protected TSubject Subject { get; private set; } = default!;
 
     Task IAsyncLifetime.DisposeAsync()
     {

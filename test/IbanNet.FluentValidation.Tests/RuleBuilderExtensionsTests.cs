@@ -8,11 +8,10 @@ public class RuleBuilderExtensionsTests
     [Fact]
     public void Given_null_builder_when_registering_validator_it_should_throw()
     {
-        IRuleBuilder<object, string> ruleBuilder = null;
+        IRuleBuilder<object, string>? ruleBuilder = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => ruleBuilder.Iban(Mock.Of<IIbanValidator>());
+        Action act = () => ruleBuilder!.Iban(Mock.Of<IIbanValidator>());
 
         // Assert
         act.Should()
@@ -25,11 +24,10 @@ public class RuleBuilderExtensionsTests
     public void Given_null_validator_when_registering_validator_it_should_throw()
     {
         IRuleBuilder<object, string> ruleBuilder = Mock.Of<IRuleBuilder<object, string>>();
-        IIbanValidator ibanValidator = null;
+        IIbanValidator? ibanValidator = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => ruleBuilder.Iban(ibanValidator);
+        Action act = () => ruleBuilder.Iban(ibanValidator!);
 
         // Assert
         act.Should()
@@ -45,10 +43,9 @@ public class RuleBuilderExtensionsTests
         IIbanValidator ibanValidator = Mock.Of<IIbanValidator>();
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
         ruleBuilderMock.Object.Iban(ibanValidator);
 
         // Assert
-        ruleBuilderMock.Verify(m => m.SetValidator(It.Is<IPropertyValidator<object, string>>(x => x.GetType() == typeof(FluentIbanValidator<object>))), Times.Once);
+        ruleBuilderMock.Verify(m => m.SetValidator(It.Is<IPropertyValidator<object, string>>(x => x is FluentIbanValidator<object>)), Times.Once);
     }
 }

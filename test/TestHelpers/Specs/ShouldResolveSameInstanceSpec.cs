@@ -11,7 +11,7 @@ public abstract class ShouldResolveSameInstanceSpec : DiSpec
 
     protected override void Given()
     {
-        Fixture.Configure(builder => { });
+        Fixture.Configure(_ => { });
     }
 
     [Fact]

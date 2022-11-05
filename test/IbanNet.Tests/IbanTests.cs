@@ -11,11 +11,10 @@ public class IbanTests
         [Fact]
         public void With_null_iban_it_should_throw()
         {
-            string iban = null;
+            string? iban = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<Iban> act = () => new Iban(iban, IbanRegistry.Default.First());
+            Func<Iban> act = () => new Iban(iban!, IbanRegistry.Default.First());
 
             // Assert
             act.Should()
@@ -27,11 +26,10 @@ public class IbanTests
         [Fact]
         public void With_null_country_it_should_throw()
         {
-            IbanCountry ibanCountry = null;
+            IbanCountry? ibanCountry = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<Iban> act = () => new Iban(TestValues.ValidIban, ibanCountry);
+            Func<Iban> act = () => new Iban(TestValues.ValidIban, ibanCountry!);
 
             // Assert
             act.Should()
@@ -169,10 +167,9 @@ public class IbanTests
         [Fact]
         public void By_reference_when_other_is_null_should_return_false()
         {
-            Iban nullIban = null;
+            Iban? nullIban = null;
 
             // Act
-            // ReSharper disable once ExpressionIsAlwaysNull
             bool actual = _iban.Equals(nullIban);
 
             // Assert
@@ -341,9 +338,9 @@ public class IbanTests
             [Theory]
             [InlineData(TestValues.ValidIban, "\""+ TestValues.ValidIban + "\"")]
             [InlineData(null, "null")]
-            public void Given_an_iban_when_serializing_it_should_return_expected_json(string ibanStr, string expectedJson)
+            public void Given_an_iban_when_serializing_it_should_return_expected_json(string? ibanStr, string expectedJson)
             {
-                Iban iban = ibanStr is null ? null : new IbanParser(IbanRegistry.Default).Parse(ibanStr);
+                Iban? iban = ibanStr is null ? null : new IbanParser(IbanRegistry.Default).Parse(ibanStr);
 
                 // Act
                 string json = System.Text.Json.JsonSerializer.Serialize(iban);
@@ -360,7 +357,7 @@ public class IbanTests
             public void Given_a_valid_jsonString_when_deserializing_it_should_return_expected_iban(string expectedIban, string json)
             {
                 // Act
-                Iban iban = System.Text.Json.JsonSerializer.Deserialize<Iban>(json);
+                Iban? iban = System.Text.Json.JsonSerializer.Deserialize<Iban>(json);
 
                 // Assert
                 iban?.ToString().Should().Be(expectedIban);

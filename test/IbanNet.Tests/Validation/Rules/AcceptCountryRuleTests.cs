@@ -41,11 +41,10 @@ public class AcceptCountryRuleTests
     [Fact]
     public void Given_that_list_is_null_when_creating_rule_it_should_throw()
     {
-        IEnumerable<string> acceptedCountryCodes = null;
+        IEnumerable<string>? acceptedCountryCodes = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<AcceptCountryRule> act = () => new AcceptCountryRule(acceptedCountryCodes);
+        Func<AcceptCountryRule> act = () => new AcceptCountryRule(acceptedCountryCodes!);
 
         // Assert
         act.Should()
@@ -74,11 +73,10 @@ public class AcceptCountryRuleTests
     public void Given_that_context_is_null_when_validating_it_should_throw()
     {
         var sut = new AcceptCountryRule(new[] { "DE", "FR" });
-        ValidationRuleContext context = null;
+        ValidationRuleContext? context = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<ValidationRuleResult> act = () => sut.Validate(context);
+        Func<ValidationRuleResult> act = () => sut.Validate(context!);
 
         // Assert
         act.Should()

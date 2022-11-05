@@ -14,7 +14,7 @@ public class PatternExceptionTests : BaseExceptionTests<PatternException>
         string jsonWithException = JsonConvert.SerializeObject(exception);
 
         // Act
-        Exception actual = JsonConvert.DeserializeObject<PatternException>(jsonWithException);
+        Exception? actual = JsonConvert.DeserializeObject<PatternException>(jsonWithException);
 
         // Assert
         actual.Should().BeEquivalentTo(exception);

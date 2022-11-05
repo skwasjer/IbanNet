@@ -23,15 +23,13 @@ public class IbanValidatorTests
                 .BeOfType(expectedExceptionType);
         }
 
-        public static IEnumerable<object[]> CtorWithOptionsTestCases()
+        public static IEnumerable<object?[]> CtorWithOptionsTestCases()
         {
-            // ReSharper disable ObjectCreationAsStatement
-            yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(null)), typeof(ArgumentNullException), "options" };
-            yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(new IbanValidatorOptions { Registry = null })), typeof(ArgumentException), "options" };
-            yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(new IbanValidatorOptions(), null)), typeof(ArgumentNullException), "validationRuleResolver" };
-            yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(null, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentNullException), "options" };
-            yield return new object[] { (Func<IbanValidator>)(() => new IbanValidator(new IbanValidatorOptions { Registry = null }, Mock.Of<IValidationRuleResolver>())), typeof(ArgumentException), "options" };
-            // ReSharper restore ObjectCreationAsStatement
+            yield return new object?[] { () => new IbanValidator(null!), typeof(ArgumentNullException), "options" };
+            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }), typeof(ArgumentException), "options" };
+            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions(), null!), typeof(ArgumentNullException), "validationRuleResolver" };
+            yield return new object?[] { () => new IbanValidator(null!, Mock.Of<IValidationRuleResolver>()), typeof(ArgumentNullException), "options" };
+            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }, Mock.Of<IValidationRuleResolver>()), typeof(ArgumentException), "options" };
         }
     }
 

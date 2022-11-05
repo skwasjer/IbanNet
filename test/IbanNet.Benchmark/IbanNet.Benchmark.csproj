@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net6.0;netcoreapp3.1;net472</TargetFrameworks>
     <IsTestProject>false</IsTestProject>
+    <Nullable>disable</Nullable>
     <Configurations>Debug;Release;ComparisonRelease</Configurations>
     <DefineConstants Condition="'$(Configuration)'=='Release'">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
   </PropertyGroup>

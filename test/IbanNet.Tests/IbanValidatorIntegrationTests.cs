@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using IbanNet.Validation.Results;
+﻿using IbanNet.Validation.Results;
 
 namespace IbanNet;
 
@@ -174,7 +173,7 @@ public class IbanValidatorIntegrationTests
         actual.Should().BeEquivalentTo(new ValidationResult
         {
             AttemptedValue = ibanWithWhitespace,
-            Error = (ErrorResult)Activator.CreateInstance(expectedErrorType, expectedCharPos)
+            Error = (ErrorResult)Activator.CreateInstance(expectedErrorType, expectedCharPos)!
         });
     }
 

@@ -7,11 +7,10 @@ public class SwissIbanExtensionsTests
     [Fact]
     public void Given_that_iban_is_null_when_getting_IsQrIban_it_should_throw()
     {
-        Iban iban = null;
+        Iban? iban = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => iban.IsQrIban();
+        Func<bool> act = () => iban!.IsQrIban();
 
         // Assert
         act.Should()

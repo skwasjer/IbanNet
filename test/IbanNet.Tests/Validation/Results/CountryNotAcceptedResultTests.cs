@@ -8,11 +8,10 @@ public class CountryNotAcceptedResultTests
     [Fact]
     public void Given_that_country_is_null_when_creating_instance_it_should_throw()
     {
-        IbanCountry country = null;
+        IbanCountry? country = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<CountryNotAcceptedResult> act = () => new CountryNotAcceptedResult(country);
+        Func<CountryNotAcceptedResult> act = () => new CountryNotAcceptedResult(country!);
 
         // Assert
         act.Should()

@@ -14,11 +14,11 @@ public class ServiceCollectionExtensionsTests
             NullArgumentTest.Execute(args);
         }
 
-        public static IEnumerable<object[]> AddIbanNetNullTestCases()
+        public static IEnumerable<object?[]> AddIbanNetNullTestCases()
         {
             IServiceCollection services = new ServiceCollection();
-#pragma warning disable IDE0039 // Use local function
             // ReSharper disable once ConvertToLocalFunction
+#pragma warning disable IDE0039 // Use local function
             Action<IIbanNetOptionsBuilder> builder = _ => { };
 #pragma warning restore IDE0039 // Use local function
 

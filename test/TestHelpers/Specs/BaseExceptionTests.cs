@@ -27,14 +27,14 @@ public abstract class BaseExceptionTests<T>
         const string message = "exception message";
 
         // Act
-        ConstructorInfo ctor = typeof(T).GetConstructor(new[] { typeof(string) });
+        ConstructorInfo? ctor = typeof(T).GetConstructor(new[] { typeof(string) });
 
         // Assert
         ctor.Should().NotBeNull();
         ctor.Should().HaveAccessModifier(CSharpAccessModifier.Public);
 
         // Invoke
-        Func<Exception> act = () => ctor.Invoke(new object[] { message }) as Exception;
+        Func<Exception> act = () => (Exception)ctor!.Invoke(new object[] { message });
 
         // Assert
         act.Should()
@@ -50,14 +50,14 @@ public abstract class BaseExceptionTests<T>
         var innerException = new Exception();
 
         // Act
-        ConstructorInfo ctor = typeof(T).GetConstructor(new[] { typeof(string), typeof(Exception) });
+        ConstructorInfo? ctor = typeof(T).GetConstructor(new[] { typeof(string), typeof(Exception) });
 
         // Assert
         ctor.Should().NotBeNull();
         ctor.Should().HaveAccessModifier(CSharpAccessModifier.Public);
 
         // Invoke
-        Func<Exception> act = () => ctor.Invoke(new object[] { message, innerException }) as Exception;
+        Func<Exception> act = () => (Exception)ctor!.Invoke(new object[] { message, innerException });
 
         // Assert
         Exception actual = act.Should()

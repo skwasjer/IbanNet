@@ -52,7 +52,7 @@ public class IbanAttributeTests
         public void It_should_succeed()
         {
             // Act
-            System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(null, _validationContext);
+            System.ComponentModel.DataAnnotations.ValidationResult? result = _sut.GetValidationResult(null, _validationContext);
 
             // Assert
             result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
@@ -97,7 +97,7 @@ public class IbanAttributeTests
         public void It_should_succeed()
         {
             // Act
-            System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
+            System.ComponentModel.DataAnnotations.ValidationResult? result = _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
             // Assert
             result.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);
@@ -131,7 +131,7 @@ public class IbanAttributeTests
         public void It_should_fail()
         {
             // Act
-            System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            System.ComponentModel.DataAnnotations.ValidationResult? result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
             // Assert
             result.Should().NotBe(System.ComponentModel.DataAnnotations.ValidationResult.Success);
@@ -143,10 +143,10 @@ public class IbanAttributeTests
             _validationContext.DisplayName = "Property";
 
             // Act
-            System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            System.ComponentModel.DataAnnotations.ValidationResult? result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
             // Assert
-            result.ErrorMessage.Should().Be(string.Format(Resources.IbanAttribute_Invalid, _validationContext.DisplayName));
+            result?.ErrorMessage.Should().Be(string.Format(Resources.IbanAttribute_Invalid, _validationContext.DisplayName));
         }
 
         [Fact]
@@ -164,16 +164,17 @@ public class IbanAttributeTests
         public void It_should_set_member_name()
         {
             // Act
-            System.ComponentModel.DataAnnotations.ValidationResult result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
+            System.ComponentModel.DataAnnotations.ValidationResult? result = _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
             // Assert
+            result.Should().NotBeNull();
             if (string.IsNullOrEmpty(_validationContext.MemberName))
             {
-                result.MemberNames.Should().BeNullOrEmpty();
+                result?.MemberNames.Should().BeNullOrEmpty();
             }
             else
             {
-                result.MemberNames.Should()
+                result?.MemberNames.Should()
                     .NotBeNull()
                     .And.BeEquivalentTo(_validationContext.MemberName);
             }

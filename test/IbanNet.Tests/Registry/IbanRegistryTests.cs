@@ -29,9 +29,9 @@ public class IbanRegistryTests
     [InlineData("fR")]
     public void Given_mixed_case_countryCode_when_trying_to_get_it_should_return(string countryCode)
     {
-        _sut.TryGetValue(countryCode, out IbanCountry country).Should().BeTrue();
+        _sut.TryGetValue(countryCode, out IbanCountry? country).Should().BeTrue();
         country.Should().NotBeNull();
-        country.TwoLetterISORegionName.Should().Be(countryCode.ToUpperInvariant());
+        country!.TwoLetterISORegionName.Should().Be(countryCode.ToUpperInvariant());
     }
 
     public static IEnumerable<object[]> GetExpectedDefinitions()

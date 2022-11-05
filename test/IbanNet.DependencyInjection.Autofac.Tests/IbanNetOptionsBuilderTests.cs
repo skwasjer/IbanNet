@@ -25,7 +25,7 @@ public class IbanNetOptionsBuilderTests
         public void Given_rule_is_configured_via_factory_and_serviceCollection_it_should_add_instance_to_rule_collection()
         {
             var configuredRule = new TestValidationRule();
-            IComponentContext providedComponentContext = null;
+            IComponentContext? providedComponentContext = null;
             IIbanNetOptionsBuilder returnedBuilder = _builder
                 .WithRule(ctx =>
                 {
@@ -58,7 +58,7 @@ public class IbanNetOptionsBuilderTests
             NullArgumentTest.Execute(args);
         }
 
-        public static IEnumerable<object[]> BuilderExtensionsWithoutBuilderInstance()
+        public static IEnumerable<object?[]> BuilderExtensionsWithoutBuilderInstance()
         {
             var instance = new AutofacIbanNetOptionsBuilder(new IbanNetModule(true));
 
@@ -67,17 +67,17 @@ public class IbanNetOptionsBuilderTests
                 // Instance
                 DelegateTestCase.Create<Action<DependencyResolverAdapter, IbanValidatorOptions>, IIbanNetOptionsBuilder>(
                     instance.Configure,
-                    (s, o) => { }),
+                    (_, _) => { }),
 
                 // Extensions
                 DelegateTestCase.Create<IIbanNetOptionsBuilder, Func<IComponentContext, TestValidationRule>, IIbanNetOptionsBuilder>(
                     IbanNetOptionsBuilderExtensions.WithRule,
                     instance,
-                    s => new TestValidationRule()),
+                    _ => new TestValidationRule()),
                 DelegateTestCase.Create<IIbanNetOptionsBuilder, Action<IComponentContext, IbanValidatorOptions>, IIbanNetOptionsBuilder>(
                     IbanNetOptionsBuilderExtensions.Configure,
                     instance,
-                    (s, opts) => { })
+                    (_, _) => { })
             }.Flatten();
         }
     }

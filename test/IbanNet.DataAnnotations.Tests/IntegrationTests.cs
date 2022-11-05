@@ -20,11 +20,11 @@ public class IntegrationTests
         using ServiceProvider services = new ServiceCollection()
             .AddIbanNet()
             .BuildServiceProvider();
-        var ctx = new ValidationContext(new object(), services, new Dictionary<object, object>());
+        var ctx = new ValidationContext(new object(), services, new Dictionary<object, object?>());
 
         // Act
         var sut = new IbanAttribute { Strict = strict };
-        System.ComponentModel.DataAnnotations.ValidationResult actual = sut.GetValidationResult(attemptedIbanValue, ctx);
+        System.ComponentModel.DataAnnotations.ValidationResult? actual = sut.GetValidationResult(attemptedIbanValue, ctx);
 
         // Assert
         actual.Should().NotBe(System.ComponentModel.DataAnnotations.ValidationResult.Success, "because one validation error should have occurred");
@@ -61,11 +61,11 @@ public class IntegrationTests
         using ServiceProvider services = new ServiceCollection()
             .AddIbanNet()
             .BuildServiceProvider();
-        var ctx = new ValidationContext(new object(), services, new Dictionary<object, object>());
+        var ctx = new ValidationContext(new object(), services, new Dictionary<object, object?>());
 
         // Act
         var sut = new IbanAttribute { Strict = strict };
-        System.ComponentModel.DataAnnotations.ValidationResult actual = sut.GetValidationResult(attemptedIbanValue, ctx);
+        System.ComponentModel.DataAnnotations.ValidationResult? actual = sut.GetValidationResult(attemptedIbanValue, ctx);
 
         // Assert
         actual.Should().Be(System.ComponentModel.DataAnnotations.ValidationResult.Success);

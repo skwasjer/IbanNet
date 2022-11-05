@@ -40,7 +40,7 @@ public class DelegateAssertions
         Execute.Assertion
             .ForCondition(Subject is not null)
             .BecauseOf(because, becauseArgs)
-            .FailWith("Expected {context} to throw {0}{reason}, but found <null>.", (object)typeof(TException));
+            .FailWith("Expected {context} to throw {0}{reason}, but found <null>.", typeof(TException));
 
         return ThrowInternal<TException>(
             InvokeSubjectWithInterception(args),
@@ -59,7 +59,7 @@ public class DelegateAssertions
     /// <param name="becauseArgs">
     /// Zero or more objects to format using the placeholders in <see cref="!:because" />.
     /// </param>
-    public new AndWhichConstraint<DelegateAssertions, object> NotThrow
+    public new AndWhichConstraint<DelegateAssertions, object?> NotThrow
     (
         string because = "",
         params object[] becauseArgs
@@ -71,18 +71,17 @@ public class DelegateAssertions
             .FailWith("Expected {context} not to throw{reason}, but found <null>.");
         try
         {
-            // ReSharper disable once PossibleNullReferenceException
-            return new AndWhichConstraint<DelegateAssertions, object>(this, Subject.DynamicInvoke());
+            return new AndWhichConstraint<DelegateAssertions, object?>(this, Subject!.DynamicInvoke());
         }
         catch (TargetInvocationException ex) when (ex.InnerException is not null)
         {
             NotThrowV6(ex.InnerException, because, becauseArgs);
-            return new AndWhichConstraint<DelegateAssertions, object>(this, default);
+            return new AndWhichConstraint<DelegateAssertions, object?>(this, default);
         }
         catch (Exception ex)
         {
             NotThrowV6(ex, because, becauseArgs);
-            return new AndWhichConstraint<DelegateAssertions, object>(this, default);
+            return new AndWhichConstraint<DelegateAssertions, object?>(this, default);
         }
     }
 
@@ -97,7 +96,7 @@ public class DelegateAssertions
     /// <param name="becauseArgs">
     /// Zero or more objects to format using the placeholders in <see cref="!:because" />.
     /// </param>
-    public AndWhichConstraint<DelegateAssertions, object> NotThrow
+    public AndWhichConstraint<DelegateAssertions, object?> NotThrow
     (
         object[] args,
         string because = "",
@@ -110,24 +109,23 @@ public class DelegateAssertions
             .FailWith("Expected {context} not to throw{reason}, but found <null>.");
         try
         {
-            // ReSharper disable once PossibleNullReferenceException
-            return new AndWhichConstraint<DelegateAssertions, object>(this, Subject.DynamicInvoke(args));
+            return new AndWhichConstraint<DelegateAssertions, object?>(this, Subject!.DynamicInvoke(args));
         }
         catch (TargetInvocationException ex) when (ex.InnerException is not null)
         {
             NotThrowV6(ex.InnerException, because, becauseArgs);
-            return new AndWhichConstraint<DelegateAssertions, object>(this, default);
+            return new AndWhichConstraint<DelegateAssertions, object?>(this, default);
         }
         catch (Exception ex)
         {
             NotThrowV6(ex, because, becauseArgs);
-            return new AndWhichConstraint<DelegateAssertions, object>(this, default);
+            return new AndWhichConstraint<DelegateAssertions, object?>(this, default);
         }
     }
 
-    private Exception InvokeSubjectWithInterception(object[] args)
+    private Exception? InvokeSubjectWithInterception(object[] args)
     {
-        Exception exception = null;
+        Exception? exception = null;
         try
         {
             Subject.DynamicInvoke(args);

@@ -30,11 +30,10 @@ public class StructureSectionTests
     [Fact]
     public void When_creating_structureSection_with_null_structure_it_should_throw()
     {
-        Pattern pattern = null;
+        Pattern? pattern = null;
 
         // Act
-        // ReSharper disable once ExpressionIsAlwaysNull
-        Func<TestStructureSection> act = () => new TestStructureSection(pattern);
+        Func<TestStructureSection> act = () => new TestStructureSection(pattern!);
 
         // Assert
         act.Should()
@@ -47,7 +46,6 @@ public class StructureSectionTests
     public void When_setting_example_to_null_it_should_set_to_empty_string()
     {
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
         var sut = new TestStructureSection(NullPattern.Instance) { Example = null };
 
         // Assert
@@ -72,12 +70,11 @@ public class StructureSectionTests
     [Fact]
     public void When_creating_structureSection_with_null_pattern_it_should_throw()
     {
-        Pattern pattern = null;
+        Pattern? pattern = null;
 
         // Act
-        // ReSharper disable once ExpressionIsAlwaysNull
-        // ReSharper disable once ObjectCreationAsStatement
-        Func<TestStructureSection> act = () => new TestStructureSection(pattern, 0);
+        // ReSharper disable once RedundantArgumentDefaultValue
+        Func<TestStructureSection> act = () => new TestStructureSection(pattern!, 0);
 
         // Assert
         act.Should()

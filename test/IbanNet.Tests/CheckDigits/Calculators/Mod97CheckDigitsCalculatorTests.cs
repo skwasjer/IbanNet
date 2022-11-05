@@ -38,11 +38,10 @@ public class Mod97CheckDigitsCalculatorTests
     [Fact]
     public void Given_null_value_when_computing_it_should_throw()
     {
-        char[] value = null;
+        char[]? value = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => _sut.Compute(value);
+        Action act = () => _sut.Compute(value!);
 
         // Assert
         act.Should()

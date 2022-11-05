@@ -28,7 +28,7 @@ public class IbanValidatorStub : Mock<IIbanValidator>, IIbanValidator
             .Throws(new InvalidOperationException("Custom message"));
     }
 
-    public ValidationResult Validate(string iban)
+    public ValidationResult Validate(string? iban)
     {
         return Object.Validate(iban);
     }

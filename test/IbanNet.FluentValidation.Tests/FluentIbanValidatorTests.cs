@@ -88,7 +88,7 @@ public class FluentIbanValidatorTests
 
     public class When_validating_a_null_value : FluentIbanValidatorTests
     {
-        private const string AttemptedIbanValue = null;
+        private const string AttemptedIbanValue = null!;
 
 
         [Fact]
@@ -119,11 +119,10 @@ public class FluentIbanValidatorTests
         [Fact]
         public void It_should_throw()
         {
-            IIbanValidator ibanValidator = null;
+            IIbanValidator? ibanValidator = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<FluentIbanValidator<TestModel>> act = () => new FluentIbanValidator<TestModel>(ibanValidator);
+            Func<FluentIbanValidator<TestModel>> act = () => new FluentIbanValidator<TestModel>(ibanValidator!);
 
             // Assert
             act.Should()
@@ -139,11 +138,10 @@ public class FluentIbanValidatorTests
         public void It_should_not_throw_and_validate_successfully()
         {
             var fluentIbanValidator = new FluentIbanValidator<TestModel>(new IbanValidator());
-            ValidationContext<TestModel> context = null;
+            ValidationContext<TestModel>? context = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<bool> act = () => fluentIbanValidator.IsValid(context, string.Empty);
+            Func<bool> act = () => fluentIbanValidator.IsValid(context!, string.Empty);
 
             // Assert
             act.Should().NotThrow();

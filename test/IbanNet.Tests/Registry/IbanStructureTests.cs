@@ -7,11 +7,10 @@ public class IbanStructureTests
     [Fact]
     public void When_creating_with_null_pattern_it_should_throw()
     {
-        Pattern pattern = null;
+        Pattern? pattern = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<IbanStructure> act = () => new IbanStructure(pattern);
+        Func<IbanStructure> act = () => new IbanStructure(pattern!);
 
         // Assert
         act.Should()

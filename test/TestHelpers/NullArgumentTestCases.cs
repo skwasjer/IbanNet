@@ -2,7 +2,7 @@
 
 public class NullArgumentTestCases : List<DelegateTestCase>
 {
-    public IEnumerable<object[]> Flatten()
+    public IEnumerable<object?[]> Flatten()
     {
         return this
             .SelectMany(tc => tc.GetNullArgumentTestCases())

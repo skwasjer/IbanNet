@@ -14,7 +14,7 @@ public class InvalidTokenExceptionTests : BaseExceptionTests<InvalidTokenExcepti
         string jsonWithException = JsonConvert.SerializeObject(exception);
 
         // Act
-        Exception actual = JsonConvert.DeserializeObject<InvalidTokenException>(jsonWithException);
+        Exception? actual = JsonConvert.DeserializeObject<InvalidTokenException>(jsonWithException);
 
         // Assert
         actual.Should().BeEquivalentTo(exception);

@@ -25,11 +25,10 @@ public class PatternTests
         [Fact]
         public void When_creating_with_null_pattern_it_should_throw()
         {
-            IEnumerable<PatternToken> tokens = null;
+            IEnumerable<PatternToken>? tokens = null;
 
             // Act
-            // ReSharper disable once ExpressionIsAlwaysNull
-            Func<FakePattern> act = () => new FakePattern(tokens);
+            Func<FakePattern> act = () => new FakePattern(tokens!);
 
             // Assert
             act.Should()
@@ -95,11 +94,10 @@ public class PatternTests
         [Fact]
         public void When_creating_with_null_pattern_it_should_throw()
         {
-            string pattern = null;
+            string? pattern = null;
 
             // Act
-            // ReSharper disable once ExpressionIsAlwaysNull
-            Func<FakePattern> act = () => new FakePattern(pattern, Mock.Of<ITokenizer<PatternToken>>());
+            Func<FakePattern> act = () => new FakePattern(pattern!, Mock.Of<ITokenizer<PatternToken>>());
 
             // Assert
             act.Should()
@@ -111,11 +109,10 @@ public class PatternTests
         [Fact]
         public void When_creating_with_null_tokenizer_it_should_throw()
         {
-            ITokenizer<PatternToken> tokenizer = null;
+            ITokenizer<PatternToken>? tokenizer = null;
 
             // Act
-            // ReSharper disable once ExpressionIsAlwaysNull
-            Func<FakePattern> act = () => new FakePattern(string.Empty, tokenizer);
+            Func<FakePattern> act = () => new FakePattern(string.Empty, tokenizer!);
 
             // Assert
             act.Should()
@@ -174,10 +171,10 @@ public class PatternTests
     internal class FakePatternTokenizer : ITokenizer<PatternToken>
     {
 #if USE_SPANS
-            public IEnumerable<PatternToken> Tokenize(ReadOnlySpan<char> input)
-            {
-                return Tokenize((IEnumerable<char>)input.ToArray());
-            }
+        public IEnumerable<PatternToken> Tokenize(ReadOnlySpan<char> input)
+        {
+            return Tokenize((IEnumerable<char>)input.ToArray());
+        }
 #endif
         public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
         {

@@ -9,7 +9,7 @@ namespace TestHelpers.Specs;
 
 public abstract class ConfiguredMultipleRulesSpec : DiSpec
 {
-    private Type _fakeRuleType;
+    private Type _fakeRuleType = default!;
 
     protected ConfiguredMultipleRulesSpec(IDependencyInjectionFixture fixture) : base(fixture)
     {
@@ -34,7 +34,7 @@ public abstract class ConfiguredMultipleRulesSpec : DiSpec
     public void Given_two_rules_are_registered_when_resolving_options_it_should_have_rules_in_order()
     {
         // Assert
-        IIbanValidator validator = Subject.GetService<IIbanValidator>();
+        IIbanValidator? validator = Subject.GetService<IIbanValidator>();
         var rules = validator.Should()
             .BeOfType<IbanValidator>()
             .Which.Options.Should()

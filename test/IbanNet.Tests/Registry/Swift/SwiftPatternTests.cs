@@ -7,11 +7,10 @@ public class SwiftPatternTests
     [Fact]
     public void When_creating_with_null_pattern_it_should_throw()
     {
-        string pattern = null;
+        string? pattern = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<SwiftPattern> act = () => new SwiftPattern(pattern);
+        Func<SwiftPattern> act = () => new SwiftPattern(pattern!);
 
         // Assert
         act.Should()

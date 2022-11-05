@@ -16,12 +16,10 @@ public class WikipediaPatternTokenizerTests
     [Fact]
     public void Given_null_input_when_tokenizing_it_should_throw()
     {
-        char[] input = null;
+        char[]? input = null;
 
         // Act
-        // ReSharper disable once IteratorMethodResultIsIgnored
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => _sut.Tokenize(input);
+        Action act = () => _sut.Tokenize(input!);
 
         // Assert
         act.Should()

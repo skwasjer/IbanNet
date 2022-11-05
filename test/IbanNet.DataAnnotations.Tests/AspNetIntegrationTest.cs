@@ -47,12 +47,12 @@ public class AspNetIntegrationTest : IClassFixture<AspNetWebHostFixture>
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 #if NET5_0_OR_GREATER
-        ValidationProblemDetails problemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
+        ValidationProblemDetails? problemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
 #else
         ValidationProblemDetails problemDetails = JsonConvert.DeserializeObject<ValidationProblemDetails>(await response.Content.ReadAsStringAsync());
 #endif
         problemDetails.Should().NotBeNull();
-        problemDetails.Errors
+        problemDetails!.Errors
             .Should()
             .ContainKey("BankAccountNumber")
             .WhoseValue.Should()

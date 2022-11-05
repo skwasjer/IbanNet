@@ -11,7 +11,7 @@ public class InputNormalizationTests
     public void Given_string_when_normalizing_it_should_return_expected_value(string input, string expected)
     {
         // Act
-        string actual = InputNormalization.NormalizeOrNull(input);
+        string? actual = InputNormalization.NormalizeOrNull(input);
 
         // Assert
         actual.Should().Be(expected);
@@ -27,7 +27,7 @@ public class InputNormalizationTests
         const string expected = "IN-STRING";
 
         // Act
-        string actual = InputNormalization.NormalizeOrNull(input);
+        string? actual = InputNormalization.NormalizeOrNull(input);
 
         // Assert
         actual.Should().Be(expected);

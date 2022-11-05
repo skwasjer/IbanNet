@@ -2,5 +2,5 @@
 
 internal class TestModel
 {
-    public string BankAccountNumber { get; set; }
+    public string BankAccountNumber { get; set; } = default!;
 }

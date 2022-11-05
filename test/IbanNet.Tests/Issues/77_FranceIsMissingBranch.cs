@@ -13,7 +13,7 @@ public class _77_FranceIsMissingBranch
         var ibanParser = new IbanParser(IbanRegistry.Default);
 
         // Act
-        bool isValid = ibanParser.TryParse("FR7630001007941234567890185", out Iban iban);
+        bool isValid = ibanParser.TryParse("FR7630001007941234567890185", out Iban? iban);
 
         // Assert
         isValid.Should().BeTrue();

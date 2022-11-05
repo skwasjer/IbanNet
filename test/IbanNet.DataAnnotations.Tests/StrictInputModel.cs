@@ -6,5 +6,5 @@ public class StrictInputModel
 {
     [Required]
     [Iban(Strict = true)]
-    public string BankAccountNumber { get; set; }
+    public string BankAccountNumber { get; set; } = default!;
 }

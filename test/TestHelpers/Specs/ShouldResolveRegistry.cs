@@ -11,14 +11,14 @@ public abstract class ShouldResolveRegistry : DiSpec
 
     protected override void Given()
     {
-        Fixture.Configure(builder => { });
+        Fixture.Configure(_ => { });
     }
 
     [Fact]
     public void When_resolving_registry_it_should_not_throw()
     {
         // Assert
-        Func<IIbanRegistry> act = () => Subject.GetService<IIbanRegistry>();
+        Func<IIbanRegistry?> act = () => Subject.GetService<IIbanRegistry>();
 
         // Act
         act.Should().NotThrow().Which.Should().NotBeNull();
@@ -28,8 +28,8 @@ public abstract class ShouldResolveRegistry : DiSpec
     public void When_resolving_twice_it_should_return_same_instance()
     {
         // Assert
-        IIbanRegistry first = Subject.GetService<IIbanRegistry>();
-        IIbanRegistry second = Subject.GetService<IIbanRegistry>();
+        IIbanRegistry? first = Subject.GetService<IIbanRegistry>();
+        IIbanRegistry? second = Subject.GetService<IIbanRegistry>();
 
         // Act
         first.Should().BeSameAs(second);

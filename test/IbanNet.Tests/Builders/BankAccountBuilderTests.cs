@@ -11,11 +11,10 @@ public class BankAccountBuilderTests
     public void Given_null_country_when_adding_it_should_throw(Type builderType)
     {
         IBankAccountBuilder builder = CreateBuilder(builderType);
-        IbanCountry country = null;
+        IbanCountry? country = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => builder.WithCountry(country);
+        Func<IBankAccountBuilder> act = () => builder.WithCountry(country!);
 
         // Assert
         act.Should()
@@ -229,7 +228,7 @@ public class BankAccountBuilderTests
             .WithMessage("A value for 'Branch' is not supported for country code NL.");
     }
 
-    private static IBankAccountBuilder CreateBuilder(Type builderType) => (IBankAccountBuilder)Activator.CreateInstance(builderType);
+    private static IBankAccountBuilder CreateBuilder(Type builderType) => (IBankAccountBuilder)Activator.CreateInstance(builderType)!;
 
     public static IEnumerable<object[]> BuilderMethodTestCases()
     {

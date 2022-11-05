@@ -14,7 +14,7 @@ public class BankAccountBuilderExceptionTests : BaseExceptionTests<BankAccountBu
         string jsonWithException = JsonConvert.SerializeObject(exception);
 
         // Act
-        Exception actual = JsonConvert.DeserializeObject<BankAccountBuilderException>(jsonWithException);
+        Exception? actual = JsonConvert.DeserializeObject<BankAccountBuilderException>(jsonWithException);
 
         // Assert
         actual.Should().BeEquivalentTo(exception);

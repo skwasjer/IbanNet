@@ -5,7 +5,7 @@ namespace TestHelpers.Specs;
 
 public abstract class ShouldSetStaticValidatorSpec : DiSpec
 {
-    private IIbanValidator _initialValidator;
+    private IIbanValidator _initialValidator = default!;
 
     protected ShouldSetStaticValidatorSpec(IDependencyInjectionFixture fixture) : base(fixture)
     {
@@ -14,14 +14,14 @@ public abstract class ShouldSetStaticValidatorSpec : DiSpec
     protected override void Given()
     {
         Iban.Validator = _initialValidator = Mock.Of<IIbanValidator>();
-        Fixture.Configure(builder => { });
+        Fixture.Configure(_ => { });
     }
 
     [Fact]
     public void When_resolving_it_should_set_static_validator()
     {
         // Assert
-        IIbanValidator validator = Subject.GetService<IIbanValidator>();
+        IIbanValidator? validator = Subject.GetService<IIbanValidator>();
 
         // Act
         Iban.Validator.Should()

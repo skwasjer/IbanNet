@@ -2,7 +2,7 @@
 
 namespace TestHelpers;
 
-public class DelegateTestCase : List<object>
+public class DelegateTestCase : List<object?>
 {
     public string Name { get; }
     public Delegate Delegate { get; }
@@ -15,7 +15,7 @@ public class DelegateTestCase : List<object>
         Add(@delegate);
     }
 
-    public IEnumerable<object[]> GetNullArgumentTestCases(bool withoutName = false)
+    public IEnumerable<object?[]> GetNullArgumentTestCases(bool withoutName = false)
     {
         const int paramOffset = 2;
         MethodInfo methodInfo = Delegate.GetMethodInfo();
@@ -37,7 +37,7 @@ public class DelegateTestCase : List<object>
             }
 
             // Set value for current case to null.
-            var testCase = new List<object>(this)
+            var testCase = new List<object?>(this)
             {
                 [i] = null
             };
@@ -49,7 +49,7 @@ public class DelegateTestCase : List<object>
         }
     }
 
-    public object[] WithoutName()
+    public object?[] WithoutName()
     {
         return this.Skip(1).ToArray();
     }

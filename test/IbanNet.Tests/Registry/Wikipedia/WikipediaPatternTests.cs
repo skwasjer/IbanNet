@@ -7,11 +7,10 @@ public class WikipediaPatternTests
     [Fact]
     public void When_creating_with_null_pattern_it_should_throw()
     {
-        string pattern = null;
+        string? pattern = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<WikipediaPattern> act = () => new WikipediaPattern(pattern);
+        Func<WikipediaPattern> act = () => new WikipediaPattern(pattern!);
 
         // Assert
         act.Should()

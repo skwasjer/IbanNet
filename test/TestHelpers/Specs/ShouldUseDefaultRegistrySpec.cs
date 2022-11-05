@@ -6,7 +6,7 @@ namespace TestHelpers.Specs;
 
 public abstract class ShouldUseDefaultRegistrySpec : DiSpec
 {
-    private IIbanValidator _initialValidator;
+    private IIbanValidator _initialValidator = default!;
 
     protected ShouldUseDefaultRegistrySpec(IDependencyInjectionFixture fixture)
         : base(fixture)
@@ -16,7 +16,7 @@ public abstract class ShouldUseDefaultRegistrySpec : DiSpec
     protected override void Given()
     {
         _initialValidator = Iban.Validator;
-        Fixture.Configure(builder => { });
+        Fixture.Configure(_ => { });
     }
 
     [Fact]

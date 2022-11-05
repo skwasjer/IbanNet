@@ -27,7 +27,6 @@ public static class NullArgumentTest
         ArgumentException ex = param.ParameterType == typeof(string)
             ? func.Should().Throw<ArgumentException>(args).Which
             : func.Should().Throw<ArgumentNullException>(args).Which;
-        string paramName = ex.ParamName;
-        paramName.Should().Be(expectedParamName, "no null was provided for {1}", expectedParamName, testCase);
+        ex.ParamName.Should().Be(expectedParamName, "no null was provided for {1}", expectedParamName, testCase);
     }
 }

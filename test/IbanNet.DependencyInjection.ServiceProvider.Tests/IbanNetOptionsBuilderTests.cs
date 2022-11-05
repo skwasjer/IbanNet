@@ -25,7 +25,7 @@ public class IbanNetOptionsBuilderTests
         public void Given_rule_is_configured_via_factory_and_serviceCollection_it_should_add_instance_to_rule_collection()
         {
             var configuredRule = new TestValidationRule();
-            IServiceProvider providedServiceProvider = null;
+            IServiceProvider? providedServiceProvider = null;
             IIbanNetOptionsBuilder returnedBuilder = _builder
                 .WithRule(s =>
                 {
@@ -37,8 +37,9 @@ public class IbanNetOptionsBuilderTests
             IServiceProvider services = _serviceCollection.BuildServiceProvider();
 
             // Assert
-            IbanValidatorOptions opts = services.GetService<IOptions<IbanValidatorOptions>>().Value;
-            opts.Should()
+            IbanValidatorOptions? opts = services.GetService<IOptions<IbanValidatorOptions>>()?.Value;
+            opts!.Should().NotBeNull();
+            opts!.Should()
                 .HaveRule<IIbanValidationRule>()
                 .And.HaveCount(1)
                 .And.Subject.Single()
@@ -58,7 +59,7 @@ public class IbanNetOptionsBuilderTests
             NullArgumentTest.Execute(args);
         }
 
-        public static IEnumerable<object[]> BuilderExtensionsWithoutBuilderInstance()
+        public static IEnumerable<object?[]> BuilderExtensionsWithoutBuilderInstance()
         {
             var instance = new MicrosoftDependencyInjectionIbanNetOptionsBuilder(new ServiceCollection());
 
@@ -67,17 +68,17 @@ public class IbanNetOptionsBuilderTests
                 // Instance
                 DelegateTestCase.Create<Action<DependencyResolverAdapter, IbanValidatorOptions>, IIbanNetOptionsBuilder>(
                     instance.Configure,
-                    (s, o) => { }),
+                    (_, _) => { }),
 
                 // Extensions
                 DelegateTestCase.Create<IIbanNetOptionsBuilder, Func<IServiceProvider, TestValidationRule>, IIbanNetOptionsBuilder>(
                     IbanNetOptionsBuilderExtensions.WithRule,
                     instance,
-                    s => new TestValidationRule()),
+                    _ => new TestValidationRule()),
                 DelegateTestCase.Create<IIbanNetOptionsBuilder, Action<IServiceProvider, IbanValidatorOptions>, IIbanNetOptionsBuilder>(
                     IbanNetOptionsBuilderExtensions.Configure,
                     instance,
-                    (s, opts) => { })
+                    (_, _) => { })
             }.Flatten();
         }
     }

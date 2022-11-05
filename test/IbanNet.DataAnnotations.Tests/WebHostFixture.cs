@@ -6,7 +6,7 @@ namespace IbanNet.DataAnnotations;
 
 public abstract class WebHostFixture : IDisposable
 {
-    public TestServer TestServer { get; private set; }
+    public TestServer TestServer { get; private set; } = default!;
 
     public void Start()
     {
@@ -22,6 +22,7 @@ public abstract class WebHostFixture : IDisposable
     public void Dispose()
     {
         GC.SuppressFinalize(this);
+        // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
         TestServer?.Dispose();
     }
 }

@@ -22,10 +22,10 @@ public class IbanNetOptionsBuilderStubAssertions<T>
         params object[] becauseArgs
     )
     {
-        AndConstraint<GenericCollectionAssertions<IbanCountry>> innerAssertion = null;
+        AndConstraint<GenericCollectionAssertions<IbanCountry>>? innerAssertion = null;
         VerifyCalled(should => innerAssertion = should.HaveRegistry(registry, because, becauseArgs));
 
-        return innerAssertion;
+        return innerAssertion!;
     }
 
     public AndConstraint<GenericCollectionAssertions<TRule>> HaveConfiguredRule<TRule>
@@ -35,10 +35,10 @@ public class IbanNetOptionsBuilderStubAssertions<T>
     )
         where TRule : IIbanValidationRule
     {
-        AndConstraint<GenericCollectionAssertions<TRule>> innerAssertion = null;
+        AndConstraint<GenericCollectionAssertions<TRule>>? innerAssertion = null;
         VerifyCalled(should => innerAssertion = should.HaveRule<TRule>(because, becauseArgs));
 
-        return innerAssertion;
+        return innerAssertion!;
     }
 
     private void VerifyCalled(Action<IbanValidatorOptionsAssertions> should)

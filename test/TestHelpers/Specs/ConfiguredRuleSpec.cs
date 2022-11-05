@@ -26,7 +26,7 @@ public abstract class ConfiguredRuleSpec : DiSpec
     public void Given_rule_is_registered_when_resolving_options_it_should_have_rule()
     {
         // Assert
-        IIbanValidator validator = Subject.GetService<IIbanValidator>();
+        IIbanValidator? validator = Subject.GetService<IIbanValidator>();
         validator.Should()
             .BeOfType<IbanValidator>()
             .Which.Options.Should()

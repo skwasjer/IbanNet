@@ -15,8 +15,7 @@ public class ShouldValidateOptionsRegistrySpec : DiSpec
     {
         Fixture.Configure(builder =>
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
-            IIbanNetOptionsBuilder returnedBuilder = builder.Configure(options => options.Registry = null);
+            IIbanNetOptionsBuilder returnedBuilder = builder.Configure(options => options.Registry = null!);
 
             returnedBuilder.Should().BeSameAs(builder);
         });
@@ -29,7 +28,7 @@ public class ShouldValidateOptionsRegistrySpec : DiSpec
 #endif
     public void Given_registry_is_null_when_getting_options_it_should_ensure_not_null_through_validation()
     {
-        Func<IbanValidatorOptions> act = () => Subject.GetService<IOptions<IbanValidatorOptions>>()?.Value;
+        Func<IbanValidatorOptions?> act = () => Subject.GetService<IOptions<IbanValidatorOptions>>()?.Value;
 
         // Assert
         act.Should()

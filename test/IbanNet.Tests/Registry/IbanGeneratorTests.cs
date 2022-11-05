@@ -21,11 +21,10 @@ public class IbanGeneratorTests
         [Fact]
         public void Given_null_registry_when_creating_instance_it_should_throw()
         {
-            IIbanRegistry registry = null;
+            IIbanRegistry? registry = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<IbanGenerator> act = () => new IbanGenerator(registry);
+            Func<IbanGenerator> act = () => new IbanGenerator(registry!);
 
             // Assert
             act.Should()
@@ -37,11 +36,10 @@ public class IbanGeneratorTests
         [Fact]
         public void Given_null_countryCode_when_generating_it_should_throw()
         {
-            string countryCode = null;
+            string? countryCode = null;
 
             // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<Iban> act = () => _sut.Generate(countryCode);
+            Func<Iban> act = () => _sut.Generate(countryCode!);
 
             // Assert
             act.Should()

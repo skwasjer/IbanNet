@@ -28,7 +28,7 @@ public abstract class ShouldResolveCustomService : DiSpec
         Type expectedMockType = typeof(IMocked<>).MakeGenericType(serviceType);
 
         // Assert
-        Func<object> act = () => Subject.GetService(serviceType);
+        Func<object?> act = () => Subject.GetService(serviceType);
 
         // Act
         act.Should()

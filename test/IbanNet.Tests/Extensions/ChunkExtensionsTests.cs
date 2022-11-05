@@ -5,11 +5,10 @@ public class ChunkExtensionsTests
     [Fact]
     public void Given_null_collection_when_chunking_it_should_throw()
     {
-        IEnumerable<object> source = null;
+        IEnumerable<object>? source = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<IEnumerable<object>> act = () => source.Chunk(2);
+        Func<IEnumerable<object>> act = () => source!.Chunk(2);
 
         // Assert
         act.Should()
@@ -66,11 +65,10 @@ public class ChunkExtensionsTests
     [Fact]
     public void Given_null_string_when_partitioning_on_char_it_should_throw()
     {
-        string sequence = null;
+        string? sequence = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<IEnumerable<string>> act = () => sequence.PartitionOn(' ');
+        Func<IEnumerable<string>> act = () => sequence!.PartitionOn(' ');
 
         // Assert
         act.Should()
@@ -82,13 +80,12 @@ public class ChunkExtensionsTests
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public void Given_null_chars_when_partitioning_on_char_it_should_throw(string charsToPartitionOn)
+    public void Given_null_chars_when_partitioning_on_char_it_should_throw(string? charsToPartitionOn)
     {
-        char[] chars = charsToPartitionOn?.ToCharArray();
+        char[]? chars = charsToPartitionOn?.ToCharArray();
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Func<IEnumerable<string>> act = () => string.Empty.PartitionOn(chars);
+        Func<IEnumerable<string>> act = () => string.Empty.PartitionOn(chars!);
 
         // Assert
         act.Should()
@@ -116,18 +113,17 @@ public class ChunkExtensionsTests
     [Fact]
     public void Given_that_when_is_null_when_partitioning_it_should_throw()
     {
-        Func<char, bool> when = null;
+        Func<char, bool>? when = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
         Action act = () =>
         {
 #if USE_SPANS
             ReadOnlySpan<char> sequence = string.Empty;
 #else
-                string sequence = string.Empty;
+            string sequence = string.Empty;
 #endif
-            sequence.PartitionOn(when);
+            sequence.PartitionOn(when!);
         };
 
         // Assert
@@ -138,20 +134,19 @@ public class ChunkExtensionsTests
     }
 
 #if !USE_SPANS
-        [Fact]
-        public void Given_that_sequence_is_null_when_partitioning_it_should_throw()
-        {
-            char[] sequence = null;
+    [Fact]
+    public void Given_that_sequence_is_null_when_partitioning_it_should_throw()
+    {
+        char[]? sequence = null;
 
-            // Act
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Func<IEnumerable<string>> act = () => sequence.PartitionOn(c => false);
+        // Act
+        Func<IEnumerable<string>> act = () => sequence!.PartitionOn(_ => false);
 
-            // Assert
-            act.Should()
-                .Throw<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(sequence));
-        }
+        // Assert
+        act.Should()
+            .Throw<ArgumentNullException>()
+            .Which.ParamName.Should()
+            .Be(nameof(sequence));
+    }
 #endif
 }

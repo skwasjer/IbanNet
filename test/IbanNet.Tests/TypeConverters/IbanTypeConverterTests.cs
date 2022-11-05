@@ -28,7 +28,7 @@ public abstract class IbanTypeConverterTests
         public void From_valid_iban_string_should_return_parsed_iban()
         {
             // Act
-            object resultObj = _sut.ConvertFrom(TestValues.ValidIban);
+            object? resultObj = _sut.ConvertFrom(TestValues.ValidIban);
 
             // Assert
             resultObj.Should()
@@ -52,11 +52,10 @@ public abstract class IbanTypeConverterTests
         [Fact]
         public void From_null_iban_string_should_return_null()
         {
-            string nullValue = null;
+            string? nullValue = null;
 
             // Act
-            // ReSharper disable once ExpressionIsAlwaysNull
-            object resultObj = _sut.ConvertFrom(nullValue);
+            object? resultObj = _sut.ConvertFrom(nullValue!);
 
             // Assert
             resultObj.Should().BeNull();
@@ -72,7 +71,7 @@ public abstract class IbanTypeConverterTests
                 .Verifiable();
 
             // Act
-            object resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
+            object? resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
 
             // Assert
             typeDescriptorContextMock.Verify();
@@ -100,7 +99,7 @@ public abstract class IbanTypeConverterTests
                 .Verifiable();
 
             // Act
-            object resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
+            object? resultObj = _sut.ConvertFrom(typeDescriptorContextMock.Object, CultureInfo.InvariantCulture, TestValues.ValidIban);
 
             // Assert
             typeDescriptorContextMock.Verify();
@@ -132,7 +131,7 @@ public abstract class IbanTypeConverterTests
         public void To_string_should_return_flat_formatted_iban()
         {
             // Act
-            object resultObj = _sut.ConvertTo(_iban, typeof(string));
+            object? resultObj = _sut.ConvertTo(_iban, typeof(string));
 
             // Assert
             resultObj.Should()
@@ -166,7 +165,7 @@ public abstract class IbanTypeConverterTests
 
             json.Should().Be($"\"{TestValues.ValidIban}\"");
 
-            Iban bankAccountNumber2 = JsonConvert.DeserializeObject<Iban>(json);
+            Iban? bankAccountNumber2 = JsonConvert.DeserializeObject<Iban>(json);
             bankAccountNumber1.Should().Be(bankAccountNumber2);
         }
     }

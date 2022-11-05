@@ -67,7 +67,7 @@ public class DependencyResolverAdapterTests
         act.Should().NotThrow(args.Skip(1).ToArray()).Subject.Should().BeOfType<TestService>();
     }
 
-    public static IEnumerable<object[]> ResolvesSuccessfullyTestCases()
+    public static IEnumerable<object?[]> ResolvesSuccessfullyTestCases()
     {
         DependencyResolverAdapter instance = CreateAdapterStub();
         yield return DelegateTestCase.Create(instance.GetService, typeof(TestService)).WithoutName();

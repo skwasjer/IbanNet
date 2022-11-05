@@ -7,11 +7,10 @@ public class AutofacRegistrationExtensionsTests
     [Fact]
     public void Given_null_argument_when_registering_it_should_throw()
     {
-        ContainerBuilder containerBuilder = null;
+        ContainerBuilder? containerBuilder = null;
 
         // Act
-        // ReSharper disable once AssignNullToNotNullAttribute
-        Action act = () => containerBuilder.RegisterIbanNet();
+        Func<ContainerBuilder> act = () => containerBuilder!.RegisterIbanNet();
 
         // Assert
         act.Should()
@@ -20,14 +19,14 @@ public class AutofacRegistrationExtensionsTests
             .Be(nameof(containerBuilder));
     }
 
-    public static IEnumerable<object[]> RegisterIbanNet_InvalidArgumentTestCases()
+    public static IEnumerable<object?[]> RegisterIbanNet_InvalidArgumentTestCases()
     {
         var containerBuilder = new ContainerBuilder();
         // ReSharper disable once ConvertToLocalFunction
-        Action<object> configure = options => { };
+        Action<object> configure = _ => { };
 
-        yield return new object[] { null, configure, nameof(containerBuilder) };
-        yield return new object[] { containerBuilder, null, nameof(configure) };
+        yield return new object?[] { null, configure, nameof(containerBuilder) };
+        yield return new object?[] { containerBuilder, null, nameof(configure) };
     }
 
     [Theory]

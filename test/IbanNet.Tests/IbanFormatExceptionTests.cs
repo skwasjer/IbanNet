@@ -25,7 +25,7 @@ public class IbanFormatExceptionTests : BaseExceptionTests<IbanFormatException>
     [Fact]
     public void Given_exception_with_parameters_it_should_serialize_and_deserialize()
     {
-        new IbanRegistry().TryGetValue("NL", out IbanCountry ibanCountry);
+        new IbanRegistry().TryGetValue("NL", out IbanCountry? ibanCountry);
 
         const string message = "message";
 
@@ -41,7 +41,7 @@ public class IbanFormatExceptionTests : BaseExceptionTests<IbanFormatException>
         string jsonWithException = JsonConvert.SerializeObject(exception);
 
         // Act
-        Exception actual = JsonConvert.DeserializeObject<IbanFormatException>(jsonWithException);
+        Exception? actual = JsonConvert.DeserializeObject<IbanFormatException>(jsonWithException);
 
         // Assert
         IbanFormatException actualTyped = actual.Should()
