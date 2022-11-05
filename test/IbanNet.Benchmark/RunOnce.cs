@@ -1,29 +1,28 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 
-namespace IbanNet.Benchmark
+namespace IbanNet.Benchmark;
+
+[MarkdownExporterAttribute.GitHub]
+[Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
+[MemoryDiagnoser]
+public class RunOnce
 {
-    [MarkdownExporterAttribute.GitHub]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
-    [MemoryDiagnoser]
-    public class RunOnce
+    private IIbanValidator _validator;
+    private IList<string> _testData;
+
+    [GlobalSetup]
+    public void GlobalSetup()
     {
-        private IIbanValidator _validator;
-        private IList<string> _testData;
+        // IbanNet setup
+        _validator = new IbanValidator();
 
-        [GlobalSetup]
-        public void GlobalSetup()
-        {
-            // IbanNet setup
-            _validator = new IbanValidator();
+        _testData = TestSamples.GetIbanSamples(1);
+    }
 
-            _testData = TestSamples.GetIbanSamples(1);
-        }
-
-        [Benchmark]
-        public void Validate()
-        {
-            _validator.Validate(_testData[0]);
-        }
+    [Benchmark]
+    public void Validate()
+    {
+        _validator.Validate(_testData[0]);
     }
 }

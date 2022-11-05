@@ -1,58 +1,58 @@
 ﻿using System.Globalization;
 using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Registry.Swift
+namespace IbanNet.Registry.Swift;
+
+/// <remarks>
+/// https://www.swift.com/standards/data-standards/iban
+/// length
+/// ! = fixed
+/// marker
+/// </remarks>
+internal class SwiftPatternTokenizer : PatternTokenizer
 {
-    /// <remarks>
-    /// https://www.swift.com/standards/data-standards/iban
-    /// length
-    /// ! = fixed
-    /// marker
-    /// </remarks>
-    internal class SwiftPatternTokenizer : PatternTokenizer
+    private static readonly char[] TokenChars = { 'n', 'a', 'c', 'e' };
+
+    internal SwiftPatternTokenizer() : base(TokenChars.Contains)
     {
-        private static readonly char[] TokenChars = { 'n', 'a', 'c', 'e' };
+    }
 
-        internal SwiftPatternTokenizer() : base(TokenChars.Contains)
+    protected override AsciiCategory GetCategory(string token)
+    {
+        if (token.Length < 2)
         {
+            return AsciiCategory.Other;
         }
 
-        protected override AsciiCategory GetCategory(string token)
+        // ReSharper disable once UseIndexFromEndExpression
+        char tokenChar = token[token.Length - 1];
+        return tokenChar switch
         {
-            if (token.Length < 2)
-            {
-                return AsciiCategory.Other;
-            }
+            'n' => AsciiCategory.Digit,
+            'a' => AsciiCategory.UppercaseLetter,
+            'c' => AsciiCategory.AlphaNumeric,
+            'e' => AsciiCategory.Space,
+            _ => AsciiCategory.Other
+        };
+    }
 
-            // ReSharper disable once UseIndexFromEndExpression
-            char tokenChar = token[token.Length - 1];
-            return tokenChar switch
-            {
-                'n' => AsciiCategory.Digit,
-                'a' => AsciiCategory.UppercaseLetter,
-                'c' => AsciiCategory.AlphaNumeric,
-                'e' => AsciiCategory.Space,
-                _ => AsciiCategory.Other
-            };
+    protected override int GetLength(string token, out bool isFixedLength)
+    {
+        if (token.Length < 2)
+        {
+            isFixedLength = true;
+            return -1;
         }
-
-        protected override int GetLength(string token, out bool isFixedLength)
-        {
-            if (token.Length < 2)
-            {
-                isFixedLength = true;
-                return -1;
-            }
 
 #if USE_SPANS
-            ReadOnlySpan<char> lengthDescriptor = token.AsSpan(0, token.Length - 1);
-            // ReSharper disable once UseIndexFromEndExpression
-            isFixedLength = lengthDescriptor[^1] == '!';
-            return int.Parse(
-                lengthDescriptor[..^Convert.ToByte(isFixedLength)],
-                NumberStyles.None,
-                CultureInfo.InvariantCulture
-            );
+        ReadOnlySpan<char> lengthDescriptor = token.AsSpan(0, token.Length - 1);
+        // ReSharper disable once UseIndexFromEndExpression
+        isFixedLength = lengthDescriptor[^1] == '!';
+        return int.Parse(
+            lengthDescriptor[..^Convert.ToByte(isFixedLength)],
+            NumberStyles.None,
+            CultureInfo.InvariantCulture
+        );
 #else
             string lengthDescriptor = token.Substring(0, token.Length - 1);
             // ReSharper disable once UseIndexFromEndExpression
@@ -63,6 +63,5 @@ namespace IbanNet.Registry.Swift
                 CultureInfo.InvariantCulture
             );
 #endif
-        }
     }
 }

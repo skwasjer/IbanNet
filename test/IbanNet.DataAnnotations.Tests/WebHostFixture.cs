@@ -2,28 +2,27 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 
-namespace IbanNet.DataAnnotations
+namespace IbanNet.DataAnnotations;
+
+public abstract class WebHostFixture : IDisposable
 {
-    public abstract class WebHostFixture : IDisposable
+    public TestServer TestServer { get; private set; }
+
+    public void Start()
     {
-        public TestServer TestServer { get; private set; }
+        IWebHostBuilder webHostBuilder = new WebHostBuilder();
+        Configure(webHostBuilder);
+        TestServer = new TestServer(webHostBuilder);
+    }
 
-        public void Start()
-        {
-            IWebHostBuilder webHostBuilder = new WebHostBuilder();
-            Configure(webHostBuilder);
-            TestServer = new TestServer(webHostBuilder);
-        }
+    protected virtual void Configure(IWebHostBuilder webHostBuilder)
+    {
+    }
 
-        protected virtual void Configure(IWebHostBuilder webHostBuilder)
-        {
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-            TestServer?.Dispose();
-        }
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+        TestServer?.Dispose();
     }
 }
 #endif

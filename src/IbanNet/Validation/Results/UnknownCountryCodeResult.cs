@@ -1,16 +1,15 @@
-﻿namespace IbanNet.Validation.Results
+﻿namespace IbanNet.Validation.Results;
+
+/// <summary>
+/// The result returned when the country code is unknown/not supported.
+/// </summary>
+public class UnknownCountryCodeResult : ErrorResult
 {
     /// <summary>
-    /// The result returned when the country code is unknown/not supported.
+    /// Initializes a new instance of the <see cref="UnknownCountryCodeResult" /> class.
     /// </summary>
-    public class UnknownCountryCodeResult : ErrorResult
+    public UnknownCountryCodeResult()
+        : base(Resources.UnknownCountryCodeResult)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownCountryCodeResult" /> class.
-        /// </summary>
-        public UnknownCountryCodeResult()
-            : base(Resources.UnknownCountryCodeResult)
-        {
-        }
     }
 }

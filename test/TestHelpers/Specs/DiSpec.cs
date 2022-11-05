@@ -1,21 +1,20 @@
 ﻿using IbanNet.DependencyInjection;
 using TestHelpers.Fixtures;
 
-namespace TestHelpers.Specs
+namespace TestHelpers.Specs;
+
+[Collection(nameof(SetsStaticValidator))]
+public abstract class DiSpec : SyncSpec<DependencyResolverAdapter>
 {
-    [Collection(nameof(SetsStaticValidator))]
-    public abstract class DiSpec : SyncSpec<DependencyResolverAdapter>
+    protected DiSpec(IDependencyInjectionFixture fixture)
     {
-        protected DiSpec(IDependencyInjectionFixture fixture)
-        {
-            Fixture = fixture ?? throw new ArgumentNullException(nameof(fixture));
-        }
+        Fixture = fixture ?? throw new ArgumentNullException(nameof(fixture));
+    }
 
-        protected IDependencyInjectionFixture Fixture { get; }
+    protected IDependencyInjectionFixture Fixture { get; }
 
-        protected override DependencyResolverAdapter CreateSubject()
-        {
-            return Fixture.Build();
-        }
+    protected override DependencyResolverAdapter CreateSubject()
+    {
+        return Fixture.Build();
     }
 }

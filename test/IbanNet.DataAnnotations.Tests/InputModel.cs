@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IbanNet.DataAnnotations
+namespace IbanNet.DataAnnotations;
+
+public class InputModel
 {
-    public class InputModel
-    {
-        [Required]
-        [Iban(Strict = false)]
-        public string BankAccountNumber { get; set; }
-    }
+    [Required]
+    [Iban(Strict = false)]
+    public string BankAccountNumber { get; set; }
 }

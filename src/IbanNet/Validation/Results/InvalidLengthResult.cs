@@ -1,16 +1,15 @@
-﻿namespace IbanNet.Validation.Results
+﻿namespace IbanNet.Validation.Results;
+
+/// <summary>
+/// The result returned when the IBAN has an incorrect length.
+/// </summary>
+public class InvalidLengthResult : ErrorResult
 {
     /// <summary>
-    /// The result returned when the IBAN has an incorrect length.
+    /// Initializes a new instance of the <see cref="InvalidLengthResult" /> class.
     /// </summary>
-    public class InvalidLengthResult : ErrorResult
+    public InvalidLengthResult()
+        : base(Resources.InvalidLengthResult)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidLengthResult" /> class.
-        /// </summary>
-        public InvalidLengthResult()
-            : base(Resources.InvalidLengthResult)
-        {
-        }
     }
 }

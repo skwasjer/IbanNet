@@ -1,20 +1,19 @@
 ﻿using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Running;
 
-namespace IbanNet.Benchmark
+namespace IbanNet.Benchmark;
+
+internal static class Program
 {
-    internal static class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            IConfig config = null;
+        IConfig config = null;
 #if DEBUG
-            config = new DebugInProcessConfig();
+        config = new DebugInProcessConfig();
 #endif
 
-            BenchmarkSwitcher
-                .FromAssembly(typeof(Program).Assembly)
-                .Run(args, config);
-        }
+        BenchmarkSwitcher
+            .FromAssembly(typeof(Program).Assembly)
+            .Run(args, config);
     }
 }

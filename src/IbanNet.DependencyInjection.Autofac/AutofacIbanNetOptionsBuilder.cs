@@ -1,25 +1,24 @@
 ﻿using Autofac;
 
-namespace IbanNet.DependencyInjection.Autofac
+namespace IbanNet.DependencyInjection.Autofac;
+
+internal class AutofacIbanNetOptionsBuilder : IIbanNetOptionsBuilder
 {
-    internal class AutofacIbanNetOptionsBuilder : IIbanNetOptionsBuilder
+    private readonly IbanNetModule _module;
+
+    internal AutofacIbanNetOptionsBuilder(IbanNetModule module)
     {
-        private readonly IbanNetModule _module;
+        _module = module ?? throw new ArgumentNullException(nameof(module));
+    }
 
-        internal AutofacIbanNetOptionsBuilder(IbanNetModule module)
+    public IIbanNetOptionsBuilder Configure(Action<DependencyResolverAdapter, IbanValidatorOptions> configure)
+    {
+        if (configure is null)
         {
-            _module = module ?? throw new ArgumentNullException(nameof(module));
+            throw new ArgumentNullException(nameof(configure));
         }
 
-        public IIbanNetOptionsBuilder Configure(Action<DependencyResolverAdapter, IbanValidatorOptions> configure)
-        {
-            if (configure is null)
-            {
-                throw new ArgumentNullException(nameof(configure));
-            }
-
-            _module.OnActivated(args => configure(args.Context.Resolve<DependencyResolverAdapter>(), args.Instance));
-            return this;
-        }
+        _module.OnActivated(args => configure(args.Context.Resolve<DependencyResolverAdapter>(), args.Instance));
+        return this;
     }
 }

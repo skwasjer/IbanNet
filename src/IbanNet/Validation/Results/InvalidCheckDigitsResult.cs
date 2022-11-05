@@ -1,16 +1,15 @@
-﻿namespace IbanNet.Validation.Results
+﻿namespace IbanNet.Validation.Results;
+
+/// <summary>
+/// The result returned when the IBAN check digits are incorrect.
+/// </summary>
+public class InvalidCheckDigitsResult : ErrorResult
 {
     /// <summary>
-    /// The result returned when the IBAN check digits are incorrect.
+    /// Initializes a new instance of the <see cref="InvalidCheckDigitsResult" /> class.
     /// </summary>
-    public class InvalidCheckDigitsResult : ErrorResult
+    public InvalidCheckDigitsResult()
+        : base(Resources.InvalidCheckDigitsResult)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidCheckDigitsResult" /> class.
-        /// </summary>
-        public InvalidCheckDigitsResult()
-            : base(Resources.InvalidCheckDigitsResult)
-        {
-        }
     }
 }

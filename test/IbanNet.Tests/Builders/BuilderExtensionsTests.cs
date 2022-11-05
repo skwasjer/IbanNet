@@ -1,118 +1,117 @@
 ﻿using IbanNet.Registry;
 
-namespace IbanNet.Builders
+namespace IbanNet.Builders;
+
+public class BuilderExtensionsTests
 {
-    public class BuilderExtensionsTests
+    public class GetIbanBuilderTests : BuilderExtensionsTests
     {
-        public class GetIbanBuilderTests : BuilderExtensionsTests
+        [Fact]
+        public void Given_country_when_getting_iban_builder_it_should_return_instance()
         {
-            [Fact]
-            public void Given_country_when_getting_iban_builder_it_should_return_instance()
-            {
-                var country = new IbanCountry("XX");
+            var country = new IbanCountry("XX");
 
-                // Act
-                IbanBuilder actual = country.GetIbanBuilder();
+            // Act
+            IbanBuilder actual = country.GetIbanBuilder();
 
-                // Assert
-                actual.Should().NotBeNull();
-            }
-
-            [Fact]
-            public void Given_null_country_when_getting_iban_builder_it_should_throw()
-            {
-                IbanCountry country = null;
-
-                // Act
-                // ReSharper disable once AssignNullToNotNullAttribute
-                Action act = () => country.GetIbanBuilder();
-
-                // Assert
-                act.Should()
-                    .ThrowExactly<ArgumentNullException>()
-                    .Which.ParamName.Should()
-                    .Be(nameof(country));
-            }
+            // Assert
+            actual.Should().NotBeNull();
         }
 
-        public class GetBbanBuilderTests : BuilderExtensionsTests
+        [Fact]
+        public void Given_null_country_when_getting_iban_builder_it_should_throw()
         {
-            [Fact]
-            public void Given_country_when_getting_bban_builder_it_should_return_instance()
-            {
-                var country = new IbanCountry("XX");
+            IbanCountry country = null;
 
-                // Act
-                BbanBuilder actual = country.GetBbanBuilder();
+            // Act
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => country.GetIbanBuilder();
 
-                // Assert
-                actual.Should().NotBeNull();
-            }
+            // Assert
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(country));
+        }
+    }
 
-            [Fact]
-            public void Given_null_country_when_getting_bban_builder_it_should_throw()
-            {
-                IbanCountry country = null;
+    public class GetBbanBuilderTests : BuilderExtensionsTests
+    {
+        [Fact]
+        public void Given_country_when_getting_bban_builder_it_should_return_instance()
+        {
+            var country = new IbanCountry("XX");
 
-                // Act
-                // ReSharper disable once AssignNullToNotNullAttribute
-                Action act = () => country.GetBbanBuilder();
+            // Act
+            BbanBuilder actual = country.GetBbanBuilder();
 
-                // Assert
-                act.Should()
-                    .ThrowExactly<ArgumentNullException>()
-                    .Which.ParamName.Should()
-                    .Be(nameof(country));
-            }
+            // Assert
+            actual.Should().NotBeNull();
         }
 
-        public class WithCountryTests : BuilderExtensionsTests
+        [Fact]
+        public void Given_null_country_when_getting_bban_builder_it_should_throw()
         {
-            [Theory]
-            [MemberData(nameof(WithCountryTestCases))]
-            public void Given_invalid_arg_when_getting_builder_with_countryCode_it_should_throw(IBankAccountBuilder builder, string countryCode, IIbanRegistry registry, string expectedParamName)
-            {
-                // Act
-                Action act = () => builder.WithCountry(countryCode, registry);
+            IbanCountry country = null;
 
-                // Assert
-                act.Should()
-                    .Throw<ArgumentException>()
-                    .Which.ParamName.Should()
-                    .Be(expectedParamName);
-            }
+            // Act
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => country.GetBbanBuilder();
 
-            [Theory]
-            [InlineData("NL")]
-            [InlineData("GB")]
-            public void When_getting_builder_with_countryCode_it_should_configure_builder(string countryCode)
-            {
-                IBankAccountBuilder builder = new IbanBuilder();
+            // Assert
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .Which.ParamName.Should()
+                .Be(nameof(country));
+        }
+    }
 
-                // Act
-                builder.WithCountry(countryCode, IbanRegistry.Default);
+    public class WithCountryTests : BuilderExtensionsTests
+    {
+        [Theory]
+        [MemberData(nameof(WithCountryTestCases))]
+        public void Given_invalid_arg_when_getting_builder_with_countryCode_it_should_throw(IBankAccountBuilder builder, string countryCode, IIbanRegistry registry, string expectedParamName)
+        {
+            // Act
+            Action act = () => builder.WithCountry(countryCode, registry);
 
-                // Assert
-                string iban = builder.Build();
-                iban.Should().StartWith(countryCode);
-            }
+            // Assert
+            act.Should()
+                .Throw<ArgumentException>()
+                .Which.ParamName.Should()
+                .Be(expectedParamName);
+        }
 
-            public static IEnumerable<object[]> WithCountryTestCases()
-            {
-                IBankAccountBuilder builder = Mock.Of<IBankAccountBuilder>();
-                const string countryCode = "NL";
-                IIbanRegistry registry = Mock.Of<IIbanRegistry>();
+        [Theory]
+        [InlineData("NL")]
+        [InlineData("GB")]
+        public void When_getting_builder_with_countryCode_it_should_configure_builder(string countryCode)
+        {
+            IBankAccountBuilder builder = new IbanBuilder();
 
-                IbanCountry other = null;
-                var nl = new IbanCountry(countryCode);
-                Mock.Get(registry).Setup(m => m.TryGetValue(It.IsAny<string>(), out other));
-                Mock.Get(registry).Setup(m => m.TryGetValue("NL", out nl));
+            // Act
+            builder.WithCountry(countryCode, IbanRegistry.Default);
 
-                yield return new object[] { null, countryCode, registry, nameof(builder) };
-                yield return new object[] { builder, null, registry, nameof(countryCode) };
-                yield return new object[] { builder, countryCode, null, nameof(registry) };
-                yield return new object[] { builder, "ZZ", registry, nameof(countryCode) };
-            }
+            // Assert
+            string iban = builder.Build();
+            iban.Should().StartWith(countryCode);
+        }
+
+        public static IEnumerable<object[]> WithCountryTestCases()
+        {
+            IBankAccountBuilder builder = Mock.Of<IBankAccountBuilder>();
+            const string countryCode = "NL";
+            IIbanRegistry registry = Mock.Of<IIbanRegistry>();
+
+            IbanCountry other = null;
+            var nl = new IbanCountry(countryCode);
+            Mock.Get(registry).Setup(m => m.TryGetValue(It.IsAny<string>(), out other));
+            Mock.Get(registry).Setup(m => m.TryGetValue("NL", out nl));
+
+            yield return new object[] { null, countryCode, registry, nameof(builder) };
+            yield return new object[] { builder, null, registry, nameof(countryCode) };
+            yield return new object[] { builder, countryCode, null, nameof(registry) };
+            yield return new object[] { builder, "ZZ", registry, nameof(countryCode) };
         }
     }
 }

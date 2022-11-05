@@ -1,38 +1,37 @@
 ﻿using IbanNet.Registry;
 using TestHelpers.Fixtures;
 
-namespace TestHelpers.Specs
+namespace TestHelpers.Specs;
+
+public abstract class ShouldResolveRegistry : DiSpec
 {
-    public abstract class ShouldResolveRegistry : DiSpec
+    protected ShouldResolveRegistry(IDependencyInjectionFixture fixture) : base(fixture)
     {
-        protected ShouldResolveRegistry(IDependencyInjectionFixture fixture) : base(fixture)
-        {
-        }
+    }
 
-        protected override void Given()
-        {
-            Fixture.Configure(builder => { });
-        }
+    protected override void Given()
+    {
+        Fixture.Configure(builder => { });
+    }
 
-        [Fact]
-        public void When_resolving_registry_it_should_not_throw()
-        {
-            // Assert
-            Func<IIbanRegistry> act = () => Subject.GetService<IIbanRegistry>();
+    [Fact]
+    public void When_resolving_registry_it_should_not_throw()
+    {
+        // Assert
+        Func<IIbanRegistry> act = () => Subject.GetService<IIbanRegistry>();
 
-            // Act
-            act.Should().NotThrow().Which.Should().NotBeNull();
-        }
+        // Act
+        act.Should().NotThrow().Which.Should().NotBeNull();
+    }
 
-        [Fact]
-        public void When_resolving_twice_it_should_return_same_instance()
-        {
-            // Assert
-            IIbanRegistry first = Subject.GetService<IIbanRegistry>();
-            IIbanRegistry second = Subject.GetService<IIbanRegistry>();
+    [Fact]
+    public void When_resolving_twice_it_should_return_same_instance()
+    {
+        // Assert
+        IIbanRegistry first = Subject.GetService<IIbanRegistry>();
+        IIbanRegistry second = Subject.GetService<IIbanRegistry>();
 
-            // Act
-            first.Should().BeSameAs(second);
-        }
+        // Act
+        first.Should().BeSameAs(second);
     }
 }

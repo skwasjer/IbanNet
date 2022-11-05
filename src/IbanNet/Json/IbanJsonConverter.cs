@@ -3,65 +3,64 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using IbanNet.Registry;
 
-namespace IbanNet.Json
+namespace IbanNet.Json;
+
+/// <summary>
+/// A JSON converter for the <see cref="Iban" /> type (and for the System.Text.Json namespace).
+/// </summary>
+public sealed class IbanJsonConverter : JsonConverter<Iban>
 {
+    private readonly IIbanParser _ibanParser;
+
     /// <summary>
-    /// A JSON converter for the <see cref="Iban" /> type (and for the System.Text.Json namespace).
+    /// Initializes a new instance of the <see cref="IbanJsonConverter" /> class using the <see cref="IbanRegistry.Default" />.
     /// </summary>
-    public sealed class IbanJsonConverter : JsonConverter<Iban>
+    public IbanJsonConverter()
+        : this(new IbanParser(Iban.Validator))
     {
-        private readonly IIbanParser _ibanParser;
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IbanJsonConverter" /> class using the <see cref="IbanRegistry.Default" />.
-        /// </summary>
-        public IbanJsonConverter()
-            : this(new IbanParser(Iban.Validator))
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IbanJsonConverter" /> class using specified <paramref name="ibanParser" />.
+    /// </summary>
+    /// <param name="ibanParser"></param>
+    // ReSharper disable once MemberCanBePrivate.Global
+    public IbanJsonConverter(IIbanParser ibanParser)
+    {
+        _ibanParser = ibanParser ?? throw new ArgumentNullException(nameof(ibanParser));
+    }
+
+    /// <inheritdoc />
+    public override Iban? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        string? strValue = reader.GetString();
+        if (string.IsNullOrWhiteSpace(strValue))
         {
+            return null;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IbanJsonConverter" /> class using specified <paramref name="ibanParser" />.
-        /// </summary>
-        /// <param name="ibanParser"></param>
-        // ReSharper disable once MemberCanBePrivate.Global
-        public IbanJsonConverter(IIbanParser ibanParser)
+        if (!_ibanParser.TryParse(strValue, out Iban? iban))
         {
-            _ibanParser = ibanParser ?? throw new ArgumentNullException(nameof(ibanParser));
+            throw new JsonException();
         }
 
-        /// <inheritdoc />
-        public override Iban? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        return iban;
+    }
+
+    /// <inheritdoc />
+    public override void Write(Utf8JsonWriter writer, Iban value, JsonSerializerOptions options)
+    {
+        if (writer is null)
         {
-            string? strValue = reader.GetString();
-            if (string.IsNullOrWhiteSpace(strValue))
-            {
-                return null;
-            }
-
-            if (!_ibanParser.TryParse(strValue, out Iban? iban))
-            {
-                throw new JsonException();
-            }
-
-            return iban;
+            throw new ArgumentNullException(nameof(writer));
         }
 
-        /// <inheritdoc />
-        public override void Write(Utf8JsonWriter writer, Iban value, JsonSerializerOptions options)
+        if (value is null)
         {
-            if (writer is null)
-            {
-                throw new ArgumentNullException(nameof(writer));
-            }
-
-            if (value is null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            writer.WriteStringValue(value.ToString(IbanFormat.Electronic));
+            throw new ArgumentNullException(nameof(value));
         }
+
+        writer.WriteStringValue(value.ToString(IbanFormat.Electronic));
     }
 }
 #endif

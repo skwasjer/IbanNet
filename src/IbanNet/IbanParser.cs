@@ -3,101 +3,100 @@ using System.Globalization;
 using IbanNet.Internal;
 using IbanNet.Registry;
 
-namespace IbanNet
+namespace IbanNet;
+
+/// <summary>
+/// Provides parsing of international bank account numbers into an <see cref="Iban" />.
+/// </summary>
+public sealed class IbanParser : IIbanParser
 {
+    private readonly IIbanValidator _ibanValidator;
+
     /// <summary>
-    /// Provides parsing of international bank account numbers into an <see cref="Iban" />.
+    /// Initializes a new instance of the <see cref="IbanParser" /> class using specified <paramref name="registry" />.
     /// </summary>
-    public sealed class IbanParser : IIbanParser
+    /// <param name="registry">The registry.</param>
+    public IbanParser(IIbanRegistry registry)
     {
-        private readonly IIbanValidator _ibanValidator;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IbanParser" /> class using specified <paramref name="registry" />.
-        /// </summary>
-        /// <param name="registry">The registry.</param>
-        public IbanParser(IIbanRegistry registry)
+        if (registry is null)
         {
-            if (registry is null)
-            {
-                throw new ArgumentNullException(nameof(registry));
-            }
-
-            _ibanValidator = new IbanValidator(new IbanValidatorOptions
-            {
-                Registry = registry
-            });
+            throw new ArgumentNullException(nameof(registry));
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IbanParser" /> class using specified <paramref name="ibanValidator" />.
-        /// </summary>
-        /// <param name="ibanValidator"></param>
-        public IbanParser(IIbanValidator ibanValidator)
+        _ibanValidator = new IbanValidator(new IbanValidatorOptions
         {
-            _ibanValidator = ibanValidator ?? throw new ArgumentNullException(nameof(ibanValidator));
+            Registry = registry
+        });
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IbanParser" /> class using specified <paramref name="ibanValidator" />.
+    /// </summary>
+    /// <param name="ibanValidator"></param>
+    public IbanParser(IIbanValidator ibanValidator)
+    {
+        _ibanValidator = ibanValidator ?? throw new ArgumentNullException(nameof(ibanValidator));
+    }
+
+    /// <inheritdoc />
+    public Iban Parse(string value)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
         }
 
-        /// <inheritdoc />
-        public Iban Parse(string value)
+        if (TryParse(value, out Iban? iban, out ValidationResult? validationResult, out Exception? exceptionThrown))
         {
-            if (value is null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            if (TryParse(value, out Iban? iban, out ValidationResult? validationResult, out Exception? exceptionThrown))
-            {
-                return iban;
-            }
-
-            string errorMessage = validationResult?.Error is null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
-                ? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
-                : validationResult.Error.ErrorMessage;
-
-            if (validationResult is null || exceptionThrown is not null)
-            {
-                throw new IbanFormatException(errorMessage, exceptionThrown);
-            }
-
-            throw new IbanFormatException(errorMessage, validationResult);
+            return iban;
         }
 
-        /// <inheritdoc />
-        public bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
+        string errorMessage = validationResult?.Error is null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
+            ? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
+            : validationResult.Error.ErrorMessage;
+
+        if (validationResult is null || exceptionThrown is not null)
         {
-            return TryParse(value, out iban, out _, out _);
+            throw new IbanFormatException(errorMessage, exceptionThrown);
         }
 
-        private bool TryParse(
-            string? value,
-            [NotNullWhen(true)] out Iban? iban,
-            [MaybeNullWhen(false)] out ValidationResult? validationResult,
-            [MaybeNullWhen(false)] out Exception? exceptionThrown)
+        throw new IbanFormatException(errorMessage, validationResult);
+    }
+
+    /// <inheritdoc />
+    public bool TryParse(string? value, [NotNullWhen(true)] out Iban? iban)
+    {
+        return TryParse(value, out iban, out _, out _);
+    }
+
+    private bool TryParse(
+        string? value,
+        [NotNullWhen(true)] out Iban? iban,
+        [MaybeNullWhen(false)] out ValidationResult? validationResult,
+        [MaybeNullWhen(false)] out Exception? exceptionThrown)
+    {
+        iban = null;
+        exceptionThrown = null;
+
+        string? normalizedValue = InputNormalization.NormalizeOrNull(value);
+
+        try
         {
-            iban = null;
-            exceptionThrown = null;
-
-            string? normalizedValue = InputNormalization.NormalizeOrNull(value);
-
-            try
-            {
-                validationResult = _ibanValidator.Validate(normalizedValue);
-            }
-            catch (Exception ex)
-            {
-                validationResult = null;
-                exceptionThrown = ex;
-                return false;
-            }
-
-            if (!validationResult.IsValid)
-            {
-                return false;
-            }
-
-            iban = new Iban(normalizedValue!, validationResult.Country!, true);
-            return true;
+            validationResult = _ibanValidator.Validate(normalizedValue);
         }
+        catch (Exception ex)
+        {
+            validationResult = null;
+            exceptionThrown = ex;
+            return false;
+        }
+
+        if (!validationResult.IsValid)
+        {
+            return false;
+        }
+
+        iban = new Iban(normalizedValue!, validationResult.Country!, true);
+        return true;
     }
 }

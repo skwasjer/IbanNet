@@ -1,10 +1,9 @@
-﻿namespace TestHelpers.FluentAssertions
+﻿namespace TestHelpers.FluentAssertions;
+
+public static class DelegateExtensions
 {
-    public static class DelegateExtensions
+    public static DelegateAssertions Should(this Delegate instance)
     {
-        public static DelegateAssertions Should(this Delegate instance)
-        {
-            return new(instance, new AggregateExceptionExtractor());
-        }
+        return new(instance, new AggregateExceptionExtractor());
     }
 }

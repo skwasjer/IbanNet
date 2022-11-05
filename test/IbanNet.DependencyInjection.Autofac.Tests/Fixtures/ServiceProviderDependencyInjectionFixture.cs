@@ -1,35 +1,34 @@
 ﻿using Autofac;
 using TestHelpers.Fixtures;
 
-namespace IbanNet.DependencyInjection.Autofac.Fixtures
+namespace IbanNet.DependencyInjection.Autofac.Fixtures;
+
+public class AutofacDependencyInjectionFixture : DependencyInjectionFixture<ContainerBuilder, IComponentContext>
 {
-    public class AutofacDependencyInjectionFixture : DependencyInjectionFixture<ContainerBuilder, IComponentContext>
+    private readonly bool _preserveStaticValidator;
+
+    public AutofacDependencyInjectionFixture(bool preserveStaticValidator)
     {
-        private readonly bool _preserveStaticValidator;
+        _preserveStaticValidator = preserveStaticValidator;
+    }
 
-        public AutofacDependencyInjectionFixture(bool preserveStaticValidator)
-        {
-            _preserveStaticValidator = preserveStaticValidator;
-        }
+    protected override ContainerBuilder CreateContainerBuilder()
+    {
+        return new();
+    }
 
-        protected override ContainerBuilder CreateContainerBuilder()
-        {
-            return new();
-        }
+    protected override void Configure(ContainerBuilder containerBuilder, Action<IIbanNetOptionsBuilder> configurer)
+    {
+        containerBuilder.RegisterIbanNet(configurer, _preserveStaticValidator);
+    }
 
-        protected override void Configure(ContainerBuilder containerBuilder, Action<IIbanNetOptionsBuilder> configurer)
-        {
-            containerBuilder.RegisterIbanNet(configurer, _preserveStaticValidator);
-        }
+    protected override IComponentContext CreateContainer(ContainerBuilder containerBuilder)
+    {
+        return containerBuilder.Build();
+    }
 
-        protected override IComponentContext CreateContainer(ContainerBuilder containerBuilder)
-        {
-            return containerBuilder.Build();
-        }
-
-        protected override DependencyResolverAdapter CreateAdapter(IComponentContext container)
-        {
-            return new AutofacDependencyResolverAdapter(container);
-        }
+    protected override DependencyResolverAdapter CreateAdapter(IComponentContext container)
+    {
+        return new AutofacDependencyResolverAdapter(container);
     }
 }

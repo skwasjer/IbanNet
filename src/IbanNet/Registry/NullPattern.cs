@@ -1,14 +1,13 @@
 ﻿using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Registry
-{
-    internal class NullPattern : Pattern
-    {
-        public static readonly Pattern Instance = new NullPattern();
+namespace IbanNet.Registry;
 
-        private NullPattern()
-            : base(Enumerable.Empty<PatternToken>())
-        {
-        }
+internal class NullPattern : Pattern
+{
+    public static readonly Pattern Instance = new NullPattern();
+
+    private NullPattern()
+        : base(Enumerable.Empty<PatternToken>())
+    {
     }
 }

@@ -1,11 +1,10 @@
 ﻿using IbanNet.DependencyInjection.Autofac.Fixtures;
 
-namespace IbanNet.DependencyInjection.Autofac.Specs
+namespace IbanNet.DependencyInjection.Autofac.Specs;
+
+public class ShouldSetStaticValidatorSpec : TestHelpers.Specs.ShouldSetStaticValidatorSpec
 {
-    public class ShouldSetStaticValidatorSpec : TestHelpers.Specs.ShouldSetStaticValidatorSpec
+    public ShouldSetStaticValidatorSpec() : base(new AutofacDependencyInjectionFixture(false))
     {
-        public ShouldSetStaticValidatorSpec() : base(new AutofacDependencyInjectionFixture(false))
-        {
-        }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 
-namespace IbanNet.Extensions
+namespace IbanNet.Extensions;
+
+[DebuggerStepThrough]
+internal static class ChunkExtensions
 {
-    [DebuggerStepThrough]
-    internal static class ChunkExtensions
-    {
 #if !NET6_0_OR_GREATER
         /// <summary>
         /// Split the elements of a sequence into chunks of size at most <paramref name="size"/>.
@@ -53,36 +53,36 @@ namespace IbanNet.Extensions
         }
 #endif
 
-        /// <summary>
-        /// Splits a given <paramref name="sequence" /> into partitions when encountering any of the <paramref name="chars" />.
-        /// </summary>
-        /// <param name="sequence">The sequence to partition.</param>
-        /// <param name="chars">A list of markers to partition on.</param>
-        /// <returns>an enumerable of partitions</returns>
-        public static IEnumerable<string> PartitionOn(this string sequence, params char[] chars)
+    /// <summary>
+    /// Splits a given <paramref name="sequence" /> into partitions when encountering any of the <paramref name="chars" />.
+    /// </summary>
+    /// <param name="sequence">The sequence to partition.</param>
+    /// <param name="chars">A list of markers to partition on.</param>
+    /// <returns>an enumerable of partitions</returns>
+    public static IEnumerable<string> PartitionOn(this string sequence, params char[] chars)
+    {
+        if (sequence is null)
         {
-            if (sequence is null)
-            {
-                throw new ArgumentNullException(nameof(sequence));
-            }
-
-            if (chars is null || chars.Length == 0)
-            {
-                throw new ArgumentException(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required, nameof(chars));
-            }
-
-            return PartitionOn(sequence, chars.Contains);
+            throw new ArgumentNullException(nameof(sequence));
         }
 
-        /// <summary>
-        /// Splits a given <paramref name="sequence" /> into partitions where the delegate <paramref name="when" /> returns true for a given character.
-        /// </summary>
-        /// <param name="sequence">The sequence to partition.</param>
-        /// <param name="when">A delegate that determines when to partition.</param>
-        /// <returns>an enumerable of partitions</returns>
-#if USE_SPANS
-        public static IEnumerable<string> PartitionOn(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+        if (chars is null || chars.Length == 0)
         {
+            throw new ArgumentException(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required, nameof(chars));
+        }
+
+        return PartitionOn(sequence, chars.Contains);
+    }
+
+    /// <summary>
+    /// Splits a given <paramref name="sequence" /> into partitions where the delegate <paramref name="when" /> returns true for a given character.
+    /// </summary>
+    /// <param name="sequence">The sequence to partition.</param>
+    /// <param name="when">A delegate that determines when to partition.</param>
+    /// <returns>an enumerable of partitions</returns>
+#if USE_SPANS
+    public static IEnumerable<string> PartitionOn(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+    {
 #else
         public static IEnumerable<string> PartitionOn(this IEnumerable<char> sequence, Func<char, bool> when)
         {
@@ -92,41 +92,41 @@ namespace IbanNet.Extensions
             }
 #endif
 
-            if (when is null)
-            {
-                throw new ArgumentNullException(nameof(when));
-            }
-
-            return PartitionOnIterator(sequence, when);
+        if (when is null)
+        {
+            throw new ArgumentNullException(nameof(when));
         }
+
+        return PartitionOnIterator(sequence, when);
+    }
 
 #if USE_SPANS
-        private static IEnumerable<string> PartitionOnIterator(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+    private static IEnumerable<string> PartitionOnIterator(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+    {
+        var partitions = new List<string>();
+
+        int len = sequence.Length;
+        int startPos = 0;
+        int count = 0;
+        for (int index = 0; index < len; index++)
         {
-            var partitions = new List<string>();
-
-            int len = sequence.Length;
-            int startPos = 0;
-            int count = 0;
-            for (int index = 0; index < len; index++)
-            {
-                char item = sequence[index];
-                count++;
-                if (when(item))
-                {
-                    partitions.Add(new string(sequence.Slice(startPos, count)));
-                    startPos += count;
-                    count = 0;
-                }
-            }
-
-            if (count > 0)
+            char item = sequence[index];
+            count++;
+            if (when(item))
             {
                 partitions.Add(new string(sequence.Slice(startPos, count)));
+                startPos += count;
+                count = 0;
             }
-
-            return partitions;
         }
+
+        if (count > 0)
+        {
+            partitions.Add(new string(sequence.Slice(startPos, count)));
+        }
+
+        return partitions;
+    }
 #else
         private static IEnumerable<string> PartitionOnIterator(this IEnumerable<char> sequence, Func<char, bool> when)
         {
@@ -148,5 +148,4 @@ namespace IbanNet.Extensions
             }
         }
 #endif
-    }
 }

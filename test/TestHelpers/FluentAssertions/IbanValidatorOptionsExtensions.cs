@@ -1,12 +1,11 @@
 ﻿using IbanNet;
 
-namespace TestHelpers.FluentAssertions
+namespace TestHelpers.FluentAssertions;
+
+public static class IbanValidatorOptionsExtensions
 {
-    public static class IbanValidatorOptionsExtensions
+    public static IbanValidatorOptionsAssertions Should(this IbanValidatorOptions instance)
     {
-        public static IbanValidatorOptionsAssertions Should(this IbanValidatorOptions instance)
-        {
-            return new(instance);
-        }
+        return new(instance);
     }
 }

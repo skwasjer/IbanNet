@@ -1,11 +1,10 @@
 ﻿using IbanNet.DependencyInjection.Autofac.Fixtures;
 
-namespace IbanNet.DependencyInjection.Autofac.Specs
+namespace IbanNet.DependencyInjection.Autofac.Specs;
+
+public class ShouldUseDefaultRegistrySpec : TestHelpers.Specs.ShouldUseDefaultRegistrySpec
 {
-    public class ShouldUseDefaultRegistrySpec : TestHelpers.Specs.ShouldUseDefaultRegistrySpec
+    public ShouldUseDefaultRegistrySpec() : base(new AutofacDependencyInjectionFixture(true))
     {
-        public ShouldUseDefaultRegistrySpec() : base(new AutofacDependencyInjectionFixture(true))
-        {
-        }
     }
 }

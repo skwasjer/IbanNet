@@ -1,58 +1,57 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 
-namespace IbanNet.TypeConverters
+namespace IbanNet.TypeConverters;
+
+/// <summary>
+/// Provides a way of converting an <see cref="Iban" /> from and to other types.
+/// </summary>
+public sealed class IbanTypeConverter : TypeConverter
 {
     /// <summary>
-    /// Provides a way of converting an <see cref="Iban" /> from and to other types.
+    /// Initializes a new instance of the <see cref="IbanTypeConverter" /> class.
     /// </summary>
-    public sealed class IbanTypeConverter : TypeConverter
+    // ReSharper disable once EmptyConstructor
+    public IbanTypeConverter()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IbanTypeConverter" /> class.
-        /// </summary>
-        // ReSharper disable once EmptyConstructor
-        public IbanTypeConverter()
+    }
+
+    /// <inheritdoc />
+    public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
+    {
+        return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+    }
+
+    /// <inheritdoc />
+    public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
+    {
+        switch (value)
         {
+            case null:
+                return null;
+
+            case string strValue:
+                IIbanParser parser = GetParser(context);
+                if (parser.TryParse(strValue, out Iban? iban))
+                {
+                    return iban;
+                }
+
+                break;
         }
 
-        /// <inheritdoc />
-        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
+        return base.ConvertFrom(context, culture, value);
+    }
+
+    private static IIbanParser GetParser(IServiceProvider? services)
+    {
+        if (services?.GetService(typeof(IIbanParser)) is IIbanParser parser)
         {
-            return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+            return parser;
         }
 
-        /// <inheritdoc />
-        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
-        {
-            switch (value)
-            {
-                case null:
-                    return null;
-
-                case string strValue:
-                    IIbanParser parser = GetParser(context);
-                    if (parser.TryParse(strValue, out Iban? iban))
-                    {
-                        return iban;
-                    }
-
-                    break;
-            }
-
-            return base.ConvertFrom(context, culture, value);
-        }
-
-        private static IIbanParser GetParser(IServiceProvider? services)
-        {
-            if (services?.GetService(typeof(IIbanParser)) is IIbanParser parser)
-            {
-                return parser;
-            }
-
-            // Request validator from service provider if available.
-            IIbanValidator validator = (IIbanValidator?)services?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
-            return new IbanParser(validator);
-        }
+        // Request validator from service provider if available.
+        IIbanValidator validator = (IIbanValidator?)services?.GetService(typeof(IIbanValidator)) ?? Iban.Validator;
+        return new IbanParser(validator);
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace IbanNet.FluentValidation
+﻿namespace IbanNet.FluentValidation;
+
+internal class TestModel
 {
-    internal class TestModel
-    {
-        public string BankAccountNumber { get; set; }
-    }
+    public string BankAccountNumber { get; set; }
 }

@@ -2,30 +2,29 @@
 using IbanNet.DependencyInjection.Autofac.Fixtures;
 using IbanNet.Registry;
 
-namespace IbanNet.DependencyInjection.Autofac.Specs
+namespace IbanNet.DependencyInjection.Autofac.Specs;
+
+public class ShouldResolveCustomService : TestHelpers.Specs.ShouldResolveCustomService
 {
-    public class ShouldResolveCustomService : TestHelpers.Specs.ShouldResolveCustomService
+    public ShouldResolveCustomService() : base(new CustomServicesDependencyInjectionFixture())
     {
-        public ShouldResolveCustomService() : base(new CustomServicesDependencyInjectionFixture())
+    }
+
+    private class CustomServicesDependencyInjectionFixture
+        : AutofacDependencyInjectionFixture
+    {
+        public CustomServicesDependencyInjectionFixture() : base(false)
         {
         }
 
-        private class CustomServicesDependencyInjectionFixture
-            : AutofacDependencyInjectionFixture
+        protected override void Configure(ContainerBuilder containerBuilder, Action<IIbanNetOptionsBuilder> configurer)
         {
-            public CustomServicesDependencyInjectionFixture() : base(false)
-            {
-            }
+            containerBuilder.RegisterInstance(Mock.Of<IIbanRegistry>());
+            containerBuilder.RegisterInstance(Mock.Of<IIbanParser>());
+            containerBuilder.RegisterInstance(Mock.Of<IIbanGenerator>());
+            containerBuilder.RegisterInstance(Mock.Of<IIbanValidator>());
 
-            protected override void Configure(ContainerBuilder containerBuilder, Action<IIbanNetOptionsBuilder> configurer)
-            {
-                containerBuilder.RegisterInstance(Mock.Of<IIbanRegistry>());
-                containerBuilder.RegisterInstance(Mock.Of<IIbanParser>());
-                containerBuilder.RegisterInstance(Mock.Of<IIbanGenerator>());
-                containerBuilder.RegisterInstance(Mock.Of<IIbanValidator>());
-
-                base.Configure(containerBuilder, configurer);
-            }
+            base.Configure(containerBuilder, configurer);
         }
     }
 }

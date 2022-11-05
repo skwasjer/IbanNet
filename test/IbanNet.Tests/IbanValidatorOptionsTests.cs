@@ -1,26 +1,25 @@
 ﻿using IbanNet.Registry;
 
-namespace IbanNet
+namespace IbanNet;
+
+public class IbanValidatorOptionsTests
 {
-    public class IbanValidatorOptionsTests
+    private readonly IbanValidatorOptions _sut;
+
+    public IbanValidatorOptionsTests()
     {
-        private readonly IbanValidatorOptions _sut;
+        _sut = new IbanValidatorOptions();
+    }
 
-        public IbanValidatorOptionsTests()
-        {
-            _sut = new IbanValidatorOptions();
-        }
+    [Fact]
+    public void Registry_should_default_to_default_registry()
+    {
+        _sut.Registry.Should().BeSameAs(IbanRegistry.Default);
+    }
 
-        [Fact]
-        public void Registry_should_default_to_default_registry()
-        {
-            _sut.Registry.Should().BeSameAs(IbanRegistry.Default);
-        }
-
-        [Fact]
-        public void Rules_should_default_to_empty_list()
-        {
-            _sut.Rules.Should().BeEmpty();
-        }
+    [Fact]
+    public void Rules_should_default_to_empty_list()
+    {
+        _sut.Rules.Should().BeEmpty();
     }
 }

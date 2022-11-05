@@ -1,18 +1,17 @@
 ﻿using IbanNet.Validation.Results;
 
-namespace IbanNet.Validation.Rules
+namespace IbanNet.Validation.Rules;
+
+/// <summary>
+/// Asserts that the IBAN is not an empty value.
+/// </summary>
+internal sealed class NotEmptyRule : IIbanValidationRule
 {
-    /// <summary>
-    /// Asserts that the IBAN is not an empty value.
-    /// </summary>
-    internal sealed class NotEmptyRule : IIbanValidationRule
+    /// <inheritdoc />
+    public ValidationRuleResult Validate(ValidationRuleContext context)
     {
-        /// <inheritdoc />
-        public ValidationRuleResult Validate(ValidationRuleContext context)
-        {
-            return context.Value.Length == 0
-                ? new InvalidLengthResult()
-                : ValidationRuleResult.Success;
-        }
+        return context.Value.Length == 0
+            ? new InvalidLengthResult()
+            : ValidationRuleResult.Success;
     }
 }

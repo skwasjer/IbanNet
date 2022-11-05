@@ -1,11 +1,10 @@
 ﻿using IbanNet.DependencyInjection.ServiceProvider.Fixtures;
 
-namespace IbanNet.DependencyInjection.ServiceProvider.Specs
+namespace IbanNet.DependencyInjection.ServiceProvider.Specs;
+
+public class ShouldResolveParserSpec : TestHelpers.Specs.ShouldResolveParserSpec
 {
-    public class ShouldResolveParserSpec : TestHelpers.Specs.ShouldResolveParserSpec
+    public ShouldResolveParserSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
     {
-        public ShouldResolveParserSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
-        {
-        }
     }
 }

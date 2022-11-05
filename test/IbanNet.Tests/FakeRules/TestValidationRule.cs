@@ -1,13 +1,12 @@
 ﻿using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
 
-namespace IbanNet.FakeRules
+namespace IbanNet.FakeRules;
+
+public class TestValidationRule : IIbanValidationRule
 {
-    public class TestValidationRule : IIbanValidationRule
+    public ValidationRuleResult Validate(ValidationRuleContext context)
     {
-        public ValidationRuleResult Validate(ValidationRuleContext context)
-        {
-            return ValidationRuleResult.Success;
-        }
+        return ValidationRuleResult.Success;
     }
 }

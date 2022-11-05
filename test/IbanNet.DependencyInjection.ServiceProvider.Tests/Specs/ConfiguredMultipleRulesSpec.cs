@@ -1,11 +1,10 @@
 ﻿using IbanNet.DependencyInjection.ServiceProvider.Fixtures;
 
-namespace IbanNet.DependencyInjection.ServiceProvider.Specs
+namespace IbanNet.DependencyInjection.ServiceProvider.Specs;
+
+public class ConfiguredMultipleRulesSpec : TestHelpers.Specs.ConfiguredMultipleRulesSpec
 {
-    public class ConfiguredMultipleRulesSpec : TestHelpers.Specs.ConfiguredMultipleRulesSpec
+    public ConfiguredMultipleRulesSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
     {
-        public ConfiguredMultipleRulesSpec() : base(new ServiceProviderDependencyInjectionFixture(true))
-        {
-        }
     }
 }

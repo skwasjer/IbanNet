@@ -1,11 +1,10 @@
 ﻿using IbanNet.DependencyInjection.Autofac.Fixtures;
 
-namespace IbanNet.DependencyInjection.Autofac.Specs
+namespace IbanNet.DependencyInjection.Autofac.Specs;
+
+public class ShouldResolveGeneratorSpec : TestHelpers.Specs.ShouldResolveGeneratorSpec
 {
-    public class ShouldResolveGeneratorSpec : TestHelpers.Specs.ShouldResolveGeneratorSpec
+    public ShouldResolveGeneratorSpec() : base(new AutofacDependencyInjectionFixture(true))
     {
-        public ShouldResolveGeneratorSpec() : base(new AutofacDependencyInjectionFixture(true))
-        {
-        }
     }
 }

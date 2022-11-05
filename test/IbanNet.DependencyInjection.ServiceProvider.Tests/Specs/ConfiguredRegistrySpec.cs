@@ -1,11 +1,10 @@
 ﻿using IbanNet.DependencyInjection.ServiceProvider.Fixtures;
 
-namespace IbanNet.DependencyInjection.ServiceProvider.Specs
+namespace IbanNet.DependencyInjection.ServiceProvider.Specs;
+
+public class ConfiguredRegistrySpec : TestHelpers.Specs.ConfiguredRegistrySpec
 {
-    public class ConfiguredRegistrySpec : TestHelpers.Specs.ConfiguredRegistrySpec
+    public ConfiguredRegistrySpec() : base(new ServiceProviderDependencyInjectionFixture(true))
     {
-        public ConfiguredRegistrySpec() : base(new ServiceProviderDependencyInjectionFixture(true))
-        {
-        }
     }
 }
