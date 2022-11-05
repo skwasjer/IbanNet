@@ -40,7 +40,7 @@ public class ServiceCollectionExtensionsTests
                     ServiceCollectionExtensions.AddIbanNet,
                     services,
                     builder,
-                    true),
+                    true)
             }.Flatten();
         }
     }

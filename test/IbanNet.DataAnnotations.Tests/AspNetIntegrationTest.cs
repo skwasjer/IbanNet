@@ -2,13 +2,13 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using Microsoft.AspNetCore.Mvc;
 #if NET5_0_OR_GREATER
 using System.Net.Http.Json;
 #else
 using Newtonsoft.Json;
 #endif
-using System.Text;
-using Microsoft.AspNetCore.Mvc;
 
 namespace IbanNet.DataAnnotations;
 
@@ -61,7 +61,7 @@ public class AspNetIntegrationTest : IClassFixture<AspNetWebHostFixture>
 
     private static HttpRequestMessage CreateSaveRequest(string iban, bool strict)
     {
-        return new(HttpMethod.Post, "test/save" + (strict ? "-strict" : ""))
+        return new HttpRequestMessage(HttpMethod.Post, "test/save" + (strict ? "-strict" : ""))
         {
             Headers =
             {

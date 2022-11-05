@@ -90,7 +90,7 @@ public class IbanRegistryTests
                 {
                     Example = "12"
                 },
-                Sepa = new SepaInfo { IsMember = false, },
+                Sepa = new SepaInfo { IsMember = false },
                 DomesticAccountNumberExample = "1212 0123456789 06",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
             }

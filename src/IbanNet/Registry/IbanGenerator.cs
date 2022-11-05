@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text;
 using IbanNet.Builders;
 using IbanNet.Registry.Patterns;
@@ -60,7 +61,7 @@ public class IbanGenerator : IIbanGenerator
         return new Iban(ibanStr, country);
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "CA5394:Do not use insecure randomness", Justification = "Not used in secure context.")]
+    [SuppressMessage("Security", "CA5394:Do not use insecure randomness", Justification = "Not used in secure context.")]
     internal static class Generator
     {
         private static readonly Random Rng = new(DateTime.UtcNow.Ticks.GetHashCode());

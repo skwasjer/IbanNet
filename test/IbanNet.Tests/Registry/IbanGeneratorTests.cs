@@ -136,7 +136,18 @@ public class IbanGeneratorTests
         [Fact]
         public void Given_a_pattern_of_multiple_tokens_when_generating_it_should_return_expected()
         {
-            Pattern pattern = new FakePattern(new[] { new PatternToken(AsciiCategory.Digit, 4), new PatternToken(AsciiCategory.Space, 1), new PatternToken(AsciiCategory.LowercaseLetter, 4), new PatternToken(AsciiCategory.Space, 1), new PatternToken(AsciiCategory.UppercaseLetter, 4), new PatternToken(AsciiCategory.Space, 1), new PatternToken(AsciiCategory.Letter, 4), new PatternToken(AsciiCategory.Space, 1), new PatternToken(AsciiCategory.AlphaNumeric, 4), });
+            Pattern pattern = new FakePattern(new[]
+            {
+                new PatternToken(AsciiCategory.Digit, 4),
+                new PatternToken(AsciiCategory.Space, 1),
+                new PatternToken(AsciiCategory.LowercaseLetter, 4),
+                new PatternToken(AsciiCategory.Space, 1),
+                new PatternToken(AsciiCategory.UppercaseLetter, 4),
+                new PatternToken(AsciiCategory.Space, 1),
+                new PatternToken(AsciiCategory.Letter, 4),
+                new PatternToken(AsciiCategory.Space, 1),
+                new PatternToken(AsciiCategory.AlphaNumeric, 4)
+            });
 
             // Act
             string actual = IbanGenerator.Generator.Random(pattern);

@@ -228,7 +228,10 @@ public class BankAccountBuilderTests
             .WithMessage("A value for 'Branch' is not supported for country code NL.");
     }
 
-    private static IBankAccountBuilder CreateBuilder(Type builderType) => (IBankAccountBuilder)Activator.CreateInstance(builderType)!;
+    private static IBankAccountBuilder CreateBuilder(Type builderType)
+    {
+        return (IBankAccountBuilder)Activator.CreateInstance(builderType)!;
+    }
 
     public static IEnumerable<object[]> BuilderMethodTestCases()
     {
