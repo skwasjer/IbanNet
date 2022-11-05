@@ -81,14 +81,16 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
                     var cells = r.Elements("td").ToList();
                     return new
                     {
-                        CountryCode = cells[3].XPathSelectElement("code").Value.Substring(0, 2).Trim(),
-                        EnglishName = cells[0].Element("a").Value.Trim(),
+                        CountryCode = cells[3].XPathSelectElement(".//code").Value.Substring(0, 2).Trim(),
+                        EnglishName = cells[0].XPathSelectElement(".//a").Value.Trim(),
                         Pattern = cells[2].Value.Trim().Replace(" ", "")
                     };
                 }))
+                .SelectMany(_ => _)
+                .Where(x => !Boycott(x.CountryCode))
                 .ToList();
 
-            foreach (var x in wikiSpecs.SelectMany(_ => _))
+            foreach (var x in wikiSpecs)
             {
 #>
         yield return new IbanCountry("<#= x.CountryCode #>")
@@ -117,6 +119,11 @@ private string GetNativeName(string countryCode)
     {
         return null;
     }
+}
+
+private static bool Boycott(string countryCode)
+{
+    return countryCode == "RU"; // Go Ukraine!
 }
 
 public class WikiResponse
