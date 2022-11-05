@@ -12,7 +12,7 @@ internal static class TestSamples
             .ToList();
 
         return Enumerable.Range(0, count)
-            .Select((i, index) => generator.Generate(countryCodes[index % countryCodes.Count]).ToString())
+            .Select((_, index) => generator.Generate(countryCodes[index % countryCodes.Count]).ToString())
             .ToList();
     }
 }
