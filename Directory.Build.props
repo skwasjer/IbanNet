@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>$(NoWarn);IDE0079;S1135</NoWarn>
+    <NoWarn Condition="'$(Configuration)'=='Release'">$(NoWarn);NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
