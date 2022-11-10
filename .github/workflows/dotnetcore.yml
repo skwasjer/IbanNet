@@ -4,12 +4,11 @@ on: [push, pull_request]
 
 jobs:
   dotnet:
-    name: ${{ matrix.framework-version }} on ${{ matrix.os }}
+    name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        framework-version: [net7.0, net6.0, net5.0, netcoreapp3.1]
 
     steps:
       - uses: actions/checkout@v3
@@ -20,5 +19,4 @@ jobs:
             5.0.x
             3.1.x
 
-      - name: Tests
-        run: dotnet test -c Release -f ${{ matrix.framework-version }}
+      - run: dotnet test -c Release
