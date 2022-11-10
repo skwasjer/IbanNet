@@ -13,6 +13,7 @@ public class IbanRegistry : IIbanRegistry
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private IDictionary<string, IbanCountry>? _dictionary;
+    private readonly object _syncObject = new();
 
     /// <summary>
     /// Gets the default IBAN registry initialized with all the built-in countries.
@@ -58,12 +59,15 @@ public class IbanRegistry : IIbanRegistry
     {
         get
         {
-            return _dictionary ??= new ReadOnlyDictionary<string, IbanCountry>(Providers
-                .SelectMany(p => p)
-                // In case of duplicate country codes, select the first.
-                .GroupBy(c => c.TwoLetterISORegionName)
-                .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase)
-            );
+            lock (_syncObject)
+            {
+                return _dictionary ??= new ReadOnlyDictionary<string, IbanCountry>(Providers
+                    .SelectMany(p => p)
+                    // In case of duplicate country codes, select the first.
+                    .GroupBy(c => c.TwoLetterISORegionName)
+                    .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase)
+                );
+            }
         }
     }
 }
