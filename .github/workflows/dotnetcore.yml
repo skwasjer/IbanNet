@@ -4,30 +4,19 @@ on: [push, pull_request]
 
 jobs:
   dotnet:
-    name: ${{ matrix.framework-version }} on ${{ matrix.os }}
+    name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        framework-version: [net6.0, net5.0, netcoreapp3.1]
 
     steps:
-      - uses: actions/checkout@master
-
-      - name: Setup .NET 6.0
-        uses: actions/setup-dotnet@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: |
+            6.0.x
+            5.0.x
+            3.1.x
 
-      - name: Setup .NET 5.0
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 5.0.x
-
-      - name: Setup .NET Core 3.1
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 3.1.x
-
-      - name: Tests
-        run: dotnet test -c Release -f ${{ matrix.framework-version }}
+      - run: dotnet test -c Release
