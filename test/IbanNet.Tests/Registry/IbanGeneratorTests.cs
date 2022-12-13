@@ -115,10 +115,10 @@ public class IbanGeneratorTests
             const int count = 1000;
 
             // Act
-            var ibans = new HashSet<Iban>(
+            var ibans = new HashSet<string>(
                 Enumerable
                     .Range(0, count)
-                    .Select(_ => _sut.Generate("NL"))
+                    .Select(_ => _sut.Generate("NL").ToString())
             );
 
             // Assert
@@ -150,9 +150,11 @@ public class IbanGeneratorTests
             });
 
             // Act
-            string actual = IbanGenerator.Generator.Random(pattern);
+            var generator = new IbanGenerator.Generator(123);
+            string actual = generator.Random(pattern);
 
             // Assert
+            actual.Should().Be("8867 sbad EPWM lvgx 0apw");
             var segments = actual.Split(' ')
                 .Select(x => x.ToCharArray())
                 .ToList();
@@ -172,7 +174,8 @@ public class IbanGeneratorTests
             var token = new PatternToken(category, 100);
 
             // Act
-            string actual = IbanGenerator.Generator.Random(token);
+            var generator = new IbanGenerator.Generator(123);
+            string actual = generator.Random(token);
 
             // Assert
             actual.ToCharArray().Should().OnlyContain(ch => assert(ch));
@@ -190,7 +193,8 @@ public class IbanGeneratorTests
             var token = new PatternToken(category, minLength, maxLength);
 
             // Act
-            string actual = IbanGenerator.Generator.Random(token);
+            var generator = new IbanGenerator.Generator(123);
+            string actual = generator.Random(token);
 
             // Assert
             actual.ToCharArray()
@@ -212,7 +216,8 @@ public class IbanGeneratorTests
             var token = new PatternToken(category, length);
 
             // Act
-            string actual = IbanGenerator.Generator.Random(token);
+            var generator = new IbanGenerator.Generator(123);
+            string actual = generator.Random(token);
 
             // Assert
             actual.Should().HaveLength(length);

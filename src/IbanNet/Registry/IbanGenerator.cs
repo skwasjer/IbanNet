@@ -12,12 +12,13 @@ namespace IbanNet.Registry;
 public class IbanGenerator : IIbanGenerator
 {
     private readonly IIbanRegistry _registry;
+    private readonly Generator _generator;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanGenerator" /> class.
     /// </summary>
     public IbanGenerator()
-        : this (IbanRegistry.Default)
+        : this (IbanRegistry.Default, null)
     {
     }
 
@@ -26,8 +27,20 @@ public class IbanGenerator : IIbanGenerator
     /// </summary>
     /// <param name="registry">The registry containing the IBAN country definitions.</param>
     public IbanGenerator(IIbanRegistry registry)
+        // ReSharper disable once IntroduceOptionalParameters.Global
+        : this(registry, null)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IbanGenerator" /> class using specified <paramref name="registry" />.
+    /// </summary>
+    /// <param name="registry">The registry containing the IBAN country definitions.</param>
+    /// <param name="seed">The generator seed.</param>
+    public IbanGenerator(IIbanRegistry registry, int? seed)
     {
         _registry = registry ?? throw new ArgumentNullException(nameof(registry));
+        _generator = seed.HasValue ? new Generator(seed.Value) : Generator.Default;
     }
 
     /// <inheritdoc />
@@ -56,33 +69,40 @@ public class IbanGenerator : IIbanGenerator
 
         string ibanStr = country
             .GetIbanBuilder()
-            .WithBankAccountNumber(Generator.Random(bbanPattern))
+            .WithBankAccountNumber(_generator.Random(bbanPattern))
             .Build();
         return new Iban(ibanStr, country);
     }
 
     [SuppressMessage("Security", "CA5394:Do not use insecure randomness", Justification = "Not used in secure context.")]
-    internal static class Generator
+    internal sealed class Generator
     {
-        private static readonly Random Rng = new(DateTime.UtcNow.Ticks.GetHashCode());
-        private static readonly object RngLock = new();
+        internal static readonly Generator Default = new(DateTime.UtcNow.Ticks.GetHashCode());
+
+        private readonly Random _rng;
+        private readonly object _rngLock = new();
 
         private static readonly AsciiCategory[] LetterCategories = { AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };
         private static readonly AsciiCategory[] AlphaNumericCategories = { AsciiCategory.Digit, AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };
 
-        internal static string Random(Pattern pattern)
+        internal Generator(int seed)
+        {
+            _rng = new Random(seed);
+        }
+
+        internal string Random(Pattern pattern)
         {
             return string.Join("", pattern.Tokens.Select(Random));
         }
 
-        internal static string Random(PatternToken token)
+        internal string Random(PatternToken token)
         {
             int iterations = token.MaxLength;
             if (!token.IsFixedLength)
             {
-                lock (RngLock)
+                lock (_rngLock)
                 {
-                    iterations = Rng.Next(token.MinLength, token.MaxLength);
+                    iterations = _rng.Next(token.MinLength, token.MaxLength);
                 }
             }
 
@@ -125,9 +145,9 @@ public class IbanGenerator : IIbanGenerator
                 }
 
                 int offset;
-                lock (RngLock)
+                lock (_rngLock)
                 {
-                    offset = Rng.Next(0, charRange - 1);
+                    offset = _rng.Next(0, charRange - 1);
                 }
 
                 char randomChar = (char)(charPos + offset);
@@ -138,12 +158,12 @@ public class IbanGenerator : IIbanGenerator
             return sb.ToString();
         }
 
-        private static AsciiCategory GetRandomCategory(IReadOnlyList<AsciiCategory> from)
+        private AsciiCategory GetRandomCategory(IReadOnlyList<AsciiCategory> from)
         {
             int i;
-            lock (RngLock)
+            lock (_rngLock)
             {
-                i = Rng.Next(0, from.Count - 1);
+                i = _rng.Next(0, from.Count - 1);
             }
 
             return from[i];
