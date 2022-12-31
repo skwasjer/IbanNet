@@ -10,7 +10,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DefineConstants Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netstandard2.1'">$(DefineConstants);USE_SPANS</DefineConstants>
+    <DefineConstants Condition="'$(TargetFramework)'=='net7.0' Or '$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netstandard2.1'">$(DefineConstants);USE_SPANS</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net7.0'">
+    <MicrosoftExtensionsVersion>7.0.0</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net6.0'">
