@@ -5,7 +5,9 @@ namespace IbanNet.Registry;
 /// <summary>
 /// Represents the IBAN registry used by the validator.
 /// </summary>
+#pragma warning disable CA1710 // Identifiers should have correct suffix
 public interface IIbanRegistry : IReadOnlyCollection<IbanCountry>
+#pragma warning restore CA1710 // Identifiers should have correct suffix
 {
     /// <summary>
     /// Gets the registry providers.
