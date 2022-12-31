@@ -3,11 +3,18 @@ skip_branch_with_pr: true
 configuration: Release
 environment:
   IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
+  CLI_VERSION: 7.0.101
 install:
   - choco install gitversion.portable --pre -y
   - gitversion /l console /output buildserver
   - choco install opencover.portable -y
   - choco install codecov -y
+  # Install 7.0.101 until AppVeyor updates their image
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
+  - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
+  - ps: Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1"
+  - ps: '& "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1" -Version $env:CLI_VERSION -InstallDir $env:DOTNET_INSTALL_DIR'
+  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 cache:
   - C:\ProgramData\chocolatey\bin -> appveyor.yml, codecov.yml
   - C:\ProgramData\chocolatey\lib -> appveyor.yml, codecov.yml
