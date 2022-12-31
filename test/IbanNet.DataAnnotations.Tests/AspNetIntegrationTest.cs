@@ -49,7 +49,7 @@ public class AspNetIntegrationTest : IClassFixture<AspNetWebHostFixture>
 #if NET5_0_OR_GREATER
         ValidationProblemDetails? problemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
 #else
-        ValidationProblemDetails problemDetails = JsonConvert.DeserializeObject<ValidationProblemDetails>(await response.Content.ReadAsStringAsync());
+        ValidationProblemDetails? problemDetails = JsonConvert.DeserializeObject<ValidationProblemDetails>(await response.Content.ReadAsStringAsync());
 #endif
         problemDetails.Should().NotBeNull();
         problemDetails!.Errors
