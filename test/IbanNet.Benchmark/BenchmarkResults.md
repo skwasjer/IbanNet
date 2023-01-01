@@ -5,22 +5,21 @@
 A single validation:
 
 ```
-BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19043.2006/21H1/May2021Update)
+BenchmarkDotNet=v0.13.3, OS=Windows 10 (10.0.19045.2364)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET SDK=6.0.400
-  [Host]     : .NET 6.0.9 (6.0.922.41905), X64 RyuJIT AVX2
-  Job-NFSSBI : .NET 6.0.9 (6.0.922.41905), X64 RyuJIT AVX2
-  Job-QDSTAA : .NET 5.0.17 (5.0.1722.21314), X64 RyuJIT AVX2
-  Job-GUHOQA : .NET Core 3.1.29 (CoreCLR 4.700.22.41602, CoreFX 4.700.22.41702), X64 RyuJIT AVX2
-  Job-PGTAHY : .NET Framework 4.8 (4.8.4515.0), X64 RyuJIT VectorSize=256
+.NET SDK=7.0.101
+  [Host]     : .NET 6.0.12 (6.0.1222.56807), X64 RyuJIT AVX2
+  Job-RHCXTU : .NET 6.0.12 (6.0.1222.56807), X64 RyuJIT AVX2
+  Job-NFYLDW : .NET Core 3.1.32 (CoreCLR 4.700.22.55902, CoreFX 4.700.22.56512), X64 RyuJIT AVX2
+  Job-OYLTXH : .NET Framework 4.8 (4.8.4515.0), X64 RyuJIT VectorSize=256
 ```
 
-|   Method |            Runtime |     Mean |   Error |  StdDev | Ratio | RatioSD |   Gen0 | Allocated | Alloc Ratio |
-|--------- |------------------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
-| Validate |           .NET 6.0 | 323.6 ns | 5.08 ns | 4.50 ns |  1.00 |    0.00 | 0.0277 |     176 B |        1.00 |
-| Validate |           .NET 5.0 | 366.4 ns | 7.10 ns | 8.72 ns |  1.12 |    0.03 | 0.0277 |     176 B |        1.00 |
-| Validate |      .NET Core 3.1 | 376.1 ns | 5.40 ns | 4.78 ns |  1.16 |    0.02 | 0.0277 |     176 B |        1.00 |
-| Validate | .NET Framework 4.8 | 405.1 ns | 4.87 ns | 4.56 ns |  1.25 |    0.02 | 0.0277 |     177 B |        1.01 |
+|   Method |            Runtime |     Mean |   Error |  StdDev | Ratio |   Gen0 | Allocated | Alloc Ratio |
+|--------- |------------------- |---------:|--------:|--------:|------:|-------:|----------:|------------:|
+| Validate |           .NET 6.0 | 318.1 ns | 2.28 ns | 1.91 ns |  1.00 | 0.0277 |     176 B |        1.00 |
+| Validate |      .NET Core 3.1 | 367.3 ns | 3.38 ns | 2.82 ns |  1.15 | 0.0277 |     176 B |        1.00 |
+| Validate | .NET Framework 4.8 | 387.1 ns | 3.20 ns | 2.99 ns |  1.22 | 0.0277 |     177 B |        1.01 |
+
 ### Comparison with other validators
 
 > Worth mentioning is that IbanNet validates more strictly than the other alternative (competing) libraries, yet comes out quite a lot faster and has a much lower memory footprint.
