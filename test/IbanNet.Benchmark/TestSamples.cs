@@ -6,7 +6,7 @@ internal static class TestSamples
 {
     public static IList<string> GetIbanSamples(int count)
     {
-        var generator = new IbanGenerator();
+        var generator = new IbanGenerator(IbanRegistry.Default, 123);
         var countryCodes = IbanRegistry.Default
             .Select(d => d.TwoLetterISORegionName)
             .ToList();
