@@ -22,6 +22,8 @@ public sealed class Iban
     /// <summary>
     /// The maximum length of any IBAN, from any country.
     /// </summary>
+    /// <remarks>Note: This is the maximum length as per the spec. No IBAN should be longer than the value provided by this constant. Thus, it can be used for example to allocate a buffer, truncate input that must still be validated, or as a global pre-validation constraint (eg. when accepting IBAN's from multiple countries).
+    /// <para>To get the actual maximum length for a specific country, use the <see cref="IIbanRegistry" /> to get the country specific configuration.</para></remarks>
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public const int MaxLength = 34;
 
