@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using IbanNet.Extensions;
 using IbanNet.Internal;
@@ -13,7 +14,7 @@ namespace IbanNet;
 /// </summary>
 [TypeConverter(typeof(IbanTypeConverter))]
 #if NET6_0_OR_GREATER
-    [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
+[System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
 public sealed class Iban
     : IEquatable<Iban>,
@@ -44,10 +45,10 @@ public sealed class Iban
     /// Note: avoid using this member, it's only use case is allowing type conversion and may be obsolete in future.
     /// </para>
     /// </summary>
+    [AllowNull]
     public static IIbanValidator Validator
     {
         get => _validatorInstance.Value;
-        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
         set => _validatorInstance = value is null
             ? new Lazy<IIbanValidator>(DefaultFactory, true)
             : new Lazy<IIbanValidator>(() => value, true);
@@ -99,7 +100,7 @@ public sealed class Iban
             IbanFormat.Electronic => _iban,
             IbanFormat.Obfuscated =>
 #if NET6_0_OR_GREATER
-                    string.Concat(new string('X', _iban.Length - visibleChars), _iban.AsSpan(_iban.Length - visibleChars, visibleChars)),
+                string.Concat(new string('X', _iban.Length - visibleChars), _iban.AsSpan(_iban.Length - visibleChars, visibleChars)),
 #else
                 new string('X', _iban.Length - visibleChars) + _iban.Substring(_iban.Length - visibleChars, visibleChars),
 #endif
@@ -198,7 +199,7 @@ public sealed class Iban
     public override int GetHashCode()
     {
 #if NETSTANDARD2_1 || NET6_0_OR_GREATER
-            return _iban.GetHashCode(StringComparison.Ordinal);
+        return _iban.GetHashCode(StringComparison.Ordinal);
 #else
         return _iban.GetHashCode();
 #endif
@@ -241,7 +242,7 @@ public sealed class Iban
         return structure.Length == 0
             ? null
 #if USE_SPANS
-                : new string(_iban.AsSpan(structure.Position, structure.Length));
+            : new string(_iban.AsSpan(structure.Position, structure.Length));
 #else
             : _iban.Substring(structure.Position, structure.Length);
 #endif
