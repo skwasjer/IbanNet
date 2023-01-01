@@ -59,6 +59,11 @@ public class IbanRegistry : IIbanRegistry
     {
         get
         {
+            if (_dictionary is not null)
+            {
+                return _dictionary;
+            }
+
             lock (_syncObject)
             {
                 return _dictionary ??= new ReadOnlyDictionary<string, IbanCountry>(Providers
