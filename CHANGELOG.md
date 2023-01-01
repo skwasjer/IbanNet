@@ -1,5 +1,11 @@
 # Changelog
 
+## v5.7.2
+
+- Lazy initialization of `IbanRegistry` is now thread safe.
+- Add ctor overload to `IbanGenerator` which enables specifying a seed for consistent, reproduceable generation.
+- Enable deterministic build/assemblies
+
 ## v5.7.1
 
 - [#97](https://github.com/skwasjer/IbanNet/pull/97) Add Dutch localized exception/result messages.
