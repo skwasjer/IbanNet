@@ -6,7 +6,7 @@ namespace IbanNet.CodeGen.Swift.Converters;
 
 internal class CommaSeparatedEnumerableConverter : StringConverter
 {
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+    public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         if (base.ConvertFromString(text, row, memberMapData) is string value)
         {
@@ -19,7 +19,7 @@ internal class CommaSeparatedEnumerableConverter : StringConverter
         return new List<string>();
     }
 
-    public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
+    public override string ConvertToString(object? value, IWriterRow row, MemberMapData memberMapData)
     {
         throw new NotSupportedException();
     }

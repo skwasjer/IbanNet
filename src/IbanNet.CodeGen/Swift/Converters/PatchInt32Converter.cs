@@ -7,9 +7,13 @@ namespace IbanNet.CodeGen.Swift.Converters;
 
 internal class PatchInt32Converter : Int32Converter
 {
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         // Some CSV values are broken, fix them.
-        return base.ConvertFromString(Regex.Replace(text, @"[^\d]", ""), row, memberMapData);
+        return base.ConvertFromString(
+            text is null ? null : Regex.Replace(text, @"[^\d]", ""),
+            row,
+            memberMapData
+        );
     }
 }

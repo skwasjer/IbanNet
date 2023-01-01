@@ -7,11 +7,11 @@ namespace IbanNet.CodeGen.Swift.Converters;
 
 internal class SanitizeExampleConverter : StringConverter
 {
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         string? value = base.ConvertFromString(text, row, memberMapData) as string;
         return string.IsNullOrEmpty(value)
-            ? value!
+            ? value
             : Regex.Replace(value, @"[^\w]", "");
     }
 }
