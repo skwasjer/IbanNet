@@ -10,12 +10,22 @@ internal static class InputNormalization
     /// </summary>
     /// <param name="value">The input value to normalize.</param>
     /// <returns>The normalized IBAN.</returns>
+#if USE_SPANS
+    internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
+    {
+        return value is null ? null : Normalize(value.AsSpan()).ToString();
+    }
+
+    internal static ReadOnlySpan<char> Normalize(ReadOnlySpan<char> value)
+    {
+#else
     internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
     {
         if (value is null)
         {
             return null;
         }
+#endif
 
         int length = value.Length;
 #if USE_SPANS
@@ -29,18 +39,22 @@ internal static class InputNormalization
 #endif
         int pos = 0;
         // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
+        bool hasModified = false;
         for (int i = 0; i < length; i++)
         {
             char ch = value[i];
             if (ch.IsSingleLineWhitespace())
             {
+                hasModified = true;
                 continue;
             }
 
             if (ch.IsAsciiLetter())
             {
                 // Inline upper case.
-                buffer[pos++] = (char)(ch & ~' ');
+                char newCh = (char)(ch & ~' ');
+                hasModified |= ch != newCh;
+                buffer[pos++] = newCh;
             }
             else
             {
@@ -49,9 +63,13 @@ internal static class InputNormalization
         }
 
 #if USE_SPANS
-        return new string(buffer[..pos]);
+        return hasModified
+            ? (ReadOnlySpan<char>)buffer[..pos].ToArray()
+            : value; // Unmodified
 #else
-        return new string(buffer, 0, pos);
+        return hasModified
+            ? new string(buffer, 0, pos)
+            : value; // Unmodified
 #endif
     }
 }

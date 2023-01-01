@@ -1,5 +1,9 @@
 # Changelog
 
+##
+
+- Perf: when parsing, do not allocate and return a new copy of the input if no normalization was performed.
+
 ## v5.7.2
 
 - Lazy initialization of `IbanRegistry` is now thread safe.

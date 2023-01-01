@@ -6,6 +6,7 @@ public class InputNormalizationTests
     [InlineData("no-whitespace", "NO-WHITESPACE")]
     [InlineData(" \ti n-\nst \t r ing\r ", "IN-\nSTRING\r")]
     [InlineData("(&*!S #%t", "(&*!S#%T")]
+    [InlineData("UNCHANGED", "UNCHANGED")]
     [InlineData("", "")]
     [InlineData(null, null)]
     public void Given_string_when_normalizing_it_should_return_expected_value(string input, string expected)
