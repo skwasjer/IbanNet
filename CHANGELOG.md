@@ -2,6 +2,7 @@
 
 ##
 
+- Updated Wikipedia registry provider which corrects the IBAN and BBAN pattern for Azerbaijan (AZ). The Swift registry (which is the default) was already correct, so there is no regression if you do not use the Wikipedia provider.
 - Perf: when parsing, do not allocate and return a new copy of the input if no normalization was performed.
 
 ## v5.7.2
