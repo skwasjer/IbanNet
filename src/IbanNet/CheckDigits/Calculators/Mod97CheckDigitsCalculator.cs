@@ -1,4 +1,6 @@
-﻿using IbanNet.Extensions;
+﻿#if !NET7_0_OR_GREATER
+using IbanNet.Extensions;
+#endif
 
 namespace IbanNet.CheckDigits.Calculators;
 
@@ -16,28 +18,37 @@ public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
         }
 
         uint current = 0;
+        int length = value.Length;
 
         // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
-        for (int i = 0; i < value.Length; i++)
+        for (int i = 0; i < length; i++)
         {
-            char c = value[i];
-            if (c.IsAsciiDigit())
+            char ch = value[i];
+#if NET7_0_OR_GREATER
+            if (char.IsAsciiDigit(ch))
+#else
+            if (ch.IsAsciiDigit())
+#endif
             {
                 // - Shift by 1 digit
                 // - Subtract '0' to get value 0, 1, 2.
-                current = unchecked((current * 10 + c - '0') % 97);
+                current = unchecked((current * 10 + ch - '0') % 97);
             }
-            else if (c.IsAsciiLetter())
+#if NET7_0_OR_GREATER
+            else if (char.IsAsciiLetter(ch))
+#else
+            else if (ch.IsAsciiLetter())
+#endif
             {
                 // - For letters, always is two digits so shift 2 digits.
                 // - Use bitwise OR with ' ' (space, 0x20) to convert char to lowercase.
                 // - Then subtract 'a' to get value 0, 1, 2, etc.
                 // - Last, add 10 so: - a = 10, b = 11, c = 12, etc.
-                current = unchecked((current * 100 + (uint)(c | ' ') - 'a' + 10) % 97);
+                current = unchecked((current * 100 + (uint)(ch | ' ') - 'a' + 10) % 97);
             }
             else
             {
-                throw new InvalidTokenException(i, c);
+                throw new InvalidTokenException(i, ch);
             }
         }
 
