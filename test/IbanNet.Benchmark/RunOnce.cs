@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnostics.Windows.Configs;
 using BenchmarkDotNet.Order;
 
 namespace IbanNet.Benchmark;
@@ -6,6 +7,7 @@ namespace IbanNet.Benchmark;
 [MarkdownExporterAttribute.GitHub]
 [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
 [MemoryDiagnoser]
+[InliningDiagnoser(false, new [] { "IbanNet.Extensions", "IbanNet.Internal" })]
 public class RunOnce
 {
     private IIbanValidator _validator;
