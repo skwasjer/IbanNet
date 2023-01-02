@@ -16,7 +16,7 @@ internal static class InputNormalization
         return value is null ? null : Normalize(value.AsSpan()).ToString();
     }
 
-    internal static ReadOnlySpan<char> Normalize(ReadOnlySpan<char> value)
+    private static ReadOnlySpan<char> Normalize(ReadOnlySpan<char> value)
     {
 #else
     internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
@@ -29,43 +29,47 @@ internal static class InputNormalization
 
         int length = value.Length;
 #if USE_SPANS
-        // Use stack but clamp to avoid excessive stackalloc buffer.
-        const int stackallocMaxSize = Iban.MaxLength + 6;
-        Span<char> buffer = length <= stackallocMaxSize
-            ? stackalloc char[length]
-            : new char[length];
+        char[] poolBuffer = System.Buffers.ArrayPool<char>.Shared.Rent(length);
+        try
+        {
+            Span<char> buffer = poolBuffer;
 #else
         char[] buffer = new char[length];
 #endif
-        int pos = 0;
-        // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
-        bool hasModified = false;
-        for (int i = 0; i < length; i++)
-        {
-            char ch = value[i];
-            if (ch.IsSingleLineWhitespace())
+            int pos = 0;
+            // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
+            bool hasModified = false;
+            for (int i = 0; i < length; i++)
             {
-                hasModified = true;
-                continue;
-            }
+                char ch = value[i];
+                if (ch.IsSingleLineWhitespace())
+                {
+                    hasModified = true;
+                    continue;
+                }
 
-            if (ch.IsAsciiLetter())
-            {
-                // Inline upper case.
-                char newCh = (char)(ch & ~' ');
-                hasModified |= ch != newCh;
-                buffer[pos++] = newCh;
+                if (ch.IsAsciiLetter())
+                {
+                    // Inline upper case.
+                    char newCh = (char)(ch & ~' ');
+                    hasModified |= ch != newCh;
+                    buffer[pos++] = newCh;
+                }
+                else
+                {
+                    buffer[pos++] = ch;
+                }
             }
-            else
-            {
-                buffer[pos++] = ch;
-            }
-        }
 
 #if USE_SPANS
-        return hasModified
-            ? (ReadOnlySpan<char>)buffer[..pos].ToArray()
-            : value; // Unmodified
+            return hasModified
+                ? buffer[..pos]
+                : value; // Unmodified
+        }
+        finally
+        {
+            System.Buffers.ArrayPool<char>.Shared.Return(poolBuffer);
+        }
 #else
         return hasModified
             ? new string(buffer, 0, pos)

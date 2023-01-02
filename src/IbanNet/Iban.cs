@@ -242,7 +242,7 @@ public sealed class Iban
         return structure.Length == 0
             ? null
 #if USE_SPANS
-            : new string(_iban.AsSpan(structure.Position, structure.Length));
+            : _iban.AsSpan(structure.Position, structure.Length).ToString();
 #else
             : _iban.Substring(structure.Position, structure.Length);
 #endif
