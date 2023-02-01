@@ -31,7 +31,7 @@ internal sealed class IsValidCountryCodeRule : IIbanValidationRule
 #if USE_SPANS
     private IbanCountry? GetMatchingCountry(ReadOnlySpan<char> iban)
 #else
-        private IbanCountry? GetMatchingCountry(string iban)
+    private IbanCountry? GetMatchingCountry(string iban)
 #endif
     {
         string? countryCode = GetCountryCode(iban);
@@ -48,17 +48,17 @@ internal sealed class IsValidCountryCodeRule : IIbanValidationRule
     {
         return value.Length < 2
             ? null
-            : new string(value.Slice(0, 2));
+            : value[..2].ToString();
     }
 #else
-        private static unsafe string? GetCountryCode(string value)
+    private static unsafe string? GetCountryCode(string value)
+    {
+        fixed (char* ch = value)
         {
-            fixed (char* ch = value)
-            {
-                return value.Length < 2
-                    ? null
-                    : new string(ch, 0, 2);
-            }
+            return value.Length < 2
+                ? null
+                : new string(ch, 0, 2);
         }
+    }
 #endif
 }
