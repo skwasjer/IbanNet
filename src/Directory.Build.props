@@ -16,6 +16,7 @@
     <RepositoryUrl>https://github.com/skwasjer/IbanNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>IbanNet64.png</PackageIcon>
+    <PackageReleaseNotes>Release notes are at https://github.com/skwasjer/IbanNet/releases</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AnalysisLevel>latest-All</AnalysisLevel>
   </PropertyGroup>
