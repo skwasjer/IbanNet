@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using IbanNet.Registry;
 using IbanNet.Validation;
 using IbanNet.Validation.Results;
@@ -80,7 +81,11 @@ public sealed class IbanValidator : IIbanValidator
         var context = new ValidationRuleContext(iban ?? string.Empty);
         ErrorResult? error = null;
 
+#if NET6_0_OR_GREATER
+        foreach (ref readonly IIbanValidationRule rule in CollectionsMarshal.AsSpan(_rules))
+#else
         foreach (IIbanValidationRule rule in _rules)
+#endif
         {
             try
             {

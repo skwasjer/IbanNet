@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 
 namespace IbanNet.Registry.Patterns;
 
@@ -12,7 +13,7 @@ public abstract class Pattern
     private string? _pattern;
     private readonly ITokenizer<PatternToken>? _tokenizer;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private ReadOnlyCollection<PatternToken>? _tokens;
+    private List<PatternToken>? _tokens;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private bool? _fixedLength;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -44,9 +45,7 @@ public abstract class Pattern
             throw new ArgumentNullException(nameof(tokens));
         }
 
-        var asList = tokens as IList<PatternToken>;
-        _tokens = new ReadOnlyCollection<PatternToken>(asList ?? tokens.ToList());
-        InitLength(_tokens);
+        EnsureInitialized(tokens);
     }
 
     /// <summary>
@@ -57,15 +56,8 @@ public abstract class Pattern
     {
         get
         {
-            if (_tokens is not null)
-            {
-                return _tokens;
-            }
-
-            // Deferred load.
-            _tokens = new ReadOnlyCollection<PatternToken>(_tokenizer!.Tokenize(_pattern!).ToList());
-            InitLength(_tokens);
-            return _tokens;
+            EnsureInitialized();
+            return new ReadOnlyCollection<PatternToken>(_tokens!);
         }
     }
 
@@ -76,7 +68,7 @@ public abstract class Pattern
     {
         get
         {
-            InitLength(Tokens);
+            EnsureInitialized();
             return _fixedLength!.Value;
         }
     }
@@ -88,7 +80,7 @@ public abstract class Pattern
     {
         get
         {
-            InitLength(Tokens);
+            EnsureInitialized();
             return _maxLength!.Value;
         }
     }
@@ -97,15 +89,15 @@ public abstract class Pattern
     public override string ToString()
     {
 #if NETSTANDARD2_1 || NET6_0_OR_GREATER
-            return _pattern ??= string.Join(',', Tokens);
+        return _pattern ??= string.Join(',', Tokens);
 #else
         return _pattern ??= string.Join(",", Tokens);
 #endif
     }
 
 #if USE_SPANS
-        internal bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
-        {
+    internal bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+    {
 #else
     internal bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
     {
@@ -116,11 +108,25 @@ public abstract class Pattern
             return false;
         }
 #endif
-        _patternValidator ??= new PatternValidator(Compress(Tokens), IsFixedLength);
+        EnsureInitialized();
+        _patternValidator ??= new PatternValidator(Compress(_tokens!), IsFixedLength);
         return _patternValidator.TryValidate(value, out errorPos);
     }
 
-    private void InitLength(IEnumerable<PatternToken> tokens)
+    private void EnsureInitialized(IEnumerable<PatternToken>? tokens = null)
+    {
+        if (_tokens is not null)
+        {
+            return;
+        }
+
+        IEnumerable<PatternToken> tokensEnum = tokens ?? _tokenizer!.Tokenize(_pattern!);
+        List<PatternToken> tokensList = tokensEnum as List<PatternToken> ?? tokensEnum.ToList();
+        InitLength(tokensList);
+        _tokens = tokensList;
+    }
+
+    private void InitLength(List<PatternToken> tokens)
     {
         if (_fixedLength.HasValue)
         {
@@ -129,7 +135,11 @@ public abstract class Pattern
 
         bool fixedLength = true;
         int maxLength = 0;
+#if NET6_0_OR_GREATER
+        foreach (ref readonly PatternToken token in CollectionsMarshal.AsSpan(tokens))
+#else
         foreach (PatternToken token in tokens)
+#endif
         {
             fixedLength &= token.IsFixedLength;
             maxLength += token.MaxLength;
@@ -144,16 +154,25 @@ public abstract class Pattern
     /// </summary>
     /// <param name="tokens">A list of tokens.</param>
     /// <returns>A compressed list of tokens.</returns>
-    internal static IReadOnlyList<PatternToken> Compress(IReadOnlyList<PatternToken> tokens)
+    private static IReadOnlyList<PatternToken> Compress(List<PatternToken> tokens)
     {
         if (tokens.Count == 0)
         {
             throw new ArgumentException("Expected list of tokens.", nameof(tokens));
         }
 
-        var compressedTokens = new List<PatternToken>();
+        var compressedTokens = new List<PatternToken>(tokens.Count);
+
+#if NET6_0_OR_GREATER
+        Span<PatternToken> tokenSpan = CollectionsMarshal.AsSpan(tokens);
+        PatternToken current = tokenSpan[0];
+        Span<PatternToken> tokensExceptFirst = tokenSpan[1..];
+        foreach (ref readonly PatternToken token in tokensExceptFirst)
+#else
         PatternToken current = tokens[0];
-        foreach (PatternToken token in tokens.Skip(1))
+        IEnumerable<PatternToken> tokensExceptFirst = tokens.Skip(1);
+        foreach (PatternToken token in tokensExceptFirst)
+#endif
         {
             if (current.Category == token.Category)
             {
