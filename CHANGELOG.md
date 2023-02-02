@@ -2,14 +2,15 @@
 
 ## v5.8.0
 
-- Added .NET 7 target framework support
+- Update `FluentValidation` to v11.3.0
+- Updated Wikipedia registry provider which corrects the IBAN and BBAN pattern for Azerbaijan (AZ). The Swift registry (which is the default) was already correct, so there is no regression if you do not use the Wikipedia provider.
+- [#116](https://github.com/skwasjer/IbanNet/pull/116) Added .NET 7 target framework support
 - Performance improvements (10-20%):
   - Use `CollectionsMarshal.AsSpan` in some areas to improve enumeration perf
   - Use faster API's to change a `Span<char>` back to a `string`
   - Use new .NET 7 `char` API's and aggressive inline own `char` extensions
   - Rework `Pattern` lazy init to improve init time
   - When parsing, do not allocate and return a new copy of the input if no normalization was performed.
-- Updated Wikipedia registry provider which corrects the IBAN and BBAN pattern for Azerbaijan (AZ). The Swift registry (which is the default) was already correct, so there is no regression if you do not use the Wikipedia provider.
 
 ## v5.7.2
 
