@@ -1,6 +1,10 @@
-## IbanNet supports 121 countries
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
-### SWIFT registry
+*In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
+
+# IbanNet supports 121 countries
+
+## SWIFT registry
 
 See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-international-bank-account-number) for more information.
 
@@ -114,7 +118,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 - Guernsey (GG)
 
 
-### Wikipedia
+## Wikipedia
 
 Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):
 
@@ -146,4 +150,5 @@ Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/Inte
 | TG | Togo | - | 28 |  |
 
 > The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the `WikipediaRegistryProvider`.
+
 
