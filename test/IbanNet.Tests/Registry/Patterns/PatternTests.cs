@@ -32,9 +32,8 @@ public class PatternTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(tokens));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(tokens));
         }
 
         [Fact]
@@ -101,9 +100,8 @@ public class PatternTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(pattern));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(pattern));
         }
 
         [Fact]
@@ -116,9 +114,8 @@ public class PatternTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(tokenizer));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(tokenizer));
         }
 
         [Fact]

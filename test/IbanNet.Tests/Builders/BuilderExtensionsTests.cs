@@ -28,9 +28,8 @@ public class BuilderExtensionsTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(country));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(country));
         }
     }
 
@@ -58,9 +57,8 @@ public class BuilderExtensionsTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(country));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(country));
         }
     }
 
@@ -76,8 +74,7 @@ public class BuilderExtensionsTests
             // Assert
             act.Should()
                 .Throw<ArgumentException>()
-                .Which.ParamName.Should()
-                .Be(expectedParamName);
+                .WithParameterName(expectedParamName);
         }
 
         [Theory]

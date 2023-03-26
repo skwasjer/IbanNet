@@ -23,9 +23,8 @@ public class WikipediaPatternTokenizerTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(input));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(input));
     }
 #endif
 
@@ -70,7 +69,7 @@ public class WikipediaPatternTokenizerTests
 
         // Assert
         act.Should()
-            .ThrowExactly<PatternException>()
+            .Throw<PatternException>()
             .WithMessage(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos) + "*");
     }
 }

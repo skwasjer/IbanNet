@@ -48,9 +48,8 @@ public class AcceptCountryRuleTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(acceptedCountryCodes));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(acceptedCountryCodes));
     }
 
     [Fact]
@@ -63,10 +62,10 @@ public class AcceptCountryRuleTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentException>()
+            .Throw<ArgumentException>()
             .WithMessage(Resources.ArgumentException_At_least_one_country_code_must_be_provided + "*")
-            .Which.ParamName.Should()
-            .Be(nameof(acceptedCountryCodes));
+            .WithParameterName(nameof(acceptedCountryCodes))
+            .Which.Should().BeOfType<ArgumentException>();
     }
 
     [Fact]
@@ -80,8 +79,7 @@ public class AcceptCountryRuleTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(context));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(context));
     }
 }

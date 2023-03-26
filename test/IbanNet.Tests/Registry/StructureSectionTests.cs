@@ -38,8 +38,7 @@ public class StructureSectionTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(pattern));
+            .WithParameterName(nameof(pattern));
     }
 
     [Fact]
@@ -78,9 +77,8 @@ public class StructureSectionTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(pattern));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(pattern));
     }
 
     [Fact]
@@ -94,8 +92,7 @@ public class StructureSectionTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentOutOfRangeException>()
-            .Which.ParamName.Should()
-            .Be(nameof(position));
+            .Throw<ArgumentOutOfRangeException>()
+            .WithParameterName(nameof(position));
     }
 }

@@ -15,9 +15,8 @@ public class RuleBuilderExtensionsTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(ruleBuilder));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(ruleBuilder));
     }
 
     [Fact]
@@ -31,9 +30,8 @@ public class RuleBuilderExtensionsTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(ibanValidator));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(ibanValidator));
     }
 
     [Fact]

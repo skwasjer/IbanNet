@@ -62,8 +62,7 @@ public class IbanNetOptionsBuilderTests
             act.Should()
                 .Throw<ArgumentException>()
                 .WithMessage(Resources.The_registry_has_no_providers + "*")
-                .And.ParamName.Should()
-                .Be(nameof(registry));
+                .WithParameterName(nameof(registry));
         }
 
         [Fact]

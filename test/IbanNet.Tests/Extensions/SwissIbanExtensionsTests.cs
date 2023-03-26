@@ -14,9 +14,8 @@ public class SwissIbanExtensionsTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(iban));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(iban));
     }
 
     [Theory]

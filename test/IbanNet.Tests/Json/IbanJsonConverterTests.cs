@@ -104,9 +104,8 @@ public class IbanJsonConverterTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(expectedParamName);
+            .Throw<ArgumentNullException>()
+            .WithParameterName(expectedParamName);
     }
 
     public static IEnumerable<object?[]> WriterNullArgTestCases()

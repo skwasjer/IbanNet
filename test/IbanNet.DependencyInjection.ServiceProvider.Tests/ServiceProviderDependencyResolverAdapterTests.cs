@@ -110,7 +110,6 @@ public class ServiceProviderDependencyResolverAdapterTests
 
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(serviceProvider));
+            .WithParameterName(nameof(serviceProvider));
     }
 }

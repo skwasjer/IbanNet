@@ -13,8 +13,7 @@ public class ChunkExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(source));
+            .WithParameterName(nameof(source));
     }
 
     [Theory]
@@ -31,8 +30,7 @@ public class ChunkExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentOutOfRangeException>()
-            .Which.ParamName.Should()
-            .Be(nameof(size));
+            .WithParameterName(nameof(size));
     }
 
     [Theory]
@@ -73,8 +71,7 @@ public class ChunkExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(sequence));
+            .WithParameterName(nameof(sequence));
     }
 
     [Theory]
@@ -91,8 +88,7 @@ public class ChunkExtensionsTests
         act.Should()
             .Throw<ArgumentException>()
             .WithMessage(Resources.PartitionOn_At_least_one_character_to_partition_on_is_required + "*")
-            .Which.ParamName.Should()
-            .Be(nameof(chars));
+            .WithParameterName(nameof(chars));
     }
 
     [Theory]
@@ -129,8 +125,7 @@ public class ChunkExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(when));
+            .WithParameterName(nameof(when));
     }
 
 #if !USE_SPANS
@@ -145,8 +140,7 @@ public class ChunkExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(sequence));
+            .WithParameterName(nameof(sequence));
     }
 #endif
 }

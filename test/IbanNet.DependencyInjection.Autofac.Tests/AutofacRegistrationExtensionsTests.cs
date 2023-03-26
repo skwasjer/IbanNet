@@ -15,8 +15,7 @@ public class AutofacRegistrationExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(containerBuilder));
+            .WithParameterName(nameof(containerBuilder));
     }
 
     public static IEnumerable<object?[]> RegisterIbanNet_InvalidArgumentTestCases()
@@ -39,7 +38,6 @@ public class AutofacRegistrationExtensionsTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(expectedParamName);
+            .WithParameterName(expectedParamName);
     }
 }

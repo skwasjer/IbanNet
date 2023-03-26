@@ -15,9 +15,8 @@ public class CountryNotAcceptedResultTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(country));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(country));
     }
 
     [Fact]

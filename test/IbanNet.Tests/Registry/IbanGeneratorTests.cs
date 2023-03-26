@@ -28,9 +28,8 @@ public class IbanGeneratorTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(registry));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(registry));
         }
 
         [Fact]
@@ -43,9 +42,8 @@ public class IbanGeneratorTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(countryCode));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(countryCode));
         }
 
         [Fact]
@@ -58,10 +56,10 @@ public class IbanGeneratorTests
 
             // Assert
             act.Should()
-                .ThrowExactly<ArgumentException>()
+                .Throw<ArgumentException>()
                 .WithMessage("*is not registered*")
-                .Which.ParamName.Should()
-                .Be(nameof(countryCode));
+                .WithParameterName(nameof(countryCode))
+                .Which.Should().BeOfType<ArgumentException>();
         }
 
         [Fact]
@@ -76,7 +74,7 @@ public class IbanGeneratorTests
 
             // Assert
             act.Should()
-                .ThrowExactly<InvalidOperationException>()
+                .Throw<InvalidOperationException>()
                 .WithMessage("*does not have a BBAN pattern*");
         }
 

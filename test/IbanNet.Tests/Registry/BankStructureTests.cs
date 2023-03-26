@@ -15,7 +15,6 @@ public class BankStructureTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(pattern));
+            .WithParameterName(nameof(pattern));
     }
 }

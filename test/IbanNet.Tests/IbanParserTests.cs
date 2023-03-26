@@ -68,9 +68,8 @@ public class IbanParserTests
 
             // Assert
             parser.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(ibanValidator));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(ibanValidator));
         }
 
         [Fact]
@@ -83,9 +82,8 @@ public class IbanParserTests
 
             // Assert
             parser.Should()
-                .ThrowExactly<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(registry));
+                .Throw<ArgumentNullException>()
+                .WithParameterName(nameof(registry));
         }
     }
 
@@ -102,8 +100,7 @@ public class IbanParserTests
             // Assert
             act.Should()
                 .Throw<ArgumentNullException>("the provided value was null")
-                .Which.ParamName.Should()
-                .Be(nameof(value));
+                .WithParameterName(nameof(value));
         }
 
         [Fact]

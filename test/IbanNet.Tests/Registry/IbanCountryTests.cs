@@ -16,8 +16,7 @@ public class IbanCountryTests
         // Assert
         act.Should()
             .Throw<ArgumentException>()
-            .Which.ParamName.Should()
-            .Be(nameof(twoLetterISORegionName));
+            .WithParameterName(nameof(twoLetterISORegionName));
     }
 
     [Fact]

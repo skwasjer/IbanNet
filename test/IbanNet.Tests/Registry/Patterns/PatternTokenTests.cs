@@ -14,10 +14,9 @@ public class PatternTokenTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentOutOfRangeException>()
+            .Throw<ArgumentOutOfRangeException>()
             .WithMessage(string.Format(Resources.The_value_cannot_be_less_than_or_equal_to_0, 0) + "*")
-            .Which.ParamName.Should()
-            .Be(nameof(length));
+            .WithParameterName(nameof(length));
     }
 
     [Theory]
@@ -30,10 +29,9 @@ public class PatternTokenTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentOutOfRangeException>()
+            .Throw<ArgumentOutOfRangeException>()
             .WithMessage(string.Format(Resources.The_value_cannot_be_less_than_or_equal_to_0, 0) + "*")
-            .Which.ParamName.Should()
-            .Be(nameof(maxLength));
+            .WithParameterName(nameof(maxLength));
     }
 
     [Theory]
@@ -46,10 +44,9 @@ public class PatternTokenTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentOutOfRangeException>()
+            .Throw<ArgumentOutOfRangeException>()
             .WithMessage(string.Format(Resources.The_value_cannot_be_less_than_or_equal_to_0, minLength) + "*")
-            .Which.ParamName.Should()
-            .Be(nameof(maxLength));
+            .WithParameterName(nameof(maxLength));
     }
 
     [Fact]
@@ -63,13 +60,12 @@ public class PatternTokenTests
         // Assert
         act.Should()
 #if NETSTD_LEGACY
-                .ThrowExactly<ArgumentException>()
-                .WithMessage(string.Format(Resources.Enum_value_0_should_be_defined_in_the_1_enum, category, nameof(AsciiCategory)) + "*")
+            .Throw<ArgumentException>()
+            .WithMessage(string.Format(Resources.Enum_value_0_should_be_defined_in_the_1_enum, category, nameof(AsciiCategory)) + "*")
 #else
-            .ThrowExactly<InvalidEnumArgumentException>()
+            .Throw<InvalidEnumArgumentException>()
 #endif
-            .Which.ParamName.Should()
-            .Be(nameof(category));
+            .WithParameterName(nameof(category));
     }
 
     [Theory]

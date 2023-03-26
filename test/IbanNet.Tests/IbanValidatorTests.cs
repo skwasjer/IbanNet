@@ -18,7 +18,7 @@ public class IbanValidatorTests
             // Assert
             act.Should()
                 .Throw<ArgumentException>()
-                .Where(ex => ex.ParamName == expectedParamName)
+                .WithParameterName(expectedParamName)
                 .Which.Should()
                 .BeOfType(expectedExceptionType);
         }

@@ -14,9 +14,8 @@ public class WikipediaPatternTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(pattern));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(pattern));
     }
 
     [Theory]

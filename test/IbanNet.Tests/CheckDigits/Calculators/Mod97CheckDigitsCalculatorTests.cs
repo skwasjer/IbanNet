@@ -32,7 +32,7 @@ public class Mod97CheckDigitsCalculatorTests
         act.Should()
             .Throw<InvalidTokenException>()
             .Which.Message.Should()
-            .Be($"Expected alphanumeric character at position 2, but found '@'.");
+            .Be("Expected alphanumeric character at position 2, but found '@'.");
     }
 
     [Fact]
@@ -46,7 +46,6 @@ public class Mod97CheckDigitsCalculatorTests
         // Assert
         act.Should()
             .Throw<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(value));
+            .WithParameterName(nameof(value));
     }
 }

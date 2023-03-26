@@ -18,9 +18,8 @@ public class BankAccountBuilderTests
 
         // Assert
         act.Should()
-            .ThrowExactly<ArgumentNullException>()
-            .Which.ParamName.Should()
-            .Be(nameof(country));
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(country));
     }
 
     [Theory]
@@ -37,7 +36,7 @@ public class BankAccountBuilderTests
 
         // Assert
         act.Should()
-            .ThrowExactly<BankAccountBuilderException>()
+            .Throw<BankAccountBuilderException>()
             .WithMessage($"The {exSource} cannot be built.")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("The country is required.");
@@ -58,7 +57,7 @@ public class BankAccountBuilderTests
 
         // Assert
         act.Should()
-            .ThrowExactly<BankAccountBuilderException>()
+            .Throw<BankAccountBuilderException>()
             .WithMessage($"The {exSource} cannot be built.")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("The country 'XX' does not define a BBAN pattern.");
@@ -86,7 +85,7 @@ public class BankAccountBuilderTests
         if (shouldThrow)
         {
             act.Should()
-                .ThrowExactly<BankAccountBuilderException>()
+                .Throw<BankAccountBuilderException>()
                 .WithMessage($"The {exSource} cannot be built.")
                 .WithInnerException<InvalidOperationException>()
                 .WithMessage("The country 'XX' does not define a IBAN pattern.");
@@ -153,7 +152,7 @@ public class BankAccountBuilderTests
 
         // Assert
         act.Should()
-            .ThrowExactly<BankAccountBuilderException>()
+            .Throw<BankAccountBuilderException>()
             .WithMessage($"The {exSource} cannot be built.")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("The value '1' does not have the correct length of *.");
@@ -200,7 +199,7 @@ public class BankAccountBuilderTests
 
         // Assert
         act.Should()
-            .ThrowExactly<BankAccountBuilderException>()
+            .Throw<BankAccountBuilderException>()
             .WithMessage($"The {exSource} cannot be built.")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("The value '*' does not have the correct length of *.");
@@ -222,7 +221,7 @@ public class BankAccountBuilderTests
 
         // Assert
         act.Should()
-            .ThrowExactly<BankAccountBuilderException>()
+            .Throw<BankAccountBuilderException>()
             .WithMessage($"The {exSource} cannot be built.")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("A value for 'Branch' is not supported for country code NL.");

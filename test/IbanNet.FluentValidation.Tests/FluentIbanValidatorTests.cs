@@ -127,8 +127,7 @@ public class FluentIbanValidatorTests
             // Assert
             act.Should()
                 .Throw<ArgumentNullException>()
-                .Which.ParamName.Should()
-                .Be(nameof(ibanValidator));
+                .WithParameterName(nameof(ibanValidator));
         }
     }
 
