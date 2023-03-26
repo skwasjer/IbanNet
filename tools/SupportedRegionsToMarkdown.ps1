@@ -25,8 +25,8 @@ Catch
 
 function Render-Table($countries)
 {
-    $markdown = "| ISO country code | Country | Length | IBAN example | SEPA | Bank ID | Branch ID |`r`n"
-    $markdown += "|---|---|---|---|---|---|---|`r`n"
+    $markdown = "| ISO country code | Country | Length | IBAN example | SEPA | Bank ID | Branch ID |`n"
+    $markdown += "|---|---|---|---|---|---|---|`n"
 
     ForEach($country in $countries)
     {
@@ -42,10 +42,10 @@ function Render-Table($countries)
         $markdown += "| $(If (-Not $country.Sepa) { "-" } elseIf ($country.Sepa.IsMember) { "Yes" } else { "No" }) "
         $markdown += "| $(If ($country.Bank.Position -eq 0) { "-" } elseIf ($country.Bank.Length -gt 0) { "![Supported][supported]" } else { "No" }) "
         $markdown += "| $(If ($country.Branch.Position -eq 0) { "-" } elseIf ($country.Branch.Length -gt 0) { "![Supported][supported]" } else { "No" }) "
-        $markdown += "|`r`n"
+        $markdown += "|`n"
     }
 
-    $markdown += "`r`n"
+    $markdown += "`n"
 
     return $markdown;
 }
@@ -65,15 +65,15 @@ $supportedCount = $registry.Count
 
 # Support Ukraine
 
-$markdown = "[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)`r`n`r`n"
-$markdown += "*In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*`r`n`r`n"
+$markdown = "[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)`n`n"
+$markdown += "*In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*`n`n"
 
-$markdown += "# IbanNet supports [SUPPORTED_COUNT] countries`r`n`r`n"
+$markdown += "# IbanNet supports [SUPPORTED_COUNT] countries`n`n"
 
 # Render Swift
 
-$markdown += "## SWIFT registry`r`n`r`n"
-$markdown += "See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-international-bank-account-number) for more information.`r`n`r`n"
+$markdown += "## SWIFT registry`n`n"
+$markdown += "See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-international-bank-account-number) for more information.`n`n"
 
 $markdown += Render-Table($swiftProvider);
 
@@ -87,7 +87,7 @@ ForEach($country in $registry)
     {
         $supportedCount += $country.IncludedCountries.Count
 
-        $markdown += "### $($country.EnglishName) includes:`r`n`r`n"
+        $markdown += "### $($country.EnglishName) includes:`n`n"
         
         ForEach($ic in $country.IncludedCountries)
         {
@@ -118,24 +118,24 @@ ForEach($country in $registry)
                 }
             }
 
-            $markdown += "- $($ccName) ($($ic))`r`n"
+            $markdown += "- $($ccName) ($($ic))`n"
         }
 
-        $markdown += "`r`n"
+        $markdown += "`n"
     }
 }
 
-$markdown += "`r`n## Wikipedia`r`n`r`nExtra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):`r`n`r`n"
+$markdown += "`n## Wikipedia`n`nExtra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):`n`n"
 
 $comparer = New-Object IbanNet.Registry.IbanCountryCodeComparer;
 $filteredWikiCountries = [System.Linq.Enumerable]::Except($wikiProvider, $swiftProvider, $comparer) | Sort-Object -Property TwoLetterISORegionName
 $markdown += Render-Table($filteredWikiCountries);
 
-$markdown += "> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the ``WikipediaRegistryProvider``.`r`n`r`n"
+$markdown += "> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the ``WikipediaRegistryProvider``.`n`n"
 
 $markdown = $markdown.Replace("[SUPPORTED_COUNT]", $supportedCount)
 
-$markdown += "[supported]: ./docs/res/check.svg ""Supported""`r`n"
-$markdown += "[not-supported]: ./doc/res/close.svg ""Not supported""`r`n"
+$markdown += "[supported]: ./docs/res/check.svg ""Supported""`n"
+$markdown += "[not-supported]: ./doc/res/close.svg ""Not supported""`n"
 
 [System.IO.File]::WriteAllLines((Join-Path $repoPath "SupportedCountries.md"), $markdown)
