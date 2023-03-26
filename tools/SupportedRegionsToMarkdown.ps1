@@ -25,17 +25,24 @@ Catch
 
 function Render-Table($countries)
 {
-    $markdown = "| ISO country code | Country | SEPA | Length | IBAN example |`r`n"
-    $markdown += "|---|---|---|---|---|`r`n"
+    $markdown = "| ISO country code | Country | Length | IBAN example | SEPA | Bank ID | Branch ID |`r`n"
+    $markdown += "|---|---|---|---|---|---|---|`r`n"
 
     ForEach($country in $countries)
     {
-        $iban = ""
+        $exampleIban = "-"
         If (-Not [string]::IsNullOrEmpty($country.Iban.Example))
         {
-            $iban = "``$($parser.Parse($country.Iban.Example).ToString([IbanNet.IbanFormat]::Print))``"
+            $exampleIban = "``$($parser.Parse($country.Iban.Example).ToString([IbanNet.IbanFormat]::Print))``"
         }
-        $markdown += "| $($country.TwoLetterISORegionName) | $($country.EnglishName) | $(If (-Not $country.Sepa) { "-" } elseIf ($country.Sepa.IsMember) { "Yes" } else { "No" }) | $($country.Iban.Length) | $($iban) |`r`n"
+
+        $markdown += "| $($country.TwoLetterISORegionName) | $($country.EnglishName) "
+        $markdown += "| $($country.Iban.Length) "
+        $markdown += "| $($exampleIban) "
+        $markdown += "| $(If (-Not $country.Sepa) { "-" } elseIf ($country.Sepa.IsMember) { "Yes" } else { "No" }) "
+        $markdown += "| $(If ($country.Bank.Position -eq 0) { "-" } elseIf ($country.Bank.Length -gt 0) { "![Supported][supported]" } else { "No" }) "
+        $markdown += "| $(If ($country.Branch.Position -eq 0) { "-" } elseIf ($country.Branch.Length -gt 0) { "![Supported][supported]" } else { "No" }) "
+        $markdown += "|`r`n"
     }
 
     $markdown += "`r`n"
@@ -127,5 +134,8 @@ $markdown += Render-Table($filteredWikiCountries);
 $markdown += "> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the ``WikipediaRegistryProvider``.`r`n`r`n"
 
 $markdown = $markdown.Replace("[SUPPORTED_COUNT]", $supportedCount)
+
+$markdown += "[supported]: ./docs/res/check.svg ""Supported""`r`n"
+$markdown += "[not-supported]: ./doc/res/close.svg ""Not supported""`r`n"
 
 [System.IO.File]::WriteAllLines((Join-Path $repoPath "SupportedCountries.md"), $markdown)
