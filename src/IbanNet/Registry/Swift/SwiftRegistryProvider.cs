@@ -9,9 +9,9 @@ namespace IbanNet.Registry.Swift;
 /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 /// </summary>
 /// <remarks>
-/// Generated from: swift_iban_registry_202205.r92.txt
+/// Generated from: swift_iban_registry_202302.r93.txt
 /// </remarks>
-[GeneratedCode("SwiftRegistryProviderT4", "1.1-r92")]
+[GeneratedCode("SwiftRegistryProviderT4", "1.1-r93")]
 public class SwiftRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -2537,6 +2537,43 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             DomesticAccountNumberExample = "",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+        };
+
+        // Somalia
+        yield return new IbanCountry("SO")
+        {
+            NativeName = "الصومال",
+            EnglishName = "Somalia",
+            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            {
+                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new(AsciiCategory.Digit, 2, 2),
+                new(AsciiCategory.Digit, 4, 4),
+                new(AsciiCategory.Digit, 3, 3),
+                new(AsciiCategory.Digit, 12, 12),
+            }))
+            {
+                Example = "SO211000001001000100141",
+                EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            },
+            Bban = new BbanStructure(new SwiftPattern("4!n3!n12!n"), 4)
+            {
+                Example = "1000001001000100141"
+            },
+            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            {
+                Example = "1000"
+            },
+            Branch = new BranchStructure(new SwiftPattern("3!n"), 8)
+            {
+                Example = "001"
+            },
+            Sepa = new SepaInfo
+            {
+                IsMember = false
+            },
+            DomesticAccountNumberExample = "001000100141",
+            LastUpdatedDate = new DateTimeOffset(2023, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Sao Tome and Principe

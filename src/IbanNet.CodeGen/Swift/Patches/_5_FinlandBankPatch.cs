@@ -1,5 +1,9 @@
 ﻿namespace IbanNet.CodeGen.Swift.Patches;
 
+/// <remarks>
+/// - r92: missing bank info
+/// - r93: some fixes, but still missing pattern
+/// </remarks>
 internal sealed class _5_FinlandBankPatch : RecordPatcher
 {
     protected override SwiftCsvRecord Apply(SwiftCsvRecord record)
@@ -7,13 +11,7 @@ internal sealed class _5_FinlandBankPatch : RecordPatcher
         switch (record)
         {
             case { CountryCode: "FI" }:
-                // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
-                record.Bank ??= new BankCsvData
-                {
-                    Pattern = "3!n",
-                    Position = new Position { StartPos = 4, EndPos = 7 },
-                    Example = "123"
-                };
+                record.Bank.Pattern = "3!n";
 
                 return record;
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.8.1
+
+- Upgraded SWIFT registry to Feb '23 release 93, which adds Somalia (SO) and fixes some misconfiguration for Finland (FI) removing the need for 'some' patching (no regression).
+
 ## v5.8.0
 
 - Update `FluentValidation` to v11.3.0

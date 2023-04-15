@@ -2,7 +2,7 @@
 
 *In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
 
-# IbanNet supports 121 countries
+# IbanNet supports 122 countries
 
 ## SWIFT registry
 
@@ -82,6 +82,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | SI | Slovenia | 19 | `SI56 2633 0001 2039 086` | Yes | ![Supported][supported] | - |
 | SK | Slovakia | 24 | `SK31 1200 0000 1987 4263 7541` | Yes | ![Supported][supported] | - |
 | SM | San Marino | 27 | `SM86 U032 2509 8000 0000 0270 100` | Yes | ![Supported][supported] | ![Supported][supported] |
+| SO | Somalia | 23 | `SO21 1000 0010 0100 0100 141` | No | ![Supported][supported] | ![Supported][supported] |
 | ST | Sao Tome and Principe | 25 | `ST23 0001 0001 0051 8453 1014 6` | No | ![Supported][supported] | ![Supported][supported] |
 | SV | El Salvador | 28 | `SV62 CENR 0000 0000 0000 0070 0025` | No | ![Supported][supported] | - |
 | TL | Timor-Leste | 23 | `TL38 0080 0123 4567 8910 157` | No | ![Supported][supported] | - |
