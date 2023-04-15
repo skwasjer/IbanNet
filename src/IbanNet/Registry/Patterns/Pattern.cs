@@ -109,7 +109,7 @@ public abstract class Pattern
         }
 #endif
         EnsureInitialized();
-        _patternValidator ??= new PatternValidator(Compress(_tokens!), IsFixedLength);
+        _patternValidator ??= new PatternValidator(_tokens!.Compress(), IsFixedLength);
         return _patternValidator.TryValidate(value, out errorPos);
     }
 
@@ -147,45 +147,5 @@ public abstract class Pattern
 
         _fixedLength = fixedLength;
         _maxLength = maxLength;
-    }
-
-    /// <summary>
-    /// Compresses a sequence of pattern tokens by combining aligned tokens of same ASCII type into a single token.
-    /// </summary>
-    /// <param name="tokens">A list of tokens.</param>
-    /// <returns>A compressed list of tokens.</returns>
-    private static IReadOnlyList<PatternToken> Compress(List<PatternToken> tokens)
-    {
-        if (tokens.Count == 0)
-        {
-            throw new ArgumentException("Expected list of tokens.", nameof(tokens));
-        }
-
-        var compressedTokens = new List<PatternToken>(tokens.Count);
-
-#if NET6_0_OR_GREATER
-        Span<PatternToken> tokenSpan = CollectionsMarshal.AsSpan(tokens);
-        PatternToken current = tokenSpan[0];
-        Span<PatternToken> tokensExceptFirst = tokenSpan[1..];
-        foreach (ref readonly PatternToken token in tokensExceptFirst)
-#else
-        PatternToken current = tokens[0];
-        IEnumerable<PatternToken> tokensExceptFirst = tokens.Skip(1);
-        foreach (PatternToken token in tokensExceptFirst)
-#endif
-        {
-            if (current.Category == token.Category)
-            {
-                current = new PatternToken(token.Category, current.MinLength + token.MinLength, current.MaxLength + token.MaxLength);
-                continue;
-            }
-
-            compressedTokens.Add(current);
-
-            current = token;
-        }
-
-        compressedTokens.Add(current);
-        return compressedTokens;
     }
 }

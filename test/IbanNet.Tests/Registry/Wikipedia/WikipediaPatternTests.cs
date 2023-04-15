@@ -77,4 +77,17 @@ public class WikipediaPatternTests
             }
         };
     }
+
+    [Theory]
+    [InlineData("AD", "8n,12c", "^AD\\d{10}[a-zA-Z0-9]{12}$")]
+    [InlineData("NL", "4a,10n", "^NL\\d{2}[A-Z]{4}\\d{10}$")]
+    [InlineData("NO", "11n", "^NO\\d{13}$")]
+    [InlineData("PT", "21n", "^PT\\d{23}$")]
+    [InlineData("SM", "1a,10n,12c", "^SM\\d{2}[A-Z]\\d{10}[a-zA-Z0-9]{12}$")]
+    public void When_getting_regexPattern_it_should_return_expected(string countryCode, string wikiIbanPattern, string regexPattern)
+    {
+        var sut = new IbanWikipediaPattern(countryCode, wikiIbanPattern);
+
+        sut.ToRegexPattern().Should().Be(regexPattern);
+    }
 }

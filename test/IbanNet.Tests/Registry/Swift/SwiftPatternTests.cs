@@ -105,4 +105,17 @@ public class SwiftPatternTests
             }
         };
     }
+
+    [Theory]
+    [InlineData("AD2!n4!n4!n12!c", "^AD\\d{10}[a-zA-Z0-9]{12}$")]
+    [InlineData("NL2!n4!a10!n", "^NL\\d{2}[A-Z]{4}\\d{10}$")]
+    [InlineData("NO2!n4!n6!n1!n", "^NO\\d{13}$")]
+    [InlineData("PT2!n4!n4!n11!n2!n", "^PT\\d{23}$")]
+    [InlineData("SM2!n1!a5!n5!n12!c", "^SM\\d{2}[A-Z]\\d{10}[a-zA-Z0-9]{12}$")]
+    public void When_getting_regexPattern_it_should_return_expected(string ibanPattern, string regexPattern)
+    {
+        var sut = new SwiftPattern(ibanPattern);
+
+        sut.ToRegexPattern().Should().Be(regexPattern);
+    }
 }
