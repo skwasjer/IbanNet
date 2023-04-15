@@ -12,10 +12,10 @@ namespace IbanNet.Registry.Wikipedia;
 /// <para>
 /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
 /// Page ID: 15253
-/// Rev ID: 1129118526
+/// Rev ID: 1145025467
 /// </para>
 /// </remarks>
-[GeneratedCode("WikiRegistryProviderT4", "1.15253-1129118526")]
+[GeneratedCode("WikiRegistryProviderT4", "1.15253-1145025467")]
 public class WikipediaRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -166,8 +166,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "República Dominicana",
             EnglishName = "Dominican Republic",
-            Iban = new IbanStructure(new IbanWikipediaPattern("4a,20n")),
-            Bban = new BbanStructure(new WikipediaPattern("4a,20n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("4c,20n")),
+            Bban = new BbanStructure(new WikipediaPattern("4c,20n"), 4)
         };
 
         yield return new IbanCountry("TL")
@@ -230,8 +230,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "საქართველო",
             EnglishName = "Georgia",
-            Iban = new IbanStructure(new IbanWikipediaPattern("2c,16n")),
-            Bban = new BbanStructure(new WikipediaPattern("2c,16n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("2a,16n")),
+            Bban = new BbanStructure(new WikipediaPattern("2a,16n"), 4)
         };
 
         yield return new IbanCountry("DE")
@@ -302,8 +302,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ireland",
             EnglishName = "Ireland",
-            Iban = new IbanStructure(new IbanWikipediaPattern("4c,14n")),
-            Bban = new BbanStructure(new WikipediaPattern("4c,14n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("4a,6n,8n")),
+            Bban = new BbanStructure(new WikipediaPattern("4a,6n,8n"), 4)
         };
 
         yield return new IbanCountry("IL")
@@ -326,8 +326,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الأردن",
             EnglishName = "Jordan",
-            Iban = new IbanStructure(new IbanWikipediaPattern("4a,22n")),
-            Bban = new BbanStructure(new WikipediaPattern("4a,22n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("4a,4n,18c")),
+            Bban = new BbanStructure(new WikipediaPattern("4a,4n,18c"), 4)
         };
 
         yield return new IbanCountry("KZ")
@@ -478,16 +478,16 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "پاکستان",
             EnglishName = "Pakistan",
-            Iban = new IbanStructure(new IbanWikipediaPattern("4c,16n")),
-            Bban = new BbanStructure(new WikipediaPattern("4c,16n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("4a,16c")),
+            Bban = new BbanStructure(new WikipediaPattern("4a,16c"), 4)
         };
 
         yield return new IbanCountry("PS")
         {
             NativeName = "السلطة الفلسطينية",
             EnglishName = "Palestinian territories",
-            Iban = new IbanStructure(new IbanWikipediaPattern("4c,21n")),
-            Bban = new BbanStructure(new WikipediaPattern("4c,21n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("4a,21c")),
+            Bban = new BbanStructure(new WikipediaPattern("4a,21c"), 4)
         };
 
         yield return new IbanCountry("PL")
@@ -630,8 +630,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Türkiye",
             EnglishName = "Turkey",
-            Iban = new IbanStructure(new IbanWikipediaPattern("5n,17c")),
-            Bban = new BbanStructure(new WikipediaPattern("5n,17c"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("5n,1n,16c")),
+            Bban = new BbanStructure(new WikipediaPattern("5n,1n,16c"), 4)
         };
 
         yield return new IbanCountry("UA")
@@ -670,8 +670,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "British Virgin Islands",
             EnglishName = "Virgin Islands, British",
-            Iban = new IbanStructure(new IbanWikipediaPattern("4c,16n")),
-            Bban = new BbanStructure(new WikipediaPattern("4c,16n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("4a,16n")),
+            Bban = new BbanStructure(new WikipediaPattern("4a,16n"), 4)
         };
 
         yield return new IbanCountry("DZ")
@@ -710,8 +710,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Burundi",
             EnglishName = "Burundi",
-            Iban = new IbanStructure(new IbanWikipediaPattern("12n")),
-            Bban = new BbanStructure(new WikipediaPattern("12n"), 4)
+            Iban = new IbanStructure(new IbanWikipediaPattern("5n,5n,11n,2n")),
+            Bban = new BbanStructure(new WikipediaPattern("5n,5n,11n,2n"), 4)
         };
 
         yield return new IbanCountry("CV")

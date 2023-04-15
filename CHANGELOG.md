@@ -3,6 +3,7 @@
 ## v5.8.1
 
 - Upgraded SWIFT registry to Feb '23 release 93, which adds Somalia (SO) and fixes some misconfiguration for Finland (FI) removing the need for 'some' patching (no regression).
+- Updated Wikipedia provider, which updates validation patterns for Dominican Republic (DO), Georgia (GE), Ireland (IE), Jordan (JO), Pakistan (PK), Palestinian territories (PS), Turkey (TR), British Virgin Islands (VG) and Burundi (BI).
 
 ## v5.8.0
 
