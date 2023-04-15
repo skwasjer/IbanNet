@@ -289,7 +289,7 @@ public class IbanTests
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n"))
                 {
                     Example = "NL91ABNA0417164300"
                 },
@@ -313,7 +313,7 @@ public class IbanTests
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n"))
+                Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n"))
                 {
                     Example = "NL91ABNA0417164300"
                 }

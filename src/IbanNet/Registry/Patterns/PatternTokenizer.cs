@@ -17,25 +17,83 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
     public virtual IEnumerable<PatternToken> Tokenize(ReadOnlySpan<char> input)
     {
 #else
-        public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
+    public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
+    {
+        if (input is null)
         {
-            if (input is null)
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
+            throw new ArgumentNullException(nameof(input));
+        }
 #endif
-        return input
-            .PartitionOn(_partitionOn)
-            .Select(CreateToken)
-            .ToList();
+
+        return TokenizeIterator(input);
+    }
+
+
+#if USE_SPANS
+    private IEnumerable<PatternToken> TokenizeIterator(ReadOnlySpan<char> input)
+#else
+    private IEnumerable<PatternToken> TokenizeIterator(IEnumerable<char> input)
+#endif
+    {
+        var tokenList = new List<PatternToken>(8);
+        var tokenCharList = new List<string>(4);
+        int pos = 0;
+
+        void AddCharTokens(IEnumerable<string> charTokens)
+        {
+            tokenList.AddRange(charTokens.Select(t => CreateToken(t, pos++)));
+        }
+
+        foreach (string tokenStr in input.PartitionOn(_partitionOn))
+        {
+            if (tokenStr.Length == 1)
+            {
+                tokenCharList.Add(tokenStr);
+            }
+            else
+            {
+                if (tokenCharList.Count > 0)
+                {
+                    string cc = string.Join(string.Empty, tokenCharList);
+                    if (IsCountryCodeToken(cc))
+                    {
+                        tokenList.Add(CreateToken(cc, pos++));
+                    }
+                    else
+                    {
+                        AddCharTokens(tokenCharList);
+                    }
+
+                    tokenCharList.Clear();
+                }
+
+                tokenList.Add(CreateToken(tokenStr, pos++));
+            }
+        }
+
+        AddCharTokens(tokenCharList);
+
+        return tokenList;
     }
 
     private PatternToken CreateToken(string token, int pos)
     {
         try
         {
-            AsciiCategory asciiCategory = GetCategory(token);
-            int occurrences = GetLength(token, out bool isFixedLength);
+            if (IsCountryCodeToken(token))
+            {
+                return new PatternToken(token);
+            }
+
+            AsciiCategory asciiCategory = AsciiCategory.None;
+            int occurrences = 0;
+            bool isFixedLength = true;
+            if (token.Length > 0)
+            {
+                asciiCategory = GetCategory(token);
+                occurrences = GetLength(token, asciiCategory, out isFixedLength);
+            }
+
             if (asciiCategory == AsciiCategory.None || occurrences <= 0)
             {
                 throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos));
@@ -45,9 +103,9 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
         }
         catch (Exception ex) when (
             ex is ArgumentException
-         || ex is InvalidOperationException
-         || ex is FormatException and not PatternException
-         || ex is IndexOutOfRangeException
+                or InvalidOperationException
+                or FormatException and not PatternException
+                or IndexOutOfRangeException
             )
         {
             throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos), ex);
@@ -60,7 +118,13 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
     /// Gets the length of the token and whether or not it is fixed length.
     /// </summary>
     /// <param name="token">The token to get length for.</param>
-    /// <param name="isFixedLength"><see langword="true"/> if the token is fixed length; otherwise, <see langword="false"/></param>
+    /// <param name="category">The ASCII category.</param>
+    /// <param name="isFixedLength"><see langword="true" /> if the token is fixed length; otherwise, <see langword="false" /></param>
     /// <returns></returns>
-    protected abstract int GetLength(string token, out bool isFixedLength);
+    protected abstract int GetLength(string token, AsciiCategory category, out bool isFixedLength);
+
+    private static bool IsCountryCodeToken(string token)
+    {
+        return token.Length == 2 && token[0].IsUpperAsciiLetter() && token[1].IsUpperAsciiLetter();
+    }
 }

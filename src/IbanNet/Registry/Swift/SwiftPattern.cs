@@ -18,6 +18,11 @@ internal class SwiftPattern : Pattern
     {
         return string.Join("", Tokens.Select(t =>
         {
+            if (t.Value is not null)
+            {
+                return t.Value;
+            }
+
             string fixedLen = t.IsFixedLength ? "!" : string.Empty;
             return $"{t.MaxLength}{fixedLen}{GetToken(t.Category)}";
         }));

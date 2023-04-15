@@ -44,9 +44,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Andorra",
             EnglishName = "Andorra",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("AD"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -81,9 +81,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الإمارات العربية المتحدة",
             EnglishName = "United Arab Emirates (The)",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("AE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 16, 16),
@@ -113,9 +113,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Shqipëri",
             EnglishName = "Albania",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("AL"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 8, 8),
                 new(AsciiCategory.AlphaNumeric, 16, 16),
@@ -149,9 +149,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Österreich",
             EnglishName = "Austria",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("AT"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 11, 11),
@@ -181,9 +181,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Азәрбајҹан",
             EnglishName = "Azerbaijan",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("AZ"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 20, 20),
@@ -213,9 +213,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Bosna i Hercegovina",
             EnglishName = "Bosnia and Herzegovina",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BA"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 3, 3),
@@ -251,9 +251,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "België",
             EnglishName = "Belgium",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 7, 7),
@@ -284,9 +284,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "България",
             EnglishName = "Bulgaria",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BG"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -322,9 +322,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "البحرين",
             EnglishName = "Bahrain",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BH"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 14, 14),
@@ -354,9 +354,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Burundi",
             EnglishName = "Burundi",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BI"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 5, 5),
@@ -392,9 +392,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Brasil",
             EnglishName = "Brazil",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 8, 8),
                 new(AsciiCategory.Digit, 5, 5),
@@ -431,9 +431,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Беларусь",
             EnglishName = "Republic of Belarus",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("BY"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.AlphaNumeric, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -464,9 +464,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Svizzera",
             EnglishName = "Switzerland",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("CH"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.AlphaNumeric, 12, 12),
@@ -496,9 +496,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Costa Rica",
             EnglishName = "Costa Rica",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("CR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 14, 14),
@@ -528,9 +528,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Κύπρος",
             EnglishName = "Cyprus",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("CY"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 5, 5),
@@ -565,9 +565,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Česko",
             EnglishName = "Czechia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("CZ"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 6, 6),
@@ -598,9 +598,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Deutschland",
             EnglishName = "Germany",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("DE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 8, 8),
                 new(AsciiCategory.Digit, 10, 10),
@@ -630,9 +630,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Yabuuti",
             EnglishName = "Djibouti",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("DJ"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 5, 5),
@@ -668,9 +668,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Danmark",
             EnglishName = "Denmark",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("DK"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 9, 9),
@@ -701,9 +701,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "República Dominicana",
             EnglishName = "Dominican Republic",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("DO"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.AlphaNumeric, 4, 4),
                 new(AsciiCategory.Digit, 20, 20),
@@ -733,9 +733,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Eesti",
             EnglishName = "Estonia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("EE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 2, 2),
@@ -767,9 +767,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "مصر",
             EnglishName = "Egypt",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("EG"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -804,9 +804,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "España",
             EnglishName = "Spain",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("ES"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -847,9 +847,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                     "AX"
             },
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("FI"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 11, 11),
@@ -883,9 +883,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Føroyar",
             EnglishName = "Faroe Islands",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("FO"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 9, 9),
@@ -920,9 +920,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                     "GF", "GP", "MQ", "RE", "PF", "TF", "YT", "NC", "BL", "MF", "PM", "WF"
             },
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("FR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 5, 5),
@@ -966,9 +966,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                     "IM", "JE", "GG"
             },
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("GB"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 6, 6),
@@ -1003,9 +1003,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "საქართველო",
             EnglishName = "Georgia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("GE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 2, 2),
                 new(AsciiCategory.Digit, 16, 16),
@@ -1035,9 +1035,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Gibraltar",
             EnglishName = "Gibraltar",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("GI"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 15, 15),
@@ -1067,9 +1067,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Kalaallit Nunaat",
             EnglishName = "Greenland",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("GL"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 9, 9),
@@ -1100,9 +1100,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ελλάδα",
             EnglishName = "Greece",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("GR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 4, 4),
@@ -1137,9 +1137,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Guatemala",
             EnglishName = "Guatemala",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("GT"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.AlphaNumeric, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 20, 20),
@@ -1169,9 +1169,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Hrvatska",
             EnglishName = "Croatia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("HR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 7, 7),
                 new(AsciiCategory.Digit, 10, 10),
@@ -1201,9 +1201,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Magyarország",
             EnglishName = "Hungary",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("HU"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 4, 4),
@@ -1240,9 +1240,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ireland",
             EnglishName = "Ireland",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("IE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 6, 6),
@@ -1277,9 +1277,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "ישראל",
             EnglishName = "Israel",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("IL"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 3, 3),
@@ -1314,9 +1314,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "العراق",
             EnglishName = "Iraq",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("IQ"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 3, 3),
@@ -1351,9 +1351,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ísland",
             EnglishName = "Iceland",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("IS"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 2, 2),
@@ -1389,9 +1389,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Italia",
             EnglishName = "Italy",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("IT"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 1, 1),
                 new(AsciiCategory.Digit, 5, 5),
@@ -1427,9 +1427,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الأردن",
             EnglishName = "Jordan",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("JO"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -1464,9 +1464,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الكويت",
             EnglishName = "Kuwait",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("KW"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 22, 22),
@@ -1496,9 +1496,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Қазақстан",
             EnglishName = "Kazakhstan",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("KZ"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.AlphaNumeric, 13, 13),
@@ -1528,9 +1528,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "لبنان",
             EnglishName = "Lebanon",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LB"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 20, 20),
@@ -1560,9 +1560,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "St. Lucia",
             EnglishName = "Saint Lucia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LC"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 24, 24),
@@ -1592,9 +1592,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Liechtenstein",
             EnglishName = "Liechtenstein",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LI"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.AlphaNumeric, 12, 12),
@@ -1624,9 +1624,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Lietuva",
             EnglishName = "Lithuania",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LT"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 11, 11),
@@ -1656,9 +1656,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Lëtzebuerg",
             EnglishName = "Luxembourg",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LU"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.AlphaNumeric, 13, 13),
@@ -1688,9 +1688,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Latvija",
             EnglishName = "Latvia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LV"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 13, 13),
@@ -1720,9 +1720,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "ليبيا",
             EnglishName = "Libya",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("LY"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 3, 3),
@@ -1757,9 +1757,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Monaco",
             EnglishName = "Monaco",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("MC"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 5, 5),
@@ -1795,9 +1795,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Republica Moldova",
             EnglishName = "Moldova",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("MD"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.AlphaNumeric, 2, 2),
                 new(AsciiCategory.AlphaNumeric, 18, 18),
@@ -1827,9 +1827,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Crna Gora",
             EnglishName = "Montenegro",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("ME"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 13, 13),
@@ -1860,9 +1860,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Северна Македонија",
             EnglishName = "Macedonia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("MK"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.AlphaNumeric, 10, 10),
@@ -1893,9 +1893,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "موريتانيا",
             EnglishName = "Mauritania",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("MR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 5, 5),
@@ -1931,9 +1931,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Malta",
             EnglishName = "Malta",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("MT"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 5, 5),
@@ -1968,9 +1968,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Mauritius",
             EnglishName = "Mauritius",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("MU"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 2, 2),
@@ -2008,9 +2008,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Nederland",
             EnglishName = "Netherlands (The)",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("NL"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 10, 10),
@@ -2040,9 +2040,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Noreg",
             EnglishName = "Norway",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("NO"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 6, 6),
@@ -2073,9 +2073,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "پاکستان",
             EnglishName = "Pakistan",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("PK"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 16, 16),
@@ -2105,9 +2105,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Polska",
             EnglishName = "Poland",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("PL"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 8, 8),
                 new(AsciiCategory.Digit, 16, 16),
@@ -2137,9 +2137,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "السلطة الفلسطينية",
             EnglishName = "Palestine, State of",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("PS"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 21, 21),
@@ -2169,9 +2169,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Portugal",
             EnglishName = "Portugal",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("PT"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -2207,9 +2207,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "قطر",
             EnglishName = "Qatar",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("QA"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 21, 21),
@@ -2239,9 +2239,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "România",
             EnglishName = "Romania",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("RO"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 16, 16),
@@ -2271,9 +2271,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Srbija",
             EnglishName = "Serbia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("RS"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 13, 13),
@@ -2304,9 +2304,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "المملكة العربية السعودية",
             EnglishName = "Saudi Arabia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SA"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.AlphaNumeric, 18, 18),
@@ -2336,9 +2336,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Seychelles",
             EnglishName = "Seychelles",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SC"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 2, 2),
@@ -2375,9 +2375,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "السودان",
             EnglishName = "Sudan",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SD"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 12, 12),
@@ -2407,9 +2407,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Sverige",
             EnglishName = "Sweden",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SE"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 16, 16),
@@ -2440,9 +2440,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Slovenija",
             EnglishName = "Slovenia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SI"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 8, 8),
@@ -2473,9 +2473,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Slovensko",
             EnglishName = "Slovakia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SK"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 6, 6),
@@ -2506,9 +2506,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "San Marino",
             EnglishName = "San Marino",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SM"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 1, 1),
                 new(AsciiCategory.Digit, 5, 5),
@@ -2544,9 +2544,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الصومال",
             EnglishName = "Somalia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SO"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 3, 3),
@@ -2581,9 +2581,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "São Tomé e Príncipe",
             EnglishName = "Sao Tome and Principe",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("ST"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 4, 4),
@@ -2619,9 +2619,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "El Salvador",
             EnglishName = "El Salvador",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("SV"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 20, 20),
@@ -2651,9 +2651,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Timor-Leste",
             EnglishName = "Timor-Leste",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("TL"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 14, 14),
@@ -2684,9 +2684,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "تونس",
             EnglishName = "Tunisia",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("TN"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
@@ -2722,9 +2722,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Türkiye",
             EnglishName = "Turkey",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("TR"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 5, 5),
                 new(AsciiCategory.Digit, 1, 1),
@@ -2755,9 +2755,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Україна",
             EnglishName = "Ukraine",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("UA"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 6, 6),
                 new(AsciiCategory.AlphaNumeric, 19, 19),
@@ -2787,9 +2787,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Città del Vaticano",
             EnglishName = "Vatican City State",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("VA"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 3, 3),
                 new(AsciiCategory.Digit, 15, 15),
@@ -2819,9 +2819,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "British Virgin Islands",
             EnglishName = "Virgin Islands",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("VG"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.UppercaseLetter, 4, 4),
                 new(AsciiCategory.Digit, 16, 16),
@@ -2851,9 +2851,9 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Kosovë",
             EnglishName = "Kosovo",
-            Iban = new IbanStructure(new IbanSwiftPattern(new PatternToken[]
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
             {
-                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new("XK"),
                 new(AsciiCategory.Digit, 2, 2),
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.Digit, 10, 10),

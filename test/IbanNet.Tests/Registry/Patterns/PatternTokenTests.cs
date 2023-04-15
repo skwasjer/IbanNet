@@ -88,9 +88,9 @@ public class PatternTokenTests
         pattern.MinLength.Should().Be(minLength);
         pattern.MaxLength.Should().Be(maxLength);
         pattern.IsFixedLength.Should().Be(isFixedLength);
-        pattern.IsMatch('a').Should().Be(isLower);
-        pattern.IsMatch('A').Should().Be(isUpper);
-        pattern.IsMatch('0').Should().Be(isDigit);
+        pattern.IsMatch('a', 0).Should().Be(isLower);
+        pattern.IsMatch('A', 0).Should().Be(isUpper);
+        pattern.IsMatch('0', 0).Should().Be(isDigit);
     }
 
     public static IEnumerable<object[]> GetTestCases()
