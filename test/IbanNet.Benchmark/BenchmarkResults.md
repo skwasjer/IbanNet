@@ -5,22 +5,22 @@
 A single validation:
 
 ```
-BenchmarkDotNet=v0.13.3, OS=Windows 10 (10.0.19045.2486)
+BenchmarkDotNet=v0.13.5, OS=Windows 10 (10.0.19045.2846/22H2/2022Update)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET SDK=7.0.102
-  [Host]     : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
-  Job-VTDVNO : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
-  Job-GQWWHF : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2
-  Job-NPFPAT : .NET Core 3.1.32 (CoreCLR 4.700.22.55902, CoreFX 4.700.22.56512), X64 RyuJIT AVX2
-  Job-YKQXAF : .NET Framework 4.8 (4.8.4515.0), X64 RyuJIT VectorSize=256
+.NET SDK=7.0.203
+  [Host]     : .NET 7.0.5 (7.0.523.17405), X64 RyuJIT AVX2
+  Job-FSXHEA : .NET 7.0.5 (7.0.523.17405), X64 RyuJIT AVX2
+  Job-SUVHVP : .NET 6.0.16 (6.0.1623.17311), X64 RyuJIT AVX2
+  Job-RGIAGU : .NET Core 3.1.32 (CoreCLR 4.700.22.55902, CoreFX 4.700.22.56512), X64 RyuJIT AVX2
+  Job-EMDPBD : .NET Framework 4.8 (4.8.4614.0), X64 RyuJIT VectorSize=256
 ```
 
-|   Method |            Runtime |     Mean |   Error |  StdDev | Ratio | RatioSD |   Gen0 | Allocated | Alloc Ratio |
-|--------- |------------------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
-| Validate |           .NET 7.0 | 270.7 ns | 3.51 ns | 3.11 ns |  1.00 |    0.00 | 0.0277 |     176 B |        1.00 |
-| Validate |           .NET 6.0 | 288.1 ns | 0.73 ns | 0.68 ns |  1.06 |    0.01 | 0.0277 |     176 B |        1.00 |
-| Validate |      .NET Core 3.1 | 345.3 ns | 6.90 ns | 6.45 ns |  1.28 |    0.02 | 0.0277 |     176 B |        1.00 |
-| Validate | .NET Framework 4.8 | 365.4 ns | 1.69 ns | 1.58 ns |  1.35 |    0.02 | 0.0277 |     177 B |        1.01 |
+|   Method |            Runtime |     Mean |   Error |  StdDev |   Median | Ratio | RatioSD |   Gen0 | Allocated | Alloc Ratio |
+|--------- |------------------- |---------:|--------:|--------:|---------:|------:|--------:|-------:|----------:|------------:|
+| Validate |           .NET 7.0 | 268.4 ns | 5.34 ns | 8.15 ns | 264.4 ns |  1.00 |    0.00 | 0.0277 |     176 B |        1.00 |
+| Validate |           .NET 6.0 | 285.8 ns | 3.48 ns | 3.25 ns | 286.4 ns |  1.05 |    0.04 | 0.0277 |     176 B |        1.00 |
+| Validate |      .NET Core 3.1 | 341.0 ns | 6.15 ns | 5.13 ns | 338.9 ns |  1.25 |    0.03 | 0.0277 |     176 B |        1.00 |
+| Validate | .NET Framework 4.8 | 366.3 ns | 1.97 ns | 1.75 ns | 366.6 ns |  1.35 |    0.05 | 0.0277 |     177 B |        1.01 |
 
 
 ### Comparison with other validators
@@ -33,39 +33,29 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
 - *Singleton*: strict validation, singleton validator
 - *Transient*: strict validation, transient validator (per validation). Notice the extra allocations/GC. This is not recommended, and purely for demonstration.
 
-```
-BenchmarkDotNet=v0.13.3, OS=Windows 10 (10.0.19045.2486)
-Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET SDK=7.0.102
-  [Host]     : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
-  Job-NNDXRT : .NET 7.0.2 (7.0.222.60605), X64 RyuJIT AVX2
-  Job-HYIXPJ : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2
-  Job-EADHIU : .NET Core 3.1.32 (CoreCLR 4.700.22.55902, CoreFX 4.700.22.56512), X64 RyuJIT AVX2
-  Job-GMRPOZ : .NET Framework 4.8 (4.8.4515.0), X64 RyuJIT VectorSize=256
-```
+|               Method |            Runtime | Count |      Mean |     Error |    StdDev |    Median | Ratio | RatioSD |      Gen0 | Allocated | Alloc Ratio |
+|--------------------- |------------------- |------ |----------:|----------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
+| Singleton_CacheReuse |           .NET 7.0 | 10000 |  2.672 ms | 0.0069 ms | 0.0061 ms |  2.672 ms |  0.78 |    0.00 |  277.3438 |   1.68 MB |        0.99 |
+| Singleton_CacheReuse |           .NET 6.0 | 10000 |  2.684 ms | 0.0091 ms | 0.0071 ms |  2.685 ms |  0.78 |    0.00 |  277.3438 |   1.68 MB |        0.99 |
+| Singleton_CacheReuse |      .NET Core 3.1 | 10000 |  3.354 ms | 0.0525 ms | 0.0465 ms |  3.339 ms |  0.97 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
+|            Singleton |           .NET 7.0 | 10000 |  3.446 ms | 0.0069 ms | 0.0065 ms |  3.445 ms |  1.00 |    0.00 |  281.2500 |    1.7 MB |        1.00 |
+| Singleton_CacheReuse | .NET Framework 4.8 | 10000 |  3.518 ms | 0.0428 ms | 0.0358 ms |  3.498 ms |  1.02 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
+|            Singleton |           .NET 6.0 | 10000 |  3.589 ms | 0.0109 ms | 0.0091 ms |  3.585 ms |  1.04 |    0.00 |  281.2500 |    1.7 MB |        1.00 |
+|            Singleton |      .NET Core 3.1 | 10000 |  4.208 ms | 0.0100 ms | 0.0089 ms |  4.212 ms |  1.22 |    0.00 |  281.2500 |    1.7 MB |        1.00 |
+|            Singleton | .NET Framework 4.8 | 10000 |  4.350 ms | 0.0169 ms | 0.0158 ms |  4.353 ms |  1.26 |    0.00 |  281.2500 |   1.71 MB |        1.00 |
+|            Transient |           .NET 7.0 | 10000 |  5.832 ms | 0.0207 ms | 0.0162 ms |  5.833 ms |  1.69 |    0.01 | 1250.0000 |    7.5 MB |        4.41 |
+|            Transient |           .NET 6.0 | 10000 |  6.093 ms | 0.0200 ms | 0.0167 ms |  6.097 ms |  1.77 |    0.01 | 1250.0000 |    7.5 MB |        4.41 |
+|            Transient |      .NET Core 3.1 | 10000 |  7.046 ms | 0.0185 ms | 0.0164 ms |  7.044 ms |  2.04 |    0.01 | 1250.0000 |    7.5 MB |        4.41 |
+|            Transient | .NET Framework 4.8 | 10000 |  7.529 ms | 0.0730 ms | 0.0610 ms |  7.510 ms |  2.18 |    0.02 | 1273.4375 |   7.68 MB |        4.51 |
+|  NuGet_IbanValidator |           .NET 6.0 | 10000 | 14.384 ms | 0.2862 ms | 0.5974 ms | 14.129 ms |  4.33 |    0.22 | 3500.0000 |  20.95 MB |       12.30 |
+|  NuGet_IbanValidator |           .NET 7.0 | 10000 | 15.251 ms | 0.0512 ms | 0.0399 ms | 15.257 ms |  4.42 |    0.01 | 3500.0000 |  20.95 MB |       12.30 |
+|       NuGet_IBAN4NET |           .NET 7.0 | 10000 | 33.835 ms | 0.2105 ms | 0.1757 ms | 33.789 ms |  9.82 |    0.06 | 1666.6667 |  10.36 MB |        6.09 |
+|       NuGet_IBAN4NET |           .NET 6.0 | 10000 | 36.158 ms | 0.6958 ms | 0.6509 ms | 36.122 ms | 10.49 |    0.19 | 1714.2857 |  10.36 MB |        6.09 |
+|  NuGet_IbanValidator |      .NET Core 3.1 | 10000 | 38.064 ms | 0.4709 ms | 0.4404 ms | 37.905 ms | 11.05 |    0.13 | 8428.5714 |  50.45 MB |       29.63 |
+|       NuGet_IBAN4NET |      .NET Core 3.1 | 10000 | 38.723 ms | 0.0543 ms | 0.0453 ms | 38.737 ms | 11.24 |    0.03 | 1692.3077 |  10.36 MB |        6.09 |
+|  NuGet_IbanValidator | .NET Framework 4.8 | 10000 | 52.702 ms | 0.4519 ms | 0.4227 ms | 52.538 ms | 15.29 |    0.14 | 6800.0000 |  41.33 MB |       24.27 |
+|       NuGet_IBAN4NET | .NET Framework 4.8 | 10000 | 54.086 ms | 1.0518 ms | 0.9838 ms | 54.180 ms | 15.69 |    0.27 | 2000.0000 |  12.24 MB |        7.19 |
 
-|               Method |            Runtime | Count |      Mean |     Error |    StdDev | Ratio | RatioSD |      Gen0 | Allocated | Alloc Ratio |
-|--------------------- |------------------- |------ |----------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
-| Singleton_CacheReuse |           .NET 7.0 | 10000 |  2.810 ms | 0.0251 ms | 0.0222 ms |  0.78 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
-| Singleton_CacheReuse |           .NET 6.0 | 10000 |  2.863 ms | 0.0070 ms | 0.0066 ms |  0.79 |    0.00 |  277.3438 |   1.68 MB |        0.99 |
-| Singleton_CacheReuse |      .NET Core 3.1 | 10000 |  3.497 ms | 0.0291 ms | 0.0243 ms |  0.97 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
-|            Singleton |           .NET 7.0 | 10000 |  3.609 ms | 0.0150 ms | 0.0133 ms |  1.00 |    0.00 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton_CacheReuse | .NET Framework 4.8 | 10000 |  3.753 ms | 0.0289 ms | 0.0270 ms |  1.04 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
-|            Singleton |           .NET 6.0 | 10000 |  3.768 ms | 0.0144 ms | 0.0113 ms |  1.04 |    0.00 |  281.2500 |    1.7 MB |        1.00 |
-|            Singleton |      .NET Core 3.1 | 10000 |  4.420 ms | 0.0118 ms | 0.0098 ms |  1.23 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
-|            Singleton | .NET Framework 4.8 | 10000 |  4.683 ms | 0.0151 ms | 0.0134 ms |  1.30 |    0.01 |  281.2500 |   1.71 MB |        1.00 |
-|            Transient |           .NET 7.0 | 10000 |  6.191 ms | 0.0151 ms | 0.0141 ms |  1.72 |    0.01 | 1250.0000 |    7.5 MB |        4.40 |
-|            Transient |           .NET 6.0 | 10000 |  6.321 ms | 0.0308 ms | 0.0273 ms |  1.75 |    0.01 | 1250.0000 |    7.5 MB |        4.40 |
-|            Transient | .NET Framework 4.8 | 10000 |  7.624 ms | 0.0122 ms | 0.0114 ms |  2.11 |    0.01 | 1273.4375 |   7.68 MB |        4.51 |
-|            Transient |      .NET Core 3.1 | 10000 |  7.892 ms | 0.1554 ms | 0.1527 ms |  2.19 |    0.05 | 1250.0000 |    7.5 MB |        4.40 |
-|  NuGet_IbanValidator |           .NET 6.0 | 10000 | 14.627 ms | 0.1462 ms | 0.1296 ms |  4.05 |    0.04 | 3546.8750 |  21.24 MB |       12.47 |
-|  NuGet_IbanValidator |           .NET 7.0 | 10000 | 15.632 ms | 0.0604 ms | 0.0536 ms |  4.33 |    0.02 | 3546.8750 |  21.24 MB |       12.47 |
-|       NuGet_IBAN4NET |           .NET 7.0 | 10000 | 34.414 ms | 0.1205 ms | 0.1068 ms |  9.54 |    0.03 | 1733.3333 |  10.48 MB |        6.15 |
-|       NuGet_IBAN4NET |           .NET 6.0 | 10000 | 36.909 ms | 0.4327 ms | 0.4048 ms | 10.23 |    0.13 | 1692.3077 |  10.48 MB |        6.15 |
-|  NuGet_IbanValidator |      .NET Core 3.1 | 10000 | 38.781 ms | 0.1029 ms | 0.0803 ms | 10.75 |    0.03 | 8538.4615 |  51.14 MB |       30.03 |
-|       NuGet_IBAN4NET |      .NET Core 3.1 | 10000 | 41.141 ms | 0.1096 ms | 0.0972 ms | 11.40 |    0.04 | 1692.3077 |  10.48 MB |        6.15 |
-|  NuGet_IbanValidator | .NET Framework 4.8 | 10000 | 54.538 ms | 0.7215 ms | 0.6396 ms | 15.11 |    0.17 | 6888.8889 |  41.89 MB |       24.60 |
-|       NuGet_IBAN4NET | .NET Framework 4.8 | 10000 | 57.671 ms | 1.0930 ms | 1.3011 ms | 15.93 |    0.31 | 2000.0000 |  12.38 MB |        7.27 |
 
 ### CLI
 
