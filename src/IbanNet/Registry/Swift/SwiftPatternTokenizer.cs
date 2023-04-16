@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using IbanNet.Extensions;
 using IbanNet.Registry.Patterns;
 
 namespace IbanNet.Registry.Swift;
@@ -13,13 +14,14 @@ internal class SwiftPatternTokenizer : PatternTokenizer
 {
     private static readonly char[] TokenChars = { 'n', 'a', 'c', 'e' };
 
-    internal SwiftPatternTokenizer() : base(TokenChars.Contains)
+    internal SwiftPatternTokenizer()
+        : base(ch => ch.IsUpperAsciiLetter() || TokenChars.Contains(ch))
     {
     }
 
     protected override AsciiCategory GetCategory(string token)
     {
-        if (token.Length < 2)
+        if (token.Length <= 1)
         {
             return AsciiCategory.None;
         }
@@ -36,9 +38,9 @@ internal class SwiftPatternTokenizer : PatternTokenizer
         };
     }
 
-    protected override int GetLength(string token, out bool isFixedLength)
+    protected override int GetLength(string token, AsciiCategory category, out bool isFixedLength)
     {
-        if (token.Length < 2)
+        if (category == AsciiCategory.None)
         {
             isFixedLength = true;
             return -1;

@@ -16,7 +16,7 @@ internal class PatternValidator
     public bool TryValidate
     (
 #if USE_SPANS
-            ReadOnlySpan<char> value
+        ReadOnlySpan<char> value
 #else
         string value
 #endif
@@ -48,7 +48,7 @@ internal class PatternValidator
     }
 
 #if USE_SPANS
-        private bool ValidateFixedLength(ReadOnlySpan<char> value, ref int cursor)
+    private bool ValidateFixedLength(ReadOnlySpan<char> value, ref int cursor)
 #else
     private unsafe bool ValidateFixedLength(string value, ref int cursor)
 #endif
@@ -57,8 +57,8 @@ internal class PatternValidator
         int tokenCount = _tokens.Count;
         int segmentIndex = 0;
 #if USE_SPANS
-            // ReSharper disable once InlineTemporaryVariable
-            ReadOnlySpan<char> ptr = value;
+        // ReSharper disable once InlineTemporaryVariable
+        ReadOnlySpan<char> ptr = value;
 #else
         fixed (char* ptr = value)
 #endif
@@ -74,10 +74,10 @@ internal class PatternValidator
                     return false;
                 }
 
-                Func<char, bool> isMatch = expectedToken.IsMatch;
+                Func<char, int, bool> isMatch = expectedToken.IsMatch;
                 for (int occurrence = 0; occurrence < maxLength; occurrence++)
                 {
-                    if (!isMatch(ptr[cursor]))
+                    if (!isMatch(ptr[cursor], occurrence))
                     {
                         return false;
                     }
@@ -91,7 +91,7 @@ internal class PatternValidator
     }
 
 #if USE_SPANS
-        private bool ValidateNonFixedLength(ReadOnlySpan<char> value, ref int cursor)
+    private bool ValidateNonFixedLength(ReadOnlySpan<char> value, ref int cursor)
 #else
     private bool ValidateNonFixedLength(string value, ref int cursor)
 #endif
@@ -119,7 +119,7 @@ internal class PatternValidator
     private static bool ProcessFixedLengthTest(
         PatternToken expectedToken,
 #if USE_SPANS
-            ReadOnlySpan<char> value,
+        ReadOnlySpan<char> value,
 #else
         string value,
 #endif
@@ -134,8 +134,8 @@ internal class PatternValidator
 
         for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
         {
-            char c = value[cursor];
-            if (!expectedToken.IsMatch(c))
+            char ch = value[cursor];
+            if (!expectedToken.IsMatch(ch, occurrence))
             {
                 return false;
             }
@@ -149,7 +149,7 @@ internal class PatternValidator
     private static bool ProcessNonFixedLengthTest(
         PatternToken expectedToken,
 #if USE_SPANS
-            ReadOnlySpan<char> value,
+        ReadOnlySpan<char> value,
 #else
         string value,
 #endif
@@ -164,8 +164,8 @@ internal class PatternValidator
                 return cursor >= startPos + expectedToken.MinLength && cursor <= startPos + expectedToken.MaxLength;
             }
 
-            char c = value[cursor];
-            if (!expectedToken.IsMatch(c))
+            char ch = value[cursor];
+            if (!expectedToken.IsMatch(ch, occurrence))
             {
                 return false;
             }

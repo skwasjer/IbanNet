@@ -8,7 +8,7 @@ internal class WikipediaPattern : Pattern
 
     public WikipediaPattern(string pattern) : base(
 #if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
-            pattern?.Replace(",", null, StringComparison.Ordinal)!,
+        pattern?.Replace(",", null, StringComparison.Ordinal)!,
 #else
         pattern?.Replace(",", null)!,
 #endif
@@ -19,7 +19,9 @@ internal class WikipediaPattern : Pattern
 
     public override string ToString()
     {
-        return string.Join(",", Tokens.Select(t => $"{t.MaxLength}{GetToken(t.Category)}"));
+        return string.Join(",",
+            Tokens.Select(t => t.Value ?? $"{t.MaxLength}{GetToken(t.Category)}")
+        );
     }
 
     private static char GetToken(AsciiCategory category)

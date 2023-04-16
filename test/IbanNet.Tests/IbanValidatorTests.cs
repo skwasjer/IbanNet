@@ -165,9 +165,9 @@ public class IbanValidatorTests
     {
         private readonly IbanValidator _sut;
 
-        private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new IbanStructure(new IbanSwiftPattern("NL2!n4!a10!n")) };
-        private readonly IbanCountry _ignoredNlCountry = new("NL") { Iban = new IbanStructure(new IbanWikipediaPattern("50a")) };
-        private readonly IbanCountry _correctGbCountry = new("GB") { Iban = new IbanStructure(new IbanWikipediaPattern("4a,14n")) };
+        private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n")) };
+        private readonly IbanCountry _ignoredNlCountry = new("NL") { Iban = new IbanStructure(new IbanWikipediaPattern("NL", "50a")) };
+        private readonly IbanCountry _correctGbCountry = new("GB") { Iban = new IbanStructure(new IbanWikipediaPattern("GB", "4a,14n")) };
 
         private readonly List<IbanCountry> _countries;
 
@@ -213,6 +213,20 @@ public class IbanValidatorTests
 
             actual.IsValid.Should().BeTrue();
             actual.Country.Should().BeSameAs(_countries[expectedCountryIndex]);
+        }
+
+        [Theory]
+        [InlineData("NL92ABNA0417164300")]
+        [InlineData("GB28NWBK60161331926819")]
+        [InlineData("NL91ABNA0417164301")]
+        [InlineData("GB29NWBK60161331926818")]
+        [InlineData("NL91ABNA041716430A")]
+        [InlineData("GB29NWBK6016133192681B")]
+        public void Given_that_iban_is_invalid_when_validating_it_should_fail(string iban)
+        {
+            ValidationResult actual = _sut.Validate(iban);
+
+            actual.IsValid.Should().BeFalse();
         }
     }
 }

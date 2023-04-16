@@ -28,7 +28,7 @@ public class IsMatchingStructureRuleTests
         const string testValue = "AD1200012030200359100100";
         var country = new IbanCountry("AD")
         {
-            Iban = new IbanStructure(new IbanSwiftPattern("AD2!n4!n4!n12!c"))
+            Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
         };
 
         // Act
@@ -42,14 +42,17 @@ public class IsMatchingStructureRuleTests
     }
 
     [Theory]
-    [InlineData("XXXX", 2, "the country code is only being tested against upper case")]
-    [InlineData("XX12ABCD", 7, "the input is too long")]
-    [InlineData("XX12AB", 6, "the input is not long enough")]
+    [InlineData("XX12ABC", 0, "the country code is different")]
+    [InlineData("NA12ABC", 1, "the 2nd char in country code is different")]
+    [InlineData("nl12ABC", 0, "the country code is not upper case")]
+    [InlineData("NLXX", 2, "the check digits are not numeric")]
+    [InlineData("NL12ABCD", 7, "the input is too long")]
+    [InlineData("NL12AB", 6, "the input is not long enough")]
     public void Given_invalid_value_when_validating_it_should_return_error(string testValue, int expectedErrorPos, string because)
     {
         var country = new IbanCountry("NL")
         {
-            Iban = new IbanStructure(new IbanSwiftPattern("NL2!n3!a"))
+            Iban = new IbanStructure(new SwiftPattern("NL2!n3!a"))
         };
 
         // Act

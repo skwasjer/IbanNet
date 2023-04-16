@@ -59,7 +59,8 @@ public class WikipediaPatternTokenizerTests
     }
 
     [Theory]
-    [InlineData("A", "A", 0)]
+    [InlineData("a", "a", 0)]
+    [InlineData("A1", "A", 0)]
     [InlineData("2z", "2z", 0)]
     [InlineData("2a2!n", "2!n", 1)]
     public void Given_invalid_pattern_when_tokenizing_it_should_throw(string pattern, string token, int pos)
