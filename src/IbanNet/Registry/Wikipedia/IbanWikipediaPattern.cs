@@ -2,15 +2,14 @@
 
 internal class IbanWikipediaPattern : WikipediaPattern
 {
-    public IbanWikipediaPattern(string pattern)
-        : base(AdjustPattern(pattern)!)
+    public IbanWikipediaPattern(string countryCode, string pattern)
+        : base(countryCode + ",2n," + pattern)
     {
     }
 
-    private static string? AdjustPattern(string? pattern)
+    public override string ToString()
     {
-        return pattern is null
-            ? null
-            : "2a,2n" + pattern;
+        // strip country code, check digits tokens and separators, eg.: None[2], comma, Digit[2], comma.
+        return base.ToString().Substring(6);
     }
 }
