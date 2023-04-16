@@ -36,7 +36,7 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
         {
             AsciiCategory asciiCategory = GetCategory(token);
             int occurrences = GetLength(token, out bool isFixedLength);
-            if (asciiCategory == AsciiCategory.Other || occurrences <= 0)
+            if (asciiCategory == AsciiCategory.None || occurrences <= 0)
             {
                 throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos));
             }

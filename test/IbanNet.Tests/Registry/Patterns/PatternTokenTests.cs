@@ -95,7 +95,7 @@ public class PatternTokenTests
 
     public static IEnumerable<object[]> GetTestCases()
     {
-        yield return new object[] { AsciiCategory.Other, 1, 1, true, false, false, false };
+        yield return new object[] { AsciiCategory.None, 1, 1, true, false, false, false };
         yield return new object[] { AsciiCategory.Space, 1, 1, true, false, false, false };
         yield return new object[] { AsciiCategory.Digit, 1, 2, false, false, false, true };
         yield return new object[] { AsciiCategory.LowercaseLetter, 2, 4, false, true, false, false };

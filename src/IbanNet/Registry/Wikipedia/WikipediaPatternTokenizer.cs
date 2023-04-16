@@ -15,7 +15,7 @@ internal class WikipediaPatternTokenizer : PatternTokenizer
     {
         if (token.Length < 2)
         {
-            return AsciiCategory.Other;
+            return AsciiCategory.None;
         }
 
         // ReSharper disable once UseIndexFromEndExpression
@@ -25,7 +25,7 @@ internal class WikipediaPatternTokenizer : PatternTokenizer
             'n' => AsciiCategory.Digit,
             'a' => AsciiCategory.UppercaseLetter,
             'c' => AsciiCategory.AlphaNumeric,
-            _ => AsciiCategory.Other
+            _ => AsciiCategory.None
         };
     }
 

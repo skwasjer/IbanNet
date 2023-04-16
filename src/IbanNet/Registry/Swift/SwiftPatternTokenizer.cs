@@ -21,7 +21,7 @@ internal class SwiftPatternTokenizer : PatternTokenizer
     {
         if (token.Length < 2)
         {
-            return AsciiCategory.Other;
+            return AsciiCategory.None;
         }
 
         // ReSharper disable once UseIndexFromEndExpression
@@ -32,7 +32,7 @@ internal class SwiftPatternTokenizer : PatternTokenizer
             'a' => AsciiCategory.UppercaseLetter,
             'c' => AsciiCategory.AlphaNumeric,
             'e' => AsciiCategory.Space,
-            _ => AsciiCategory.Other
+            _ => AsciiCategory.None
         };
     }
 
