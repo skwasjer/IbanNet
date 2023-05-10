@@ -91,5 +91,18 @@ public class SwiftPatternTests
                 new(AsciiCategory.AlphaNumeric, 2)
             }
         };
+
+        yield return new object[]
+        {
+            "AD2!n4!n4!n12!c",
+            new List<PatternToken>
+            {
+                new("AD"),
+                new(AsciiCategory.Digit, 2, 2),
+                new(AsciiCategory.Digit, 4, 4),
+                new(AsciiCategory.Digit, 4, 4),
+                new(AsciiCategory.AlphaNumeric, 12, 12)
+            }
+        };
     }
 }
