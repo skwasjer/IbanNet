@@ -94,7 +94,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 #>
                 new("<#= record.CountryCode #>"),
 <#
-        foreach (var token in pattern.Tokens.Skip(2))
+        foreach (var token in pattern.Tokens.Skip(1))
         {
 #>
                 new(AsciiCategory.<#= token.Category #>, <#= token.MinLength #>, <#= token.MaxLength #>),
