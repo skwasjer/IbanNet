@@ -2048,7 +2048,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 new(AsciiCategory.Digit, 20, 20),
             }))
             {
-                Example = "NI04BAPR00000013000003558124",
+                Example = "NI45BAPR00000013000003558124",
                 EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
             },
             Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)

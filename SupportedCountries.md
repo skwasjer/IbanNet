@@ -67,7 +67,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | MR | Mauritania | 27 | `MR13 0002 0001 0100 0012 3456 753` | No | ![Supported][supported] | ![Supported][supported] |
 | MT | Malta | 31 | `MT84 MALT 0110 0001 2345 MTLC AST0 01S` | Yes | ![Supported][supported] | ![Supported][supported] |
 | MU | Mauritius | 30 | `MU17 BOMM 0101 1010 3030 0200 000M UR` | No | ![Supported][supported] | ![Supported][supported] |
-| NI | Nicaragua | 28 | `` | No | ![Supported][supported] | - |
+| NI | Nicaragua | 28 | `NI45 BAPR 0000 0013 0000 0355 8124` | No | ![Supported][supported] | - |
 | NL | Netherlands (The) | 18 | `NL91 ABNA 0417 1643 00` | Yes | ![Supported][supported] | - |
 | NO | Norway | 15 | `NO93 8601 1117 947` | Yes | ![Supported][supported] | - |
 | PK | Pakistan | 24 | `PK36 SCBL 0000 0011 2345 6702` | No | ![Supported][supported] | - |

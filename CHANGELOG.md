@@ -2,8 +2,12 @@
 
 ## v5.9.0
 
-- Upgraded SWIFT registry to April '23 release 94, which adds Mongolia (MN) and Nicaragua (NI). Importantly, the spec seems to differ from what is listed on Wikipedia (28 vs 32 char length).
-  Note: the last updated timestamp of Georgia (GE) was also changed, because of an update to contact information in the spec (unused by IbanNet).
+- Upgraded SWIFT registry to April '23 release 94, which adds Mongolia (MN) and Nicaragua (NI).
+  - Importantly, the spec for Nicaragua seems to differ from what is listed on Wikipedia (28 vs 32 char length). The website of the [Central Bank of Nicaragua](https://www.bcn.gob.ni/sistemas-de-pagos/informacion_iban) confirms this.
+  - Additionally the included example for Nicaragua does NOT validate and I had to resort to patching the example data.
+  - the last updated timestamp of Georgia (GE) was also changed, because of an update to contact information in the spec (unused by IbanNet).
+
+  > As with any new addition to the registry, some caution is advised and possibly changes are to be expected as I've seen such inaccuracies more often in the past.
 - Refactored pattern tokenizer to support wide tokens (multi char), next to (single) char tokens. This is an internal change that can unlock some extra future functionality.
 
 ## v5.8.1
