@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.9.0
+
+- Refactored pattern tokenizer to support wide tokens (multi char), next to (single) char tokens. This is an internal change that can unlock some extra future functionality.
+
 ## v5.8.1
 
 - Upgraded SWIFT registry to Feb '23 release 93, which adds Somalia (SO) and fixes some misconfiguration for Finland (FI) removing the need for 'some' patching (no regression).
