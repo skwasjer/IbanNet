@@ -9,9 +9,9 @@ namespace IbanNet.Registry.Swift;
 /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 /// </summary>
 /// <remarks>
-/// Generated from: swift_iban_registry_202302.r93.txt
+/// Generated from: swift_iban_registry_202304.r94.txt
 /// </remarks>
-[GeneratedCode("SwiftRegistryProviderT4", "1.1-r93")]
+[GeneratedCode("SwiftRegistryProviderT4", "1.1-r94")]
 public class SwiftRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1027,7 +1027,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000000101904917",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Gibraltar
@@ -1888,6 +1888,38 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
+        // Mongolia
+        yield return new IbanCountry("MN")
+        {
+            NativeName = "Монгол",
+            EnglishName = "Mongolia",
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
+            {
+                new("MN"),
+                new(AsciiCategory.Digit, 2, 2),
+                new(AsciiCategory.Digit, 4, 4),
+                new(AsciiCategory.Digit, 12, 12),
+            }))
+            {
+                Example = "MN121234123456789123",
+                EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            },
+            Bban = new BbanStructure(new SwiftPattern("4!n12!n"), 4)
+            {
+                Example = "1234123456789123"
+            },
+            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            {
+                Example = "1234"
+            },
+            Sepa = new SepaInfo
+            {
+                IsMember = false
+            },
+            DomesticAccountNumberExample = "1234 5678 9123",
+            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+        };
+
         // Mauritania
         yield return new IbanCountry("MR")
         {
@@ -2001,6 +2033,38 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             DomesticAccountNumberExample = "MU17 BOMM 0101 1010 3030 0200 000M UR",
             LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+        };
+
+        // Nicaragua
+        yield return new IbanCountry("NI")
+        {
+            NativeName = "Nicaragua",
+            EnglishName = "Nicaragua",
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
+            {
+                new("NI"),
+                new(AsciiCategory.Digit, 2, 2),
+                new(AsciiCategory.UppercaseLetter, 4, 4),
+                new(AsciiCategory.Digit, 20, 20),
+            }))
+            {
+                Example = "NI04BAPR00000013000003558124",
+                EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            },
+            Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
+            {
+                Example = "BAPR00000013000003558124"
+            },
+            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            {
+                Example = "BAPR"
+            },
+            Sepa = new SepaInfo
+            {
+                IsMember = false
+            },
+            DomesticAccountNumberExample = "00000013000003558124",
+            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Netherlands (The)

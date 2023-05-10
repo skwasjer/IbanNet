@@ -2,7 +2,7 @@
 
 *In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
 
-# IbanNet supports 122 countries
+# IbanNet supports 123 countries
 
 ## SWIFT registry
 
@@ -63,9 +63,11 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | MD | Moldova | 24 | `MD24 AG00 0225 1000 1310 4168` | No | ![Supported][supported] | - |
 | ME | Montenegro | 22 | `ME25 5050 0001 2345 6789 51` | No | ![Supported][supported] | - |
 | MK | Macedonia | 19 | `MK07 2501 2000 0058 984` | No | ![Supported][supported] | - |
+| MN | Mongolia | 20 | `MN12 1234 1234 5678 9123` | No | ![Supported][supported] | - |
 | MR | Mauritania | 27 | `MR13 0002 0001 0100 0012 3456 753` | No | ![Supported][supported] | ![Supported][supported] |
 | MT | Malta | 31 | `MT84 MALT 0110 0001 2345 MTLC AST0 01S` | Yes | ![Supported][supported] | ![Supported][supported] |
 | MU | Mauritius | 30 | `MU17 BOMM 0101 1010 3030 0200 000M UR` | No | ![Supported][supported] | ![Supported][supported] |
+| NI | Nicaragua | 28 | `` | No | ![Supported][supported] | - |
 | NL | Netherlands (The) | 18 | `NL91 ABNA 0417 1643 00` | Yes | ![Supported][supported] | - |
 | NO | Norway | 15 | `NO93 8601 1117 947` | Yes | ![Supported][supported] | - |
 | PK | Pakistan | 24 | `PK36 SCBL 0000 0011 2345 6702` | No | ![Supported][supported] | - |
@@ -145,7 +147,6 @@ Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/Inte
 | ML | Mali | 28 | - | - | - | - |
 | MZ | Mozambique | 25 | - | - | - | - |
 | NE | Niger | 28 | - | - | - | - |
-| NI | Nicaragua | 32 | - | - | - | - |
 | SN | Senegal | 28 | - | - | - | - |
 | TD | Chad | 27 | - | - | - | - |
 | TG | Togo | 28 | - | - | - | - |
