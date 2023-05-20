@@ -121,9 +121,10 @@ public sealed class PatternToken
     /// <inheritdoc />
     public override string ToString()
     {
+        string category = Enum.GetName(typeof(AsciiCategory), Category)!;
         return IsFixedLength
-            ? $"{Category}[{MaxLength}]"
-            : $"{Category}[{MinLength}-{MaxLength}]";
+            ? $"{category}[{MaxLength}]"
+            : $"{category}[{MinLength}-{MaxLength}]";
     }
 
     private static Func<char, int, bool> GetCharacterTest(AsciiCategory category)

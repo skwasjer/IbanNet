@@ -16,6 +16,15 @@ public enum AsciiCategory
     None = 0,
 
     /// <summary>
+    /// No ASCII category.
+    /// </summary>
+    [Obsolete("Use None instead.", true)]
+#pragma warning disable CA1069
+    // ReSharper disable once UnusedMember.Global
+    Other = 0,
+#pragma warning restore CA1069
+
+    /// <summary>
     /// The space character.
     /// </summary>
     Space = 0x1,
