@@ -9,6 +9,7 @@
 
   > As with any new addition to the registry, some caution is advised and possibly changes are to be expected as I've seen such inaccuracies more often in the past.
 - Refactored pattern tokenizer to support wide tokens (multi char), next to (single) char tokens. This is an internal change that can unlock some extra future functionality.
+- Fix: the property `IbanRegistry.Providers` is made read-only after hydrating/using the registry to prevent it from being modified.
 
 ## v5.8.1
 
