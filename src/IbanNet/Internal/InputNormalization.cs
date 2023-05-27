@@ -11,15 +11,15 @@ internal static class InputNormalization
     /// <param name="value">The input value to normalize.</param>
     /// <returns>The normalized IBAN.</returns>
 #if USE_SPANS
-    internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
+    internal static string? NormalizeOrNull([NotNullIfNotNull(nameof(value))] string? value)
     {
         return value is null ? null : Normalize(value.AsSpan()).ToString();
     }
 
-    private static ReadOnlySpan<char> Normalize(ReadOnlySpan<char> value)
+    internal static ReadOnlySpan<char> Normalize(ReadOnlySpan<char> value)
     {
 #else
-    internal static string? NormalizeOrNull([NotNullIfNotNull("value")] string? value)
+    internal static string? NormalizeOrNull([NotNullIfNotNull(nameof(value))] string? value)
     {
         if (value is null)
         {

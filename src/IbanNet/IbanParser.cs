@@ -70,7 +70,11 @@ public sealed class IbanParser : IIbanParser
     }
 
     private bool TryParse(
+#if USE_SPANS
+        ReadOnlySpan<char> value,
+#else
         string? value,
+#endif
         [NotNullWhen(true)] out Iban? iban,
         [MaybeNullWhen(false)] out ValidationResult? validationResult,
         [MaybeNullWhen(false)] out Exception? exceptionThrown)
@@ -78,7 +82,11 @@ public sealed class IbanParser : IIbanParser
         iban = null;
         exceptionThrown = null;
 
+#if USE_SPANS
+        string normalizedValue = InputNormalization.Normalize(value).ToString();
+#else
         string? normalizedValue = InputNormalization.NormalizeOrNull(value);
+#endif
 
         try
         {
