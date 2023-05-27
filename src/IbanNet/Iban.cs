@@ -128,6 +128,20 @@ public sealed class Iban
     /// O => XXXXXXXXXXXXXXXXXX4300
     /// </example>
     /// <param name="format">The format to use.
+    /// <list type="table">
+    /// <item>
+    /// <term>P</term>
+    /// <description>Format in human readable format. (eg. NL91 ABNA 0417 1643 00)</description>
+    /// </item>
+    /// <item>
+    /// <term>E</term>
+    /// <description>Format in electronic format. (eg. NL91ABNA0417164300)</description>
+    /// </item>
+    /// <item>
+    /// <term>O</term>
+    /// <description>Format in obfuscated format. (eg. XXXXXXXXXXXXXXXXXX4300)</description>
+    /// </item>
+    /// </list>
     /// -or-
     /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
     /// </param>
@@ -144,6 +158,20 @@ public sealed class Iban
     /// O => XXXXXXXXXXXXXXXXXX4300
     /// </example>
     /// <param name="format">The format to use.
+    /// <list type="table">
+    /// <item>
+    /// <term>P</term>
+    /// <description>Format in human readable format. (eg. NL91 ABNA 0417 1643 00)</description>
+    /// </item>
+    /// <item>
+    /// <term>E</term>
+    /// <description>Format in electronic format. (eg. NL91ABNA0417164300)</description>
+    /// </item>
+    /// <item>
+    /// <term>O</term>
+    /// <description>Format in obfuscated format. (eg. XXXXXXXXXXXXXXXXXX4300)</description>
+    /// </item>
+    /// </list>
     /// -or-
     /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
     /// </param>
