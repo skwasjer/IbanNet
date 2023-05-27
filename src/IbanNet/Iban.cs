@@ -18,6 +18,9 @@ namespace IbanNet;
 #endif
 public sealed class Iban
     : IEquatable<Iban>,
+#if NET7_0_OR_GREATER
+      IParsable<Iban>,
+#endif
       IFormattable
 {
     /// <summary>
@@ -274,5 +277,53 @@ public sealed class Iban
 #else
             : _iban.Substring(structure.Position, structure.Length);
 #endif
+    }
+
+    /// <summary>
+    /// Converts the specified <paramref name="s" /> into an <see cref="Iban" />.
+    /// </summary>
+    /// <param name="s">The IBAN value to parse.</param>
+    /// <returns>An <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="s" /> is <see langword="null" />.</exception>
+    /// <exception cref="IbanFormatException">Thrown when the specified <paramref name="s" /> is not a valid IBAN.</exception>
+    public static Iban Parse(string s) => Parse(s, null);
+
+    /// <summary>
+    /// Converts the specified <paramref name="s" /> into an <see cref="Iban" />.
+    /// </summary>
+    /// <param name="s">The IBAN value to parse.</param>
+    /// <param name="provider">An object that supplies culture-specific formatting information about <paramref name="s" />.</param>
+    /// <returns>An <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="s" /> is <see langword="null" />.</exception>
+    /// <exception cref="IbanFormatException">Thrown when the specified <paramref name="s" /> is not a valid IBAN.</exception>
+#pragma warning disable IDE0060
+    public static Iban Parse(string s, IFormatProvider? provider)
+#pragma warning restore IDE0060
+    {
+        var parser = new IbanParser(IbanRegistry.Default);
+        return parser.Parse(s);
+    }
+
+    /// <summary>
+    /// Tries to convert the specified <paramref name="s" /> into an <see cref="Iban" />.
+    /// </summary>
+    /// <param name="s">The IBAN value to parse.</param>
+    /// <param name="result">The <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</param>
+    /// <returns><see langword="true" /> if the <paramref name="s" /> is converted successfully, or <see langword="false" /> otherwise</returns>
+    public static bool TryParse(string? s, [NotNullWhen(true)] out Iban? result) => TryParse(s, null, out result);
+
+    /// <summary>
+    /// Tries to convert the specified <paramref name="s" /> into an <see cref="Iban" />.
+    /// </summary>
+    /// <param name="s">The IBAN value to parse.</param>
+    /// <param name="provider">An object that supplies culture-specific formatting information about <paramref name="s" />.</param>
+    /// <param name="result">The <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</param>
+    /// <returns><see langword="true" /> if the <paramref name="s" /> is converted successfully, or <see langword="false" /> otherwise</returns>
+#pragma warning disable IDE0060
+    public static bool TryParse(string? s, IFormatProvider? provider, [NotNullWhen(true)] out Iban? result)
+#pragma warning restore IDE0060
+    {
+        var parser = new IbanParser(IbanRegistry.Default);
+        return parser.TryParse(s, out result);
     }
 }
