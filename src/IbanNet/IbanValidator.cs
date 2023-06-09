@@ -19,9 +19,31 @@ public sealed class IbanValidator : IIbanValidator
     /// Initializes a new instance of the <see cref="IbanValidator" /> class.
     /// </summary>
     public IbanValidator()
-        : this(
-            new IbanValidatorOptions()
-        )
+        : this(IbanRegistry.Default)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IbanValidator" /> class using specified <paramref name="registry" />.
+    /// </summary>
+    /// <param name="registry">The IBAN registry to use.</param>
+    public IbanValidator(IIbanRegistry registry)
+        : this(new IbanValidatorOptions { Registry = registry ?? throw new ArgumentNullException(nameof(registry)) })
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IbanValidator" /> class using specified <paramref name="registry" /> and <paramref name="rules" />.
+    /// </summary>
+    /// <param name="registry">The IBAN registry to use.</param>
+    /// <param name="rules">A list of additional (custom) rules to run after the built-in validation.</param>
+    public IbanValidator(IIbanRegistry registry, IEnumerable<IIbanValidationRule> rules)
+        : this(new IbanValidatorOptions
+        {
+            Registry = registry ?? throw new ArgumentNullException(nameof(registry)),
+            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+            Rules = rules?.ToList() ?? throw new ArgumentNullException(nameof(rules))
+        })
     {
     }
 
@@ -32,7 +54,7 @@ public sealed class IbanValidator : IIbanValidator
     public IbanValidator(IbanValidatorOptions options)
         : this(
             options ?? throw new ArgumentNullException(nameof(options)),
-            new DefaultValidationRuleResolver(options)
+            new DefaultValidationRuleResolver(options.Registry, options.Rules)
         )
     {
     }
@@ -42,7 +64,6 @@ public sealed class IbanValidator : IIbanValidator
     /// </summary>
     /// <param name="options">The validator options.</param>
     /// <param name="validationRuleResolver">The validation rule resolver.</param>
-    // ReSharper disable once MemberCanBePrivate.Global
     internal IbanValidator(IbanValidatorOptions options, IValidationRuleResolver validationRuleResolver)
     {
         Options = options ?? throw new ArgumentNullException(nameof(options));
@@ -51,12 +72,7 @@ public sealed class IbanValidator : IIbanValidator
             throw new ArgumentNullException(nameof(validationRuleResolver));
         }
 
-        if (options.Registry is null)
-        {
-            throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
-        }
-
-        SupportedCountries = options.Registry;
+        SupportedCountries = options.Registry ?? throw new ArgumentException(Resources.ArgumentException_Registry_is_required, nameof(options));
         _rules = validationRuleResolver.GetRules().ToList();
     }
 

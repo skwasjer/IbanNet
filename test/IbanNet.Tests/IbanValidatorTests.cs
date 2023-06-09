@@ -25,8 +25,11 @@ public class IbanValidatorTests
 
         public static IEnumerable<object?[]> CtorWithOptionsTestCases()
         {
-            yield return new object?[] { () => new IbanValidator(null!), typeof(ArgumentNullException), "options" };
-            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }), typeof(ArgumentException), "options" };
+            yield return new object?[] { () => new IbanValidator((IbanValidatorOptions)null!), typeof(ArgumentNullException), "options" };
+            yield return new object?[] { () => new IbanValidator((IIbanRegistry)null!), typeof(ArgumentNullException), "registry" };
+            yield return new object?[] { () => new IbanValidator(null!, Array.Empty<IIbanValidationRule>()), typeof(ArgumentNullException), "registry" };
+            yield return new object?[] { () => new IbanValidator(Mock.Of<IIbanRegistry>(), null!), typeof(ArgumentNullException), "rules" };
+            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }), typeof(ArgumentNullException), "registry" };
             yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions(), null!), typeof(ArgumentNullException), "validationRuleResolver" };
             yield return new object?[] { () => new IbanValidator(null!, Mock.Of<IValidationRuleResolver>()), typeof(ArgumentNullException), "options" };
             yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }, Mock.Of<IValidationRuleResolver>()), typeof(ArgumentException), "options" };

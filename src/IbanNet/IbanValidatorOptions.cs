@@ -16,5 +16,5 @@ public class IbanValidatorOptions
     /// <summary>
     /// Gets custom rules to apply after built-in IBAN validation has taken place.
     /// </summary>
-    public ICollection<IIbanValidationRule> Rules { get; } = new List<IIbanValidationRule>();
+    public ICollection<IIbanValidationRule> Rules { get; internal init; } = new List<IIbanValidationRule>();
 }

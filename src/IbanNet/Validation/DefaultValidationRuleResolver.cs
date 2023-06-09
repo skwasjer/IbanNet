@@ -1,4 +1,5 @@
-﻿using IbanNet.Validation.Rules;
+﻿using IbanNet.Registry;
+using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation;
 
@@ -7,14 +8,20 @@ namespace IbanNet.Validation;
 /// </summary>
 internal class DefaultValidationRuleResolver : IValidationRuleResolver
 {
-    private readonly IbanValidatorOptions _options;
+    private readonly IIbanRegistry _registry;
+    private readonly IEnumerable<IIbanValidationRule> _customRules;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DefaultValidationRuleResolver" />.
     /// </summary>
-    public DefaultValidationRuleResolver(IbanValidatorOptions options)
+    public DefaultValidationRuleResolver
+    (
+        IIbanRegistry registry,
+        IEnumerable<IIbanValidationRule>? customRules = null
+    )
     {
-        _options = options ?? throw new ArgumentNullException(nameof(options));
+        _registry = registry ?? throw new ArgumentNullException(nameof(registry));
+        _customRules = customRules ?? Array.Empty<IIbanValidationRule>();
     }
 
     /// <inheritdoc />
@@ -24,19 +31,13 @@ internal class DefaultValidationRuleResolver : IValidationRuleResolver
         yield return new HasCountryCodeRule();
         yield return new NoIllegalCharactersRule();
         yield return new HasIbanChecksumRule();
-        yield return new IsValidCountryCodeRule(_options.Registry);
+        yield return new IsValidCountryCodeRule(_registry);
         yield return new IsValidLengthRule();
         yield return new IsMatchingStructureRule();
 
         yield return new Mod97Rule();
 
-        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-        if (_options.Rules is null)
-        {
-            yield break;
-        }
-
-        foreach (IIbanValidationRule rule in _options.Rules)
+        foreach (IIbanValidationRule rule in _customRules)
         {
             yield return rule;
         }
