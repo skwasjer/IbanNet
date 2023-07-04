@@ -177,7 +177,7 @@
         <value>El país '{0}' no defineix un IBAN vàlid.</value>
     </data>
     <data name="CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted" xml:space="preserve">
-        <value>comptes bancaris del país {0} no s'accepten.</value>
+        <value>Els comptes bancaris del país {0} no s'accepten.</value>
     </data>
     <data name="ArgumentException_At_least_one_country_code_must_be_provided" xml:space="preserve">
         <value>S'ha d'indicar al menys un codi de país.</value>
