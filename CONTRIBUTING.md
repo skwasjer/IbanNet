@@ -28,6 +28,7 @@ PRs to our libraries are always welcome and can be a quick way to get your fix o
 - Only fix/add the functionality in question OR address wide-spread whitespace/style/static code analysis issues, not both.
 - Add or update unit or integration tests for new, fixed or changed functionality.
 - Address a single concern in the least number of changed lines as possible.
+- Update the `./CHANGELOG.md` file under the 'Unreleased' section with a meaningful description of the change.
 - Include documentation in the repo or on our wiki pages.
 - Reference the relevant issue number the PR addresses, if any.
 - Follow code style conventions as per [.editorconfig](./.editorconfig).
@@ -44,11 +45,10 @@ For changes that address core functionality or would require breaking changes (e
 
 Building/developing IbanNet requires:
 
-- dotnet tooling / .NET 6 SDK / MSBuild 17.x
+- dotnet tooling / Latest .NET SDK / MSBuild 17.x
 - [T4 templating](https://docs.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022) support (only if updating registry providers)
 - PowerShell 2.0
 - SDK's/targetting packs of any of the [supported target frameworks](../../wiki/Installation#target-frameworks), plus additionally, for running unit tests:
-  - .NET Core 3.1
-  - .NET Core 2.1
+  - .NET 5
   - .NET Framework 4.8
 
