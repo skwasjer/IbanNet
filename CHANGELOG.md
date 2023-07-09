@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- [#144](https://github.com/skwasjer/IbanNet/pull/144) Add Catalan localization.
+- [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
+- In `IbanParser` internals, use `ReadOnlySpan<T>`.
+- Add additional constructor overloads to `IbanValidator`, in preparation of possible deprecation of `IbanValidatorOptions`. Even if not deprecating, it is still convenient.
+
 ## v5.9.0
 
 - Upgraded SWIFT registry to April '23 release 94, which adds Mongolia (MN) and Nicaragua (NI).
