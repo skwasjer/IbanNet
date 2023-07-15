@@ -2,10 +2,13 @@
 
 ## Unreleased
 
+- [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
+
+## v5.10.0
+
 - Upgraded SWIFT registry provider to July '23 release 95, which adds Falkland Islands (FK).
 - Upgraded Wikipedia registry provider, which adds North Macedonia (MK).
 - [#144](https://github.com/skwasjer/IbanNet/pull/144) Add Catalan localization.
-- [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
 - In `IbanParser` internals, use `ReadOnlySpan<T>`.
 - Add additional constructor overloads to `IbanValidator`, in preparation of possible deprecation of `IbanValidatorOptions`. Even if not deprecating, it is still convenient.
 
