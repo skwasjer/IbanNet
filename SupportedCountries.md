@@ -2,7 +2,7 @@
 
 *In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
 
-# IbanNet supports 123 countries
+# IbanNet supports 124 countries
 
 ## SWIFT registry
 
@@ -34,6 +34,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | EG | Egypt | 29 | `EG38 0019 0005 0000 0000 2631 8000 2` | No | ![Supported][supported] | ![Supported][supported] |
 | ES | Spain | 24 | `ES91 2100 0418 4502 0005 1332` | Yes | ![Supported][supported] | ![Supported][supported] |
 | FI | Finland | 18 | `FI21 1234 5600 0007 85` | Yes | ![Supported][supported] | - |
+| FK | Falkland Islands | 18 | `FK88 SC12 3456 7890 12` | No | ![Supported][supported] | - |
 | FO | Faroe Islands | 18 | `FO62 6460 0001 6316 34` | No | ![Supported][supported] | - |
 | FR | France | 27 | `FR14 2004 1010 0505 0001 3M02 606` | Yes | ![Supported][supported] | ![Supported][supported] |
 | GB | United Kingdom | 22 | `GB29 NWBK 6016 1331 9268 19` | Yes | ![Supported][supported] | ![Supported][supported] |

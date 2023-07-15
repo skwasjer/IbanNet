@@ -12,10 +12,10 @@ namespace IbanNet.Registry.Wikipedia;
 /// <para>
 /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
 /// Page ID: 15253
-/// Rev ID: 1145025467
+/// Rev ID: 1159613938
 /// </para>
 /// </remarks>
-[GeneratedCode("WikiRegistryProviderT4", "1.15253-1145025467")]
+[GeneratedCode("WikiRegistryProviderT4", "1.15253-1159613938")]
 public class WikipediaRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -402,14 +402,6 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
             Bban = new BbanStructure(new WikipediaPattern("3n,13c"), 4)
         };
 
-        yield return new IbanCountry("MK")
-        {
-            NativeName = "Северна Македонија",
-            EnglishName = "North Macedonia",
-            Iban = new IbanStructure(new IbanWikipediaPattern("MK", "3n,10c,2n")),
-            Bban = new BbanStructure(new WikipediaPattern("3n,10c,2n"), 4)
-        };
-
         yield return new IbanCountry("MT")
         {
             NativeName = "Malta",
@@ -464,6 +456,14 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
             EnglishName = "Netherlands",
             Iban = new IbanStructure(new IbanWikipediaPattern("NL", "4a,10n")),
             Bban = new BbanStructure(new WikipediaPattern("4a,10n"), 4)
+        };
+
+        yield return new IbanCountry("MK")
+        {
+            NativeName = "Северна Македонија",
+            EnglishName = "North Macedonia",
+            Iban = new IbanStructure(new IbanWikipediaPattern("MK", "3n,10c,2n")),
+            Bban = new BbanStructure(new WikipediaPattern("3n,10c,2n"), 4)
         };
 
         yield return new IbanCountry("NO")

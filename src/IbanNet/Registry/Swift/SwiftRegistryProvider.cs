@@ -9,9 +9,9 @@ namespace IbanNet.Registry.Swift;
 /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 /// </summary>
 /// <remarks>
-/// Generated from: swift_iban_registry_202304.r94.txt
+/// Generated from: swift_iban_registry_202307.r95.txt
 /// </remarks>
-[GeneratedCode("SwiftRegistryProviderT4", "1.1-r94")]
+[GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
 public class SwiftRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -876,6 +876,38 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             DomesticAccountNumberExample = "",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+        };
+
+        // Falkland Islands
+        yield return new IbanCountry("FK")
+        {
+            NativeName = "Falkland Islands",
+            EnglishName = "Falkland Islands",
+            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
+            {
+                new("FK"),
+                new(AsciiCategory.Digit, 2, 2),
+                new(AsciiCategory.UppercaseLetter, 2, 2),
+                new(AsciiCategory.Digit, 12, 12),
+            }))
+            {
+                Example = "FK88SC123456789012",
+                EffectiveDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero)
+            },
+            Bban = new BbanStructure(new SwiftPattern("2!a12!n"), 4)
+            {
+                Example = "SC123456789012"
+            },
+            Bank = new BankStructure(new SwiftPattern("2!a"), 4)
+            {
+                Example = "SC"
+            },
+            Sepa = new SepaInfo
+            {
+                IsMember = false
+            },
+            DomesticAccountNumberExample = "123456789012",
+            LastUpdatedDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Faroe Islands

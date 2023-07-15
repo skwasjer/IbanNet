@@ -1,8 +1,10 @@
 ﻿<#@ template hostspecific="true" language="C#" #>
 <#@ assembly name="NetStandard" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="System.Linq" #>
 <#@ assembly name="System.Memory" #>
 <#@ assembly name="System.Text.Json" #>
+<#@ assembly name="System.Text.RegularExpressions" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -10,9 +12,10 @@
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text.Json" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Xml.XPath" #>
-<#@ import namespace="System.Text.Json" #>
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Diagnostics;
@@ -30,6 +33,11 @@ namespace IbanNet.Registry.Wikipedia;
     byte[] buffer = ms.ToArray();
 
     WikiResponse wikiResponse = JsonSerializer.Deserialize<WikiResponse>(buffer, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+    var tableRegex = new Regex("(<table[^\\>]*?>.*<\\/table>)", RegexOptions.Singleline);
+    var tableMatch = tableRegex.Match(wikiResponse.Parse.Text["*"]);
+    var tableHtml = $"<div>${tableMatch.Value}</div>";
+
 #>
 /// <summary>
 /// This IBAN registry provider is derived from Wikipedia.
@@ -70,7 +78,7 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         // ReSharper disable CommentTypo
         // ReSharper disable StringLiteralTypo
 <#
-            using var reader = new StringReader(wikiResponse.Parse.Text["*"]);
+            using var reader = new StringReader(tableHtml);
 
             var doc = XDocument.Load(reader);
             var wikiSpecs = doc.XPathSelectElements("//tr")

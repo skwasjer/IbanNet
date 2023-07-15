@@ -8,6 +8,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="IbanNet.CodeGen.Swift" #>
+<#@ import namespace="IbanNet.Registry.Patterns" #>
 <#@ import namespace="IbanNet.Registry.Swift" #>
 <#@ output extension=".cs" #>
 using System.CodeDom.Compiler;
@@ -97,7 +98,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         foreach (var token in pattern.Tokens.Skip(1))
         {
 #>
-                new(AsciiCategory.<#= token.Category #>, <#= token.MinLength #>, <#= token.MaxLength #>),
+                new(AsciiCategory.<#= Enum.GetName(typeof(AsciiCategory), token.Category) #>, <#= token.MinLength #>, <#= token.MaxLength #>),
 <#
         }
 #>
