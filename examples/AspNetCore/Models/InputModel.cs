@@ -7,16 +7,16 @@ using System.ComponentModel.DataAnnotations;
 #endif
 using IbanNet;
 
-namespace ExampleWebApplication.Models
+namespace AspNetCoreExample.Models
 {
 	public class InputModel
 	{
 #if !DEBUG_FLUENTVALIDATION
-		[Required]
-		[Iban]
+        [Required]
+        [Iban(Strict = false)]
 #endif
-		public string BankAccountNumber { get; set; }
-	}
+        public string BankAccountNumber { get; set; } = default!;
+    }
 
 #if DEBUG_FLUENTVALIDATION
 	public class InputModelValidator : AbstractValidator<InputModel>
@@ -26,7 +26,7 @@ namespace ExampleWebApplication.Models
 		    RuleFor(x => x.BankAccountNumber)
 			    .NotNull()
 			    .NotEmpty()
-			    .Iban(ibanValidator);
+			    .Iban(ibanValidator, strict: false);
 	    }
     }
 #endif

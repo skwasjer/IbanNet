@@ -2,10 +2,11 @@
 using AutoMapperExample.Domain;
 using AutoMapperExample.Dtos;
 using AutoMapperExample.Mappings;
+using IbanNet;
 using IbanNet.Registry;
 
 var generator = new IbanGenerator();
-IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile<PaymentProfile>())
+IMapper mapper = new MapperConfiguration(cfg => cfg.AddProfile(new PaymentProfile(new IbanParser(IbanRegistry.Default))))
     .CreateMapper();
 
 do
@@ -37,7 +38,8 @@ do
         Payment payment = mapper.Map<Payment>(dto);
         Console.WriteLine($"Payment mapped: {payment.Amount} {payment.Currency} from account {payment.BankAccountNumber:E}");
     }
-    catch (AutoMapperMappingException)
+    catch (AutoMapperMappingException ex)
+        when (ex.InnerException is IbanFormatException)
     {
         Console.WriteLine("Unable to map payment, because the input IBAN string is invalid.");
     }

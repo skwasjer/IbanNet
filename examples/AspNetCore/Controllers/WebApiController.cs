@@ -1,35 +1,34 @@
-﻿using ExampleWebApplication.Models;
+﻿using AspNetCoreExample.Models;
 using IbanNet;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ExampleWebApplication.Controllers
+namespace AspNetCoreExample.Controllers;
+
+/// <summary>
+/// Web API example, showing usage of IbanNet.
+/// </summary>
+[Route("api/[controller]")]
+public class WebApiController : ControllerBase
 {
-	/// <summary>
-	/// Web API example, showing usage of IbanNet.
-	/// </summary>
-	[Route("api/[controller]")]
-	public class WebApiController : ControllerBase
-	{
-		private readonly IIbanParser _parser;
+    private readonly IIbanParser _parser;
 
-		public WebApiController(IIbanParser parser)
-		{
-			_parser = parser;
-		}
+    public WebApiController(IIbanParser parser)
+    {
+        _parser = parser;
+    }
 
-		[HttpPost]
-		public IActionResult Save([FromBody] InputModel model)
-		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
+    [HttpPost]
+    public IActionResult Save([FromBody] InputModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-			Iban iban = _parser.Parse(model.BankAccountNumber);
-			// Do something with model...
-			model.BankAccountNumber = iban.ToString(IbanFormat.Print);
+        Iban iban = _parser.Parse(model.BankAccountNumber);
+        // Do something with model...
+        model.BankAccountNumber = iban.ToString(IbanFormat.Print);
 
-			return Ok(model);
-		}
-	}
+        return Ok(model);
+    }
 }

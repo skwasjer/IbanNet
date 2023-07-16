@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using AutoMapperExample.Domain;
 using AutoMapperExample.Dtos;
+using IbanNet;
 
 namespace AutoMapperExample.Mappings
 {
     public class PaymentProfile : Profile
     {
-        public PaymentProfile()
+        public PaymentProfile(IIbanParser ibanParser)
         {
-            CreateMap<Payment, PaymentDto>()
-                .ForMember(dest => dest.BankAccountNumber, opts => opts.MapFrom(src => src.BankAccountNumber))
-                .ForMember(dest => dest.Amount, opts => opts.MapFrom(src => src.Amount))
-                .ForMember(dest => dest.Currency, opts => opts.MapFrom(src => src.Currency))
-                .ReverseMap();
+            CreateMap<Payment, PaymentDto>().ReverseMap();
+
+            CreateMap<string, Iban>().ConvertUsing(s => ibanParser.Parse(s));
+            CreateMap<Iban, string>().ConvertUsing(s => s.ToString(IbanFormat.Electronic));
         }
     }
 }
