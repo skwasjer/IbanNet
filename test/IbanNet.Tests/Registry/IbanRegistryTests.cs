@@ -120,7 +120,7 @@ public class IbanRegistryTests
         };
 
         // Act
-        Action act = () => sut.Providers.Add(Mock.Of<IIbanRegistryProvider>());
+        Action act = () => sut.Providers.Add(Substitute.For<IIbanRegistryProvider>());
 
         // Assert
         act.Should().NotThrow();
@@ -140,7 +140,7 @@ public class IbanRegistryTests
 
         // Act
         sut.Count.Should().BeGreaterThan(0); // Hydrate
-        Action act = () => sut.Providers.Add(Mock.Of<IIbanRegistryProvider>());
+        Action act = () => sut.Providers.Add(Substitute.For<IIbanRegistryProvider>());
 
         // Assert
         act.Should().Throw<NotSupportedException>()
@@ -162,7 +162,7 @@ public class IbanRegistryTests
         // Act
         IList<IIbanRegistryProvider> providerRef = sut.Providers;
         sut.Count.Should().BeGreaterThan(0); // Hydrate
-        providerRef.Add(Mock.Of<IIbanRegistryProvider>());
+        providerRef.Add(Substitute.For<IIbanRegistryProvider>());
 
         // Assert
         sut.Providers.Should().HaveCount(1);

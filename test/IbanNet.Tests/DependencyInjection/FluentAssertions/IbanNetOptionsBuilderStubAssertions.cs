@@ -7,10 +7,10 @@ using TestHelpers.FluentAssertions;
 namespace IbanNet.DependencyInjection.FluentAssertions;
 
 public class IbanNetOptionsBuilderStubAssertions<T>
-    : ReferenceTypeAssertions<Mock<T>, IbanNetOptionsBuilderStubAssertions<T>>
+    : ReferenceTypeAssertions<T, IbanNetOptionsBuilderStubAssertions<T>>
     where T : class, IIbanNetOptionsBuilder
 {
-    public IbanNetOptionsBuilderStubAssertions(Mock<T> instance)
+    public IbanNetOptionsBuilderStubAssertions(T instance)
         : base(instance) { }
 
     protected override string Identifier => typeof(T).Name;
@@ -46,13 +46,13 @@ public class IbanNetOptionsBuilderStubAssertions<T>
         Func<Action<DependencyResolverAdapter, IbanValidatorOptions>, bool> assert = configureAction =>
         {
             var opts = new IbanValidatorOptions();
-            DependencyResolverAdapter adapter = new Mock<DependencyResolverAdapter>().Object;
+            DependencyResolverAdapter adapter = Substitute.For<DependencyResolverAdapter>();
             configureAction(adapter, opts);
 
             should(opts.Should());
             return true;
         };
 
-        Subject.Verify(m => m.Configure(It.Is<Action<DependencyResolverAdapter, IbanValidatorOptions>>(action => assert(action))));
+        Subject.Received().Configure(Arg.Is<Action<DependencyResolverAdapter, IbanValidatorOptions>>(action => assert(action)));
     }
 }

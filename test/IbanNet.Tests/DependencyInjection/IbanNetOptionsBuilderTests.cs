@@ -8,23 +8,21 @@ namespace IbanNet.DependencyInjection;
 
 public class IbanNetOptionsBuilderTests
 {
-    private readonly Mock<IIbanNetOptionsBuilder> _builderStub;
-    private readonly IIbanNetOptionsBuilder _builder;
+    private readonly IIbanNetOptionsBuilder _builderStub;
 
     protected IbanNetOptionsBuilderTests()
     {
-        _builder = GetBuilderStub();
-        _builderStub = Mock.Get(_builder);
+        _builderStub = GetBuilderStub();
     }
 
     private static IIbanNetOptionsBuilder GetBuilderStub()
     {
-        var builderMock = new Mock<IIbanNetOptionsBuilder>();
+        IIbanNetOptionsBuilder? builderMock = Substitute.For<IIbanNetOptionsBuilder>();
         builderMock
-            .Setup(m => m.Configure(It.IsAny<Action<DependencyResolverAdapter, IbanValidatorOptions>>()))
-            .Returns(builderMock.Object);
+            .Configure(Arg.Any<Action<DependencyResolverAdapter, IbanValidatorOptions>>())
+            .Returns(builderMock);
 
-        return builderMock.Object;
+        return builderMock;
     }
 
     public class ExtensionTests : IbanNetOptionsBuilderTests
@@ -37,7 +35,7 @@ public class IbanNetOptionsBuilderTests
                 .ToList();
 
             // Act
-            IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistry(new IbanRegistry
+            IIbanNetOptionsBuilder returnedBuilder = _builderStub.UseRegistry(new IbanRegistry
             {
                 Providers =
                 {
@@ -47,7 +45,7 @@ public class IbanNetOptionsBuilderTests
 
             // Assert
             _builderStub.Should().HaveConfiguredRegistry(limitedCountries);
-            returnedBuilder.Should().BeSameAs(_builderStub.Object);
+            returnedBuilder.Should().BeSameAs(_builderStub);
         }
 
         [Fact]
@@ -56,7 +54,7 @@ public class IbanNetOptionsBuilderTests
             var registry = new IbanRegistry();
 
             // Act
-            Action act = () => _builder.UseRegistry(registry);
+            Action act = () => _builderStub.UseRegistry(registry);
 
             // Assert
             act.Should()
@@ -71,11 +69,11 @@ public class IbanNetOptionsBuilderTests
             var customProvider = new IbanRegistryListProvider(new[] { new IbanCountry("XX") });
 
             // Act
-            IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistryProvider(customProvider);
+            IIbanNetOptionsBuilder returnedBuilder = _builderStub.UseRegistryProvider(customProvider);
 
             // Assert
             _builderStub.Should().HaveConfiguredRegistry(customProvider);
-            returnedBuilder.Should().BeSameAs(_builderStub.Object);
+            returnedBuilder.Should().BeSameAs(_builderStub);
         }
 
         [Fact]
@@ -84,11 +82,11 @@ public class IbanNetOptionsBuilderTests
             var customProvider = new IbanRegistryListProvider(new[] { new IbanCountry("XX") });
 
             // Act
-            IIbanNetOptionsBuilder returnedBuilder = _builder.UseRegistryProvider(new SwiftRegistryProvider(), customProvider);
+            IIbanNetOptionsBuilder returnedBuilder = _builderStub.UseRegistryProvider(new SwiftRegistryProvider(), customProvider);
 
             // Assert
             _builderStub.Should().HaveConfiguredRegistry(new SwiftRegistryProvider().Concat(customProvider));
-            returnedBuilder.Should().BeSameAs(_builderStub.Object);
+            returnedBuilder.Should().BeSameAs(_builderStub);
         }
 
         [Fact]
@@ -97,13 +95,13 @@ public class IbanNetOptionsBuilderTests
             var configuredRule = new TestValidationRule();
 
             // Act
-            IIbanNetOptionsBuilder returnedBuilder = _builder.WithRule(() => configuredRule);
+            IIbanNetOptionsBuilder returnedBuilder = _builderStub.WithRule(() => configuredRule);
 
             // Assert
             _builderStub.Should()
                 .HaveConfiguredRule<TestValidationRule>()
                 .And.Contain(configuredRule);
-            returnedBuilder.Should().BeSameAs(_builderStub.Object);
+            returnedBuilder.Should().BeSameAs(_builderStub);
         }
     }
 
@@ -133,7 +131,7 @@ public class IbanNetOptionsBuilderTests
                 DelegateTestCase.Create(
                     IbanNetOptionsBuilderExtensions.UseRegistry,
                     instance,
-                    Mock.Of<IIbanRegistry>()),
+                    Substitute.For<IIbanRegistry>()),
                 DelegateTestCase.Create(
                     IbanNetOptionsBuilderExtensions.UseRegistryProvider,
                     instance,

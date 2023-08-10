@@ -10,10 +10,10 @@ public class DefaultValidationRuleResolverTests
 
     public DefaultValidationRuleResolverTests()
     {
-        var registryMock = new Mock<IIbanRegistry>();
-        registryMock.Setup(m => m.Providers).Returns(new List<IIbanRegistryProvider>());
+        IIbanRegistry registryMock = Substitute.For<IIbanRegistry>();
+        registryMock.Providers.Returns(new List<IIbanRegistryProvider>());
         _customRules = new List<IIbanValidationRule>();
-        _sut = new DefaultValidationRuleResolver(registryMock.Object, _customRules);
+        _sut = new DefaultValidationRuleResolver(registryMock, _customRules);
     }
 
     [Fact]
@@ -44,8 +44,8 @@ public class DefaultValidationRuleResolverTests
     [Fact]
     public void Given_custom_rules_when_getting_rules_it_should_append_custom_rules()
     {
-        IIbanValidationRule rule1 = Mock.Of<IIbanValidationRule>();
-        IIbanValidationRule rule2 = Mock.Of<IIbanValidationRule>();
+        IIbanValidationRule rule1 = Substitute.For<IIbanValidationRule>();
+        IIbanValidationRule rule2 = Substitute.For<IIbanValidationRule>();
         _customRules.Add(rule1);
         _customRules.Add(rule2);
 

@@ -135,7 +135,7 @@ public class IbanTests
 
         public When_comparing_for_equality()
         {
-            var ibanParser = new IbanParser(new IbanValidatorStub());
+            var ibanParser = new IbanParser(IbanValidatorStub.Create());
 
             _iban = ibanParser.Parse(TestValues.ValidIban);
             _equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);
@@ -216,7 +216,7 @@ public class IbanTests
 
         public When_comparing_for_inequality()
         {
-            var ibanParser = new IbanParser(new IbanValidatorStub());
+            var ibanParser = new IbanParser(IbanValidatorStub.Create());
 
             _iban = ibanParser.Parse(TestValues.ValidIban);
             _equalIban = ibanParser.Parse(TestValues.ValidIbanPartitioned);

@@ -17,7 +17,7 @@ public abstract class ConfiguredMultipleRulesSpec : DiSpec
 
     protected override void Given()
     {
-        IIbanValidationRule fakeRule = Mock.Of<IIbanValidationRule>();
+        IIbanValidationRule fakeRule = Substitute.For<IIbanValidationRule>();
         _fakeRuleType = fakeRule.GetType();
         Fixture.Configure(builder =>
         {

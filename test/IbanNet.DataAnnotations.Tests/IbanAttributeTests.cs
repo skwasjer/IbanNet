@@ -7,21 +7,21 @@ namespace IbanNet.DataAnnotations;
 [Collection(nameof(SetsStaticValidator))]
 public class IbanAttributeTests
 {
-    private readonly Mock<IServiceProvider> _serviceProviderMock;
+    private readonly IServiceProvider _serviceProviderMock;
     private readonly IbanAttribute _sut;
-    private readonly IbanValidatorStub _ibanValidatorStub;
+    private readonly IIbanValidator _ibanValidatorStub;
 
     private ValidationContext _validationContext;
 
     protected IbanAttributeTests()
     {
-        _ibanValidatorStub = new IbanValidatorStub();
-        _serviceProviderMock = new Mock<IServiceProvider>();
+        _ibanValidatorStub = IbanValidatorStub.Create();
+        _serviceProviderMock = Substitute.For<IServiceProvider>();
         _serviceProviderMock
-            .Setup(m => m.GetService(typeof(IIbanValidator)))
+            .GetService(typeof(IIbanValidator))
             .Returns(_ibanValidatorStub);
 
-        _validationContext = new ValidationContext(new object(), _serviceProviderMock.Object, null);
+        _validationContext = new ValidationContext(new object(), _serviceProviderMock, null);
 
         _sut = new IbanAttribute();
     }
@@ -35,7 +35,7 @@ public class IbanAttributeTests
             _sut.GetValidationResult(null, _validationContext);
 
             // Assert
-            _ibanValidatorStub.VerifyNoOtherCalls();
+            _ibanValidatorStub.ReceivedCalls().Should().BeEmpty();
         }
 
         [Fact]
@@ -45,7 +45,7 @@ public class IbanAttributeTests
             _sut.GetValidationResult(null, _validationContext);
 
             // Assert
-            _serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
+            _serviceProviderMock.DidNotReceiveWithAnyArgs().GetService(default!);
         }
 
         [Fact]
@@ -78,8 +78,8 @@ public class IbanAttributeTests
             _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
             // Assert
-            _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
-            _ibanValidatorStub.VerifyNoOtherCalls();
+            _ibanValidatorStub.Received(1).Validate(TestValues.ValidIban);
+            _ibanValidatorStub.ReceivedCalls().Should().HaveCount(1);
         }
 
         [Fact]
@@ -89,8 +89,8 @@ public class IbanAttributeTests
             _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
 
             // Assert
-            _serviceProviderMock.Verify(m => m.GetService(typeof(IIbanValidator)));
-            _serviceProviderMock.VerifyNoOtherCalls();
+            _serviceProviderMock.Received(1).GetService(typeof(IIbanValidator));
+            _serviceProviderMock.ReceivedCalls().Should().HaveCount(1);
         }
 
         [Fact]
@@ -123,8 +123,8 @@ public class IbanAttributeTests
             _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
             // Assert
-            _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
-            _ibanValidatorStub.VerifyNoOtherCalls();
+            _ibanValidatorStub.Received(1).Validate(TestValues.InvalidIban);
+            _ibanValidatorStub.ReceivedCalls().Should().HaveCount(1);
         }
 
         [Fact]
@@ -156,8 +156,8 @@ public class IbanAttributeTests
             _sut.GetValidationResult(TestValues.InvalidIban, _validationContext);
 
             // Assert
-            _serviceProviderMock.Verify(m => m.GetService(typeof(IIbanValidator)));
-            _serviceProviderMock.VerifyNoOtherCalls();
+            _serviceProviderMock.Received(1).GetService(typeof(IIbanValidator));
+            _serviceProviderMock.ReceivedCalls().Should().HaveCount(1);
         }
 
         [Fact]
@@ -215,8 +215,8 @@ public class IbanAttributeTests
             // Assert
             act.Should().Throw<NotImplementedException>();
 
-            _serviceProviderMock.Verify(m => m.GetService(It.IsAny<Type>()), Times.Never);
-            _ibanValidatorStub.VerifyNoOtherCalls();
+            _serviceProviderMock.DidNotReceiveWithAnyArgs().GetService(default!);
+            _ibanValidatorStub.ReceivedCalls().Should().BeEmpty();
         }
     }
 
@@ -227,9 +227,8 @@ public class IbanAttributeTests
         {
             // Arrange
             _serviceProviderMock
-                .Setup(m => m.GetService(typeof(IIbanValidator)))
-                .Returns(null)
-                .Verifiable();
+                .GetService(Arg.Any<Type>())
+                .Returns(null);
 
             // Act
             Action act = () => _sut.GetValidationResult(TestValues.ValidIban, _validationContext);
@@ -238,8 +237,8 @@ public class IbanAttributeTests
             act.Should()
                 .Throw<InvalidOperationException>()
                 .WithMessage("Failed to get an instance of *");
-            _serviceProviderMock.Verify();
-            _ibanValidatorStub.VerifyNoOtherCalls();
+            _serviceProviderMock.Received(1).GetService(typeof(IIbanValidator));
+            _ibanValidatorStub.ReceivedCalls().Should().BeEmpty();
         }
     }
 
@@ -258,7 +257,7 @@ public class IbanAttributeTests
             act.Should()
                 .Throw<InvalidOperationException>()
                 .WithMessage("Failed to get an instance of *");
-            _ibanValidatorStub.VerifyNoOtherCalls();
+            _ibanValidatorStub.ReceivedCalls().Should().BeEmpty();
         }
     }
 
