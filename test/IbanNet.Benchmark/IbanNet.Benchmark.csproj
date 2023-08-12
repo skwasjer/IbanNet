@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.6" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.7" />
     <PackageReference Include="IBAN4Net" Version="2.0.6" Condition="$(DefineConstants.Contains('VALIDATOR_COMPARISONS'))" />
     <PackageReference Include="IbanValidation" Version="2.0.0" Condition="$(DefineConstants.Contains('VALIDATOR_COMPARISONS'))" />
   </ItemGroup>
