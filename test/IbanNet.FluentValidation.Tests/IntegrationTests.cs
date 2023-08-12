@@ -34,6 +34,7 @@ public class IntegrationTests
             {
                 { "PropertyName", expectedFormattedPropertyName },
                 { "PropertyValue", attemptedIbanValue },
+                { "PropertyPath", nameof(_testModel.BankAccountNumber) },
                 { "Error", expectedError }
             }
         };
