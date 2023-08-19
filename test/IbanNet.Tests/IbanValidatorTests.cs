@@ -4,6 +4,7 @@ using IbanNet.Registry.Wikipedia;
 using IbanNet.Validation;
 using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
+using NSubstitute.ExceptionExtensions;
 
 namespace IbanNet;
 
@@ -28,11 +29,11 @@ public class IbanValidatorTests
             yield return new object?[] { () => new IbanValidator((IbanValidatorOptions)null!), typeof(ArgumentNullException), "options" };
             yield return new object?[] { () => new IbanValidator((IIbanRegistry)null!), typeof(ArgumentNullException), "registry" };
             yield return new object?[] { () => new IbanValidator(null!, Array.Empty<IIbanValidationRule>()), typeof(ArgumentNullException), "registry" };
-            yield return new object?[] { () => new IbanValidator(Mock.Of<IIbanRegistry>(), null!), typeof(ArgumentNullException), "rules" };
+            yield return new object?[] { () => new IbanValidator(Substitute.For<IIbanRegistry>(), null!), typeof(ArgumentNullException), "rules" };
             yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }), typeof(ArgumentNullException), "registry" };
             yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions(), null!), typeof(ArgumentNullException), "validationRuleResolver" };
-            yield return new object?[] { () => new IbanValidator(null!, Mock.Of<IValidationRuleResolver>()), typeof(ArgumentNullException), "options" };
-            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }, Mock.Of<IValidationRuleResolver>()), typeof(ArgumentException), "options" };
+            yield return new object?[] { () => new IbanValidator(null!, Substitute.For<IValidationRuleResolver>()), typeof(ArgumentNullException), "options" };
+            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }, Substitute.For<IValidationRuleResolver>()), typeof(ArgumentException), "options" };
         }
     }
 
@@ -91,18 +92,18 @@ public class IbanValidatorTests
     public class Given_custom_rule_is_added : IbanValidatorTests
     {
         private readonly IbanValidator _sut;
-        private readonly Mock<IIbanValidationRule> _customValidationRuleMock;
+        private readonly IIbanValidationRule _customValidationRuleMock;
 
         public Given_custom_rule_is_added()
         {
-            _customValidationRuleMock = new Mock<IIbanValidationRule>();
+            _customValidationRuleMock = Substitute.For<IIbanValidationRule>();
             _customValidationRuleMock
-                .Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
+                .Validate(Arg.Any<ValidationRuleContext>())
                 .Returns(ValidationRuleResult.Success);
 
             _sut = new IbanValidator(new IbanValidatorOptions
             {
-                Rules = { _customValidationRuleMock.Object }
+                Rules = { _customValidationRuleMock }
             });
         }
 
@@ -115,7 +116,7 @@ public class IbanValidatorTests
             _sut.Validate(iban);
 
             // Assert
-            _customValidationRuleMock.Verify(m => m.Validate(It.Is<ValidationRuleContext>(ctx => ctx.Value == iban)), Times.Once);
+            _customValidationRuleMock.Received(1).Validate(Arg.Is<ValidationRuleContext>(ctx => ctx.Value == iban));
         }
 
         [Fact]
@@ -125,7 +126,7 @@ public class IbanValidatorTests
             Exception exception = new InvalidOperationException("My custom error");
 
             _customValidationRuleMock
-                .Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
+                .Validate(Arg.Any<ValidationRuleContext>())
                 .Throws(exception);
 
             // Act
@@ -147,7 +148,7 @@ public class IbanValidatorTests
             const string errorMessage = "My custom error";
 
             _customValidationRuleMock
-                .Setup(m => m.Validate(It.IsAny<ValidationRuleContext>()))
+                .Validate(Arg.Any<ValidationRuleContext>())
                 .Returns(new ErrorResult(errorMessage));
 
             // Act

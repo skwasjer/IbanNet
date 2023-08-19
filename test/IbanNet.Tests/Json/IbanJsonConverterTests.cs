@@ -13,7 +13,7 @@ public class IbanJsonConverterTests
     public void When_creating_default_instance_it_should_use_static_validator()
     {
         const string ibanStr = "NL91ABNA0417164300";
-        var validatorStub = new IbanValidatorStub();
+        IIbanValidator validatorStub = IbanValidatorStub.Create();
 
         ReadOnlySpan<byte> buffer = Encoding.UTF8.GetBytes($"\"{ibanStr}\"");
         var reader = new Utf8JsonReader(buffer);
@@ -28,7 +28,7 @@ public class IbanJsonConverterTests
             sut.Read(ref reader, typeof(Iban), new JsonSerializerOptions());
 
             // Assert
-            validatorStub.Verify(m => m.Validate(ibanStr), Times.Once);
+            validatorStub.Received(1).Validate(ibanStr);
         }
         finally
         {
@@ -41,24 +41,22 @@ public class IbanJsonConverterTests
     {
         const string ibanStr = "NL91ABNA0417164300";
 
-        Iban? outIban = null;
-        var parserMock = new Mock<IIbanParser>();
+        IIbanParser parserMock = Substitute.For<IIbanParser>();
         parserMock
-            .Setup(m => m.TryParse(It.IsAny<string>(), out outIban))
-            .Returns(true)
-            .Verifiable();
+            .TryParse(Arg.Any<string>(), out Arg.Any<Iban?>())
+            .Returns(true);
 
         ReadOnlySpan<byte> buffer = Encoding.UTF8.GetBytes($"\"{ibanStr}\"");
         var reader = new Utf8JsonReader(buffer);
         reader.Read();
 
-        var sut = new IbanJsonConverter(parserMock.Object);
+        var sut = new IbanJsonConverter(parserMock);
 
         // Act
         sut.Read(ref reader, typeof(Iban), new JsonSerializerOptions());
 
         // Assert
-        parserMock.Verify();
+        parserMock.Received(1).TryParse(ibanStr, out Arg.Any<Iban?>());
     }
 
     [Fact]
@@ -97,7 +95,7 @@ public class IbanJsonConverterTests
     [MemberData(nameof(WriterNullArgTestCases))]
     public void Given_that_write_argument_is_null_when_writing_it_should_throw(Utf8JsonWriter writer, Iban value, string expectedParamName)
     {
-        var sut = new IbanJsonConverter(Mock.Of<IIbanParser>());
+        var sut = new IbanJsonConverter(Substitute.For<IIbanParser>());
 
         // Act
         Action act = () => sut.Write(writer, value, new JsonSerializerOptions());

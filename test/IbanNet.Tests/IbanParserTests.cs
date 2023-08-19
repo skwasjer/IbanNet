@@ -6,12 +6,12 @@ namespace IbanNet;
 
 public class IbanParserTests
 {
-    private readonly IbanValidatorStub _ibanValidatorStub;
+    private readonly IIbanValidator _ibanValidatorStub;
     private readonly IbanParser _sut;
 
     protected IbanParserTests()
     {
-        _ibanValidatorStub = new IbanValidatorStub();
+        _ibanValidatorStub = IbanValidatorStub.Create();
         _sut = new IbanParser(_ibanValidatorStub);
     }
 
@@ -129,16 +129,15 @@ public class IbanParserTests
         {
             const string expectedNormalizedIban = "NL91ABNA0417164300";
             _ibanValidatorStub
-                .Setup(m => m.Validate(expectedNormalizedIban))
-                .Returns(new ValidationResult { AttemptedValue = iban, Country = new IbanCountry("NL") })
-                .Verifiable();
+                .Validate(Arg.Any<string>())
+                .Returns(new ValidationResult { AttemptedValue = iban, Country = new IbanCountry("NL") });
 
             // Act
             Iban actual = _sut.Parse(iban);
 
             // Assert
             actual.ToString().Should().Be(expectedNormalizedIban);
-            _ibanValidatorStub.Verify();
+            _ibanValidatorStub.Received(1).Validate(expectedNormalizedIban);
         }
 
         [Fact]
@@ -187,7 +186,7 @@ public class IbanParserTests
             ex.Result.Should().BeNull();
             ex.InnerException.Should().NotBeNull();
             ex.Message.Should().Contain("is not a valid IBAN.");
-            _ibanValidatorStub.Verify(m => m.Validate(TestValues.IbanForCustomRuleException), Times.Once);
+            _ibanValidatorStub.Received(1).Validate(TestValues.IbanForCustomRuleException);
         }
     }
 
@@ -214,7 +213,7 @@ public class IbanParserTests
             actual.Should().BeFalse("the provided value was invalid");
             iban.Should().BeNull("parsing did not succeed");
 
-            _ibanValidatorStub.Verify(m => m.Validate(TestValues.InvalidIban), Times.Once);
+            _ibanValidatorStub.Received(1).Validate(TestValues.InvalidIban);
         }
 
         [Fact]
@@ -232,7 +231,7 @@ public class IbanParserTests
                 .Should()
                 .Be(TestValues.ValidIban);
 
-            _ibanValidatorStub.Verify(m => m.Validate(TestValues.ValidIban), Times.Once);
+            _ibanValidatorStub.Received(1).Validate(TestValues.ValidIban);
         }
     }
 }

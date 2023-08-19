@@ -6,7 +6,6 @@ namespace IbanNet.DependencyInjection;
 public class DependencyResolverAdapterTests
 {
     private readonly DependencyResolverAdapter _sut;
-    private readonly Mock<DependencyResolverAdapter> _adapterStub;
 
     private class TestService
     {
@@ -15,48 +14,45 @@ public class DependencyResolverAdapterTests
     public DependencyResolverAdapterTests()
     {
         _sut = CreateAdapterStub();
-        _adapterStub = Mock.Get(_sut);
     }
 
     private static DependencyResolverAdapter CreateAdapterStub()
     {
-        var adapterStub = new Mock<DependencyResolverAdapter> { CallBase = true };
+        DependencyResolverAdapter adapterStub = Substitute.For<DependencyResolverAdapter>();
         adapterStub
-            .Setup(m => m.GetService(It.IsAny<Type>()))
-            .Returns<Type>(Activator.CreateInstance);
-        return adapterStub.Object;
+            .GetService(Arg.Any<Type>())
+            .Returns(info => Activator.CreateInstance(info.Arg<Type>()));
+        return adapterStub;
     }
 
     [Fact]
     public void Given_service_is_not_registered_when_getting_generic_required_it_should_throw()
     {
-        _adapterStub
-            .Setup(m => m.GetService(It.IsAny<Type>()))
-            .Returns(null)
-            .Verifiable();
+        _sut
+            .GetService(Arg.Any<Type>())
+            .Returns(null);
 
         // Act
         Action act = () => _sut.GetRequiredService<TestService>();
 
         // Assert
         act.Should().Throw<InvalidOperationException>();
-        _adapterStub.Verify();
+        _sut.Received(1).GetService(Arg.Any<Type>());
     }
 
     [Fact]
     public void Given_service_is_not_registered_when_getting_required_it_should_throw()
     {
-        _adapterStub
-            .Setup(m => m.GetService(It.IsAny<Type>()))
-            .Returns(null)
-            .Verifiable();
+        _sut
+            .GetService(Arg.Any<Type>())
+            .Returns(null);
 
         // Act
         Action act = () => _sut.GetRequiredService(typeof(TestService));
 
         // Assert
         act.Should().Throw<InvalidOperationException>();
-        _adapterStub.Verify();
+        _sut.Received(1).GetService(Arg.Any<Type>());
     }
 
     [Theory]

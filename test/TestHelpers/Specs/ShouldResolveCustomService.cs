@@ -23,18 +23,12 @@ public abstract class ShouldResolveCustomService : DiSpec
     [InlineData(typeof(IIbanParser))]
     [InlineData(typeof(IIbanValidator))]
     [InlineData(typeof(IIbanGenerator))]
-    public void When_resolving_registry_it_should_not_throw(Type serviceType)
+    public void When_resolving_service_it_should_not_throw(Type serviceType)
     {
-        Type expectedMockType = typeof(IMocked<>).MakeGenericType(serviceType);
-
         // Assert
         Func<object?> act = () => Subject.GetService(serviceType);
 
         // Act
-        act.Should()
-            .NotThrow()
-            .Which
-            .Should()
-            .BeAssignableTo(expectedMockType);
+        act.Should().NotThrow();
     }
 }

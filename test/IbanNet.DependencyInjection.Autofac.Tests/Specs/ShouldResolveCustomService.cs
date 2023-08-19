@@ -19,10 +19,10 @@ public class ShouldResolveCustomService : TestHelpers.Specs.ShouldResolveCustomS
 
         protected override void Configure(ContainerBuilder containerBuilder, Action<IIbanNetOptionsBuilder> configurer)
         {
-            containerBuilder.RegisterInstance(Mock.Of<IIbanRegistry>());
-            containerBuilder.RegisterInstance(Mock.Of<IIbanParser>());
-            containerBuilder.RegisterInstance(Mock.Of<IIbanGenerator>());
-            containerBuilder.RegisterInstance(Mock.Of<IIbanValidator>());
+            containerBuilder.RegisterInstance(Substitute.For<IIbanRegistry>());
+            containerBuilder.RegisterInstance(Substitute.For<IIbanParser>());
+            containerBuilder.RegisterInstance(Substitute.For<IIbanGenerator>());
+            containerBuilder.RegisterInstance(Substitute.For<IIbanValidator>());
 
             base.Configure(containerBuilder, configurer);
         }

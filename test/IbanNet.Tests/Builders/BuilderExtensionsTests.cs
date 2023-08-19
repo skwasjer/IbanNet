@@ -1,4 +1,5 @@
 ﻿using IbanNet.Registry;
+using NSubstitute.Extensions;
 
 namespace IbanNet.Builders;
 
@@ -94,14 +95,17 @@ public class BuilderExtensionsTests
 
         public static IEnumerable<object?[]> WithCountryTestCases()
         {
-            IBankAccountBuilder builder = Mock.Of<IBankAccountBuilder>();
-            const string countryCode = "NL";
-            IIbanRegistry registry = Mock.Of<IIbanRegistry>();
+            IBankAccountBuilder builder = Substitute.For<IBankAccountBuilder>();
+            IIbanRegistry registry = Substitute.For<IIbanRegistry>();
 
-            IbanCountry? other = null;
-            var nl = new IbanCountry(countryCode);
-            Mock.Get(registry).Setup(m => m.TryGetValue(It.IsAny<string>(), out other));
-            Mock.Get(registry).Setup(m => m.TryGetValue("NL", out nl));
+            const string countryCode = "NL";
+            registry
+                .TryGetValue(countryCode, out Arg.Any<IbanCountry?>())
+                .Returns(x =>
+                {
+                    x[1] = new IbanCountry(countryCode);
+                    return true;
+                });
 
             yield return new object?[] { null, countryCode, registry, nameof(builder) };
             yield return new object?[] { builder, null, registry, nameof(countryCode) };
