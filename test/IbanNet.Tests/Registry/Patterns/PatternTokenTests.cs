@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Newtonsoft.Json.Linq;
 
 namespace IbanNet.Registry.Patterns;
 
@@ -69,7 +70,7 @@ public class PatternTokenTests
     }
 
     [Theory]
-    [MemberData(nameof(GetTestCases))]
+    [MemberData(nameof(GetCtorAsciiTestCases))]
     public void When_creating_instance_it_should_set_properties
     (
         AsciiCategory category,
@@ -78,13 +79,15 @@ public class PatternTokenTests
         bool isFixedLength,
         bool isLower,
         bool isUpper,
-        bool isDigit)
+        bool isDigit
+    )
     {
         // Act
         var pattern = new PatternToken(category, minLength, maxLength);
 
         // Assert
         pattern.Category.Should().Be(category);
+        pattern.Value.Should().BeNull();
         pattern.MinLength.Should().Be(minLength);
         pattern.MaxLength.Should().Be(maxLength);
         pattern.IsFixedLength.Should().Be(isFixedLength);
@@ -93,7 +96,7 @@ public class PatternTokenTests
         pattern.IsMatch('0', 0).Should().Be(isDigit);
     }
 
-    public static IEnumerable<object[]> GetTestCases()
+    public static IEnumerable<object[]> GetCtorAsciiTestCases()
     {
         yield return new object[] { AsciiCategory.None, 1, 1, true, false, false, false };
         yield return new object[] { AsciiCategory.Space, 1, 1, true, false, false, false };
@@ -102,5 +105,78 @@ public class PatternTokenTests
         yield return new object[] { AsciiCategory.UppercaseLetter, 3, 4, false, false, true, false };
         yield return new object[] { AsciiCategory.Letter, 6, 6, true, true, true, false };
         yield return new object[] { AsciiCategory.AlphaNumeric, 3, 3, true, true, true, true };
+    }
+
+    [Fact]
+    public void Given_that_pattern_value_is_null_when_creating_instance_it_should_throw()
+    {
+        string? value = null;
+
+        // Act
+        Func<PatternToken> act = () => new PatternToken(value!);
+
+        // Assert
+        act.Should()
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(value));
+    }
+
+    [Theory]
+    [MemberData(nameof(GetCtorValueTestCases))]
+    public void Given_that_pattern_value_is_valid_when_creating_instance_it_should_set_properties
+    (
+        string value,
+        int minLength,
+        int maxLength
+    )
+    {
+        // Act
+        var pattern = new PatternToken(value);
+
+        // Assert
+        pattern.Category.Should().Be(AsciiCategory.None);
+        pattern.Value.Should().Be(value);
+        pattern.MinLength.Should().Be(minLength);
+        pattern.MaxLength.Should().Be(maxLength);
+        pattern.IsFixedLength.Should().BeTrue();
+    }
+
+    public static IEnumerable<object[]> GetCtorValueTestCases()
+    {
+        yield return new object[] { "A", 1, 1 };
+        yield return new object[] { "AB", 2, 2 };
+        yield return new object[] { "ABCDEF", 6, 6 };
+    }
+
+    [Theory]
+    [MemberData(nameof(GetCtorValueMatchTestCases))]
+    public void Given_that_pattern_value_when_matching_it_should_return_expected
+    (
+        string value,
+        char[] match,
+        bool shouldMatch
+    )
+    {
+        // Act
+        var pattern = new PatternToken(value);
+
+        // Assert
+        pattern.Value.Should().Be(value);
+        bool isMatch = true;
+        for (int i = 0; i < match.Length; i++)
+        {
+            isMatch &= pattern.IsMatch(match[i], i);
+        }
+
+        isMatch.Should().Be(shouldMatch);
+    }
+
+    public static IEnumerable<object[]> GetCtorValueMatchTestCases()
+    {
+        yield return new object[] { "A", new[] { 'A' }, true };
+        yield return new object[] { "AB", new[] { 'A', 'B' }, true };
+        yield return new object[] { "AB", new[] { 'a', 'B' }, false };
+        yield return new object[] { "ABC", new[] { 'A', 'B', 'c' }, false };
+        yield return new object[] { "ABCDEF", new[] { 'A', 'B', 'C', 'D', 'E', 'F' }, true };
     }
 }
