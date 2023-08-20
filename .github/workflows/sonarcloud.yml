@@ -2,22 +2,33 @@ name: SonarCloud analysis
 
 on:
   push:
-    branches: [main]
-  pull_request_review:
-    types: [submitted]
-    branches: [main]
+    branches:
+      - main
+  pull_request_target: # This exposes repo secrets to PR, so manual approval via authorize job is enforced via 'external' environment.
   workflow_dispatch:
 
-permissions:
-  pull-requests: read # allows SonarCloud to decorate PRs with analysis results
+# permissions:
+#   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
 
 jobs:
-  Analysis:
+  # Blog https://iterative.ai/blog/testing-external-contributions-using-github-actions-secrets
+  authorize:
+    environment:
+      ${{ (github.event_name == 'pull_request_target' &&
+      github.event.pull_request.head.repo.full_name != github.repository) &&
+      'external' || 'internal' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ✓
+
+  analysis:
+    needs: authorize
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
       - uses: actions/setup-dotnet@v3
         with:
