@@ -1,9 +1,12 @@
 ﻿using System.Globalization;
 using IbanNet.Registry;
+using IbanNet.Validation.Rules;
 
 namespace IbanNet.Validation.Results;
 
-/// <inheritdoc />
+/// <summary>
+/// The result returned when the IBAN passed validation, but is explicitly rejected because it failed to pass a <see cref="AcceptCountryRule" /> or <see cref="RejectCountryRule" /> rule which was added to the validation pipeline.
+/// </summary>
 public class CountryNotAcceptedResult : ErrorResult
 {
     /// <summary>

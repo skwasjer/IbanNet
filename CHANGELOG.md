@@ -3,7 +3,8 @@
 ## Unreleased
 
 - [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
-- [#157](https://github.com/skwasjer/IbanNet/pull/157) Add extension to generate regex pattern from IBAN pattern by @skwasjer in 
+- [#157](https://github.com/skwasjer/IbanNet/pull/157) Added extension to generate regex pattern from IBAN pattern.
+- [#164](https://github.com/skwasjer/IbanNet/pull/164) Added a `RejectCountryRule` as the direct counterpart of `AcceptCountryRule`.
 
 ## v5.10.0
 
