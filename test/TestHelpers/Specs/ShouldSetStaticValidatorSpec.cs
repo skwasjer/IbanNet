@@ -13,7 +13,7 @@ public abstract class ShouldSetStaticValidatorSpec : DiSpec
 
     protected override void Given()
     {
-        Iban.Validator = _initialValidator = Mock.Of<IIbanValidator>();
+        Iban.Validator = _initialValidator = Substitute.For<IIbanValidator>();
         Fixture.Configure(_ => { });
     }
 

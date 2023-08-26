@@ -2,11 +2,11 @@
 
 public class PatternTests
 {
-    private readonly Mock<FakePatternTokenizer> _tokenizerMock;
+    private readonly FakePatternTokenizer _tokenizerMock;
 
     protected PatternTests()
     {
-        _tokenizerMock = new Mock<FakePatternTokenizer>();
+        _tokenizerMock = Substitute.For<FakePatternTokenizer>();
     }
 
     public class Given_a_pattern_created_with_tokens : PatternTests
@@ -46,7 +46,7 @@ public class PatternTests
             sut.Tokens.Should()
                 .BeAssignableTo<IReadOnlyCollection<PatternToken>>()
                 .And.BeEquivalentTo(_tokens);
-            _tokenizerMock.Verify(m => m.Tokenize(It.IsAny<IEnumerable<char>>()), Times.Never);
+            _tokenizerMock.DidNotReceiveWithAnyArgs().Tokenize(default(IEnumerable<char>)!);
         }
 
         [Fact]
@@ -85,9 +85,8 @@ public class PatternTests
             };
 
             _tokenizerMock
-                .Setup(m => m.Tokenize((IEnumerable<char>)TestPattern))
-                .Returns(_tokens)
-                .Verifiable();
+                .Tokenize(Arg.Any<IEnumerable<char>>())
+                .Returns(x => x.Arg<IEnumerable<char>>().SequenceEqual(TestPattern) ? _tokens : Enumerable.Empty<PatternToken>());
         }
 
         [Fact]
@@ -96,7 +95,7 @@ public class PatternTests
             string? pattern = null;
 
             // Act
-            Func<FakePattern> act = () => new FakePattern(pattern!, Mock.Of<ITokenizer<PatternToken>>());
+            Func<FakePattern> act = () => new FakePattern(pattern!, Substitute.For<ITokenizer<PatternToken>>());
 
             // Assert
             act.Should()
@@ -122,32 +121,32 @@ public class PatternTests
         public void When_getting_tokens_it_should_return_expected()
         {
             // Act
-            var sut = new FakePattern(TestPattern, _tokenizerMock.Object);
+            var sut = new FakePattern(TestPattern, _tokenizerMock);
 
             // Assert
             sut.Tokens.Should()
                 .BeAssignableTo<IReadOnlyCollection<PatternToken>>()
                 .And.BeEquivalentTo(_tokens);
-            _tokenizerMock.Verify();
+            _tokenizerMock.Received(1).Tokenize(Arg.Is<IEnumerable<char>>(x => x.SequenceEqual(TestPattern)));
         }
 
         [Fact]
         public void When_getting_tokens_multiple_times_it_should_only_tokenize_once()
         {
             // Act
-            var sut = new FakePattern(TestPattern, _tokenizerMock.Object);
+            var sut = new FakePattern(TestPattern, _tokenizerMock);
 
             // Assert
             sut.Tokens.Should().BeEquivalentTo(_tokens);
             sut.Tokens.Should().HaveCount(2);
-            _tokenizerMock.Verify(m => m.Tokenize(It.IsAny<IEnumerable<char>>()), Times.Once);
+            _tokenizerMock.Received(1).Tokenize(Arg.Is<IEnumerable<char>>(x => x.SequenceEqual(TestPattern)));
         }
 
         [Fact]
         public void When_getting_string_representation_it_should_return_expected()
         {
             // Act
-            var sut = new FakePattern(TestPattern, _tokenizerMock.Object);
+            var sut = new FakePattern(TestPattern, _tokenizerMock);
 
             // Assert
             sut.ToString().Should().Be(TestPattern);
@@ -161,7 +160,7 @@ public class PatternTests
         {
             _tokens.AddRange(Enumerable.Repeat(new PatternToken(AsciiCategory.UppercaseLetter, 1, 3), nonFixedTokensToAdd));
 
-            new FakePattern(TestPattern, _tokenizerMock.Object).IsFixedLength.Should().Be(shouldBeFixedLength);
+            new FakePattern(TestPattern, _tokenizerMock).IsFixedLength.Should().Be(shouldBeFixedLength);
         }
     }
 

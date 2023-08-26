@@ -4,32 +4,25 @@ using IbanNet.Validation.Results;
 
 namespace TestHelpers;
 
-public class IbanValidatorStub : Mock<IIbanValidator>, IIbanValidator
+public static class IbanValidatorStub
 {
-    public IbanValidatorStub()
+    public static IIbanValidator Create()
     {
-        Setup(m => m.Validate(It.IsAny<string>()))
-            .Returns<string>(iban => new ValidationResult
+        IIbanValidator mock = Substitute.For<IIbanValidator>();
+        mock.Validate(Arg.Any<string>())
+            .Returns(info =>
             {
-                AttemptedValue = iban,
-                Country = IbanRegistry.Default[iban.Substring(0, 2)]
+                string? iban = info.Arg<string>();
+                return iban switch
+                {
+                    null => new ValidationResult { AttemptedValue = null, Error = new InvalidLengthResult() },
+                    TestValues.InvalidIban => new ValidationResult { AttemptedValue = info.Arg<string>(), Error = new IllegalCharactersResult(0) },
+                    TestValues.IbanForCustomRuleFailure => new ValidationResult { AttemptedValue = info.Arg<string>(), Error = new ErrorResult("Custom message") },
+                    TestValues.IbanForCustomRuleException => throw new InvalidOperationException("Custom message"),
+                    _ => new ValidationResult { AttemptedValue = iban, Country = IbanRegistry.Default[iban.Substring(0, 2)] }
+                };
             });
 
-        Setup(m => m.Validate(null))
-            .Returns(new ValidationResult { AttemptedValue = null, Error = new InvalidLengthResult() });
-
-        Setup(m => m.Validate(TestValues.InvalidIban))
-            .Returns<string>(iban => new ValidationResult { AttemptedValue = iban, Error = new IllegalCharactersResult(0) });
-
-        Setup(m => m.Validate(TestValues.IbanForCustomRuleFailure))
-            .Returns<string>(iban => new ValidationResult { AttemptedValue = iban, Error = new ErrorResult("Custom message") });
-
-        Setup(m => m.Validate(TestValues.IbanForCustomRuleException))
-            .Throws(new InvalidOperationException("Custom message"));
-    }
-
-    public ValidationResult Validate(string? iban)
-    {
-        return Object.Validate(iban);
+        return mock;
     }
 }

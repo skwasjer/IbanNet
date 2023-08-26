@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IbanNet" Version="5.4.0" />
+    <PackageReference Include="IbanNet" Version="5.10.0" />
   </ItemGroup>
 
 </Project>

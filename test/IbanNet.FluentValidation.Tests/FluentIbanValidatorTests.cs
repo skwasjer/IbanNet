@@ -9,12 +9,12 @@ namespace IbanNet.FluentValidation;
 [Collection(nameof(SetsStaticValidator))]
 public class FluentIbanValidatorTests
 {
-    private readonly IbanValidatorStub _ibanValidatorStub;
+    private readonly IIbanValidator _ibanValidatorStub;
     private readonly TestModelValidator _validator;
 
     protected FluentIbanValidatorTests()
     {
-        _ibanValidatorStub = new IbanValidatorStub();
+        _ibanValidatorStub = IbanValidatorStub.Create();
         var sut = new FluentIbanValidator<TestModel>(_ibanValidatorStub);
         _validator = new TestModelValidator(sut);
     }
@@ -32,7 +32,7 @@ public class FluentIbanValidatorTests
             _validator.Validate(obj);
 
             // Assert
-            _ibanValidatorStub.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
+            _ibanValidatorStub.Received(1).Validate(AttemptedIbanValue);
         }
 
         [Fact]
@@ -72,7 +72,7 @@ public class FluentIbanValidatorTests
             _validator.Validate(obj);
 
             // Assert
-            _ibanValidatorStub.Verify(m => m.Validate(AttemptedIbanValue), Times.Once);
+            _ibanValidatorStub.Received(1).Validate(AttemptedIbanValue);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ public class FluentIbanValidatorTests
             _validator.Validate(obj);
 
             // Assert
-            _ibanValidatorStub.Verify(m => m.Validate(It.IsAny<string>()), Times.Never);
+            _ibanValidatorStub.DidNotReceiveWithAnyArgs().Validate(default);
         }
 
         [Fact]

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ExampleWebApplication.Pages
+namespace AspNetCoreExample.Pages
 {
     public class WebApiModel : PageModel
     {

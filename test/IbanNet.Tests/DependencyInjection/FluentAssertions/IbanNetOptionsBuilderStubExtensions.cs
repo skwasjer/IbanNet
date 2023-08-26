@@ -2,7 +2,7 @@
 
 public static class IbanNetOptionsBuilderStubExtensions
 {
-    public static IbanNetOptionsBuilderStubAssertions<T> Should<T>(this Mock<T> instance)
+    public static IbanNetOptionsBuilderStubAssertions<T> Should<T>(this T instance)
         where T : class, IIbanNetOptionsBuilder
     {
         return new(instance);
