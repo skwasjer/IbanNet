@@ -1,17 +1,16 @@
 codecov:
   branch: main
+  require_ci_to_pass: false
   notify:
-    require_ci_to_pass: true
+    wait_for_ci: false
 comment:
   behavior: default
   layout: header,tree
-  require_changes: true
+  require_changes: false
 coverage:
   precision: 2
-  range:
-  - 70.0
-  - 100.0
   round: down
+  range: "70...100"
   status:
     changes: false
     patch: false
