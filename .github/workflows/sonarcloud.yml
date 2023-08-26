@@ -67,7 +67,8 @@ jobs:
           echo "SONAR_PR_ARGS=\
           /d:sonar.pullrequest.key=${{ github.event.pull_request.number }} \
           /d:sonar.pullrequest.branch=${{ github.event.pull_request.head.ref }} \
-          /d:sonar.pullrequest.base=${{ github.event.pull_request.base.ref }}" >> $GITHUB_ENV
+          /d:sonar.pullrequest.base=${{ github.event.pull_request.base.ref }} \
+          /d:sonar.scm.revision=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
 
       - name: Analyze with SonarCloud
         env:
