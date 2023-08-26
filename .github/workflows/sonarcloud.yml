@@ -30,6 +30,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
+
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
@@ -37,6 +38,15 @@ jobs:
             6.0.x
             5.0.x
             3.1.x
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
 
       - name: dotnet info
         run: dotnet --info
