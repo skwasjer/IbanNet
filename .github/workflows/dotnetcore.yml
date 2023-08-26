@@ -15,9 +15,20 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            7.0.307
+            7.0.x
             6.0.x
             5.0.x
             3.1.x
 
+      - name: dotnet info
+        run: dotnet --info
+
+      # https://github.com/actions/runner-images/blob/ubuntu22/20230821.1/images/linux/Ubuntu2204-Readme.md
+      # There is an issue with latest SDK on Linux with .NET Framework:
+      # https://github.com/microsoft/vstest/issues/4549
+      # Unfortunatey, it becomes preinstalled with latest GitHub runner images, so have to remove it for now.
+      - name: Remove latest .NET SDK (7.0.400)
+        if: matrix.os != 'windows-latest'
+        run: sudo rm -rf ${DOTNET_ROOT}/sdk/7.0.400
+    
       - run: dotnet test -c Release
