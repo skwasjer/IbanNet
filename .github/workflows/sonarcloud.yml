@@ -65,7 +65,7 @@ jobs:
         if: github.event_name == 'pull_request_target'
         run: |
           echo "SONAR_PR_ARGS=\
-          /d:sonar.pullrequest.key=${{ github.event.pull_request.id }} \
+          /d:sonar.pullrequest.key=${{ github.event.pull_request.number }} \
           /d:sonar.pullrequest.branch=${{ github.event.pull_request.head.ref }} \
           /d:sonar.pullrequest.base=${{ github.event.pull_request.base.ref }}"
 
