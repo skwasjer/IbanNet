@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
+- [#157](https://github.com/skwasjer/IbanNet/pull/157) Add extension to generate regex pattern from IBAN pattern by @skwasjer in 
 
 ## v5.10.0
 
