@@ -1,10 +1,29 @@
 # Changelog
 
 ## Unreleased
-
 - [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
-- [#157](https://github.com/skwasjer/IbanNet/pull/157) Added extension to generate regex pattern from IBAN pattern.
-- [#164](https://github.com/skwasjer/IbanNet/pull/164) Added a `RejectCountryRule` as the direct counterpart of `AcceptCountryRule`.
+
+## v5.11.0
+
+### What's Changed
+
+* Generate regex pattern from IBAN pattern by @skwasjer in https://github.com/skwasjer/IbanNet/pull/157
+* Add a `RejectCountryRule` as the direct counterpart of `AcceptCountryRule` by @skwasjer in https://github.com/skwasjer/IbanNet/pull/164
+
+#### Chores
+
+* Bump `BenchmarkDotNet.Diagnostics.Windows` from 0.13.6 to 0.13.7 by @dependabot in https://github.com/skwasjer/IbanNet/pull/151
+* Replace `Moq` with `NSubstitute` by @skwasjer in https://github.com/skwasjer/IbanNet/pull/156
+* Update IbanNet dependency in examples [skip ci] by @skwasjer in https://github.com/skwasjer/IbanNet/pull/159
+* Create FUNDING.yml [skip ci] by @skwasjer in https://github.com/skwasjer/IbanNet/pull/160
+* .NET Framework test builds fail with latest .NET SDK by @skwasjer in https://github.com/skwasjer/IbanNet/pull/154
+* Remove latest .NET SDK temporarily by @skwasjer in https://github.com/skwasjer/IbanNet/pull/165
+* Require approval on PR by @skwasjer in https://github.com/skwasjer/IbanNet/pull/162
+* PR decoration was broken by @skwasjer in https://github.com/skwasjer/IbanNet/pull/167
+* Fix warning "The property 'sonar.login' is deprecated" by @skwasjer in https://github.com/skwasjer/IbanNet/pull/168
+* Bump NodeJS/Java versions to fix deprecation warning of SonarScanner by @skwasjer in https://github.com/skwasjer/IbanNet/pull/166
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.10.0...v5.11.0
 
 ## v5.10.0
 
