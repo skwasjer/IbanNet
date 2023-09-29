@@ -9,6 +9,7 @@ public sealed class LocalizationTests : LocalizationSpecBase
 
     [Theory]
     [InlineData("ca-ES", nameof(Resources.InvalidLengthResult), "L'IBAN te una llargada incorrecta.")]
+    [InlineData("de-DE", nameof(Resources.InvalidLengthResult), "Die IBAN hat eine falsche Länge.")]
     [InlineData("en-US", nameof(Resources.InvalidLengthResult), "The IBAN has an incorrect length.")]
     [InlineData("nl-NL", nameof(Resources.InvalidLengthResult), "Dit IBAN heeft een ongeldige lengte.")]
     public override void Resource_should_be_localized(string cultureCode, string key, string expectedMessage)
