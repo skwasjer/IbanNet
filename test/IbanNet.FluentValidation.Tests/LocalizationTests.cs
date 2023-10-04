@@ -9,6 +9,7 @@ public sealed class LocalizationTests : LocalizationSpecBase
 
     [Theory]
     [InlineData("ca-ES", nameof(Resources.Not_a_valid_IBAN), "'{PropertyName}' no és un IBAN vàlid.")]
+    [InlineData("de-DE", nameof(Resources.Not_a_valid_IBAN), "'{PropertyName}' ist keine gültige IBAN.")]
     [InlineData("en-US", nameof(Resources.Not_a_valid_IBAN), "'{PropertyName}' is not a valid IBAN.")]
     [InlineData("nl-NL", nameof(Resources.Not_a_valid_IBAN), "'{PropertyName}' is geen valide IBAN.")]
     public override void Resource_should_be_localized(string cultureCode, string key, string expectedMessage)
