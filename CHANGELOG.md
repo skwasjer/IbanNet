@@ -3,6 +3,10 @@
 ## Unreleased
 - [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
 
+## v5.12.0
+
+* Add german translation by @janro1 in https://github.com/skwasjer/IbanNet/pull/172
+
 ## v5.11.0
 
 ### What's Changed
