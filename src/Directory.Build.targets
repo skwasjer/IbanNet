@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS1591</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
     <DefineConstants Condition="$(TargetFramework.StartsWith('netstandard1'))">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
   </PropertyGroup>
 
