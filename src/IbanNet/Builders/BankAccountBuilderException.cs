@@ -40,6 +40,11 @@ public class BankAccountBuilderException : InvalidOperationException
     /// </summary>
     /// <param name="info">The object that holds the serialized data.</param>
     /// <param name="context">The contextual information about the source or destination.</param>
+#if NET8_0_OR_GREATER
+#pragma warning disable CA1041
+    [Obsolete(DiagnosticId = "SYSLIB0051")]
+#pragma warning restore CA1041
+#endif
     protected BankAccountBuilderException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
     {
     }
