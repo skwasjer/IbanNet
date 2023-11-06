@@ -10,9 +10,9 @@ Additionally, IbanNet provides:
 ---
 
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
-[![Build status](https://ci.appveyor.com/api/projects/status/469oo89bngrkgh2l/branch/main?svg=true)](https://ci.appveyor.com/project/skwasjer/ibannet)
-[![Tests](https://img.shields.io/appveyor/tests/skwasjer/IbanNet/main.svg)](https://ci.appveyor.com/project/skwasjer/ibannet/build/tests)
-[![codecov](https://codecov.io/gh/skwasjer/IbanNet/branch/main/graph/badge.svg)](https://codecov.io/gh/skwasjer/IbanNet)
+[![Main workflow](https://github.com/skwasjer/IbanNet/actions/workflows/main.yml/badge.svg)](https://github.com/skwasjer/IbanNet/actions/workflows/main.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=skwasjer_IbanNet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=skwasjer_IbanNet)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=skwasjer_IbanNet&metric=coverage)](https://sonarcloud.io/component_measures?id=skwasjer_IbanNet&metric=coverage)
 
 
 | | | |
