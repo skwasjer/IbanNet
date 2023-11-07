@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>$(NoWarn);IDE0079;S1135;CA1510;CA1511;CA1512;CA1513</NoWarn>
     <NoWarn Condition="'$(Configuration)'=='Release'">$(NoWarn);NETSDK1138</NoWarn>
-    <WarningsAsErrors>$(WarningsAsErrors);NU1601;NU1603;NU1605;NU1608;NU1701</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);NU1601;NU1603;NU1605;NU1608;NU1701;MSB3644</WarningsAsErrors>
     <ContinuousIntegrationBuild Condition="'$(CI)'!=''">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
