@@ -23,6 +23,13 @@ jobs:
       - name: dotnet info
         run: dotnet --info
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       # https://github.com/actions/runner-images/blob/ubuntu22/20230821.1/images/linux/Ubuntu2204-Readme.md
       # There is an issue with latest SDK on Linux with .NET Framework:
       # https://github.com/microsoft/vstest/issues/4549

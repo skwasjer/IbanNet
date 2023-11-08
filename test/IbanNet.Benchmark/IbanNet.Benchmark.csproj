@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,7 @@
     <IsTestProject>false</IsTestProject>
     <Nullable>disable</Nullable>
     <Configurations>Debug;Release;ComparisonRelease</Configurations>
-    <DefineConstants Condition="'$(Configuration)'=='Release'">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
+    <DefineConstants Condition="'$(AllValidators)'!=''">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
