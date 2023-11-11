@@ -28,11 +28,10 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
         return TokenizeIterator(input);
     }
 
-
 #if USE_SPANS
-    private IEnumerable<PatternToken> TokenizeIterator(ReadOnlySpan<char> input)
+    private List<PatternToken> TokenizeIterator(ReadOnlySpan<char> input)
 #else
-    private IEnumerable<PatternToken> TokenizeIterator(IEnumerable<char> input)
+    private List<PatternToken> TokenizeIterator(IEnumerable<char> input)
 #endif
     {
         var tokenList = new List<PatternToken>(8);

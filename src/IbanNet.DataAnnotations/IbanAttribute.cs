@@ -67,7 +67,7 @@ public sealed class IbanAttribute : ValidationAttribute
     /// <summary>
     /// Gets the validator from IoC container.
     /// </summary>
-    private static IIbanValidator GetValidator(IServiceProvider? serviceProvider)
+    private static IIbanValidator GetValidator(ValidationContext? serviceProvider)
     {
         var ibanValidator = (IIbanValidator?)serviceProvider?.GetService(typeof(IIbanValidator));
         if (ibanValidator is null)
