@@ -5,8 +5,7 @@
     <TargetFrameworks>net8.0;net7.0;net6.0;netcoreapp3.1;net472</TargetFrameworks>
     <IsTestProject>false</IsTestProject>
     <Nullable>disable</Nullable>
-    <Configurations>Debug;Release;ComparisonRelease</Configurations>
-    <DefineConstants Condition="'$(AllValidators)'!=''">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)'=='Release' And '$(ContinuousIntegrationBuild)'==''">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
