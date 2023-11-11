@@ -23,6 +23,7 @@ nuget:
   project_feed: true
 #  disable_publish_on_pr: true
 before_build:
+  - dotnet nuget locals global-packages --clear # AppVeyor's default NuGet global cache has invalid package references... :|
   - dotnet restore
 build:
   project: IbanNet.sln

@@ -57,6 +57,13 @@ jobs:
       - name: Remove latest .NET SDK (7.0.400)
         run: sudo rm -rf ${DOTNET_ROOT}/sdk/7.0.400
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2

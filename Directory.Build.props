@@ -1,13 +1,22 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>$(NoWarn);IDE0079;S1135;CA1510;CA1511;CA1512;CA1513</NoWarn>
     <NoWarn Condition="'$(Configuration)'=='Release'">$(NoWarn);NETSDK1138</NoWarn>
-    <WarningsAsErrors>$(WarningsAsErrors);NU1605;NU1701</WarningsAsErrors>
-    <ContinuousIntegrationBuild Condition="'$(Configuration)'=='Release'">true</ContinuousIntegrationBuild>
+    <WarningsAsErrors>$(WarningsAsErrors);NU1601;NU1603;NU1605;NU1608;NU1701</WarningsAsErrors>
+    <ContinuousIntegrationBuild Condition="'$(CI)'!=''">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- NuGet lock file & restore behavior-->
+  <PropertyGroup>
+    <!--Support for different operating systems. Last RID is specifically for .NET 4.x -->
+    <RuntimeIdentifiers>win-x64;linux-x64;osx-x64;win7-x86</RuntimeIdentifiers>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <RestoreLockedMode Condition="'$(ContinuousIntegrationBuild)'=='true'">true</RestoreLockedMode>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
   <PropertyGroup>

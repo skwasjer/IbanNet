@@ -62,5 +62,5 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
 To run the benchmark:
 ```
 cd ./test/IbanNet.Benchmark
-dotnet run -c Release -f net7.0 net6.0 netcoreapp3.1 net472 --runtimes net70 net60 netcoreapp31 net48
+dotnet run -c Release -f net7.0 net6.0 netcoreapp3.1 net472 --runtimes net70 net60 netcoreapp31 net48 /p:AllValidators=1
 ```
