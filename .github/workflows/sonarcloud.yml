@@ -1,14 +1,22 @@
-name: SonarCloud analysis
-
 on:
   push:
     branches:
       - main
+  release:
+    types:
+      - published
   pull_request_target: # This exposes repo secrets to PR, so manual approval via authorize job is enforced via 'external' environment.
   workflow_dispatch:
 
-# permissions:
-#   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
+name: sonarcloud
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  dotnet-version: |
+    7.0.x
+    6.0.x
+    5.0.x
+    3.1.x
 
 jobs:
   # Blog https://iterative.ai/blog/testing-external-contributions-using-github-actions-secrets
@@ -24,20 +32,15 @@ jobs:
   analysis:
     needs: authorize
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
           fetch-depth: 0
 
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: |
-            7.0.x
-            6.0.x
-            5.0.x
-            3.1.x
+          dotnet-version: ${{ env.dotnet-version }}
 
       - uses: actions/setup-node@v3
         with:
@@ -47,16 +50,6 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "17"
-
-      - name: dotnet info
-        run: dotnet --info
-
-      # https://github.com/actions/runner-images/blob/ubuntu22/20230821.1/images/linux/Ubuntu2204-Readme.md
-      # There is an issue with latest SDK on Linux with .NET Framework:
-      # https://github.com/microsoft/vstest/issues/4549
-      # Unfortunatey, it becomes preinstalled with latest GitHub runner images, so have to remove it for now.
-      - name: Remove latest .NET SDK (7.0.400)
-        run: sudo rm -rf ${DOTNET_ROOT}/sdk/7.0.400
 
       - name: Install Sonar scanner
         run: dotnet tool install --global dotnet-sonarscanner

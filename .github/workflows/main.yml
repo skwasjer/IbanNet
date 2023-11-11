@@ -1,0 +1,188 @@
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+  pull_request:
+
+name: pipeline
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  dotnet-version: |
+    7.0.x
+    6.0.x
+    5.0.x
+    3.1.x
+
+jobs:
+  determine-version:
+    runs-on: ubuntu-latest
+    env:
+      IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
+      # v5.10.0 of GitVersion has a fix for incorrect versions when building on tag. See https://github.com/GitTools/GitVersion/issues/2838
+      # It appears that the fix then had a regression in a later version, so pinning to v5.10.0.  See https://github.com/GitTools/GitVersion/issues/3351#issuecomment-1403657689
+      GITVERSION: '5.10.0'
+    outputs:
+      version: ${{ steps.gitversion.outputs.fullSemVer }}
+      package-version: ${{ steps.gitversion.outputs.fullSemVer }}
+      assembly-version: ${{ steps.gitversion.outputs.assemblySemVer }}
+      file-version: ${{ steps.gitversion.outputs.assemblySemFileVer }}
+      informational-version: ${{ steps.gitversion.outputs.informationalVersion }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Install GitVersion ${{ env.GITVERSION }}
+        uses: gittools/actions/gitversion/setup@v0.10.2
+        with:
+          versionSpec: ${{ env.GITVERSION }}
+
+      - name: Determine version
+        uses: gittools/actions/gitversion/execute@v0.10.2
+        id: gitversion
+        with:
+          useConfigFile: true
+
+  build:
+    needs:
+      - determine-version
+    name: build (v${{ needs.determine-version.outputs.version }})
+    runs-on: ubuntu-latest
+    env:
+      msbuild-version-args: /p:Version="${{ needs.determine-version.outputs.version }}" /p:PackageVersion="${{ needs.determine-version.outputs.package-version }}" /p:AssemblyVersion="${{ needs.determine-version.outputs.assembly-version }}" /p:FileVersion="${{ needs.determine-version.outputs.file-version }}" /p:InformationalVersion="${{ needs.determine-version.outputs.informational-version }}"
+    outputs:
+      dotnet-version: ${{ env.dotnet-version }}
+      msbuild-version-args: ${{ env.msbuild-version-args }}
+    steps:
+      # Setup
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.dotnet-version }}
+      - run: dotnet --info
+
+      # Checkout
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # NuGet cache
+      - name: Restore NuGet global package cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.targets','**/*.props','**/*.csproj') }} # Can't use packages.lock.json yet, because Dependabot does not support it.
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      # Restore
+      - run: dotnet restore
+
+      # Build
+      - run: dotnet build --no-restore -c Release ${{ env.msbuild-version-args }}
+      - name: Upload build artifacts
+        uses: ./.github/actions/upload-artifact
+        with:
+          name: build
+          path: |
+            */**/bin
+            */**/obj
+          if-no-files-found: error
+          retention-days: 7
+
+  test:
+    needs: build
+    strategy:
+      matrix:
+        os:
+        - ubuntu-latest
+        - windows-latest
+        - macos-latest
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Setup
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.dotnet-version }}
+      
+      # Checkout
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # Restore build artifacts
+      - name: Download build artifacts
+        uses: ./.github/actions/download-artifact
+        with:
+          name: build
+
+      # Run all tests
+      - run: dotnet test --no-restore --no-build -c Release
+
+  pack:
+    needs:
+      - determine-version
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      # Setup
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.dotnet-version }}
+
+      # Checkout
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # NuGet cache (.NET Framework Reference assemblies are needed for pack)
+      - name: Restore NuGet global package cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.targets','**/*.props','**/*.csproj') }} # Can't use packages.lock.json yet, because Dependabot does not support it.
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+          fail-on-cache-miss: true
+
+      # Restore build artifacts
+      - name: Download build artifacts
+        uses: ./.github/actions/download-artifact
+        with:
+          name: build
+
+      # Pack
+      - run: dotnet pack --no-restore --no-build -c Release ${{ needs.build.outputs.msbuild-version-args }}
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-${{ needs.determine-version.outputs.package-version }}
+          path: |
+            **/*.*nupkg
+          if-no-files-found: error
+          retention-days: 90
+
+  deploy:
+    needs:
+      - determine-version
+      - test
+      - pack
+    if: github.event_name == 'release'
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      # Restore release artifacts
+      - name: Download release artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: release-${{ needs.determine-version.outputs.package-version }}
+
+      - name: push - nuget.org
+        env:
+          NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
+        run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s ${{ env.NUGET_SOURCE_URL }}

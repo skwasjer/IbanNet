@@ -1,10 +1,22 @@
 assembly-versioning-scheme: MajorMinorPatch
 mode: ContinuousDelivery
 continuous-delivery-fallback-tag: 'ci'
+# If your package version contains one of the following, they will not be visible from the older clients
+# (NuGet clients before 4.3.0 or Visual Studio before 2017 version 15.3):
+# The pre-release label is dot-separated, e.g. 1.0.0-alpha.1
+# The version has build-metadata, e.g. 1.0.0+githash We recommend you consider this to be a beta-feature until a significant majority of our users are on these latest clients that understand Semantic Versioning 2.0.0.
+# See https://devblogs.microsoft.com/nuget/whats-nu-in-nuget-with-visual-studio-2017-version-15-3/#support-for-semantic-versioning-200
+legacy-semver-padding: 1
+build-metadata-padding: 1
+commits-since-version-source-padding: 1
 branches:
   main:
     regex: ^main$
     tag: 'ci'
+  pull-request:
+    regex: ^(pull|pull\-requests|pr)[/-]
+    mode: ContinuousDelivery
+    tag: pr
 ignore:
   sha:
   - 39f9b9adf2b5158903d1a738ee4f4f6cc2372a85
