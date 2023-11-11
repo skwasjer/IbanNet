@@ -51,6 +51,10 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.dotnet-version }}
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+          dotnet-quality: 'preview'
       - run: dotnet --info
 
       # Checkout
