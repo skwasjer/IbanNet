@@ -10,7 +10,7 @@ namespace IbanNet.Validation.Rules;
 public abstract class LimitCountryRule : IIbanValidationRule
 {
     private readonly bool _isAccepted;
-    private readonly ISet<string> _countryCodes;
+    private readonly HashSet<string> _countryCodes;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="LimitCountryRule" /> using specified <paramref name="countryCodes" />.

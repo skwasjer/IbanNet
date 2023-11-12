@@ -101,7 +101,7 @@ internal static class ChunkExtensions
     }
 
 #if USE_SPANS
-    private static IEnumerable<string> PartitionOnIterator(this ReadOnlySpan<char> sequence, Func<char, bool> when)
+    private static List<string> PartitionOnIterator(this ReadOnlySpan<char> sequence, Func<char, bool> when)
     {
         var partitions = new List<string>();
 

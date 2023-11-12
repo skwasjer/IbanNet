@@ -6,12 +6,14 @@ namespace IbanNet.CodeGen.Swift.Converters;
 
 internal class CommaSeparatedEnumerableConverter : StringConverter
 {
+    private static readonly char[] Separator = { ',' };
+
     public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
         if (base.ConvertFromString(text, row, memberMapData) is string value)
         {
             return value
-                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(Separator, StringSplitOptions.RemoveEmptyEntries)
                 .Select(s => s.Trim())
                 .ToList();
         }
