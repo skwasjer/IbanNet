@@ -8,6 +8,9 @@
     <NoWarn Condition="'$(Configuration)'=='Release'">$(NoWarn);NETSDK1138</NoWarn>
     <WarningsAsErrors>$(WarningsAsErrors);NU1601;NU1603;NU1605;NU1608;NU1701;MSB3644</WarningsAsErrors>
     <ContinuousIntegrationBuild Condition="'$(CI)'!=''">true</ContinuousIntegrationBuild>
+
+    <!-- Ignoring all satelite assemblies from external dependencies to reduce build artifact size. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <PropertyGroup>
