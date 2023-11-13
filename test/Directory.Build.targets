@@ -4,7 +4,7 @@
     <IsPackable>false</IsPackable>
 
     <DefineConstants Condition="'$(TargetFramework)'=='net48'">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
-    <MicrosoftNetTestSdk>17.7.2</MicrosoftNetTestSdk>
+    <MicrosoftNetTestSdk>17.8.0</MicrosoftNetTestSdk>
   </PropertyGroup>
 
   <ItemGroup>
