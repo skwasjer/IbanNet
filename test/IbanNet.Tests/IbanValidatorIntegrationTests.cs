@@ -44,7 +44,7 @@ public class IbanValidatorIntegrationTests
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public void When_validating_null_or_empty_value_should_not_validate(string iban)
+    public void When_validating_null_or_empty_value_should_not_validate(string? iban)
     {
         // Act
         ValidationResult actual = _sut.Validate(iban);

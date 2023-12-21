@@ -7,11 +7,10 @@ public class IbanCountryTests
     [InlineData("")]
     [InlineData("N")]
     [InlineData("NLD")]
-    public void When_country_code_is_of_invalid_length_should_throw(string twoLetterISORegionName)
+    public void When_country_code_is_of_invalid_length_should_throw(string? twoLetterISORegionName)
     {
         // Act
-        // ReSharper disable once ObjectCreationAsStatement
-        Func<IbanCountry> act = () => new IbanCountry(twoLetterISORegionName);
+        Func<IbanCountry> act = () => new IbanCountry(twoLetterISORegionName!);
 
         // Assert
         act.Should()

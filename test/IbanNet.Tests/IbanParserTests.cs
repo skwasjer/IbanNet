@@ -29,10 +29,10 @@ public class IbanParserTests
         [InlineData("", typeof(IbanFormatException))]
         [InlineData("AD12000120359100100", typeof(IbanFormatException))]
         [InlineData("Invalid", typeof(IbanFormatException))]
-        public void Given_invalid_value_when_parsing_it_should_throw(string attemptedIbanValue, Type expectedExceptionType)
+        public void Given_invalid_value_when_parsing_it_should_throw(string? attemptedIbanValue, Type expectedExceptionType)
         {
             // Act
-            Action act = () => _sut.Parse(attemptedIbanValue);
+            Action act = () => _sut.Parse(attemptedIbanValue!);
 
             // Assert
             act.Should()
@@ -46,7 +46,7 @@ public class IbanParserTests
         [InlineData("")]
         [InlineData("AD12000120359100100")]
         [InlineData("Invalid")]
-        public void Given_invalid_value_when_trying_parsing_it_should_not_throw_and_return_false(string attemptedIbanValue)
+        public void Given_invalid_value_when_trying_parsing_it_should_not_throw_and_return_false(string? attemptedIbanValue)
         {
             // Act
             Func<bool> act = () => _sut.TryParse(attemptedIbanValue, out _);

@@ -9,7 +9,7 @@ public class InputNormalizationTests
     [InlineData("UNCHANGED", "UNCHANGED")]
     [InlineData("", "")]
     [InlineData(null, null)]
-    public void Given_string_when_normalizing_it_should_return_expected_value(string input, string expected)
+    public void Given_string_when_normalizing_it_should_return_expected_value(string? input, string? expected)
     {
         // Act
         string? actual = InputNormalization.NormalizeOrNull(input);

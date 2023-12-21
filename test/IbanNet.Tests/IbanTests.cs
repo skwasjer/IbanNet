@@ -352,7 +352,7 @@ public class IbanTests
         [InlineData(null, "null")]  // JSON null.
         [InlineData(null, "\"\"")]  // Empty string
         [InlineData(null, "\" \"")] // String with whitespace
-        public void Given_a_valid_jsonString_when_deserializing_it_should_return_expected_iban(string expectedIban, string json)
+        public void Given_a_valid_jsonString_when_deserializing_it_should_return_expected_iban(string? expectedIban, string json)
         {
             // Act
             Iban? iban = System.Text.Json.JsonSerializer.Deserialize<Iban>(json);
