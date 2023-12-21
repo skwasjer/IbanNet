@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+#if NET8_0_OR_GREATER
+using System.Collections.Frozen;
+#endif
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -69,15 +72,30 @@ public class IbanRegistry : IIbanRegistry
 
             lock (_syncObject)
             {
+                if (_dictionary is not null)
+                {
+                    return _dictionary;
+                }
+
                 var readOnlyProviders = new ReadOnlyCollection<IIbanRegistryProvider>(Providers.ToArray());
                 try
                 {
-                    return _dictionary ??= new ReadOnlyDictionary<string, IbanCountry>(readOnlyProviders
+                    IEnumerable<KeyValuePair<string, IbanCountry>> countries = readOnlyProviders
                         .SelectMany(p => p)
                         // In case of duplicate country codes, select the first.
                         .GroupBy(c => c.TwoLetterISORegionName)
-                        .ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase)
+                        .Select(g => new KeyValuePair<string, IbanCountry>(g.Key, g.First()));
+#if NET8_0_OR_GREATER
+                    return _dictionary = countries.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
+#else
+                    return _dictionary = new ReadOnlyDictionary<string, IbanCountry>(countries
+                        .ToDictionary(
+                            kvp => kvp.Key,
+                            kvp => kvp.Value,
+                            StringComparer.OrdinalIgnoreCase
+                        )
                     );
+#endif
                 }
                 finally
                 {

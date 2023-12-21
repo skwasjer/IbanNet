@@ -11,7 +11,7 @@ namespace IbanNet.Benchmark;
 [MemoryDiagnoser]
 public class ValidatorBenchmark
 {
-    private IIbanValidator _validator;
+    private IbanValidator _validator;
 #if VALIDATOR_COMPARISONS
     private IbanValidation.IbanValidator _nugetIbanValidator;
 #endif
