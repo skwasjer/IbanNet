@@ -1,11 +1,38 @@
 # Changelog
 
 ## Unreleased
-- [#138](https://github.com/skwasjer/IbanNet/pull/138) Implement `IParsable<TSelf>` on Iban type.
+- Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
+
+## v5.13.0
+
+* feat(net8): add .NET 8 target framework by @skwasjer in https://github.com/skwasjer/IbanNet/pull/180
+
+#### Chores
+
+* ci: add NuGet packages.lock.json and cache NuGet folder by @skwasjer in https://github.com/skwasjer/IbanNet/pull/178
+* ci(nuget): partially revert "ci: add NuGet packages.lock.json and cac… by @skwasjer in https://github.com/skwasjer/IbanNet/pull/179
+* ci: refactor workflows by @skwasjer in https://github.com/skwasjer/IbanNet/pull/177
+* chore(deps): Bump xunit from 2.4.2 to 2.6.1 by @dependabot in https://github.com/skwasjer/IbanNet/pull/176
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.13.9 to 0.13.10 by @dependabot in https://github.com/skwasjer/IbanNet/pull/175
+* chore: .NET 8/CS12 style and perf by @skwasjer in https://github.com/skwasjer/IbanNet/pull/181
+* chore: reduce build runtime by excluding satellite assemblies (in tests) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/182
+* chore(deps): Bump MicrosoftNetTestSdk from 17.7.2 to 17.8.0 by @dependabot in https://github.com/skwasjer/IbanNet/pull/183
+* chore(deps): Bump xunit from 2.6.1 to 2.6.2 by @dependabot in https://github.com/skwasjer/IbanNet/pull/186
+* ci: remove AppVeyor CI by @skwasjer in https://github.com/skwasjer/IbanNet/pull/189
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.12.0...v5.13.0
 
 ## v5.12.0
 
 * Add german translation by @janro1 in https://github.com/skwasjer/IbanNet/pull/172
+
+#### Chores
+
+* chore(deps): Bump NSubstitute from 5.0.0 to 5.1.0 by @dependabot in https://github.com/skwasjer/IbanNet/pull/171
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.13.7 to 0.13.8 by @dependabot in https://github.com/skwasjer/IbanNet/pull/170
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.13.8 to 0.13.9 by @dependabot in https://github.com/skwasjer/IbanNet/pull/173
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.11.0...5.12.0
 
 ## v5.11.0
 
