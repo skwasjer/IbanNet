@@ -24,6 +24,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   DOTNET_NOLOGO: true
   dotnet-version: |
+    8.0.x
     7.0.x
     6.0.x
     5.0.x
@@ -51,10 +52,7 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.dotnet-version }}
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-          dotnet-quality: 'preview'
+
       - run: dotnet --info
 
       # Checkout
