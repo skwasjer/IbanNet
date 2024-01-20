@@ -3,7 +3,22 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v5.14.0
+
+### What's Changed
+
+* perf: use code generation to unroll pattern match per country (SWIFT only) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/192
+
+#### Chores
+
+* fix(xUnit1012): address static code analysis by @skwasjer in https://github.com/skwasjer/IbanNet/pull/190
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.13.10 to 0.13.12 by @dependabot in https://github.com/skwasjer/IbanNet/pull/191
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.13.0...v5.14.0
+
 ## v5.13.0
+
+### What's Changed
 
 * feat(net8): add .NET 8 target framework by @skwasjer in https://github.com/skwasjer/IbanNet/pull/180
 
@@ -23,6 +38,8 @@
 **Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.12.0...v5.13.0
 
 ## v5.12.0
+
+### What's Changed
 
 * Add german translation by @janro1 in https://github.com/skwasjer/IbanNet/pull/172
 
