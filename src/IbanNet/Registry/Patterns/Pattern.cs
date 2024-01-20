@@ -64,7 +64,7 @@ public abstract class Pattern
     /// <summary>
     /// Gets whether or not the pattern is of fixed length.
     /// </summary>
-    public bool IsFixedLength
+    public virtual bool IsFixedLength
     {
         get
         {
@@ -76,7 +76,7 @@ public abstract class Pattern
     /// <summary>
     /// Gets the maximum length of this pattern.
     /// </summary>
-    public int MaxLength
+    public virtual int MaxLength
     {
         get
         {
@@ -96,10 +96,10 @@ public abstract class Pattern
     }
 
 #if USE_SPANS
-    internal bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+    internal virtual bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
     {
 #else
-    internal bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+    internal virtual bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
     {
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (value is null)
