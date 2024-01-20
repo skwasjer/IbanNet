@@ -11,10 +11,14 @@ internal
     class SwiftPattern : Pattern
 {
     private static readonly SwiftPatternTokenizer Tokenizer = new();
+    private string? _pattern;
+    private readonly int? _maxLength;
+    private readonly bool? _isFixedLength;
 
     /// <inheritdoc />
     public SwiftPattern(string pattern) : base(pattern, Tokenizer)
     {
+        _pattern = pattern;
     }
 
     internal SwiftPattern(IEnumerable<PatternToken> tokens) : base(tokens)
@@ -22,9 +26,35 @@ internal
     }
 
     /// <inheritdoc />
+    internal SwiftPattern(string pattern, int maxLength, bool isFixedLength)
+        : this(pattern)
+    {
+        _maxLength = maxLength;
+        _isFixedLength = isFixedLength;
+    }
+
+    /// <inheritdoc />
+    public override bool IsFixedLength
+    {
+        get
+        {
+            return _isFixedLength ?? base.IsFixedLength;
+        }
+    }
+
+    /// <inheritdoc />
+    public override int MaxLength
+    {
+        get
+        {
+            return _maxLength ?? base.MaxLength;
+        }
+    }
+
+    /// <inheritdoc />
     public override string ToString()
     {
-        return string.Join("", Tokens.Select(t =>
+        return _pattern ??= string.Join("", Tokens.Select(t =>
         {
             if (t.Value is not null)
             {

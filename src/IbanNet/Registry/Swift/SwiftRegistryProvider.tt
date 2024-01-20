@@ -156,7 +156,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 #>
 
         [GeneratedCode("SwiftRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
-        internal sealed class <#= record.CountryCode #>() : SwiftPattern("<#= record.Iban.Pattern.ToString() #>")
+        internal sealed class <#= record.CountryCode #>() : SwiftPattern("<#= pattern.ToString() #>", <#= pattern.MaxLength #>, <#= pattern.IsFixedLength.ToString().ToLower() #>)
         {
 #if USE_SPANS
             internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)

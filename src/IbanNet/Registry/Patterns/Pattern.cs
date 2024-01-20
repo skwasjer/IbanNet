@@ -64,7 +64,7 @@ public abstract class Pattern
     /// <summary>
     /// Gets whether or not the pattern is of fixed length.
     /// </summary>
-    public bool IsFixedLength
+    public virtual bool IsFixedLength
     {
         get
         {
@@ -76,7 +76,7 @@ public abstract class Pattern
     /// <summary>
     /// Gets the maximum length of this pattern.
     /// </summary>
-    public int MaxLength
+    public virtual int MaxLength
     {
         get
         {
