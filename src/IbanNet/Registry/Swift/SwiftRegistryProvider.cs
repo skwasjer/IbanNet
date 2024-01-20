@@ -1,7 +1,8 @@
 ﻿using System.CodeDom.Compiler;
 using System.Collections;
 using System.Diagnostics;
-using IbanNet.Registry.Patterns;
+using System.Diagnostics.CodeAnalysis;
+using IbanNet.Extensions;
 
 namespace IbanNet.Registry.Swift;
 
@@ -44,14 +45,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Andorra",
             EnglishName = "Andorra",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("AD"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.AD())
             {
                 Example = "AD1200012030200359100100",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -81,13 +75,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الإمارات العربية المتحدة",
             EnglishName = "United Arab Emirates (The)",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("AE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.AE())
             {
                 Example = "AE070331234567890123456",
                 EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -113,13 +101,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Shqipëri",
             EnglishName = "Albania",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("AL"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 8, 8),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.AL())
             {
                 Example = "AL47212110090000000235698741",
                 EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -149,13 +131,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Österreich",
             EnglishName = "Austria",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("AT"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 11, 11),
-            }))
+            Iban = new IbanStructure(new Patterns.AT())
             {
                 Example = "AT611904300234573201",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -181,13 +157,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Азәрбајҹан",
             EnglishName = "Azerbaijan",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("AZ"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 20, 20),
-            }))
+            Iban = new IbanStructure(new Patterns.AZ())
             {
                 Example = "AZ21NABZ00000000137010001944",
                 EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -213,15 +183,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Bosna i Hercegovina",
             EnglishName = "Bosnia and Herzegovina",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BA"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 8, 8),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.BA())
             {
                 Example = "BA391290079401028494",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -251,14 +213,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "België",
             EnglishName = "Belgium",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 7, 7),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.BE())
             {
                 Example = "BE68539007547034",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -284,15 +239,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "България",
             EnglishName = "Bulgaria",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BG"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 8, 8),
-            }))
+            Iban = new IbanStructure(new Patterns.BG())
             {
                 Example = "BG80BNBG96611020345678",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -322,13 +269,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "البحرين",
             EnglishName = "Bahrain",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BH"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 14, 14),
-            }))
+            Iban = new IbanStructure(new Patterns.BH())
             {
                 Example = "BH67BMAG00001299123456",
                 EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -354,15 +295,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Burundi",
             EnglishName = "Burundi",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BI"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.BI())
             {
                 Example = "BI4210000100010000332045181",
                 EffectiveDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -392,16 +325,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Brasil",
             EnglishName = "Brazil",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 8, 8),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 10, 10),
-                new(AsciiCategory.UppercaseLetter, 1, 1),
-                new(AsciiCategory.AlphaNumeric, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.BR())
             {
                 Example = "BR1800360305000010009795493C1",
                 EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -431,14 +355,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Беларусь",
             EnglishName = "Republic of Belarus",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("BY"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.BY())
             {
                 Example = "BY13NBRB3600900000002Z00AB00",
                 EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -464,13 +381,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Svizzera",
             EnglishName = "Switzerland",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("CH"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.CH())
             {
                 Example = "CH9300762011623852957",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -496,13 +407,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Costa Rica",
             EnglishName = "Costa Rica",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("CR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 14, 14),
-            }))
+            Iban = new IbanStructure(new Patterns.CR())
             {
                 Example = "CR05015202001026284066",
                 EffectiveDate = new DateTimeOffset(2011, 6, 1, 0, 0, 0, TimeSpan.Zero)
@@ -528,14 +433,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Κύπρος",
             EnglishName = "Cyprus",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("CY"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.CY())
             {
                 Example = "CY17002001280000001200527600",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -565,14 +463,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Česko",
             EnglishName = "Czechia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("CZ"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.CZ())
             {
                 Example = "CZ6508000000192000145399",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -598,13 +489,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Deutschland",
             EnglishName = "Germany",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("DE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 8, 8),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.DE())
             {
                 Example = "DE89370400440532013000",
                 EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -630,15 +515,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Yabuuti",
             EnglishName = "Djibouti",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("DJ"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.DJ())
             {
                 Example = "DJ2100010000000154000100186",
                 EffectiveDate = new DateTimeOffset(2022, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -668,14 +545,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Danmark",
             EnglishName = "Denmark",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("DK"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 9, 9),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.DK())
             {
                 Example = "DK5000400440116243",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -701,13 +571,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "República Dominicana",
             EnglishName = "Dominican Republic",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("DO"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 4, 4),
-                new(AsciiCategory.Digit, 20, 20),
-            }))
+            Iban = new IbanStructure(new Patterns.DO())
             {
                 Example = "DO28BAGR00000001212453611324",
                 EffectiveDate = new DateTimeOffset(2010, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -733,15 +597,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Eesti",
             EnglishName = "Estonia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("EE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 11, 11),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.EE())
             {
                 Example = "EE382200221020145685",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -767,14 +623,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "مصر",
             EnglishName = "Egypt",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("EG"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 17, 17),
-            }))
+            Iban = new IbanStructure(new Patterns.EG())
             {
                 Example = "EG380019000500000000263180002",
                 EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -804,16 +653,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "España",
             EnglishName = "Spain",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("ES"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 1, 1),
-                new(AsciiCategory.Digit, 1, 1),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.ES())
             {
                 Example = "ES9121000418450200051332",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -847,13 +687,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                     "AX"
             },
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("FI"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 11, 11),
-            }))
+            Iban = new IbanStructure(new Patterns.FI())
             {
                 Example = "FI2112345600000785",
                 EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -883,13 +717,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Falkland Islands",
             EnglishName = "Falkland Islands",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("FK"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 2, 2),
-                new(AsciiCategory.Digit, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.FK())
             {
                 Example = "FK88SC123456789012",
                 EffectiveDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -915,14 +743,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Føroyar",
             EnglishName = "Faroe Islands",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("FO"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 9, 9),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.FO())
             {
                 Example = "FO6264600001631634",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -952,15 +773,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                     "GF", "GP", "MQ", "RE", "PF", "TF", "YT", "NC", "BL", "MF", "PM", "WF"
             },
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("FR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.FR())
             {
                 Example = "FR1420041010050500013M02606",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -998,14 +811,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                     "IM", "JE", "GG"
             },
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("GB"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.Digit, 8, 8),
-            }))
+            Iban = new IbanStructure(new Patterns.GB())
             {
                 Example = "GB29NWBK60161331926819",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1035,13 +841,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "საქართველო",
             EnglishName = "Georgia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("GE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 2, 2),
-                new(AsciiCategory.Digit, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.GE())
             {
                 Example = "GE29NB0000000101904917",
                 EffectiveDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1067,13 +867,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Gibraltar",
             EnglishName = "Gibraltar",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("GI"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 15, 15),
-            }))
+            Iban = new IbanStructure(new Patterns.GI())
             {
                 Example = "GI75NWBK000000007099453",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1099,14 +893,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Kalaallit Nunaat",
             EnglishName = "Greenland",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("GL"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 9, 9),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.GL())
             {
                 Example = "GL8964710001000206",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1132,14 +919,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ελλάδα",
             EnglishName = "Greece",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("GR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.GR())
             {
                 Example = "GR1601101250000000012300695",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1169,13 +949,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Guatemala",
             EnglishName = "Guatemala",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("GT"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 20, 20),
-            }))
+            Iban = new IbanStructure(new Patterns.GT())
             {
                 Example = "GT82TRAJ01020000001210029690",
                 EffectiveDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1201,13 +975,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Hrvatska",
             EnglishName = "Croatia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("HR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 7, 7),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.HR())
             {
                 Example = "HR1210010051863000160",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1233,16 +1001,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Magyarország",
             EnglishName = "Hungary",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("HU"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 1, 1),
-                new(AsciiCategory.Digit, 15, 15),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.HU())
             {
                 Example = "HU42117730161111101800000000",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1272,14 +1031,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ireland",
             EnglishName = "Ireland",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("IE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.Digit, 8, 8),
-            }))
+            Iban = new IbanStructure(new Patterns.IE())
             {
                 Example = "IE29AIBK93115212345678",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1309,14 +1061,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "ישראל",
             EnglishName = "Israel",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("IL"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 13, 13),
-            }))
+            Iban = new IbanStructure(new Patterns.IL())
             {
                 Example = "IL620108000000099999999",
                 EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1346,14 +1091,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "العراق",
             EnglishName = "Iraq",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("IQ"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.IQ())
             {
                 Example = "IQ98NBIQ850123456789012",
                 EffectiveDate = new DateTimeOffset(2017, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1383,15 +1121,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ísland",
             EnglishName = "Iceland",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("IS"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.IS())
             {
                 Example = "IS140159260076545510730339",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1421,15 +1151,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Italia",
             EnglishName = "Italy",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("IT"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 1, 1),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.IT())
             {
                 Example = "IT60X0542811101000000123456",
                 EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1459,14 +1181,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الأردن",
             EnglishName = "Jordan",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("JO"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 18, 18),
-            }))
+            Iban = new IbanStructure(new Patterns.JO())
             {
                 Example = "JO94CBJO0010000000000131000302",
                 EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1496,13 +1211,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الكويت",
             EnglishName = "Kuwait",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("KW"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 22, 22),
-            }))
+            Iban = new IbanStructure(new Patterns.KW())
             {
                 Example = "KW81CBKU0000000000001234560101",
                 EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1528,13 +1237,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Қазақстан",
             EnglishName = "Kazakhstan",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("KZ"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.AlphaNumeric, 13, 13),
-            }))
+            Iban = new IbanStructure(new Patterns.KZ())
             {
                 Example = "KZ86125KZT5004100100",
                 EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1560,13 +1263,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "لبنان",
             EnglishName = "Lebanon",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LB"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 20, 20),
-            }))
+            Iban = new IbanStructure(new Patterns.LB())
             {
                 Example = "LB62099900000001001901229114",
                 EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1592,13 +1289,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "St. Lucia",
             EnglishName = "Saint Lucia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LC"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 24, 24),
-            }))
+            Iban = new IbanStructure(new Patterns.LC())
             {
                 Example = "LC55HEMM000100010012001200023015",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1624,13 +1315,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Liechtenstein",
             EnglishName = "Liechtenstein",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LI"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.LI())
             {
                 Example = "LI21088100002324013AA",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1656,13 +1341,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Lietuva",
             EnglishName = "Lithuania",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LT"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 11, 11),
-            }))
+            Iban = new IbanStructure(new Patterns.LT())
             {
                 Example = "LT121000011101001000",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1688,13 +1367,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Lëtzebuerg",
             EnglishName = "Luxembourg",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LU"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.AlphaNumeric, 13, 13),
-            }))
+            Iban = new IbanStructure(new Patterns.LU())
             {
                 Example = "LU280019400644750000",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1720,13 +1393,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Latvija",
             EnglishName = "Latvia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LV"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 13, 13),
-            }))
+            Iban = new IbanStructure(new Patterns.LV())
             {
                 Example = "LV80BANK0000435195001",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1752,14 +1419,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "ليبيا",
             EnglishName = "Libya",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("LY"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 15, 15),
-            }))
+            Iban = new IbanStructure(new Patterns.LY())
             {
                 Example = "LY83002048000020100120361",
                 EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1789,15 +1449,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Monaco",
             EnglishName = "Monaco",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MC"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.MC())
             {
                 Example = "MC5811222000010123456789030",
                 EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1827,13 +1479,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Republica Moldova",
             EnglishName = "Moldova",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MD"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 18, 18),
-            }))
+            Iban = new IbanStructure(new Patterns.MD())
             {
                 Example = "MD24AG000225100013104168",
                 EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1859,14 +1505,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Crna Gora",
             EnglishName = "Montenegro",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("ME"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 13, 13),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.ME())
             {
                 Example = "ME25505000012345678951",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1892,14 +1531,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Северна Македонија",
             EnglishName = "Macedonia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MK"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.AlphaNumeric, 10, 10),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.MK())
             {
                 Example = "MK07250120000058984",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1925,13 +1557,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Монгол",
             EnglishName = "Mongolia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MN"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.MN())
             {
                 Example = "MN121234123456789123",
                 EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1957,15 +1583,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "موريتانيا",
             EnglishName = "Mauritania",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.MR())
             {
                 Example = "MR1300020001010000123456753",
                 EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -1995,14 +1613,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Malta",
             EnglishName = "Malta",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MT"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 18, 18),
-            }))
+            Iban = new IbanStructure(new Patterns.MT())
             {
                 Example = "MT84MALT011000012345MTLCAST001S",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2032,17 +1643,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Mauritius",
             EnglishName = "Mauritius",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("MU"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 12, 12),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.UppercaseLetter, 3, 3),
-            }))
+            Iban = new IbanStructure(new Patterns.MU())
             {
                 Example = "MU17BOMM0101101030300200000MUR",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2072,13 +1673,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Nicaragua",
             EnglishName = "Nicaragua",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("NI"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 20, 20),
-            }))
+            Iban = new IbanStructure(new Patterns.NI())
             {
                 Example = "NI45BAPR00000013000003558124",
                 EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2104,13 +1699,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Nederland",
             EnglishName = "Netherlands (The)",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("NL"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.NL())
             {
                 Example = "NL91ABNA0417164300",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2136,14 +1725,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Noreg",
             EnglishName = "Norway",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("NO"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.NO())
             {
                 Example = "NO9386011117947",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2169,13 +1751,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "پاکستان",
             EnglishName = "Pakistan",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("PK"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.PK())
             {
                 Example = "PK36SCBL0000001123456702",
                 EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2201,13 +1777,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Polska",
             EnglishName = "Poland",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("PL"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 8, 8),
-                new(AsciiCategory.Digit, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.PL())
             {
                 Example = "PL61109010140000071219812874",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2233,13 +1803,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "السلطة الفلسطينية",
             EnglishName = "Palestine, State of",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("PS"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 21, 21),
-            }))
+            Iban = new IbanStructure(new Patterns.PS())
             {
                 Example = "PS92PALS000000000400123456702",
                 EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2265,15 +1829,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Portugal",
             EnglishName = "Portugal",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("PT"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.PT())
             {
                 Example = "PT50000201231234567890154",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2303,13 +1859,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "قطر",
             EnglishName = "Qatar",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("QA"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 21, 21),
-            }))
+            Iban = new IbanStructure(new Patterns.QA())
             {
                 Example = "QA58DOHB00001234567890ABCDEFG",
                 EffectiveDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2335,13 +1885,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "România",
             EnglishName = "Romania",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("RO"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.RO())
             {
                 Example = "RO49AAAA1B31007593840000",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2367,14 +1911,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Srbija",
             EnglishName = "Serbia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("RS"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 13, 13),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.RS())
             {
                 Example = "RS35260005601001611379",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2400,13 +1937,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "المملكة العربية السعودية",
             EnglishName = "Saudi Arabia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SA"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.AlphaNumeric, 18, 18),
-            }))
+            Iban = new IbanStructure(new Patterns.SA())
             {
                 Example = "SA0380000000608010167519",
                 EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2432,16 +1963,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Seychelles",
             EnglishName = "Seychelles",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SC"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 16, 16),
-                new(AsciiCategory.UppercaseLetter, 3, 3),
-            }))
+            Iban = new IbanStructure(new Patterns.SC())
             {
                 Example = "SC18SSCB11010000000000001497USD",
                 EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2471,13 +1993,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "السودان",
             EnglishName = "Sudan",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SD"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.SD())
             {
                 Example = "SD2129010501234001",
                 EffectiveDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2503,14 +2019,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Sverige",
             EnglishName = "Sweden",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SE"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 16, 16),
-                new(AsciiCategory.Digit, 1, 1),
-            }))
+            Iban = new IbanStructure(new Patterns.SE())
             {
                 Example = "SE4550000000058398257466",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2536,14 +2045,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Slovenija",
             EnglishName = "Slovenia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SI"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 8, 8),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.SI())
             {
                 Example = "SI56263300012039086",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2569,14 +2071,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Slovensko",
             EnglishName = "Slovakia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SK"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.Digit, 10, 10),
-            }))
+            Iban = new IbanStructure(new Patterns.SK())
             {
                 Example = "SK3112000000198742637541",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2602,15 +2097,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "San Marino",
             EnglishName = "San Marino",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SM"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 1, 1),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.AlphaNumeric, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.SM())
             {
                 Example = "SM86U0322509800000000270100",
                 EffectiveDate = new DateTimeOffset(2007, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2640,14 +2127,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الصومال",
             EnglishName = "Somalia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SO"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 12, 12),
-            }))
+            Iban = new IbanStructure(new Patterns.SO())
             {
                 Example = "SO211000001001000100141",
                 EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2677,15 +2157,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "São Tomé e Príncipe",
             EnglishName = "Sao Tome and Principe",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("ST"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 11, 11),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.ST())
             {
                 Example = "ST23000100010051845310146",
                 EffectiveDate = new DateTimeOffset(2015, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2715,13 +2187,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "El Salvador",
             EnglishName = "El Salvador",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("SV"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 20, 20),
-            }))
+            Iban = new IbanStructure(new Patterns.SV())
             {
                 Example = "SV62CENR00000000000000700025",
                 EffectiveDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2747,14 +2213,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Timor-Leste",
             EnglishName = "Timor-Leste",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("TL"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 14, 14),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.TL())
             {
                 Example = "TL380080012345678910157",
                 EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2780,15 +2239,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "تونس",
             EnglishName = "Tunisia",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("TN"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 13, 13),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.TN())
             {
                 Example = "TN5910006035183598478831",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2818,14 +2269,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Türkiye",
             EnglishName = "Turkey",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("TR"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 5, 5),
-                new(AsciiCategory.Digit, 1, 1),
-                new(AsciiCategory.AlphaNumeric, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.TR())
             {
                 Example = "TR330006100519786457841326",
                 EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2851,13 +2295,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Україна",
             EnglishName = "Ukraine",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("UA"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 6, 6),
-                new(AsciiCategory.AlphaNumeric, 19, 19),
-            }))
+            Iban = new IbanStructure(new Patterns.UA())
             {
                 Example = "UA213223130000026007233566001",
                 EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2883,13 +2321,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Città del Vaticano",
             EnglishName = "Vatican City State",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("VA"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 3, 3),
-                new(AsciiCategory.Digit, 15, 15),
-            }))
+            Iban = new IbanStructure(new Patterns.VA())
             {
                 Example = "VA59001123000012345678",
                 EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2915,13 +2347,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "British Virgin Islands",
             EnglishName = "Virgin Islands",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("VG"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.UppercaseLetter, 4, 4),
-                new(AsciiCategory.Digit, 16, 16),
-            }))
+            Iban = new IbanStructure(new Patterns.VG())
             {
                 Example = "VG96VPVG0000012345678901",
                 EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2947,14 +2373,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Kosovë",
             EnglishName = "Kosovo",
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-                new("XK"),
-                new(AsciiCategory.Digit, 2, 2),
-                new(AsciiCategory.Digit, 4, 4),
-                new(AsciiCategory.Digit, 10, 10),
-                new(AsciiCategory.Digit, 2, 2),
-            }))
+            Iban = new IbanStructure(new Patterns.XK())
             {
                 Example = "XK051212012345678906",
                 EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -2981,5 +2400,3921 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 
         // ReSharper restore StringLiteralTypo
         // ReSharper restore CommentTypo
+    }
+
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+    private static class Patterns
+    {
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class AD() : SwiftPattern("AD2!n4!n4!n12!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'A'
+                    && value[pos++] == 'D'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class AE() : SwiftPattern("AE2!n3!n16!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'A'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class AL() : SwiftPattern("AL2!n8!n16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'A'
+                    && value[pos++] == 'L'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class AT() : SwiftPattern("AT2!n5!n11!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'A'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class AZ() : SwiftPattern("AZ2!n4!a20!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'A'
+                    && value[pos++] == 'Z'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BA() : SwiftPattern("BA2!n3!n3!n8!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'A'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BE() : SwiftPattern("BE2!n3!n7!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BG() : SwiftPattern("BG2!n4!a4!n2!n8!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'G'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BH() : SwiftPattern("BH2!n4!a14!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'H'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BI() : SwiftPattern("BI2!n5!n5!n11!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'I'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BR() : SwiftPattern("BR2!n8!n5!n10!n1!a1!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class BY() : SwiftPattern("BY2!n4!c4!n16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'B'
+                    && value[pos++] == 'Y'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class CH() : SwiftPattern("CH2!n5!n12!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'C'
+                    && value[pos++] == 'H'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class CR() : SwiftPattern("CR2!n4!n14!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'C'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class CY() : SwiftPattern("CY2!n3!n5!n16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'C'
+                    && value[pos++] == 'Y'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class CZ() : SwiftPattern("CZ2!n4!n6!n10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'C'
+                    && value[pos++] == 'Z'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class DE() : SwiftPattern("DE2!n8!n10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'D'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class DJ() : SwiftPattern("DJ2!n5!n5!n11!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'D'
+                    && value[pos++] == 'J'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class DK() : SwiftPattern("DK2!n4!n9!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'D'
+                    && value[pos++] == 'K'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class DO() : SwiftPattern("DO2!n4!c20!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'D'
+                    && value[pos++] == 'O'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class EE() : SwiftPattern("EE2!n2!n2!n11!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'E'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class EG() : SwiftPattern("EG2!n4!n4!n17!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'E'
+                    && value[pos++] == 'G'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class ES() : SwiftPattern("ES2!n4!n4!n1!n1!n10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'E'
+                    && value[pos++] == 'S'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class FI() : SwiftPattern("FI2!n3!n11!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'F'
+                    && value[pos++] == 'I'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class FK() : SwiftPattern("FK2!n2!a12!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'F'
+                    && value[pos++] == 'K'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class FO() : SwiftPattern("FO2!n4!n9!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'F'
+                    && value[pos++] == 'O'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class FR() : SwiftPattern("FR2!n5!n5!n11!c2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'F'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class GB() : SwiftPattern("GB2!n4!a6!n8!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'G'
+                    && value[pos++] == 'B'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class GE() : SwiftPattern("GE2!n2!a16!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'G'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class GI() : SwiftPattern("GI2!n4!a15!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'G'
+                    && value[pos++] == 'I'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class GL() : SwiftPattern("GL2!n4!n9!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'G'
+                    && value[pos++] == 'L'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class GR() : SwiftPattern("GR2!n3!n4!n16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'G'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class GT() : SwiftPattern("GT2!n4!c20!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'G'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class HR() : SwiftPattern("HR2!n7!n10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'H'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class HU() : SwiftPattern("HU2!n3!n4!n1!n15!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'H'
+                    && value[pos++] == 'U'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class IE() : SwiftPattern("IE2!n4!a6!n8!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'I'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class IL() : SwiftPattern("IL2!n3!n3!n13!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'I'
+                    && value[pos++] == 'L'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class IQ() : SwiftPattern("IQ2!n4!a3!n12!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'I'
+                    && value[pos++] == 'Q'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class IS() : SwiftPattern("IS2!n4!n2!n6!n10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'I'
+                    && value[pos++] == 'S'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class IT() : SwiftPattern("IT2!n1!a5!n5!n12!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'I'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class JO() : SwiftPattern("JO2!n4!a4!n18!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'J'
+                    && value[pos++] == 'O'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class KW() : SwiftPattern("KW2!n4!a22!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'K'
+                    && value[pos++] == 'W'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class KZ() : SwiftPattern("KZ2!n3!n13!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'K'
+                    && value[pos++] == 'Z'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LB() : SwiftPattern("LB2!n4!n20!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'B'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LC() : SwiftPattern("LC2!n4!a24!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'C'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LI() : SwiftPattern("LI2!n5!n12!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'I'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LT() : SwiftPattern("LT2!n5!n11!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LU() : SwiftPattern("LU2!n3!n13!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'U'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LV() : SwiftPattern("LV2!n4!a13!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'V'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class LY() : SwiftPattern("LY2!n3!n3!n15!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'L'
+                    && value[pos++] == 'Y'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MC() : SwiftPattern("MC2!n5!n5!n11!c2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'C'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MD() : SwiftPattern("MD2!n2!c18!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'D'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class ME() : SwiftPattern("ME2!n3!n13!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MK() : SwiftPattern("MK2!n3!n10!c2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'K'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MN() : SwiftPattern("MN2!n4!n12!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'N'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MR() : SwiftPattern("MR2!n5!n5!n11!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MT() : SwiftPattern("MT2!n4!a5!n18!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class MU() : SwiftPattern("MU2!n4!a2!n2!n12!n3!n3!a")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'M'
+                    && value[pos++] == 'U'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class NI() : SwiftPattern("NI2!n4!a20!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'N'
+                    && value[pos++] == 'I'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class NL() : SwiftPattern("NL2!n4!a10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'N'
+                    && value[pos++] == 'L'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class NO() : SwiftPattern("NO2!n4!n6!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'N'
+                    && value[pos++] == 'O'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class PK() : SwiftPattern("PK2!n4!a16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'P'
+                    && value[pos++] == 'K'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class PL() : SwiftPattern("PL2!n8!n16!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'P'
+                    && value[pos++] == 'L'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class PS() : SwiftPattern("PS2!n4!a21!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'P'
+                    && value[pos++] == 'S'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class PT() : SwiftPattern("PT2!n4!n4!n11!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'P'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class QA() : SwiftPattern("QA2!n4!a21!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'Q'
+                    && value[pos++] == 'A'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class RO() : SwiftPattern("RO2!n4!a16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'R'
+                    && value[pos++] == 'O'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class RS() : SwiftPattern("RS2!n3!n13!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'R'
+                    && value[pos++] == 'S'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SA() : SwiftPattern("SA2!n2!n18!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'A'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SC() : SwiftPattern("SC2!n4!a2!n2!n16!n3!a")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'C'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SD() : SwiftPattern("SD2!n2!n12!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'D'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SE() : SwiftPattern("SE2!n3!n16!n1!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'E'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SI() : SwiftPattern("SI2!n5!n8!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'I'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SK() : SwiftPattern("SK2!n4!n6!n10!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'K'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SM() : SwiftPattern("SM2!n1!a5!n5!n12!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'M'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SO() : SwiftPattern("SO2!n4!n3!n12!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'O'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class ST() : SwiftPattern("ST2!n4!n4!n11!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'T'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class SV() : SwiftPattern("SV2!n4!a20!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'S'
+                    && value[pos++] == 'V'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class TL() : SwiftPattern("TL2!n3!n14!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'T'
+                    && value[pos++] == 'L'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class TN() : SwiftPattern("TN2!n2!n3!n13!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'T'
+                    && value[pos++] == 'N'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class TR() : SwiftPattern("TR2!n5!n1!n16!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'T'
+                    && value[pos++] == 'R'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class UA() : SwiftPattern("UA2!n6!n19!c")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'U'
+                    && value[pos++] == 'A'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    && value[pos++].IsAlphaNumeric()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class VA() : SwiftPattern("VA2!n3!n15!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'V'
+                    && value[pos++] == 'A'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class VG() : SwiftPattern("VG2!n4!a16!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'V'
+                    && value[pos++] == 'G'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsUpperAsciiLetter()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r95")]
+        internal sealed class XK() : SwiftPattern("XK2!n4!n10!n2!n")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'X'
+                    && value[pos++] == 'K'
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    && value[pos++].IsAsciiDigit()
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
     }
 }

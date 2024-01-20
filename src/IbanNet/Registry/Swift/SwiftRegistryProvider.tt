@@ -14,7 +14,8 @@
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Diagnostics;
-using IbanNet.Registry.Patterns;
+using System.Diagnostics.CodeAnalysis;
+using IbanNet.Extensions;
 <#
     string dataFolder = Path.Combine(Path.GetDirectoryName(this.Host.ResolvePath("SwiftRegistryProvider.tt")), "Files");
     string registryPath = Directory.GetFiles(dataFolder)
@@ -63,12 +64,14 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 
 <#
     var csv = new SwiftCsvReader(new StreamReader(registryPath, Encoding.GetEncoding(1252)));
-    var records = csv.GetRecords<SwiftCsvRecord>();
+    var records = csv.GetRecords<SwiftCsvRecord>()
+        .Select(IbanNet.CodeGen.Swift.Patches.RecordPatcher.ApplyAll)
+        .Where(record => !Boycott(record.CountryCode))
+        .ToArray();
 
-    foreach (var record in records.Select(IbanNet.CodeGen.Swift.Patches.RecordPatcher.ApplyAll))
+    foreach (var record in records)
     {
         int bbanOffset = record.Iban.Length - record.Bban.Length;
-        if (Boycott(record.CountryCode)) continue;
 #>
         // <#= record.EnglishName #>
         yield return new IbanCountry("<#= record.CountryCode #>")
@@ -88,21 +91,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         }
 
 #>
-            Iban = new IbanStructure(new SwiftPattern(new PatternToken[]
-            {
-<#
-        var pattern = new SwiftPattern(record.Iban.Pattern);
-#>
-                new("<#= record.CountryCode #>"),
-<#
-        foreach (var token in pattern.Tokens.Skip(1))
-        {
-#>
-                new(AsciiCategory.<#= Enum.GetName(typeof(AsciiCategory), token.Category) #>, <#= token.MinLength #>, <#= token.MaxLength #>),
-<#
-        }
-#>
-            }))
+            Iban = new IbanStructure(new Patterns.<#= record.CountryCode #>())
             {
                 Example = "<#= record.Iban.ElectronicFormatExample ?? string.Empty #>",
                 EffectiveDate = new DateTimeOffset(<#= record.EffectiveDate.Year #>, <#= record.EffectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
@@ -155,6 +144,81 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 #>
         // ReSharper restore StringLiteralTypo
         // ReSharper restore CommentTypo
+    }
+
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
+    private static class Patterns
+    {
+<#
+    foreach (var record in records)
+    {
+        var pattern = new SwiftPattern(record.Iban.Pattern);
+#>
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
+        internal sealed class <#= record.CountryCode #>() : SwiftPattern("<#= record.Iban.Pattern.ToString() #>")
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == '<#= record.CountryCode[0] #>'
+                    && value[pos++] == '<#= record.CountryCode[1] #>'
+<#
+        foreach (var token in pattern.Tokens
+            .Skip(1)    // Skip country code token.
+            .SelectMany(token => Enumerable.Range(0, token.MaxLength).Select(_ => token))
+        )
+        {
+            if (!token.IsFixedLength)
+            {
+                throw new InvalidOperationException("Can't optimize for non-fixed length.");
+            }
+
+            if (token.Category == AsciiCategory.Space) {
+#>
+                    && value[pos++] == ' '
+<#
+            } else if (token.Category == AsciiCategory.Digit) {
+#>
+                    && value[pos++].IsAsciiDigit()
+<#
+            } else if (token.Category == AsciiCategory.AlphaNumeric) {
+#>
+                    && value[pos++].IsAlphaNumeric()
+<#
+            } else if (token.Category == AsciiCategory.UppercaseLetter) {
+#>
+                    && value[pos++].IsUpperAsciiLetter()
+<#
+            } else if (token.Category == AsciiCategory.LowercaseLetter) {
+#>
+                    && value[pos++].IsLowerAsciiLetter()
+<#
+            } else if (token.Category == AsciiCategory.Letter) {
+#>
+                    && value[pos++].IsAsciiLetter()
+<#
+            }
+        }
+#>
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+<#
+    }
+#>
     }
 }
 <#+

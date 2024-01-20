@@ -96,10 +96,10 @@ public abstract class Pattern
     }
 
 #if USE_SPANS
-    internal bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+    internal virtual bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
     {
 #else
-    internal bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+    internal virtual bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
     {
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (value is null)
