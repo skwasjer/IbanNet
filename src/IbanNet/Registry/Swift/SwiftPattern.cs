@@ -2,10 +2,17 @@
 
 namespace IbanNet.Registry.Swift;
 
-internal class SwiftPattern : Pattern
+/// <inheritdoc />
+#if DEBUG
+public
+#else
+internal
+#endif
+    class SwiftPattern : Pattern
 {
     private static readonly SwiftPatternTokenizer Tokenizer = new();
 
+    /// <inheritdoc />
     public SwiftPattern(string pattern) : base(pattern, Tokenizer)
     {
     }
@@ -14,6 +21,7 @@ internal class SwiftPattern : Pattern
     {
     }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return string.Join("", Tokens.Select(t =>
