@@ -39,12 +39,12 @@ jobs:
           fetch-tags: true
 
       - name: Install GitVersion ${{ env.GITVERSION }}
-        uses: gittools/actions/gitversion/setup@v0.10.2
+        uses: gittools/actions/gitversion/setup@v0.11.0
         with:
           versionSpec: ${{ env.GITVERSION }}
 
       - name: Determine version
-        uses: gittools/actions/gitversion/execute@v0.10.2
+        uses: gittools/actions/gitversion/execute@v0.11.0
         id: gitversion
         with:
           useConfigFile: true
@@ -61,7 +61,7 @@ jobs:
       msbuild-version-args: ${{ env.msbuild-version-args }}
     steps:
       # Setup
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.dotnet-version }}
 
@@ -74,7 +74,7 @@ jobs:
 
       # NuGet cache
       - name: Restore NuGet global package cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.targets','**/*.props','**/*.csproj') }} # Can't use packages.lock.json yet, because Dependabot does not support it.
@@ -108,7 +108,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       # Setup
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.dotnet-version }}
 
@@ -133,7 +133,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Setup
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.dotnet-version }}
 
@@ -144,7 +144,7 @@ jobs:
 
       # NuGet cache (.NET Framework Reference assemblies are needed for pack)
       - name: Restore NuGet global package cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.targets','**/*.props','**/*.csproj') }} # Can't use packages.lock.json yet, because Dependabot does not support it.
@@ -161,7 +161,7 @@ jobs:
       # Pack
       - run: dotnet pack --no-restore --no-build -c Release ${{ needs.build.outputs.msbuild-version-args }}
       - name: Upload release artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-${{ needs.determine-version.outputs.package-version }}
           path: |
@@ -180,7 +180,7 @@ jobs:
     steps:
       # Restore release artifacts
       - name: Download release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release-${{ needs.determine-version.outputs.package-version }}
 
