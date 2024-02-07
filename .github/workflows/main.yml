@@ -87,7 +87,7 @@ jobs:
       # Build
       - run: dotnet build --no-restore -c Release ${{ env.msbuild-version-args }}
       - name: Upload build artifacts
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: |
@@ -119,7 +119,7 @@ jobs:
 
       # Restore build artifacts
       - name: Download build artifacts
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: build
 
@@ -154,7 +154,7 @@ jobs:
 
       # Restore build artifacts
       - name: Download build artifacts
-        uses: ./.github/actions/download-artifact
+        uses: actions/download-artifact@v4
         with:
           name: build
 
