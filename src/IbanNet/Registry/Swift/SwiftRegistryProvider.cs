@@ -1140,7 +1140,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             Sepa = new SepaInfo
             {
-                IsMember = false
+                IsMember = true
             },
             DomesticAccountNumberExample = "0159-26-007654-551073-0339",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
