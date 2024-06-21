@@ -3,9 +3,7 @@
 /// <summary>
 /// The exception that is thrown when a pattern is invalid.
 /// </summary>
-#if !NETSTD_LEGACY
 [Serializable]
-#endif
 public class PatternException : FormatException
 {
     /// <summary>
@@ -34,7 +32,6 @@ public class PatternException : FormatException
     {
     }
 
-#if !NETSTD_LEGACY
     /// <summary>
     /// Initializes a new instance of the <see cref="PatternException" /> with serialized data.
     /// </summary>
@@ -45,8 +42,10 @@ public class PatternException : FormatException
     [Obsolete(DiagnosticId = "SYSLIB0051")]
 #pragma warning restore CA1041
 #endif
-    protected PatternException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+    protected PatternException
+    (
+        System.Runtime.Serialization.SerializationInfo info,
+        System.Runtime.Serialization.StreamingContext context) : base(info, context)
     {
     }
-#endif
 }

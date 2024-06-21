@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Reflection;
 namespace IbanNet {
     using System;
     
@@ -40,7 +39,7 @@ namespace IbanNet {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IbanNet.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IbanNet.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -112,15 +111,6 @@ namespace IbanNet {
         internal static string CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted {
             get {
                 return ResourceManager.GetString("CountryNotAcceptedResult_Bank_account_numbers_from_country_0_are_not_accepted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enum value &apos;{0}&apos; should be defined in the &apos;{1}&apos; enum..
-        /// </summary>
-        internal static string Enum_value_0_should_be_defined_in_the_1_enum {
-            get {
-                return ResourceManager.GetString("Enum_value_0_should_be_defined_in_the_1_enum", resourceCulture);
             }
         }
         
@@ -233,6 +223,15 @@ namespace IbanNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The IBAN is not a valid QR IBAN..
+        /// </summary>
+        internal static string InvalidQrIbanResult {
+            get {
+                return ResourceManager.GetString("InvalidQrIbanResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The pattern of the IBAN is incorrect..
         /// </summary>
         internal static string InvalidStructureResult {
@@ -310,15 +309,6 @@ namespace IbanNet {
         internal static string UnknownCountryCodeResult {
             get {
                 return ResourceManager.GetString("UnknownCountryCodeResult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The IBAN is not a valid QR IBAN..
-        /// </summary>
-        internal static string InvalidQrIbanResult {
-            get {
-                return ResourceManager.GetString("InvalidQrIbanResult", resourceCulture);
             }
         }
     }

@@ -5,9 +5,7 @@ namespace IbanNet.CheckDigits.Calculators;
 /// <summary>
 /// Exception that is thrown when an unexpected token/character is encountered while computing check digits.
 /// </summary>
-#if !NETSTD_LEGACY
-    [Serializable]
-#endif
+[Serializable]
 public class InvalidTokenException : InvalidOperationException
 {
     /// <summary>
@@ -51,19 +49,20 @@ public class InvalidTokenException : InvalidOperationException
     {
     }
 
-#if !NETSTD_LEGACY
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidTokenException" /> with serialized data.
-        /// </summary>
-        /// <param name="info">The object that holds the serialized data.</param>
-        /// <param name="context">The contextual information about the source or destination.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InvalidTokenException" /> with serialized data.
+    /// </summary>
+    /// <param name="info">The object that holds the serialized data.</param>
+    /// <param name="context">The contextual information about the source or destination.</param>
 #if NET8_0_OR_GREATER
 #pragma warning disable CA1041
         [Obsolete(DiagnosticId = "SYSLIB0051")]
 #pragma warning restore CA1041
 #endif
-        protected InvalidTokenException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
-        {
-        }
-#endif
+    protected InvalidTokenException
+    (
+        System.Runtime.Serialization.SerializationInfo info,
+        System.Runtime.Serialization.StreamingContext context) : base(info, context)
+    {
+    }
 }

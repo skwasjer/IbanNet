@@ -3,9 +3,7 @@
 /// <summary>
 /// The exception that is thrown when building a bank account number fails.
 /// </summary>
-#if !NETSTD_LEGACY
 [Serializable]
-#endif
 public class BankAccountBuilderException : InvalidOperationException
 {
     /// <summary>
@@ -34,7 +32,6 @@ public class BankAccountBuilderException : InvalidOperationException
     {
     }
 
-#if !NETSTD_LEGACY
     /// <summary>
     /// Initializes a new instance of the <see cref="BankAccountBuilderException" /> with serialized data.
     /// </summary>
@@ -45,8 +42,10 @@ public class BankAccountBuilderException : InvalidOperationException
     [Obsolete(DiagnosticId = "SYSLIB0051")]
 #pragma warning restore CA1041
 #endif
-    protected BankAccountBuilderException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+    protected BankAccountBuilderException
+    (
+        System.Runtime.Serialization.SerializationInfo info,
+        System.Runtime.Serialization.StreamingContext context) : base(info, context)
     {
     }
-#endif
 }

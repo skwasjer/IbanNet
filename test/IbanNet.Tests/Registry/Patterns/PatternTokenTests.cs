@@ -60,12 +60,7 @@ public class PatternTokenTests
 
         // Assert
         act.Should()
-#if NETSTD_LEGACY
-            .Throw<ArgumentException>()
-            .WithMessage(string.Format(Resources.Enum_value_0_should_be_defined_in_the_1_enum, category, nameof(AsciiCategory)) + "*")
-#else
             .Throw<InvalidEnumArgumentException>()
-#endif
             .WithParameterName(nameof(category));
     }
 
