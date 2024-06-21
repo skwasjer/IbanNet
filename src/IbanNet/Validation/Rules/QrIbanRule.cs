@@ -7,7 +7,7 @@ namespace IbanNet.Validation.Rules;
 /// <summary>
 /// Asserts that the IBAN is a valid QR IBAN.
 /// </summary>
-internal sealed class QrIbanRule : IIbanValidationRule
+public sealed class QrIbanRule : IIbanValidationRule
 {
     /// <inheritdoc />
     public ValidationRuleResult Validate(ValidationRuleContext context)
