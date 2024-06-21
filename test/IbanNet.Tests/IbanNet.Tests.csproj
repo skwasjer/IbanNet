@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net5.0;netcoreapp3.1;net472;net462</TargetFrameworks>
+    <TargetFrameworks>net8.0;net7.0;net6.0;net5.0;net48;net472;net462</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
     <NoWarn>$(NoWarn);xUnit1026</NoWarn>
@@ -22,7 +22,7 @@
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net7.0" Condition="'$(TargetFramework)'=='net7.0'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net6.0" Condition="'$(TargetFramework)'=='net6.0'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='net5.0'" />
-    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='netcoreapp3.1'" />
+    <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='net48'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net472" Condition="'$(TargetFramework)'=='net472'" />
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" AdditionalProperties="TargetFramework=net462" Condition="'$(TargetFramework)'=='net462'" />
     <ProjectReference Include="..\TestHelpers\TestHelpers.csproj" />

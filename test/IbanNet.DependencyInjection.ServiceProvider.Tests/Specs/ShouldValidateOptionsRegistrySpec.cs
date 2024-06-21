@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP3_1_OR_GREATER
+﻿#if NETCOREAPP
 using IbanNet.DependencyInjection.ServiceProvider.Fixtures;
 using Microsoft.Extensions.Options;
 using TestHelpers.Specs;
