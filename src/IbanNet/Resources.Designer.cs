@@ -312,5 +312,14 @@ namespace IbanNet {
                 return ResourceManager.GetString("UnknownCountryCodeResult", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The IBAN is not a valid QR IBAN..
+        /// </summary>
+        internal static string InvalidQrIbanResult {
+            get {
+                return ResourceManager.GetString("InvalidQrIbanResult", resourceCulture);
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using IbanNet.Validation.Rules;
 
 namespace IbanNet.Extensions;
 
@@ -35,12 +35,6 @@ public static class SwissIbanExtensions
             throw new ArgumentNullException(nameof(iban));
         }
 
-        if (iban.Country.TwoLetterISORegionName is "CH" or "LI"
-         && int.TryParse(iban.BankIdentifier, NumberStyles.None, NumberFormatInfo.InvariantInfo, out int iid))
-        {
-            return iid is >= 30000 and <= 31999;
-        }
-
-        return false;
+        return QrIbanRule.IsValid(iban.Country, iban.BankIdentifier ?? "");
     }
 }

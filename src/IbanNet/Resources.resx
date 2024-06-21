@@ -182,4 +182,7 @@
     <data name="ArgumentException_At_least_one_country_code_must_be_provided" xml:space="preserve">
         <value>At least one country code must be provided.</value>
     </data>
+    <data name="InvalidQrIbanResult" xml:space="preserve">
+        <value>The IBAN is not a valid QR IBAN.</value>
+    </data>
 </root>
