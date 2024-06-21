@@ -3,6 +3,22 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v5.15.0
+
+### What's Changed
+
+* feat: Iceland is member of SEPA (according to SWIFT registry (pdf-version) but not to processed txt-version) by @MT-private in https://github.com/skwasjer/IbanNet/pull/195
+* feat: QR IBAN validation is added as a standalone rule. by @taskinkemal in https://github.com/skwasjer/IbanNet/pull/196
+* chore: drop .NET Standard 1.6 support by @skwasjer in https://github.com/skwasjer/IbanNet/pull/202
+* chore(deps): bump Microsoft.AspNetCore.TestHost from 8.0.0-rc.2.234802 to 8.0.6 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/198
+* chore(deps): bump Microsoft.NET.Test.Sdk from 17.8.0 to 17.10.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/200
+* chore(deps): bump NSubstitute.Analyzers.CSharp from 1.0.16 to 1.0.17 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/199
+* chore(deps): bump Autofac from 6.4.0 to 8.0.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/201
+* ci: change to v4 actions / upgrade to NodeJS 20 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/193
+* ci: macos-latest has updated to ARM-based MacOS 14 which causes pipeline fail by @skwasjer in https://github.com/skwasjer/IbanNet/pull/197
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.14.0...v5.15.0
+
 ## v5.14.0
 
 ### What's Changed
