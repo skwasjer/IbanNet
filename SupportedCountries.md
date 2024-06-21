@@ -48,7 +48,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | IE | Ireland | 22 | `IE29 AIBK 9311 5212 3456 78` | Yes | ![Supported][supported] | ![Supported][supported] |
 | IL | Israel | 23 | `IL62 0108 0000 0009 9999 999` | No | ![Supported][supported] | ![Supported][supported] |
 | IQ | Iraq | 23 | `IQ98 NBIQ 8501 2345 6789 012` | No | ![Supported][supported] | ![Supported][supported] |
-| IS | Iceland | 26 | `IS14 0159 2600 7654 5510 7303 39` | No | ![Supported][supported] | ![Supported][supported] |
+| IS | Iceland | 26 | `IS14 0159 2600 7654 5510 7303 39` | Yes | ![Supported][supported] | ![Supported][supported] |
 | IT | Italy | 27 | `IT60 X054 2811 1010 0000 0123 456` | Yes | ![Supported][supported] | ![Supported][supported] |
 | JO | Jordan | 30 | `JO94 CBJO 0010 0000 0000 0131 0003 02` | No | ![Supported][supported] | ![Supported][supported] |
 | KW | Kuwait | 30 | `KW81 CBKU 0000 0000 0000 1234 5601 01` | No | ![Supported][supported] | - |
