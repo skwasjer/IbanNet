@@ -186,9 +186,6 @@
   <data name="The_value_cannot_be_less_than_or_equal_to_0" xml:space="preserve">
     <value>De waarde kan niet minder dan- of gelijk zijn aan {0}.</value>
   </data>
-  <data name="Enum_value_0_should_be_defined_in_the_1_enum" xml:space="preserve">
-    <value>Enum waarde '{0}' dient gedefinieerd te zijn in de '{1}' enum.</value>
-  </data>
   <data name="Exception_The_country_0_does_not_define_a_BBAN_pattern" xml:space="preserve">
     <value>Het land '{0}' heeft geen BBAN-patroon gedefinieerd.</value>
   </data>

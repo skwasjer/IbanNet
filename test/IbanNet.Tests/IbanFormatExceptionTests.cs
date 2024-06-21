@@ -21,7 +21,6 @@ public class IbanFormatExceptionTests : BaseExceptionTests<IbanFormatException>
         actual.Result.Should().Be(result);
     }
 
-#if !NETSTD_LEGACY
     [Fact]
     public void Given_exception_with_parameters_it_should_serialize_and_deserialize()
     {
@@ -51,5 +50,4 @@ public class IbanFormatExceptionTests : BaseExceptionTests<IbanFormatException>
             .BeEquivalentTo(exception, opts => opts.Excluding(ex => ex.Result));
         actualTyped.Result.Should().BeNull($"no serialization support is implemented for {nameof(ValidationResult)}");
     }
-#endif
 }

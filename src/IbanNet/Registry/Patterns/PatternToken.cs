@@ -21,15 +21,6 @@ public sealed class PatternToken
         IsMatch = (ch, index) => index < value.Length && ch == value[index];
     }
 
-#if NETSTANDARD1_6
-    /// <summary>
-    /// Initializes a new instance of the pattern token.
-    /// </summary>
-    /// <param name="category">The ASCII category for the token.</param>
-    /// <param name="length">The length of the token.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="length" /> is less than 1.</exception>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="category" /> is an invalid value.</exception>
-#else
     /// <summary>
     /// Initializes a new instance of the pattern token.
     /// </summary>
@@ -37,22 +28,11 @@ public sealed class PatternToken
     /// <param name="length">The length of the token.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="length" /> is less than 1.</exception>
     /// <exception cref="InvalidEnumArgumentException">Thrown when <paramref name="category" /> is an invalid value.</exception>
-#endif
     public PatternToken(AsciiCategory category, int length)
         : this(category, length, length, nameof(length))
     {
     }
 
-#if NETSTANDARD1_6
-    /// <summary>
-    /// Initializes a new instance of the pattern token.
-    /// </summary>
-    /// <param name="category">The ASCII category for the token.</param>
-    /// <param name="minLength">The minimum length of the token.</param>
-    /// <param name="maxLength">The maximum length of the token.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="minLength" /> or <paramref name="maxLength" /> is less than 1, or <paramref name="maxLength" /> is less than <paramref name="minLength" />.</exception>
-    /// <exception cref="ArgumentException">Thrown when <paramref name="category" /> is an invalid value.</exception>
-#else
     /// <summary>
     /// Initializes a new instance of the pattern token.
     /// </summary>
@@ -61,7 +41,6 @@ public sealed class PatternToken
     /// <param name="maxLength">The maximum length of the token.</param>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="minLength" /> or <paramref name="maxLength" /> is less than 1, or <paramref name="maxLength" /> is less than <paramref name="minLength" />.</exception>
     /// <exception cref="InvalidEnumArgumentException">Thrown when <paramref name="category" /> is an invalid value.</exception>
-#endif
     public PatternToken(AsciiCategory category, int minLength, int maxLength)
         : this(category, minLength, maxLength, nameof(minLength))
     {
@@ -131,11 +110,7 @@ public sealed class PatternToken
     {
         if (!Enum.IsDefined(typeof(AsciiCategory), category))
         {
-#if NETSTANDARD1_6
-            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.Enum_value_0_should_be_defined_in_the_1_enum, category, nameof(AsciiCategory)), nameof(category));
-#else
             throw new InvalidEnumArgumentException(nameof(category), (int)category, typeof(AsciiCategory));
-#endif
         }
 
         return category switch

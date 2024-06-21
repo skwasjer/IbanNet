@@ -3,9 +3,7 @@
 /// <summary>
 /// The exception that is thrown when the format of an IBAN is invalid.
 /// </summary>
-#if !NETSTD_LEGACY
 [Serializable]
-#endif
 public class IbanFormatException : FormatException
 {
     /// <summary>
@@ -50,7 +48,6 @@ public class IbanFormatException : FormatException
     /// </summary>
     public ValidationResult? Result { get; }
 
-#if !NETSTD_LEGACY
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanFormatException" /> with serialized data.
     /// </summary>
@@ -61,9 +58,11 @@ public class IbanFormatException : FormatException
     [Obsolete(DiagnosticId = "SYSLIB0051")]
 #pragma warning restore CA1041
 #endif
-    protected IbanFormatException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+    protected IbanFormatException
+    (
+        System.Runtime.Serialization.SerializationInfo info,
+        System.Runtime.Serialization.StreamingContext context) : base(info, context)
     {
         // Note: Result property info is lost since it is not serializable.
     }
-#endif
 }

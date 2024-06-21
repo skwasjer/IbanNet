@@ -167,9 +167,6 @@
     <data name="The_value_cannot_be_less_than_or_equal_to_0" xml:space="preserve">
         <value>El valor no pot ser inferior o igual a {0}.</value>
     </data>
-    <data name="Enum_value_0_should_be_defined_in_the_1_enum" xml:space="preserve">
-        <value>El valor de l'enum '{0}' hauria d'estar definit a l'enum '{1}'.</value>
-    </data>
     <data name="Exception_The_country_0_does_not_define_a_BBAN_pattern" xml:space="preserve">
         <value>El país '{0}' no defineix un patró BBAN.</value>
     </data>

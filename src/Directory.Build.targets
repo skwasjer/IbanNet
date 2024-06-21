@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
-    <DefineConstants Condition="$(TargetFramework.StartsWith('netstandard1'))">$(DefineConstants);NETSTD_LEGACY</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup>
