@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net48;net472</TargetFrameworks>
+    <TargetFrameworks>net8.0;net6.0;net48;net472</TargetFrameworks>
     <IsTestProject>false</IsTestProject>
     <Nullable>disable</Nullable>
     <DefineConstants Condition="'$(Configuration)'=='Release' And '$(ContinuousIntegrationBuild)'==''">$(DefineConstants);VALIDATOR_COMPARISONS</DefineConstants>
