@@ -124,7 +124,7 @@ jobs:
           name: build
 
       # Run all tests
-      - run: dotnet test --no-restore --no-build -c Release
+      - run: dotnet test --no-restore --no-build -c Release -- xUnit.AppDomain=denied
 
   pack:
     needs:
