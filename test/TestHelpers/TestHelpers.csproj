@@ -6,6 +6,18 @@
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <VerifyVersion>26.6.0</VerifyVersion>
+    <VerifyVersion Condition="'$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netstandard2.0' Or '$(TargetFramework)'=='net462'">20.8.2</VerifyVersion>
+    <VerifyPublicApi Condition="'$(VerifyPublicApi)'==''">true</VerifyPublicApi>
+    <DefineConstants Condition="'$(VerifyPublicApi)'=='true'">$(DefineConstants);VERIFY_PUBLIC_API</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(VerifyPublicApi)'=='true'">
+    <PackageReference Include="PublicApiGenerator" Version="11.1.0" />
+    <PackageReference Include="Verify.Xunit" Version="$(VerifyVersion)" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\IbanNet\IbanNet.csproj" />
   </ItemGroup>

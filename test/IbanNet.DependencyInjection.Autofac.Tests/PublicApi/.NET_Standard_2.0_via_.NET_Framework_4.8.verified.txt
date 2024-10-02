@@ -1,0 +1,17 @@
+﻿[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/skwasjer/IbanNet")]
+[assembly: System.Resources.NeutralResourcesLanguage("en")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETStandard,Version=v2.0", FrameworkDisplayName=".NET Standard 2.0")]
+namespace IbanNet.DependencyInjection.Autofac
+{
+    public static class AutofacRegistrationExtensions
+    {
+        public static Autofac.ContainerBuilder RegisterIbanNet(this Autofac.ContainerBuilder containerBuilder, bool preserveStaticValidator = false) { }
+        public static Autofac.ContainerBuilder RegisterIbanNet(this Autofac.ContainerBuilder containerBuilder, System.Action<IbanNet.DependencyInjection.IIbanNetOptionsBuilder> configure, bool preserveStaticValidator = false) { }
+    }
+    public static class IbanNetOptionsBuilderExtensions
+    {
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder Configure(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Action<Autofac.IComponentContext, IbanNet.IbanValidatorOptions> configure) { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder WithRule<T>(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Func<Autofac.IComponentContext, T> implementationFactory)
+            where T :  class, IbanNet.Validation.Rules.IIbanValidationRule { }
+    }
+}

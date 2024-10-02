@@ -1,0 +1,433 @@
+﻿[assembly: System.CLSCompliant(true)]
+[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/skwasjer/IbanNet")]
+[assembly: System.Resources.NeutralResourcesLanguage("en")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.7.2", FrameworkDisplayName=".NET Framework 4.7.2")]
+namespace IbanNet.Builders
+{
+    [System.Serializable]
+    public class BankAccountBuilderException : System.InvalidOperationException
+    {
+        public BankAccountBuilderException() { }
+        public BankAccountBuilderException(string message) { }
+        protected BankAccountBuilderException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public BankAccountBuilderException(string message, System.Exception? innerException) { }
+    }
+    public sealed class BbanBuilder : IbanNet.Builders.IBankAccountBuilder, IbanNet.IFluentInterface
+    {
+        public BbanBuilder() { }
+        public string Build() { }
+        public IbanNet.Builders.IBankAccountBuilder WithBankAccountNumber(string bankAccountNumber, bool enablePadding = true) { }
+        public IbanNet.Builders.IBankAccountBuilder WithBankIdentifier(string bankIdentifier, bool enablePadding = true) { }
+        public IbanNet.Builders.IBankAccountBuilder WithBranchIdentifier(string branchIdentifier, bool enablePadding = true) { }
+        public IbanNet.Builders.IBankAccountBuilder WithCountry(IbanNet.Registry.IbanCountry country) { }
+    }
+    public static class BuilderExtensions
+    {
+        public static IbanNet.Builders.BbanBuilder GetBbanBuilder(this IbanNet.Registry.IbanCountry country) { }
+        public static IbanNet.Builders.IbanBuilder GetIbanBuilder(this IbanNet.Registry.IbanCountry country) { }
+        public static IbanNet.Builders.IBankAccountBuilder WithCountry(this IbanNet.Builders.IBankAccountBuilder builder, string countryCode, IbanNet.Registry.IIbanRegistry registry) { }
+    }
+    public interface IBankAccountBuilder : IbanNet.IFluentInterface
+    {
+        string Build();
+        IbanNet.Builders.IBankAccountBuilder WithBankAccountNumber(string bankAccountNumber, bool enablePadding = true);
+        IbanNet.Builders.IBankAccountBuilder WithBankIdentifier(string bankIdentifier, bool enablePadding = true);
+        IbanNet.Builders.IBankAccountBuilder WithBranchIdentifier(string branchIdentifier, bool enablePadding = true);
+        IbanNet.Builders.IBankAccountBuilder WithCountry(IbanNet.Registry.IbanCountry country);
+    }
+    public sealed class IbanBuilder : IbanNet.Builders.IBankAccountBuilder, IbanNet.IFluentInterface
+    {
+        public IbanBuilder() { }
+        public string Build() { }
+        public IbanNet.Builders.IBankAccountBuilder WithBankAccountNumber(string bankAccountNumber, bool enablePadding = true) { }
+        public IbanNet.Builders.IBankAccountBuilder WithBankIdentifier(string bankIdentifier, bool enablePadding = true) { }
+        public IbanNet.Builders.IBankAccountBuilder WithBranchIdentifier(string branchIdentifier, bool enablePadding = true) { }
+        public IbanNet.Builders.IBankAccountBuilder WithCountry(IbanNet.Registry.IbanCountry country) { }
+    }
+}
+namespace IbanNet.CheckDigits.Calculators
+{
+    public interface ICheckDigitsCalculator
+    {
+        int Compute(char[] value);
+    }
+    [System.Serializable]
+    public class InvalidTokenException : System.InvalidOperationException
+    {
+        public InvalidTokenException() { }
+        public InvalidTokenException(string message) { }
+        public InvalidTokenException(int position, char unexpectedChar) { }
+        protected InvalidTokenException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public InvalidTokenException(string message, System.Exception? innerException) { }
+    }
+    public class Mod97CheckDigitsCalculator : IbanNet.CheckDigits.Calculators.ICheckDigitsCalculator
+    {
+        public Mod97CheckDigitsCalculator() { }
+        public int Compute(char[] value) { }
+    }
+}
+namespace IbanNet.DependencyInjection
+{
+    public abstract class DependencyResolverAdapter
+    {
+        protected DependencyResolverAdapter() { }
+        public object GetRequiredService(System.Type serviceType) { }
+        public T GetRequiredService<T>()
+            where T :  class { }
+        public abstract object? GetService(System.Type serviceType);
+        public T? GetService<T>()
+            where T :  class { }
+    }
+    public interface IIbanNetOptionsBuilder : IbanNet.IFluentInterface
+    {
+        IbanNet.DependencyInjection.IIbanNetOptionsBuilder Configure(System.Action<IbanNet.DependencyInjection.DependencyResolverAdapter, IbanNet.IbanValidatorOptions> configure);
+    }
+    public static class IbanNetOptionsBuilderExtensions
+    {
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder Configure(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Action<IbanNet.IbanValidatorOptions> configure) { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder UseRegistry(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Collections.Generic.IEnumerable<IbanNet.Registry.IbanCountry> registry) { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder UseRegistryProvider(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, params IbanNet.Registry.IIbanRegistryProvider[] registryProviders) { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder WithRule(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Type implementationType) { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder WithRule<T>(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder)
+            where T :  class, IbanNet.Validation.Rules.IIbanValidationRule { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder WithRule<T>(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Func<T> implementationFactory)
+            where T :  class, IbanNet.Validation.Rules.IIbanValidationRule { }
+    }
+}
+namespace IbanNet.Extensions
+{
+    public static class SwissIbanExtensions
+    {
+        public static bool IsQrIban(this IbanNet.Iban iban) { }
+    }
+}
+namespace IbanNet
+{
+    public interface IFluentInterface
+    {
+        bool Equals(object obj);
+        int GetHashCode();
+        System.Type GetType();
+        string ToString();
+    }
+    public interface IIbanParser
+    {
+        IbanNet.Iban Parse(string value);
+        bool TryParse(string? value, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out IbanNet.Iban? iban);
+    }
+    public interface IIbanValidator
+    {
+        IbanNet.ValidationResult Validate(string? iban);
+    }
+    [System.ComponentModel.TypeConverter(typeof(IbanNet.TypeConverters.IbanTypeConverter))]
+    public sealed class Iban : System.IEquatable<IbanNet.Iban>, System.IFormattable
+    {
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        public const int MaxLength = 34;
+        public string? BankIdentifier { get; }
+        public string Bban { get; }
+        public string? BranchIdentifier { get; }
+        public IbanNet.Registry.IbanCountry Country { get; }
+        public static IbanNet.IIbanValidator Validator { get; set; }
+        public bool Equals(IbanNet.Iban? other) { }
+        public override bool Equals(object? obj) { }
+        public override int GetHashCode() { }
+        public override string ToString() { }
+        public string ToString(IbanNet.IbanFormat format) { }
+        public string ToString(string? format) { }
+        public static bool operator !=(IbanNet.Iban left, IbanNet.Iban right) { }
+        public static bool operator ==(IbanNet.Iban left, IbanNet.Iban right) { }
+    }
+    public enum IbanFormat
+    {
+        Print = 0,
+        Electronic = 1,
+        Obfuscated = 2,
+    }
+    [System.Serializable]
+    public class IbanFormatException : System.FormatException
+    {
+        public IbanFormatException() { }
+        public IbanFormatException(string message) { }
+        protected IbanFormatException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public IbanFormatException(string message, IbanNet.ValidationResult validationResult) { }
+        public IbanFormatException(string message, System.Exception? innerException) { }
+        public IbanNet.ValidationResult? Result { get; }
+    }
+    public sealed class IbanParser : IbanNet.IIbanParser
+    {
+        public IbanParser(IbanNet.IIbanValidator ibanValidator) { }
+        public IbanParser(IbanNet.Registry.IIbanRegistry registry) { }
+        public IbanNet.Iban Parse(string value) { }
+        public bool TryParse(string? value, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out IbanNet.Iban? iban) { }
+    }
+    public sealed class IbanValidator : IbanNet.IIbanValidator
+    {
+        public IbanValidator() { }
+        public IbanValidator(IbanNet.IbanValidatorOptions options) { }
+        public IbanValidator(IbanNet.Registry.IIbanRegistry registry) { }
+        public IbanValidator(IbanNet.Registry.IIbanRegistry registry, System.Collections.Generic.IEnumerable<IbanNet.Validation.Rules.IIbanValidationRule> rules) { }
+        public IbanNet.IbanValidatorOptions Options { get; }
+        public IbanNet.Registry.IIbanRegistry SupportedCountries { get; }
+        public IbanNet.ValidationResult Validate(string? iban) { }
+    }
+    public class IbanValidatorOptions
+    {
+        public IbanValidatorOptions() { }
+        public IbanNet.Registry.IIbanRegistry Registry { get; set; }
+        public System.Collections.Generic.ICollection<IbanNet.Validation.Rules.IIbanValidationRule> Rules { get; }
+    }
+    public sealed class ValidationResult
+    {
+        public ValidationResult() { }
+        public bool IsValid { get; }
+        public string? AttemptedValue { get; init; }
+        public IbanNet.Registry.IbanCountry? Country { get; init; }
+        public IbanNet.Validation.Results.ErrorResult? Error { get; init; }
+    }
+}
+namespace IbanNet.Registry
+{
+    public class BankStructure : IbanNet.Registry.StructureSection
+    {
+        public BankStructure(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
+    }
+    public class BbanStructure : IbanNet.Registry.StructureSection
+    {
+        public BbanStructure(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
+    }
+    public class BranchStructure : IbanNet.Registry.StructureSection
+    {
+        public BranchStructure(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
+    }
+    public interface IIbanGenerator
+    {
+        IbanNet.Iban Generate(string countryCode);
+    }
+    public interface IIbanRegistry : System.Collections.Generic.IEnumerable<IbanNet.Registry.IbanCountry>, System.Collections.Generic.IReadOnlyCollection<IbanNet.Registry.IbanCountry>, System.Collections.IEnumerable
+    {
+        IbanNet.Registry.IbanCountry this[string twoLetterISORegionName] { get; }
+        System.Collections.Generic.IList<IbanNet.Registry.IIbanRegistryProvider> Providers { get; }
+        bool TryGetValue(string twoLetterISORegionName, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out IbanNet.Registry.IbanCountry? country);
+    }
+    public interface IIbanRegistryProvider : System.Collections.Generic.IEnumerable<IbanNet.Registry.IbanCountry>, System.Collections.Generic.IReadOnlyCollection<IbanNet.Registry.IbanCountry>, System.Collections.IEnumerable { }
+    [System.Diagnostics.DebuggerDisplay("\\{{TwoLetterISORegionName,nq} - {EnglishName,nq}\\}")]
+    public sealed class IbanCountry
+    {
+        public IbanCountry(string twoLetterISORegionName) { }
+        public string TwoLetterISORegionName { get; }
+        public IbanNet.Registry.BankStructure Bank { get; init; }
+        public IbanNet.Registry.BbanStructure Bban { get; init; }
+        public IbanNet.Registry.BranchStructure Branch { get; init; }
+        public string DisplayName { get; init; }
+        public string? DomesticAccountNumberExample { get; init; }
+        public string EnglishName { get; init; }
+        public IbanNet.Registry.IbanStructure Iban { get; init; }
+        public System.Collections.Generic.IReadOnlyCollection<string> IncludedCountries { get; init; }
+        public System.DateTimeOffset LastUpdatedDate { get; init; }
+        public string? NativeName { get; init; }
+        public IbanNet.Registry.SepaInfo? Sepa { get; init; }
+        public override string ToString() { }
+    }
+    public class IbanGenerator : IbanNet.Registry.IIbanGenerator
+    {
+        public IbanGenerator() { }
+        public IbanGenerator(IbanNet.Registry.IIbanRegistry registry) { }
+        public IbanGenerator(IbanNet.Registry.IIbanRegistry registry, int? seed) { }
+        public IbanNet.Iban Generate(string countryCode) { }
+    }
+    public class IbanRegistry : IbanNet.Registry.IIbanRegistry, System.Collections.Generic.IEnumerable<IbanNet.Registry.IbanCountry>, System.Collections.Generic.IReadOnlyCollection<IbanNet.Registry.IbanCountry>, System.Collections.IEnumerable
+    {
+        public IbanRegistry() { }
+        public int Count { get; }
+        public IbanNet.Registry.IbanCountry this[string twoLetterISORegionName] { get; }
+        public System.Collections.Generic.IList<IbanNet.Registry.IIbanRegistryProvider> Providers { get; }
+        public static IbanNet.Registry.IbanRegistry Default { get; }
+        public System.Collections.Generic.IEnumerator<IbanNet.Registry.IbanCountry> GetEnumerator() { }
+        public bool TryGetValue(string twoLetterISORegionName, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out IbanNet.Registry.IbanCountry? country) { }
+    }
+    public class IbanStructure : IbanNet.Registry.StructureSection
+    {
+        public IbanStructure(IbanNet.Registry.Patterns.Pattern pattern) { }
+        public System.DateTimeOffset EffectiveDate { get; init; }
+    }
+    public class SepaInfo
+    {
+        public SepaInfo() { }
+        public System.Collections.Generic.IReadOnlyCollection<string> IncludedCountries { get; init; }
+        public bool IsMember { get; init; }
+    }
+    public abstract class StructureSection
+    {
+        protected StructureSection(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
+        public int Length { get; }
+        public IbanNet.Registry.Patterns.Pattern Pattern { get; }
+        public int Position { get; }
+        public string Example { get; init; }
+    }
+}
+namespace IbanNet.Registry.Patterns
+{
+    [System.Flags]
+    public enum AsciiCategory
+    {
+        None = 0,
+        [System.Obsolete("Use None instead.", true)]
+        Other = 0,
+        Space = 1,
+        Digit = 2,
+        UppercaseLetter = 4,
+        LowercaseLetter = 8,
+        Letter = 12,
+        AlphaNumeric = 14,
+    }
+    public interface ITokenizer<out TToken>
+    {
+        System.Collections.Generic.IEnumerable<TToken> Tokenize(System.Collections.Generic.IEnumerable<char> input);
+    }
+    public abstract class Pattern
+    {
+        protected Pattern(System.Collections.Generic.IEnumerable<IbanNet.Registry.Patterns.PatternToken> tokens) { }
+        protected Pattern(string pattern, IbanNet.Registry.Patterns.ITokenizer<IbanNet.Registry.Patterns.PatternToken> tokenizer) { }
+        public virtual bool IsFixedLength { get; }
+        public virtual int MaxLength { get; }
+        public System.Collections.Generic.IReadOnlyList<IbanNet.Registry.Patterns.PatternToken> Tokens { get; }
+        public override string ToString() { }
+    }
+    [System.Serializable]
+    public class PatternException : System.FormatException
+    {
+        public PatternException() { }
+        public PatternException(string message) { }
+        protected PatternException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public PatternException(string message, System.Exception? innerException) { }
+    }
+    public static class PatternExtensions
+    {
+        public static string ToRegexPattern(this IbanNet.Registry.Patterns.Pattern pattern) { }
+    }
+    public sealed class PatternToken
+    {
+        public PatternToken(string value) { }
+        public PatternToken(IbanNet.Registry.Patterns.AsciiCategory category, int length) { }
+        public PatternToken(IbanNet.Registry.Patterns.AsciiCategory category, int minLength, int maxLength) { }
+        public IbanNet.Registry.Patterns.AsciiCategory Category { get; }
+        public bool IsFixedLength { get; }
+        public int MaxLength { get; }
+        public int MinLength { get; }
+        public string? Value { get; }
+        public override string ToString() { }
+    }
+}
+namespace IbanNet.Registry.Swift
+{
+    public class SwiftRegistryProvider : IbanNet.Registry.IIbanRegistryProvider, System.Collections.Generic.IEnumerable<IbanNet.Registry.IbanCountry>, System.Collections.Generic.IReadOnlyCollection<IbanNet.Registry.IbanCountry>, System.Collections.IEnumerable
+    {
+        public SwiftRegistryProvider() { }
+        public int Count { get; }
+        public System.Collections.Generic.IEnumerator<IbanNet.Registry.IbanCountry> GetEnumerator() { }
+    }
+}
+namespace IbanNet.Registry.Wikipedia
+{
+    public class WikipediaRegistryProvider : IbanNet.Registry.IIbanRegistryProvider, System.Collections.Generic.IEnumerable<IbanNet.Registry.IbanCountry>, System.Collections.Generic.IReadOnlyCollection<IbanNet.Registry.IbanCountry>, System.Collections.IEnumerable
+    {
+        public WikipediaRegistryProvider() { }
+        public int Count { get; }
+        public System.Collections.Generic.IEnumerator<IbanNet.Registry.IbanCountry> GetEnumerator() { }
+    }
+}
+namespace IbanNet.TypeConverters
+{
+    public sealed class IbanTypeConverter : System.ComponentModel.TypeConverter
+    {
+        public IbanTypeConverter() { }
+        public override bool CanConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Type sourceType) { }
+        public override object? ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object value) { }
+    }
+}
+namespace IbanNet.Validation.Results
+{
+    public class CountryNotAcceptedResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public CountryNotAcceptedResult(IbanNet.Registry.IbanCountry country) { }
+    }
+    public class ErrorResult : IbanNet.Validation.Results.ValidationRuleResult
+    {
+        public ErrorResult(string errorMessage) { }
+        public string ErrorMessage { get; }
+    }
+    public class ExceptionResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public ExceptionResult(System.Exception exception) { }
+        public System.Exception Exception { get; }
+    }
+    public class IllegalCharactersResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public IllegalCharactersResult(int position) { }
+        protected IllegalCharactersResult(string errorMessage, int position) { }
+        public int Position { get; }
+    }
+    public class IllegalCountryCodeCharactersResult : IbanNet.Validation.Results.IllegalCharactersResult
+    {
+        public IllegalCountryCodeCharactersResult(int position) { }
+    }
+    public class InvalidCheckDigitsResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public InvalidCheckDigitsResult() { }
+    }
+    public class InvalidLengthResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public InvalidLengthResult() { }
+    }
+    public class InvalidQrIbanResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public InvalidQrIbanResult() { }
+    }
+    public class InvalidStructureResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public InvalidStructureResult(int position) { }
+        public int Position { get; }
+    }
+    public class UnknownCountryCodeResult : IbanNet.Validation.Results.ErrorResult
+    {
+        public UnknownCountryCodeResult() { }
+    }
+    public class ValidationRuleResult
+    {
+        protected ValidationRuleResult() { }
+        public static IbanNet.Validation.Results.ValidationRuleResult Success { get; }
+    }
+}
+namespace IbanNet.Validation.Rules
+{
+    public class AcceptCountryRule : IbanNet.Validation.Rules.LimitCountryRule
+    {
+        public AcceptCountryRule(System.Collections.Generic.IEnumerable<string> acceptedCountryCodes) { }
+    }
+    public interface IIbanValidationRule
+    {
+        IbanNet.Validation.Results.ValidationRuleResult Validate(IbanNet.Validation.Rules.ValidationRuleContext context);
+    }
+    public abstract class LimitCountryRule : IbanNet.Validation.Rules.IIbanValidationRule
+    {
+        protected LimitCountryRule(System.Collections.Generic.IEnumerable<string> countryCodes, string paramName, bool isAccepted) { }
+        public IbanNet.Validation.Results.ValidationRuleResult Validate(IbanNet.Validation.Rules.ValidationRuleContext context) { }
+    }
+    public sealed class QrIbanRule : IbanNet.Validation.Rules.IIbanValidationRule
+    {
+        public QrIbanRule() { }
+        public IbanNet.Validation.Results.ValidationRuleResult Validate(IbanNet.Validation.Rules.ValidationRuleContext context) { }
+    }
+    public class RejectCountryRule : IbanNet.Validation.Rules.LimitCountryRule
+    {
+        public RejectCountryRule(System.Collections.Generic.IEnumerable<string> rejectedCountryCodes) { }
+    }
+    public class ValidationRuleContext
+    {
+        public ValidationRuleContext(string value) { }
+        public ValidationRuleContext(string value, IbanNet.Registry.IbanCountry country) { }
+        public IbanNet.Registry.IbanCountry? Country { get; }
+        public string Value { get; }
+    }
+}
