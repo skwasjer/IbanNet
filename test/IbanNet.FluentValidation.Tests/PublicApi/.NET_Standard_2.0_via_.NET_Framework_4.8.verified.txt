@@ -1,0 +1,19 @@
+﻿[assembly: System.CLSCompliant(true)]
+[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/skwasjer/IbanNet")]
+[assembly: System.Resources.NeutralResourcesLanguage("en")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETStandard,Version=v2.0", FrameworkDisplayName=".NET Standard 2.0")]
+namespace IbanNet.FluentValidation
+{
+    public sealed class FluentIbanValidator<T> : FluentValidation.Validators.PropertyValidator<T, string>
+    {
+        public FluentIbanValidator(IbanNet.IIbanValidator ibanValidator) { }
+        public override string Name { get; }
+        public bool Strict { get; init; }
+        protected override string GetDefaultMessageTemplate(string errorCode) { }
+        public override bool IsValid(FluentValidation.ValidationContext<T> context, string value) { }
+    }
+    public static class RuleBuilderExtensions
+    {
+        public static FluentValidation.IRuleBuilderOptions<T, string> Iban<T>(this FluentValidation.IRuleBuilder<T, string> ruleBuilder, IbanNet.IIbanValidator ibanValidator, bool strict = true) { }
+    }
+}

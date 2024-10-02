@@ -1,0 +1,19 @@
+﻿[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/skwasjer/IbanNet")]
+[assembly: System.Resources.NeutralResourcesLanguage("en")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETStandard,Version=v2.0", FrameworkDisplayName=".NET Standard 2.0")]
+namespace IbanNet.DependencyInjection.ServiceProvider
+{
+    public static class IbanNetOptionsBuilderExtensions
+    {
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder Configure(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Action<System.IServiceProvider, IbanNet.IbanValidatorOptions> configure) { }
+        public static IbanNet.DependencyInjection.IIbanNetOptionsBuilder WithRule<T>(this IbanNet.DependencyInjection.IIbanNetOptionsBuilder builder, System.Func<System.IServiceProvider, T> implementationFactory)
+            where T :  class, IbanNet.Validation.Rules.IIbanValidationRule { }
+    }
+    public static class ServiceCollectionExtensions
+    {
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddIbanNet(this Microsoft.Extensions.DependencyInjection.IServiceCollection services) { }
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddIbanNet(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, System.Action<IbanNet.DependencyInjection.IIbanNetOptionsBuilder> configure) { }
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddIbanNet(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, bool preserveStaticValidator) { }
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddIbanNet(this Microsoft.Extensions.DependencyInjection.IServiceCollection services, System.Action<IbanNet.DependencyInjection.IIbanNetOptionsBuilder> configure, bool preserveStaticValidator) { }
+    }
+}
