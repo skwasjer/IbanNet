@@ -18,7 +18,7 @@ namespace IbanNet;
 #endif
 public sealed class Iban
     : IEquatable<Iban>,
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
       IParsable<Iban>,
 #endif
       IFormattable
@@ -292,7 +292,7 @@ public sealed class Iban
         return parser.Parse(s);
     }
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Converts the specified <paramref name="s" /> into an <see cref="Iban" />.
     /// </summary>
@@ -317,7 +317,7 @@ public sealed class Iban
         return parser.TryParse(s, out result);
     }
 
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Tries to convert the specified <paramref name="s" /> into an <see cref="Iban" />.
     /// </summary>

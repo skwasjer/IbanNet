@@ -1,4 +1,4 @@
-﻿#if !NET7_0_OR_GREATER
+﻿#if !NET8_0_OR_GREATER
 using IbanNet.Extensions;
 #endif
 
@@ -24,7 +24,7 @@ public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
         for (int i = 0; i < length; i++)
         {
             char ch = value[i];
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
             if (char.IsAsciiDigit(ch))
 #else
             if (ch.IsAsciiDigit())
@@ -32,9 +32,9 @@ public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
             {
                 // - Shift by 1 digit
                 // - Subtract '0' to get value 0, 1, 2.
-                current = unchecked((current * 10 + ch - '0') % 97);
+                current = unchecked(((current * 10) + ch - '0') % 97);
             }
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
             else if (char.IsAsciiLetter(ch))
 #else
             else if (ch.IsAsciiLetter())
@@ -44,7 +44,7 @@ public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
                 // - Use bitwise OR with ' ' (space, 0x20) to convert char to lowercase.
                 // - Then subtract 'a' to get value 0, 1, 2, etc.
                 // - Last, add 10 so: - a = 10, b = 11, c = 12, etc.
-                current = unchecked((current * 100 + (uint)(ch | ' ') - 'a' + 10) % 97);
+                current = unchecked(((current * 100) + (uint)(ch | ' ') - 'a' + 10) % 97);
             }
             else
             {
