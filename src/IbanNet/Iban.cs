@@ -13,7 +13,7 @@ namespace IbanNet;
 /// Represents an IBAN.
 /// </summary>
 [TypeConverter(typeof(IbanTypeConverter))]
-#if NET6_0_OR_GREATER
+#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 [System.Text.Json.Serialization.JsonConverter(typeof(Json.IbanJsonConverter))]
 #endif
 public sealed class Iban
