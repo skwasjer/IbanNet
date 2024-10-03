@@ -1,6 +1,8 @@
 ﻿using System.Globalization;
 using CsvHelper.Configuration.Attributes;
 using IbanNet.CodeGen.Swift.Converters;
+using IbanNet.Registry.Patterns;
+using IbanNet.Registry.Swift;
 
 namespace IbanNet.CodeGen.Swift;
 
@@ -77,6 +79,8 @@ public record IbanCsvData
 {
     [Name("IBAN structure")]
     public string Pattern { get; set; } = default!;
+
+    public Pattern SwiftPattern => new SwiftPattern(Pattern);
 
     [Name("IBAN length")]
     public int Length { get; set; }

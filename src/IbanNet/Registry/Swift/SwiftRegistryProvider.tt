@@ -152,7 +152,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 <#
     foreach (var record in records)
     {
-        var pattern = new SwiftPattern(record.Iban.Pattern);
+        var pattern = record.Iban.SwiftPattern;
 #>
 
         [GeneratedCode("SwiftRegistryProviderT4", "1.1-<#= registryReleaseVersion #>")]
