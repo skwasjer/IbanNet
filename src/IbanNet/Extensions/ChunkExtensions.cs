@@ -17,7 +17,7 @@ internal static class ChunkExtensions
     /// <param name="source">The source sequence.</param>
     /// <param name="size">The size of each chunk to split the <paramref name="source" /> into.</param>
     /// <returns>an enumerable of chunks</returns>
-    public static IEnumerable<IEnumerable<TSource>> Chunk<TSource>(this IEnumerable<TSource> source, int size)
+    public static IEnumerable<TSource[]> Chunk<TSource>(this IEnumerable<TSource> source, int size)
     {
         if (source is null)
         {
@@ -32,7 +32,7 @@ internal static class ChunkExtensions
         return ChunkIterator(source, size);
     }
 
-    private static IEnumerable<IEnumerable<TSource>> ChunkIterator<TSource>(this IEnumerable<TSource> source, int size)
+    private static IEnumerable<TSource[]> ChunkIterator<TSource>(this IEnumerable<TSource> source, int size)
     {
         var chunks = new List<TSource>(size);
         foreach (TSource item in source)
@@ -40,15 +40,15 @@ internal static class ChunkExtensions
             chunks.Add(item);
             if (chunks.Count == size)
             {
-                yield return chunks;
+                yield return chunks.ToArray();
 
-                chunks = new List<TSource>(size);
+                chunks.Clear();
             }
         }
 
         if (chunks.Count > 0)
         {
-            yield return chunks;
+            yield return chunks.ToArray();
         }
     }
 #endif

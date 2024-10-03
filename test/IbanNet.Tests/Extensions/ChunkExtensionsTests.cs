@@ -48,12 +48,7 @@ public class ChunkExtensionsTests
         actual.Should().HaveCount(expectedPartitions);
         actual.Take(actual.Count - 1)
             .Should()
-            .OnlyContain(inner =>
-#if NET6_0_OR_GREATER
-                        inner.Length == size,
-#else
-                    inner.Count() == size,
-#endif
+            .OnlyContain(inner => inner.Length == size,
                 "all but the last should at least be of the requested size"
             );
         actual.Last().Should().HaveCount(expectedLastPartitionSize, "the last partition can be less than or equal to the requested size");
