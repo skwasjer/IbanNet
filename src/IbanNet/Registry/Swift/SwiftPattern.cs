@@ -3,12 +3,7 @@
 namespace IbanNet.Registry.Swift;
 
 /// <inheritdoc />
-#if DEBUG
-public
-#else
-internal
-#endif
-    class SwiftPattern : Pattern
+internal class SwiftPattern : Pattern
 {
     private static readonly SwiftPatternTokenizer Tokenizer = new();
     private string? _pattern;
