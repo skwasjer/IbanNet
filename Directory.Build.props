@@ -29,7 +29,7 @@
     <MicrosoftExtensionsVersion>7.0.0</MicrosoftExtensionsVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.1' Or $(TargetFramework.StartsWith('netcoreapp3'))">
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
     <MicrosoftExtensionsVersion>3.1.0</MicrosoftExtensionsVersion>
   </PropertyGroup>
 

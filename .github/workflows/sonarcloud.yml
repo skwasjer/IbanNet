@@ -16,7 +16,6 @@ env:
     8.0.x
     7.0.x
     6.0.x
-    3.1.x
 
 jobs:
   # Blog https://iterative.ai/blog/testing-external-contributions-using-github-actions-secrets
