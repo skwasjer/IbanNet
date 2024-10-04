@@ -33,6 +33,7 @@ public class IntegrationTests
             FormattedMessagePlaceholderValues = new Dictionary<string, object>
             {
                 { "PropertyName", expectedFormattedPropertyName },
+                { "PropertyPath", nameof(_testModel.BankAccountNumber) },
                 { "PropertyValue", attemptedIbanValue },
                 { "Error", expectedError }
             }
