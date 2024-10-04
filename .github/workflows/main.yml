@@ -124,7 +124,7 @@ jobs:
       # Run all tests
       - run: dotnet test --no-restore --no-build -c Release -- xUnit.AppDomain=denied
         if: matrix.os == 'ubuntu-latest'
-      - run: dotnet test --no-restore --no-build -c Release --filter Category!=PublicApi -- xUnit.AppDomain=denied
+      - run: dotnet test --no-restore --no-build -c Release -v normal --filter Category!=PublicApi -- xUnit.AppDomain=denied xUnit.InternalDiagnosticMessages=true
         if: matrix.os != 'ubuntu-latest'
 
   pack:
