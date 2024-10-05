@@ -1,0 +1,137 @@
+﻿<#@ template hostspecific="true" language="C#" visibility="internal" debug="true" #>
+<#@ assembly name="NetStandard" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet.CodeGen\bin\$(Configuration)\netstandard2.0\IbanNet.CodeGen.dll" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet\bin\$(Configuration)\netstandard2.0\IbanNet.dll" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="IbanNet" #>
+<#@ import namespace="IbanNet.CodeGen.Swift" #>
+<#@ import namespace="IbanNet.Registry.Patterns" #>
+<#@ import namespace="IbanNet.Registry" #>
+<#@ import namespace="IbanNet.Registry.Swift" #>
+<#@ import namespace="IbanNet.Registry.Wikipedia" #>
+<#@ output extension=".md" encoding="utf-8" #>
+<#
+    var swiftProvider = new SwiftRegistryProvider();
+    var wikiProvider = new WikipediaRegistryProvider();
+
+    var registry = new IbanRegistry
+    {
+        Providers = { swiftProvider, wikiProvider }
+    };
+    var parser = new IbanParser(registry);
+    var supportedCount = registry.Count;
+
+    var comparer = new IbanCountryCodeComparer();
+    var filteredWikiCountries = wikiProvider.Except(swiftProvider, comparer).OrderBy(c => c.TwoLetterISORegionName);
+#>
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+
+*In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
+
+# IbanNet supports 124 countries
+
+## SWIFT registry
+
+See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-international-bank-account-number) for more information.
+
+<# RenderTable(swiftProvider, parser); #>
+
+<# RenderIncludedCountries(swiftProvider, ref supportedCount); #>
+
+## Wikipedia
+
+Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/International_Bank_Account_Number):
+
+<# RenderTable(filteredWikiCountries, parser); #>
+
+> The countries taken from *Wikipedia* are not enabled by default when using IbanNet. Check the documentation how to enable the `WikipediaRegistryProvider`.
+
+[supported]: ./docs/res/check.svg "Supported"
+[not-supported]: ./doc/res/close.svg "Not supported"
+
+<#+
+private void RenderTable(IEnumerable<IbanCountry> countries, IIbanParser parser)
+{
+    WriteLine("| ISO country code | Country | Length | IBAN example | SEPA | Bank ID | Branch ID |");
+    WriteLine("|---|---|---|---|---|---|---|");
+
+    foreach (var country in countries)
+    {
+        string exampleIban = "-";
+        if (!string.IsNullOrEmpty(country.Iban.Example))
+        {
+            exampleIban = $"`{parser.Parse(country.Iban.Example):P}`";
+        }
+
+        string isSepaStr = "-";
+        if (country.Sepa is not null)
+        {
+            isSepaStr = country.Sepa.IsMember ? "Yes" : "No";
+        }
+
+        string hasBankIdStr = "-";
+        if (country.Bank.Position > 0)
+        {
+            hasBankIdStr = country.Bank.Length > 0 ? "![Supported][supported]" : "No";
+        }
+
+        string hasBranchStr = "-";
+        if (country.Branch.Position > 0)
+        {
+            hasBranchStr = country.Branch.Length > 0 ? "![Supported][supported]" : "No";
+        }
+
+        WriteLine($"| {country.TwoLetterISORegionName} | {country.EnglishName} | {country.Iban.Length} | {exampleIban} | {isSepaStr} | {hasBankIdStr} | {hasBranchStr} |");
+    }
+}
+
+private void RenderIncludedCountries(IIbanRegistryProvider provider, ref int supportedCount)
+{
+    var overrideCountryDescription = new Dictionary<string, string>
+    {
+        { "TF", "French Southern and Antarctic Lands" }
+    };
+
+    foreach (var country in provider)
+    {
+        if (country.IncludedCountries.Count > 0)
+        {
+            supportedCount += country.IncludedCountries.Count;
+
+            WriteLine($"### {country.EnglishName} includes:");
+            WriteLine("");
+        
+            foreach (var ic in country.IncludedCountries)
+            {
+                RegionInfo regionInfo = null;
+                try
+                {
+                    regionInfo = new RegionInfo(ic);
+                }
+                catch
+                {
+                    regionInfo = new RegionInfo($"{country.TwoLetterISORegionName}-{ic}");
+                }
+
+
+                // Resolve english name
+                if (!overrideCountryDescription.TryGetValue(ic, out string ccName))
+                {
+                    ccName = regionInfo.ThreeLetterISORegionName == "ZZZ"
+                        ? "Unknown"
+                        : regionInfo.EnglishName;
+                }
+
+                WriteLine($"- {ccName} ({ic})");
+            }
+
+            WriteLine("");
+        }
+    }
+}
+#>
