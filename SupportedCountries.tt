@@ -9,6 +9,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="IbanNet" #>
+<#@ import namespace="IbanNet.CodeGen" #>
 <#@ import namespace="IbanNet.CodeGen.Swift" #>
 <#@ import namespace="IbanNet.Registry.Patterns" #>
 <#@ import namespace="IbanNet.Registry" #>

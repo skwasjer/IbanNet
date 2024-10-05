@@ -1,13 +1,11 @@
-﻿#if DEBUG && NETSTANDARD2_0 // Only used atm. by PS script, so exclude from all build configs except debug.
-using System.Diagnostics;
+﻿using IbanNet.Registry;
 
-namespace IbanNet.Registry;
+namespace IbanNet.CodeGen;
 
 /// <summary>
-/// Compares <see cref="IbanCountry"/> by country code only.
+/// Compares <see cref="IbanCountry" /> by country code only.
 /// </summary>
-[DebuggerNonUserCode]
-public class IbanCountryCodeComparer : IEqualityComparer<IbanCountry>
+public sealed class IbanCountryCodeComparer : IEqualityComparer<IbanCountry>
 {
     /// <inheritdoc />
     public bool Equals(IbanCountry? x, IbanCountry? y)
@@ -41,4 +39,3 @@ public class IbanCountryCodeComparer : IEqualityComparer<IbanCountry>
         return obj?.TwoLetterISORegionName.GetHashCode() ?? 0;
     }
 }
-#endif
