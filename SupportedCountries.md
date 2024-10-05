@@ -2,7 +2,7 @@
 
 *In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
 
-# IbanNet supports 124 countries
+# IbanNet supports 126 countries
 
 ## SWIFT registry
 
@@ -71,10 +71,11 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | NI | Nicaragua | 28 | `NI45 BAPR 0000 0013 0000 0355 8124` | No | ![Supported][supported] | - |
 | NL | Netherlands (The) | 18 | `NL91 ABNA 0417 1643 00` | Yes | ![Supported][supported] | - |
 | NO | Norway | 15 | `NO93 8601 1117 947` | Yes | ![Supported][supported] | - |
+| OM | Oman | 23 | `OM81 0180 0000 0129 9123 456` | No | ![Supported][supported] | - |
 | PK | Pakistan | 24 | `PK36 SCBL 0000 0011 2345 6702` | No | ![Supported][supported] | - |
 | PL | Poland | 28 | `PL61 1090 1014 0000 0712 1981 2874` | Yes | - | ![Supported][supported] |
 | PS | Palestine, State of | 29 | `PS92 PALS 0000 0000 0400 1234 5670 2` | No | ![Supported][supported] | - |
-| PT | Portugal | 25 | `PT50 0002 0123 1234 5678 9015 4` | Yes | ![Supported][supported] | - |
+| PT | Portugal | 25 | `PT50 0002 0123 1234 5678 9015 4` | Yes | ![Supported][supported] | ![Supported][supported] |
 | QA | Qatar | 29 | `QA58 DOHB 0000 1234 5678 90AB CDEF G` | No | ![Supported][supported] | - |
 | RO | Romania | 24 | `RO49 AAAA 1B31 0075 9384 0000` | Yes | ![Supported][supported] | - |
 | RS | Serbia | 22 | `RS35 2600 0560 1001 6113 79` | No | ![Supported][supported] | - |
@@ -95,6 +96,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | VA | Vatican City State | 22 | `VA59 0011 2300 0012 3456 78` | Yes | ![Supported][supported] | - |
 | VG | Virgin Islands | 24 | `VG96 VPVG 0000 0123 4567 8901` | No | ![Supported][supported] | - |
 | XK | Kosovo | 20 | `XK05 1212 0123 4567 8906` | No | ![Supported][supported] | ![Supported][supported] |
+| YE | Yemen | 30 | `YE15 CBYE 0001 0188 6123 4567 8912 34` | No | ![Supported][supported] | ![Supported][supported] |
 
 ### Finland includes:
 
