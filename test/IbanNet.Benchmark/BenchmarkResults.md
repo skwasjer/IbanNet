@@ -1,30 +1,27 @@
 # IbanNet Benchmark Results
 
-## Performance for >= v5.6
+## Performance for >= v5.16.0
 
 A single validation:
 
 ```
-BenchmarkDotNet v0.13.10, Windows 10 (10.0.19045.3930/22H2/2022Update)
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.4894/22H2/2022Update)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET SDK 8.0.100
-  [Host]     : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX2
-  Job-GROKDG : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX2
-  Job-KWQHNY : .NET 6.0.26 (6.0.2623.60508), X64 RyuJIT AVX2
-  Job-FTQOOW : .NET Framework 4.8.1 (4.8.9181.0), X64 RyuJIT VectorSize=256
+.NET SDK 8.0.400
+  [Host]     : .NET 8.0.8 (8.0.824.36612), X64 RyuJIT AVX2
+  Job-EYAHAL : .NET 8.0.8 (8.0.824.36612), X64 RyuJIT AVX2
+  Job-LNJUSU : .NET 6.0.33 (6.0.3324.36610), X64 RyuJIT AVX2
+  Job-MFVJWZ : .NET Framework 4.8.1 (4.8.9261.0), X64 RyuJIT VectorSize=256
 ```
 
 | Method   | Runtime            | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
 |--------- |------------------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
-| Validate | .NET 8.0           | 134.5 ns | 2.72 ns | 3.99 ns |  1.00 |    0.00 | 0.0253 |     160 B |        1.00 |
-| Validate | .NET 6.0           | 222.1 ns | 3.72 ns | 3.48 ns |  1.65 |    0.06 | 0.0279 |     176 B |        1.10 |
-| Validate | .NET Core 3.1      | 274.3 ns | 5.48 ns | 6.73 ns |  2.05 |    0.07 | 0.0277 |     176 B |        1.10 |
-| Validate | .NET Framework 4.8 | 292.5 ns | 2.39 ns | 2.00 ns |  2.16 |    0.06 | 0.0277 |     177 B |        1.11 |
+| Validate | .NET 8.0           | 137.0 ns | 0.88 ns | 0.78 ns |  1.00 |    0.01 | 0.0253 |     160 B |        1.00 |
+| Validate | .NET 6.0           | 233.5 ns | 4.06 ns | 3.39 ns |  1.70 |    0.03 | 0.0277 |     176 B |        1.10 |
+| Validate | .NET Framework 4.8 | 322.5 ns | 6.35 ns | 8.70 ns |  2.35 |    0.06 | 0.0277 |     177 B |        1.11 |
 
 
-### Comparison with other validators
-
-> Worth mentioning is that IbanNet validates more strictly than the other alternative (competing) libraries, yet comes out quite a lot faster and has a much lower memory footprint.
+### Bulk (10k) runs
 
 #### Legend
 
@@ -32,23 +29,17 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
 - *Singleton*: strict validation, singleton validator
 - *Transient*: strict validation, transient validator (per validation). Notice the extra allocations/GC. This is not recommended, and purely for demonstration.
 
-| Method               | Runtime            | Count | Mean      | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated | Alloc Ratio |
-|--------------------- |------------------- |------ |----------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
-| Singleton_CacheReuse | .NET 8.0           | 10000 |  1.277 ms | 0.0074 ms | 0.0066 ms |  0.48 |    0.01 |  253.9063 |   1.53 MB |        0.90 |
-| Singleton_CacheReuse | .NET 6.0           | 10000 |  2.148 ms | 0.0221 ms | 0.0207 ms |  0.81 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
-| Singleton            | .NET 8.0           | 10000 |  2.638 ms | 0.0234 ms | 0.0208 ms |  1.00 |    0.00 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton_CacheReuse | .NET Framework 4.8 | 10000 |  2.988 ms | 0.0293 ms | 0.0274 ms |  1.13 |    0.02 |  277.3438 |   1.68 MB |        0.99 |
-| Singleton            | .NET 6.0           | 10000 |  3.084 ms | 0.0143 ms | 0.0126 ms |  1.17 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton            | .NET Framework 4.8 | 10000 |  3.957 ms | 0.0292 ms | 0.0273 ms |  1.50 |    0.01 |  281.2500 |   1.71 MB |        1.00 |
-| Transient            | .NET 8.0           | 10000 |  5.062 ms | 0.0360 ms | 0.0337 ms |  1.92 |    0.02 | 1195.3125 |   7.19 MB |        4.23 |
-| Transient            | .NET 6.0           | 10000 |  5.759 ms | 0.0297 ms | 0.0263 ms |  2.18 |    0.02 | 1265.6250 |   7.58 MB |        4.45 |
-| Transient            | .NET Framework 4.8 | 10000 |  6.907 ms | 0.0980 ms | 0.0869 ms |  2.62 |    0.04 | 1289.0625 |   7.75 MB |        4.56 |
-| NuGet_IbanValidator  | .NET 8.0           | 10000 | 12.850 ms | 0.0745 ms | 0.0622 ms |  4.87 |    0.04 | 3062.5000 |  18.36 MB |       10.80 |
-| NuGet_IbanValidator  | .NET 6.0           | 10000 | 13.608 ms | 0.1048 ms | 0.0929 ms |  5.16 |    0.05 | 3375.0000 |  20.21 MB |       11.88 |
-| NuGet_IBAN4NET       | .NET 8.0           | 10000 | 28.821 ms | 0.1193 ms | 0.1115 ms | 10.93 |    0.10 | 1687.5000 |  10.18 MB |        5.99 |
-| NuGet_IBAN4NET       | .NET 6.0           | 10000 | 36.304 ms | 0.2308 ms | 0.2046 ms | 13.76 |    0.12 | 1642.8571 |  10.19 MB |        5.99 |
-| NuGet_IbanValidator  | .NET Framework 4.8 | 10000 | 53.135 ms | 0.4288 ms | 0.3801 ms | 20.14 |    0.22 | 6600.0000 |  39.89 MB |       23.45 |
-| NuGet_IBAN4NET       | .NET Framework 4.8 | 10000 | 53.914 ms | 0.3762 ms | 0.3519 ms | 20.44 |    0.23 | 2000.0000 |  12.05 MB |        7.08 |
+| Method               | Runtime            | Count | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated | Alloc Ratio |
+|--------------------- |------------------- |------ |---------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
+| Singleton_CacheReuse | .NET 8.0           | 10000 | 1.391 ms | 0.0243 ms | 0.0215 ms |  0.50 |    0.01 |  253.9063 |   1.53 MB |        0.90 |
+| Singleton_CacheReuse | .NET 6.0           | 10000 | 2.346 ms | 0.0453 ms | 0.0484 ms |  0.84 |    0.02 |  277.3438 |   1.68 MB |        0.99 |
+| Singleton            | .NET 8.0           | 10000 | 2.809 ms | 0.0371 ms | 0.0567 ms |  1.00 |    0.03 |  281.2500 |    1.7 MB |        1.00 |
+| Singleton_CacheReuse | .NET Framework 4.8 | 10000 | 3.254 ms | 0.0211 ms | 0.0197 ms |  1.16 |    0.02 |  277.3438 |   1.68 MB |        0.99 |
+| Singleton            | .NET 6.0           | 10000 | 3.363 ms | 0.0658 ms | 0.0855 ms |  1.20 |    0.04 |  281.2500 |    1.7 MB |        1.00 |
+| Singleton            | .NET Framework 4.8 | 10000 | 4.248 ms | 0.0492 ms | 0.0461 ms |  1.51 |    0.03 |  281.2500 |   1.71 MB |        1.00 |
+| Transient            | .NET 8.0           | 10000 | 5.311 ms | 0.0384 ms | 0.0320 ms |  1.89 |    0.04 | 1195.3125 |    7.2 MB |        4.23 |
+| Transient            | .NET 6.0           | 10000 | 6.085 ms | 0.1215 ms | 0.1300 ms |  2.17 |    0.06 | 1265.6250 |   7.58 MB |        4.45 |
+| Transient            | .NET Framework 4.8 | 10000 | 7.467 ms | 0.1491 ms | 0.1322 ms |  2.66 |    0.07 | 1289.0625 |   7.75 MB |        4.55 |
 
 ### CLI
 
