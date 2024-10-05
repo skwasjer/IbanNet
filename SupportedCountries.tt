@@ -25,7 +25,7 @@
         Providers = { swiftProvider, wikiProvider }
     };
     var parser = new IbanParser(registry);
-    var supportedCount = registry.Count;
+    var supportedCount = registry.Count + registry.Sum(x => x.IncludedCountries.Count);
 
     var comparer = new IbanCountryCodeComparer();
     var filteredWikiCountries = wikiProvider.Except(swiftProvider, comparer).OrderBy(c => c.TwoLetterISORegionName);
@@ -34,7 +34,7 @@
 
 *In mid 2022, an IBAN pattern for the Russian Federation (RU) was registered with SWIFT. This project has not (yet) adopted support for this pattern due to the war in Ukraine.*
 
-# IbanNet supports 124 countries
+# IbanNet supports <#= supportedCount #> countries
 
 ## SWIFT registry
 
@@ -42,7 +42,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 
 <# RenderTable(swiftProvider, parser); #>
 
-<# RenderIncludedCountries(swiftProvider, ref supportedCount); #>
+<# RenderIncludedCountries(swiftProvider); #>
 
 ## Wikipedia
 
@@ -91,7 +91,7 @@ private void RenderTable(IEnumerable<IbanCountry> countries, IIbanParser parser)
     }
 }
 
-private void RenderIncludedCountries(IIbanRegistryProvider provider, ref int supportedCount)
+private void RenderIncludedCountries(IIbanRegistryProvider provider)
 {
     var overrideCountryDescription = new Dictionary<string, string>
     {
@@ -102,8 +102,6 @@ private void RenderIncludedCountries(IIbanRegistryProvider provider, ref int sup
     {
         if (country.IncludedCountries.Count > 0)
         {
-            supportedCount += country.IncludedCountries.Count;
-
             WriteLine($"### {country.EnglishName} includes:");
             WriteLine("");
         
