@@ -6,7 +6,7 @@ using IbanNet.Registry.Swift;
 
 namespace IbanNet.CodeGen.Swift;
 
-public sealed record SwiftCsvRecord
+public record SwiftCsvRecord
 {
     private string _countryCode = default!;
 

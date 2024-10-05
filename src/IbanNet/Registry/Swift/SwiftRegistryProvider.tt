@@ -67,6 +67,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
     var records = csv.GetRecords<SwiftCsvRecord>()
         .Select(IbanNet.CodeGen.Swift.Patches.RecordPatcher.ApplyAll)
         .Where(record => !Boycott(record.CountryCode))
+        .OrderBy(record => record.CountryCode)
         .ToArray();
 
     foreach (var record in records)
