@@ -2,7 +2,7 @@
 
 public class WikipediaRegistryProviderTests : BaseRegistryProviderSpec<WikipediaRegistryProvider>
 {
-    public WikipediaRegistryProviderTests() : base(105)
+    public WikipediaRegistryProviderTests() : base(110)
     {
     }
 

@@ -7,6 +7,8 @@
 <#@ assembly name="System.Text.RegularExpressions" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet.CodeGen\bin\$(Configuration)\netstandard2.0\IbanNet.CodeGen.dll" #>
+<#@ assembly name="$(SolutionDir)\src\IbanNet\bin\$(Configuration)\netstandard2.0\IbanNet.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Globalization" #>
 <#@ import namespace="System.IO" #>
@@ -16,6 +18,7 @@
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Xml.XPath" #>
+<#@ import namespace="IbanNet.CodeGen.Wikipedia" #>
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Diagnostics;
@@ -25,19 +28,7 @@ namespace IbanNet.Registry.Wikipedia;
 <#
     // Generate provider from Wikipedia.
 
-    const string url = "https://en.wikipedia.org/w/api.php?format=json&action=parse&page=International_Bank_Account_Number&section=16";
-    HttpWebRequest req = WebRequest.CreateHttp(url);
-    using WebResponse response = req.GetResponse();
-    using var ms = new MemoryStream();
-    response.GetResponseStream().CopyTo(ms);
-    byte[] buffer = ms.ToArray();
-
-    WikiResponse wikiResponse = JsonSerializer.Deserialize<WikiResponse>(buffer, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-    var tableRegex = new Regex("(<table[^\\>]*?>.*<\\/table>)", RegexOptions.Singleline);
-    var tableMatch = tableRegex.Match(wikiResponse.Parse.Text["*"]);
-    var tableHtml = $"<div>${tableMatch.Value}</div>";
-
+    var wikiResponse = Loader.GetWikiData();
 #>
 /// <summary>
 /// This IBAN registry provider is derived from Wikipedia.
@@ -78,24 +69,9 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         // ReSharper disable CommentTypo
         // ReSharper disable StringLiteralTypo
 <#
-            using var reader = new StringReader(tableHtml);
-
-            var doc = XDocument.Load(reader);
-            var wikiSpecs = doc.XPathSelectElements("//tr")
-                .GroupBy(e => e.Parent)
-                .Select(g => g.Where(e => e.Element("td") != null))
-                .Select(rows => rows.Select(r =>
-                {
-                    var cells = r.Elements("td").ToList();
-                    return new
-                    {
-                        CountryCode = cells[3].XPathSelectElement(".//code").Value.Substring(0, 2).Trim(),
-                        EnglishName = cells[0].XPathSelectElement(".//a").Value.Trim(),
-                        Pattern = cells[2].Value.Trim().Replace(" ", "")
-                    };
-                }))
-                .SelectMany(_ => _)
+            var wikiSpecs = wikiResponse.Records
                 .Where(x => !Boycott(x.CountryCode))
+                .OrderBy(x => x.CountryCode)
                 .ToList();
 
             foreach (var x in wikiSpecs)
@@ -103,7 +79,7 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
 #>
         yield return new IbanCountry("<#= x.CountryCode #>")
         {
-            NativeName = "<#= GetNativeName(x.CountryCode) ?? x.EnglishName #>",
+            NativeName = "<#= x.NativeName ?? x.EnglishName #>",
             EnglishName = "<#= x.EnglishName #>",
             Iban = new IbanStructure(new IbanWikipediaPattern("<#= x.CountryCode #>", "<#= x.Pattern #>")),
             Bban = new BbanStructure(new WikipediaPattern("<#= x.Pattern #>"), 4)
@@ -117,32 +93,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
     }
 }
 <#+
-private string GetNativeName(string countryCode)
-{
-    try
-    {
-        return new RegionInfo(countryCode).NativeName;
-    }
-    catch (ArgumentException)
-    {
-        return null;
-    }
-}
-
 private static bool Boycott(string countryCode)
 {
     return countryCode == "RU"; // Go Ukraine!
-}
-
-public class WikiResponse
-{
-    public ParseResult Parse { get; set; }
-}
-
-public class ParseResult
-{
-    public int PageId { get; set; }
-    public int RevId { get; set; }
-    public Dictionary<string, string> Text { get; set; }
 }
 #>
