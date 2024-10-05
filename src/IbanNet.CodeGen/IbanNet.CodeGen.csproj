@@ -9,11 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\SupportedCountries.md">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SupportedCountries.tt</DependentUpon>
+    </None>
+    <None Include="..\..\SupportedCountries.tt" Link="SupportedCountries.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SupportedCountries.md</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>
