@@ -3,6 +3,28 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v5.16.0
+
+## What's Changed
+
+* feat: updates SwiftRegistryProvider to r98 (July '24) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/220
+* feat: updated WikipediaRegistryProvider by @skwasjer in https://github.com/skwasjer/IbanNet/pull/221
+* feat: generate supported countries using TT/T4 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/219
+* feat: add JSON conversion (STJ) support for Iban type for .NET Std 2.1 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/208
+* refactor: align API of shim with the built-in API. by @skwasjer in https://github.com/skwasjer/IbanNet/pull/209
+* chore: remove .NET7 (EOL) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/205
+* chore(deps): bump test dependencies by @skwasjer in https://github.com/skwasjer/IbanNet/pull/204
+* ci: attempt to fix random AppDomain unloads in CI on macos/mono by @skwasjer in https://github.com/skwasjer/IbanNet/pull/206
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows by @dependabot in https://github.com/skwasjer/IbanNet/pull/207
+* chore(deps): remove net5.0/netcoreapp3.1 from test libs by @skwasjer in https://github.com/skwasjer/IbanNet/pull/210
+* chore(deps): bump Microsoft.Extensions to 8.0.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/211
+* chore: make SwiftPattern fully internal, instead of public in DEBUG. by @skwasjer in https://github.com/skwasjer/IbanNet/pull/213
+* test: verify public API by @skwasjer in https://github.com/skwasjer/IbanNet/pull/212
+* chore(deps): bump xunit.runner.visualstudio to 2.8.2. by @skwasjer in https://github.com/skwasjer/IbanNet/pull/218
+* chore(deps): bump FluentValidation to 11.9.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/216
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.15.0...v5.16.0
+
 ## v5.15.0
 
 ### What's Changed
