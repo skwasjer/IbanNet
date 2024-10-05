@@ -2,7 +2,7 @@
 
 public class SwiftRegistryProviderTests : BaseRegistryProviderSpec<SwiftRegistryProvider>
 {
-    public SwiftRegistryProviderTests() : base(85)
+    public SwiftRegistryProviderTests() : base(87)
     {
     }
 

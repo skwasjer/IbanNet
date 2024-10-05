@@ -41,4 +41,18 @@ public sealed class SwiftCsvReader : CsvReader
         Parser.Context.TypeConverterCache.AddConverter<Position>(new PositionConverter());
         typeConverterOptions.AddOptions<Position?>(new TypeConverterOptions { NullValues = { "", "N/A" } });
     }
+
+    public override IEnumerable<T> GetRecords<T>()
+    {
+        IEnumerable<T> insertRecords = [];
+        if (typeof(T) == typeof(SwiftCsvRecord))
+        {
+            insertRecords = typeof(SwiftCsvRecord).Assembly.GetTypes()
+                .Where(t => t != typeof(SwiftCsvRecord) && typeof(SwiftCsvRecord).IsAssignableFrom(t))
+                .Select(Activator.CreateInstance)
+                .Cast<T>();
+        }
+
+        return base.GetRecords<T>().Concat(insertRecords);
+    }
 }
