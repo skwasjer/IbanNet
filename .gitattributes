@@ -1,23 +1,27 @@
 * text=auto
 
-*.md	text eol=lf
-*.js	text eol=lf
-*.json	text eol=lf
-*.yml	text eol=lf
-*.yaml	text eol=lf
-*.xml	text eol=lf
+*.md    text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.xml   text eol=lf
 
-*.cs			text eol=crlf diff=csharp
-*.tt			text eol=crlf
-*.csproj		text eol=crlf
-*.props			text eol=crlf
-*.targets		text eol=crlf
-.editorconfig	text eol=crlf
+*.cs            text=auto diff=csharp
+*.tt            text=auto
+*.csproj        text=auto
+*.props         text=auto
+*.targets       text=auto
+*.sln           text=auto
 
-*.png	binary
-*.gif	binary
-*.jpg	binary
-*.jpeg	binary
+.editorconfig   text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
 
-*.received.*	text eol=lf
-*.verified.*	text eol=lf
+*.png   binary
+*.gif   binary
+*.jpg   binary
+*.jpeg  binary
+
+*.received.*    text eol=lf
+*.verified.*    text eol=lf
