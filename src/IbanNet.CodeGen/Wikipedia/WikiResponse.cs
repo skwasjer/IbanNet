@@ -1,6 +1,6 @@
 ﻿namespace IbanNet.CodeGen.Wikipedia;
 
-public class WikiResponse
+public sealed record WikiResponse
 {
-    public ParseResult Parse { get; set; }
+    public ParseResult Parse { get; init; } = default!;
 }

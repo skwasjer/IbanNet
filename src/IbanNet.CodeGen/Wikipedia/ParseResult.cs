@@ -1,8 +1,8 @@
 ﻿namespace IbanNet.CodeGen.Wikipedia;
 
-public class ParseResult
+public sealed record ParseResult
 {
-    public int PageId { get; set; }
-    public int RevId { get; set; }
-    public Dictionary<string, string> Text { get; set; }
+    public int PageId { get; init; }
+    public int RevId { get; init; }
+    public Dictionary<string, string> Text { get; init; } = [];
 }
