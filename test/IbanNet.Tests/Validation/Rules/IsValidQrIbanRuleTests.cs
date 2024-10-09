@@ -1,9 +1,9 @@
-﻿using IbanNet.Validation.Results;
-using IbanNet.Registry;
+﻿using IbanNet.Registry;
+using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules;
 
-public class IsValidQrIbanRuleTests
+public sealed class IsValidQrIbanRuleTests
 {
     private readonly QrIbanRule _sut;
 
@@ -25,8 +25,12 @@ public class IsValidQrIbanRuleTests
     [Theory]
     public void Given_invalid_values_it_should_return_success(string iban)
     {
-        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(iban, IbanRegistry.Default[iban.Substring(0, 2)]));
+        IbanCountry country = IbanRegistry.Default[iban.Substring(0, 2)];
 
+        // Act
+        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(iban, country));
+
+        // Assert
         actual.Should().BeOfType<InvalidQrIbanResult>();
     }
 
@@ -35,8 +39,26 @@ public class IsValidQrIbanRuleTests
     [Theory]
     public void Given_valid_values_it_should_return_success(string iban)
     {
-        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(iban, IbanRegistry.Default[iban.Substring(0, 2)]));
+        IbanCountry country = IbanRegistry.Default[iban.Substring(0, 2)];
 
+        // Act
+        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(iban, country));
+
+        // Assert
         actual.Should().Be(ValidationRuleResult.Success);
+    }
+
+    [Fact]
+    public void Given_that_context_is_null_when_validating_it_should_throw()
+    {
+        ValidationRuleContext? context = null;
+
+        // Act
+        Action act = () => _sut.Validate(context!);
+
+        // Assert
+        act.Should()
+            .Throw<ArgumentNullException>()
+            .WithParameterName(nameof(context));
     }
 }
