@@ -167,4 +167,16 @@ public class IbanRegistryTests
         // Assert
         sut.Providers.Should().HaveCount(1);
     }
+
+    [Fact]
+    public void Registry_should_be_ordered_by_country_code()
+    {
+        var reg = new IbanRegistry { Providers = { new SwiftRegistryProvider() } };
+
+        // Act
+        var countryCodes = reg.Select(c => c.TwoLetterISORegionName).ToList();
+
+        // Assert
+        countryCodes.Should().BeInAscendingOrder();
+    }
 }

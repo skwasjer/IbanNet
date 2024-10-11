@@ -36,7 +36,10 @@ public class IbanRegistry : IIbanRegistry
     }
 
     /// <inheritdoc />
-    public IEnumerator<IbanCountry> GetEnumerator() => Dictionary.Values.GetEnumerator();
+    public IEnumerator<IbanCountry> GetEnumerator()
+    {
+        return Dictionary.Values.OrderBy(c => c.TwoLetterISORegionName).GetEnumerator();
+    }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
