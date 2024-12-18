@@ -97,9 +97,9 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
+          - ubuntu-22.04
           - windows-latest
-          - macos-13                
+          - macos-13
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -121,9 +121,9 @@ jobs:
 
       # Run all tests
       - run: dotnet test --no-restore --no-build -c Release -- xUnit.AppDomain=denied
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-22.04'
       - run: dotnet test --no-restore --no-build -c Release --filter Category!=PublicApi -- xUnit.AppDomain=denied
-        if: matrix.os != 'ubuntu-latest'
+        if: matrix.os != 'ubuntu-22.04'
 
   pack:
     needs:
