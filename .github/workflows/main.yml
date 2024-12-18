@@ -21,9 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
-      # v5.10.0 of GitVersion has a fix for incorrect versions when building on tag. See https://github.com/GitTools/GitVersion/issues/2838
-      # It appears that the fix then had a regression in a later version, so pinning to v5.10.0.  See https://github.com/GitTools/GitVersion/issues/3351#issuecomment-1403657689
-      GITVERSION: '5.10.0'
+      GITVERSION: '6.0.x'
     outputs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
       package-version: ${{ steps.gitversion.outputs.fullSemVer }}
@@ -37,12 +35,12 @@ jobs:
           fetch-tags: true
 
       - name: Install GitVersion ${{ env.GITVERSION }}
-        uses: gittools/actions/gitversion/setup@v0.11.0
+        uses: gittools/actions/gitversion/setup@v3.1.1
         with:
           versionSpec: ${{ env.GITVERSION }}
 
       - name: Determine version
-        uses: gittools/actions/gitversion/execute@v0.11.0
+        uses: gittools/actions/gitversion/execute@v3.1.1
         id: gitversion
         with:
           useConfigFile: true
