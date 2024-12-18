@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VerifyVersion>28.4.0</VerifyVersion>
+    <VerifyVersion>28.6.0</VerifyVersion>
     <VerifyVersion Condition="'$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netstandard2.0' Or '$(TargetFramework)'=='net462'">20.8.2</VerifyVersion>
     <VerifyPublicApi Condition="'$(VerifyPublicApi)'==''">true</VerifyPublicApi>
     <DefineConstants Condition="'$(VerifyPublicApi)'=='true'">$(DefineConstants);VERIFY_PUBLIC_API</DefineConstants>
