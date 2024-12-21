@@ -3,6 +3,41 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v5.17.0
+
+## What's Changed
+
+* fix: when enumerating registry, order by country code by @skwasjer in https://github.com/skwasjer/IbanNet/pull/240
+* fix: STA warnings by @skwasjer in https://github.com/skwasjer/IbanNet/pull/229
+* fix(registry): patch Finland bank code to 6 digits by @skwasjer in https://github.com/skwasjer/IbanNet/pull/257
+
+### Chores
+
+* chore(deps): Bump VerifyVersion from 26.6.0 to 28.3.1 by @dependabot in https://github.com/skwasjer/IbanNet/pull/235
+* chore(deps): Bump VerifyVersion from 28.3.1 to 28.3.2 by @dependabot in https://github.com/skwasjer/IbanNet/pull/237
+* chore(deps): bump CsvHelper from 30.0.1 to 33.0.1 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/241
+* chore(deps): Bump VerifyVersion from 28.3.2 to 28.4.0 by @dependabot in https://github.com/skwasjer/IbanNet/pull/242
+* chore(deps): Bump NSubstitute and Microsoft.NETFramework.ReferenceAssemblies by @dependabot in https://github.com/skwasjer/IbanNet/pull/245
+* ci(deps): bump GitVersion to v6 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/251
+* ci: use pinned Ubuntu 22.04 image for tests by @skwasjer in https://github.com/skwasjer/IbanNet/pull/252
+* chore(deps): bump FluentAssertions from 6.12.1 to 7.0.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/253
+* chore(deps): Bump MicrosoftNetTestSdk from 17.11.1 to 17.12.0 by @dependabot in https://github.com/skwasjer/IbanNet/pull/254
+* ci(deps): bump CodeQL from v2 to v3 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/255
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.16.1...v5.17.0
+
+## v5.16.1
+
+## What's Changed
+
+* chore(deps): Bump System.Text.Json from 6.0.9 to 6.0.10 in /src/IbanNet by @dependabot in https://github.com/skwasjer/IbanNet/pull/227
+  Microsoft Security Advisory CVE-2024-43485 | .NET Denial of Service Vulnerability
+* chore(deps): Bump System.Text.Json from 6.0.9 to 8.0.5 by @dependabot in https://github.com/skwasjer/IbanNet/pull/226
+  Microsoft Security Advisory CVE-2024-43485 | .NET Denial of Service Vulnerability
+* refactor: remove benchmark validator comparison by @skwasjer in https://github.com/skwasjer/IbanNet/pull/222
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.16.0...v5.16.1
+
 ## v5.16.0
 
 ## What's Changed
