@@ -19,6 +19,7 @@ public abstract class RecordPatcher
                 .Where(t => !t.IsAbstract && typeof(RecordPatcher).IsAssignableFrom(t))
                 .Select(Activator.CreateInstance)
                 .Cast<RecordPatcher>()
+                .OrderBy(rp => rp.GetType().Name)
                 .ToList();
     }
 }

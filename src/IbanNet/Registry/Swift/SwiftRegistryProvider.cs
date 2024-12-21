@@ -692,13 +692,13 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 Example = "FI2112345600000785",
                 EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n11!n"), 4)
+            Bban = new BbanStructure(new SwiftPattern("6!n8!n"), 4)
             {
-                Example = ""
+                Example = "12345600000785"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new BankStructure(new SwiftPattern("6!n"), 4)
             {
-                Example = "123"
+                Example = "123456"
             },
             Sepa = new SepaInfo
             {
