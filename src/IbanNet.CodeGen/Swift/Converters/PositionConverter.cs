@@ -17,7 +17,13 @@ internal class PositionConverter : StringConverter
         }
 
         string[] segments = value.Split(_splitChars, StringSplitOptions.RemoveEmptyEntries);
-        return new Position { StartPos = int.Parse(segments[0], NumberFormatInfo.InvariantInfo), EndPos = int.Parse(segments[1], NumberFormatInfo.InvariantInfo) };
+        int startPos = int.Parse(segments[0], NumberFormatInfo.InvariantInfo);
+        return segments.Length switch
+        {
+            0 => throw new InvalidOperationException("Expected positional data."),
+            1 => new Position { StartPos = startPos, EndPos = startPos },
+            _ => new Position { StartPos = startPos, EndPos = int.Parse(segments[1], NumberFormatInfo.InvariantInfo) }
+        };
     }
 
     public override string ConvertToString(object? value, IWriterRow row, MemberMapData memberMapData)
