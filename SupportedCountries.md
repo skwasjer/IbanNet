@@ -43,6 +43,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | GL | Greenland | 18 | `GL89 6471 0001 0002 06` | No | ![Supported][supported] | - |
 | GR | Greece | 27 | `GR16 0110 1250 0000 0001 2300 695` | Yes | ![Supported][supported] | ![Supported][supported] |
 | GT | Guatemala | 28 | `GT82 TRAJ 0102 0000 0012 1002 9690` | No | ![Supported][supported] | - |
+| HN | Honduras | 28 | `HN88 CABF 0000 0000 0002 5000 5469` | No | ![Supported][supported] | - |
 | HR | Croatia | 21 | `HR12 1001 0051 8630 0016 0` | Yes | ![Supported][supported] | - |
 | HU | Hungary | 28 | `HU42 1177 3016 1111 1018 0000 0000` | Yes | ![Supported][supported] | ![Supported][supported] |
 | IE | Ireland | 22 | `IE29 AIBK 9311 5212 3456 78` | Yes | ![Supported][supported] | ![Supported][supported] |
@@ -142,7 +143,6 @@ Extra (unofficial) countries from [Wikipedia](https://en.wikipedia.org/wiki/Inte
 | GA | Gabon | 27 | - | - | - | - |
 | GQ | Equatorial Guinea | 27 | - | - | - | - |
 | GW | Guinea-Bissau | 25 | - | - | - | - |
-| HN | Honduras | 28 | - | - | - | - |
 | IR | Iran | 26 | - | - | - | - |
 | KM | Comoros | 27 | - | - | - | - |
 | MA | Morocco | 28 | - | - | - | - |

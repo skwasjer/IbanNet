@@ -8,11 +8,13 @@ namespace IbanNet.CodeGen.Swift;
 
 public sealed class SwiftCsvReader : CsvReader
 {
+    private static readonly string[] NullValues = ["", "N/A"];
+
     private static readonly Func<CsvConfiguration> CreateConfiguration = () => new CsvConfiguration(CultureInfo.InvariantCulture)
     {
         Delimiter = "\t",
         TrimOptions = TrimOptions.Trim,
-        WhiteSpaceChars = new[] { ' ' },
+        WhiteSpaceChars = [' '],
         HasHeaderRecord = true,
         AllowComments = false,
         DetectDelimiter = false,
@@ -34,12 +36,14 @@ public sealed class SwiftCsvReader : CsvReader
         TypeConverterOptionsCache typeConverterOptions = Parser.Context.TypeConverterOptionsCache;
 
         List<string> stringNullValues = typeConverterOptions.GetOptions<string>().NullValues;
-        stringNullValues.Add("");
-        stringNullValues.Add("N/A");
+        stringNullValues.AddRange(NullValues);
 
+        Parser.Context.TypeConverterCache.AddConverter<bool>(new TrueBooleanConverter());
         Parser.Context.TypeConverterCache.AddConverter<int>(new PatchInt32Converter());
         Parser.Context.TypeConverterCache.AddConverter<Position>(new PositionConverter());
-        typeConverterOptions.AddOptions<Position?>(new TypeConverterOptions { NullValues = { "", "N/A" } });
+        var positionOptions = new TypeConverterOptions();
+        positionOptions.NullValues.AddRange(NullValues);
+        typeConverterOptions.AddOptions<Position?>(positionOptions);
     }
 
     public override IEnumerable<T> GetRecords<T>()
