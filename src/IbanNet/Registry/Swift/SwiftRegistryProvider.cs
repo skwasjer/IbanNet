@@ -5303,7 +5303,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         }
 
         [GeneratedCode("SwiftRegistryProviderT4", "1.1-r98")]
-        internal sealed class PK() : SwiftPattern("2!c2!n4!a16!c", 24, true)
+        internal sealed class PK() : SwiftPattern("PK2!n4!a16!c", 24, true)
         {
 #if USE_SPANS
             internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)

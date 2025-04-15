@@ -12,7 +12,7 @@ internal sealed record _8_PakistanDisappearedPatch : SwiftCsvRecord
         EnglishName = "Pakistan";
         Iban = new IbanCsvData
         {
-            Pattern = "2!c2!n4!a16!c",
+            Pattern = "PK2!n4!a16!c",
             Length = 24,
             ElectronicFormatExample = "PK36SCBL0000001123456702"
         };
