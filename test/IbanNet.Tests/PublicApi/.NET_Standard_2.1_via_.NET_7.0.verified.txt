@@ -56,8 +56,8 @@ namespace IbanNet.CheckDigits.Calculators
     {
         public InvalidTokenException() { }
         public InvalidTokenException(string message) { }
-        public InvalidTokenException(int position, char unexpectedChar) { }
         protected InvalidTokenException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public InvalidTokenException(int position, char unexpectedChar) { }
         public InvalidTokenException(string message, System.Exception? innerException) { }
     }
     public class Mod97CheckDigitsCalculator : IbanNet.CheckDigits.Calculators.ICheckDigitsCalculator
@@ -181,10 +181,10 @@ namespace IbanNet
     public sealed class ValidationResult
     {
         public ValidationResult() { }
-        public bool IsValid { get; }
         public string? AttemptedValue { get; init; }
         public IbanNet.Registry.IbanCountry? Country { get; init; }
         public IbanNet.Validation.Results.ErrorResult? Error { get; init; }
+        public bool IsValid { get; }
     }
 }
 namespace IbanNet.Json
@@ -226,7 +226,6 @@ namespace IbanNet.Registry
     public sealed class IbanCountry
     {
         public IbanCountry(string twoLetterISORegionName) { }
-        public string TwoLetterISORegionName { get; }
         public IbanNet.Registry.BankStructure Bank { get; init; }
         public IbanNet.Registry.BbanStructure Bban { get; init; }
         public IbanNet.Registry.BranchStructure Branch { get; init; }
@@ -238,6 +237,7 @@ namespace IbanNet.Registry
         public System.DateTimeOffset LastUpdatedDate { get; init; }
         public string? NativeName { get; init; }
         public IbanNet.Registry.SepaInfo? Sepa { get; init; }
+        public string TwoLetterISORegionName { get; }
         public override string ToString() { }
     }
     public class IbanGenerator : IbanNet.Registry.IIbanGenerator
@@ -271,10 +271,10 @@ namespace IbanNet.Registry
     public abstract class StructureSection
     {
         protected StructureSection(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
+        public string Example { get; init; }
         public int Length { get; }
         public IbanNet.Registry.Patterns.Pattern Pattern { get; }
         public int Position { get; }
-        public string Example { get; init; }
     }
 }
 namespace IbanNet.Registry.Patterns
