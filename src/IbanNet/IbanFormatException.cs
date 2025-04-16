@@ -6,6 +6,9 @@
 [Serializable]
 public class IbanFormatException : FormatException
 {
+    [NonSerialized]
+    private readonly ValidationResult? _result;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanFormatException" />.
     /// </summary>
@@ -40,13 +43,16 @@ public class IbanFormatException : FormatException
     public IbanFormatException(string message, ValidationResult validationResult)
         : this(message)
     {
-        Result = validationResult;
+        _result = validationResult;
     }
 
     /// <summary>
     /// Gets the validation result.
     /// </summary>
-    public ValidationResult? Result { get; }
+    public ValidationResult? Result
+    {
+        get => _result;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanFormatException" /> with serialized data.
