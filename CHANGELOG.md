@@ -3,6 +3,25 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v5.18.0
+
+## What's Changed
+
+* feat(registry): updated registry to r99 (SWIFT) which adds Honduras (HN) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/281
+* fix(registry): fixes pattern text for Pakistan (PK) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/280
+* fix(CA2235): mark `IbanFormatException.Result` (backing field) as non-serializable by @skwasjer in https://github.com/skwasjer/IbanNet/pull/286
+
+### Chores
+
+* chore(deps): Bump xunit and Microsoft.NETFramework.ReferenceAssemblies by @dependabot in https://github.com/skwasjer/IbanNet/pull/262
+* chore(deps): Bump Microsoft.TestPlatform.ObjectModel and Microsoft.NETFramework.ReferenceAssemblies by @dependabot in https://github.com/skwasjer/IbanNet/pull/271
+* chore(deps): pin FluentAssertions to v7 due to license change from Apache to a custom one by @skwasjer in https://github.com/skwasjer/IbanNet/pull/282
+* chore(deps): bump PublicApiGenerator from 11.1.0 to 11.4.5. by @skwasjer in https://github.com/skwasjer/IbanNet/pull/283
+* chore(deps): bump Verify.Xunit from 28.4.0 to 29.2.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/284
+* chore(deps): bump HtmlAgilityPack from 1.11.67 to 1.12.1 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/285
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.17.0...v5.18.0
+
 ## v5.17.0
 
 ## What's Changed
