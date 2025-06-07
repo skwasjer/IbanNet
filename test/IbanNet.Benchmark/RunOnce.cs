@@ -7,7 +7,7 @@ namespace IbanNet.Benchmark;
 [MarkdownExporterAttribute.GitHub]
 [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
 [MemoryDiagnoser]
-[InliningDiagnoser(false, new [] { "IbanNet.Extensions", "IbanNet.Internal" })]
+[InliningDiagnoser(false, ["IbanNet.Extensions", "IbanNet.Internal"])]
 public class RunOnce
 {
     private IIbanValidator _validator;

@@ -26,14 +26,14 @@ public class IbanValidatorTests
 
         public static IEnumerable<object?[]> CtorWithOptionsTestCases()
         {
-            yield return new object?[] { () => new IbanValidator((IbanValidatorOptions)null!), typeof(ArgumentNullException), "options" };
-            yield return new object?[] { () => new IbanValidator((IIbanRegistry)null!), typeof(ArgumentNullException), "registry" };
-            yield return new object?[] { () => new IbanValidator(null!, Array.Empty<IIbanValidationRule>()), typeof(ArgumentNullException), "registry" };
-            yield return new object?[] { () => new IbanValidator(Substitute.For<IIbanRegistry>(), null!), typeof(ArgumentNullException), "rules" };
-            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }), typeof(ArgumentNullException), "registry" };
-            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions(), null!), typeof(ArgumentNullException), "validationRuleResolver" };
-            yield return new object?[] { () => new IbanValidator(null!, Substitute.For<IValidationRuleResolver>()), typeof(ArgumentNullException), "options" };
-            yield return new object?[] { () => new IbanValidator(new IbanValidatorOptions { Registry = null! }, Substitute.For<IValidationRuleResolver>()), typeof(ArgumentException), "options" };
+            yield return [() => new IbanValidator((IbanValidatorOptions)null!), typeof(ArgumentNullException), "options"];
+            yield return [() => new IbanValidator((IIbanRegistry)null!), typeof(ArgumentNullException), "registry"];
+            yield return [() => new IbanValidator(null!, []), typeof(ArgumentNullException), "registry"];
+            yield return [() => new IbanValidator(Substitute.For<IIbanRegistry>(), null!), typeof(ArgumentNullException), "rules"];
+            yield return [() => new IbanValidator(new IbanValidatorOptions { Registry = null! }), typeof(ArgumentNullException), "registry"];
+            yield return [() => new IbanValidator(new IbanValidatorOptions(), null!), typeof(ArgumentNullException), "validationRuleResolver"];
+            yield return [() => new IbanValidator(null!, Substitute.For<IValidationRuleResolver>()), typeof(ArgumentNullException), "options"];
+            yield return [() => new IbanValidator(new IbanValidatorOptions { Registry = null! }, Substitute.For<IValidationRuleResolver>()), typeof(ArgumentException), "options"];
         }
     }
 
@@ -177,12 +177,12 @@ public class IbanValidatorTests
 
         public Given_multiple_providers()
         {
-            _countries = new List<IbanCountry>
-            {
+            _countries =
+            [
                 _correctNlCountry,
                 _ignoredNlCountry,
                 _correctGbCountry
-            };
+            ];
 
             _sut = new IbanValidator(new IbanValidatorOptions
             {
@@ -191,17 +191,15 @@ public class IbanValidatorTests
                     Providers =
                     {
                         new IbanRegistryListProvider(
-                            new[]
-                            {
+                            [
                                 _correctNlCountry
-                            }
+                            ]
                         ),
                         new IbanRegistryListProvider(
-                            new[]
-                            {
+                            [
                                 _ignoredNlCountry,
                                 _correctGbCountry
-                            }
+                            ]
                         )
                     }
                 }

@@ -24,8 +24,8 @@ public class AutofacRegistrationExtensionsTests
         // ReSharper disable once ConvertToLocalFunction
         Action<object> configure = _ => { };
 
-        yield return new object?[] { null, configure, nameof(containerBuilder) };
-        yield return new object?[] { containerBuilder, null, nameof(configure) };
+        yield return [null, configure, nameof(containerBuilder)];
+        yield return [containerBuilder, null, nameof(configure)];
     }
 
     [Theory]

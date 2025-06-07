@@ -82,8 +82,8 @@ public class IbanGenerator : IIbanGenerator
         private readonly Random _rng;
         private readonly object _rngLock = new();
 
-        private static readonly AsciiCategory[] LetterCategories = { AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };
-        private static readonly AsciiCategory[] AlphaNumericCategories = { AsciiCategory.Digit, AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter };
+        private static readonly AsciiCategory[] LetterCategories = [AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter];
+        private static readonly AsciiCategory[] AlphaNumericCategories = [AsciiCategory.Digit, AsciiCategory.LowercaseLetter, AsciiCategory.UppercaseLetter];
 
         internal Generator(int seed)
         {

@@ -50,7 +50,7 @@ public class IbanCountryTests
         const string displayName = "name";
         const string domesticAccountNumberExample = "example";
         const string englishName = "english name";
-        string[] includedCountries = new [] { "AB" };
+        string[] includedCountries = ["AB"];
         DateTimeOffset lastUpdatedDate = DateTimeOffset.Now;
         var sepaInfo = new SepaInfo();
 

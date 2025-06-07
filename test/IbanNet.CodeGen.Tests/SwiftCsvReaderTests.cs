@@ -70,7 +70,7 @@ public class SwiftCsvReaderTests
                      .Where(s => s.EndsWith(".txt"))
                      .OrderBy(s => s))
         {
-            yield return new object[] { Path.GetFileName(registryPath), File.ReadAllText(registryPath, Encoding.GetEncoding(1252)) };
+            yield return [Path.GetFileName(registryPath), File.ReadAllText(registryPath, Encoding.GetEncoding(1252))];
         }
     }
 }

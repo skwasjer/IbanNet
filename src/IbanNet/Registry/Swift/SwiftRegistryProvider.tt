@@ -82,12 +82,12 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 <#
         if (record.OtherTerritories.Count > 0) {
 #>
-            IncludedCountries = new[]
-            {
+            IncludedCountries =
+            [
                     <#
                     WriteLine(string.Join(", ", record.OtherTerritories.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
 #>
-            },
+            ],
 <#
         }
 
@@ -126,12 +126,12 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 <#
         if (record.Sepa.OtherTerritories.Count > 0) {
 #>
-                IncludedCountries = new[]
-                {
+                IncludedCountries =
+                [
                         <#
                         WriteLine(string.Join(", ", record.Sepa.OtherTerritories.Select(r => $"\"{r.Substring(0, 2).ToUpperInvariant()}\"")));
 #>
-                }
+                ]
 <#
         }
 #>

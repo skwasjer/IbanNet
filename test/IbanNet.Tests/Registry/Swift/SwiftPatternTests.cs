@@ -67,8 +67,8 @@ public class SwiftPatternTests
 
     public static IEnumerable<object[]> GetTestCases()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             "2!n4!a4!n2!n8!c",
             new List<PatternToken>
             {
@@ -78,10 +78,10 @@ public class SwiftPatternTests
                 new(AsciiCategory.Digit, 2),
                 new(AsciiCategory.AlphaNumeric, 8)
             }
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             "4!n10a1!e2!c",
             new List<PatternToken>
             {
@@ -90,10 +90,10 @@ public class SwiftPatternTests
                 new(AsciiCategory.Space, 1),
                 new(AsciiCategory.AlphaNumeric, 2)
             }
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             "AD2!n4!n4!n12!c",
             new List<PatternToken>
             {
@@ -103,7 +103,7 @@ public class SwiftPatternTests
                 new(AsciiCategory.Digit, 4, 4),
                 new(AsciiCategory.AlphaNumeric, 12, 12)
             }
-        };
+        ];
     }
 
     [Theory]

@@ -66,7 +66,7 @@ public class IbanGeneratorTests
         public void Given_that_countryCode_has_no_bban_pattern_when_generating_it_should_throw()
         {
             const string countryCode = "ZZ";
-            var registry = new IbanRegistry { Providers = { new IbanRegistryListProvider(new[] { new IbanCountry(countryCode) }) } };
+            var registry = new IbanRegistry { Providers = { new IbanRegistryListProvider([new IbanCountry(countryCode)]) } };
             var sut = new IbanGenerator(registry);
 
             // Act
@@ -134,8 +134,7 @@ public class IbanGeneratorTests
         [Fact]
         public void Given_a_pattern_of_multiple_tokens_when_generating_it_should_return_expected()
         {
-            Pattern pattern = new FakePattern(new[]
-            {
+            Pattern pattern = new FakePattern([
                 new PatternToken(AsciiCategory.Digit, 4),
                 new PatternToken(AsciiCategory.Space, 1),
                 new PatternToken(AsciiCategory.LowercaseLetter, 4),
@@ -145,7 +144,7 @@ public class IbanGeneratorTests
                 new PatternToken(AsciiCategory.Letter, 4),
                 new PatternToken(AsciiCategory.Space, 1),
                 new PatternToken(AsciiCategory.AlphaNumeric, 4)
-            });
+            ]);
 
             // Act
             var generator = new IbanGenerator.Generator(123);
@@ -223,12 +222,12 @@ public class IbanGeneratorTests
 
         public static IEnumerable<object[]> GetRandomPerCategoryTests()
         {
-            yield return new object[] { AsciiCategory.Space, (Func<char, bool>)char.IsWhiteSpace };
-            yield return new object[] { AsciiCategory.Digit, (Func<char, bool>)char.IsDigit };
-            yield return new object[] { AsciiCategory.LowercaseLetter, (Func<char, bool>)char.IsLower };
-            yield return new object[] { AsciiCategory.UppercaseLetter, (Func<char, bool>)char.IsUpper };
-            yield return new object[] { AsciiCategory.Letter, (Func<char, bool>)char.IsLetter };
-            yield return new object[] { AsciiCategory.AlphaNumeric, (Func<char, bool>)char.IsLetterOrDigit };
+            yield return [AsciiCategory.Space, (Func<char, bool>)char.IsWhiteSpace];
+            yield return [AsciiCategory.Digit, (Func<char, bool>)char.IsDigit];
+            yield return [AsciiCategory.LowercaseLetter, (Func<char, bool>)char.IsLower];
+            yield return [AsciiCategory.UppercaseLetter, (Func<char, bool>)char.IsUpper];
+            yield return [AsciiCategory.Letter, (Func<char, bool>)char.IsLetter];
+            yield return [AsciiCategory.AlphaNumeric, (Func<char, bool>)char.IsLetterOrDigit];
         }
     }
 }

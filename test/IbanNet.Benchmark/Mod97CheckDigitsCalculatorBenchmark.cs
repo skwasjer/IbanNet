@@ -8,19 +8,19 @@ namespace IbanNet.Benchmark;
 [MarkdownExporterAttribute.GitHub]
 [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
 [MemoryDiagnoser]
-[InliningDiagnoser(false, new [] { "IbanNet.Extensions", "IbanNet.CheckDigits.Calculators" })]
+[InliningDiagnoser(false, ["IbanNet.Extensions", "IbanNet.CheckDigits.Calculators"])]
 public class Mod97CheckDigitsCalculatorBenchmark
 {
     private Mod97CheckDigitsCalculator _calculator;
 
     public static IEnumerable<object> TestCases()
     {
-        return new object[]
-        {
+        return
+        [
             new TestCase("0123456789012345"),
             new TestCase("ABCDEFGHIJKLMNOP"),
             new TestCase("01234567ABCDEFGH")
-        };
+        ];
     }
 
     [GlobalSetup]

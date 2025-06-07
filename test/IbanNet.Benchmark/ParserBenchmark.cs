@@ -14,11 +14,11 @@ public class ParserBenchmark
     public static IEnumerable<object[]> GetTestCases()
     {
         string iban = TestSamples.GetIbanSamples(1).Single();
-        yield return new object[] { iban, false };
+        yield return [iban, false];
 
         string lowerIban = iban.ToLowerInvariant();
         // ReSharper disable ReplaceSubstringWithRangeIndexer
-        yield return new object[] { $"{lowerIban.Substring(0, 6)} {lowerIban.Substring(6)}", true };
+        yield return [$"{lowerIban.Substring(0, 6)} {lowerIban.Substring(6)}", true];
         // ReSharper restore ReplaceSubstringWithRangeIndexer
     }
 

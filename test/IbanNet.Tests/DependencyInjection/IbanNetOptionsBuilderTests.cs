@@ -66,7 +66,7 @@ public class IbanNetOptionsBuilderTests
         [Fact]
         public void Given_registry_provider_is_configured_it_should_use_provider()
         {
-            var customProvider = new IbanRegistryListProvider(new[] { new IbanCountry("XX") });
+            var customProvider = new IbanRegistryListProvider([new IbanCountry("XX")]);
 
             // Act
             IIbanNetOptionsBuilder returnedBuilder = _builderStub.UseRegistryProvider(customProvider);
@@ -79,7 +79,7 @@ public class IbanNetOptionsBuilderTests
         [Fact]
         public void Given_multiple_registry_providers_are_configured_it_should_use_providers()
         {
-            var customProvider = new IbanRegistryListProvider(new[] { new IbanCountry("XX") });
+            var customProvider = new IbanRegistryListProvider([new IbanCountry("XX")]);
 
             // Act
             IIbanNetOptionsBuilder returnedBuilder = _builderStub.UseRegistryProvider(new SwiftRegistryProvider(), customProvider);

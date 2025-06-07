@@ -15,11 +15,11 @@ public class PatternTests
 
         public Given_a_pattern_created_with_tokens()
         {
-            _tokens = new List<PatternToken>
-            {
+            _tokens =
+            [
                 new(AsciiCategory.AlphaNumeric, 3),
                 new(AsciiCategory.Digit, 2)
-            };
+            ];
         }
 
         [Fact]
@@ -78,11 +78,11 @@ public class PatternTests
 
         public Given_a_pattern_created_with_string_pattern_and_tokenizer()
         {
-            _tokens = new List<PatternToken>
-            {
+            _tokens =
+            [
                 new(AsciiCategory.AlphaNumeric, 3),
                 new(AsciiCategory.Digit, 2)
-            };
+            ];
 
             _tokenizerMock
                 .Tokenize(Arg.Any<IEnumerable<char>>())

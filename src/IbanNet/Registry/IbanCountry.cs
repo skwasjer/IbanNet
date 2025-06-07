@@ -71,7 +71,7 @@ public sealed class IbanCountry
     /// <summary>
     /// Gets the list of included countries.
     /// </summary>
-    public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>(Array.Empty<string>());
+    public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>([]);
 
     /// <summary>
     /// Gets SEPA information.

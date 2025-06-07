@@ -24,7 +24,7 @@ public class IbanRegistry : IIbanRegistry
     public static IbanRegistry Default { get; } = new()
     {
         // Read-only, so default can not be modified.
-        Providers = new ReadOnlyCollection<IIbanRegistryProvider>(new IIbanRegistryProvider[] { new SwiftRegistryProvider() })
+        Providers = new ReadOnlyCollection<IIbanRegistryProvider>([new SwiftRegistryProvider()])
     };
 
     /// <summary>

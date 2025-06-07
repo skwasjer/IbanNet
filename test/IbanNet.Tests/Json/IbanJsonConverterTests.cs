@@ -111,8 +111,8 @@ public class IbanJsonConverterTests
         var parser = new IbanParser(IbanRegistry.Default);
         var writer = new Utf8JsonWriter(Stream.Null);
         Iban value = parser.Parse("NL91 ABNA 0417 1643 00");
-        yield return new object?[] { null, value, nameof(writer) };
-        yield return new object?[] { writer, null, nameof(value) };
+        yield return [null, value, nameof(writer)];
+        yield return [writer, null, nameof(value)];
     }
 
     public record Payment(Iban BankAccountNumber, decimal Amount);

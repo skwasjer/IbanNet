@@ -36,8 +36,8 @@ public class IbanRegistryTests
 
     public static IEnumerable<object[]> GetExpectedDefinitions()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             new IbanCountry("AD")
             {
                 DisplayName = "Andorra",
@@ -64,10 +64,10 @@ public class IbanRegistryTests
                 DomesticAccountNumberExample = "2030200359100100",
                 LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
             }
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             new IbanCountry("XK")
             {
                 DisplayName = "Kosovë",
@@ -94,7 +94,7 @@ public class IbanRegistryTests
                 DomesticAccountNumberExample = "1212 0123456789 06",
                 LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
             }
-        };
+        ];
     }
 
     [Theory]
