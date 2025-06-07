@@ -10,7 +10,7 @@ namespace IbanNet.Benchmark;
 [InliningDiagnoser(false, ["IbanNet.Extensions", "IbanNet.Internal"])]
 public class RunOnce
 {
-    private IIbanValidator _validator;
+    private IbanValidator _validator;
     private IList<string> _testData;
 
     [GlobalSetup]
