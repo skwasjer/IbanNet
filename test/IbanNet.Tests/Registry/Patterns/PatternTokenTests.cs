@@ -102,6 +102,34 @@ public class PatternTokenTests
         yield return [AsciiCategory.AlphaNumeric, 3, 3, true, true, true, true];
     }
 
+    [Theory]
+    [MemberData(nameof(GetFormatTestCases))]
+    public void It_should_format_correctly(AsciiCategory category, int minLength, int maxLength, string expected)
+    {
+        var patternToken = new PatternToken(category, minLength, maxLength);
+
+        // Act
+        string result = patternToken.ToString();
+
+        // Assert
+        result.Should().Be(expected);
+    }
+
+    public static IEnumerable<object[]> GetFormatTestCases()
+    {
+#if NET7_0_OR_GREATER
+        yield return [AsciiCategory.None, 1, 1, "None[1]"];
+#else
+        yield return [AsciiCategory.None, 1, 1, "Other[1]"];
+#endif
+        yield return [AsciiCategory.Space, 1, 1, "Space[1]"];
+        yield return [AsciiCategory.Digit, 1, 2, "Digit[1-2]"];
+        yield return [AsciiCategory.LowercaseLetter, 2, 4, "LowercaseLetter[2-4]"];
+        yield return [AsciiCategory.UppercaseLetter, 3, 4, "UppercaseLetter[3-4]"];
+        yield return [AsciiCategory.Letter, 6, 6, "Letter[6]"];
+        yield return [AsciiCategory.AlphaNumeric, 3, 3, "AlphaNumeric[3]"];
+    }
+
     [Fact]
     public void Given_that_pattern_value_is_null_when_creating_instance_it_should_throw()
     {
