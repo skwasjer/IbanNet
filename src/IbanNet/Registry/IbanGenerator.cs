@@ -158,12 +158,12 @@ public class IbanGenerator : IIbanGenerator
             return sb.ToString();
         }
 
-        private AsciiCategory GetRandomCategory(IReadOnlyList<AsciiCategory> from)
+        private AsciiCategory GetRandomCategory(AsciiCategory[] from)
         {
             int i;
             lock (_rngLock)
             {
-                i = _rng.Next(0, from.Count - 1);
+                i = _rng.Next(0, from.Length - 1);
             }
 
             return from[i];

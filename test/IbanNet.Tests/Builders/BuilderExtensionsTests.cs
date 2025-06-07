@@ -83,7 +83,7 @@ public class BuilderExtensionsTests
         [InlineData("GB")]
         public void When_getting_builder_with_countryCode_it_should_configure_builder(string countryCode)
         {
-            IBankAccountBuilder builder = new IbanBuilder();
+            var builder = new IbanBuilder();
 
             // Act
             builder.WithCountry(countryCode, IbanRegistry.Default);
