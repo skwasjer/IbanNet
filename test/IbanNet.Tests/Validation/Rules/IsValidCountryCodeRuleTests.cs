@@ -13,7 +13,7 @@ public class IsValidCountryCodeRuleTests
         {
             Providers =
             {
-                new IbanRegistryListProvider(Array.Empty<IbanCountry>())
+                new IbanRegistryListProvider([])
             }
         });
 
@@ -34,7 +34,7 @@ public class IsValidCountryCodeRuleTests
         {
             Providers =
             {
-                new IbanRegistryListProvider(new[] { country })
+                new IbanRegistryListProvider([country])
             }
         });
 
@@ -54,7 +54,7 @@ public class IsValidCountryCodeRuleTests
         {
             Providers =
             {
-                new IbanRegistryListProvider(Array.Empty<IbanCountry>())
+                new IbanRegistryListProvider([])
             }
         });
 

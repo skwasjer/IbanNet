@@ -7,7 +7,7 @@ namespace IbanNet.CodeGen.Swift.Converters;
 
 internal class PositionConverter : StringConverter
 {
-    private readonly char[] _splitChars = { '-', ' ' };
+    private readonly char[] _splitChars = ['-', ' '];
 
     public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {

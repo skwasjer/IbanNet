@@ -17,5 +17,5 @@ public class SepaInfo
     /// <summary>
     /// Gets a list of included SEPA countries.
     /// </summary>
-    public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>(Array.Empty<string>());
+    public IReadOnlyCollection<string> IncludedCountries { get; init; } = new ReadOnlyCollection<string>([]);
 }

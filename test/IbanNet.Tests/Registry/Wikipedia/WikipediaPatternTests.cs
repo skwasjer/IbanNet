@@ -55,8 +55,8 @@ public class WikipediaPatternTests
 
     public static IEnumerable<object[]> GetTestCases()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             "6a,4n,16c",
             new List<PatternToken>
             {
@@ -64,10 +64,10 @@ public class WikipediaPatternTests
                 new(AsciiCategory.Digit, 4),
                 new(AsciiCategory.AlphaNumeric, 16)
             }
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             "1n2a3c",
             new List<PatternToken>
             {
@@ -75,7 +75,7 @@ public class WikipediaPatternTests
                 new(AsciiCategory.UppercaseLetter, 2),
                 new(AsciiCategory.AlphaNumeric, 3)
             }
-        };
+        ];
     }
 
     [Theory]

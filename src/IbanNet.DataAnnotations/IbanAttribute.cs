@@ -55,7 +55,7 @@ public sealed class IbanAttribute : ValidationAttribute
         IEnumerable<string>? memberNames = null;
         if (validationContext.MemberName is not null)
         {
-            memberNames = new[] { validationContext.MemberName };
+            memberNames = [validationContext.MemberName];
         }
 
         return new System.ComponentModel.DataAnnotations.ValidationResult(FormatErrorMessage(validationContext.DisplayName), memberNames);

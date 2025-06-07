@@ -107,10 +107,10 @@ public class BuilderExtensionsTests
                     return true;
                 });
 
-            yield return new object?[] { null, countryCode, registry, nameof(builder) };
-            yield return new object?[] { builder, null, registry, nameof(countryCode) };
-            yield return new object?[] { builder, countryCode, null, nameof(registry) };
-            yield return new object?[] { builder, "ZZ", registry, nameof(countryCode) };
+            yield return [null, countryCode, registry, nameof(builder)];
+            yield return [builder, null, registry, nameof(countryCode)];
+            yield return [builder, countryCode, null, nameof(registry)];
+            yield return [builder, "ZZ", registry, nameof(countryCode)];
         }
     }
 }

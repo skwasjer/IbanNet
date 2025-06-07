@@ -6,7 +6,7 @@ namespace IbanNet.Registry.Wikipedia;
 
 internal class WikipediaPatternTokenizer : PatternTokenizer
 {
-    private static readonly char[] TokenChars = { 'n', 'a', 'c' };
+    private static readonly char[] TokenChars = ['n', 'a', 'c'];
 
     public WikipediaPatternTokenizer()
         : base(ch => ch.IsUpperAsciiLetter() || TokenChars.Contains(ch))

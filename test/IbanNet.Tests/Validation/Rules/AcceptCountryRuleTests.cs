@@ -10,7 +10,7 @@ public class AcceptCountryRuleTests
     [InlineData("BE68539007547034")]
     public void Given_that_country_code_is_accepted_when_validating_it_should_return_success(string value)
     {
-        var sut = new AcceptCountryRule(new[] { "NL", "BE" });
+        var sut = new AcceptCountryRule(["NL", "BE"]);
         IbanCountry ibanCountry = IbanRegistry.Default[value.Substring(0, 2)];
 
         // Act
@@ -25,7 +25,7 @@ public class AcceptCountryRuleTests
     [InlineData("BE68539007547034")]
     public void Given_that_country_code_is_not_accepted_when_validating_it_should_return_error(string value)
     {
-        var sut = new AcceptCountryRule(new[] { "DE", "FR" });
+        var sut = new AcceptCountryRule(["DE", "FR"]);
         IbanCountry ibanCountry = IbanRegistry.Default[value.Substring(0, 2)];
 
         // Act
@@ -55,7 +55,7 @@ public class AcceptCountryRuleTests
     [Fact]
     public void Given_that_list_is_empty_when_creating_rule_it_should_throw()
     {
-        IEnumerable<string> acceptedCountryCodes = Enumerable.Empty<string>();
+        IEnumerable<string> acceptedCountryCodes = [];
 
         // Act
         Func<AcceptCountryRule> act = () => new AcceptCountryRule(acceptedCountryCodes);
@@ -71,7 +71,7 @@ public class AcceptCountryRuleTests
     [Fact]
     public void Given_that_context_is_null_when_validating_it_should_throw()
     {
-        var sut = new AcceptCountryRule(new[] { "DE", "FR" });
+        var sut = new AcceptCountryRule(["DE", "FR"]);
         ValidationRuleContext? context = null;
 
         // Act

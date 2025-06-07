@@ -93,13 +93,13 @@ public class PatternTokenTests
 
     public static IEnumerable<object[]> GetCtorAsciiTestCases()
     {
-        yield return new object[] { AsciiCategory.None, 1, 1, true, false, false, false };
-        yield return new object[] { AsciiCategory.Space, 1, 1, true, false, false, false };
-        yield return new object[] { AsciiCategory.Digit, 1, 2, false, false, false, true };
-        yield return new object[] { AsciiCategory.LowercaseLetter, 2, 4, false, true, false, false };
-        yield return new object[] { AsciiCategory.UppercaseLetter, 3, 4, false, false, true, false };
-        yield return new object[] { AsciiCategory.Letter, 6, 6, true, true, true, false };
-        yield return new object[] { AsciiCategory.AlphaNumeric, 3, 3, true, true, true, true };
+        yield return [AsciiCategory.None, 1, 1, true, false, false, false];
+        yield return [AsciiCategory.Space, 1, 1, true, false, false, false];
+        yield return [AsciiCategory.Digit, 1, 2, false, false, false, true];
+        yield return [AsciiCategory.LowercaseLetter, 2, 4, false, true, false, false];
+        yield return [AsciiCategory.UppercaseLetter, 3, 4, false, false, true, false];
+        yield return [AsciiCategory.Letter, 6, 6, true, true, true, false];
+        yield return [AsciiCategory.AlphaNumeric, 3, 3, true, true, true, true];
     }
 
     [Fact]
@@ -138,9 +138,9 @@ public class PatternTokenTests
 
     public static IEnumerable<object[]> GetCtorValueTestCases()
     {
-        yield return new object[] { "A", 1, 1 };
-        yield return new object[] { "AB", 2, 2 };
-        yield return new object[] { "ABCDEF", 6, 6 };
+        yield return ["A", 1, 1];
+        yield return ["AB", 2, 2];
+        yield return ["ABCDEF", 6, 6];
     }
 
     [Theory]
@@ -168,10 +168,10 @@ public class PatternTokenTests
 
     public static IEnumerable<object[]> GetCtorValueMatchTestCases()
     {
-        yield return new object[] { "A", new[] { 'A' }, true };
-        yield return new object[] { "AB", new[] { 'A', 'B' }, true };
-        yield return new object[] { "AB", new[] { 'a', 'B' }, false };
-        yield return new object[] { "ABC", new[] { 'A', 'B', 'c' }, false };
-        yield return new object[] { "ABCDEF", new[] { 'A', 'B', 'C', 'D', 'E', 'F' }, true };
+        yield return ["A", new[] { 'A' }, true];
+        yield return ["AB", new[] { 'A', 'B' }, true];
+        yield return ["AB", new[] { 'a', 'B' }, false];
+        yield return ["ABC", new[] { 'A', 'B', 'c' }, false];
+        yield return ["ABCDEF", new[] { 'A', 'B', 'C', 'D', 'E', 'F' }, true];
     }
 }

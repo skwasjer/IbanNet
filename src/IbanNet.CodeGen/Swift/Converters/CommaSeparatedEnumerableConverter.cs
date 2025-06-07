@@ -6,7 +6,7 @@ namespace IbanNet.CodeGen.Swift.Converters;
 
 internal class CommaSeparatedEnumerableConverter : StringConverter
 {
-    private static readonly char[] Separator = { ',' };
+    private static readonly char[] Separator = [','];
 
     public override object ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {

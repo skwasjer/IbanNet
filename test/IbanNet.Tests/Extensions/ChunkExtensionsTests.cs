@@ -92,7 +92,7 @@ public class ChunkExtensionsTests
     public void Given_string_when_partitioning_it_should_return_correct_partitioned_enumerable1(char char1, char? char2, params string[] expectedPartitions)
     {
         const string sequence = "a quick brown fox jumps over the lazy dog";
-        char[] chars = char2.HasValue ? new[] { char1, char2.Value } : new[] { char1 };
+        char[] chars = char2.HasValue ? [char1, char2.Value] : [char1];
 
         // Act
         var actual = sequence.PartitionOn(chars).ToList();

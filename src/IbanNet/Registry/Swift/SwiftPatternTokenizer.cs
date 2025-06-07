@@ -12,7 +12,7 @@ namespace IbanNet.Registry.Swift;
 /// </remarks>
 internal class SwiftPatternTokenizer : PatternTokenizer
 {
-    private static readonly char[] TokenChars = { 'n', 'a', 'c', 'e' };
+    private static readonly char[] TokenChars = ['n', 'a', 'c', 'e'];
 
     internal SwiftPatternTokenizer()
         : base(ch => ch.IsUpperAsciiLetter() || TokenChars.Contains(ch))

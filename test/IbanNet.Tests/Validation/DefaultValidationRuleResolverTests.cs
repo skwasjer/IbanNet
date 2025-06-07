@@ -12,7 +12,7 @@ public class DefaultValidationRuleResolverTests
     {
         IIbanRegistry registryMock = Substitute.For<IIbanRegistry>();
         registryMock.Providers.Returns(new List<IIbanRegistryProvider>());
-        _customRules = new List<IIbanValidationRule>();
+        _customRules = [];
         _sut = new DefaultValidationRuleResolver(registryMock, _customRules);
     }
 
@@ -26,8 +26,7 @@ public class DefaultValidationRuleResolverTests
         rules.Select(r => r.GetType())
             .Should()
             .BeEquivalentTo(
-                new[]
-                {
+                [
                     typeof(NotEmptyRule),
                     typeof(HasCountryCodeRule),
                     typeof(NoIllegalCharactersRule),
@@ -36,7 +35,7 @@ public class DefaultValidationRuleResolverTests
                     typeof(IsValidLengthRule),
                     typeof(IsMatchingStructureRule),
                     typeof(Mod97Rule)
-                },
+                ],
                 options => options.WithStrictOrdering()
             );
     }
@@ -54,6 +53,6 @@ public class DefaultValidationRuleResolverTests
 
         // Assert
         rules.Should()
-            .EndWith(new[] { rule1, rule2 });
+            .EndWith([rule1, rule2]);
     }
 }

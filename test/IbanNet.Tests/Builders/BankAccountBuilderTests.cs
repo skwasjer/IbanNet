@@ -74,7 +74,7 @@ public class BankAccountBuilderTests
             .WithCountry(new IbanCountry("XX")
             {
                 Bban = new BbanStructure(
-                    new FakePattern(new[] { new PatternToken(AsciiCategory.Digit, 10) })
+                    new FakePattern([new PatternToken(AsciiCategory.Digit, 10)])
                 )
             });
 
@@ -240,13 +240,13 @@ public class BankAccountBuilderTests
         Action<IBankAccountBuilder, string, bool> branch = (b, value, pad) => b.WithBranchIdentifier(value, pad);
         Action<IBankAccountBuilder, string, bool> bank = (b, value, pad) => b.WithBankIdentifier(value, pad);
 
-        yield return new object[] { bbanBuilder, bankAccount };
-        yield return new object[] { bbanBuilder, branch };
-        yield return new object[] { bbanBuilder, bank };
+        yield return [bbanBuilder, bankAccount];
+        yield return [bbanBuilder, branch];
+        yield return [bbanBuilder, bank];
 
-        yield return new object[] { ibanBuilder, bankAccount };
-        yield return new object[] { ibanBuilder, branch };
-        yield return new object[] { ibanBuilder, bank };
+        yield return [ibanBuilder, bankAccount];
+        yield return [ibanBuilder, branch];
+        yield return [ibanBuilder, bank];
     }
 
     public static IEnumerable<object[]> TooShortWithPaddingTestCases()
@@ -257,12 +257,12 @@ public class BankAccountBuilderTests
         Action<IBankAccountBuilder, string, bool> branch = (b, value, pad) => b.WithBranchIdentifier(value, pad);
         Action<IBankAccountBuilder, string, bool> bank = (b, value, pad) => b.WithBankIdentifier(value, pad);
 
-        yield return new object[] { bbanBuilder, bankAccount, "GB", "1", "000000000000000001" };
-        yield return new object[] { bbanBuilder, branch, "GB", "1", "000000000100000000" };
-        yield return new object[] { bbanBuilder, bank, "GB", "1", "000100000000000000" };
+        yield return [bbanBuilder, bankAccount, "GB", "1", "000000000000000001"];
+        yield return [bbanBuilder, branch, "GB", "1", "000000000100000000"];
+        yield return [bbanBuilder, bank, "GB", "1", "000100000000000000"];
 
-        yield return new object[] { ibanBuilder, bankAccount, "GB", "1", "GB88000000000000000001" };
-        yield return new object[] { ibanBuilder, branch, "GB", "1", "GB62000000000100000000" };
-        yield return new object[] { ibanBuilder, bank, "GB", "1", "GB42000100000000000000" };
+        yield return [ibanBuilder, bankAccount, "GB", "1", "GB88000000000000000001"];
+        yield return [ibanBuilder, branch, "GB", "1", "GB62000000000100000000"];
+        yield return [ibanBuilder, bank, "GB", "1", "GB42000100000000000000"];
     }
 }

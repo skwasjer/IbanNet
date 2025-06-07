@@ -21,7 +21,7 @@ internal class RuleRegistrationSource : IRegistrationSource
          || swt.ServiceType.GetTypeInfo().IsInterface)
         {
             // It's not a request for a rule type.
-            return Enumerable.Empty<IComponentRegistration>();
+            return [];
         }
 
         // Return component registration, request per dependency, owned by lifetime scope.
@@ -39,10 +39,10 @@ internal class RuleRegistrationSource : IRegistrationSource
             new CurrentScopeLifetime(),
             InstanceSharing.None,
             InstanceOwnership.OwnedByLifetimeScope,
-            new[] { service },
+            [service],
             new Dictionary<string, object?>());
 
-        return new IComponentRegistration[] { registration };
+        return [registration];
     }
 
     public bool IsAdapterForIndividualComponents => false;

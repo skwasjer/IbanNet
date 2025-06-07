@@ -683,10 +683,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Suomi",
             EnglishName = "Finland",
-            IncludedCountries = new[]
-            {
+            IncludedCountries =
+            [
                     "AX"
-            },
+            ],
             Iban = new IbanStructure(new Patterns.FI())
             {
                 Example = "FI2112345600000785",
@@ -703,10 +703,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Sepa = new SepaInfo
             {
                 IsMember = true,
-                IncludedCountries = new[]
-                {
+                IncludedCountries =
+                [
                         "AX"
-                }
+                ]
             },
             DomesticAccountNumberExample = "",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
@@ -769,10 +769,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "France",
             EnglishName = "France",
-            IncludedCountries = new[]
-            {
+            IncludedCountries =
+            [
                     "GF", "GP", "MQ", "RE", "PF", "TF", "YT", "NC", "BL", "MF", "PM", "WF"
-            },
+            ],
             Iban = new IbanStructure(new Patterns.FR())
             {
                 Example = "FR1420041010050500013M02606",
@@ -793,10 +793,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Sepa = new SepaInfo
             {
                 IsMember = true,
-                IncludedCountries = new[]
-                {
+                IncludedCountries =
+                [
                         "GF", "GP", "MQ", "YT", "RE", "PM", "BL", "MF"
-                }
+                ]
             },
             DomesticAccountNumberExample = "20041 01005 0500013M026 06",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
@@ -807,10 +807,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "United Kingdom",
             EnglishName = "United Kingdom",
-            IncludedCountries = new[]
-            {
+            IncludedCountries =
+            [
                     "IM", "JE", "GG"
-            },
+            ],
             Iban = new IbanStructure(new Patterns.GB())
             {
                 Example = "GB29NWBK60161331926819",
@@ -1901,10 +1901,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Sepa = new SepaInfo
             {
                 IsMember = true,
-                IncludedCountries = new[]
-                {
+                IncludedCountries =
+                [
                         "AZ", "MA"
-                }
+                ]
             },
             DomesticAccountNumberExample = "0002.0123.12345678901.54",
             LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero)

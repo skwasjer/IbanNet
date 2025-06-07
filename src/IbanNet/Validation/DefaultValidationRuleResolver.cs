@@ -21,7 +21,7 @@ internal class DefaultValidationRuleResolver : IValidationRuleResolver
     )
     {
         _registry = registry ?? throw new ArgumentNullException(nameof(registry));
-        _customRules = customRules ?? Array.Empty<IIbanValidationRule>();
+        _customRules = customRules ?? [];
     }
 
     /// <inheritdoc />
