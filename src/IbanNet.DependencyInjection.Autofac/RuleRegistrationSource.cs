@@ -25,9 +25,9 @@ internal class RuleRegistrationSource : IRegistrationSource
         }
 
         // Return component registration, request per dependency, owned by lifetime scope.
+#pragma warning disable CA2000 // Dispose objects before losing scope - justification: disposal is managed by Autofac
         var registration = new ComponentRegistration(
             Guid.NewGuid(),
-#pragma warning disable CA2000 // Dispose objects before losing scope - justification: disposal is managed by Autofac
             new ReflectionActivator(
                 swt.ServiceType,
                 new DefaultConstructorFinder(),
@@ -35,12 +35,12 @@ internal class RuleRegistrationSource : IRegistrationSource
                 new List<Parameter>(),
                 new List<Parameter>()
             ),
-#pragma warning restore CA2000 // Dispose objects before losing scope
             new CurrentScopeLifetime(),
             InstanceSharing.None,
             InstanceOwnership.OwnedByLifetimeScope,
             [service],
             new Dictionary<string, object?>());
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
         return [registration];
     }
