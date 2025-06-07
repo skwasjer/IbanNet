@@ -100,7 +100,11 @@ public sealed class PatternToken
     /// <inheritdoc />
     public override string ToString()
     {
-        string category = Enum.GetName(typeof(AsciiCategory), Category)!;
+#if NET6_0_OR_GREATER
+        string? category = Enum.GetName(Category);
+#else
+        string? category = Enum.GetName(typeof(AsciiCategory), Category);
+#endif
         return IsFixedLength
             ? $"{category}[{MaxLength}]"
             : $"{category}[{MinLength}-{MaxLength}]";
@@ -108,7 +112,11 @@ public sealed class PatternToken
 
     private static Func<char, int, bool> GetCharacterTest(AsciiCategory category)
     {
+#if NET6_0_OR_GREATER
+        if (!Enum.IsDefined(category))
+#else
         if (!Enum.IsDefined(typeof(AsciiCategory), category))
+#endif
         {
             throw new InvalidEnumArgumentException(nameof(category), (int)category, typeof(AsciiCategory));
         }
