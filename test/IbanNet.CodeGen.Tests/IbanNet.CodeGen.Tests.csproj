@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <IsTestProject>true</IsTestProject>
+    <RootNamespace>IbanNet.CodeGen</RootNamespace>
+    <NoWarn>$(NoWarn);MSB3243</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

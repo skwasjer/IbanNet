@@ -95,7 +95,9 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
 
             if (asciiCategory == AsciiCategory.None || occurrences <= 0)
             {
+#pragma warning disable RS1035
                 throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos));
+#pragma warning restore RS1035
             }
 
             return new PatternToken(asciiCategory, isFixedLength ? occurrences : 1, occurrences);
@@ -107,7 +109,9 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
                 or IndexOutOfRangeException
             )
         {
+#pragma warning disable RS1035
             throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos), ex);
+#pragma warning restore RS1035
         }
     }
 

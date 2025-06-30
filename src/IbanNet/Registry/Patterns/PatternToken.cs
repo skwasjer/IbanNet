@@ -63,6 +63,7 @@ public sealed record PatternToken
             throw new InvalidEnumArgumentException(nameof(category), (int)category, typeof(AsciiCategory));
         }
 
+#pragma warning disable RS1035
         if (minLength <= 0)
         {
             throw new ArgumentOutOfRangeException(minLengthPropertyName, string.Format(CultureInfo.CurrentCulture, Resources.The_value_cannot_be_less_than_or_equal_to_0, 0));
@@ -83,6 +84,7 @@ public sealed record PatternToken
         MaxLength = maxLength;
         IsFixedLength = minLength == MaxLength;
     }
+#pragma warning restore RS1035
 
     /// <summary>
     /// Gets the ASCII category for this token.
