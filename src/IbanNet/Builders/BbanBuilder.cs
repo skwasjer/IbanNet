@@ -95,11 +95,11 @@ public sealed class BbanBuilder : IBankAccountBuilder
         return new string(buffer);
     }
 
-    private static void CopyToBuffer(char[]? source, char[] destination, StructureSection structure, bool padding, string countryCode, string name)
+    private static void CopyToBuffer(char[]? source, char[] destination, PatternDescriptor patternDescriptor, bool padding, string countryCode, string name)
     {
         const int relativeToIbanPos = 4;
 
-        if (structure.Length == 0 && source?.Length > 0)
+        if (patternDescriptor.Length == 0 && source?.Length > 0)
         {
             throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.Exception_Builder_A_value_for_0_is_not_supported_for_country_code_1, name, countryCode));
         }
@@ -107,8 +107,8 @@ public sealed class BbanBuilder : IBankAccountBuilder
         CopyToBuffer(
             source,
             destination,
-            structure.Position - relativeToIbanPos,
-            structure.Length,
+            patternDescriptor.Position - relativeToIbanPos,
+            patternDescriptor.Length,
             padding);
     }
 

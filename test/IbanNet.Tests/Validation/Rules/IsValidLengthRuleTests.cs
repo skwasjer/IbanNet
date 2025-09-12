@@ -23,7 +23,7 @@ public class IsValidLengthRuleTests
         {
             Country = new IbanCountry("XX")
             {
-                Iban = new IbanStructure(new FakePattern([new PatternToken(AsciiCategory.Digit, 10)]))
+                Iban = new PatternDescriptor(new FakePattern([new PatternToken(AsciiCategory.Digit, 10)]))
             }
         };
 
@@ -42,7 +42,7 @@ public class IsValidLengthRuleTests
         {
             Country = new IbanCountry("XX")
             {
-                Iban = new IbanStructure(new FakePattern([new PatternToken(AsciiCategory.Digit, 10)]))
+                Iban = new PatternDescriptor(new FakePattern([new PatternToken(AsciiCategory.Digit, 10)]))
             }
         };
 
@@ -76,7 +76,7 @@ public class IsValidLengthRuleTests
         {
             Country = new IbanCountry("XX")
             {
-                Iban = new IbanStructure(new FakePattern([new PatternToken(AsciiCategory.Digit, 40)]))
+                Iban = new PatternDescriptor(new FakePattern([new PatternToken(AsciiCategory.Digit, 40)]))
             }
         };
 

@@ -73,7 +73,7 @@ public class BankAccountBuilderTests
         IBankAccountBuilder builder = CreateBuilder(builderType)
             .WithCountry(new IbanCountry("XX")
             {
-                Bban = new BbanStructure(
+                Bban = new PatternDescriptor(
                     new FakePattern([new PatternToken(AsciiCategory.Digit, 10)])
                 )
             });

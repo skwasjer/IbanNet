@@ -45,19 +45,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Andorra",
             EnglishName = "Andorra",
-            Iban = new IbanStructure(new Patterns.AD())
+            Iban = new PatternDescriptor(new Patterns.AD())
             {
                 Example = "AD1200012030200359100100"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n4!n12!c"), 4)
             {
                 Example = "00012030200359100100"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0001"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "2030"
             },
@@ -75,15 +75,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الإمارات العربية المتحدة",
             EnglishName = "United Arab Emirates (The)",
-            Iban = new IbanStructure(new Patterns.AE())
+            Iban = new PatternDescriptor(new Patterns.AE())
             {
                 Example = "AE070331234567890123456"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n16!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n16!n"), 4)
             {
                 Example = "0331234567890123456"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "033"
             },
@@ -101,19 +101,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Shqipëri",
             EnglishName = "Albania",
-            Iban = new IbanStructure(new Patterns.AL())
+            Iban = new PatternDescriptor(new Patterns.AL())
             {
                 Example = "AL47212110090000000235698741"
             },
-            Bban = new BbanStructure(new SwiftPattern("8!n16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("8!n16!c"), 4)
             {
                 Example = "212110090000000235698741"
             },
-            Bank = new BankStructure(new SwiftPattern("8!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
                 Example = "21211009"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 7)
             {
                 Example = "1100"
             },
@@ -131,15 +131,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Österreich",
             EnglishName = "Austria",
-            Iban = new IbanStructure(new Patterns.AT())
+            Iban = new PatternDescriptor(new Patterns.AT())
             {
                 Example = "AT611904300234573201"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n11!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n11!n"), 4)
             {
                 Example = "1904300234573201"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "19043"
             },
@@ -157,15 +157,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Азәрбајҹан",
             EnglishName = "Azerbaijan",
-            Iban = new IbanStructure(new Patterns.AZ())
+            Iban = new PatternDescriptor(new Patterns.AZ())
             {
                 Example = "AZ21NABZ00000000137010001944"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a20!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a20!c"), 4)
             {
                 Example = "NABZ00000000137010001944"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NABZ"
             },
@@ -183,19 +183,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Bosna i Hercegovina",
             EnglishName = "Bosnia and Herzegovina",
-            Iban = new IbanStructure(new Patterns.BA())
+            Iban = new PatternDescriptor(new Patterns.BA())
             {
                 Example = "BA391290079401028494"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n3!n8!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n3!n8!n2!n"), 4)
             {
                 Example = "1990440001200279"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "199"
             },
-            Branch = new BranchStructure(new SwiftPattern("3!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("3!n"), 7)
             {
                 Example = "044"
             },
@@ -213,15 +213,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "België",
             EnglishName = "Belgium",
-            Iban = new IbanStructure(new Patterns.BE())
+            Iban = new PatternDescriptor(new Patterns.BE())
             {
                 Example = "BE68539007547034"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n7!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n7!n2!n"), 4)
             {
                 Example = "539007547034"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "539"
             },
@@ -239,19 +239,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "България",
             EnglishName = "Bulgaria",
-            Iban = new IbanStructure(new Patterns.BG())
+            Iban = new PatternDescriptor(new Patterns.BG())
             {
                 Example = "BG80BNBG96611020345678"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a4!n2!n8!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a4!n2!n8!c"), 4)
             {
                 Example = "BNBG96611020345678"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BNBG"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "9661"
             },
@@ -269,15 +269,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "البحرين",
             EnglishName = "Bahrain",
-            Iban = new IbanStructure(new Patterns.BH())
+            Iban = new PatternDescriptor(new Patterns.BH())
             {
                 Example = "BH67BMAG00001299123456"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a14!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a14!c"), 4)
             {
                 Example = "BMAG00001299123456"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BMAG"
             },
@@ -295,19 +295,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Burundi",
             EnglishName = "Burundi",
-            Iban = new IbanStructure(new Patterns.BI())
+            Iban = new PatternDescriptor(new Patterns.BI())
             {
                 Example = "BI4210000100010000332045181"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
                 Example = "10000100010000332045181"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "10000"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 9)
             {
                 Example = "10001"
             },
@@ -325,19 +325,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Brasil",
             EnglishName = "Brazil",
-            Iban = new IbanStructure(new Patterns.BR())
+            Iban = new PatternDescriptor(new Patterns.BR())
             {
                 Example = "BR1800360305000010009795493C1"
             },
-            Bban = new BbanStructure(new SwiftPattern("8!n5!n10!n1!a1!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("8!n5!n10!n1!a1!c"), 4)
             {
                 Example = "00360305000010009795493P1"
             },
-            Bank = new BankStructure(new SwiftPattern("8!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
                 Example = "00360305"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 12)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 12)
             {
                 Example = "00001"
             },
@@ -355,15 +355,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Беларусь",
             EnglishName = "Republic of Belarus",
-            Iban = new IbanStructure(new Patterns.BY())
+            Iban = new PatternDescriptor(new Patterns.BY())
             {
                 Example = "BY13NBRB3600900000002Z00AB00"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!c4!n16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!c4!n16!c"), 4)
             {
                 Example = "NBRB3600900000002Z00AB00"
             },
-            Bank = new BankStructure(new SwiftPattern("4!c"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!c"), 4)
             {
                 Example = "NBRB"
             },
@@ -381,15 +381,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Svizzera",
             EnglishName = "Switzerland",
-            Iban = new IbanStructure(new Patterns.CH())
+            Iban = new PatternDescriptor(new Patterns.CH())
             {
                 Example = "CH9300762011623852957"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n12!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n12!c"), 4)
             {
                 Example = "00762011623852957"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "00762"
             },
@@ -407,15 +407,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Costa Rica",
             EnglishName = "Costa Rica",
-            Iban = new IbanStructure(new Patterns.CR())
+            Iban = new PatternDescriptor(new Patterns.CR())
             {
                 Example = "CR05015202001026284066"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n14!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n14!n"), 4)
             {
                 Example = "15202001026284066"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0152"
             },
@@ -433,19 +433,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Κύπρος",
             EnglishName = "Cyprus",
-            Iban = new IbanStructure(new Patterns.CY())
+            Iban = new PatternDescriptor(new Patterns.CY())
             {
                 Example = "CY17002001280000001200527600"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n5!n16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n5!n16!c"), 4)
             {
                 Example = "002001280000001200527600"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "002"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 7)
             {
                 Example = "00128"
             },
@@ -463,15 +463,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Česko",
             EnglishName = "Czechia",
-            Iban = new IbanStructure(new Patterns.CZ())
+            Iban = new PatternDescriptor(new Patterns.CZ())
             {
                 Example = "CZ6508000000192000145399"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n6!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n6!n10!n"), 4)
             {
                 Example = "08000000192000145399"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0800"
             },
@@ -489,15 +489,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Deutschland",
             EnglishName = "Germany",
-            Iban = new IbanStructure(new Patterns.DE())
+            Iban = new PatternDescriptor(new Patterns.DE())
             {
                 Example = "DE89370400440532013000"
             },
-            Bban = new BbanStructure(new SwiftPattern("8!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("8!n10!n"), 4)
             {
                 Example = "370400440532013000"
             },
-            Bank = new BankStructure(new SwiftPattern("8!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
                 Example = "37040044"
             },
@@ -515,19 +515,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Yabuuti",
             EnglishName = "Djibouti",
-            Iban = new IbanStructure(new Patterns.DJ())
+            Iban = new PatternDescriptor(new Patterns.DJ())
             {
                 Example = "DJ2100010000000154000100186"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
                 Example = "00010000000154000100186"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "00010"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 9)
             {
                 Example = "00000"
             },
@@ -545,15 +545,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Danmark",
             EnglishName = "Denmark",
-            Iban = new IbanStructure(new Patterns.DK())
+            Iban = new PatternDescriptor(new Patterns.DK())
             {
                 Example = "DK5000400440116243"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n9!n1!n"), 4)
             {
                 Example = "00400440116243"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0040"
             },
@@ -571,15 +571,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "República Dominicana",
             EnglishName = "Dominican Republic",
-            Iban = new IbanStructure(new Patterns.DO())
+            Iban = new PatternDescriptor(new Patterns.DO())
             {
                 Example = "DO28BAGR00000001212453611324"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!c20!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!c20!n"), 4)
             {
                 Example = "BAGR00000001212453611324"
             },
-            Bank = new BankStructure(new SwiftPattern("4!c"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!c"), 4)
             {
                 Example = "BAGR"
             },
@@ -597,15 +597,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Eesti",
             EnglishName = "Estonia",
-            Iban = new IbanStructure(new Patterns.EE())
+            Iban = new PatternDescriptor(new Patterns.EE())
             {
                 Example = "EE382200221020145685"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!n14!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!n14!n"), 4)
             {
                 Example = "2200221020145685"
             },
-            Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "22"
             },
@@ -623,19 +623,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "مصر",
             EnglishName = "Egypt",
-            Iban = new IbanStructure(new Patterns.EG())
+            Iban = new PatternDescriptor(new Patterns.EG())
             {
                 Example = "EG380019000500000000263180002"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n4!n17!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n4!n17!n"), 4)
             {
                 Example = "0019000500000000263180002"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0019"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "0005"
             },
@@ -653,19 +653,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "España",
             EnglishName = "Spain",
-            Iban = new IbanStructure(new Patterns.ES())
+            Iban = new PatternDescriptor(new Patterns.ES())
             {
                 Example = "ES9121000418450200051332"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n4!n1!n1!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n4!n1!n1!n10!n"), 4)
             {
                 Example = "21000418450200051332"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "2100"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "0418"
             },
@@ -687,15 +687,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             [
                     "AX"
             ],
-            Iban = new IbanStructure(new Patterns.FI())
+            Iban = new PatternDescriptor(new Patterns.FI())
             {
                 Example = "FI2112345600000785"
             },
-            Bban = new BbanStructure(new SwiftPattern("6!n8!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("6!n8!n"), 4)
             {
                 Example = "12345600000785"
             },
-            Bank = new BankStructure(new SwiftPattern("6!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("6!n"), 4)
             {
                 Example = "123456"
             },
@@ -717,15 +717,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Falkland Islands",
             EnglishName = "Falkland Islands",
-            Iban = new IbanStructure(new Patterns.FK())
+            Iban = new PatternDescriptor(new Patterns.FK())
             {
                 Example = "FK88SC123456789012"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!a12!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!a12!n"), 4)
             {
                 Example = "SC123456789012"
             },
-            Bank = new BankStructure(new SwiftPattern("2!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!a"), 4)
             {
                 Example = "SC"
             },
@@ -743,15 +743,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Føroyar",
             EnglishName = "Faroe Islands",
-            Iban = new IbanStructure(new Patterns.FO())
+            Iban = new PatternDescriptor(new Patterns.FO())
             {
                 Example = "FO6264600001631634"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n9!n1!n"), 4)
             {
                 Example = "64600001631634"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "6460"
             },
@@ -773,19 +773,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             [
                     "GF", "GP", "MQ", "RE", "PF", "TF", "YT", "NC", "BL", "MF", "PM", "WF"
             ],
-            Iban = new IbanStructure(new Patterns.FR())
+            Iban = new PatternDescriptor(new Patterns.FR())
             {
                 Example = "FR1420041010050500013M02606"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n5!n11!c2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!c2!n"), 4)
             {
                 Example = "20041010050500013M02606"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "20041"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 9)
             {
                 Example = "01005"
             },
@@ -811,19 +811,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             [
                     "IM", "JE", "GG"
             ],
-            Iban = new IbanStructure(new Patterns.GB())
+            Iban = new PatternDescriptor(new Patterns.GB())
             {
                 Example = "GB29NWBK60161331926819"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a6!n8!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a6!n8!n"), 4)
             {
                 Example = "NWBK60161331926819"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NWBK"
             },
-            Branch = new BranchStructure(new SwiftPattern("6!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("6!n"), 8)
             {
                 Example = "601613"
             },
@@ -841,15 +841,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "საქართველო",
             EnglishName = "Georgia",
-            Iban = new IbanStructure(new Patterns.GE())
+            Iban = new PatternDescriptor(new Patterns.GE())
             {
                 Example = "GE29NB0000000101904917"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!a16!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!a16!n"), 4)
             {
                 Example = "NB0000000101904917"
             },
-            Bank = new BankStructure(new SwiftPattern("2!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!a"), 4)
             {
                 Example = "NB"
             },
@@ -867,15 +867,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Gibraltar",
             EnglishName = "Gibraltar",
-            Iban = new IbanStructure(new Patterns.GI())
+            Iban = new PatternDescriptor(new Patterns.GI())
             {
                 Example = "GI75NWBK000000007099453"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a15!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a15!c"), 4)
             {
                 Example = "NWBK000000007099453"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NWBK"
             },
@@ -893,15 +893,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Kalaallit Nunaat",
             EnglishName = "Greenland",
-            Iban = new IbanStructure(new Patterns.GL())
+            Iban = new PatternDescriptor(new Patterns.GL())
             {
                 Example = "GL8964710001000206"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n9!n1!n"), 4)
             {
                 Example = "64710001000206"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "6471"
             },
@@ -919,19 +919,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ελλάδα",
             EnglishName = "Greece",
-            Iban = new IbanStructure(new Patterns.GR())
+            Iban = new PatternDescriptor(new Patterns.GR())
             {
                 Example = "GR1601101250000000012300695"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n4!n16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n4!n16!c"), 4)
             {
                 Example = "01101250000000012300695"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "011"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 7)
             {
                 Example = "0125"
             },
@@ -949,15 +949,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Guatemala",
             EnglishName = "Guatemala",
-            Iban = new IbanStructure(new Patterns.GT())
+            Iban = new PatternDescriptor(new Patterns.GT())
             {
                 Example = "GT82TRAJ01020000001210029690"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!c20!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!c20!c"), 4)
             {
                 Example = "TRAJ01020000001210029690"
             },
-            Bank = new BankStructure(new SwiftPattern("4!c"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!c"), 4)
             {
                 Example = "TRAJ"
             },
@@ -975,15 +975,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Honduras",
             EnglishName = "Honduras",
-            Iban = new IbanStructure(new Patterns.HN())
+            Iban = new PatternDescriptor(new Patterns.HN())
             {
                 Example = "HN88CABF00000000000250005469"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a20!n"), 4)
             {
                 Example = "CABF00000000000250005469"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CABF"
             },
@@ -1001,15 +1001,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Hrvatska",
             EnglishName = "Croatia",
-            Iban = new IbanStructure(new Patterns.HR())
+            Iban = new PatternDescriptor(new Patterns.HR())
             {
                 Example = "HR1210010051863000160"
             },
-            Bban = new BbanStructure(new SwiftPattern("7!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("7!n10!n"), 4)
             {
                 Example = "10010051863000160"
             },
-            Bank = new BankStructure(new SwiftPattern("7!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("7!n"), 4)
             {
                 Example = "1001005"
             },
@@ -1027,19 +1027,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Magyarország",
             EnglishName = "Hungary",
-            Iban = new IbanStructure(new Patterns.HU())
+            Iban = new PatternDescriptor(new Patterns.HU())
             {
                 Example = "HU42117730161111101800000000"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n4!n1!n15!n1!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n4!n1!n15!n1!n"), 4)
             {
                 Example = "117730161111101800000000"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "117"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 7)
             {
                 Example = "7301"
             },
@@ -1057,19 +1057,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ireland",
             EnglishName = "Ireland",
-            Iban = new IbanStructure(new Patterns.IE())
+            Iban = new PatternDescriptor(new Patterns.IE())
             {
                 Example = "IE29AIBK93115212345678"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a6!n8!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a6!n8!n"), 4)
             {
                 Example = "AIBK93115212345678"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "AIBK"
             },
-            Branch = new BranchStructure(new SwiftPattern("6!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("6!n"), 8)
             {
                 Example = "931152"
             },
@@ -1087,19 +1087,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "ישראל",
             EnglishName = "Israel",
-            Iban = new IbanStructure(new Patterns.IL())
+            Iban = new PatternDescriptor(new Patterns.IL())
             {
                 Example = "IL620108000000099999999"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n3!n13!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n3!n13!n"), 4)
             {
                 Example = "010800000099999999"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "010"
             },
-            Branch = new BranchStructure(new SwiftPattern("3!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("3!n"), 7)
             {
                 Example = "800"
             },
@@ -1117,19 +1117,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "العراق",
             EnglishName = "Iraq",
-            Iban = new IbanStructure(new Patterns.IQ())
+            Iban = new PatternDescriptor(new Patterns.IQ())
             {
                 Example = "IQ98NBIQ850123456789012"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a3!n12!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a3!n12!n"), 4)
             {
                 Example = "NBIQ850123456789012"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NBIQ"
             },
-            Branch = new BranchStructure(new SwiftPattern("3!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("3!n"), 8)
             {
                 Example = "850"
             },
@@ -1147,19 +1147,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Ísland",
             EnglishName = "Iceland",
-            Iban = new IbanStructure(new Patterns.IS())
+            Iban = new PatternDescriptor(new Patterns.IS())
             {
                 Example = "IS140159260076545510730339"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n2!n6!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n2!n6!n10!n"), 4)
             {
                 Example = "0159260076545510730339"
             },
-            Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "01"
             },
-            Branch = new BranchStructure(new SwiftPattern("2!n"), 6)
+            Branch = new PatternDescriptor(new SwiftPattern("2!n"), 6)
             {
                 Example = "59"
             },
@@ -1177,19 +1177,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Italia",
             EnglishName = "Italy",
-            Iban = new IbanStructure(new Patterns.IT())
+            Iban = new PatternDescriptor(new Patterns.IT())
             {
                 Example = "IT60X0542811101000000123456"
             },
-            Bban = new BbanStructure(new SwiftPattern("1!a5!n5!n12!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("1!a5!n5!n12!c"), 4)
             {
                 Example = "X0542811101000000123456"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 5)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 5)
             {
                 Example = "05428"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 10)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 10)
             {
                 Example = "11101"
             },
@@ -1207,19 +1207,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الأردن",
             EnglishName = "Jordan",
-            Iban = new IbanStructure(new Patterns.JO())
+            Iban = new PatternDescriptor(new Patterns.JO())
             {
                 Example = "JO94CBJO0010000000000131000302"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a4!n18!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a4!n18!c"), 4)
             {
                 Example = "CBJO0010000000000131000302"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 8)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "CBJO"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = ""
             },
@@ -1237,15 +1237,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الكويت",
             EnglishName = "Kuwait",
-            Iban = new IbanStructure(new Patterns.KW())
+            Iban = new PatternDescriptor(new Patterns.KW())
             {
                 Example = "KW81CBKU0000000000001234560101"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a22!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a22!c"), 4)
             {
                 Example = "CBKU0000000000001234560101"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CBKU"
             },
@@ -1263,15 +1263,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Қазақстан",
             EnglishName = "Kazakhstan",
-            Iban = new IbanStructure(new Patterns.KZ())
+            Iban = new PatternDescriptor(new Patterns.KZ())
             {
                 Example = "KZ86125KZT5004100100"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n13!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n13!c"), 4)
             {
                 Example = "125KZT5004100100"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "125"
             },
@@ -1289,15 +1289,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "لبنان",
             EnglishName = "Lebanon",
-            Iban = new IbanStructure(new Patterns.LB())
+            Iban = new PatternDescriptor(new Patterns.LB())
             {
                 Example = "LB62099900000001001901229114"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n20!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n20!c"), 4)
             {
                 Example = "099900000001001901229114"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "0999"
             },
@@ -1315,15 +1315,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "St. Lucia",
             EnglishName = "Saint Lucia",
-            Iban = new IbanStructure(new Patterns.LC())
+            Iban = new PatternDescriptor(new Patterns.LC())
             {
                 Example = "LC55HEMM000100010012001200023015"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a24!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a24!c"), 4)
             {
                 Example = "HEMM000100010012001200023015"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "HEMM"
             },
@@ -1341,15 +1341,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Liechtenstein",
             EnglishName = "Liechtenstein",
-            Iban = new IbanStructure(new Patterns.LI())
+            Iban = new PatternDescriptor(new Patterns.LI())
             {
                 Example = "LI21088100002324013AA"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n12!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n12!c"), 4)
             {
                 Example = "088100002324013AA"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "08810"
             },
@@ -1367,15 +1367,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Lietuva",
             EnglishName = "Lithuania",
-            Iban = new IbanStructure(new Patterns.LT())
+            Iban = new PatternDescriptor(new Patterns.LT())
             {
                 Example = "LT121000011101001000"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n11!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n11!n"), 4)
             {
                 Example = "1000011101001000"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "10000"
             },
@@ -1393,15 +1393,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Lëtzebuerg",
             EnglishName = "Luxembourg",
-            Iban = new IbanStructure(new Patterns.LU())
+            Iban = new PatternDescriptor(new Patterns.LU())
             {
                 Example = "LU280019400644750000"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n13!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n13!c"), 4)
             {
                 Example = "0019400644750000"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "001"
             },
@@ -1419,15 +1419,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Latvija",
             EnglishName = "Latvia",
-            Iban = new IbanStructure(new Patterns.LV())
+            Iban = new PatternDescriptor(new Patterns.LV())
             {
                 Example = "LV80BANK0000435195001"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a13!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a13!c"), 4)
             {
                 Example = "BANK0000435195001"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BANK"
             },
@@ -1445,19 +1445,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "ليبيا",
             EnglishName = "Libya",
-            Iban = new IbanStructure(new Patterns.LY())
+            Iban = new PatternDescriptor(new Patterns.LY())
             {
                 Example = "LY83002048000020100120361"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n3!n15!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n3!n15!n"), 4)
             {
                 Example = "002048000020100120361"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "002"
             },
-            Branch = new BranchStructure(new SwiftPattern("3!n"), 7)
+            Branch = new PatternDescriptor(new SwiftPattern("3!n"), 7)
             {
                 Example = "048"
             },
@@ -1475,19 +1475,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Monaco",
             EnglishName = "Monaco",
-            Iban = new IbanStructure(new Patterns.MC())
+            Iban = new PatternDescriptor(new Patterns.MC())
             {
                 Example = "MC5811222000010123456789030"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n5!n11!c2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!c2!n"), 4)
             {
                 Example = "11222000010123456789030"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "11222"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 9)
             {
                 Example = "00001"
             },
@@ -1505,15 +1505,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Republica Moldova",
             EnglishName = "Moldova",
-            Iban = new IbanStructure(new Patterns.MD())
+            Iban = new PatternDescriptor(new Patterns.MD())
             {
                 Example = "MD24AG000225100013104168"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!c18!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!c18!c"), 4)
             {
                 Example = "AG000225100013104168"
             },
-            Bank = new BankStructure(new SwiftPattern("2!c"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!c"), 4)
             {
                 Example = "AG"
             },
@@ -1531,15 +1531,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Crna Gora",
             EnglishName = "Montenegro",
-            Iban = new IbanStructure(new Patterns.ME())
+            Iban = new PatternDescriptor(new Patterns.ME())
             {
                 Example = "ME25505000012345678951"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n13!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n13!n2!n"), 4)
             {
                 Example = "505000012345678951"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "505"
             },
@@ -1557,15 +1557,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Северна Македонија",
             EnglishName = "Macedonia",
-            Iban = new IbanStructure(new Patterns.MK())
+            Iban = new PatternDescriptor(new Patterns.MK())
             {
                 Example = "MK07250120000058984"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n10!c2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n10!c2!n"), 4)
             {
                 Example = "250120000058984"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "300"
             },
@@ -1583,15 +1583,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Монгол",
             EnglishName = "Mongolia",
-            Iban = new IbanStructure(new Patterns.MN())
+            Iban = new PatternDescriptor(new Patterns.MN())
             {
                 Example = "MN121234123456789123"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n12!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n12!n"), 4)
             {
                 Example = "1234123456789123"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "1234"
             },
@@ -1609,19 +1609,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "موريتانيا",
             EnglishName = "Mauritania",
-            Iban = new IbanStructure(new Patterns.MR())
+            Iban = new PatternDescriptor(new Patterns.MR())
             {
                 Example = "MR1300020001010000123456753"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
                 Example = "00020001010000123456753"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "00020"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 9)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 9)
             {
                 Example = "00101"
             },
@@ -1639,19 +1639,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Malta",
             EnglishName = "Malta",
-            Iban = new IbanStructure(new Patterns.MT())
+            Iban = new PatternDescriptor(new Patterns.MT())
             {
                 Example = "MT84MALT011000012345MTLCAST001S"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a5!n18!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a5!n18!c"), 4)
             {
                 Example = "MALT011000012345MTLCAST001S"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "MALT"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 8)
             {
                 Example = "01100"
             },
@@ -1669,19 +1669,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Mauritius",
             EnglishName = "Mauritius",
-            Iban = new IbanStructure(new Patterns.MU())
+            Iban = new PatternDescriptor(new Patterns.MU())
             {
                 Example = "MU17BOMM0101101030300200000MUR"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a2!n2!n12!n3!n3!a"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a2!n2!n12!n3!n3!a"), 4)
             {
                 Example = "BOMM0101101030300200000MUR"
             },
-            Bank = new BankStructure(new SwiftPattern("6!c"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("6!c"), 4)
             {
                 Example = "BOMM01"
             },
-            Branch = new BranchStructure(new SwiftPattern("2!n"), 10)
+            Branch = new PatternDescriptor(new SwiftPattern("2!n"), 10)
             {
                 Example = "01"
             },
@@ -1699,15 +1699,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Nicaragua",
             EnglishName = "Nicaragua",
-            Iban = new IbanStructure(new Patterns.NI())
+            Iban = new PatternDescriptor(new Patterns.NI())
             {
                 Example = "NI45BAPR00000013000003558124"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a20!n"), 4)
             {
                 Example = "BAPR00000013000003558124"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BAPR"
             },
@@ -1725,15 +1725,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Nederland",
             EnglishName = "Netherlands (The)",
-            Iban = new IbanStructure(new Patterns.NL())
+            Iban = new PatternDescriptor(new Patterns.NL())
             {
                 Example = "NL91ABNA0417164300"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a10!n"), 4)
             {
                 Example = "ABNA0417164300"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "ABNA"
             },
@@ -1751,15 +1751,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Noreg",
             EnglishName = "Norway",
-            Iban = new IbanStructure(new Patterns.NO())
+            Iban = new PatternDescriptor(new Patterns.NO())
             {
                 Example = "NO9386011117947"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n6!n1!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n6!n1!n"), 4)
             {
                 Example = "86011117947"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "8601"
             },
@@ -1777,15 +1777,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "عمان",
             EnglishName = "Oman",
-            Iban = new IbanStructure(new Patterns.OM())
+            Iban = new PatternDescriptor(new Patterns.OM())
             {
                 Example = "OM810180000001299123456"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n16!c"), 4)
             {
                 Example = "0180000001299123456"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "018"
             },
@@ -1803,15 +1803,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "پاکستان",
             EnglishName = "Pakistan",
-            Iban = new IbanStructure(new Patterns.PK())
+            Iban = new PatternDescriptor(new Patterns.PK())
             {
                 Example = "PK36SCBL0000001123456702"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a16!c"), 4)
             {
                 Example = "SCBL0000001123456702"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "SCBL"
             },
@@ -1829,15 +1829,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Polska",
             EnglishName = "Poland",
-            Iban = new IbanStructure(new Patterns.PL())
+            Iban = new PatternDescriptor(new Patterns.PL())
             {
                 Example = "PL61109010140000071219812874"
             },
-            Bban = new BbanStructure(new SwiftPattern("8!n16!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("8!n16!n"), 4)
             {
                 Example = "109010140000071219812874"
             },
-            Branch = new BranchStructure(new SwiftPattern("8!n"), 4)
+            Branch = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
                 Example = "10901014"
             },
@@ -1855,15 +1855,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "السلطة الفلسطينية",
             EnglishName = "Palestine, State of",
-            Iban = new IbanStructure(new Patterns.PS())
+            Iban = new PatternDescriptor(new Patterns.PS())
             {
                 Example = "PS92PALS000000000400123456702"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a21!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a21!c"), 4)
             {
                 Example = "PALS000000000400123456702"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "PALS"
             },
@@ -1881,19 +1881,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Portugal",
             EnglishName = "Portugal",
-            Iban = new IbanStructure(new Patterns.PT())
+            Iban = new PatternDescriptor(new Patterns.PT())
             {
                 Example = "PT50000201231234567890154"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n4!n11!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n4!n11!n2!n"), 4)
             {
                 Example = "000201231234567890154"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0002"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "0123"
             },
@@ -1915,15 +1915,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "قطر",
             EnglishName = "Qatar",
-            Iban = new IbanStructure(new Patterns.QA())
+            Iban = new PatternDescriptor(new Patterns.QA())
             {
                 Example = "QA58DOHB00001234567890ABCDEFG"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a21!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a21!c"), 4)
             {
                 Example = "DOHB00001234567890ABCDEFG"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "DOHB"
             },
@@ -1941,15 +1941,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "România",
             EnglishName = "Romania",
-            Iban = new IbanStructure(new Patterns.RO())
+            Iban = new PatternDescriptor(new Patterns.RO())
             {
                 Example = "RO49AAAA1B31007593840000"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a16!c"), 4)
             {
                 Example = "AAAA1B31007593840000"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "AAAA"
             },
@@ -1967,15 +1967,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Srbija",
             EnglishName = "Serbia",
-            Iban = new IbanStructure(new Patterns.RS())
+            Iban = new PatternDescriptor(new Patterns.RS())
             {
                 Example = "RS35260005601001611379"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n13!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n13!n2!n"), 4)
             {
                 Example = "260005601001611379"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "260"
             },
@@ -1993,15 +1993,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "المملكة العربية السعودية",
             EnglishName = "Saudi Arabia",
-            Iban = new IbanStructure(new Patterns.SA())
+            Iban = new PatternDescriptor(new Patterns.SA())
             {
                 Example = "SA0380000000608010167519"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!n18!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!n18!c"), 4)
             {
                 Example = "80000000608010167519"
             },
-            Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "80"
             },
@@ -2019,19 +2019,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Seychelles",
             EnglishName = "Seychelles",
-            Iban = new IbanStructure(new Patterns.SC())
+            Iban = new PatternDescriptor(new Patterns.SC())
             {
                 Example = "SC18SSCB11010000000000001497USD"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a2!n2!n16!n3!a"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a2!n2!n16!n3!a"), 4)
             {
                 Example = "SSCB11010000000000001497USD"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a2!n"), 4)
             {
                 Example = "SSCB11"
             },
-            Branch = new BranchStructure(new SwiftPattern("2!n"), 10)
+            Branch = new PatternDescriptor(new SwiftPattern("2!n"), 10)
             {
                 Example = "01"
             },
@@ -2049,15 +2049,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "السودان",
             EnglishName = "Sudan",
-            Iban = new IbanStructure(new Patterns.SD())
+            Iban = new PatternDescriptor(new Patterns.SD())
             {
                 Example = "SD2129010501234001"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!n12!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!n12!n"), 4)
             {
                 Example = "29010501234001"
             },
-            Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "29"
             },
@@ -2075,15 +2075,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Sverige",
             EnglishName = "Sweden",
-            Iban = new IbanStructure(new Patterns.SE())
+            Iban = new PatternDescriptor(new Patterns.SE())
             {
                 Example = "SE4550000000058398257466"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n16!n1!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n16!n1!n"), 4)
             {
                 Example = "50000000058398257466"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "123"
             },
@@ -2101,15 +2101,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Slovenija",
             EnglishName = "Slovenia",
-            Iban = new IbanStructure(new Patterns.SI())
+            Iban = new PatternDescriptor(new Patterns.SI())
             {
                 Example = "SI56263300012039086"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n8!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n8!n2!n"), 4)
             {
                 Example = "263300012039086"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "26330"
             },
@@ -2127,15 +2127,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Slovensko",
             EnglishName = "Slovakia",
-            Iban = new IbanStructure(new Patterns.SK())
+            Iban = new PatternDescriptor(new Patterns.SK())
             {
                 Example = "SK3112000000198742637541"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n6!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n6!n10!n"), 4)
             {
                 Example = "12000000198742637541"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "1200"
             },
@@ -2153,19 +2153,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "San Marino",
             EnglishName = "San Marino",
-            Iban = new IbanStructure(new Patterns.SM())
+            Iban = new PatternDescriptor(new Patterns.SM())
             {
                 Example = "SM86U0322509800000000270100"
             },
-            Bban = new BbanStructure(new SwiftPattern("1!a5!n5!n12!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("1!a5!n5!n12!c"), 4)
             {
                 Example = "U0322509800000000270100"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 5)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 5)
             {
                 Example = "03225"
             },
-            Branch = new BranchStructure(new SwiftPattern("5!n"), 10)
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 10)
             {
                 Example = "09800"
             },
@@ -2183,19 +2183,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "الصومال",
             EnglishName = "Somalia",
-            Iban = new IbanStructure(new Patterns.SO())
+            Iban = new PatternDescriptor(new Patterns.SO())
             {
                 Example = "SO211000001001000100141"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n3!n12!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n3!n12!n"), 4)
             {
                 Example = "1000001001000100141"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "1000"
             },
-            Branch = new BranchStructure(new SwiftPattern("3!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("3!n"), 8)
             {
                 Example = "001"
             },
@@ -2213,19 +2213,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "São Tomé e Príncipe",
             EnglishName = "Sao Tome and Principe",
-            Iban = new IbanStructure(new Patterns.ST())
+            Iban = new PatternDescriptor(new Patterns.ST())
             {
                 Example = "ST23000100010051845310146"
             },
-            Bban = new BbanStructure(new SwiftPattern("8!n11!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("8!n11!n2!n"), 4)
             {
                 Example = "000100010051845310146"
             },
-            Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0001"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "0001"
             },
@@ -2243,15 +2243,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "El Salvador",
             EnglishName = "El Salvador",
-            Iban = new IbanStructure(new Patterns.SV())
+            Iban = new PatternDescriptor(new Patterns.SV())
             {
                 Example = "SV62CENR00000000000000700025"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a20!n"), 4)
             {
                 Example = "CENR00000000000000700025"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CENR"
             },
@@ -2269,15 +2269,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Timor-Leste",
             EnglishName = "Timor-Leste",
-            Iban = new IbanStructure(new Patterns.TL())
+            Iban = new PatternDescriptor(new Patterns.TL())
             {
                 Example = "TL380080012345678910157"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n14!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n14!n2!n"), 4)
             {
                 Example = "0080012345678910157"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "008"
             },
@@ -2295,19 +2295,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "تونس",
             EnglishName = "Tunisia",
-            Iban = new IbanStructure(new Patterns.TN())
+            Iban = new PatternDescriptor(new Patterns.TN())
             {
                 Example = "TN5910006035183598478831"
             },
-            Bban = new BbanStructure(new SwiftPattern("2!n3!n13!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("2!n3!n13!n2!n"), 4)
             {
                 Example = "10006035183598478831"
             },
-            Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "10"
             },
-            Branch = new BranchStructure(new SwiftPattern("3!n"), 6)
+            Branch = new PatternDescriptor(new SwiftPattern("3!n"), 6)
             {
                 Example = "006"
             },
@@ -2325,15 +2325,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Türkiye",
             EnglishName = "Turkey",
-            Iban = new IbanStructure(new Patterns.TR())
+            Iban = new PatternDescriptor(new Patterns.TR())
             {
                 Example = "TR330006100519786457841326"
             },
-            Bban = new BbanStructure(new SwiftPattern("5!n1!n16!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("5!n1!n16!c"), 4)
             {
                 Example = "0006100519786457841326"
             },
-            Bank = new BankStructure(new SwiftPattern("5!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "00061"
             },
@@ -2351,15 +2351,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Україна",
             EnglishName = "Ukraine",
-            Iban = new IbanStructure(new Patterns.UA())
+            Iban = new PatternDescriptor(new Patterns.UA())
             {
                 Example = "UA213223130000026007233566001"
             },
-            Bban = new BbanStructure(new SwiftPattern("6!n19!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("6!n19!c"), 4)
             {
                 Example = "3223130000026007233566001"
             },
-            Bank = new BankStructure(new SwiftPattern("6!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("6!n"), 4)
             {
                 Example = "322313"
             },
@@ -2377,15 +2377,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Città del Vaticano",
             EnglishName = "Vatican City State",
-            Iban = new IbanStructure(new Patterns.VA())
+            Iban = new PatternDescriptor(new Patterns.VA())
             {
                 Example = "VA59001123000012345678"
             },
-            Bban = new BbanStructure(new SwiftPattern("3!n15!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("3!n15!n"), 4)
             {
                 Example = "001123000012345678"
             },
-            Bank = new BankStructure(new SwiftPattern("3!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "001"
             },
@@ -2403,15 +2403,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "British Virgin Islands",
             EnglishName = "Virgin Islands",
-            Iban = new IbanStructure(new Patterns.VG())
+            Iban = new PatternDescriptor(new Patterns.VG())
             {
                 Example = "VG96VPVG0000012345678901"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a16!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a16!n"), 4)
             {
                 Example = "VPVG0000012345678901"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "VPVG"
             },
@@ -2429,19 +2429,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "Kosovë",
             EnglishName = "Kosovo",
-            Iban = new IbanStructure(new Patterns.XK())
+            Iban = new PatternDescriptor(new Patterns.XK())
             {
                 Example = "XK051212012345678906"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n10!n2!n"), 4)
             {
                 Example = "1212012345678906"
             },
-            Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "12"
             },
-            Branch = new BranchStructure(new SwiftPattern("2!n"), 6)
+            Branch = new PatternDescriptor(new SwiftPattern("2!n"), 6)
             {
                 Example = "12"
             },
@@ -2459,19 +2459,19 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "اليمن",
             EnglishName = "Yemen",
-            Iban = new IbanStructure(new Patterns.YE())
+            Iban = new PatternDescriptor(new Patterns.YE())
             {
                 Example = "YE15CBYE0001018861234567891234"
             },
-            Bban = new BbanStructure(new SwiftPattern("4!a4!n18!c"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!a4!n18!c"), 4)
             {
                 Example = "CBYE0001018861234567891234"
             },
-            Bank = new BankStructure(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CBYE"
             },
-            Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
                 Example = "0001"
             },

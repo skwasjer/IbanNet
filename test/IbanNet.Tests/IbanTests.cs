@@ -273,7 +273,7 @@ public class IbanTests
     public class When_getting_properties : IbanTests
     {
         [Fact]
-        public void Given_that_structure_sections_are_known_it_should_return_extracted_properties()
+        public void Given_that_patternDescriptor_exists_it_should_return_extracted_properties()
         {
             IbanCountry ibanCountry = IbanRegistry.Default["AD"];
             Iban iban = new IbanParser(IbanRegistry.Default).Parse(ibanCountry.Iban.Example);
@@ -286,15 +286,15 @@ public class IbanTests
         }
 
         [Fact]
-        public void Given_that_structure_sections_are_not_known_it_should_return_null()
+        public void Given_that_patternDescriptor_is_not_known_it_should_return_null()
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n"))
+                Iban = new PatternDescriptor(new SwiftPattern("NL2!n4!a10!n"))
                 {
                     Example = "NL91ABNA0417164300"
                 },
-                Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
+                Bban = new PatternDescriptor(new SwiftPattern("4!a10!n"), 4)
                 {
                     Example = "ABNA0417164300"
                 }
@@ -305,16 +305,16 @@ public class IbanTests
 
             // Act & Assert
             iban.Bban.Should().Be(ibanCountry.Bban.Example);
-            iban.BankIdentifier.Should().BeNull();
-            iban.BranchIdentifier.Should().BeNull();
+            iban.BankIdentifier.Should().BeNull("no pattern descriptor is available");
+            iban.BranchIdentifier.Should().BeNull("no pattern descriptor is available");
         }
 
         [Fact]
-        public void Given_that_bban_structure_section_is_not_known_it_should_not_throw_and_return_iban_substr()
+        public void Given_that_bban_patternDescriptor_is_not_known_it_should_not_throw_and_return_iban_substr()
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new IbanStructure(new SwiftPattern("NL2!n4!a10!n"))
+                Iban = new PatternDescriptor(new SwiftPattern("NL2!n4!a10!n"))
                 {
                     Example = "NL91ABNA0417164300"
                 }

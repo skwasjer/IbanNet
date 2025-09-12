@@ -92,18 +92,18 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         }
 
 #>
-            Iban = new IbanStructure(new Patterns.<#= record.CountryCode #>())
+            Iban = new PatternDescriptor(new Patterns.<#= record.CountryCode #>())
             {
                 Example = "<#= record.Iban.ElectronicFormatExample ?? string.Empty #>"
             },
-            Bban = new BbanStructure(new SwiftPattern("<#= record.Bban.Pattern #>"), <#= bbanOffset #>)
+            Bban = new PatternDescriptor(new SwiftPattern("<#= record.Bban.Pattern #>"), <#= bbanOffset #>)
             {
                 Example = "<#= record.Bban.Example ?? string.Empty #>"
             },
 <#
         if (record.Bank.Pattern is not null && record.Bank.Position.HasValue) {
 #>
-            Bank = new BankStructure(new SwiftPattern("<#= record.Bank.Pattern #>"), <#= bbanOffset + record.Bank.Position.Value.StartPos - 1 #>)
+            Bank = new PatternDescriptor(new SwiftPattern("<#= record.Bank.Pattern #>"), <#= bbanOffset + record.Bank.Position.Value.StartPos - 1 #>)
             {
                 Example = "<#= record.Bank.Example ?? string.Empty #>"
             },
@@ -112,7 +112,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 
         if (record.Branch.Pattern is not null && record.Branch.Position.HasValue) {
 #>
-            Branch = new BranchStructure(new SwiftPattern("<#= record.Branch.Pattern #>"), <#= bbanOffset + record.Branch.Position.Value.StartPos - 1 #>)
+            Branch = new PatternDescriptor(new SwiftPattern("<#= record.Branch.Pattern #>"), <#= bbanOffset + record.Branch.Position.Value.StartPos - 1 #>)
             {
                 Example = "<#= record.Branch.Example ?? string.Empty #>"
             },

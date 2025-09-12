@@ -28,7 +28,7 @@ public class IsMatchingStructureRuleTests
         const string testValue = "AD1200012030200359100100";
         var country = new IbanCountry("AD")
         {
-            Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
+            Iban = new PatternDescriptor(new SwiftPattern("AD2!n4!n4!n12!c"))
         };
 
         // Act
@@ -52,7 +52,7 @@ public class IsMatchingStructureRuleTests
     {
         var country = new IbanCountry("NL")
         {
-            Iban = new IbanStructure(new SwiftPattern("NL2!n3!a"))
+            Iban = new PatternDescriptor(new SwiftPattern("NL2!n3!a"))
         };
 
         // Act

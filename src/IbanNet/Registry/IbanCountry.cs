@@ -14,13 +14,13 @@ public sealed class IbanCountry
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly string? _displayName;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private IbanStructure? _ibanStructure;
+    private PatternDescriptor? _ibanPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private BbanStructure? _bbanStructure;
+    private PatternDescriptor? _bbanPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private BankStructure? _bankStructure;
+    private PatternDescriptor? _bankPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private BranchStructure? _branchStructure;
+    private PatternDescriptor? _branchPatternDescriptor;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanCountry" /> class using specified 2 letter ISO region name.
@@ -84,43 +84,43 @@ public sealed class IbanCountry
     public string? DomesticAccountNumberExample { get; init; }
 
     /// <summary>
-    /// Gets the structure of the BBAN.
+    /// Gets the pattern descriptor for the BBAN.
     /// </summary>
     [AllowNull]
-    public BbanStructure Bban
+    public PatternDescriptor Bban
     {
-        get => _bbanStructure ??= new BbanStructure(NullPattern.Instance);
-        init => _bbanStructure = value;
+        get => _bbanPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        init => _bbanPatternDescriptor = value;
     }
 
     /// <summary>
-    /// Gets the structure of the IBAN.
+    /// Gets the pattern descriptor for the IBAN.
     /// </summary>
     [AllowNull]
-    public IbanStructure Iban
+    public PatternDescriptor Iban
     {
-        get => _ibanStructure ??= new IbanStructure(NullPattern.Instance);
-        init => _ibanStructure = value;
+        get => _ibanPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        init => _ibanPatternDescriptor = value;
     }
 
     /// <summary>
-    /// Gets the bank identifier structure section.
+    /// Gets the pattern descriptor for the bank identifier.
     /// </summary>
     [AllowNull]
-    public BankStructure Bank
+    public PatternDescriptor Bank
     {
-        get => _bankStructure ??= new BankStructure(NullPattern.Instance);
-        init => _bankStructure = value;
+        get => _bankPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        init => _bankPatternDescriptor = value;
     }
 
     /// <summary>
-    /// Gets the branch identifier structure section.
+    /// Gets the pattern descriptor for the branch identifier.
     /// </summary>
     [AllowNull]
-    public BranchStructure Branch
+    public PatternDescriptor Branch
     {
-        get => _branchStructure ??= new BranchStructure(NullPattern.Instance);
-        init => _branchStructure = value;
+        get => _branchPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        init => _branchPatternDescriptor = value;
     }
 
     /// <summary>

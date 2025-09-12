@@ -187,18 +187,6 @@ namespace IbanNet
 }
 namespace IbanNet.Registry
 {
-    public class BankStructure : IbanNet.Registry.StructureSection
-    {
-        public BankStructure(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
-    }
-    public class BbanStructure : IbanNet.Registry.StructureSection
-    {
-        public BbanStructure(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
-    }
-    public class BranchStructure : IbanNet.Registry.StructureSection
-    {
-        public BranchStructure(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
-    }
     public interface IIbanGenerator
     {
         IbanNet.Iban Generate(string countryCode);
@@ -214,14 +202,14 @@ namespace IbanNet.Registry
     public sealed class IbanCountry
     {
         public IbanCountry(string twoLetterISORegionName) { }
-        public IbanNet.Registry.BankStructure Bank { get; init; }
-        public IbanNet.Registry.BbanStructure Bban { get; init; }
-        public IbanNet.Registry.BranchStructure Branch { get; init; }
+        public IbanNet.Registry.PatternDescriptor Bank { get; init; }
+        public IbanNet.Registry.PatternDescriptor Bban { get; init; }
+        public IbanNet.Registry.PatternDescriptor Branch { get; init; }
         public string DisplayName { get; init; }
         public string? DomesticAccountNumberExample { get; init; }
         public System.DateTimeOffset EffectiveDate { get; init; }
         public string EnglishName { get; init; }
-        public IbanNet.Registry.IbanStructure Iban { get; init; }
+        public IbanNet.Registry.PatternDescriptor Iban { get; init; }
         public System.Collections.Generic.IReadOnlyCollection<string> IncludedCountries { get; init; }
         public System.DateTimeOffset LastUpdatedDate { get; init; }
         public string? NativeName { get; init; }
@@ -246,23 +234,19 @@ namespace IbanNet.Registry
         public System.Collections.Generic.IEnumerator<IbanNet.Registry.IbanCountry> GetEnumerator() { }
         public bool TryGetValue(string twoLetterISORegionName, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out IbanNet.Registry.IbanCountry? country) { }
     }
-    public class IbanStructure : IbanNet.Registry.StructureSection
+    public sealed class PatternDescriptor : System.IEquatable<IbanNet.Registry.PatternDescriptor>
     {
-        public IbanStructure(IbanNet.Registry.Patterns.Pattern pattern) { }
+        public PatternDescriptor(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
+        public string Example { get; init; }
+        public int Length { get; }
+        public IbanNet.Registry.Patterns.Pattern Pattern { get; }
+        public int Position { get; }
     }
     public class SepaInfo
     {
         public SepaInfo() { }
         public System.Collections.Generic.IReadOnlyCollection<string> IncludedCountries { get; init; }
         public bool IsMember { get; init; }
-    }
-    public abstract class StructureSection
-    {
-        protected StructureSection(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
-        public string Example { get; init; }
-        public int Length { get; }
-        public IbanNet.Registry.Patterns.Pattern Pattern { get; }
-        public int Position { get; }
     }
 }
 namespace IbanNet.Registry.Patterns

@@ -43,19 +43,19 @@ public class IbanRegistryTests
                 DisplayName = "Andorra",
                 NativeName = "Andorra",
                 EnglishName = "Andorra",
-                Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
+                Iban = new PatternDescriptor(new SwiftPattern("AD2!n4!n4!n12!c"))
                 {
                     Example = "AD1200012030200359100100"
                 },
-                Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"), 4)
+                Bban = new PatternDescriptor(new SwiftPattern("4!n4!n12!c"), 4)
                 {
                     Example = "00012030200359100100"
                 },
-                Bank = new BankStructure(new SwiftPattern("4!n"), 4)
+                Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
                 {
                     Example = "0001"
                 },
-                Branch = new BranchStructure(new SwiftPattern("4!n"), 8)
+                Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
                 {
                     Example = "2030"
                 },
@@ -73,19 +73,19 @@ public class IbanRegistryTests
                 DisplayName = "Kosovë",
                 NativeName = "Kosovë",
                 EnglishName = "Kosovo",
-                Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
+                Iban = new PatternDescriptor(new SwiftPattern("XK2!n4!n10!n2!n"))
                 {
                     Example = "XK051212012345678906"
                 },
-                Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"), 4)
+                Bban = new PatternDescriptor(new SwiftPattern("4!n10!n2!n"), 4)
                 {
                     Example = "1212012345678906"
                 },
-                Bank = new BankStructure(new SwiftPattern("2!n"), 4)
+                Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
                 {
                     Example = "12"
                 },
-                Branch = new BranchStructure(new SwiftPattern("2!n"), 6)
+                Branch = new PatternDescriptor(new SwiftPattern("2!n"), 6)
                 {
                     Example = "12"
                 },

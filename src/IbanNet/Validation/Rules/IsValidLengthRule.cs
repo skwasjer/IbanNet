@@ -14,7 +14,7 @@ internal sealed class IsValidLengthRule : IIbanValidationRule
         return context.Country is null
             // Must match defined.
          || inputLength != context.Country.Iban.Length
-            // Short circuit, in case of faulty country IBAN structure and excessively long input.
+            // Short circuit, in case of faulty country IBAN pattern descriptor and excessively long input.
          || inputLength > Iban.MaxLength
                 ? new InvalidLengthResult()
                 : ValidationRuleResult.Success;

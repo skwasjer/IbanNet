@@ -43,10 +43,10 @@ public class IbanCountryTests
     public void Getters_should_return_set_properties()
     {
         const string twoLetterIsoRegionName = "nl";
-        var ibanStructure = new IbanStructure(NullPattern.Instance);
-        var bankStructure = new BankStructure(NullPattern.Instance);
-        var bbanStructure = new BbanStructure(NullPattern.Instance);
-        var branchStructure = new BranchStructure(NullPattern.Instance);
+        var ibanPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
+        var bbanPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
+        var bankPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
+        var branchPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
         const string displayName = "name";
         const string domesticAccountNumberExample = "example";
         const string englishName = "english name";
@@ -57,10 +57,10 @@ public class IbanCountryTests
         // Act
         var ibanCountry = new IbanCountry(twoLetterIsoRegionName)
         {
-            Iban = ibanStructure,
-            Bank = bankStructure,
-            Bban = bbanStructure,
-            Branch = branchStructure,
+            Iban = ibanPatternDescriptor,
+            Bban = bbanPatternDescriptor,
+            Bank = bankPatternDescriptor,
+            Branch = branchPatternDescriptor,
             DisplayName = displayName,
             DomesticAccountNumberExample = domesticAccountNumberExample,
             EnglishName = englishName,
@@ -71,10 +71,10 @@ public class IbanCountryTests
 
         // Assert
         ibanCountry.TwoLetterISORegionName.Should().Be(twoLetterIsoRegionName.ToUpper());
-        ibanCountry.Iban.Should().BeSameAs(ibanStructure);
-        ibanCountry.Bank.Should().BeSameAs(bankStructure);
-        ibanCountry.Bban.Should().BeSameAs(bbanStructure);
-        ibanCountry.Branch.Should().BeSameAs(branchStructure);
+        ibanCountry.Iban.Should().BeSameAs(ibanPatternDescriptor);
+        ibanCountry.Bank.Should().BeSameAs(bankPatternDescriptor);
+        ibanCountry.Bban.Should().BeSameAs(bbanPatternDescriptor);
+        ibanCountry.Branch.Should().BeSameAs(branchPatternDescriptor);
         ibanCountry.DisplayName.Should().Be(displayName);
         ibanCountry.DomesticAccountNumberExample.Should().Be(domesticAccountNumberExample);
         ibanCountry.EnglishName.Should().Be(englishName);
