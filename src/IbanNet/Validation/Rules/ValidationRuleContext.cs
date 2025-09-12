@@ -5,7 +5,7 @@ namespace IbanNet.Validation.Rules;
 /// <summary>
 /// The validation context for a validation rule.
 /// </summary>
-public class ValidationRuleContext
+public readonly record struct ValidationRuleContext
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidationRuleContext" /> class.
@@ -35,5 +35,5 @@ public class ValidationRuleContext
     /// <summary>
     /// Gets the country specific format information that applies to the IBAN, if any.
     /// </summary>
-    public IbanCountry? Country { get; internal set; }
+    public IbanCountry? Country { get; internal init; }
 }

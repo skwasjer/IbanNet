@@ -438,7 +438,7 @@ namespace IbanNet.Validation.Rules
     {
         public RejectCountryRule(System.Collections.Generic.IEnumerable<string> rejectedCountryCodes) { }
     }
-    public class ValidationRuleContext
+    public readonly struct ValidationRuleContext : System.IEquatable<IbanNet.Validation.Rules.ValidationRuleContext>
     {
         public ValidationRuleContext(string value) { }
         public ValidationRuleContext(string value, IbanNet.Registry.IbanCountry country) { }

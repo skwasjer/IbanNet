@@ -12,11 +12,6 @@ public sealed class QrIbanRule : IIbanValidationRule
     /// <inheritdoc />
     public ValidationRuleResult Validate(ValidationRuleContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
-
         IbanCountry? country = context.Country;
         if (country != null && IsValid(country, context.Value.Substring(country.Bank.Position, country.Bank.Length)))
         {

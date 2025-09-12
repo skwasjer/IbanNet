@@ -47,18 +47,4 @@ public sealed class IsValidQrIbanRuleTests
         // Assert
         actual.Should().Be(ValidationRuleResult.Success);
     }
-
-    [Fact]
-    public void Given_that_context_is_null_when_validating_it_should_throw()
-    {
-        ValidationRuleContext? context = null;
-
-        // Act
-        Action act = () => _sut.Validate(context!);
-
-        // Assert
-        act.Should()
-            .Throw<ArgumentNullException>()
-            .WithParameterName(nameof(context));
-    }
 }

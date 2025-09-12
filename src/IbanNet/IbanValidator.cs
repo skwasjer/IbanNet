@@ -105,7 +105,12 @@ public sealed class IbanValidator : IIbanValidator
         {
             try
             {
-                error = rule.Validate(context) as ErrorResult;
+                ValidationRuleResult result = rule.Validate(context);
+                error = result as ErrorResult;
+                if (result is CountryResolvedResult cr)
+                {
+                    context = context with { Country = cr.Country };
+                }
             }
             catch (Exception ex)
             {
