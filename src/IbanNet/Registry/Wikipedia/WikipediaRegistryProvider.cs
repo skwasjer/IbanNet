@@ -12,10 +12,10 @@ namespace IbanNet.Registry.Wikipedia;
 /// <para>
 /// Generated from: https://en.wikipedia.org/wiki/International_Bank_Account_Number
 /// Page ID: 15253
-/// Rev ID: 1249179146
+/// Rev ID: 1309493843
 /// </para>
 /// </remarks>
-[GeneratedCode("WikiRegistryProviderT4", "1.15253-1249179146")]
+[GeneratedCode("WikiRegistryProviderT4", "1.15253-1309493843")]
 public class WikipediaRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
