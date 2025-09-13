@@ -46,16 +46,16 @@ public sealed class IbanParser : IIbanParser
             throw new ArgumentNullException(nameof(value));
         }
 
-        if (TryParse(value, out Iban? iban, out ValidationResult? validationResult, out Exception? exceptionThrown))
+        if (TryParse(value, out Iban? iban, out ValidationResult validationResult, out Exception? exceptionThrown))
         {
             return iban;
         }
 
-        string errorMessage = validationResult?.Error is null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
+        string errorMessage = validationResult.Error is null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
             ? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
             : validationResult.Error.ErrorMessage;
 
-        if (validationResult is null || exceptionThrown is not null)
+        if (exceptionThrown is not null)
         {
             throw new IbanFormatException(errorMessage, exceptionThrown);
         }
@@ -76,7 +76,7 @@ public sealed class IbanParser : IIbanParser
         string? value,
 #endif
         [NotNullWhen(true)] out Iban? iban,
-        [MaybeNullWhen(false)] out ValidationResult? validationResult,
+        out ValidationResult validationResult,
         [MaybeNullWhen(false)] out Exception? exceptionThrown)
     {
         iban = null;
@@ -94,7 +94,7 @@ public sealed class IbanParser : IIbanParser
         }
         catch (Exception ex)
         {
-            validationResult = null;
+            validationResult = default;
             exceptionThrown = ex;
             return false;
         }
