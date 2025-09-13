@@ -2,7 +2,4 @@
 
 namespace IbanNet.Validation.Results;
 
-internal sealed class CountryResolvedResult(IbanCountry country) : ValidationRuleResult
-{
-    public IbanCountry Country { get; } = country;
-}
+internal record CountryResolvedResult(IbanCountry Country) : ValidationRuleResult;

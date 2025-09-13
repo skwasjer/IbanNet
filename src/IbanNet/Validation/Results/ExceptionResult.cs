@@ -3,7 +3,7 @@
 /// <summary>
 /// Describes the error that occurred for a validation rule.
 /// </summary>
-public class ExceptionResult : ErrorResult
+public record ExceptionResult : ErrorResult
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionResult" /> class using specified <paramref name="exception" />.

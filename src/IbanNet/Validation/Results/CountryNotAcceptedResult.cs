@@ -7,7 +7,7 @@ namespace IbanNet.Validation.Results;
 /// <summary>
 /// The result returned when the IBAN passed validation, but is explicitly rejected because it failed to pass a <see cref="AcceptCountryRule" /> or <see cref="RejectCountryRule" /> rule which was added to the validation pipeline.
 /// </summary>
-public class CountryNotAcceptedResult : ErrorResult
+public record CountryNotAcceptedResult : ErrorResult
 {
     /// <summary>
     /// The result returned when the IBAN is not accepted because of restrictions by country.

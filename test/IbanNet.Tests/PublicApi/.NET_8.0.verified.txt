@@ -346,52 +346,52 @@ namespace IbanNet.TypeConverters
 }
 namespace IbanNet.Validation.Results
 {
-    public class CountryNotAcceptedResult : IbanNet.Validation.Results.ErrorResult
+    public class CountryNotAcceptedResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.CountryNotAcceptedResult>
     {
         public CountryNotAcceptedResult(IbanNet.Registry.IbanCountry country) { }
     }
-    public class ErrorResult : IbanNet.Validation.Results.ValidationRuleResult
+    public class ErrorResult : IbanNet.Validation.Results.ValidationRuleResult, System.IEquatable<IbanNet.Validation.Results.ErrorResult>
     {
         public ErrorResult(string errorMessage) { }
         public string ErrorMessage { get; }
     }
-    public class ExceptionResult : IbanNet.Validation.Results.ErrorResult
+    public class ExceptionResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.ExceptionResult>
     {
         public ExceptionResult(System.Exception exception) { }
         public System.Exception Exception { get; }
     }
-    public class IllegalCharactersResult : IbanNet.Validation.Results.ErrorResult
+    public class IllegalCharactersResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.IllegalCharactersResult>
     {
         public IllegalCharactersResult(int position) { }
         protected IllegalCharactersResult(string errorMessage, int position) { }
         public int Position { get; }
     }
-    public class IllegalCountryCodeCharactersResult : IbanNet.Validation.Results.IllegalCharactersResult
+    public class IllegalCountryCodeCharactersResult : IbanNet.Validation.Results.IllegalCharactersResult, System.IEquatable<IbanNet.Validation.Results.IllegalCountryCodeCharactersResult>
     {
         public IllegalCountryCodeCharactersResult(int position) { }
     }
-    public class InvalidCheckDigitsResult : IbanNet.Validation.Results.ErrorResult
+    public class InvalidCheckDigitsResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.InvalidCheckDigitsResult>
     {
         public InvalidCheckDigitsResult() { }
     }
-    public class InvalidLengthResult : IbanNet.Validation.Results.ErrorResult
+    public class InvalidLengthResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.InvalidLengthResult>
     {
         public InvalidLengthResult() { }
     }
-    public class InvalidQrIbanResult : IbanNet.Validation.Results.ErrorResult
+    public class InvalidQrIbanResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.InvalidQrIbanResult>
     {
         public InvalidQrIbanResult() { }
     }
-    public class InvalidStructureResult : IbanNet.Validation.Results.ErrorResult
+    public class InvalidStructureResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.InvalidStructureResult>
     {
         public InvalidStructureResult(int position) { }
         public int Position { get; }
     }
-    public class UnknownCountryCodeResult : IbanNet.Validation.Results.ErrorResult
+    public class UnknownCountryCodeResult : IbanNet.Validation.Results.ErrorResult, System.IEquatable<IbanNet.Validation.Results.UnknownCountryCodeResult>
     {
         public UnknownCountryCodeResult() { }
     }
-    public class ValidationRuleResult
+    public class ValidationRuleResult : System.IEquatable<IbanNet.Validation.Results.ValidationRuleResult>
     {
         protected ValidationRuleResult() { }
         public static IbanNet.Validation.Results.ValidationRuleResult Success { get; }

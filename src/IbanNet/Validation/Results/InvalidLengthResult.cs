@@ -3,7 +3,7 @@
 /// <summary>
 /// The result returned when the IBAN has an incorrect length.
 /// </summary>
-public class InvalidLengthResult : ErrorResult
+public record InvalidLengthResult : ErrorResult
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="InvalidLengthResult" /> class.

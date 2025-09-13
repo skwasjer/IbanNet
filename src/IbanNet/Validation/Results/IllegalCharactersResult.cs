@@ -3,7 +3,7 @@
 /// <summary>
 /// The result returned when the IBAN contains illegal characters.
 /// </summary>
-public class IllegalCharactersResult : ErrorResult
+public record IllegalCharactersResult : ErrorResult
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="IllegalCharactersResult" /> class.
