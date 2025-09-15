@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿using System.Net.Http;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
@@ -14,11 +14,14 @@ public static class Loader
 #pragma warning disable S1075
         var uri = new Uri("https://en.wikipedia.org/w/api.php?format=json&action=parse&page=International_Bank_Account_Number&section=16", UriKind.Absolute);
 #pragma warning restore S1075
-        HttpWebRequest req = WebRequest.CreateHttp(uri);
-        using WebResponse response = req.GetResponse();
-        using var ms = new MemoryStream();
-        response.GetResponseStream()!.CopyTo(ms);
-        byte[] buffer = ms.ToArray();
+
+        using var httpClient = new HttpClient();
+        httpClient.DefaultRequestHeaders.TryAddWithoutValidation(
+            "User-Agent",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+        );
+        using HttpResponseMessage response = httpClient.GetAsync(uri).GetAwaiter().GetResult();
+        byte[] buffer = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
 
         WikiResponse? wikiResponse = JsonSerializer.Deserialize<WikiResponse>(buffer, JsonSerializerOptions);
         if (wikiResponse is null)

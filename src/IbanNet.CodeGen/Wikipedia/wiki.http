@@ -1,0 +1,7 @@
+﻿GET https://en.wikipedia.org/w/api.php?format=json&action=parse&page=International_Bank_Account_Number&section=16
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+
+###
+
+GET https://en.wikipedia.org/api/rest_v1/page/html/International_Bank_Account_Number
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
