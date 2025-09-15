@@ -78,6 +78,21 @@ The registry lazy loads definitions. This benchmark only measures the cost of th
 | Lookup | .NET 6.0           | Wikipedia, warm |     17.830 ns |   0.1659 ns |   0.1552 ns |  2.02 |    0.02 |      - |      - |         - |          NA |
 | Lookup | .NET Framework 4.8 | Wikipedia, warm |     46.609 ns |   0.7311 ns |   0.6481 ns |  5.28 |    0.08 |      - |      - |         - |          NA |
 
+### Validation per provider
+
+Validating with `SwiftRegistryProvider` is faster and allocates less memory than the `WikipediaRegistryProvider`, because the pattern matcher is unrolled instead of depending on a more generic match implementation (using an iterator).
+
+| Method   | Runtime            | args      | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|--------- |------------------- |---------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
+| Validate | .NET 8.0           | Swift     | 159.1 ns | 3.12 ns | 4.26 ns |  1.00 |    0.04 | 0.0267 |     168 B |        1.00 |
+| Validate | .NET 6.0           | Swift     | 194.3 ns | 3.80 ns | 4.66 ns |  1.22 |    0.04 | 0.0267 |     168 B |        1.00 |
+| Validate | .NET Framework 4.8 | Swift     | 279.6 ns | 2.11 ns | 1.64 ns |  1.76 |    0.05 | 0.0267 |     168 B |        1.00 |
+|          |                    |           |          |         |         |       |         |        |           |             |
+| Validate | .NET 8.0           | Wikipedia | 191.7 ns | 3.85 ns | 5.65 ns |  1.00 |    0.04 | 0.0267 |     168 B |        1.00 |
+| Validate | .NET 6.0           | Wikipedia | 238.6 ns | 3.09 ns | 2.58 ns |  1.25 |    0.04 | 0.0267 |     168 B |        1.00 |
+| Validate | .NET Framework 4.8 | Wikipedia | 360.2 ns | 5.56 ns | 4.64 ns |  1.88 |    0.06 | 0.0267 |     168 B |        1.00 |
+
+
 ### CLI
 
 To run the benchmark:
