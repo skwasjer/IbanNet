@@ -46,15 +46,4 @@ public class ValidatorBenchmark
             validator.Validate(_testData[i]);
         }
     }
-
-    [Benchmark]
-    public void Singleton_CacheReuse()
-    {
-        // ReSharper disable once ForCanBeConvertedToForeach
-        for (int i = 0; i < _testData.Count; i++)
-        {
-            // Validate same IBAN to hit structure validator cache.
-            _validator.Validate(_testData[0]);
-        }
-    }
 }

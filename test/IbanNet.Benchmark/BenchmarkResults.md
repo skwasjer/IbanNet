@@ -27,21 +27,17 @@ This benchmark validates 10,000 IBANs in a loop. It demonstrates the cost of reu
 
 #### Legend
 
-- *Singleton_CacheReuse*: strict validation, singleton validator, reuse of rules and pattern cache
 - *Singleton*: strict validation, singleton validator
 - *Transient*: strict validation, transient validator (per validation). Notice the extra allocations/GC. This is not recommended, and purely for demonstration.
 
-| Method               | Runtime            | Count | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated | Alloc Ratio |
-|--------------------- |------------------- |------ |---------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
-| Singleton_CacheReuse | .NET 8.0           | 10000 | 1.823 ms | 0.0053 ms | 0.0044 ms |  0.68 |    0.00 |  279.2969 |   1.68 MB |        0.99 |
-| Singleton_CacheReuse | .NET 6.0           | 10000 | 2.233 ms | 0.0063 ms | 0.0052 ms |  0.84 |    0.00 |  277.3438 |   1.68 MB |        0.99 |
-| Singleton            | .NET 8.0           | 10000 | 2.668 ms | 0.0143 ms | 0.0134 ms |  1.00 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton_CacheReuse | .NET Framework 4.8 | 10000 | 3.026 ms | 0.0092 ms | 0.0086 ms |  1.13 |    0.01 |  277.3438 |   1.68 MB |        0.99 |
-| Singleton            | .NET 6.0           | 10000 | 3.218 ms | 0.0348 ms | 0.0271 ms |  1.21 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton            | .NET Framework 4.8 | 10000 | 4.065 ms | 0.0240 ms | 0.0224 ms |  1.52 |    0.01 |  281.2500 |   1.71 MB |        1.00 |
-| Transient            | .NET 8.0           | 10000 | 5.160 ms | 0.0430 ms | 0.0403 ms |  1.93 |    0.02 | 1195.3125 |    7.2 MB |        4.23 |
-| Transient            | .NET 6.0           | 10000 | 5.708 ms | 0.0767 ms | 0.0717 ms |  2.14 |    0.03 | 1265.6250 |   7.58 MB |        4.45 |
-| Transient            | .NET Framework 4.8 | 10000 | 7.068 ms | 0.0284 ms | 0.0251 ms |  2.65 |    0.02 | 1289.0625 |   7.75 MB |        4.55 |
+| Method    | Runtime            | Count | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated | Alloc Ratio |
+|---------- |------------------- |------ |---------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
+| Singleton | .NET 8.0           | 10000 | 2.692 ms | 0.0332 ms | 0.0277 ms |  1.00 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
+| Singleton | .NET 6.0           | 10000 | 3.180 ms | 0.0087 ms | 0.0073 ms |  1.18 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
+| Singleton | .NET Framework 4.8 | 10000 | 4.048 ms | 0.0808 ms | 0.0865 ms |  1.50 |    0.03 |  281.2500 |   1.71 MB |        1.00 |
+| Transient | .NET 8.0           | 10000 | 5.217 ms | 0.0720 ms | 0.0739 ms |  1.94 |    0.03 | 1195.3125 |    7.2 MB |        4.23 |
+| Transient | .NET 6.0           | 10000 | 5.807 ms | 0.0377 ms | 0.0353 ms |  2.16 |    0.02 | 1265.6250 |   7.58 MB |        4.45 |
+| Transient | .NET Framework 4.8 | 10000 | 6.985 ms | 0.0371 ms | 0.0310 ms |  2.60 |    0.03 | 1289.0625 |   7.75 MB |        4.55 |
 
 ### Initialize registry
 
