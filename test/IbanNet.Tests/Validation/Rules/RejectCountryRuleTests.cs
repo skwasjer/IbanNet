@@ -67,19 +67,4 @@ public class RejectCountryRuleTests
             .WithParameterName(nameof(rejectedCountryCodes))
             .Which.Should().BeOfType<ArgumentException>();
     }
-
-    [Fact]
-    public void Given_that_context_is_null_when_validating_it_should_throw()
-    {
-        var sut = new RejectCountryRule(["DE", "FR"]);
-        ValidationRuleContext? context = null;
-
-        // Act
-        Func<ValidationRuleResult> act = () => sut.Validate(context!);
-
-        // Assert
-        act.Should()
-            .Throw<ArgumentNullException>()
-            .WithParameterName(nameof(context));
-    }
 }

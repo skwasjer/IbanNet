@@ -41,11 +41,6 @@ public abstract class LimitCountryRule : IIbanValidationRule
     /// <inheritdoc />
     public ValidationRuleResult Validate(ValidationRuleContext context)
     {
-        if (context is null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
-
         bool matchesCountryCode = _countryCodes.Contains(context.Country!.TwoLetterISORegionName);
         return matchesCountryCode == _isAccepted
             ? ValidationRuleResult.Success

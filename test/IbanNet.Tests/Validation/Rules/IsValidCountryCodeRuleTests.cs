@@ -42,8 +42,10 @@ public class IsValidCountryCodeRuleTests
         ValidationRuleResult actual = sut.Validate(context);
 
         // Assert
-        actual.Should().Be(ValidationRuleResult.Success);
-        context.Country.Should().BeSameAs(country);
+        actual.Should()
+            .BeOfType<CountryResolvedResult>()
+            .Which.Country.Should()
+            .Be(country);
     }
 
     [Fact]

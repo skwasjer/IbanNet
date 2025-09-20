@@ -24,8 +24,7 @@ internal sealed class IsValidCountryCodeRule : IIbanValidationRule
             return new UnknownCountryCodeResult();
         }
 
-        context.Country = country;
-        return ValidationRuleResult.Success;
+        return new CountryResolvedResult(country);
     }
 
 #if USE_SPANS

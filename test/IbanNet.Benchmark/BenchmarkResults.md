@@ -1,6 +1,6 @@
 # IbanNet Benchmark Results
 
-## Performance for >= v5.16.0
+## Performance for >= v5.18.0
 
 A single validation:
 
@@ -14,11 +14,11 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   Job-OWJQPM : .NET Framework 4.8.1 (4.8.9310.0), X64 RyuJIT VectorSize=256
 ```
 
-| Method   | Runtime            | Mean     | Error   | StdDev  | Ratio | Gen0   | Allocated | Alloc Ratio |
-|--------- |------------------- |---------:|--------:|--------:|------:|-------:|----------:|------------:|
-| Validate | .NET 8.0           | 177.3 ns | 1.38 ns | 1.15 ns |  1.00 | 0.0279 |     176 B |        1.00 |
-| Validate | .NET 6.0           | 224.4 ns | 0.29 ns | 0.26 ns |  1.27 | 0.0279 |     176 B |        1.00 |
-| Validate | .NET Framework 4.8 | 311.8 ns | 1.48 ns | 1.38 ns |  1.76 | 0.0277 |     177 B |        1.01 |
+| Method   | Runtime            | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|--------- |------------------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
+| Validate | .NET 8.0           | 187.2 ns | 0.71 ns | 0.55 ns |  1.00 |    0.00 | 0.0267 |     168 B |        1.00 |
+| Validate | .NET 6.0           | 226.4 ns | 1.62 ns | 1.44 ns |  1.21 |    0.01 | 0.0267 |     168 B |        1.00 |
+| Validate | .NET Framework 4.8 | 312.1 ns | 3.51 ns | 3.29 ns |  1.67 |    0.02 | 0.0267 |     168 B |        1.00 |
 
 
 ### Bulk (10k) runs
@@ -32,12 +32,28 @@ This benchmark validates 10,000 IBANs in a loop. It demonstrates the cost of reu
 
 | Method    | Runtime            | Count | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated | Alloc Ratio |
 |---------- |------------------- |------ |---------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
-| Singleton | .NET 8.0           | 10000 | 2.692 ms | 0.0332 ms | 0.0277 ms |  1.00 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton | .NET 6.0           | 10000 | 3.180 ms | 0.0087 ms | 0.0073 ms |  1.18 |    0.01 |  281.2500 |    1.7 MB |        1.00 |
-| Singleton | .NET Framework 4.8 | 10000 | 4.048 ms | 0.0808 ms | 0.0865 ms |  1.50 |    0.03 |  281.2500 |   1.71 MB |        1.00 |
-| Transient | .NET 8.0           | 10000 | 5.217 ms | 0.0720 ms | 0.0739 ms |  1.94 |    0.03 | 1195.3125 |    7.2 MB |        4.23 |
-| Transient | .NET 6.0           | 10000 | 5.807 ms | 0.0377 ms | 0.0353 ms |  2.16 |    0.02 | 1265.6250 |   7.58 MB |        4.45 |
-| Transient | .NET Framework 4.8 | 10000 | 6.985 ms | 0.0371 ms | 0.0310 ms |  2.60 |    0.03 | 1289.0625 |   7.75 MB |        4.55 |
+| Singleton | .NET 8.0           | 10000 | 2.865 ms | 0.0551 ms | 0.0613 ms |  1.00 |    0.03 |  269.5313 |   1.63 MB |        1.00 |
+| Singleton | .NET 6.0           | 10000 | 3.233 ms | 0.0405 ms | 0.0338 ms |  1.13 |    0.03 |  269.5313 |   1.63 MB |        1.00 |
+| Singleton | .NET Framework 4.8 | 10000 | 4.000 ms | 0.0177 ms | 0.0166 ms |  1.40 |    0.03 |  265.6250 |   1.63 MB |        1.00 |
+| Transient | .NET 8.0           | 10000 | 5.326 ms | 0.0197 ms | 0.0165 ms |  1.86 |    0.04 | 1187.5000 |   7.12 MB |        4.38 |
+| Transient | .NET 6.0           | 10000 | 5.847 ms | 0.0720 ms | 0.0601 ms |  2.04 |    0.05 | 1250.0000 |    7.5 MB |        4.61 |
+| Transient | .NET Framework 4.8 | 10000 | 7.360 ms | 0.1392 ms | 0.1368 ms |  2.57 |    0.07 | 1273.4375 |   7.68 MB |        4.72 |
+
+
+### Validation per provider
+
+Validating with `SwiftRegistryProvider` is faster and allocates less memory than the `WikipediaRegistryProvider`, because the pattern matcher is unrolled instead of depending on a more generic match implementation (using an iterator).
+
+| Method   | Runtime            | args      | Mean     | Error    | StdDev   | Median   | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|--------- |------------------- |---------- |---------:|---------:|---------:|---------:|------:|--------:|-------:|----------:|------------:|
+| Validate | .NET 8.0           | Swift     | 158.2 ns |  2.29 ns |  2.03 ns | 157.6 ns |  1.00 |    0.02 | 0.0253 |     160 B |        1.00 |
+| Validate | .NET 6.0           | Swift     | 188.6 ns |  0.57 ns |  0.48 ns | 188.5 ns |  1.19 |    0.01 | 0.0253 |     160 B |        1.00 |
+| Validate | .NET Framework 4.8 | Swift     | 280.4 ns |  2.00 ns |  1.56 ns | 280.4 ns |  1.77 |    0.02 | 0.0253 |     160 B |        1.00 |
+|          |                    |           |          |          |          |          |       |         |        |           |             |
+| Validate | .NET 8.0           | Wikipedia | 198.1 ns |  1.50 ns |  2.29 ns | 197.9 ns |  1.00 |    0.02 | 0.0253 |     160 B |        1.00 |
+| Validate | .NET 6.0           | Wikipedia | 240.5 ns |  1.26 ns |  1.18 ns | 241.0 ns |  1.21 |    0.02 | 0.0253 |     160 B |        1.00 |
+| Validate | .NET Framework 4.8 | Wikipedia | 378.6 ns | 16.23 ns | 44.71 ns | 354.1 ns |  1.91 |    0.23 | 0.0253 |     160 B |        1.00 |
+
 
 ### Initialize registry
 
@@ -52,6 +68,7 @@ The registry lazy loads definitions. This benchmark only measures the cost of th
 | Initialize | .NET 8.0           | Wikipedia | 27.49 ns | 0.540 ns | 0.479 ns | 27.23 ns |  1.00 |    0.02 | 0.0242 |     152 B |        1.00 |
 | Initialize | .NET 6.0           | Wikipedia | 27.81 ns | 0.482 ns | 0.428 ns | 27.80 ns |  1.01 |    0.02 | 0.0242 |     152 B |        1.00 |
 | Initialize | .NET Framework 4.8 | Wikipedia | 31.95 ns | 0.185 ns | 0.155 ns | 31.92 ns |  1.16 |    0.02 | 0.0255 |     160 B |        1.05 |
+
 
 ### Look up country in registry
 
@@ -77,20 +94,6 @@ The registry lazy loads definitions. This benchmark only measures the cost of th
 | Lookup | .NET 8.0           | Wikipedia, warm |      8.823 ns |   0.0639 ns |   0.0566 ns |  1.00 |    0.01 |      - |      - |         - |          NA |
 | Lookup | .NET 6.0           | Wikipedia, warm |     17.830 ns |   0.1659 ns |   0.1552 ns |  2.02 |    0.02 |      - |      - |         - |          NA |
 | Lookup | .NET Framework 4.8 | Wikipedia, warm |     46.609 ns |   0.7311 ns |   0.6481 ns |  5.28 |    0.08 |      - |      - |         - |          NA |
-
-### Validation per provider
-
-Validating with `SwiftRegistryProvider` is faster and allocates less memory than the `WikipediaRegistryProvider`, because the pattern matcher is unrolled instead of depending on a more generic match implementation (using an iterator).
-
-| Method   | Runtime            | args      | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|--------- |------------------- |---------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
-| Validate | .NET 8.0           | Swift     | 159.1 ns | 3.12 ns | 4.26 ns |  1.00 |    0.04 | 0.0267 |     168 B |        1.00 |
-| Validate | .NET 6.0           | Swift     | 194.3 ns | 3.80 ns | 4.66 ns |  1.22 |    0.04 | 0.0267 |     168 B |        1.00 |
-| Validate | .NET Framework 4.8 | Swift     | 279.6 ns | 2.11 ns | 1.64 ns |  1.76 |    0.05 | 0.0267 |     168 B |        1.00 |
-|          |                    |           |          |         |         |       |         |        |           |             |
-| Validate | .NET 8.0           | Wikipedia | 191.7 ns | 3.85 ns | 5.65 ns |  1.00 |    0.04 | 0.0267 |     168 B |        1.00 |
-| Validate | .NET 6.0           | Wikipedia | 238.6 ns | 3.09 ns | 2.58 ns |  1.25 |    0.04 | 0.0267 |     168 B |        1.00 |
-| Validate | .NET Framework 4.8 | Wikipedia | 360.2 ns | 5.56 ns | 4.64 ns |  1.88 |    0.06 | 0.0267 |     168 B |        1.00 |
 
 
 ### CLI
