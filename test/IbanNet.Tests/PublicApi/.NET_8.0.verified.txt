@@ -181,9 +181,8 @@ namespace IbanNet
         public IbanNet.Registry.IIbanRegistry Registry { get; set; }
         public System.Collections.Generic.ICollection<IbanNet.Validation.Rules.IIbanValidationRule> Rules { get; }
     }
-    public sealed class ValidationResult
+    public readonly struct ValidationResult : System.IEquatable<IbanNet.ValidationResult>
     {
-        public ValidationResult() { }
         public string? AttemptedValue { get; init; }
         public IbanNet.Registry.IbanCountry? Country { get; init; }
         public IbanNet.Validation.Results.ErrorResult? Error { get; init; }

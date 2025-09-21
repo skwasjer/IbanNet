@@ -6,12 +6,12 @@ namespace IbanNet;
 /// <summary>
 /// Represents the validator result.
 /// </summary>
-public sealed class ValidationResult
+public readonly record struct ValidationResult
 {
     /// <summary>
     /// Gets whether validation is successful.
     /// </summary>
-    public bool IsValid => Error is null;
+    public bool IsValid => Error is null && AttemptedValue is not null && Country is not null;
 
     /// <summary>
     /// Gets the IBAN value for which validation was attempted.
