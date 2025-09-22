@@ -128,6 +128,11 @@ public sealed class IbanCountry
     /// </summary>
     public DateTimeOffset LastUpdatedDate { get; init; }
 
+    /// <summary>
+    /// Gets the date the IBAN came in effect.
+    /// </summary>
+    public DateTimeOffset EffectiveDate { get; init; }
+
     /// <inheritdoc />
     public override string ToString()
     {

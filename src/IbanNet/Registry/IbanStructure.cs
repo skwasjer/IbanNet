@@ -17,9 +17,4 @@ public class IbanStructure : StructureSection
         : base(pattern)
     {
     }
-
-    /// <summary>
-    /// Gets the date the IBAN came in effect.
-    /// </summary>
-    public DateTimeOffset EffectiveDate { get; init; }
 }

@@ -94,8 +94,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 #>
             Iban = new IbanStructure(new Patterns.<#= record.CountryCode #>())
             {
-                Example = "<#= record.Iban.ElectronicFormatExample ?? string.Empty #>",
-                EffectiveDate = new DateTimeOffset(<#= record.EffectiveDate.Year #>, <#= record.EffectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "<#= record.Iban.ElectronicFormatExample ?? string.Empty #>"
             },
             Bban = new BbanStructure(new SwiftPattern("<#= record.Bban.Pattern #>"), <#= bbanOffset #>)
             {
@@ -137,7 +136,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 #>
             },
             DomesticAccountNumberExample = "<#= record.DomesticExample ?? string.Empty #>",
-            LastUpdatedDate = new DateTimeOffset(<#= record.LastUpdatedDate.Year #>, <#= record.LastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(<#= record.LastUpdatedDate.Year #>, <#= record.LastUpdatedDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(<#= record.EffectiveDate.Year #>, <#= record.EffectiveDate.Month #>, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
 <#
