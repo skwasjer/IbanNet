@@ -62,7 +62,8 @@ public class IbanRegistryTests
                 },
                 Sepa = new SepaInfo { IsMember = true },
                 DomesticAccountNumberExample = "2030200359100100",
-                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero),
+                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
             }
         ];
 
@@ -92,7 +93,8 @@ public class IbanRegistryTests
                 },
                 Sepa = new SepaInfo { IsMember = false },
                 DomesticAccountNumberExample = "1212 0123456789 06",
-                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+                EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
             }
         ];
     }

@@ -21,6 +21,7 @@ public sealed class IbanCountry
     private BankStructure? _bankStructure;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private BranchStructure? _branchStructure;
+    private readonly DateTimeOffset? _effectiveDate;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanCountry" /> class using specified 2 letter ISO region name.
@@ -127,6 +128,17 @@ public sealed class IbanCountry
     /// Gets when this <see cref="IbanCountry" /> was last updated in the Iban Registry.
     /// </summary>
     public DateTimeOffset LastUpdatedDate { get; init; }
+
+    /// <summary>
+    /// Gets the date the IBAN came in effect.
+    /// </summary>
+    public DateTimeOffset EffectiveDate
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        get => _effectiveDate ?? Iban.EffectiveDate;
+#pragma warning restore CS0618 // Type or member is obsolete
+        init => _effectiveDate = value;
+    }
 
     /// <inheritdoc />
     public override string ToString()

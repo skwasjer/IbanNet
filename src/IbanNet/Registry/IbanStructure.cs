@@ -21,5 +21,8 @@ public class IbanStructure : StructureSection
     /// <summary>
     /// Gets the date the IBAN came in effect.
     /// </summary>
+#pragma warning disable S1133
+    [Obsolete("Will be removed in next version. Use IbanCountry.EffectiveDate instead.")]
+#pragma warning restore S1133
     public DateTimeOffset EffectiveDate { get; init; }
 }
