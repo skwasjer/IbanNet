@@ -12,15 +12,18 @@ namespace IbanNet.Registry;
 public sealed class IbanCountry
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private static readonly PatternDescriptor NullPatternDescriptor = new(NullPattern.Instance);
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly string? _displayName;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private PatternDescriptor? _ibanPatternDescriptor;
+    private readonly PatternDescriptor? _ibanPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private PatternDescriptor? _bbanPatternDescriptor;
+    private readonly PatternDescriptor? _bbanPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private PatternDescriptor? _bankPatternDescriptor;
+    private readonly PatternDescriptor? _bankPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private PatternDescriptor? _branchPatternDescriptor;
+    private readonly PatternDescriptor? _branchPatternDescriptor;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanCountry" /> class using specified 2 letter ISO region name.
@@ -89,7 +92,7 @@ public sealed class IbanCountry
     [AllowNull]
     public PatternDescriptor Bban
     {
-        get => _bbanPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        get => _bbanPatternDescriptor ?? NullPatternDescriptor;
         init => _bbanPatternDescriptor = value;
     }
 
@@ -99,7 +102,7 @@ public sealed class IbanCountry
     [AllowNull]
     public PatternDescriptor Iban
     {
-        get => _ibanPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        get => _ibanPatternDescriptor ?? NullPatternDescriptor;
         init => _ibanPatternDescriptor = value;
     }
 
@@ -109,7 +112,7 @@ public sealed class IbanCountry
     [AllowNull]
     public PatternDescriptor Bank
     {
-        get => _bankPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        get => _bankPatternDescriptor ?? NullPatternDescriptor;
         init => _bankPatternDescriptor = value;
     }
 
@@ -119,7 +122,7 @@ public sealed class IbanCountry
     [AllowNull]
     public PatternDescriptor Branch
     {
-        get => _branchPatternDescriptor ??= new PatternDescriptor(NullPattern.Instance);
+        get => _branchPatternDescriptor ?? NullPatternDescriptor;
         init => _branchPatternDescriptor = value;
     }
 
