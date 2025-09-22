@@ -81,8 +81,8 @@ public class WikipediaRegistryProvider : IIbanRegistryProvider
         {
             NativeName = "<#= x.NativeName ?? x.EnglishName #>",
             EnglishName = "<#= x.EnglishName #>",
-            Iban = new IbanStructure(new IbanWikipediaPattern("<#= x.CountryCode #>", "<#= x.Pattern #>")),
-            Bban = new BbanStructure(new WikipediaPattern("<#= x.Pattern #>"), 4)
+            Iban = new PatternDescriptor(new IbanWikipediaPattern("<#= x.CountryCode #>", "<#= x.Pattern #>")),
+            Bban = new PatternDescriptor(new WikipediaPattern("<#= x.Pattern #>"), 4)
         };
 
 <#

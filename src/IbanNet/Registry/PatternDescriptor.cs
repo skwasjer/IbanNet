@@ -6,22 +6,22 @@ using IbanNet.Registry.Patterns;
 namespace IbanNet.Registry;
 
 /// <summary>
-/// Defines a section of a structure.
+/// Describes a pattern.
 /// </summary>
 [DebuggerStepThrough]
-public abstract class StructureSection
+public sealed record PatternDescriptor
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly string? _example;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="StructureSection" /> class using specified parameters.
+    /// Initializes a new instance of the <see cref="PatternDescriptor" /> class using specified parameters.
     /// </summary>
     /// <param name="pattern">The pattern.</param>
-    /// <param name="position">The position where the pattern occurs within the parent structure.</param>
+    /// <param name="position">The position where this pattern starts to define the format of the input.</param>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="pattern" /> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="position" /> is less than 0.</exception>
-    protected StructureSection(Pattern pattern, int position = 0)
+    public PatternDescriptor(Pattern pattern, int position = 0)
     {
         Pattern = pattern ?? throw new ArgumentNullException(nameof(pattern));
         if (position < 0)
@@ -33,13 +33,12 @@ public abstract class StructureSection
     }
 
     /// <summary>
-    /// Gets or sets the position within the structure.
+    /// Gets the position where this pattern starts to define the format of the input.
     /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when setting new value to less than 0.</exception>
     public int Position { get; }
 
     /// <summary>
-    /// Gets the section length.
+    /// Gets the allowed length of the input.
     /// </summary>
     public int Length
     {
@@ -47,7 +46,7 @@ public abstract class StructureSection
     }
 
     /// <summary>
-    /// Gets the section example.
+    /// Gets an example that matches the <see cref="Pattern" />.
     /// </summary>
     [AllowNull]
     public string Example

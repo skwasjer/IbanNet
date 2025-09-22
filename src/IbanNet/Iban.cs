@@ -258,24 +258,24 @@ public sealed class Iban
         return !Equals(left, right);
     }
 
-    private string? Extract(StructureSection? structure)
+    private string? Extract(PatternDescriptor? patternDescriptor)
     {
-        if (structure?.Pattern is null or NullPattern)
+        if (patternDescriptor?.Pattern is null or NullPattern)
         {
             return null;
         }
 
-        if (structure.Position + structure.Length > _iban.Length)
+        if (patternDescriptor.Position + patternDescriptor.Length > _iban.Length)
         {
-            throw new ArgumentOutOfRangeException(nameof(structure));
+            throw new ArgumentOutOfRangeException(nameof(patternDescriptor));
         }
 
-        return structure.Length == 0
+        return patternDescriptor.Length == 0
             ? null
 #if USE_SPANS
-            : _iban.AsSpan(structure.Position, structure.Length).ToString();
+            : _iban.AsSpan(patternDescriptor.Position, patternDescriptor.Length).ToString();
 #else
-            : _iban.Substring(structure.Position, structure.Length);
+            : _iban.Substring(patternDescriptor.Position, patternDescriptor.Length);
 #endif
     }
 
