@@ -231,6 +231,7 @@ namespace IbanNet.Registry
         public IbanNet.Registry.BranchStructure Branch { get; init; }
         public string DisplayName { get; init; }
         public string? DomesticAccountNumberExample { get; init; }
+        public System.DateTimeOffset EffectiveDate { get; init; }
         public string EnglishName { get; init; }
         public IbanNet.Registry.IbanStructure Iban { get; init; }
         public System.Collections.Generic.IReadOnlyCollection<string> IncludedCountries { get; init; }
@@ -260,6 +261,7 @@ namespace IbanNet.Registry
     public class IbanStructure : IbanNet.Registry.StructureSection
     {
         public IbanStructure(IbanNet.Registry.Patterns.Pattern pattern) { }
+        [System.Obsolete("Will be removed in next version. Use IbanCountry.EffectiveDate instead.")]
         public System.DateTimeOffset EffectiveDate { get; init; }
     }
     public class SepaInfo
