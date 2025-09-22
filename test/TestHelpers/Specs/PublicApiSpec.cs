@@ -6,9 +6,6 @@ using PublicApiGenerator;
 
 namespace TestHelpers.Specs;
 
-#if !NET6_0_OR_GREATER && !NET47_OR_GREATER
-[UsesVerify]
-#endif
 public abstract class PublicApiSpec
 {
     private readonly Type _assemblyMarkerType;
