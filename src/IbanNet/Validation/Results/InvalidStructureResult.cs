@@ -3,7 +3,7 @@
 /// <summary>
 /// The result returned when the structure of the IBAN is incorrect.
 /// </summary>
-public class InvalidStructureResult : ErrorResult
+public record InvalidStructureResult : ErrorResult
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="InvalidStructureResult" /> class.

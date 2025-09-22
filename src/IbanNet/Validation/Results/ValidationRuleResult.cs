@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates the result of a validation rule.
 /// </summary>
-public class ValidationRuleResult
+public record ValidationRuleResult
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ValidationRuleResult" />.
