@@ -45,8 +45,7 @@ public class IbanRegistryTests
                 EnglishName = "Andorra",
                 Iban = new IbanStructure(new SwiftPattern("AD2!n4!n4!n12!c"))
                 {
-                    Example = "AD1200012030200359100100",
-                    EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                    Example = "AD1200012030200359100100"
                 },
                 Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"), 4)
                 {
@@ -62,7 +61,8 @@ public class IbanRegistryTests
                 },
                 Sepa = new SepaInfo { IsMember = true },
                 DomesticAccountNumberExample = "2030200359100100",
-                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero),
+                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
             }
         ];
 
@@ -75,8 +75,7 @@ public class IbanRegistryTests
                 EnglishName = "Kosovo",
                 Iban = new IbanStructure(new SwiftPattern("XK2!n4!n10!n2!n"))
                 {
-                    Example = "XK051212012345678906",
-                    EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                    Example = "XK051212012345678906"
                 },
                 Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"), 4)
                 {
@@ -92,7 +91,8 @@ public class IbanRegistryTests
                 },
                 Sepa = new SepaInfo { IsMember = false },
                 DomesticAccountNumberExample = "1212 0123456789 06",
-                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+                EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
             }
         ];
     }

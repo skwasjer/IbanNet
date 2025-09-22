@@ -47,8 +47,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Andorra",
             Iban = new IbanStructure(new Patterns.AD())
             {
-                Example = "AD1200012030200359100100",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "AD1200012030200359100100"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n4!n12!c"), 4)
             {
@@ -67,7 +66,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "2030200359100100",
-            LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // United Arab Emirates (The)
@@ -77,8 +77,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "United Arab Emirates (The)",
             Iban = new IbanStructure(new Patterns.AE())
             {
-                Example = "AE070331234567890123456",
-                EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "AE070331234567890123456"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n16!n"), 4)
             {
@@ -93,7 +92,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1234567890123456",
-            LastUpdatedDate = new DateTimeOffset(2015, 2, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2015, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Albania
@@ -103,8 +103,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Albania",
             Iban = new IbanStructure(new Patterns.AL())
             {
-                Example = "AL47212110090000000235698741",
-                EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "AL47212110090000000235698741"
             },
             Bban = new BbanStructure(new SwiftPattern("8!n16!c"), 4)
             {
@@ -123,7 +122,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000000235698741",
-            LastUpdatedDate = new DateTimeOffset(2011, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2011, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Austria
@@ -133,8 +133,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Austria",
             Iban = new IbanStructure(new Patterns.AT())
             {
-                Example = "AT611904300234573201",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "AT611904300234573201"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n11!n"), 4)
             {
@@ -149,7 +148,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "BLZ 19043 Kto 234573201",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Azerbaijan
@@ -159,8 +159,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Azerbaijan",
             Iban = new IbanStructure(new Patterns.AZ())
             {
-                Example = "AZ21NABZ00000000137010001944",
-                EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "AZ21NABZ00000000137010001944"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a20!c"), 4)
             {
@@ -175,7 +174,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "NABZ00000000137010001944",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Bosnia and Herzegovina
@@ -185,8 +185,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Bosnia and Herzegovina",
             Iban = new IbanStructure(new Patterns.BA())
             {
-                Example = "BA391290079401028494",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BA391290079401028494"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n3!n8!n2!n"), 4)
             {
@@ -205,7 +204,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "199-044-00012002-79",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Belgium
@@ -215,8 +215,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Belgium",
             Iban = new IbanStructure(new Patterns.BE())
             {
-                Example = "BE68539007547034",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BE68539007547034"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n7!n2!n"), 4)
             {
@@ -231,7 +230,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "BE68 5390 0754 7034",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Bulgaria
@@ -241,8 +241,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Bulgaria",
             Iban = new IbanStructure(new Patterns.BG())
             {
-                Example = "BG80BNBG96611020345678",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BG80BNBG96611020345678"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a4!n2!n8!c"), 4)
             {
@@ -261,7 +260,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Bahrain
@@ -271,8 +271,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Bahrain",
             Iban = new IbanStructure(new Patterns.BH())
             {
-                Example = "BH67BMAG00001299123456",
-                EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BH67BMAG00001299123456"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a14!c"), 4)
             {
@@ -287,7 +286,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00001299123456",
-            LastUpdatedDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Burundi
@@ -297,8 +297,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Burundi",
             Iban = new IbanStructure(new Patterns.BI())
             {
-                Example = "BI4210000100010000332045181",
-                EffectiveDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BI4210000100010000332045181"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
@@ -317,7 +316,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00003320451 81",
-            LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Brazil
@@ -327,8 +327,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Brazil",
             Iban = new IbanStructure(new Patterns.BR())
             {
-                Example = "BR1800360305000010009795493C1",
-                EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BR1800360305000010009795493C1"
             },
             Bban = new BbanStructure(new SwiftPattern("8!n5!n10!n1!a1!c"), 4)
             {
@@ -347,7 +346,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0009795493C1",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Republic of Belarus
@@ -357,8 +357,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Republic of Belarus",
             Iban = new IbanStructure(new Patterns.BY())
             {
-                Example = "BY13NBRB3600900000002Z00AB00",
-                EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "BY13NBRB3600900000002Z00AB00"
             },
             Bban = new BbanStructure(new SwiftPattern("4!c4!n16!c"), 4)
             {
@@ -373,7 +372,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "3600 0000 0000 0Z00 AB00",
-            LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Switzerland
@@ -383,8 +383,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Switzerland",
             Iban = new IbanStructure(new Patterns.CH())
             {
-                Example = "CH9300762011623852957",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "CH9300762011623852957"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n12!c"), 4)
             {
@@ -399,7 +398,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "762 1162-3852.957",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Costa Rica
@@ -409,8 +409,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Costa Rica",
             Iban = new IbanStructure(new Patterns.CR())
             {
-                Example = "CR05015202001026284066",
-                EffectiveDate = new DateTimeOffset(2011, 6, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "CR05015202001026284066"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n14!n"), 4)
             {
@@ -425,7 +424,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "02001026284066",
-            LastUpdatedDate = new DateTimeOffset(2019, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2019, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2011, 6, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Cyprus
@@ -435,8 +435,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Cyprus",
             Iban = new IbanStructure(new Patterns.CY())
             {
-                Example = "CY17002001280000001200527600",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "CY17002001280000001200527600"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n5!n16!c"), 4)
             {
@@ -455,7 +454,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "0000001200527600",
-            LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Czechia
@@ -465,8 +465,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Czechia",
             Iban = new IbanStructure(new Patterns.CZ())
             {
-                Example = "CZ6508000000192000145399",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "CZ6508000000192000145399"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n6!n10!n"), 4)
             {
@@ -481,7 +480,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "19-2000145399/0800",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Germany
@@ -491,8 +491,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Germany",
             Iban = new IbanStructure(new Patterns.DE())
             {
-                Example = "DE89370400440532013000",
-                EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "DE89370400440532013000"
             },
             Bban = new BbanStructure(new SwiftPattern("8!n10!n"), 4)
             {
@@ -507,7 +506,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "532013000",
-            LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Djibouti
@@ -517,8 +517,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Djibouti",
             Iban = new IbanStructure(new Patterns.DJ())
             {
-                Example = "DJ2100010000000154000100186",
-                EffectiveDate = new DateTimeOffset(2022, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "DJ2100010000000154000100186"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
@@ -537,7 +536,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0154000100186",
-            LastUpdatedDate = new DateTimeOffset(2022, 5, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2022, 5, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2022, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Denmark
@@ -547,8 +547,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Denmark",
             Iban = new IbanStructure(new Patterns.DK())
             {
-                Example = "DK5000400440116243",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "DK5000400440116243"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
             {
@@ -563,7 +562,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "0040 0440116243",
-            LastUpdatedDate = new DateTimeOffset(2018, 11, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2018, 11, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Dominican Republic
@@ -573,8 +573,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Dominican Republic",
             Iban = new IbanStructure(new Patterns.DO())
             {
-                Example = "DO28BAGR00000001212453611324",
-                EffectiveDate = new DateTimeOffset(2010, 12, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "DO28BAGR00000001212453611324"
             },
             Bban = new BbanStructure(new SwiftPattern("4!c20!n"), 4)
             {
@@ -589,7 +588,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00000001212453611324",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2010, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Estonia
@@ -599,8 +599,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Estonia",
             Iban = new IbanStructure(new Patterns.EE())
             {
-                Example = "EE382200221020145685",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "EE382200221020145685"
             },
             Bban = new BbanStructure(new SwiftPattern("2!n14!n"), 4)
             {
@@ -615,7 +614,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "221020145685",
-            LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Egypt
@@ -625,8 +625,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Egypt",
             Iban = new IbanStructure(new Patterns.EG())
             {
-                Example = "EG380019000500000000263180002",
-                EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "EG380019000500000000263180002"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n4!n17!n"), 4)
             {
@@ -645,7 +644,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "000263180002",
-            LastUpdatedDate = new DateTimeOffset(2020, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2020, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Spain
@@ -655,8 +655,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Spain",
             Iban = new IbanStructure(new Patterns.ES())
             {
-                Example = "ES9121000418450200051332",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "ES9121000418450200051332"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n4!n1!n1!n10!n"), 4)
             {
@@ -675,7 +674,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "2100 0418 45 0200051332",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Finland
@@ -689,8 +689,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             ],
             Iban = new IbanStructure(new Patterns.FI())
             {
-                Example = "FI2112345600000785",
-                EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "FI2112345600000785"
             },
             Bban = new BbanStructure(new SwiftPattern("6!n8!n"), 4)
             {
@@ -709,7 +708,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 ]
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Falkland Islands
@@ -719,8 +719,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Falkland Islands",
             Iban = new IbanStructure(new Patterns.FK())
             {
-                Example = "FK88SC123456789012",
-                EffectiveDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "FK88SC123456789012"
             },
             Bban = new BbanStructure(new SwiftPattern("2!a12!n"), 4)
             {
@@ -735,7 +734,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "123456789012",
-            LastUpdatedDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2023, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Faroe Islands
@@ -745,8 +745,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Faroe Islands",
             Iban = new IbanStructure(new Patterns.FO())
             {
-                Example = "FO6264600001631634",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "FO6264600001631634"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
             {
@@ -761,7 +760,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "6460 0001631634",
-            LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // France
@@ -775,8 +775,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             ],
             Iban = new IbanStructure(new Patterns.FR())
             {
-                Example = "FR1420041010050500013M02606",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "FR1420041010050500013M02606"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n5!n11!c2!n"), 4)
             {
@@ -799,7 +798,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 ]
             },
             DomesticAccountNumberExample = "20041 01005 0500013M026 06",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // United Kingdom
@@ -813,8 +813,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             ],
             Iban = new IbanStructure(new Patterns.GB())
             {
-                Example = "GB29NWBK60161331926819",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "GB29NWBK60161331926819"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a6!n8!n"), 4)
             {
@@ -833,7 +832,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "60-16-13 31926819",
-            LastUpdatedDate = new DateTimeOffset(2017, 5, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2017, 5, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Georgia
@@ -843,8 +843,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Georgia",
             Iban = new IbanStructure(new Patterns.GE())
             {
-                Example = "GE29NB0000000101904917",
-                EffectiveDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "GE29NB0000000101904917"
             },
             Bban = new BbanStructure(new SwiftPattern("2!a16!n"), 4)
             {
@@ -859,7 +858,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000000101904917",
-            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Gibraltar
@@ -869,8 +869,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Gibraltar",
             Iban = new IbanStructure(new Patterns.GI())
             {
-                Example = "GI75NWBK000000007099453",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "GI75NWBK000000007099453"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a15!c"), 4)
             {
@@ -885,7 +884,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "0000 00007099 453",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Greenland
@@ -895,8 +895,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Greenland",
             Iban = new IbanStructure(new Patterns.GL())
             {
-                Example = "GL8964710001000206",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "GL8964710001000206"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n9!n1!n"), 4)
             {
@@ -911,7 +910,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "6471 0001000206",
-            LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Greece
@@ -921,8 +921,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Greece",
             Iban = new IbanStructure(new Patterns.GR())
             {
-                Example = "GR1601101250000000012300695",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "GR1601101250000000012300695"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n4!n16!c"), 4)
             {
@@ -941,7 +940,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "01250000000012300695",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Guatemala
@@ -951,8 +951,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Guatemala",
             Iban = new IbanStructure(new Patterns.GT())
             {
-                Example = "GT82TRAJ01020000001210029690",
-                EffectiveDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "GT82TRAJ01020000001210029690"
             },
             Bban = new BbanStructure(new SwiftPattern("4!c20!c"), 4)
             {
@@ -967,7 +966,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "01020000001210029690",
-            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Honduras
@@ -977,8 +977,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Honduras",
             Iban = new IbanStructure(new Patterns.HN())
             {
-                Example = "HN88CABF00000000000250005469",
-                EffectiveDate = new DateTimeOffset(2024, 10, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "HN88CABF00000000000250005469"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
             {
@@ -993,7 +992,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "250005469",
-            LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2024, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Croatia
@@ -1003,8 +1003,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Croatia",
             Iban = new IbanStructure(new Patterns.HR())
             {
-                Example = "HR1210010051863000160",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "HR1210010051863000160"
             },
             Bban = new BbanStructure(new SwiftPattern("7!n10!n"), 4)
             {
@@ -1019,7 +1018,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "1001005-1863000160",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Hungary
@@ -1029,8 +1029,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Hungary",
             Iban = new IbanStructure(new Patterns.HU())
             {
-                Example = "HU42117730161111101800000000",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "HU42117730161111101800000000"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n4!n1!n15!n1!n"), 4)
             {
@@ -1049,7 +1048,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "11773016-11111018-00000000",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Ireland
@@ -1059,8 +1059,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Ireland",
             Iban = new IbanStructure(new Patterns.IE())
             {
-                Example = "IE29AIBK93115212345678",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "IE29AIBK93115212345678"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a6!n8!n"), 4)
             {
@@ -1079,7 +1078,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "93-11-52 12345678",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Israel
@@ -1089,8 +1089,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Israel",
             Iban = new IbanStructure(new Patterns.IL())
             {
-                Example = "IL620108000000099999999",
-                EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "IL620108000000099999999"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n3!n13!n"), 4)
             {
@@ -1109,7 +1108,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "10-800-99999999",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Iraq
@@ -1119,8 +1119,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Iraq",
             Iban = new IbanStructure(new Patterns.IQ())
             {
-                Example = "IQ98NBIQ850123456789012",
-                EffectiveDate = new DateTimeOffset(2017, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "IQ98NBIQ850123456789012"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a3!n12!n"), 4)
             {
@@ -1139,7 +1138,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "123456789012",
-            LastUpdatedDate = new DateTimeOffset(2016, 11, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 11, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2017, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Iceland
@@ -1149,8 +1149,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Iceland",
             Iban = new IbanStructure(new Patterns.IS())
             {
-                Example = "IS140159260076545510730339",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "IS140159260076545510730339"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n2!n6!n10!n"), 4)
             {
@@ -1169,7 +1168,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "0159-26-007654-551073-0339",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Italy
@@ -1179,8 +1179,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Italy",
             Iban = new IbanStructure(new Patterns.IT())
             {
-                Example = "IT60X0542811101000000123456",
-                EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "IT60X0542811101000000123456"
             },
             Bban = new BbanStructure(new SwiftPattern("1!a5!n5!n12!c"), 4)
             {
@@ -1199,7 +1198,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "X 05428 11101 000000123456",
-            LastUpdatedDate = new DateTimeOffset(2013, 3, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2013, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Jordan
@@ -1209,8 +1209,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Jordan",
             Iban = new IbanStructure(new Patterns.JO())
             {
-                Example = "JO94CBJO0010000000000131000302",
-                EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "JO94CBJO0010000000000131000302"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a4!n18!c"), 4)
             {
@@ -1229,7 +1228,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0001310000302",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Kuwait
@@ -1239,8 +1239,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Kuwait",
             Iban = new IbanStructure(new Patterns.KW())
             {
-                Example = "KW81CBKU0000000000001234560101",
-                EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "KW81CBKU0000000000001234560101"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a22!c"), 4)
             {
@@ -1255,7 +1254,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1234560101",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Kazakhstan
@@ -1265,8 +1265,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Kazakhstan",
             Iban = new IbanStructure(new Patterns.KZ())
             {
-                Example = "KZ86125KZT5004100100",
-                EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "KZ86125KZT5004100100"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n13!c"), 4)
             {
@@ -1281,7 +1280,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "KZ86 125K ZT50 0410 0100",
-            LastUpdatedDate = new DateTimeOffset(2016, 3, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Lebanon
@@ -1291,8 +1291,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Lebanon",
             Iban = new IbanStructure(new Patterns.LB())
             {
-                Example = "LB62099900000001001901229114",
-                EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LB62099900000001001901229114"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n20!c"), 4)
             {
@@ -1307,7 +1306,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "01 001 901229114",
-            LastUpdatedDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Saint Lucia
@@ -1317,8 +1317,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Saint Lucia",
             Iban = new IbanStructure(new Patterns.LC())
             {
-                Example = "LC55HEMM000100010012001200023015",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LC55HEMM000100010012001200023015"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a24!c"), 4)
             {
@@ -1333,7 +1332,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0001 0001 0012 0012 0002 3015",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Liechtenstein
@@ -1343,8 +1343,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Liechtenstein",
             Iban = new IbanStructure(new Patterns.LI())
             {
-                Example = "LI21088100002324013AA",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LI21088100002324013AA"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n12!c"), 4)
             {
@@ -1359,7 +1358,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "8810 2324013AA",
-            LastUpdatedDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Lithuania
@@ -1369,8 +1369,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Lithuania",
             Iban = new IbanStructure(new Patterns.LT())
             {
-                Example = "LT121000011101001000",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LT121000011101001000"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n11!n"), 4)
             {
@@ -1385,7 +1384,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Luxembourg
@@ -1395,8 +1395,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Luxembourg",
             Iban = new IbanStructure(new Patterns.LU())
             {
-                Example = "LU280019400644750000",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LU280019400644750000"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n13!c"), 4)
             {
@@ -1411,7 +1410,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Latvia
@@ -1421,8 +1421,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Latvia",
             Iban = new IbanStructure(new Patterns.LV())
             {
-                Example = "LV80BANK0000435195001",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LV80BANK0000435195001"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a13!c"), 4)
             {
@@ -1437,7 +1436,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "LV80 BANK 0000 4351 9500 1",
-            LastUpdatedDate = new DateTimeOffset(2009, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2009, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Libya
@@ -1447,8 +1447,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Libya",
             Iban = new IbanStructure(new Patterns.LY())
             {
-                Example = "LY83002048000020100120361",
-                EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "LY83002048000020100120361"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n3!n15!n"), 4)
             {
@@ -1467,7 +1466,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "000020100120361",
-            LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Monaco
@@ -1477,8 +1477,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Monaco",
             Iban = new IbanStructure(new Patterns.MC())
             {
-                Example = "MC5811222000010123456789030",
-                EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MC5811222000010123456789030"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n5!n11!c2!n"), 4)
             {
@@ -1497,7 +1496,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "0011111000h",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Moldova
@@ -1507,8 +1507,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Moldova",
             Iban = new IbanStructure(new Patterns.MD())
             {
-                Example = "MD24AG000225100013104168",
-                EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MD24AG000225100013104168"
             },
             Bban = new BbanStructure(new SwiftPattern("2!c18!c"), 4)
             {
@@ -1523,7 +1522,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "000225100013104168",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Montenegro
@@ -1533,8 +1533,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Montenegro",
             Iban = new IbanStructure(new Patterns.ME())
             {
-                Example = "ME25505000012345678951",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "ME25505000012345678951"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n13!n2!n"), 4)
             {
@@ -1549,7 +1548,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "505 0000123456789 51",
-            LastUpdatedDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2010, 5, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Macedonia
@@ -1559,8 +1559,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Macedonia",
             Iban = new IbanStructure(new Patterns.MK())
             {
-                Example = "MK07250120000058984",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MK07250120000058984"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n10!c2!n"), 4)
             {
@@ -1575,7 +1574,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "MK07 300 0000000424 25",
-            LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Mongolia
@@ -1585,8 +1585,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Mongolia",
             Iban = new IbanStructure(new Patterns.MN())
             {
-                Example = "MN121234123456789123",
-                EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MN121234123456789123"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n12!n"), 4)
             {
@@ -1601,7 +1600,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1234 5678 9123",
-            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Mauritania
@@ -1611,8 +1611,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Mauritania",
             Iban = new IbanStructure(new Patterns.MR())
             {
-                Example = "MR1300020001010000123456753",
-                EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MR1300020001010000123456753"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
@@ -1631,7 +1630,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00020 00101 00001234567 53",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Malta
@@ -1641,8 +1641,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Malta",
             Iban = new IbanStructure(new Patterns.MT())
             {
-                Example = "MT84MALT011000012345MTLCAST001S",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MT84MALT011000012345MTLCAST001S"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a5!n18!c"), 4)
             {
@@ -1661,7 +1660,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "12345MTLCAST001S",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Mauritius
@@ -1671,8 +1671,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Mauritius",
             Iban = new IbanStructure(new Patterns.MU())
             {
-                Example = "MU17BOMM0101101030300200000MUR",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "MU17BOMM0101101030300200000MUR"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a2!n2!n12!n3!n3!a"), 4)
             {
@@ -1691,7 +1690,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "MU17 BOMM 0101 1010 3030 0200 000M UR",
-            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Nicaragua
@@ -1701,8 +1701,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Nicaragua",
             Iban = new IbanStructure(new Patterns.NI())
             {
-                Example = "NI45BAPR00000013000003558124",
-                EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "NI45BAPR00000013000003558124"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
             {
@@ -1717,7 +1716,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00000013000003558124",
-            LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2023, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Netherlands (The)
@@ -1727,8 +1727,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Netherlands (The)",
             Iban = new IbanStructure(new Patterns.NL())
             {
-                Example = "NL91ABNA0417164300",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "NL91ABNA0417164300"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a10!n"), 4)
             {
@@ -1743,7 +1742,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "041 71 64 300",
-            LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2020, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Norway
@@ -1753,8 +1753,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Norway",
             Iban = new IbanStructure(new Patterns.NO())
             {
-                Example = "NO9386011117947",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "NO9386011117947"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n6!n1!n"), 4)
             {
@@ -1769,7 +1768,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "8601 11 17947",
-            LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Oman
@@ -1779,8 +1779,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Oman",
             Iban = new IbanStructure(new Patterns.OM())
             {
-                Example = "OM810180000001299123456",
-                EffectiveDate = new DateTimeOffset(2024, 3, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "OM810180000001299123456"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n16!c"), 4)
             {
@@ -1795,7 +1794,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000001299123456",
-            LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2024, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Pakistan
@@ -1805,8 +1805,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Pakistan",
             Iban = new IbanStructure(new Patterns.PK())
             {
-                Example = "PK36SCBL0000001123456702",
-                EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "PK36SCBL0000001123456702"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a16!c"), 4)
             {
@@ -1821,7 +1820,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00260101036360",
-            LastUpdatedDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Poland
@@ -1831,8 +1831,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Poland",
             Iban = new IbanStructure(new Patterns.PL())
             {
-                Example = "PL61109010140000071219812874",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "PL61109010140000071219812874"
             },
             Bban = new BbanStructure(new SwiftPattern("8!n16!n"), 4)
             {
@@ -1847,7 +1846,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "61 1090 1014 0000 0712 1981 2874",
-            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Palestine, State of
@@ -1857,8 +1857,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Palestine, State of",
             Iban = new IbanStructure(new Patterns.PS())
             {
-                Example = "PS92PALS000000000400123456702",
-                EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "PS92PALS000000000400123456702"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a21!c"), 4)
             {
@@ -1873,7 +1872,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "400123456702",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Portugal
@@ -1883,8 +1883,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Portugal",
             Iban = new IbanStructure(new Patterns.PT())
             {
-                Example = "PT50000201231234567890154",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "PT50000201231234567890154"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n4!n11!n2!n"), 4)
             {
@@ -1907,7 +1906,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 ]
             },
             DomesticAccountNumberExample = "0002.0123.12345678901.54",
-            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Qatar
@@ -1917,8 +1917,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Qatar",
             Iban = new IbanStructure(new Patterns.QA())
             {
-                Example = "QA58DOHB00001234567890ABCDEFG",
-                EffectiveDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "QA58DOHB00001234567890ABCDEFG"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a21!c"), 4)
             {
@@ -1933,7 +1932,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00001234567890ABCDEFG",
-            LastUpdatedDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Romania
@@ -1943,8 +1943,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Romania",
             Iban = new IbanStructure(new Patterns.RO())
             {
-                Example = "RO49AAAA1B31007593840000",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "RO49AAAA1B31007593840000"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a16!c"), 4)
             {
@@ -1959,7 +1958,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "RO49 AAAA 1B31 0075 9384 0000",
-            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Serbia
@@ -1969,8 +1969,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Serbia",
             Iban = new IbanStructure(new Patterns.RS())
             {
-                Example = "RS35260005601001611379",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "RS35260005601001611379"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n13!n2!n"), 4)
             {
@@ -1985,7 +1984,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "260-0056010016113-79",
-            LastUpdatedDate = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Saudi Arabia
@@ -1995,8 +1995,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Saudi Arabia",
             Iban = new IbanStructure(new Patterns.SA())
             {
-                Example = "SA0380000000608010167519",
-                EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SA0380000000608010167519"
             },
             Bban = new BbanStructure(new SwiftPattern("2!n18!c"), 4)
             {
@@ -2011,7 +2010,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "608010167519",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Seychelles
@@ -2021,8 +2021,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Seychelles",
             Iban = new IbanStructure(new Patterns.SC())
             {
-                Example = "SC18SSCB11010000000000001497USD",
-                EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SC18SSCB11010000000000001497USD"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a2!n2!n16!n3!a"), 4)
             {
@@ -2041,7 +2040,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000000000001497",
-            LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2019, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Sudan
@@ -2051,8 +2051,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Sudan",
             Iban = new IbanStructure(new Patterns.SD())
             {
-                Example = "SD2129010501234001",
-                EffectiveDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SD2129010501234001"
             },
             Bban = new BbanStructure(new SwiftPattern("2!n12!n"), 4)
             {
@@ -2067,7 +2066,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "010501234001",
-            LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2021, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2021, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Sweden
@@ -2077,8 +2077,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Sweden",
             Iban = new IbanStructure(new Patterns.SE())
             {
-                Example = "SE4550000000058398257466",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SE4550000000058398257466"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n16!n1!n"), 4)
             {
@@ -2093,7 +2092,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "1234 12 3456 1",
-            LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2009, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Slovenia
@@ -2103,8 +2103,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Slovenia",
             Iban = new IbanStructure(new Patterns.SI())
             {
-                Example = "SI56263300012039086",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SI56263300012039086"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n8!n2!n"), 4)
             {
@@ -2119,7 +2118,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "2633 0001 2039 086",
-            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Slovakia
@@ -2129,8 +2129,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Slovakia",
             Iban = new IbanStructure(new Patterns.SK())
             {
-                Example = "SK3112000000198742637541",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SK3112000000198742637541"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n6!n10!n"), 4)
             {
@@ -2145,7 +2144,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "19-8742637541/1200",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // San Marino
@@ -2155,8 +2155,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "San Marino",
             Iban = new IbanStructure(new Patterns.SM())
             {
-                Example = "SM86U0322509800000000270100",
-                EffectiveDate = new DateTimeOffset(2007, 8, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SM86U0322509800000000270100"
             },
             Bban = new BbanStructure(new SwiftPattern("1!a5!n5!n12!c"), 4)
             {
@@ -2175,7 +2174,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 8, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Somalia
@@ -2185,8 +2185,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Somalia",
             Iban = new IbanStructure(new Patterns.SO())
             {
-                Example = "SO211000001001000100141",
-                EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SO211000001001000100141"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n3!n12!n"), 4)
             {
@@ -2205,7 +2204,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "001000100141",
-            LastUpdatedDate = new DateTimeOffset(2023, 2, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2023, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Sao Tome and Principe
@@ -2215,8 +2215,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Sao Tome and Principe",
             Iban = new IbanStructure(new Patterns.ST())
             {
-                Example = "ST23000100010051845310146",
-                EffectiveDate = new DateTimeOffset(2020, 3, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "ST23000100010051845310146"
             },
             Bban = new BbanStructure(new SwiftPattern("8!n11!n2!n"), 4)
             {
@@ -2235,7 +2234,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0051845310146",
-            LastUpdatedDate = new DateTimeOffset(2020, 5, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2020, 5, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2020, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // El Salvador
@@ -2245,8 +2245,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "El Salvador",
             Iban = new IbanStructure(new Patterns.SV())
             {
-                Example = "SV62CENR00000000000000700025",
-                EffectiveDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "SV62CENR00000000000000700025"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a20!n"), 4)
             {
@@ -2261,7 +2260,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00000000000000700025",
-            LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Timor-Leste
@@ -2271,8 +2271,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Timor-Leste",
             Iban = new IbanStructure(new Patterns.TL())
             {
-                Example = "TL380080012345678910157",
-                EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "TL380080012345678910157"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n14!n2!n"), 4)
             {
@@ -2287,7 +2286,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "008 00123456789101 57",
-            LastUpdatedDate = new DateTimeOffset(2014, 11, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2014, 11, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Tunisia
@@ -2297,8 +2297,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Tunisia",
             Iban = new IbanStructure(new Patterns.TN())
             {
-                Example = "TN5910006035183598478831",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "TN5910006035183598478831"
             },
             Bban = new BbanStructure(new SwiftPattern("2!n3!n13!n2!n"), 4)
             {
@@ -2317,7 +2316,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "10 006 0351835984788 31",
-            LastUpdatedDate = new DateTimeOffset(2016, 5, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 5, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Turkey
@@ -2327,8 +2327,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Turkey",
             Iban = new IbanStructure(new Patterns.TR())
             {
-                Example = "TR330006100519786457841326",
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "TR330006100519786457841326"
             },
             Bban = new BbanStructure(new SwiftPattern("5!n1!n16!c"), 4)
             {
@@ -2343,7 +2342,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Ukraine
@@ -2353,8 +2353,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Ukraine",
             Iban = new IbanStructure(new Patterns.UA())
             {
-                Example = "UA213223130000026007233566001",
-                EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "UA213223130000026007233566001"
             },
             Bban = new BbanStructure(new SwiftPattern("6!n19!c"), 4)
             {
@@ -2369,7 +2368,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "26007233566001",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Vatican City State
@@ -2379,8 +2379,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Vatican City State",
             Iban = new IbanStructure(new Patterns.VA())
             {
-                Example = "VA59001123000012345678",
-                EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "VA59001123000012345678"
             },
             Bban = new BbanStructure(new SwiftPattern("3!n15!n"), 4)
             {
@@ -2395,7 +2394,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "123000012345678",
-            LastUpdatedDate = new DateTimeOffset(2018, 12, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2018, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Virgin Islands
@@ -2405,8 +2405,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Virgin Islands",
             Iban = new IbanStructure(new Patterns.VG())
             {
-                Example = "VG96VPVG0000012345678901",
-                EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "VG96VPVG0000012345678901"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a16!n"), 4)
             {
@@ -2421,7 +2420,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00000 12 345 678 901",
-            LastUpdatedDate = new DateTimeOffset(2014, 6, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2014, 6, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Kosovo
@@ -2431,8 +2431,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Kosovo",
             Iban = new IbanStructure(new Patterns.XK())
             {
-                Example = "XK051212012345678906",
-                EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "XK051212012345678906"
             },
             Bban = new BbanStructure(new SwiftPattern("4!n10!n2!n"), 4)
             {
@@ -2451,7 +2450,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1212 0123456789 06",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Yemen
@@ -2461,8 +2461,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EnglishName = "Yemen",
             Iban = new IbanStructure(new Patterns.YE())
             {
-                Example = "YE15CBYE0001018861234567891234",
-                EffectiveDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero)
+                Example = "YE15CBYE0001018861234567891234"
             },
             Bban = new BbanStructure(new SwiftPattern("4!a4!n18!c"), 4)
             {
@@ -2481,7 +2480,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "018861234567891234",
-            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero)
+            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // ReSharper restore StringLiteralTypo
