@@ -1,21 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;netstandard2.0;net472;net462</TargetFrameworks>
+    <TargetFrameworks>net8.0;net7.0;net6.0;net48;net472;net462</TargetFrameworks>
     
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VerifyVersion>29.2.0</VerifyVersion>
-    <VerifyVersion Condition="'$(TargetFramework)'=='net5.0' Or '$(TargetFramework)'=='netstandard2.0' Or '$(TargetFramework)'=='net462'">20.8.2</VerifyVersion>
     <VerifyPublicApi Condition="'$(VerifyPublicApi)'==''">true</VerifyPublicApi>
     <DefineConstants Condition="'$(VerifyPublicApi)'=='true'">$(DefineConstants);VERIFY_PUBLIC_API</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(VerifyPublicApi)'=='true'">
     <PackageReference Include="PublicApiGenerator" Version="11.4.5" />
-    <PackageReference Include="Verify.Xunit" Version="$(VerifyVersion)" />
+    <PackageReference Include="Verify.Xunit" Version="30.18.0" />
   </ItemGroup>
 
   <ItemGroup>
