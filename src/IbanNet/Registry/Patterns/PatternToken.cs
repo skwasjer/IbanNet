@@ -6,7 +6,7 @@ namespace IbanNet.Registry.Patterns;
 /// <summary>
 /// Defines a token that spans one or more characters of the same <see cref="AsciiCategory" />.
 /// </summary>
-public sealed class PatternToken
+public sealed record PatternToken
 {
     /// <summary>
     /// Initializes a new instance of the pattern token that matches a specific string explicitly.

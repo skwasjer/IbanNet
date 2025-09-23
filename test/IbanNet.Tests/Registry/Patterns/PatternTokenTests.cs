@@ -100,6 +100,24 @@ public static class PatternTokenTests
             pattern.IsFixedLength.Should().Be(isFixedLength);
         }
 
+        [Theory]
+        [MemberData(nameof(GetCtorAsciiTestCases))]
+        public void When_creating_instance_twice_it_should_equal_each_other
+        (
+            AsciiCategory category,
+            int minLength,
+            int maxLength,
+            bool isFixedLength
+        )
+        {
+            // Act
+            var pattern1 = new PatternToken(category, minLength, maxLength);
+            var pattern2 = new PatternToken(category, minLength, maxLength);
+
+            // Assert
+            pattern1.Equals(pattern2).Should().BeTrue();
+        }
+
         public static IEnumerable<object[]> GetCtorAsciiTestCases()
         {
             yield return [AsciiCategory.Space, 1, 1, true];
@@ -108,6 +126,17 @@ public static class PatternTokenTests
             yield return [AsciiCategory.UppercaseLetter, 3, 4, false];
             yield return [AsciiCategory.Letter, 6, 6, true];
             yield return [AsciiCategory.AlphaNumeric, 3, 3, true];
+        }
+
+        [Fact]
+        public void When_comparing_two_different_instances_for_equality_it_should_not_equal()
+        {
+            // Act
+            var pattern1 = new PatternToken(AsciiCategory.Digit, 1);
+            var pattern2 = new PatternToken(AsciiCategory.Digit, 2);
+
+            // Assert
+            pattern1.Equals(pattern2).Should().BeFalse();
         }
 
         [Theory]
@@ -189,11 +218,39 @@ public static class PatternTokenTests
 #endif
         }
 
+        [Theory]
+        [MemberData(nameof(GetCtorValueTestCases))]
+        public void When_creating_instance_twice_it_should_equal_each_other
+        (
+            string value,
+            int _,
+            int __
+        )
+        {
+            // Act
+            var pattern1 = new PatternToken(value);
+            var pattern2 = new PatternToken(value);
+
+            // Assert
+            pattern1.Equals(pattern2).Should().BeTrue();
+        }
+
         public static IEnumerable<object[]> GetCtorValueTestCases()
         {
             yield return ["A", 1, 1];
             yield return ["AB", 2, 2];
             yield return ["ABCDEF", 6, 6];
+        }
+
+        [Fact]
+        public void When_comparing_two_different_instances_for_equality_it_should_not_equal()
+        {
+            // Act
+            var pattern1 = new PatternToken("AB");
+            var pattern2 = new PatternToken("AC");
+
+            // Assert
+            pattern1.Equals(pattern2).Should().BeFalse();
         }
     }
 }

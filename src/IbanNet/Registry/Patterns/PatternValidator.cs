@@ -28,7 +28,7 @@ internal class PatternValidator
         // If no tokens, always fail.
         if (_tokens.Count == 0)
         {
-            errorPos = value.Length;
+            errorPos = 0;
             return false;
         }
 
