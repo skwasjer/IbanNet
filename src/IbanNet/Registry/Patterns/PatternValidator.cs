@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using IbanNet.Extensions;
 
 namespace IbanNet.Registry.Patterns;
 
@@ -21,8 +22,7 @@ internal class PatternValidator
         string value
 #endif
         ,
-        [NotNullWhen(false)]
-        out int? errorPos
+        [NotNullWhen(false)] out int? errorPos
     )
     {
         // If no tokens, always fail.
@@ -74,10 +74,9 @@ internal class PatternValidator
                     return false;
                 }
 
-                Func<char, int, bool> isMatch = expectedToken.IsMatch;
                 for (int occurrence = 0; occurrence < maxLength; occurrence++)
                 {
-                    if (!isMatch(ptr[cursor], occurrence))
+                    if (!Matches(expectedToken, ptr[cursor], occurrence))
                     {
                         return false;
                     }
@@ -116,7 +115,8 @@ internal class PatternValidator
         return value.Length == cursor && segmentIndex == _tokens.Count;
     }
 
-    private static bool ProcessFixedLengthTest(
+    private static bool ProcessFixedLengthTest
+    (
         PatternToken expectedToken,
 #if USE_SPANS
         ReadOnlySpan<char> value,
@@ -135,7 +135,7 @@ internal class PatternValidator
         for (int occurrence = 0; occurrence < expectedToken.MaxLength; occurrence++)
         {
             char ch = value[cursor];
-            if (!expectedToken.IsMatch(ch, occurrence))
+            if (!Matches(expectedToken, ch, occurrence))
             {
                 return false;
             }
@@ -146,7 +146,8 @@ internal class PatternValidator
         return true;
     }
 
-    private static bool ProcessNonFixedLengthTest(
+    private static bool ProcessNonFixedLengthTest
+    (
         PatternToken expectedToken,
 #if USE_SPANS
         ReadOnlySpan<char> value,
@@ -165,7 +166,7 @@ internal class PatternValidator
             }
 
             char ch = value[cursor];
-            if (!expectedToken.IsMatch(ch, occurrence))
+            if (!Matches(expectedToken, ch, occurrence))
             {
                 return false;
             }
@@ -174,5 +175,20 @@ internal class PatternValidator
         }
 
         return cursor >= startPos + expectedToken.MinLength && cursor <= startPos + expectedToken.MaxLength;
+    }
+
+    private static bool Matches(PatternToken token, char ch, int offset)
+    {
+        return token.Category switch
+        {
+            AsciiCategory.None => offset < token.Value!.Length && token.Value[offset] == ch,
+            AsciiCategory.Space => ch == ' ',
+            AsciiCategory.Digit => ch.IsAsciiDigit(),
+            AsciiCategory.AlphaNumeric => ch.IsAlphaNumeric(),
+            AsciiCategory.UppercaseLetter => ch.IsUpperAsciiLetter(),
+            AsciiCategory.LowercaseLetter => ch.IsLowerAsciiLetter(),
+            AsciiCategory.Letter => ch.IsAsciiLetter(),
+            _ => false
+        };
     }
 }
