@@ -304,7 +304,7 @@ namespace IbanNet.Registry.Patterns
     {
         public static string ToRegexPattern(this IbanNet.Registry.Patterns.Pattern pattern) { }
     }
-    public sealed class PatternToken
+    public sealed class PatternToken : System.IEquatable<IbanNet.Registry.Patterns.PatternToken>
     {
         public PatternToken(string value) { }
         public PatternToken(IbanNet.Registry.Patterns.AsciiCategory category, int length) { }
