@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using IbanNet.Internal;
 
 namespace IbanNet.Registry.Patterns;
 
@@ -73,7 +74,7 @@ public static class PatternExtensions
         var compressedTokens = new List<PatternToken>(tokens.Count);
 
 #if NET6_0_OR_GREATER
-        Span<PatternToken> tokenSpan = CollectionsMarshal.AsSpan(tokens as List<PatternToken> ?? tokens.ToList());
+        Span<PatternToken> tokenSpan = ListsMarshal.AsSpan(tokens);
         PatternToken current = tokenSpan[0];
         Span<PatternToken> tokensExceptFirst = tokenSpan[1..];
         foreach (ref readonly PatternToken token in tokensExceptFirst)

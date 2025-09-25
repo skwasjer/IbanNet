@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
+using IbanNet.Internal;
 
 namespace IbanNet.Registry.Patterns;
 
@@ -13,7 +13,7 @@ public abstract class Pattern
     private string? _pattern;
     private readonly ITokenizer<PatternToken>? _tokenizer;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private List<PatternToken>? _tokens;
+    private IReadOnlyList<PatternToken>? _tokens;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private bool? _fixedLength;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -45,7 +45,7 @@ public abstract class Pattern
             throw new ArgumentNullException(nameof(tokens));
         }
 
-        EnsureInitialized(tokens);
+        _tokens = tokens as IReadOnlyList<PatternToken> ?? tokens.ToArray();
     }
 
     /// <summary>
@@ -56,19 +56,18 @@ public abstract class Pattern
     {
         get
         {
-            EnsureInitialized();
-            return new ReadOnlyCollection<PatternToken>(_tokens!);
+            return EnsureTokens();
         }
     }
 
     /// <summary>
-    /// Gets whether or not the pattern is of fixed length.
+    /// Gets whether the pattern is of fixed length.
     /// </summary>
     public virtual bool IsFixedLength
     {
         get
         {
-            EnsureInitialized();
+            EnsureLength();
             return _fixedLength!.Value;
         }
     }
@@ -80,7 +79,7 @@ public abstract class Pattern
     {
         get
         {
-            EnsureInitialized();
+            EnsureLength();
             return _maxLength!.Value;
         }
     }
@@ -108,25 +107,22 @@ public abstract class Pattern
             return false;
         }
 #endif
-        EnsureInitialized();
-        _patternValidator ??= new PatternValidator(_tokens!.Compress(), IsFixedLength);
+        _patternValidator ??= new PatternValidator(Tokens.Compress(), IsFixedLength);
         return _patternValidator.TryValidate(value, out errorPos);
     }
 
-    private void EnsureInitialized(IEnumerable<PatternToken>? tokens = null)
+    private IReadOnlyList<PatternToken> EnsureTokens()
     {
         if (_tokens is not null)
         {
-            return;
+            return _tokens;
         }
 
-        IEnumerable<PatternToken> tokensEnum = tokens ?? _tokenizer!.Tokenize(_pattern!);
-        List<PatternToken> tokensList = tokensEnum as List<PatternToken> ?? tokensEnum.ToList();
-        InitLength(tokensList);
-        _tokens = tokensList;
+        IEnumerable<PatternToken> tokens = _tokenizer!.Tokenize(_pattern!);
+        return _tokens = tokens as IReadOnlyList<PatternToken> ?? tokens.ToArray();
     }
 
-    private void InitLength(List<PatternToken> tokens)
+    private void EnsureLength()
     {
         if (_fixedLength.HasValue)
         {
@@ -135,8 +131,9 @@ public abstract class Pattern
 
         bool fixedLength = true;
         int maxLength = 0;
+        IReadOnlyList<PatternToken> tokens = EnsureTokens();
 #if NET6_0_OR_GREATER
-        foreach (ref readonly PatternToken token in CollectionsMarshal.AsSpan(tokens))
+        foreach (ref readonly PatternToken token in ListsMarshal.AsSpan(tokens))
 #else
         foreach (PatternToken token in tokens)
 #endif
