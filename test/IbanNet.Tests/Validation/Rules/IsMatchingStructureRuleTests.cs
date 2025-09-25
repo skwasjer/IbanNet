@@ -1,4 +1,5 @@
 ﻿using IbanNet.Registry;
+using IbanNet.Registry.Patterns;
 using IbanNet.Registry.Swift;
 using IbanNet.Validation.Results;
 
@@ -28,7 +29,7 @@ public class IsMatchingStructureRuleTests
         const string testValue = "AD1200012030200359100100";
         var country = new IbanCountry("AD")
         {
-            Iban = new PatternDescriptor(new SwiftPattern("AD2!n4!n4!n12!c"))
+            Iban = new PatternDescriptor(new TestPattern("AD2!n4!n4!n12!c", new SwiftPatternTokenizer()))
         };
 
         // Act
@@ -52,7 +53,7 @@ public class IsMatchingStructureRuleTests
     {
         var country = new IbanCountry("NL")
         {
-            Iban = new PatternDescriptor(new SwiftPattern("NL2!n3!a"))
+            Iban = new PatternDescriptor(new TestPattern("NL2!n3!a", new SwiftPatternTokenizer()))
         };
 
         // Act

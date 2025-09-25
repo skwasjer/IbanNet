@@ -13,7 +13,7 @@ public class IbanRegistryTests
             Providers =
             {
                 new SwiftRegistryProvider()
-            }
+    }
         };
     }
 
@@ -34,78 +34,18 @@ public class IbanRegistryTests
         country!.TwoLetterISORegionName.Should().Be(countryCode.ToUpperInvariant());
     }
 
-    public static IEnumerable<object[]> GetExpectedDefinitions()
-    {
-        yield return
-        [
-            new IbanCountry("AD")
-            {
-                DisplayName = "Andorra",
-                NativeName = "Andorra",
-                EnglishName = "Andorra",
-                Iban = new PatternDescriptor(new SwiftPattern("AD2!n4!n4!n12!c"))
-                {
-                    Example = "AD1200012030200359100100"
-                },
-                Bban = new PatternDescriptor(new SwiftPattern("4!n4!n12!c"), 4)
-                {
-                    Example = "00012030200359100100"
-                },
-                Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
-                {
-                    Example = "0001"
-                },
-                Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
-                {
-                    Example = "2030"
-                },
-                Sepa = new SepaInfo { IsMember = true },
-                DomesticAccountNumberExample = "2030200359100100",
-                LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero),
-                EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
-            }
-        ];
-
-        yield return
-        [
-            new IbanCountry("XK")
-            {
-                DisplayName = "Kosovë",
-                NativeName = "Kosovë",
-                EnglishName = "Kosovo",
-                Iban = new PatternDescriptor(new SwiftPattern("XK2!n4!n10!n2!n"))
-                {
-                    Example = "XK051212012345678906"
-                },
-                Bban = new PatternDescriptor(new SwiftPattern("4!n10!n2!n"), 4)
-                {
-                    Example = "1212012345678906"
-                },
-                Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
-                {
-                    Example = "12"
-                },
-                Branch = new PatternDescriptor(new SwiftPattern("2!n"), 6)
-                {
-                    Example = "12"
-                },
-                Sepa = new SepaInfo { IsMember = false },
-                DomesticAccountNumberExample = "1212 0123456789 06",
-                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
-                EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
-            }
-        ];
-    }
-
     [Theory]
-    [MemberData(nameof(GetExpectedDefinitions))]
+    [ClassData(typeof(ExpectedDefinitionsSubset))]
     public void When_definitions_are_loaded_should_contain(IbanCountry expectedIbanCountry)
     {
-        _sut.Should()
+        IbanCountry? actual = _sut.Should()
             .Contain(c => c.TwoLetterISORegionName == expectedIbanCountry.TwoLetterISORegionName)
-            .Which
-            .Should()
-            .BeEquivalentTo(expectedIbanCountry);
+            .Which;
+        actual.Should().BeEquivalentTo(expectedIbanCountry);
+        actual.Iban.Pattern.ToString().Should().Be(expectedIbanCountry.Iban.Pattern.ToString());
+        actual.Bban.Pattern.ToString().Should().Be(expectedIbanCountry.Bban.Pattern.ToString());
+        actual.Bank.Pattern.ToString().Should().Be(expectedIbanCountry.Bank.Pattern.ToString());
+        actual.Branch.Pattern.ToString().Should().Be(expectedIbanCountry.Branch.Pattern.ToString());
     }
 
     [Fact]
@@ -143,7 +83,8 @@ public class IbanRegistryTests
         Action act = () => sut.Providers.Add(Substitute.For<IIbanRegistryProvider>());
 
         // Assert
-        act.Should().Throw<NotSupportedException>()
+        act.Should()
+            .Throw<NotSupportedException>()
             .WithMessage("Collection is read-only.");
         sut.Providers.Should().HaveCount(1);
     }

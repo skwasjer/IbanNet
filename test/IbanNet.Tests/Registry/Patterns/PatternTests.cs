@@ -28,7 +28,7 @@ public class PatternTests
             IEnumerable<PatternToken>? tokens = null;
 
             // Act
-            Func<FakePattern> act = () => new FakePattern(tokens!);
+            Func<TestPattern> act = () => new TestPattern(tokens!);
 
             // Assert
             act.Should()
@@ -40,7 +40,7 @@ public class PatternTests
         public void When_getting_tokens_it_should_return_expected()
         {
             // Act
-            var sut = new FakePattern(_tokens);
+            var sut = new TestPattern(_tokens);
 
             // Assert
             sut.Tokens.Should()
@@ -53,7 +53,7 @@ public class PatternTests
         public void When_getting_string_representation_it_should_return_expected()
         {
             // Act
-            var sut = new FakePattern(_tokens);
+            var sut = new TestPattern(_tokens);
 
             // Assert
             sut.ToString().Should().Be("AlphaNumeric[3],Digit[2]");
@@ -67,7 +67,7 @@ public class PatternTests
         {
             _tokens.AddRange(Enumerable.Repeat(new PatternToken(AsciiCategory.UppercaseLetter, 1, 3), nonFixedTokensToAdd));
 
-            new FakePattern(_tokens).IsFixedLength.Should().Be(shouldBeFixedLength);
+            new TestPattern(_tokens).IsFixedLength.Should().Be(shouldBeFixedLength);
         }
     }
 
@@ -95,7 +95,7 @@ public class PatternTests
             string? pattern = null;
 
             // Act
-            Func<FakePattern> act = () => new FakePattern(pattern!, Substitute.For<ITokenizer<PatternToken>>());
+            Func<TestPattern> act = () => new TestPattern(pattern!, Substitute.For<ITokenizer<PatternToken>>());
 
             // Assert
             act.Should()
@@ -109,7 +109,7 @@ public class PatternTests
             ITokenizer<PatternToken>? tokenizer = null;
 
             // Act
-            Func<FakePattern> act = () => new FakePattern(string.Empty, tokenizer!);
+            Func<TestPattern> act = () => new TestPattern(string.Empty, tokenizer!);
 
             // Assert
             act.Should()
@@ -121,7 +121,7 @@ public class PatternTests
         public void When_getting_tokens_it_should_return_expected()
         {
             // Act
-            var sut = new FakePattern(TestPattern, _tokenizerMock);
+            var sut = new TestPattern(TestPattern, _tokenizerMock);
 
             // Assert
             sut.Tokens.Should()
@@ -134,7 +134,7 @@ public class PatternTests
         public void When_getting_tokens_multiple_times_it_should_only_tokenize_once()
         {
             // Act
-            var sut = new FakePattern(TestPattern, _tokenizerMock);
+            var sut = new TestPattern(TestPattern, _tokenizerMock);
 
             // Assert
             sut.Tokens.Should().BeEquivalentTo(_tokens);
@@ -146,7 +146,7 @@ public class PatternTests
         public void When_getting_string_representation_it_should_return_expected()
         {
             // Act
-            var sut = new FakePattern(TestPattern, _tokenizerMock);
+            var sut = new TestPattern(TestPattern, _tokenizerMock);
 
             // Assert
             sut.ToString().Should().Be(TestPattern);
@@ -160,7 +160,7 @@ public class PatternTests
         {
             _tokens.AddRange(Enumerable.Repeat(new PatternToken(AsciiCategory.UppercaseLetter, 1, 3), nonFixedTokensToAdd));
 
-            new FakePattern(TestPattern, _tokenizerMock).IsFixedLength.Should().Be(shouldBeFixedLength);
+            new TestPattern(TestPattern, _tokenizerMock).IsFixedLength.Should().Be(shouldBeFixedLength);
         }
     }
 

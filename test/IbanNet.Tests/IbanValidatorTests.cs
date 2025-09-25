@@ -1,4 +1,5 @@
 ﻿using IbanNet.Registry;
+using IbanNet.Registry.Patterns;
 using IbanNet.Registry.Swift;
 using IbanNet.Registry.Wikipedia;
 using IbanNet.Validation;
@@ -169,7 +170,7 @@ public class IbanValidatorTests
     {
         private readonly IbanValidator _sut;
 
-        private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new PatternDescriptor(new SwiftPattern("NL2!n4!a10!n")) };
+        private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n", new SwiftPatternTokenizer())) };
         private readonly IbanCountry _ignoredNlCountry = new("NL") { Iban = new PatternDescriptor(new IbanWikipediaPattern("NL", "50a")) };
         private readonly IbanCountry _correctGbCountry = new("GB") { Iban = new PatternDescriptor(new IbanWikipediaPattern("GB", "4a,14n")) };
 

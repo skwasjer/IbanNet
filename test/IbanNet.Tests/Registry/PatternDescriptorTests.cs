@@ -57,7 +57,7 @@ public class PatternDescriptorTests
     [Fact]
     public void When_creating_patternDescriptor_with_pattern_it_should_set_properties()
     {
-        var pattern = new SwiftPattern("2!n");
+        var pattern = new TestPattern([new PatternToken(AsciiCategory.Digit, 2)]);
 
         // Act
         var sut = new PatternDescriptor(pattern);
@@ -73,7 +73,7 @@ public class PatternDescriptorTests
         const int position = -1;
 
         // Act
-        Func<PatternDescriptor> act = () => new PatternDescriptor(new SwiftPattern("2!n"), position);
+        Func<PatternDescriptor> act = () => new PatternDescriptor(new TestPattern([new PatternToken(AsciiCategory.Digit, 2)]), position);
 
         // Assert
         act.Should()
@@ -84,7 +84,7 @@ public class PatternDescriptorTests
     [Fact]
     public void When_creating_patternDescriptor_with_position_it_should_set_property()
     {
-        var pattern = new SwiftPattern("2!n");
+        var pattern = new TestPattern([new PatternToken(AsciiCategory.Digit, 2)]);
         const int position = 12;
 
         // Act

@@ -134,7 +134,7 @@ public class IbanGeneratorTests
         [Fact]
         public void Given_a_pattern_of_multiple_tokens_when_generating_it_should_return_expected()
         {
-            Pattern pattern = new FakePattern([
+            Pattern pattern = new TestPattern([
                 new PatternToken(AsciiCategory.Digit, 4),
                 new PatternToken(AsciiCategory.Space, 1),
                 new PatternToken(AsciiCategory.LowercaseLetter, 4),

@@ -24,7 +24,7 @@ public abstract class PatternExtensionsTests
         public void When_getting_regexPattern_it_should_return_expected(IEnumerable<PatternToken> pattern, string expectedRegex)
         {
             // Act
-            var sut = new FakePattern(pattern);
+            var sut = new TestPattern(pattern);
             string actual = sut.ToRegexPattern();
 
             // Assert
