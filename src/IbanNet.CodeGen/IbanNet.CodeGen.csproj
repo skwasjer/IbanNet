@@ -26,9 +26,7 @@
     <Compile Include="..\IbanNet\Extensions\ChunkExtensions.cs" Link="Internal\Extensions\ChunkExtensions.cs" />
     <Compile Include="..\IbanNet\Internal\**\*.cs" Link="Internal" />
     <Compile Include="..\IbanNet\Registry\Patterns\*.cs" Link="Internal\Registry\Patterns" />
-    <Compile Include="..\IbanNet\Registry\Swift\SwiftPattern.cs" Link="Internal\Registry\Swift\SwiftPattern.cs" />
     <Compile Include="..\IbanNet\Registry\Swift\SwiftPatternTokenizer.cs" Link="Internal\Registry\Swift\SwiftPatternTokenizer.cs" />
-    <Compile Include="..\IbanNet.CodeGen\Swift\**\*.cs" Link="Internal\Registry\Swift" />
   </ItemGroup>
 
   <ItemGroup>
