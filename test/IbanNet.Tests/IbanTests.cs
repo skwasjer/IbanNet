@@ -1,4 +1,5 @@
 ﻿using IbanNet.Registry;
+using IbanNet.Registry.Patterns;
 using IbanNet.Registry.Swift;
 using IbanNet.Validation.Results;
 using TestHelpers;
@@ -290,11 +291,11 @@ public class IbanTests
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new PatternDescriptor(new SwiftPattern("NL2!n4!a10!n"))
+                Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n", new SwiftPatternTokenizer()))
                 {
                     Example = "NL91ABNA0417164300"
                 },
-                Bban = new PatternDescriptor(new SwiftPattern("4!a10!n"), 4)
+                Bban = new PatternDescriptor(new TestPattern("4!a10!n", new SwiftPatternTokenizer()), 4)
                 {
                     Example = "ABNA0417164300"
                 }
@@ -314,7 +315,7 @@ public class IbanTests
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new PatternDescriptor(new SwiftPattern("NL2!n4!a10!n"))
+                Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n", new SwiftPatternTokenizer()))
                 {
                     Example = "NL91ABNA0417164300"
                 }

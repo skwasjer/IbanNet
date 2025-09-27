@@ -31,13 +31,13 @@ public class SwiftPatternTests
 
     [Theory]
     [MemberData(nameof(GetTestCases))]
-    public void Given_pattern_tokens_when_calling_to_string_should_return_same_pattern(string expectedPattern, IEnumerable<PatternToken> tokens)
+    public void Given_pattern_tokens_when_formatting_it_should_return_expected_pattern(string expectedPattern, IEnumerable<PatternToken> tokens)
     {
         // Act
-        var actual = new SwiftPattern(tokens);
+        string actual = SwiftPattern.Format(tokens);
 
         // Assert
-        actual.ToString().Should().Be(expectedPattern);
+        actual.Should().Be(expectedPattern);
     }
 
     [Theory]

@@ -50,7 +50,7 @@ public class SwiftPatternTokenizerTests
     [InlineData("2n3a", "12ABCD", false, 5)]
     public void Given_valid_pattern_without_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult, int? expectedErrorPos)
     {
-        var fakePattern = new FakePattern(_sut.Tokenize(pattern));
+        var fakePattern = new TestPattern(_sut.Tokenize(pattern));
 
         // Act
         var validator = new PatternValidator(fakePattern.Tokens, fakePattern.IsFixedLength);

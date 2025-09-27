@@ -6,7 +6,7 @@ namespace IbanNet.Registry.Swift;
 internal class SwiftPattern : Pattern
 {
     private static readonly SwiftPatternTokenizer Tokenizer = new();
-    private string? _pattern;
+    private readonly string _pattern;
     private readonly int? _maxLength;
     private readonly bool? _isFixedLength;
 
@@ -14,10 +14,6 @@ internal class SwiftPattern : Pattern
     public SwiftPattern(string pattern) : base(pattern, Tokenizer)
     {
         _pattern = pattern;
-    }
-
-    internal SwiftPattern(IEnumerable<PatternToken> tokens) : base(tokens)
-    {
     }
 
     /// <inheritdoc />
@@ -49,16 +45,23 @@ internal class SwiftPattern : Pattern
     /// <inheritdoc />
     public override string ToString()
     {
-        return _pattern ??= string.Join("", Tokens.Select(t =>
-        {
-            if (t.Value is not null)
-            {
-                return t.Value;
-            }
+        return _pattern;
+    }
 
-            string fixedLen = t.IsFixedLength ? "!" : string.Empty;
-            return $"{t.MaxLength}{fixedLen}{GetToken(t.Category)}";
-        }));
+    internal static string Format(IEnumerable<PatternToken> tokens)
+    {
+        return string.Join("", tokens.Select(FormatToken));
+    }
+
+    private static string FormatToken(PatternToken t)
+    {
+        if (t.Value is not null)
+        {
+            return t.Value;
+        }
+
+        string fixedLen = t.IsFixedLength ? "!" : string.Empty;
+        return $"{t.MaxLength}{fixedLen}{GetToken(t.Category)}";
     }
 
     private static char GetToken(AsciiCategory category)

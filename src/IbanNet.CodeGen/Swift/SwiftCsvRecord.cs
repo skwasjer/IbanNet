@@ -80,7 +80,7 @@ public record IbanCsvData
     [Name("IBAN structure")]
     public string Pattern { get; set; } = default!;
 
-    public Pattern SwiftPattern => new SwiftPattern(Pattern);
+    public Pattern SwiftPattern => new PatternWrapper(Pattern, new SwiftPatternTokenizer());
 
     [Name("IBAN length")]
     public int Length { get; set; }
