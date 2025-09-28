@@ -1,7 +1,5 @@
 ﻿using IbanNet.Registry;
 using IbanNet.Registry.Patterns;
-using IbanNet.Registry.Swift;
-using IbanNet.Registry.Wikipedia;
 using IbanNet.Validation;
 using IbanNet.Validation.Results;
 using IbanNet.Validation.Rules;
@@ -102,10 +100,7 @@ public class IbanValidatorTests
                 .Validate(Arg.Any<ValidationRuleContext>())
                 .Returns(ValidationRuleResult.Success);
 
-            _sut = new IbanValidator(new IbanValidatorOptions
-            {
-                Rules = { _customValidationRuleMock }
-            });
+            _sut = new IbanValidator(new IbanValidatorOptions { Rules = { _customValidationRuleMock } });
         }
 
         [Fact]
@@ -170,9 +165,35 @@ public class IbanValidatorTests
     {
         private readonly IbanValidator _sut;
 
-        private readonly IbanCountry _correctNlCountry = new("NL") { Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n", new SwiftPatternTokenizer())) };
-        private readonly IbanCountry _ignoredNlCountry = new("NL") { Iban = new PatternDescriptor(new IbanWikipediaPattern("NL", "50a")) };
-        private readonly IbanCountry _correctGbCountry = new("GB") { Iban = new PatternDescriptor(new IbanWikipediaPattern("GB", "4a,14n")) };
+        private readonly IbanCountry _correctNlCountry = new("NL")
+        {
+            Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n",
+            [
+                new PatternToken("NL"),
+                new PatternToken(AsciiCategory.Digit, 2),
+                new PatternToken(AsciiCategory.UppercaseLetter, 4),
+                new PatternToken(AsciiCategory.Digit, 10)
+            ]))
+        };
+        private readonly IbanCountry _ignoredNlCountry = new("NL")
+        {
+            Iban = new PatternDescriptor(new TestPattern("50a",
+            [
+                new PatternToken("NL"),
+                new PatternToken(AsciiCategory.Digit, 2),
+                new PatternToken(AsciiCategory.UppercaseLetter, 50)
+            ]))
+        };
+        private readonly IbanCountry _correctGbCountry = new("GB")
+        {
+            Iban = new PatternDescriptor(new TestPattern("4a,14n",
+            [
+                new PatternToken("GB"),
+                new PatternToken(AsciiCategory.Digit, 2),
+                new PatternToken(AsciiCategory.UppercaseLetter, 4),
+                new PatternToken(AsciiCategory.Digit, 14)
+            ]))
+        };
 
         private readonly List<IbanCountry> _countries;
 
