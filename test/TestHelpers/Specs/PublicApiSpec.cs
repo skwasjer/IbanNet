@@ -1,7 +1,6 @@
 ﻿#if VERIFY_PUBLIC_API
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.Versioning;
 using PublicApiGenerator;
 
 namespace TestHelpers.Specs;
@@ -37,15 +36,7 @@ public abstract class PublicApiSpec
         }
 
         Assembly sut = _assemblyMarkerType.Assembly;
-        var settings = new VerifySettings();
-
-        string sutTargetFramework = GetTargetFramework(sut);
-        string testTargetFramework = GetTargetFramework(GetType().Assembly);
-        settings.UseFileName(
-            sutTargetFramework == testTargetFramework
-                ? sutTargetFramework
-                : $"{sutTargetFramework}_via_{testTargetFramework}"
-        );
+        VerifySettings settings = VerifyHelpers.GetDefaultSettings(_assemblyMarkerType);
         settings.UseDirectory("PublicApi");
 
         // Act
@@ -56,12 +47,6 @@ public abstract class PublicApiSpec
 #pragma warning disable S3236
         return Verify(publicApi, settings, _sourceFile!);
 #pragma warning restore S3236
-    }
-
-    private static string GetTargetFramework(Assembly asm)
-    {
-        return asm.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkDisplayName?.Replace(' ', '_')
-         ?? throw new InvalidOperationException("Framework display name is required.");
     }
 }
 #else

@@ -1,0 +1,7232 @@
+﻿[
+  {
+    TwoLetterISORegionName: AD,
+    DisplayName: Andorra,
+    NativeName: Andorra,
+    EnglishName: Andorra,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 8n,12c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 8n,12c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: AD,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: AE,
+    DisplayName: الإمارات العربية المتحدة,
+    NativeName: الإمارات العربية المتحدة,
+    EnglishName: United Arab Emirates,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,16n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,16n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: AE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: AL,
+    DisplayName: Shqipëri,
+    NativeName: Shqipëri,
+    EnglishName: Albania,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 8n,16c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 8n,16c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: AL,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: AO,
+    DisplayName: Angóla,
+    NativeName: Angóla,
+    EnglishName: Angola,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: AO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: AT,
+    DisplayName: Österreich,
+    NativeName: Österreich,
+    EnglishName: Austria,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: AT,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: AZ,
+    DisplayName: Азәрбајҹан,
+    NativeName: Азәрбајҹан,
+    EnglishName: Azerbaijan,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: AZ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BA,
+    DisplayName: Bosna i Hercegovina,
+    NativeName: Bosna i Hercegovina,
+    EnglishName: Bosnia and Herzegovina,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: BA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BE,
+    DisplayName: België,
+    NativeName: België,
+    EnglishName: Belgium,
+    Bban: {
+      Position: 4,
+      Length: 12,
+      Example: ,
+      Pattern: {
+        ToString(): 12n,
+        IsFixedLength: true,
+        MaxLength: 12,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 12n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: None,
+            Value: BE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BF,
+    DisplayName: Burkibaa Faaso,
+    NativeName: Burkibaa Faaso,
+    EnglishName: Burkina Faso,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: BF,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BG,
+    DisplayName: България,
+    NativeName: България,
+    EnglishName: Bulgaria,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,6n,8c,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 6
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 8
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,6n,8c,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: BG,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 6
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 8
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BH,
+    DisplayName: البحرين,
+    NativeName: البحرين,
+    EnglishName: Bahrain,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,14c,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,14c,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: BH,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BI,
+    DisplayName: Burundi,
+    NativeName: Burundi,
+    EnglishName: Burundi,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,5n,11n,2n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,5n,11n,2n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: BI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BJ,
+    DisplayName: Bénin,
+    NativeName: Bénin,
+    EnglishName: Benin,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: BJ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BR,
+    DisplayName: Brasil,
+    NativeName: Brasil,
+    EnglishName: Brazil,
+    Bban: {
+      Position: 4,
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,1a,1c,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 1
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 29,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,1a,1c,
+        IsFixedLength: true,
+        MaxLength: 29,
+        Tokens: [
+          {
+            Category: None,
+            Value: BR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 1
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: BY,
+    DisplayName: Беларусь,
+    NativeName: Беларусь,
+    EnglishName: Belarus,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4c,4n,16c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4c,4n,16c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: BY,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CF,
+    DisplayName: République centrafricaine,
+    NativeName: République centrafricaine,
+    EnglishName: Central African Republic,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: CF,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CG,
+    DisplayName: Congo,
+    NativeName: Congo,
+    EnglishName: Congo, Republic of the,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: CG,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CH,
+    DisplayName: Svizzera,
+    NativeName: Svizzera,
+    EnglishName: Switzerland,
+    Bban: {
+      Position: 4,
+      Length: 17,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,12c,
+        IsFixedLength: true,
+        MaxLength: 17,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,12c,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: None,
+            Value: CH,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CI,
+    DisplayName: Côte d’Ivoire,
+    NativeName: Côte d’Ivoire,
+    EnglishName: Côte d'Ivoire,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: CI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CM,
+    DisplayName: Kàmàlûŋ,
+    NativeName: Kàmàlûŋ,
+    EnglishName: Cameroon,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: CM,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CR,
+    DisplayName: Costa Rica,
+    NativeName: Costa Rica,
+    EnglishName: Costa Rica,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: CR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CV,
+    DisplayName: Kabu Verdi,
+    NativeName: Kabu Verdi,
+    EnglishName: Cabo Verde,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: CV,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CY,
+    DisplayName: Κύπρος,
+    NativeName: Κύπρος,
+    EnglishName: Cyprus,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 8n,16c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 8n,16c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: CY,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: CZ,
+    DisplayName: Česko,
+    NativeName: Česko,
+    EnglishName: Czech Republic,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: CZ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: DE,
+    DisplayName: Deutschland,
+    NativeName: Deutschland,
+    EnglishName: Germany,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: DE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: DJ,
+    DisplayName: Yabuuti,
+    NativeName: Yabuuti,
+    EnglishName: Djibouti,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,5n,11n,2n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,5n,11n,2n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: DJ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: DK,
+    DisplayName: Danmark,
+    NativeName: Danmark,
+    EnglishName: Denmark,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: DK,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: DO,
+    DisplayName: República Dominicana,
+    NativeName: República Dominicana,
+    EnglishName: Dominican Republic,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4c,20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4c,20n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: DO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: DZ,
+    DisplayName: الجزائر,
+    NativeName: الجزائر,
+    EnglishName: Algeria,
+    Bban: {
+      Position: 4,
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 22n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 22n,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: None,
+            Value: DZ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: EE,
+    DisplayName: Eesti,
+    NativeName: Eesti,
+    EnglishName: Estonia,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: EE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: EG,
+    DisplayName: مصر,
+    NativeName: مصر,
+    EnglishName: Egypt,
+    Bban: {
+      Position: 4,
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 25n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 25
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 29,
+      Example: ,
+      Pattern: {
+        ToString(): 25n,
+        IsFixedLength: true,
+        MaxLength: 29,
+        Tokens: [
+          {
+            Category: None,
+            Value: EG,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 25
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: ES,
+    DisplayName: España,
+    NativeName: España,
+    EnglishName: Spain,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: ES,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: FI,
+    DisplayName: Suomi,
+    NativeName: Suomi,
+    EnglishName: Finland,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: FI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: FK,
+    DisplayName: Falkland Islands,
+    NativeName: Falkland Islands,
+    EnglishName: Falkland Islands,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,12n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,12n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: FK,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: FO,
+    DisplayName: Føroyar,
+    NativeName: Føroyar,
+    EnglishName: Faroe Islands,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: FO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: FR,
+    DisplayName: France,
+    NativeName: France,
+    EnglishName: France,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 10n,11c,2n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 10n,11c,2n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: FR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GA,
+    DisplayName: Gabon,
+    NativeName: Gabon,
+    EnglishName: Gabon,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: GA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GB,
+    DisplayName: United Kingdom,
+    NativeName: United Kingdom,
+    EnglishName: United Kingdom,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,14n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,14n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: GB,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GE,
+    DisplayName: საქართველო,
+    NativeName: საქართველო,
+    EnglishName: Georgia,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,16n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,16n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: GE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GI,
+    DisplayName: Gibraltar,
+    NativeName: Gibraltar,
+    EnglishName: Gibraltar,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,15c,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,15c,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: GI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GL,
+    DisplayName: Kalaallit Nunaat,
+    NativeName: Kalaallit Nunaat,
+    EnglishName: Greenland,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: GL,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GQ,
+    DisplayName: Guinea Ecuatorial,
+    NativeName: Guinea Ecuatorial,
+    EnglishName: Equatorial Guinea,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: GQ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GR,
+    DisplayName: Ελλάδα,
+    NativeName: Ελλάδα,
+    EnglishName: Greece,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 7n,16c,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 7
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 7n,16c,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: GR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 7
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GT,
+    DisplayName: Guatemala,
+    NativeName: Guatemala,
+    EnglishName: Guatemala,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4c,20c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4c,20c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: GT,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: GW,
+    DisplayName: Gine-Bisaawo,
+    NativeName: Gine-Bisaawo,
+    EnglishName: Guinea-Bissau,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,19n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,19n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: GW,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: HN,
+    DisplayName: Honduras,
+    NativeName: Honduras,
+    EnglishName: Honduras,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: HN,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: HR,
+    DisplayName: Hrvatska,
+    NativeName: Hrvatska,
+    EnglishName: Croatia,
+    Bban: {
+      Position: 4,
+      Length: 17,
+      Example: ,
+      Pattern: {
+        ToString(): 17n,
+        IsFixedLength: true,
+        MaxLength: 17,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 17
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 17n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: None,
+            Value: HR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 17
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: HU,
+    DisplayName: Magyarország,
+    NativeName: Magyarország,
+    EnglishName: Hungary,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 24n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 24n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: HU,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: IE,
+    DisplayName: Ireland,
+    NativeName: Ireland,
+    EnglishName: Ireland,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,6n,8n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 6
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,6n,8n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: IE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 6
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 8
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: IL,
+    DisplayName: ישראל,
+    NativeName: ישראל,
+    EnglishName: Israel,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 19n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 19n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: IL,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: IQ,
+    DisplayName: العراق,
+    NativeName: العراق,
+    EnglishName: Iraq,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,15n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,15n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: IQ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: IR,
+    DisplayName: ایران,
+    NativeName: ایران,
+    EnglishName: Iran,
+    Bban: {
+      Position: 4,
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 22n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 22n,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: None,
+            Value: IR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: IS,
+    DisplayName: Ísland,
+    NativeName: Ísland,
+    EnglishName: Iceland,
+    Bban: {
+      Position: 4,
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 22n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 22n,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: None,
+            Value: IS,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: IT,
+    DisplayName: Italia,
+    NativeName: Italia,
+    EnglishName: Italy,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 1a,10n,12c,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 1a,10n,12c,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: IT,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: JO,
+    DisplayName: الأردن,
+    NativeName: الأردن,
+    EnglishName: Jordan,
+    Bban: {
+      Position: 4,
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,4n,18c,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 30,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,4n,18c,
+        IsFixedLength: true,
+        MaxLength: 30,
+        Tokens: [
+          {
+            Category: None,
+            Value: JO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: KM,
+    DisplayName: جزر القمر,
+    NativeName: جزر القمر,
+    EnglishName: Comoros,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: KM,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: KW,
+    DisplayName: الكويت,
+    NativeName: الكويت,
+    EnglishName: Kuwait,
+    Bban: {
+      Position: 4,
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,22c,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 30,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,22c,
+        IsFixedLength: true,
+        MaxLength: 30,
+        Tokens: [
+          {
+            Category: None,
+            Value: KW,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: KZ,
+    DisplayName: Қазақстан,
+    NativeName: Қазақстан,
+    EnglishName: Kazakhstan,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,13c,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 13
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,13c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: KZ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 13
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LB,
+    DisplayName: لبنان,
+    NativeName: لبنان,
+    EnglishName: Lebanon,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,20c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,20c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: LB,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LC,
+    DisplayName: St. Lucia,
+    NativeName: St. Lucia,
+    EnglishName: Saint Lucia,
+    Bban: {
+      Position: 4,
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,24c,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 32,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,24c,
+        IsFixedLength: true,
+        MaxLength: 32,
+        Tokens: [
+          {
+            Category: None,
+            Value: LC,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LI,
+    DisplayName: Liechtenstein,
+    NativeName: Liechtenstein,
+    EnglishName: Liechtenstein,
+    Bban: {
+      Position: 4,
+      Length: 17,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,12c,
+        IsFixedLength: true,
+        MaxLength: 17,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,12c,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: None,
+            Value: LI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LT,
+    DisplayName: Lietuva,
+    NativeName: Lietuva,
+    EnglishName: Lithuania,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 16n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: LT,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LU,
+    DisplayName: Lëtzebuerg,
+    NativeName: Lëtzebuerg,
+    EnglishName: Luxembourg,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,13c,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 13
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,13c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: LU,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 13
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LV,
+    DisplayName: Latvija,
+    NativeName: Latvija,
+    EnglishName: Latvia,
+    Bban: {
+      Position: 4,
+      Length: 17,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,13c,
+        IsFixedLength: true,
+        MaxLength: 17,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 13
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,13c,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: None,
+            Value: LV,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 13
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: LY,
+    DisplayName: ليبيا,
+    NativeName: ليبيا,
+    EnglishName: Libya,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: LY,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MA,
+    DisplayName: المملكة المغربية,
+    NativeName: المملكة المغربية,
+    EnglishName: Morocco,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 24n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 24n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: MA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MC,
+    DisplayName: Monaco,
+    NativeName: Monaco,
+    EnglishName: Monaco,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 10n,11c,2n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 10n,11c,2n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: MC,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 11
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MD,
+    DisplayName: Republica Moldova,
+    NativeName: Republica Moldova,
+    EnglishName: Moldova,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,18c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,18c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: MD,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: ME,
+    DisplayName: Crna Gora,
+    NativeName: Crna Gora,
+    EnglishName: Montenegro,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: ME,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MG,
+    DisplayName: Madagascar,
+    NativeName: Madagascar,
+    EnglishName: Madagascar,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: MG,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MK,
+    DisplayName: Северна Македонија,
+    NativeName: Северна Македонија,
+    EnglishName: North Macedonia,
+    Bban: {
+      Position: 4,
+      Length: 15,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,10c,2n,
+        IsFixedLength: true,
+        MaxLength: 15,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,10c,2n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: None,
+            Value: MK,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: ML,
+    DisplayName: Mali,
+    NativeName: Mali,
+    EnglishName: Mali,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2c,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: ML,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MN,
+    DisplayName: Монгол,
+    NativeName: Монгол,
+    EnglishName: Mongolia,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,12n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,12n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: MN,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MR,
+    DisplayName: موريتانيا,
+    NativeName: موريتانيا,
+    EnglishName: Mauritania,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: MR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MT,
+    DisplayName: Malta,
+    NativeName: Malta,
+    EnglishName: Malta,
+    Bban: {
+      Position: 4,
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,5n,18c,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 31,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,5n,18c,
+        IsFixedLength: true,
+        MaxLength: 31,
+        Tokens: [
+          {
+            Category: None,
+            Value: MT,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MU,
+    DisplayName: Mauritius,
+    NativeName: Mauritius,
+    EnglishName: Mauritius,
+    Bban: {
+      Position: 4,
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,19n,3a,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 3
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 30,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,19n,3a,
+        IsFixedLength: true,
+        MaxLength: 30,
+        Tokens: [
+          {
+            Category: None,
+            Value: MU,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 3
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: MZ,
+    DisplayName: Umozambiki,
+    NativeName: Umozambiki,
+    EnglishName: Mozambique,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: MZ,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: NE,
+    DisplayName: Nižer,
+    NativeName: Nižer,
+    EnglishName: Niger,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: NE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: NI,
+    DisplayName: Nicaragua,
+    NativeName: Nicaragua,
+    EnglishName: Nicaragua,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: NI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: NL,
+    DisplayName: Nederland,
+    NativeName: Nederland,
+    EnglishName: Netherlands,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,10n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,10n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: NL,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: NO,
+    DisplayName: Noreg,
+    NativeName: Noreg,
+    EnglishName: Norway,
+    Bban: {
+      Position: 4,
+      Length: 11,
+      Example: ,
+      Pattern: {
+        ToString(): 11n,
+        IsFixedLength: true,
+        MaxLength: 11,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 11
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 15,
+      Example: ,
+      Pattern: {
+        ToString(): 11n,
+        IsFixedLength: true,
+        MaxLength: 15,
+        Tokens: [
+          {
+            Category: None,
+            Value: NO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 11
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: OM,
+    DisplayName: عمان,
+    NativeName: عمان,
+    EnglishName: Oman,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,16c,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,16c,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: OM,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: PK,
+    DisplayName: پاکستان,
+    NativeName: پاکستان,
+    EnglishName: Pakistan,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,16c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,16c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: PK,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: PL,
+    DisplayName: Polska,
+    NativeName: Polska,
+    EnglishName: Poland,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 24n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 24n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: PL,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 24
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: PS,
+    DisplayName: السلطة الفلسطينية,
+    NativeName: السلطة الفلسطينية,
+    EnglishName: Palestinian territories,
+    Bban: {
+      Position: 4,
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,21c,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 29,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,21c,
+        IsFixedLength: true,
+        MaxLength: 29,
+        Tokens: [
+          {
+            Category: None,
+            Value: PS,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: PT,
+    DisplayName: Portugal,
+    NativeName: Portugal,
+    EnglishName: Portugal,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: PT,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: QA,
+    DisplayName: قطر,
+    NativeName: قطر,
+    EnglishName: Qatar,
+    Bban: {
+      Position: 4,
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,21c,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 29,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,21c,
+        IsFixedLength: true,
+        MaxLength: 29,
+        Tokens: [
+          {
+            Category: None,
+            Value: QA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: RO,
+    DisplayName: România,
+    NativeName: România,
+    EnglishName: Romania,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,16c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,16c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: RO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: RS,
+    DisplayName: Srbija,
+    NativeName: Srbija,
+    EnglishName: Serbia,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 18n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: RS,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SA,
+    DisplayName: المملكة العربية السعودية,
+    NativeName: المملكة العربية السعودية,
+    EnglishName: Saudi Arabia,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 2n,18c,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2n,18c,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: SA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SC,
+    DisplayName: Seychelles,
+    NativeName: Seychelles,
+    EnglishName: Seychelles,
+    Bban: {
+      Position: 4,
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,3a,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 3
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 31,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,3a,
+        IsFixedLength: true,
+        MaxLength: 31,
+        Tokens: [
+          {
+            Category: None,
+            Value: SC,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 3
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SD,
+    DisplayName: السودان,
+    NativeName: السودان,
+    EnglishName: Sudan,
+    Bban: {
+      Position: 4,
+      Length: 14,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 14,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 14n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: None,
+            Value: SD,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 14
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SE,
+    DisplayName: Sverige,
+    NativeName: Sverige,
+    EnglishName: Sweden,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: SE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SI,
+    DisplayName: Slovenija,
+    NativeName: Slovenija,
+    EnglishName: Slovenia,
+    Bban: {
+      Position: 4,
+      Length: 15,
+      Example: ,
+      Pattern: {
+        ToString(): 15n,
+        IsFixedLength: true,
+        MaxLength: 15,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 15n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: None,
+            Value: SI,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SK,
+    DisplayName: Slovensko,
+    NativeName: Slovensko,
+    EnglishName: Slovakia,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: SK,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SM,
+    DisplayName: San Marino,
+    NativeName: San Marino,
+    EnglishName: San Marino,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 1a,10n,12c,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 1a,10n,12c,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: SM,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SN,
+    DisplayName: Senegaal,
+    NativeName: Senegaal,
+    EnglishName: Senegal,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: SN,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SO,
+    DisplayName: الصومال,
+    NativeName: الصومال,
+    EnglishName: Somalia,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,3n,12n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,3n,12n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: SO,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 12
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: ST,
+    DisplayName: São Tomé e Príncipe,
+    NativeName: São Tomé e Príncipe,
+    EnglishName: São Tomé and Príncipe,
+    Bban: {
+      Position: 4,
+      Length: 21,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 21,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 21n,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: None,
+            Value: ST,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 21
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: SV,
+    DisplayName: El Salvador,
+    NativeName: El Salvador,
+    EnglishName: El Salvador,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,20n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: SV,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: TD,
+    DisplayName: تشاد,
+    NativeName: تشاد,
+    EnglishName: Chad,
+    Bban: {
+      Position: 4,
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 27,
+      Example: ,
+      Pattern: {
+        ToString(): 23n,
+        IsFixedLength: true,
+        MaxLength: 27,
+        Tokens: [
+          {
+            Category: None,
+            Value: TD,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 23
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: TG,
+    DisplayName: Togo nutome,
+    NativeName: Togo nutome,
+    EnglishName: Togo,
+    Bban: {
+      Position: 4,
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 28,
+      Example: ,
+      Pattern: {
+        ToString(): 2a,22n,
+        IsFixedLength: true,
+        MaxLength: 28,
+        Tokens: [
+          {
+            Category: None,
+            Value: TG,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 22
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: TL,
+    DisplayName: Timor-Leste,
+    NativeName: Timor-Leste,
+    EnglishName: East Timor,
+    Bban: {
+      Position: 4,
+      Length: 19,
+      Example: ,
+      Pattern: {
+        ToString(): 19n,
+        IsFixedLength: true,
+        MaxLength: 19,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 23,
+      Example: ,
+      Pattern: {
+        ToString(): 19n,
+        IsFixedLength: true,
+        MaxLength: 23,
+        Tokens: [
+          {
+            Category: None,
+            Value: TL,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: TN,
+    DisplayName: تونس,
+    NativeName: تونس,
+    EnglishName: Tunisia,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 20n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: TN,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 20
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: TR,
+    DisplayName: Türkiye,
+    NativeName: Türkiye,
+    EnglishName: Turkey,
+    Bban: {
+      Position: 4,
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,1n,16c,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 5n,1n,16c,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: None,
+            Value: TR,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 1
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: UA,
+    DisplayName: Україна,
+    NativeName: Україна,
+    EnglishName: Ukraine,
+    Bban: {
+      Position: 4,
+      Length: 25,
+      Example: ,
+      Pattern: {
+        ToString(): 6n,19c,
+        IsFixedLength: true,
+        MaxLength: 25,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 6
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 29,
+      Example: ,
+      Pattern: {
+        ToString(): 6n,19c,
+        IsFixedLength: true,
+        MaxLength: 29,
+        Tokens: [
+          {
+            Category: None,
+            Value: UA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 6
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 19
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: VA,
+    DisplayName: Città del Vaticano,
+    NativeName: Città del Vaticano,
+    EnglishName: Vatican City,
+    Bban: {
+      Position: 4,
+      Length: 18,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,15n,
+        IsFixedLength: true,
+        MaxLength: 18,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 22,
+      Example: ,
+      Pattern: {
+        ToString(): 3n,15n,
+        IsFixedLength: true,
+        MaxLength: 22,
+        Tokens: [
+          {
+            Category: None,
+            Value: VA,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 3
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: VG,
+    DisplayName: British Virgin Islands,
+    NativeName: British Virgin Islands,
+    EnglishName: Virgin Islands, British,
+    Bban: {
+      Position: 4,
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,16n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 24,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,16n,
+        IsFixedLength: true,
+        MaxLength: 24,
+        Tokens: [
+          {
+            Category: None,
+            Value: VG,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 16
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: XK,
+    DisplayName: Kosovë,
+    NativeName: Kosovë,
+    EnglishName: Kosovo,
+    Bban: {
+      Position: 4,
+      Length: 16,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,10n,2n,
+        IsFixedLength: true,
+        MaxLength: 16,
+        Tokens: [
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 20,
+      Example: ,
+      Pattern: {
+        ToString(): 4n,10n,2n,
+        IsFixedLength: true,
+        MaxLength: 20,
+        Tokens: [
+          {
+            Category: None,
+            Value: XK,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 10
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  },
+  {
+    TwoLetterISORegionName: YE,
+    DisplayName: اليمن,
+    NativeName: اليمن,
+    EnglishName: Yemen,
+    Bban: {
+      Position: 4,
+      Length: 26,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,4n,18c,
+        IsFixedLength: true,
+        MaxLength: 26,
+        Tokens: [
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 30,
+      Example: ,
+      Pattern: {
+        ToString(): 4a,4n,18c,
+        IsFixedLength: true,
+        MaxLength: 30,
+        Tokens: [
+          {
+            Category: None,
+            Value: YE,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Other, UppercaseLetter,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, Digit,
+            IsFixedLength: true,
+            Length: 4
+          },
+          {
+            Category: Other, AlphaNumeric,
+            IsFixedLength: true,
+            Length: 18
+          }
+        ]
+      }
+    },
+    Bank: {
+      Example: ,
+      Pattern: null
+    },
+    Branch: {
+      Example: ,
+      Pattern: null
+    }
+  }
+]
