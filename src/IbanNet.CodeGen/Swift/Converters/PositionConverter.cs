@@ -17,7 +17,7 @@ internal class PositionConverter : StringConverter
         }
 
         string[] segments = value.Split(_splitChars, StringSplitOptions.RemoveEmptyEntries);
-        int startPos = int.Parse(segments[0], NumberFormatInfo.InvariantInfo);
+        int startPos = int.Parse(segments[0], NumberFormatInfo.InvariantInfo) - 1;
         return segments.Length switch
         {
             0 => throw new InvalidOperationException("Expected positional data."),
