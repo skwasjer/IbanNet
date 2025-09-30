@@ -9,7 +9,7 @@ internal class _1_FranceBranchPatch : RecordPatcher
     {
         if (record is { CountryCode: "FR" })
         {
-            int branchStartPos = record.Bank.Position!.Value.EndPos + 1;
+            int branchStartPos = record.Bank.Position!.Value.EndPos;
             return record with
             {
                 Branch = record.Branch with
