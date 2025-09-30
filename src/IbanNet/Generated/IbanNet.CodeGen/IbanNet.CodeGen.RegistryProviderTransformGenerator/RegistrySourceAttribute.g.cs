@@ -6,7 +6,7 @@ namespace IbanNet.CodeGen;
 
 internal enum RegistrySource
 {
-    Swift
+    Swift, Wikipedia
 }
 
 [global::System.AttributeUsage(global::System.AttributeTargets.Method, Inherited = true, AllowMultiple = false)]

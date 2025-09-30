@@ -21,9 +21,14 @@ public static class Loader
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
         );
         using HttpResponseMessage response = httpClient.GetAsync(uri).GetAwaiter().GetResult();
-        byte[] buffer = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
+        using Stream? stream = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult();
 
-        WikiResponse? wikiResponse = JsonSerializer.Deserialize<WikiResponse>(buffer, JsonSerializerOptions);
+        return Read(stream);
+    }
+
+    public static WikiResult Read(Stream stream)
+    {
+        WikiResponse? wikiResponse = JsonSerializer.Deserialize<WikiResponse>(stream, JsonSerializerOptions);
         if (wikiResponse is null)
         {
             throw new InvalidOperationException("Unexpected response.");

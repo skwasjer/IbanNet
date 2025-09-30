@@ -40,14 +40,10 @@
     <!-- Exclude the output of source generators from the compilation -->
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
     <AdditionalFiles Include="**/swift_iban_registry_*.txt" />
+    <AdditionalFiles Include="**/api-result-*.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Registry\Wikipedia\WikipediaRegistryProvider.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>WikipediaRegistryProvider.tt</DependentUpon>
-    </Compile>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -72,13 +68,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>Resources.resx</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Registry\Wikipedia\WikipediaRegistryProvider.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WikipediaRegistryProvider.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
 </Project>

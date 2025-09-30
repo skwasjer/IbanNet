@@ -4,6 +4,7 @@ using IbanNet.CodeGen.Extensions;
 using IbanNet.CodeGen.Liquid;
 using IbanNet.CodeGen.Swift;
 using IbanNet.CodeGen.Syntax;
+using IbanNet.CodeGen.Wikipedia;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -15,7 +16,8 @@ public sealed class RegistryProviderTransformGenerator : IIncrementalGenerator
 {
     internal static readonly Dictionary<string, IRegistryDataSource> DataSources = new()
     {
-        { "Swift", new SwiftDataSource() }
+        { "Swift", new SwiftDataSource() },
+        { "Wikipedia", new WikipediaDataSource() }
     };
     private static readonly List<string> GeneratorNames = DataSources.Keys.ToList();
 

@@ -13,6 +13,20 @@ internal class WikipediaPatternTokenizer : PatternTokenizer
     {
     }
 
+#if !USE_SPANS
+    /// <inheritdoc />
+    public override IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
+    {
+        if (input is null)
+        {
+            throw new ArgumentNullException(nameof(input));
+        }
+
+        // Filter out separators.
+        return base.Tokenize(input.Where(ch => ch != ','));
+    }
+#endif
+
     protected override AsciiCategory GetCategory(string token)
     {
         if (token.Length <= 1)
