@@ -1,7 +1,8 @@
 ﻿using System.Globalization;
+using IbanNet.CodeGen.Swift;
 using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Registry.Wikipedia;
+namespace IbanNet.CodeGen.Wikipedia;
 
 public class WikipediaPatternTokenizerTests
 {
@@ -47,7 +48,7 @@ public class WikipediaPatternTokenizerTests
     [InlineData("2n3a", "12ABCD", false, 5)]
     public void Given_valid_pattern_without_countryCode_it_should_decompose_into_tests(string pattern, string value, bool expectedResult, int? expectedErrorPos)
     {
-        var fakePattern = new TestPattern(_sut.Tokenize(pattern));
+        var fakePattern = new PatternWrapper(pattern, _sut);
 
         // Act
         var validator = new PatternValidator(fakePattern.Tokens, fakePattern.IsFixedLength);
@@ -71,6 +72,6 @@ public class WikipediaPatternTokenizerTests
         // Assert
         act.Should()
             .Throw<PatternException>()
-            .WithMessage(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos) + "*");
+            .WithMessage(string.Format(CultureInfo.CurrentCulture, $"The pattern token '{token}' is invalid at position {pos}.", token, pos) + "*");
     }
 }
