@@ -128,9 +128,6 @@
     <data name="IllegalCountryCodeCharactersResult" xml:space="preserve">
         <value>The IBAN contains illegal characters in the position where the country code is expected.</value>
     </data>
-    <data name="PatternException_Invalid_token_0_at_position_1" xml:space="preserve">
-        <value>The pattern token '{0}' is invalid at position {1}.</value>
-    </data>
     <data name="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" xml:space="preserve">
         <value>Expected alphanumeric character at position {0}, but found '{1}'.</value>
     </data>

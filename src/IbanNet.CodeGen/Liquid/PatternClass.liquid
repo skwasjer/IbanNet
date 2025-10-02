@@ -1,0 +1,68 @@
+﻿{%- if pattern %}
+{%- if unrolled %}
+            internal static readonly Pattern {{ name }} = new {{ name }}Impl();
+
+            private sealed class {{ name }}Impl()
+                :
+{%- else %}
+            internal static readonly Pattern {{ name }} = new
+{%- endif %} Pattern("{{ pattern }}", {{ pattern.maxLength }}, {{ pattern.isFixedLength }},
+                    [
+                    {%- for token in pattern.tokens -%}
+                    {%- case token.category %}
+                      {%- when "None", "Other" %}
+                        new PatternToken("{{ token.value }}"),
+                      {%- else %}
+                        new PatternToken(AsciiCategory.{{ token.category }}, {{ token.maxLength }}),
+                    {%- endcase %}
+                    {%- endfor %}
+                    ]
+                )
+{%- if unrolled %}
+            {
+#if USE_SPANS
+                internal sealed override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+                internal sealed override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+                {
+                    int pos = 0;
+                    if (value.Length == MaxLength
+                    {%- for token in pattern.tokens -%}
+                    {%- assign i = 0 %}
+                    {%- repeat token.maxLength %}
+                    {%- case token.category %}
+                      {%- when "None", "Other" %}
+                        && value[pos++] == '{{ token.value | slice: i, 1 }}'
+                        {%- assign i = i | plus: 1 %}
+                      {%- when "Space" %}
+                        && value[pos++] == ' '
+                      {%- when "Digit" %}
+                        && value[pos++].IsAsciiDigit()
+                      {%- when "AlphaNumeric" %}
+                        && value[pos++].IsAlphaNumeric()
+                      {%- when "UppercaseLetter" %}
+                        && value[pos++].IsUpperAsciiLetter()
+                      {%- when "LowercaseLetter" %}
+                        && value[pos++].IsLowerAsciiLetter()
+                      {%- when "Letter" %}
+                        && value[pos++].IsAsciiLetter()
+                      {%- else %}
+                        // Unknown
+                    {%- endcase %}
+                    {%- endrepeat %}
+                    {%- endfor %}
+                        )
+                    {
+                        errorPos = null;
+                        return true;
+                    }
+
+                    errorPos = pos - 1;
+                    return false;
+                }
+            }
+{%- else -%}
+    ;
+{%- endif -%}
+{%- endif -%}

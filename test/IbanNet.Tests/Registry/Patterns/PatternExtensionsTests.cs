@@ -263,7 +263,9 @@ public abstract class PatternExtensionsTests
                     new(AsciiCategory.Space, 1, 2),
                     new(AsciiCategory.Space, 1, 2),
                     new(AsciiCategory.UppercaseLetter, 1, 2),
-                    new(AsciiCategory.UppercaseLetter, 1, 2),
+                    new(AsciiCategory.UppercaseLetter, 1, 3),
+                    new("A"),
+                    new("BC"),
                     new(AsciiCategory.LowercaseLetter, 1, 2),
                     new(AsciiCategory.LowercaseLetter, 1, 2),
                     new(AsciiCategory.Letter, 1, 2),
@@ -271,7 +273,7 @@ public abstract class PatternExtensionsTests
                     new(AsciiCategory.AlphaNumeric, 1, 2),
                     new(AsciiCategory.AlphaNumeric, 1, 2)
                 },
-                "^\\d{2,4} {2,4}[A-Z]{2,4}[a-z]{2,4}[a-zA-Z]{2,4}[a-zA-Z0-9]{2,4}$"
+                "^\\d{2,4} {2,4}[A-Z]{2,5}ABC[a-z]{2,4}[a-zA-Z]{2,4}[a-zA-Z0-9]{2,4}$"
             ];
 
             // Compress mixed.
@@ -285,6 +287,8 @@ public abstract class PatternExtensionsTests
                     new(AsciiCategory.Space, 2, 2),
                     new(AsciiCategory.UppercaseLetter, 1, 2),
                     new(AsciiCategory.UppercaseLetter, 2, 2),
+                    new("A"),
+                    new("BC"),
                     new(AsciiCategory.LowercaseLetter, 1, 2),
                     new(AsciiCategory.LowercaseLetter, 2, 2),
                     new(AsciiCategory.Letter, 1, 2),
@@ -292,7 +296,7 @@ public abstract class PatternExtensionsTests
                     new(AsciiCategory.AlphaNumeric, 1, 2),
                     new(AsciiCategory.AlphaNumeric, 2, 2)
                 },
-                "^\\d{3,4} {3,4}[A-Z]{3,4}[a-z]{3,4}[a-zA-Z]{3,4}[a-zA-Z0-9]{3,4}$"
+                "^\\d{3,4} {3,4}[A-Z]{3,4}ABC[a-z]{3,4}[a-zA-Z]{3,4}[a-zA-Z0-9]{3,4}$"
             ];
         }
     }

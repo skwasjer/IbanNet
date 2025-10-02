@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Debug Swift CodeGen": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\IbanNet\\IbanNet.csproj"
+    }
+  }
+}

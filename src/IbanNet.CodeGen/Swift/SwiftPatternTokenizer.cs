@@ -2,7 +2,7 @@
 using IbanNet.Extensions;
 using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Registry.Swift;
+namespace IbanNet.CodeGen.Swift;
 
 /// <remarks>
 /// https://www.swift.com/standards/data-standards/iban
@@ -46,24 +46,13 @@ internal class SwiftPatternTokenizer : PatternTokenizer
             return -1;
         }
 
-#if USE_SPANS
-        ReadOnlySpan<char> lengthDescriptor = token.AsSpan(0, token.Length - 1);
+        string lengthDescriptor = token.Substring(0, token.Length - 1);
         // ReSharper disable once UseIndexFromEndExpression
-        isFixedLength = lengthDescriptor[^1] == '!';
+        isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
         return int.Parse(
-            lengthDescriptor[..^Convert.ToByte(isFixedLength)],
+            lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength)),
             NumberStyles.None,
             CultureInfo.InvariantCulture
         );
-#else
-            string lengthDescriptor = token.Substring(0, token.Length - 1);
-            // ReSharper disable once UseIndexFromEndExpression
-            isFixedLength = lengthDescriptor[lengthDescriptor.Length - 1] == '!';
-            return int.Parse(
-                lengthDescriptor.Substring(0, lengthDescriptor.Length - Convert.ToByte(isFixedLength)),
-                NumberStyles.None,
-                CultureInfo.InvariantCulture
-            );
-#endif
     }
 }

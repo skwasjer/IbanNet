@@ -29,17 +29,21 @@
     <PackageReference Include="System.Text.Json" Version="6.0.10" Condition="'$(TargetFramework)'=='netstandard2.1'" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <!-- Only run source generators on .NET 8 and only on full framework MSBuild (not dotnet CLI) -->
+  <ItemGroup Condition="'$(TargetFramework)'=='net8.0' And '$(MSBuildRuntimeType)' != 'Core'">
+    <ProjectReference Include="..\IbanNet.CodeGen\IbanNet.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <!-- Exclude the output of source generators from the compilation -->
+    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+    <AdditionalFiles Include="**/swift_iban_registry_*.txt" />
+    <AdditionalFiles Include="**/api-result-*.json" />
+  </ItemGroup>
+
   <ItemGroup>
-    <Compile Update="Registry\Swift\SwiftRegistryProvider.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SwiftRegistryProvider.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Registry\Wikipedia\WikipediaRegistryProvider.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>WikipediaRegistryProvider.tt</DependentUpon>
-    </Compile>
     <Compile Update="Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -64,17 +68,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>Resources.resx</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Registry\Swift\SwiftRegistryProvider.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SwiftRegistryProvider.cs</LastGenOutput>
-    </None>
-    <None Update="Registry\Wikipedia\WikipediaRegistryProvider.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WikipediaRegistryProvider.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
 </Project>

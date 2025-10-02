@@ -147,9 +147,6 @@
   <data name="IllegalCountryCodeCharactersResult" xml:space="preserve">
       <value>De IBAN heeft ongeldige karakters op de positie waar een landcode wordt verwacht.</value>
   </data>
-  <data name="PatternException_Invalid_token_0_at_position_1" xml:space="preserve">
-    <value>Het teken '{0}' is invalide op positie {1}.</value>
-  </data>
   <data name="InvalidTokenException_Expected_alphanumeric_character_at_position_0_but_found_1" xml:space="preserve">
     <value>Een alfanumeriek teken werd verwacht op positie {0}, waar het was '{1}'.</value>
   </data>

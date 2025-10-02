@@ -695,7 +695,6 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
     Bban: {
       Position: 4,
       Length: 18,
@@ -2354,7 +2353,6 @@
         AX
       ]
     },
-    DomesticAccountNumberExample: ,
     Bban: {
       Position: 4,
       Length: 14,
@@ -4771,7 +4769,6 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
     Bban: {
       Position: 4,
       Length: 16,
@@ -4858,7 +4855,6 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
     Bban: {
       Position: 4,
       Length: 16,
@@ -7614,7 +7610,6 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
     Bban: {
       Position: 4,
       Length: 23,
@@ -8258,7 +8253,6 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: ,
     Bban: {
       Position: 4,
       Length: 22,

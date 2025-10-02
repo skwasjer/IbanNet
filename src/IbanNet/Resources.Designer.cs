@@ -268,15 +268,6 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The pattern token &apos;{0}&apos; is invalid at position {1}..
-        /// </summary>
-        internal static string PatternException_Invalid_token_0_at_position_1 {
-            get {
-                return ResourceManager.GetString("PatternException_Invalid_token_0_at_position_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The registry has no providers..
         /// </summary>
         internal static string The_registry_has_no_providers {

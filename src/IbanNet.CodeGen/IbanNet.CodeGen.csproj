@@ -3,10 +3,57 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <RootNamespace>IbanNet.CodeGen</RootNamespace>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CS1591</WarningsNotAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Liquid\PatternClass.liquid" />
+    <EmbeddedResource Include="Liquid\RegistryProvider.liquid" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\IbanNet\Resources.Designer.cs" Link="Resources.Designer.cs" />
+    <Compile Include="..\IbanNet\Extensions\CharExtensions.cs" Link="Internal\Extensions\CharExtensions.cs" />
+    <Compile Include="..\IbanNet\Extensions\ChunkExtensions.cs" Link="Internal\Extensions\ChunkExtensions.cs" />
+    <Compile Include="..\IbanNet\Internal\**\*.cs" Link="Internal" />
+    <Compile Include="..\IbanNet\Registry\Patterns\*.cs" Link="Internal\Registry\Patterns" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+    <PackageReference Include="Fluid.Core" Version="2.25.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.1" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- 
+    We don't have a need to distribute the code generator via NuGet since it's only used in our own solution. 
+    But to be able to debug analyzers/generators using a project reference, all transient dependencies must be copied. 
+    https://turnerj.com/blog/csharp-source-generator-pain-points-february-2022-update 
+    https://github.com/dotnet/sdk/issues/17775#issuecomment-848451355
+  -->
+  <PropertyGroup>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+  </PropertyGroup>
+
+  <Target Name="GetDependencyTargetPaths" AfterTargets="ResolvePackageDependenciesForBuild">
+    <ItemGroup>
+      <TargetPathWithTargetPlatformMoniker Include="@(ReferenceCopyLocalPaths)" IncludeRuntimeDependency="false" />
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <None Include="..\..\SupportedCountries.md">
@@ -18,20 +65,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SupportedCountries.md</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="33.0.1" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.12.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\IbanNet\IbanNet.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

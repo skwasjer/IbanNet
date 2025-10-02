@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-using IbanNet.Extensions;
+﻿using IbanNet.Extensions;
+using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Registry.Patterns;
+namespace IbanNet.CodeGen;
 
 internal abstract class PatternTokenizer : ITokenizer<PatternToken>
 {
@@ -13,26 +13,17 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
     }
 
     /// <inheritdoc />
-#if USE_SPANS
-    public virtual IEnumerable<PatternToken> Tokenize(ReadOnlySpan<char> input)
-    {
-#else
     public virtual IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
     {
         if (input is null)
         {
             throw new ArgumentNullException(nameof(input));
         }
-#endif
 
         return TokenizeIterator(input);
     }
 
-#if USE_SPANS
-    private List<PatternToken> TokenizeIterator(ReadOnlySpan<char> input)
-#else
     private List<PatternToken> TokenizeIterator(IEnumerable<char> input)
-#endif
     {
         var tokenList = new List<PatternToken>(8);
         var tokenCharList = new List<string>(4);
@@ -95,7 +86,7 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
 
             if (asciiCategory == AsciiCategory.None || occurrences <= 0)
             {
-                throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos));
+                throw new PatternException($"The pattern token '{token}' is invalid at position {pos}.");
             }
 
             return new PatternToken(asciiCategory, isFixedLength ? occurrences : 1, occurrences);
@@ -107,7 +98,7 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
                 or IndexOutOfRangeException
             )
         {
-            throw new PatternException(string.Format(CultureInfo.CurrentCulture, Resources.PatternException_Invalid_token_0_at_position_1, token, pos), ex);
+            throw new PatternException($"The pattern token '{token}' is invalid at position {pos}.", ex);
         }
     }
 
