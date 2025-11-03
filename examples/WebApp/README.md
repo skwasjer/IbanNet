@@ -54,6 +54,16 @@ This web application provides an **IBAN Management** tool that allows users to:
 
 4. **Open your browser** to the URL shown in the terminal (typically `http://localhost:5010`)
 
+## Docker Deployment
+
+```bash
+cd examples/WebApp
+docker build -t ibannet-webapp .
+docker run -d -p 8080:80 --name ibannet-webapp ibannet-webapp
+```
+
+The application will be available at `http://localhost:8080`.
+
 ## Key Features
 
 - **Validation Engine**: Checks IBAN format, country code, check digits, and BBAN structure
