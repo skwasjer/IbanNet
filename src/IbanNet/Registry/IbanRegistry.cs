@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-#if NET8_0_OR_GREATER
-using System.Collections.Frozen;
-#endif
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using IbanNet.Registry.Swift;
+#if NET8_0_OR_GREATER
+using System.Collections.Frozen;
+#endif
 
 namespace IbanNet.Registry;
 
@@ -15,7 +15,8 @@ namespace IbanNet.Registry;
 public class IbanRegistry : IIbanRegistry
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private IDictionary<string, IbanCountry>? _dictionary;
+    private IReadOnlyDictionary<string, IbanCountry>? _dictionary;
+    private readonly Func<IbanCountry, bool>? _filter;
     private readonly object _syncObject = new();
 
     /// <summary>
@@ -33,6 +34,11 @@ public class IbanRegistry : IIbanRegistry
     // ReSharper disable once EmptyConstructor
     public IbanRegistry()
     {
+    }
+
+    internal IbanRegistry(Func<IbanCountry, bool> filter)
+    {
+        _filter = filter ?? throw new ArgumentNullException(nameof(filter));
     }
 
     /// <inheritdoc />
@@ -64,7 +70,7 @@ public class IbanRegistry : IIbanRegistry
     /// Gets the registry mapped as dictionary by country code.
     /// </summary>
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private IDictionary<string, IbanCountry> Dictionary
+    private IReadOnlyDictionary<string, IbanCountry> Dictionary
     {
         get
         {
@@ -84,21 +90,11 @@ public class IbanRegistry : IIbanRegistry
                 try
                 {
                     IEnumerable<KeyValuePair<string, IbanCountry>> countries = readOnlyProviders
-                        .SelectMany(p => p)
+                        .SelectMany(p => _filter is null ? p : p.Where(_filter))
                         // In case of duplicate country codes, select the first.
                         .GroupBy(c => c.TwoLetterISORegionName)
                         .Select(g => new KeyValuePair<string, IbanCountry>(g.Key, g.First()));
-#if NET8_0_OR_GREATER
-                    return _dictionary = countries.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
-#else
-                    return _dictionary = new ReadOnlyDictionary<string, IbanCountry>(countries
-                        .ToDictionary(
-                            kvp => kvp.Key,
-                            kvp => kvp.Value,
-                            StringComparer.OrdinalIgnoreCase
-                        )
-                    );
-#endif
+                    return _dictionary = Freeze(countries);
                 }
                 finally
                 {
@@ -107,5 +103,22 @@ public class IbanRegistry : IIbanRegistry
                 }
             }
         }
+    }
+
+#if NET8_0_OR_GREATER
+    private static FrozenDictionary<string, IbanCountry> Freeze(IEnumerable<KeyValuePair<string, IbanCountry>> dictionary)
+    {
+        return dictionary.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
+#else
+    private static ReadOnlyDictionary<string, IbanCountry> Freeze(IEnumerable<KeyValuePair<string, IbanCountry>> dictionary)
+    {
+        return new ReadOnlyDictionary<string, IbanCountry>(dictionary
+            .ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value,
+                StringComparer.OrdinalIgnoreCase
+            )
+        );
+#endif
     }
 }
