@@ -14,12 +14,12 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -41,17 +41,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -82,12 +82,12 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -109,17 +109,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -150,12 +150,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -177,17 +177,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -218,7 +218,7 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -240,12 +240,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -276,7 +276,7 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -298,12 +298,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -334,12 +334,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 20
           }
@@ -361,17 +361,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 20
           }
@@ -402,7 +402,7 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -424,12 +424,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -460,7 +460,7 @@
         MaxLength: 12,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -482,12 +482,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -518,12 +518,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -545,17 +545,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -586,17 +586,17 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 6
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 8
           }
@@ -618,22 +618,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 6
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 8
           }
@@ -664,12 +664,12 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 14
           }
@@ -691,17 +691,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 14
           }
@@ -732,22 +732,22 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -769,27 +769,27 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -820,12 +820,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -847,17 +847,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -888,17 +888,17 @@
         MaxLength: 25,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 1
           }
@@ -920,22 +920,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 1
           }
@@ -966,17 +966,17 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -998,22 +998,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -1044,7 +1044,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -1066,12 +1066,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -1102,7 +1102,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -1124,12 +1124,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -1160,12 +1160,12 @@
         MaxLength: 17,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -1187,17 +1187,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -1228,12 +1228,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -1255,17 +1255,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -1296,7 +1296,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -1318,12 +1318,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -1354,7 +1354,7 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -1376,12 +1376,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -1412,7 +1412,7 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -1434,12 +1434,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -1470,12 +1470,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -1497,17 +1497,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -1538,7 +1538,7 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -1560,12 +1560,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -1596,7 +1596,7 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -1618,12 +1618,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -1654,22 +1654,22 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -1691,27 +1691,27 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -1742,7 +1742,7 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -1764,12 +1764,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -1800,12 +1800,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -1827,17 +1827,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -1868,7 +1868,7 @@
         MaxLength: 22,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -1890,12 +1890,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -1926,7 +1926,7 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -1948,12 +1948,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -1984,7 +1984,7 @@
         MaxLength: 25,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 25
           }
@@ -2006,12 +2006,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 25
           }
@@ -2042,7 +2042,7 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -2064,12 +2064,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -2100,7 +2100,7 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2122,12 +2122,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2158,12 +2158,12 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -2185,17 +2185,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -2226,7 +2226,7 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2248,12 +2248,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2284,17 +2284,17 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -2316,22 +2316,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -2362,7 +2362,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -2384,12 +2384,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -2420,12 +2420,12 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2447,17 +2447,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2488,12 +2488,12 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -2515,17 +2515,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -2556,12 +2556,12 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 15
           }
@@ -2583,17 +2583,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 15
           }
@@ -2624,7 +2624,7 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2646,12 +2646,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -2682,7 +2682,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -2704,12 +2704,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -2740,12 +2740,12 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 7
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -2767,17 +2767,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 7
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -2808,12 +2808,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 20
           }
@@ -2835,17 +2835,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 20
           }
@@ -2876,12 +2876,12 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           }
@@ -2903,17 +2903,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           }
@@ -2944,12 +2944,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -2971,17 +2971,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -3012,7 +3012,7 @@
         MaxLength: 17,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 17
           }
@@ -3034,12 +3034,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 17
           }
@@ -3070,7 +3070,7 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 24
           }
@@ -3092,12 +3092,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 24
           }
@@ -3128,17 +3128,17 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 6
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           }
@@ -3160,22 +3160,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 6
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 8
           }
@@ -3206,7 +3206,7 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           }
@@ -3228,12 +3228,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           }
@@ -3264,12 +3264,12 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 15
           }
@@ -3291,17 +3291,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 15
           }
@@ -3332,7 +3332,7 @@
         MaxLength: 22,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -3354,12 +3354,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -3390,7 +3390,7 @@
         MaxLength: 22,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -3412,12 +3412,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -3448,17 +3448,17 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -3480,22 +3480,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -3526,17 +3526,17 @@
         MaxLength: 26,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -3558,22 +3558,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -3604,7 +3604,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -3626,12 +3626,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -3662,12 +3662,12 @@
         MaxLength: 26,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 22
           }
@@ -3689,17 +3689,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 22
           }
@@ -3730,12 +3730,12 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 13
           }
@@ -3757,17 +3757,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 13
           }
@@ -3798,12 +3798,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 20
           }
@@ -3825,17 +3825,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 20
           }
@@ -3866,12 +3866,12 @@
         MaxLength: 28,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 24
           }
@@ -3893,17 +3893,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 24
           }
@@ -3934,12 +3934,12 @@
         MaxLength: 17,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -3961,17 +3961,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -4002,7 +4002,7 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -4024,12 +4024,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -4060,12 +4060,12 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 13
           }
@@ -4087,17 +4087,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 13
           }
@@ -4128,12 +4128,12 @@
         MaxLength: 17,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 13
           }
@@ -4155,17 +4155,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 13
           }
@@ -4196,7 +4196,7 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -4218,12 +4218,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -4254,7 +4254,7 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 24
           }
@@ -4276,12 +4276,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 24
           }
@@ -4312,17 +4312,17 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -4344,22 +4344,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 11
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -4390,12 +4390,12 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -4417,17 +4417,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -4458,7 +4458,7 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -4480,12 +4480,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -4516,7 +4516,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -4538,12 +4538,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -4574,17 +4574,17 @@
         MaxLength: 15,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -4606,22 +4606,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -4652,12 +4652,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -4679,17 +4679,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -4720,12 +4720,12 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -4747,17 +4747,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -4788,7 +4788,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -4810,12 +4810,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -4846,17 +4846,17 @@
         MaxLength: 27,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -4878,22 +4878,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -4924,17 +4924,17 @@
         MaxLength: 26,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 3
           }
@@ -4956,22 +4956,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 3
           }
@@ -5002,7 +5002,7 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -5024,12 +5024,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -5060,12 +5060,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -5087,17 +5087,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -5128,12 +5128,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -5155,17 +5155,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -5196,12 +5196,12 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           }
@@ -5223,17 +5223,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           }
@@ -5264,7 +5264,7 @@
         MaxLength: 11,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 11
           }
@@ -5286,12 +5286,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 11
           }
@@ -5322,12 +5322,12 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -5349,17 +5349,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -5390,12 +5390,12 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -5417,17 +5417,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -5458,7 +5458,7 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 24
           }
@@ -5480,12 +5480,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 24
           }
@@ -5516,12 +5516,12 @@
         MaxLength: 25,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 21
           }
@@ -5543,17 +5543,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 21
           }
@@ -5584,7 +5584,7 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -5606,12 +5606,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -5642,12 +5642,12 @@
         MaxLength: 25,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 21
           }
@@ -5669,17 +5669,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 21
           }
@@ -5710,12 +5710,12 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -5737,17 +5737,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -5778,7 +5778,7 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -5800,12 +5800,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 18
           }
@@ -5836,12 +5836,12 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -5863,17 +5863,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -5904,17 +5904,17 @@
         MaxLength: 27,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 3
           }
@@ -5936,22 +5936,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 3
           }
@@ -5982,7 +5982,7 @@
         MaxLength: 14,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -6004,12 +6004,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 14
           }
@@ -6040,7 +6040,7 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6062,12 +6062,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6098,7 +6098,7 @@
         MaxLength: 15,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 15
           }
@@ -6120,12 +6120,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 15
           }
@@ -6156,7 +6156,7 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6178,12 +6178,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6214,17 +6214,17 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -6246,22 +6246,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 12
           }
@@ -6292,12 +6292,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -6319,17 +6319,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -6360,17 +6360,17 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -6392,22 +6392,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 12
           }
@@ -6438,7 +6438,7 @@
         MaxLength: 21,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -6460,12 +6460,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 21
           }
@@ -6496,12 +6496,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6523,17 +6523,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6564,7 +6564,7 @@
         MaxLength: 23,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -6586,12 +6586,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 23
           }
@@ -6622,12 +6622,12 @@
         MaxLength: 24,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -6649,17 +6649,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 22
           }
@@ -6690,7 +6690,7 @@
         MaxLength: 19,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           }
@@ -6712,12 +6712,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 19
           }
@@ -6748,7 +6748,7 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6770,12 +6770,12 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 20
           }
@@ -6806,17 +6806,17 @@
         MaxLength: 22,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -6838,22 +6838,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 5
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 1
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 16
           }
@@ -6884,12 +6884,12 @@
         MaxLength: 25,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 6
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 19
           }
@@ -6911,17 +6911,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 6
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 19
           }
@@ -6952,12 +6952,12 @@
         MaxLength: 18,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 15
           }
@@ -6979,17 +6979,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 3
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 15
           }
@@ -7020,12 +7020,12 @@
         MaxLength: 20,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -7047,17 +7047,17 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 16
           }
@@ -7088,17 +7088,17 @@
         MaxLength: 16,
         Tokens: [
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -7120,22 +7120,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 10
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           }
@@ -7166,17 +7166,17 @@
         MaxLength: 26,
         Tokens: [
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }
@@ -7198,22 +7198,22 @@
             Length: 2
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 2
           },
           {
-            Category: Other, UppercaseLetter,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, Digit,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           },
           {
-            Category: Other, AlphaNumeric,
+            Category: AlphaNumeric,
             IsFixedLength: true,
             Length: 18
           }

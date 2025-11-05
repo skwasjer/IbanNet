@@ -274,8 +274,6 @@ namespace IbanNet.Registry.Patterns
     public enum AsciiCategory
     {
         None = 0,
-        [System.Obsolete("Use None instead.", true)]
-        Other = 0,
         Space = 1,
         Digit = 2,
         UppercaseLetter = 4,
