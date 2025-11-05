@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net48;net472;net462</TargetFrameworks>
+    <TargetFrameworks>net8.0;net6.0;net48;net472;net462</TargetFrameworks>
 
     <IsTestProject>true</IsTestProject>
 
@@ -11,8 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net8.0" Condition="'$(TargetFramework)'=='net8.0'" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net6.0" Condition="'$(TargetFramework)'=='net6.0'" />
-    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='net7.0'" />
+    <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.1" Condition="'$(TargetFramework)'=='net6.0'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=netstandard2.0" Condition="'$(TargetFramework)'=='net48'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net472" Condition="'$(TargetFramework)'=='net472'" />
     <ProjectReference Include="..\..\src\IbanNet.DataAnnotations\IbanNet.DataAnnotations.csproj" AdditionalProperties="TargetFramework=net462" Condition="'$(TargetFramework)'=='net462'" />
@@ -22,10 +21,6 @@
 
   <ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="8.0.8" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net7.0'">
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.20" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net6.0'">

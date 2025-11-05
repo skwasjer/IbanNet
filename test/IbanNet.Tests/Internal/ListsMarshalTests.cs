@@ -1,4 +1,4 @@
-﻿#if NET6_0 || NET8_0_OR_GREATER
+﻿#if NET8_0_OR_GREATER
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;

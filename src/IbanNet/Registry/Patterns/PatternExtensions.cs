@@ -73,7 +73,7 @@ public static class PatternExtensions
 
         var compressedTokens = new List<PatternToken>(tokens.Count);
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         Span<PatternToken> tokenSpan = ListsMarshal.AsSpan(tokens);
         PatternToken current = tokenSpan[0];
         Span<PatternToken> tokensExceptFirst = tokenSpan[1..];

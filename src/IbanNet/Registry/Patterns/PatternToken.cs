@@ -54,7 +54,7 @@ public sealed record PatternToken
 
     private PatternToken(AsciiCategory category, int minLength, int maxLength, string minLengthPropertyName)
     {
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         if (!Enum.IsDefined(category))
 #else
         if (!Enum.IsDefined(typeof(AsciiCategory), category))
@@ -112,7 +112,7 @@ public sealed record PatternToken
     /// <inheritdoc />
     public override string ToString()
     {
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         string? category = Enum.GetName(Category);
 #else
         string? category = Enum.GetName(typeof(AsciiCategory), Category);

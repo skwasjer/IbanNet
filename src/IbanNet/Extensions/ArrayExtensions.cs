@@ -11,7 +11,7 @@ internal static class ArrayExtensions
     /// <returns>The filled array.</returns>
     public static T[] Fill<T>(this T[] array, T fillWith)
     {
-#if NETSTANDARD2_1 || NET6_0_OR_GREATER
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
             Array.Fill(array, fillWith);
             return array;
 #else

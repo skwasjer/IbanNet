@@ -211,7 +211,7 @@ public static class PatternTokenTests
             pattern.MinLength.Should().Be(minLength);
             pattern.MaxLength.Should().Be(maxLength);
             pattern.IsFixedLength.Should().BeTrue();
-#if NET7_0_OR_GREATER
+#if NET8_0_OR_GREATER
             pattern.ToString().Should().Be($"None[{maxLength}]");
 #else
             pattern.ToString().Should().Be($"Other[{maxLength}]");
