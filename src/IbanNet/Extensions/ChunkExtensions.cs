@@ -5,7 +5,7 @@ namespace IbanNet.Extensions;
 [DebuggerStepThrough]
 internal static class ChunkExtensions
 {
-#if !NET6_0_OR_GREATER
+#if !NET8_0_OR_GREATER
     /// <summary>
     /// Split the elements of a sequence into chunks of size at most <paramref name="size" />.
     /// </summary>

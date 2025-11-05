@@ -87,7 +87,7 @@ public abstract class Pattern
     /// <inheritdoc />
     public override string ToString()
     {
-#if NETSTANDARD2_1 || NET6_0_OR_GREATER
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
         return _pattern ??= string.Join(',', Tokens);
 #else
         return _pattern ??= string.Join(",", Tokens);
@@ -132,7 +132,7 @@ public abstract class Pattern
         bool fixedLength = true;
         int maxLength = 0;
         IReadOnlyList<PatternToken> tokens = EnsureTokens();
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         foreach (ref readonly PatternToken token in ListsMarshal.AsSpan(tokens))
 #else
         foreach (PatternToken token in tokens)
