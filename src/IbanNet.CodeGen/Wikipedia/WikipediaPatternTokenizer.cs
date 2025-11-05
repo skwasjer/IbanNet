@@ -2,7 +2,7 @@
 using IbanNet.Extensions;
 using IbanNet.Registry.Patterns;
 
-namespace IbanNet.Registry.Wikipedia;
+namespace IbanNet.CodeGen.Wikipedia;
 
 internal class WikipediaPatternTokenizer : PatternTokenizer
 {
@@ -11,6 +11,18 @@ internal class WikipediaPatternTokenizer : PatternTokenizer
     public WikipediaPatternTokenizer()
         : base(ch => ch.IsUpperAsciiLetter() || TokenChars.Contains(ch))
     {
+    }
+
+    /// <inheritdoc />
+    public override IEnumerable<PatternToken> Tokenize(IEnumerable<char> input)
+    {
+        if (input is null)
+        {
+            throw new ArgumentNullException(nameof(input));
+        }
+
+        // Filter out separators.
+        return base.Tokenize(input.Where(ch => ch != ','));
     }
 
     protected override AsciiCategory GetCategory(string token)

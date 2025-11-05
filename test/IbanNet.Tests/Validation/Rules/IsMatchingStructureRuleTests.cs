@@ -1,6 +1,5 @@
 ﻿using IbanNet.Registry;
 using IbanNet.Registry.Patterns;
-using IbanNet.Registry.Swift;
 using IbanNet.Validation.Results;
 
 namespace IbanNet.Validation.Rules;
@@ -29,14 +28,18 @@ public class IsMatchingStructureRuleTests
         const string testValue = "AD1200012030200359100100";
         var country = new IbanCountry("AD")
         {
-            Iban = new PatternDescriptor(new TestPattern("AD2!n4!n4!n12!c", new SwiftPatternTokenizer()))
+            Iban = new PatternDescriptor(new TestPattern("AD2!n4!n4!n12!c",
+            [
+                new PatternToken("AD"),
+                new PatternToken(AsciiCategory.Digit, 2),
+                new PatternToken(AsciiCategory.Digit, 4),
+                new PatternToken(AsciiCategory.Digit, 4),
+                new PatternToken(AsciiCategory.AlphaNumeric, 12)
+            ]))
         };
 
         // Act
-        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue)
-        {
-            Country = country
-        });
+        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue) { Country = country });
 
         // Assert
         actual.Should().Be(ValidationRuleResult.Success);
@@ -53,14 +56,17 @@ public class IsMatchingStructureRuleTests
     {
         var country = new IbanCountry("NL")
         {
-            Iban = new PatternDescriptor(new TestPattern("NL2!n3!a", new SwiftPatternTokenizer()))
+            Iban = new PatternDescriptor(new TestPattern("NL2!n3!a",
+            [
+                new PatternToken("NL"),
+                new PatternToken(AsciiCategory.Digit, 2),
+                new PatternToken(AsciiCategory.UppercaseLetter, 3),
+
+            ]))
         };
 
         // Act
-        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue)
-        {
-            Country = country
-        });
+        ValidationRuleResult actual = _sut.Validate(new ValidationRuleContext(testValue) { Country = country });
 
         // Assert
         actual.Should()

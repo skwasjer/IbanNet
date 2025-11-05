@@ -1,6 +1,5 @@
 ﻿using IbanNet.Registry;
 using IbanNet.Registry.Patterns;
-using IbanNet.Registry.Swift;
 using IbanNet.Validation.Results;
 using TestHelpers;
 
@@ -291,14 +290,19 @@ public class IbanTests
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n", new SwiftPatternTokenizer()))
-                {
-                    Example = "NL91ABNA0417164300"
-                },
-                Bban = new PatternDescriptor(new TestPattern("4!a10!n", new SwiftPatternTokenizer()), 4)
-                {
-                    Example = "ABNA0417164300"
-                }
+                Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n",
+                [
+                    new PatternToken("NL"),
+                    new PatternToken(AsciiCategory.Digit, 2),
+                    new PatternToken(AsciiCategory.UppercaseLetter, 4),
+                    new PatternToken(AsciiCategory.Digit, 10)
+                ])) { Example = "NL91ABNA0417164300" },
+                Bban = new PatternDescriptor(new TestPattern("4!a10!n",
+                    [
+                        new PatternToken(AsciiCategory.UppercaseLetter, 4),
+                        new PatternToken(AsciiCategory.Digit, 10)
+                    ]),
+                    4) { Example = "ABNA0417164300" }
             };
 
             var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
@@ -315,10 +319,13 @@ public class IbanTests
         {
             var ibanCountry = new IbanCountry("NL")
             {
-                Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n", new SwiftPatternTokenizer()))
-                {
-                    Example = "NL91ABNA0417164300"
-                }
+                Iban = new PatternDescriptor(new TestPattern("NL2!n4!a10!n",
+                [
+                    new PatternToken("NL"),
+                    new PatternToken(AsciiCategory.Digit, 2),
+                    new PatternToken(AsciiCategory.UppercaseLetter, 4),
+                    new PatternToken(AsciiCategory.Digit, 10)
+                ])) { Example = "NL91ABNA0417164300" }
             };
 
             var iban = new Iban(ibanCountry.Iban.Example, ibanCountry);
@@ -350,8 +357,8 @@ public class IbanTests
 
         [Theory]
         [InlineData(TestValues.ValidIban, "\"" + TestValues.ValidIban + "\"")]
-        [InlineData(null, "null")]  // JSON null.
-        [InlineData(null, "\"\"")]  // Empty string
+        [InlineData(null, "null")] // JSON null.
+        [InlineData(null, "\"\"")] // Empty string
         [InlineData(null, "\" \"")] // String with whitespace
         public void Given_a_valid_jsonString_when_deserializing_it_should_return_expected_iban(string? expectedIban, string json)
         {
@@ -402,11 +409,7 @@ public class IbanTests
 
             // Assert
             IbanFormatException ex = act.Should().Throw<IbanFormatException>("the provided value was invalid").Which;
-            ex.Result.Should().BeEquivalentTo(new ValidationResult
-            {
-                Error = new IllegalCountryCodeCharactersResult(0),
-                AttemptedValue = TestValues.InvalidIban
-            });
+            ex.Result.Should().BeEquivalentTo(new ValidationResult { Error = new IllegalCountryCodeCharactersResult(0), AttemptedValue = TestValues.InvalidIban });
             ex.InnerException.Should().BeNull();
         }
 
@@ -485,5 +488,4 @@ public class IbanTests
                 .Be(TestValues.ValidIban);
         }
     }
-
 }

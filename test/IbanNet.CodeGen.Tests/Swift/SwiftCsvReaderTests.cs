@@ -1,33 +1,12 @@
 ﻿using System.Text;
-using IbanNet.CodeGen.Swift;
 
-namespace IbanNet.CodeGen.Tests;
+namespace IbanNet.CodeGen.Swift;
 
 public class SwiftCsvReaderTests
 {
-    private static readonly string TestCsvData;
-
     static SwiftCsvReaderTests()
     {
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-        string dataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-            "..",
-            "..",
-            "..",
-            "..",
-            "..",
-            "src",
-            "IbanNet",
-            "Registry",
-            "Swift",
-            "Files"
-        );
-        string registryPath = Directory.GetFiles(dataFolder)
-            .Where(s => s.EndsWith(".txt"))
-            .OrderBy(s => s)
-            .Last();
-        TestCsvData = File.ReadAllText(registryPath, Encoding.GetEncoding(1252));
     }
 
     [Theory]

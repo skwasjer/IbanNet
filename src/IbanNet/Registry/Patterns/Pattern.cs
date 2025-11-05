@@ -48,6 +48,19 @@ public abstract class Pattern
         _tokens = tokens as IReadOnlyList<PatternToken> ?? tokens.ToArray();
     }
 
+    private protected Pattern(string pattern, int maxLength, bool isFixedLength, PatternToken[] tokens)
+    {
+        if (maxLength <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(maxLength));
+        }
+
+        _pattern = pattern ?? throw new ArgumentNullException(nameof(pattern));
+        _maxLength = maxLength;
+        _fixedLength = isFixedLength;
+        _tokens = tokens ?? throw new ArgumentNullException(nameof(tokens));
+    }
+
     /// <summary>
     /// Gets the individual tokens describing the pattern.
     /// </summary>

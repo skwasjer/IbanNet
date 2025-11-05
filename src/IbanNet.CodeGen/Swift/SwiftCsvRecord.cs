@@ -2,7 +2,6 @@
 using CsvHelper.Configuration.Attributes;
 using IbanNet.CodeGen.Swift.Converters;
 using IbanNet.Registry.Patterns;
-using IbanNet.Registry.Swift;
 
 namespace IbanNet.CodeGen.Swift;
 
@@ -52,7 +51,7 @@ public record SwiftCsvRecord
     public SepaCsvData Sepa { get; set; } = default!;
 
     [Name("Country code includes other countries/territories")]
-    [TypeConverter(typeof(CommaSeparatedEnumerableConverter))]
+    [TypeConverter(typeof(SanitizedCountryCodeListConverter))]
     [NullValues("N/A")]
 #pragma warning disable CA2227 // Collection properties should be read only
     public ICollection<string> OtherTerritories { get; set; } = default!;
@@ -61,12 +60,12 @@ public record SwiftCsvRecord
     [Name("Effective date")]
     [Format("MMM-yy")]
     [DateTimeStyles(DateTimeStyles.AssumeUniversal)]
-    public DateTimeOffset EffectiveDate { get; set; }
+    public DateTimeOffset? EffectiveDate { get; set; }
 
     [Name("Last update date")]
     [Format("MMM-yy")]
     [DateTimeStyles(DateTimeStyles.AssumeUniversal)]
-    public DateTimeOffset LastUpdatedDate { get; set; }
+    public DateTimeOffset? LastUpdatedDate { get; set; }
 }
 
 public record struct Position
@@ -80,8 +79,6 @@ public record IbanCsvData
     [Name("IBAN structure")]
     public string Pattern { get; set; } = default!;
 
-    public Pattern SwiftPattern => new PatternWrapper(Pattern, new SwiftPatternTokenizer());
-
     [Name("IBAN length")]
     public int Length { get; set; }
 
@@ -90,6 +87,12 @@ public record IbanCsvData
 
     [Name("IBAN print format example")]
     public string? PrintFormatExample { get; set; }
+
+    [Ignore]
+    public string? Example => ElectronicFormatExample;
+
+    [Ignore]
+    public ITokenizer<PatternToken> Tokenizer { get; set; } = null!;
 }
 
 public abstract record PatternCsvData
@@ -100,6 +103,9 @@ public abstract record PatternCsvData
 
     [TypeConverter(typeof(SanitizeExampleConverter))]
     public virtual string? Example { get; set; }
+
+    [Ignore]
+    public ITokenizer<PatternToken> Tokenizer { get; set; } = null!;
 }
 
 public record BbanCsvData : PatternCsvData
@@ -153,7 +159,7 @@ public record SepaCsvData
     public bool IsMember { get; set; }
 
     [Name("SEPA country also includes")]
-    [TypeConverter(typeof(CommaSeparatedEnumerableConverter))]
+    [TypeConverter(typeof(SanitizedCountryCodeListConverter))]
     [NullValues("N/A")]
 #pragma warning disable CA2227 // Collection properties should be read only
     public ICollection<string> OtherTerritories { get; set; } = default!;

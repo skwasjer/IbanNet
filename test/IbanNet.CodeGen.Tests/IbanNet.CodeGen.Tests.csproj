@@ -3,7 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <IsTestProject>true</IsTestProject>
+    <RootNamespace>IbanNet.CodeGen</RootNamespace>
+    <NoWarn>$(NoWarn);MSB3243</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IbanNet.CodeGen\IbanNet.CodeGen.csproj" />

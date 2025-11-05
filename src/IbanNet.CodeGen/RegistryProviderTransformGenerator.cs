@@ -1,0 +1,131 @@
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
+using IbanNet.CodeGen.Extensions;
+using IbanNet.CodeGen.Liquid;
+using IbanNet.CodeGen.Swift;
+using IbanNet.CodeGen.Syntax;
+using IbanNet.CodeGen.Wikipedia;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
+
+namespace IbanNet.CodeGen;
+
+[Generator]
+public sealed class RegistryProviderTransformGenerator : IIncrementalGenerator
+{
+    internal static readonly Dictionary<string, IRegistryDataSource> DataSources = new()
+    {
+        { "Swift", new SwiftDataSource() },
+        { "Wikipedia", new WikipediaDataSource() }
+    };
+    private static readonly List<string> GeneratorNames = DataSources.Keys.ToList();
+
+    private readonly FluidProviderGenerator _codeGenerator = new();
+
+    public void Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        context.RegisterPostInitializationOutput(static ctx => ctx
+            .AddSource($"{MarkerAttribute.Name}.g.cs", SourceText.From(MarkerAttribute.Text, Encoding.UTF8))
+        );
+
+        IncrementalValuesProvider<RegistryProviderTarget> providerTarget = context.SyntaxProvider
+            .ForAttributeWithMetadataName($"{MarkerAttribute.Namespace}.{MarkerAttribute.Name}",
+                IsSyntaxTargetForGeneration,
+                GetProviderTarget
+            );
+
+        // From additional files, load those that match the expected path/file name format.
+        IncrementalValuesProvider<InputSource> dataFiles = context.AdditionalTextsProvider
+            .Where(text => DataSources.Values.Any(g => g.IsDataSource(text.Path)))
+            .Select(static (text, ct) => new InputSource(text.Path, text.GetText(ct)?.ToString() ?? string.Empty))
+            .Where(static d => !string.IsNullOrWhiteSpace(d.Text));
+
+        context.RegisterSourceOutput(
+            // Merge the provider targets with the data files that match the path from the marker attribute.
+            providerTarget
+                .Combine(dataFiles.Collect())
+                .Select(static (src, _) =>
+                {
+                    InputSource file = src.Right.FirstOrDefault(x => x.FullName == src.Left.FullInputSourcePath);
+                    return (Target: src.Left, DataFile: file);
+                }),
+            (ctx, t) =>
+            {
+                SwiftCsvRecord[] rows;
+                if (string.IsNullOrWhiteSpace(t.DataFile.Text))
+                {
+                    // No matching additional file found.
+                    ctx.ReportWarning(
+                        "IBAN9000",
+                        "Missing data source",
+                        $"The data source '{t.Target.FullInputSourcePath}' was not found or is empty.",
+                        nameof(RegistryProviderTransformGenerator),
+                        t.Target.Location
+                    );
+                    rows = [];
+                }
+                else
+                {
+                    IRegistryDataSource dataSource = DataSources[t.Target.DataSourceType];
+                    rows = dataSource.GetCountryDefinitions(t.DataFile.Text);
+                }
+
+                ctx.AddSource($"{t.Target.ClassName}.g.cs", _codeGenerator.Compile(ctx, t.Target, rows));
+            });
+    }
+
+    private static bool IsSyntaxTargetForGeneration(SyntaxNode node, CancellationToken ct = default)
+    {
+        return node is MethodDeclarationSyntax { AttributeLists.Count: > 0 };
+    }
+
+    private static RegistryProviderTarget GetProviderTarget(GeneratorAttributeSyntaxContext ctx, CancellationToken ct = default)
+    {
+        int sourceType = ctx.Attributes[0].ConstructorArguments[0].Value as int? ?? -1;
+        string? sourceFilePath = ctx.Attributes[0].ConstructorArguments[1].Value as string;
+        if (sourceType < 0 || sourceType >= DataSources.Count
+         || sourceFilePath is null
+         || string.IsNullOrWhiteSpace(sourceFilePath)
+         || Path.IsPathRooted(sourceFilePath)
+         || !RegistryProviderTarget.TryCreate(ctx.TargetSymbol, GeneratorNames[sourceType], sourceFilePath, out RegistryProviderTarget target))
+        {
+            ThrowInvalidPath(sourceFilePath);
+        }
+
+        return target;
+
+        [DoesNotReturn]
+        static void ThrowInvalidPath(string? path = null)
+        {
+            throw new InvalidOperationException(
+                $"The attribute '{MarkerAttribute.Name}' must specify a valid data source type and relative file path to the data source."
+            );
+        }
+    }
+}
+
+static file class MarkerAttribute
+{
+    internal static readonly string Namespace = typeof(MarkerAttribute).Namespace!;
+
+    private const string EnumName = "RegistrySource";
+    internal const string Name = $"{EnumName}Attribute";
+    internal static readonly string Text = $$"""
+                                             // <auto-generated/>
+
+                                             #nullable enable
+
+                                             namespace {{Namespace}};
+
+                                             internal enum {{EnumName}}
+                                             {
+                                                 ## ENUM_VALUES ##
+                                             }
+
+                                             [global::System.AttributeUsage(global::System.AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+                                             #pragma warning disable CS9113 // Parameter is unread.
+                                             internal sealed class {{Name}}({{EnumName}} Source, string Path) : global::System.Attribute;
+                                             #pragma warning restore CS9113 // Parameter is unread.
+                                             """.Replace("## ENUM_VALUES ##", string.Join(", ", RegistryProviderTransformGenerator.DataSources.Keys));
+}
