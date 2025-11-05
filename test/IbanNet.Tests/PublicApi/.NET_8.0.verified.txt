@@ -248,6 +248,11 @@ namespace IbanNet.Registry
         public System.Collections.Generic.IEnumerator<IbanNet.Registry.IbanCountry> GetEnumerator() { }
         public bool TryGetValue(string twoLetterISORegionName, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out IbanNet.Registry.IbanCountry? country) { }
     }
+    public static class IbanRegistryExtensions
+    {
+        public static IbanNet.Registry.IIbanRegistry ExcludingCountries(this IbanNet.Registry.IIbanRegistry registry, params string[] countryCodes) { }
+        public static IbanNet.Registry.IIbanRegistry IncludingCountries(this IbanNet.Registry.IIbanRegistry registry, params string[] countryCodes) { }
+    }
     public sealed class PatternDescriptor : System.IEquatable<IbanNet.Registry.PatternDescriptor>
     {
         public PatternDescriptor(IbanNet.Registry.Patterns.Pattern pattern, int position = 0) { }
