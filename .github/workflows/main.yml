@@ -114,7 +114,7 @@ jobs:
 
       # Restore build artifacts
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: build
 
@@ -152,7 +152,7 @@ jobs:
 
       # Restore build artifacts
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: build
 
@@ -178,7 +178,7 @@ jobs:
     steps:
       # Restore release artifacts
       - name: Download release artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: release-${{ needs.determine-version.outputs.package-version }}
 
