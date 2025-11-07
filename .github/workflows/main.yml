@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
-      GITVERSION: '6.0.x'
+      GITVERSION: '6.5.x'
     outputs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
       package-version: ${{ steps.gitversion.outputs.fullSemVer }}
@@ -41,8 +41,6 @@ jobs:
       - name: Determine version
         uses: gittools/actions/gitversion/execute@d0139503a9321f76b4a417dfdc8aebcec24decdd #v4.2.0
         id: gitversion
-        with:
-          useConfigFile: true
 
   build:
     needs:
