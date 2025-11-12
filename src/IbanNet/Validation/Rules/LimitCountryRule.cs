@@ -18,7 +18,7 @@ public abstract class LimitCountryRule : IIbanValidationRule
     /// <param name="countryCodes">An enumerable of accepted country codes (2 letter ISO region name)</param>
     /// <param name="paramName">The parameter name of <paramref name="countryCodes" />of derived type.</param>
     /// <param name="isAccepted"></param>
-    protected internal LimitCountryRule(
+    private protected LimitCountryRule(
         IEnumerable<string> countryCodes,
         string paramName,
         bool isAccepted
