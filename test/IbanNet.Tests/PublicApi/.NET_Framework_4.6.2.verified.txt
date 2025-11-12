@@ -397,7 +397,6 @@ namespace IbanNet.Validation.Rules
     }
     public abstract class LimitCountryRule : IbanNet.Validation.Rules.IIbanValidationRule
     {
-        protected LimitCountryRule(System.Collections.Generic.IEnumerable<string> countryCodes, string paramName, bool isAccepted) { }
         public IbanNet.Validation.Results.ValidationRuleResult Validate(IbanNet.Validation.Rules.ValidationRuleContext context) { }
     }
     public sealed class QrIbanRule : IbanNet.Validation.Rules.IIbanValidationRule
