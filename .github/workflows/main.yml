@@ -94,9 +94,9 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-22.04
+          - ubuntu-latest
           - windows-latest
-          - macos-13
+          - macos-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -104,6 +104,20 @@ jobs:
       - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ env.dotnet-version }}
+
+      # Install Mono
+      - name: Install Mono (Ubuntu)
+        run: |
+          sudo apt install ca-certificates gnupg
+          sudo gpg --homedir /tmp --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+          sudo chmod +r /usr/share/keyrings/mono-official-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+          sudo apt update
+          sudo apt install mono-complete
+        if: matrix.os == 'ubuntu-latest'
+      - name: Install Mono (Mac)
+        run: brew install mono
+        if: matrix.os == 'macos-latest'
 
       # Checkout
       - uses: actions/checkout@v5
@@ -118,9 +132,9 @@ jobs:
 
       # Run all tests
       - run: dotnet test --no-restore --no-build -c Release -- xUnit.AppDomain=denied
-        if: matrix.os == 'ubuntu-22.04'
+        if: matrix.os == 'ubuntu-latest'
       - run: dotnet test --no-restore --no-build -c Release --filter Category!=PublicApi -- xUnit.AppDomain=denied
-        if: matrix.os != 'ubuntu-22.04'
+        if: matrix.os != 'ubuntu-latest'
 
   pack:
     needs:
