@@ -18,7 +18,7 @@ internal sealed class NoIllegalCharactersRule : IIbanValidationRule
         {
             char c = iban[i];
             // All chars must be 0-9, a-z or A-Z.
-            if (!c.IsAlphaNumeric())
+            if (!char.IsAsciiLetterOrDigit(c))
             {
                 return new IllegalCharactersResult(i);
             }

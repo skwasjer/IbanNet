@@ -14,7 +14,7 @@ internal sealed class HasCountryCodeRule : IIbanValidationRule
         string iban = context.Value;
         // First 2 chars must be a-z or A-Z.
         int pos = -1;
-        if (iban.Length < 2 || !iban[++pos].IsAsciiLetter() || !iban[++pos].IsAsciiLetter())
+        if (iban.Length < 2 || !char.IsAsciiLetter(iban[++pos]) || !char.IsAsciiLetter(iban[++pos]))
         {
             return new IllegalCountryCodeCharactersResult(iban.Length == 1 ? 1 : pos);
         }

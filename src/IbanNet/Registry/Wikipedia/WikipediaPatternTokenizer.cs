@@ -9,7 +9,7 @@ internal class WikipediaPatternTokenizer : PatternTokenizer
     private static readonly char[] TokenChars = ['n', 'a', 'c'];
 
     public WikipediaPatternTokenizer()
-        : base(ch => ch.IsUpperAsciiLetter() || TokenChars.Contains(ch))
+        : base(ch => char.IsAsciiLetterUpper(ch) || TokenChars.Contains(ch))
     {
     }
 

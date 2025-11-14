@@ -15,7 +15,7 @@ internal class SwiftPatternTokenizer : PatternTokenizer
     private static readonly char[] TokenChars = ['n', 'a', 'c', 'e'];
 
     internal SwiftPatternTokenizer()
-        : base(ch => ch.IsUpperAsciiLetter() || TokenChars.Contains(ch))
+        : base(ch => char.IsAsciiLetterUpper(ch) || TokenChars.Contains(ch))
     {
     }
 

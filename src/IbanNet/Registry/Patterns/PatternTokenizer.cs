@@ -124,6 +124,6 @@ internal abstract class PatternTokenizer : ITokenizer<PatternToken>
 
     private static bool IsCountryCodeToken(string token)
     {
-        return token.Length == 2 && token[0].IsUpperAsciiLetter() && token[1].IsUpperAsciiLetter();
+        return token.Length == 2 && char.IsAsciiLetterUpper(token[0]) && char.IsAsciiLetterUpper(token[1]);
     }
 }

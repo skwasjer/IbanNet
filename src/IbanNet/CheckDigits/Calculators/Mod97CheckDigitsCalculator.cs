@@ -1,6 +1,4 @@
-﻿#if !NET8_0_OR_GREATER
-using IbanNet.Extensions;
-#endif
+﻿using IbanNet.Extensions;
 
 namespace IbanNet.CheckDigits.Calculators;
 
@@ -24,21 +22,13 @@ public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
         for (int i = 0; i < length; i++)
         {
             char ch = value[i];
-#if NET8_0_OR_GREATER
             if (char.IsAsciiDigit(ch))
-#else
-            if (ch.IsAsciiDigit())
-#endif
             {
                 // - Shift by 1 digit
                 // - Subtract '0' to get value 0, 1, 2.
                 current = unchecked(((current * 10) + ch - '0') % 97);
             }
-#if NET8_0_OR_GREATER
             else if (char.IsAsciiLetter(ch))
-#else
-            else if (ch.IsAsciiLetter())
-#endif
             {
                 // - For letters, always is two digits so shift 2 digits.
                 // - Use bitwise OR with ' ' (space, 0x20) to convert char to lowercase.

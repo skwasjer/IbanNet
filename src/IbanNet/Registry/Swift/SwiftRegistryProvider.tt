@@ -186,23 +186,23 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
 <#
             } else if (token.Category == AsciiCategory.Digit) {
 #>
-                    && value[pos++].IsAsciiDigit()
+                    && char.IsAsciiDigit(value[pos++])
 <#
             } else if (token.Category == AsciiCategory.AlphaNumeric) {
 #>
-                    && value[pos++].IsAlphaNumeric()
+                    && char.IsAsciiLetterOrDigit(value[pos++])
 <#
             } else if (token.Category == AsciiCategory.UppercaseLetter) {
 #>
-                    && value[pos++].IsUpperAsciiLetter()
+                    && char.IsAsciiLetterUpper(value[pos++])
 <#
             } else if (token.Category == AsciiCategory.LowercaseLetter) {
 #>
-                    && value[pos++].IsLowerAsciiLetter()
+                    && char.IsAsciiLetterLower(value[pos++])
 <#
             } else if (token.Category == AsciiCategory.Letter) {
 #>
-                    && value[pos++].IsAsciiLetter()
+                    && char.IsAsciiLetter(value[pos++])
 <#
             }
         }
