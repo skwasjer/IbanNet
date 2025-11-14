@@ -183,11 +183,11 @@ internal class PatternValidator
         {
             AsciiCategory.None => offset < token.Value!.Length && token.Value[offset] == ch,
             AsciiCategory.Space => ch == ' ',
-            AsciiCategory.Digit => ch.IsAsciiDigit(),
-            AsciiCategory.AlphaNumeric => ch.IsAlphaNumeric(),
-            AsciiCategory.UppercaseLetter => ch.IsUpperAsciiLetter(),
-            AsciiCategory.LowercaseLetter => ch.IsLowerAsciiLetter(),
-            AsciiCategory.Letter => ch.IsAsciiLetter(),
+            AsciiCategory.Digit => char.IsAsciiDigit(ch),
+            AsciiCategory.AlphaNumeric => char.IsAsciiLetterOrDigit(ch),
+            AsciiCategory.UppercaseLetter => char.IsAsciiLetterUpper(ch),
+            AsciiCategory.LowercaseLetter => char.IsAsciiLetterLower(ch),
+            AsciiCategory.Letter => char.IsAsciiLetter(ch),
             _ => false
         };
     }

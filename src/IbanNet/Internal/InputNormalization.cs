@@ -42,13 +42,13 @@ internal static class InputNormalization
             for (int i = 0; i < length; i++)
             {
                 char ch = value[i];
-                if (ch.IsSingleLineWhitespace())
+                if (char.IsSingleLineWhitespace(ch))
                 {
                     hasModified = true;
                     continue;
                 }
 
-                if (ch.IsAsciiLetter())
+                if (char.IsAsciiLetter(ch))
                 {
                     // Inline upper case.
                     char newCh = (char)(ch & ~' ');
