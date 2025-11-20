@@ -13,8 +13,9 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   DOTNET_NOLOGO: true
   dotnet-version: |
+    10.0.x
+    9.0.x
     8.0.x
-    6.0.x
 
 jobs:
   # Blog https://iterative.ai/blog/testing-external-contributions-using-github-actions-secrets

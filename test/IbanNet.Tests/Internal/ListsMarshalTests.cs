@@ -1,4 +1,4 @@
-﻿#if NET8_0_OR_GREATER
+﻿#if NET8_0 || NET10_0_OR_GREATER
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
