@@ -45,27 +45,6 @@ namespace IbanNet.Builders
         public IbanNet.Builders.IBankAccountBuilder WithCountry(IbanNet.Registry.IbanCountry country) { }
     }
 }
-namespace IbanNet.CheckDigits.Calculators
-{
-    public interface ICheckDigitsCalculator
-    {
-        int Compute(char[] value);
-    }
-    [System.Serializable]
-    public class InvalidTokenException : System.InvalidOperationException
-    {
-        public InvalidTokenException() { }
-        public InvalidTokenException(string message) { }
-        protected InvalidTokenException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
-        public InvalidTokenException(int position, char unexpectedChar) { }
-        public InvalidTokenException(string message, System.Exception? innerException) { }
-    }
-    public class Mod97CheckDigitsCalculator : IbanNet.CheckDigits.Calculators.ICheckDigitsCalculator
-    {
-        public Mod97CheckDigitsCalculator() { }
-        public int Compute(char[] value) { }
-    }
-}
 namespace IbanNet.DependencyInjection
 {
     public abstract class DependencyResolverAdapter

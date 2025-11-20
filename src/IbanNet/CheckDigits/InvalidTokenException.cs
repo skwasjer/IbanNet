@@ -1,12 +1,12 @@
 ﻿using System.Globalization;
 
-namespace IbanNet.CheckDigits.Calculators;
+namespace IbanNet.CheckDigits;
 
 /// <summary>
 /// Exception that is thrown when an unexpected token/character is encountered while computing check digits.
 /// </summary>
 [Serializable]
-public class InvalidTokenException : InvalidOperationException
+internal class InvalidTokenException : InvalidOperationException
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="InvalidTokenException" />.

@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Diagnostics.Windows.Configs;
 using BenchmarkDotNet.Order;
-using IbanNet.CheckDigits.Calculators;
+using IbanNet.CheckDigits;
 
 namespace IbanNet.Benchmark;
 
@@ -9,10 +9,8 @@ namespace IbanNet.Benchmark;
 [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
 [MemoryDiagnoser]
 [InliningDiagnoser(false, ["IbanNet.Extensions", "IbanNet.CheckDigits.Calculators"])]
-public class Mod97CheckDigitsCalculatorBenchmark
+public class Mod9710Benchmark
 {
-    private Mod97CheckDigitsCalculator _calculator;
-
     public static IEnumerable<object> TestCases()
     {
         return
@@ -23,17 +21,11 @@ public class Mod97CheckDigitsCalculatorBenchmark
         ];
     }
 
-    [GlobalSetup]
-    public void GlobalSetup()
-    {
-        _calculator = new Mod97CheckDigitsCalculator();
-    }
-
     [Benchmark]
     [ArgumentsSource(nameof(TestCases))]
     public void Test(TestCase buffer)
     {
-        _calculator.Compute(buffer.Buffer);
+        Mod9710.Compute(buffer.Buffer);
     }
 
     public sealed class TestCase

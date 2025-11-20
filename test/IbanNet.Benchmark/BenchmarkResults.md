@@ -13,11 +13,10 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   .NET Framework 4.8 : .NET Framework 4.8.1 (4.8.9310.0), X64 RyuJIT VectorSize=256
 ```
 
-| Method   | Job                | Runtime            | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|--------- |------------------- |------------------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
-| Validate | .NET 8.0           | .NET 8.0           | 185.0 ns | 0.80 ns | 0.63 ns |  1.00 |    0.00 | 0.0203 |     128 B |        1.00 |
-| Validate | .NET Framework 4.8 | .NET Framework 4.8 | 288.3 ns | 3.98 ns | 3.32 ns |  1.56 |    0.02 | 0.0200 |     128 B |        1.00 |
-
+| Method   | Job                | Runtime            | Mean     | Error   | StdDev  | Ratio | Gen0   | Allocated | Alloc Ratio |
+|--------- |------------------- |------------------- |---------:|--------:|--------:|------:|-------:|----------:|------------:|
+| Validate | .NET 8.0           | .NET 8.0           | 179.5 ns | 0.74 ns | 0.62 ns |  1.00 | 0.0088 |      56 B |        1.00 |
+| Validate | .NET Framework 4.8 | .NET Framework 4.8 | 276.1 ns | 1.66 ns | 1.47 ns |  1.54 | 0.0086 |      56 B |        1.00 |
 
 ### Bulk (10k) runs
 
@@ -28,26 +27,24 @@ This benchmark validates 10,000 IBANs in a loop. It demonstrates the cost of reu
 - *Singleton*: strict validation, singleton validator
 - *Transient*: strict validation, transient validator (per validation). Notice the extra allocations/GC. This is not recommended, and purely for demonstration.
 
-| Method    | Job                | Runtime            | Count | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated | Alloc Ratio |
-|---------- |------------------- |------------------- |------ |---------:|----------:|----------:|------:|--------:|----------:|----------:|------------:|
-| Singleton | .NET 8.0           | .NET 8.0           | 10000 | 2.540 ms | 0.0231 ms | 0.0181 ms |  1.00 |    0.01 |  207.0313 |   1.24 MB |        1.00 |
-| Singleton | .NET Framework 4.8 | .NET Framework 4.8 | 10000 | 4.158 ms | 0.0171 ms | 0.0152 ms |  1.64 |    0.01 |  203.1250 |   1.25 MB |        1.00 |
-| Transient | .NET 8.0           | .NET 8.0           | 10000 | 5.208 ms | 0.0713 ms | 0.0632 ms |  2.05 |    0.03 | 1125.0000 |   6.74 MB |        5.41 |
-| Transient | .NET Framework 4.8 | .NET Framework 4.8 | 10000 | 7.654 ms | 0.1526 ms | 0.2420 ms |  3.01 |    0.10 | 1210.9375 |   7.29 MB |        5.86 |
-
+| Method    | Job                | Runtime            | Count | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0      | Allocated  | Alloc Ratio |
+|---------- |------------------- |------------------- |------ |---------:|----------:|----------:|------:|--------:|----------:|-----------:|------------:|
+| Singleton | .NET 8.0           | .NET 8.0           | 10000 | 2.540 ms | 0.0195 ms | 0.0173 ms |  1.00 |    0.01 |   85.9375 |  546.88 KB |        1.00 |
+| Singleton | .NET Framework 4.8 | .NET Framework 4.8 | 10000 | 4.183 ms | 0.0166 ms | 0.0139 ms |  1.65 |    0.01 |   85.9375 |  548.44 KB |        1.00 |
+| Transient | .NET 8.0           | .NET 8.0           | 10000 | 5.048 ms | 0.0431 ms | 0.0382 ms |  1.99 |    0.02 |  968.7500 |  5937.5 KB |       10.86 |
+| Transient | .NET Framework 4.8 | .NET Framework 4.8 | 10000 | 7.145 ms | 0.0449 ms | 0.0398 ms |  2.81 |    0.02 | 1054.6875 | 6503.44 KB |       11.89 |
 
 ### Validation per provider
 
 Validating with `SwiftRegistryProvider` is faster and allocates less memory than the `WikipediaRegistryProvider`, because the pattern matcher is unrolled instead of depending on a more generic match implementation (using an iterator).
 
-| Method   | Job                | Runtime            | args      | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|--------- |------------------- |------------------- |---------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|------------:|
-| Validate | .NET 8.0           | .NET 8.0           | Swift     | 153.2 ns | 0.98 ns | 0.92 ns |  1.00 |    0.01 | 0.0191 |     120 B |        1.00 |
-| Validate | .NET Framework 4.8 | .NET Framework 4.8 | Swift     | 274.8 ns | 2.72 ns | 2.41 ns |  1.79 |    0.02 | 0.0191 |     120 B |        1.00 |
-|          |                    |                    |           |          |         |         |       |         |        |           |             |
-| Validate | .NET 8.0           | .NET 8.0           | Wikipedia | 187.1 ns | 1.20 ns | 1.12 ns |  1.00 |    0.01 | 0.0191 |     120 B |        1.00 |
-| Validate | .NET Framework 4.8 | .NET Framework 4.8 | Wikipedia | 359.1 ns | 5.76 ns | 4.81 ns |  1.92 |    0.03 | 0.0191 |     120 B |        1.00 |
-
+| Method   | Job                | Runtime            | args      | Mean     | Error   | StdDev  | Ratio | Gen0   | Allocated | Alloc Ratio |
+|--------- |------------------- |------------------- |---------- |---------:|--------:|--------:|------:|-------:|----------:|------------:|
+| Validate | .NET 8.0           | .NET 8.0           | Swift     | 143.0 ns | 0.29 ns | 0.25 ns |  1.00 | 0.0088 |      56 B |        1.00 |
+| Validate | .NET Framework 4.8 | .NET Framework 4.8 | Swift     | 251.9 ns | 1.45 ns | 1.35 ns |  1.76 | 0.0086 |      56 B |        1.00 |
+|          |                    |                    |           |          |         |         |       |        |           |             |
+| Validate | .NET 8.0           | .NET 8.0           | Wikipedia | 185.7 ns | 1.38 ns | 1.15 ns |  1.00 | 0.0088 |      56 B |        1.00 |
+| Validate | .NET Framework 4.8 | .NET Framework 4.8 | Wikipedia | 356.5 ns | 0.99 ns | 0.88 ns |  1.92 | 0.0086 |      56 B |        1.00 |
 
 ### Initialize registry
 
@@ -85,16 +82,17 @@ The registry lazy loads definitions. This benchmark only measures the cost of th
 
 ### Mod-97,10
 
-| Method | Job                | Runtime            | buffer           | Mean     | Error    | StdDev   | Ratio | RatioSD | Allocated | Alloc Ratio |
-|------- |------------------- |------------------- |----------------- |---------:|---------:|---------:|------:|--------:|----------:|------------:|
-| Test   | .NET 8.0           | .NET 8.0           | 0123456789012345 | 19.42 ns | 0.377 ns | 0.315 ns |  1.00 |    0.02 |         - |          NA |
-| Test   | .NET Framework 4.8 | .NET Framework 4.8 | 0123456789012345 | 21.79 ns | 0.244 ns | 0.228 ns |  1.12 |    0.02 |         - |          NA |
-|        |                    |                    |                  |          |          |          |       |         |           |             |
-| Test   | .NET 8.0           | .NET 8.0           | 01234567ABCDEFGH | 24.85 ns | 0.103 ns | 0.092 ns |  1.00 |    0.01 |         - |          NA |
-| Test   | .NET Framework 4.8 | .NET Framework 4.8 | 01234567ABCDEFGH | 29.39 ns | 0.151 ns | 0.118 ns |  1.18 |    0.01 |         - |          NA |
-|        |                    |                    |                  |          |          |          |       |         |           |             |
-| Test   | .NET 8.0           | .NET 8.0           | ABCDEFGHIJKLMNOP | 24.73 ns | 0.040 ns | 0.033 ns |  1.00 |    0.00 |         - |          NA |
-| Test   | .NET Framework 4.8 | .NET Framework 4.8 | ABCDEFGHIJKLMNOP | 32.65 ns | 0.182 ns | 0.142 ns |  1.32 |    0.01 |         - |          NA |
+| Method | Job                | Runtime            | buffer           | Mean     | Error    | StdDev   | Ratio | Allocated | Alloc Ratio |
+|------- |------------------- |------------------- |----------------- |---------:|---------:|---------:|------:|----------:|------------:|
+| Test   | .NET 8.0           | .NET 8.0           | 0123456789012345 | 19.63 ns | 0.110 ns | 0.092 ns |  1.00 |         - |          NA |
+| Test   | .NET Framework 4.8 | .NET Framework 4.8 | 0123456789012345 | 27.75 ns | 0.150 ns | 0.141 ns |  1.41 |         - |          NA |
+|        |                    |                    |                  |          |          |          |       |           |             |
+| Test   | .NET 8.0           | .NET 8.0           | 01234567ABCDEFGH | 26.93 ns | 0.190 ns | 0.168 ns |  1.00 |         - |          NA |
+| Test   | .NET Framework 4.8 | .NET Framework 4.8 | 01234567ABCDEFGH | 37.03 ns | 0.061 ns | 0.054 ns |  1.38 |         - |          NA |
+|        |                    |                    |                  |          |          |          |       |           |             |
+| Test   | .NET 8.0           | .NET 8.0           | ABCDEFGHIJKLMNOP | 25.59 ns | 0.097 ns | 0.081 ns |  1.00 |         - |          NA |
+| Test   | .NET Framework 4.8 | .NET Framework 4.8 | ABCDEFGHIJKLMNOP | 40.39 ns | 0.361 ns | 0.338 ns |  1.58 |         - |          NA |
+
 ### CLI
 
 To run the benchmark:

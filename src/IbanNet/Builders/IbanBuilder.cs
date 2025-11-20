@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using IbanNet.CheckDigits.Calculators;
+using IbanNet.CheckDigits;
 using IbanNet.Registry;
 
 namespace IbanNet.Builders;
@@ -15,7 +15,6 @@ public sealed class IbanBuilder : IBankAccountBuilder
     private const int InverseMod97PlusExpectedCheckDigit = 97 + 1;
 
     private readonly BbanBuilder _bbanBuilder;
-    private readonly Mod97CheckDigitsCalculator _checkDigitCalculator;
 
     private IbanCountry _country = null!;
 
@@ -25,7 +24,6 @@ public sealed class IbanBuilder : IBankAccountBuilder
     public IbanBuilder()
     {
         _bbanBuilder = new BbanBuilder();
-        _checkDigitCalculator = new Mod97CheckDigitsCalculator();
     }
 
     /// <inheritdoc />
@@ -82,10 +80,7 @@ public sealed class IbanBuilder : IBankAccountBuilder
             CopyToBuffer(buffer,
                 countryCode,
                 0,
-                bban,
-                countryCodePos: bban.Length,
-                checkDigitPos: bban.Length + countryCode.Length,
-                bbanPos: 0);
+                bban);
         }
         catch (InvalidOperationException ex)
         {
@@ -94,7 +89,7 @@ public sealed class IbanBuilder : IBankAccountBuilder
         }
 
         // Return IBAN.
-        int checkDigits = InverseMod97PlusExpectedCheckDigit - _checkDigitCalculator.Compute(buffer);
+        int checkDigits = InverseMod97PlusExpectedCheckDigit - Mod9710.Compute(buffer);
         CopyToBuffer(buffer, countryCode, checkDigits, bban);
 
         return new string(buffer);
