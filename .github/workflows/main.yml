@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
-      GITVERSION: '6.0.x'
+      GITVERSION: '6.5.x'
     outputs:
       version: ${{ steps.gitversion.outputs.fullSemVer }}
       package-version: ${{ steps.gitversion.outputs.fullSemVer }}
@@ -29,21 +29,19 @@ jobs:
       file-version: ${{ steps.gitversion.outputs.assemblySemFileVer }}
       informational-version: ${{ steps.gitversion.outputs.informationalVersion }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           fetch-tags: true
 
       - name: Install GitVersion ${{ env.GITVERSION }}
-        uses: gittools/actions/gitversion/setup@26a89e5dd4fa9ba66a853e04706ba52755ca4057 #v3.1.1
+        uses: gittools/actions/gitversion/setup@d0139503a9321f76b4a417dfdc8aebcec24decdd #v4.2.0
         with:
           versionSpec: ${{ env.GITVERSION }}
 
       - name: Determine version
-        uses: gittools/actions/gitversion/execute@26a89e5dd4fa9ba66a853e04706ba52755ca4057 #v3.1.1
+        uses: gittools/actions/gitversion/execute@d0139503a9321f76b4a417dfdc8aebcec24decdd #v4.2.0
         id: gitversion
-        with:
-          useConfigFile: true
 
   build:
     needs:
@@ -57,14 +55,14 @@ jobs:
       msbuild-version-args: ${{ env.msbuild-version-args }}
     steps:
       # Setup
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ env.dotnet-version }}
 
       - run: dotnet --info
 
       # Checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
@@ -83,7 +81,7 @@ jobs:
       # Build
       - run: dotnet build --no-restore -c Release ${{ env.msbuild-version-args }}
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: build
           path: |
@@ -97,33 +95,47 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-22.04
+          - ubuntu-latest
           - windows-latest
-          - macos-13
+          - macos-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
       # Setup
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ env.dotnet-version }}
 
+      # Install Mono
+      - name: Install Mono (Ubuntu)
+        run: |
+          sudo apt install ca-certificates gnupg
+          sudo gpg --homedir /tmp --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+          sudo chmod +r /usr/share/keyrings/mono-official-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+          sudo apt update
+          sudo apt install mono-complete
+        if: matrix.os == 'ubuntu-latest'
+      - name: Install Mono (Mac)
+        run: brew install mono
+        if: matrix.os == 'macos-latest'
+
       # Checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
       # Restore build artifacts
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: build
 
       # Run all tests
       - run: dotnet test --no-restore --no-build -c Release -- xUnit.AppDomain=denied
-        if: matrix.os == 'ubuntu-22.04'
+        if: matrix.os == 'ubuntu-latest'
       - run: dotnet test --no-restore --no-build -c Release --filter Category!=PublicApi -- xUnit.AppDomain=denied
-        if: matrix.os != 'ubuntu-22.04'
+        if: matrix.os != 'ubuntu-latest'
 
   pack:
     needs:
@@ -132,12 +144,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Setup
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ env.dotnet-version }}
 
       # Checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
@@ -153,18 +165,18 @@ jobs:
 
       # Restore build artifacts
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: build
 
       # Pack
       - run: dotnet pack --no-restore --no-build -c Release ${{ needs.build.outputs.msbuild-version-args }}
       - name: Upload release artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: release-${{ needs.determine-version.outputs.package-version }}
           path: |
-            **/*.*nupkg
+            src/**/*.*nupkg
           if-no-files-found: error
           retention-days: 90
 
@@ -179,7 +191,7 @@ jobs:
     steps:
       # Restore release artifacts
       - name: Download release artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: release-${{ needs.determine-version.outputs.package-version }}
 
