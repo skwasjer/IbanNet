@@ -38,16 +38,14 @@ public class AspNetWebHostFixture : WebHostFixture, IAsyncLifetime
         base.Configure(webHostBuilder);
     }
 
-    public Task InitializeAsync()
+    Task IAsyncLifetime.InitializeAsync()
     {
-        Start();
-        return Task.CompletedTask;
+        return StartAsync();
     }
 
-    public Task DisposeAsync()
+    Task IAsyncLifetime.DisposeAsync()
     {
-        Dispose();
-        return Task.CompletedTask;
+        return DisposeAsync().AsTask();
     }
 }
 #endif
