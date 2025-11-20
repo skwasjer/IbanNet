@@ -1,36 +1,82 @@
 ﻿using System.Runtime.CompilerServices;
 using IbanNet.Extensions;
 
-namespace IbanNet.CheckDigits.Calculators;
+namespace IbanNet.CheckDigits;
 
 /// <summary>
-/// Computes check digits using mod 97 algorithm.
+/// This Mod-97,10 implementation expects a Base36-encoded string/buffer.
 /// </summary>
-public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
+internal static class Mod9710
 {
     private const int MaxDigitsBeforeIntegerOverflow = 8;
     private const int Modulo = 97;
 
-    /// <inheritdoc />
-    public int Compute(char[] value)
+#if USE_SPANS
+    internal static int Compute(ReadOnlySpan<char> value)
+    {
+        return Compute(value, value.Length);
+    }
+#else
+    internal static unsafe int Compute(char[] value)
     {
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
 
+        fixed (char* ptr = value)
+        {
+            return Compute(ptr, value.Length);
+        }
+    }
+
+    internal static unsafe int Compute(string value)
+    {
+        if (value is null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        fixed (char* ptr = value)
+        {
+            return Compute(ptr, value.Length);
+        }
+    }
+#endif
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if USE_SPANS
+    private static int Compute(ReadOnlySpan<char> buffer, int length)
+#else
+    private static unsafe int Compute(char* buffer, int length)
+#endif
+    {
+        // We start processing the buffer from where the BBAN starts at position 4 (0-based index).
+        // Once we hit the end of the buffer, we then wrap around and process the first 4 chars of the buffer.
+        const int bbanStart = 4;
+        int cursor = bbanStart - 1;
+        int max = length - 1;
+
         int digits = 0;
         int remainder = 0;
-        int length = value.Length;
 
-        // ReSharper disable once ForCanBeConvertedToForeach - justification : performance
         for (int i = 0; i < length; i++)
         {
-            char ch = value[i];
+            if (cursor < max)
+            {
+                cursor++;
+            }
+            else
+            {
+                // Restart from the beginning.
+                cursor = 0;
+            }
+
+            char ch = buffer[cursor];
             int number = FromBase36(ch);
             if (number < 0)
             {
-                throw new InvalidTokenException(i, ch);
+                throw new InvalidTokenException(cursor, ch);
             }
 
             // If the number we got is a two-digit number (i.e. >= 10) we need to shift left by 100, else by 10.
