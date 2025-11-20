@@ -170,7 +170,7 @@ jobs:
           name: build
 
       # Pack
-      - run: dotnet pack --no-restore --no-build -c Release ${{ needs.build.outputs.msbuild-version-args }}
+      - run: dotnet pack --no-build -c Release ${{ needs.build.outputs.msbuild-version-args }}
       - name: Upload release artifacts
         uses: actions/upload-artifact@v5
         with:
