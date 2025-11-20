@@ -3,9 +3,61 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v6.0.0
+
+### What's Changed
+
+For this major release the focus was on performance improvements, updating dependencies that had breaking changes themselves, and to give some API's/types better names (which was long overdue).
+
+#### Breaking changes
+
+The breaking changes are mostly isolated to the registry.
+
+* chore(tfm)!: remove .NET 6 TFM (EOL) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/342
+* refactor!: move `EffectiveDate` from `IbanStructure` type to `IbanCountry` type by @skwasjer in https://github.com/skwasjer/IbanNet/pull/308
+* refactor(registry)!: rename `StructureSection` to `PatternDescriptor` and remove derived types by @skwasjer in https://github.com/skwasjer/IbanNet/pull/309
+* refactor!: change results to record types by @skwasjer in https://github.com/skwasjer/IbanNet/pull/311
+* refactor!: move token match logic to the pattern validator by @skwasjer in https://github.com/skwasjer/IbanNet/pull/312
+* chore!: remove obsolete enum member `AsciiCategory.Other` by @skwasjer in https://github.com/skwasjer/IbanNet/pull/343
+* perf!: change `ValidationRuleContext` to readonly struct by @skwasjer in https://github.com/skwasjer/IbanNet/pull/306
+* perf!: change `ValidationResult` to readonly struct by @skwasjer in https://github.com/skwasjer/IbanNet/pull/307
+* fix(S3442)!: change visibility of `LimitCountryRule` ctor to private protected by @skwasjer in https://github.com/skwasjer/IbanNet/pull/357
+* chore(deps)!: update Autofac from 8.0.0 to 9.0.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/362
+* perf!: use `Span<T>` (and for legacy .NET `unsafe char*`) API's to avoid heap allocation by @skwasjer in https://github.com/skwasjer/IbanNet/pull/365
+
+#### New features/improvements
+
+* feat(registry): reduce the `IbanRegistry` by including/excluding specific countries by @skwasjer in https://github.com/skwasjer/IbanNet/pull/341
+* perf: defer initializing pattern properties by @skwasjer in https://github.com/skwasjer/IbanNet/pull/315
+* perf: improve mod-97,10 by reducing the number of modulo arithmetic operations by @skwasjer in https://github.com/skwasjer/IbanNet/pull/363
+* feat(net10)!: add .NET 10 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/366
+
+#### Chores/CI
+
+* chore(deps): bump Verify/VerifyXunit to 30.18.0 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/310
+* refactor: remove `SwiftPattern` usage from runtime code by @skwasjer in https://github.com/skwasjer/IbanNet/pull/316
+* test: verify data of generated providers by @skwasjer in https://github.com/skwasjer/IbanNet/pull/317
+* fix(T4): convert position to zero-based index by @skwasjer in https://github.com/skwasjer/IbanNet/pull/319
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.15.2 to 0.15.4 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/313
+* ci(deps): Bump actions/upload-artifact from 4 to 5 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/351
+* ci(deps): Bump actions/download-artifact from 4 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/347
+* ci(deps): Bump github/codeql-action from 3 to 4 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/350
+* ci(deps): Bump actions/setup-java from 4 to 5 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/348
+* ci(deps): Bump gittools/actions from 3.1.1 to 4.2.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/349
+* ci(deps): bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/352
+* ci(deps): bump actions/setup-dotnet from 4 to 5 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/354
+* ci(deps): bump actions/setup-node from 4 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/353
+* ci(runners): switch to latest runners due to EOL by @skwasjer in https://github.com/skwasjer/IbanNet/pull/356
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.15.4 to 0.15.6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/344
+* refactor: use extension block to polyfill newer static char API's by @skwasjer in https://github.com/skwasjer/IbanNet/pull/360
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.15.6 to 0.15.7 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/359
+* ci: only include (s)nupkg files in artifacts from /src folder by @skwasjer in https://github.com/skwasjer/IbanNet/pull/368
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.19.1...v6.0.0
+
 ## v5.19.1
 
-## What's Changed
+### What's Changed
 
 * refactor!: move `EffectiveDate` from `IbanStructure` type to `IbanCountry` type by @skwasjer in https://github.com/skwasjer/IbanNet/pull/308
 * test: verify data of generated providers by @skwasjer in https://github.com/skwasjer/IbanNet/pull/317
@@ -14,7 +66,7 @@
 
 ## v5.19.0
 
-## What's Changed
+### What's Changed
 
 * perf(CA1859): use concrete types when possible for improved performance by @skwasjer in https://github.com/skwasjer/IbanNet/pull/288
 * fix(CA2000): expand STA suppression by @skwasjer in https://github.com/skwasjer/IbanNet/pull/289
@@ -23,7 +75,7 @@
 * perf: add benchmark that provides comparison between providers by @skwasjer in https://github.com/skwasjer/IbanNet/pull/304
 * style: use collection expression by @skwasjer in https://github.com/skwasjer/IbanNet/pull/287
 
-### Chores
+#### Chores
 * ci(sonar): disable JRE provisioning by @skwasjer in https://github.com/skwasjer/IbanNet/pull/292
 * chore(deps): Bump FluentValidation from 11.10.0 to 11.11.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/296
 * fix(S7636): expanding secrets in run blocks is security-sensitive by @skwasjer in https://github.com/skwasjer/IbanNet/pull/299
@@ -35,13 +87,13 @@
 
 ## v5.18.0
 
-## What's Changed
+### What's Changed
 
 * feat(registry): updated registry to r99 (SWIFT) which adds Honduras (HN) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/281
 * fix(registry): fixes pattern text for Pakistan (PK) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/280
 * fix(CA2235): mark `IbanFormatException.Result` (backing field) as non-serializable by @skwasjer in https://github.com/skwasjer/IbanNet/pull/286
 
-### Chores
+#### Chores
 
 * chore(deps): Bump xunit and Microsoft.NETFramework.ReferenceAssemblies by @dependabot in https://github.com/skwasjer/IbanNet/pull/262
 * chore(deps): Bump Microsoft.TestPlatform.ObjectModel and Microsoft.NETFramework.ReferenceAssemblies by @dependabot in https://github.com/skwasjer/IbanNet/pull/271
@@ -54,13 +106,13 @@
 
 ## v5.17.0
 
-## What's Changed
+### What's Changed
 
 * fix: when enumerating registry, order by country code by @skwasjer in https://github.com/skwasjer/IbanNet/pull/240
 * fix: STA warnings by @skwasjer in https://github.com/skwasjer/IbanNet/pull/229
 * fix(registry): patch Finland bank code to 6 digits by @skwasjer in https://github.com/skwasjer/IbanNet/pull/257
 
-### Chores
+#### Chores
 
 * chore(deps): Bump VerifyVersion from 26.6.0 to 28.3.1 by @dependabot in https://github.com/skwasjer/IbanNet/pull/235
 * chore(deps): Bump VerifyVersion from 28.3.1 to 28.3.2 by @dependabot in https://github.com/skwasjer/IbanNet/pull/237
@@ -77,7 +129,7 @@
 
 ## v5.16.1
 
-## What's Changed
+### What's Changed
 
 * chore(deps): Bump System.Text.Json from 6.0.9 to 6.0.10 in /src/IbanNet by @dependabot in https://github.com/skwasjer/IbanNet/pull/227
   Microsoft Security Advisory CVE-2024-43485 | .NET Denial of Service Vulnerability
@@ -89,7 +141,7 @@
 
 ## v5.16.0
 
-## What's Changed
+### What's Changed
 
 * feat: updates SwiftRegistryProvider to r98 (July '24) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/220
 * feat: updated WikipediaRegistryProvider by @skwasjer in https://github.com/skwasjer/IbanNet/pull/221
