@@ -331,7 +331,7 @@ public class IbanTests
         }
     }
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
     public class When_system_text_json_converting : IbanTests
     {
         [Theory]
