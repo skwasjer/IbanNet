@@ -3,6 +3,36 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v5.19.1
+
+## What's Changed
+
+* refactor!: move `EffectiveDate` from `IbanStructure` type to `IbanCountry` type by @skwasjer in https://github.com/skwasjer/IbanNet/pull/308
+* test: verify data of generated providers by @skwasjer in https://github.com/skwasjer/IbanNet/pull/317
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.19.0...v5.19.1
+
+## v5.19.0
+
+## What's Changed
+
+* perf(CA1859): use concrete types when possible for improved performance by @skwasjer in https://github.com/skwasjer/IbanNet/pull/288
+* fix(CA2000): expand STA suppression by @skwasjer in https://github.com/skwasjer/IbanNet/pull/289
+* fix(CA2263): prefer the generic overload by @skwasjer in https://github.com/skwasjer/IbanNet/pull/290
+* perf: add benchmarks for registry initialization/lookup by @skwasjer in https://github.com/skwasjer/IbanNet/pull/303
+* perf: add benchmark that provides comparison between providers by @skwasjer in https://github.com/skwasjer/IbanNet/pull/304
+* style: use collection expression by @skwasjer in https://github.com/skwasjer/IbanNet/pull/287
+
+### Chores
+* ci(sonar): disable JRE provisioning by @skwasjer in https://github.com/skwasjer/IbanNet/pull/292
+* chore(deps): Bump FluentValidation from 11.10.0 to 11.11.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/296
+* fix(S7636): expanding secrets in run blocks is security-sensitive by @skwasjer in https://github.com/skwasjer/IbanNet/pull/299
+* fix(S7637): use full commit SHA hash for `gittools/actions/**` dependency by @skwasjer in https://github.com/skwasjer/IbanNet/pull/300
+* fix(wikipedia): T4 loader code fails because a User-Agent header is now required. by @skwasjer in https://github.com/skwasjer/IbanNet/pull/302
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.14.0 to 0.15.2 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/295
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.18.0...v5.19.0
+
 ## v5.18.0
 
 ## What's Changed
