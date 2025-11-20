@@ -10,9 +10,7 @@ public class Mod97CheckDigitsCalculatorTests
     }
 
     [Theory]
-    [InlineData("BMAG00001299123456BH67", 1)]
-    [InlineData("ABC012", 85)]
-    [InlineData("", 0)]
+    [MemberData(nameof(TestCases))]
     public void Given_value_when_computing_should_return_expected_check_digits(string value, int expectedCheckDigits)
     {
         // Act
@@ -20,6 +18,26 @@ public class Mod97CheckDigitsCalculatorTests
 
         // Assert
         actual.Should().Be(expectedCheckDigits);
+    }
+
+    public static TheoryData<string, int> TestCases
+    {
+        get => new()
+        {
+            { "", 0 },
+            { "0", 0 },
+            { "A", 10 },
+            { "Z", 35 },
+            { "ABCDEFG", 27 },
+            { "1234567890", 2 },
+            { "209876541320987654130", 51 },
+            { "1234567890ZYX", 19 },
+            { "65242074034895615069018425766175325148134413755480937177823183347306537990349539826366434011349528759099450602366561132678465015", 16 },
+            { "ABNA0417164300NL91", 1 },
+            { "MALT011000012345MTLCAST001SMT84", 1 },
+            { "BMAG00001299123456BH67", 1 },
+            { "ABC012", 85 }
+        };
     }
 
     [Fact]
