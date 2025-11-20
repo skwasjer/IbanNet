@@ -176,7 +176,7 @@ jobs:
         with:
           name: release-${{ needs.determine-version.outputs.package-version }}
           path: |
-            **/*.*nupkg
+            src/**/*.*nupkg
           if-no-files-found: error
           retention-days: 90
 
