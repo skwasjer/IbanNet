@@ -1,5 +1,8 @@
 ﻿namespace IbanNet.CheckDigits.Calculators;
 
+#pragma warning disable S1133
+[Obsolete("Will be removed in 6.x.")]
+#pragma warning restore S1133
 public class Mod97CheckDigitsCalculatorTests
 {
     private readonly Mod97CheckDigitsCalculator _sut;

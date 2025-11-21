@@ -7,6 +7,9 @@ namespace IbanNet.CheckDigits.Calculators;
 /// <summary>
 /// Computes check digits using mod 97 algorithm.
 /// </summary>
+#pragma warning disable S1133
+[Obsolete("Will be removed in 6.x.")]
+#pragma warning restore S1133
 public class Mod97CheckDigitsCalculator : ICheckDigitsCalculator
 {
     /// <inheritdoc />
