@@ -55,6 +55,14 @@ The breaking changes are mostly isolated to the registry.
 
 **Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.19.1...v6.0.0
 
+## v5.19.2
+
+## What's Changed
+
+* chore: mark CheckDigits(.Calculators) namespace obsolete by @skwasjer in https://github.com/skwasjer/IbanNet/pull/370
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v5.19.1...v5.19.2
+
 ## v5.19.1
 
 ### What's Changed
