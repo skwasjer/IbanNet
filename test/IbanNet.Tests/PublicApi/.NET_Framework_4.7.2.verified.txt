@@ -47,10 +47,12 @@ namespace IbanNet.Builders
 }
 namespace IbanNet.CheckDigits.Calculators
 {
+    [System.Obsolete("Will be removed in 6.x.")]
     public interface ICheckDigitsCalculator
     {
         int Compute(char[] value);
     }
+    [System.Obsolete("Will be removed in 6.x.")]
     [System.Serializable]
     public class InvalidTokenException : System.InvalidOperationException
     {
@@ -60,6 +62,7 @@ namespace IbanNet.CheckDigits.Calculators
         public InvalidTokenException(int position, char unexpectedChar) { }
         public InvalidTokenException(string message, System.Exception? innerException) { }
     }
+    [System.Obsolete("Will be removed in 6.x.")]
     public class Mod97CheckDigitsCalculator : IbanNet.CheckDigits.Calculators.ICheckDigitsCalculator
     {
         public Mod97CheckDigitsCalculator() { }

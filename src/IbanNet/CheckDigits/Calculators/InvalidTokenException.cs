@@ -5,6 +5,9 @@ namespace IbanNet.CheckDigits.Calculators;
 /// <summary>
 /// Exception that is thrown when an unexpected token/character is encountered while computing check digits.
 /// </summary>
+#pragma warning disable S1133
+[Obsolete("Will be removed in 6.x.")]
+#pragma warning restore S1133
 [Serializable]
 public class InvalidTokenException : InvalidOperationException
 {

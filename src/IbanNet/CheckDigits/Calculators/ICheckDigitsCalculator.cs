@@ -3,6 +3,9 @@
 /// <summary>
 /// Describes a calculator which computes check digits for a given input string.
 /// </summary>
+#pragma warning disable S1133
+[Obsolete("Will be removed in 6.x.")]
+#pragma warning restore S1133
 public interface ICheckDigitsCalculator
 {
     /// <summary>
