@@ -42,6 +42,8 @@ public sealed class Iban
         LazyThreadSafetyMode.ExecutionAndPublication
     );
 
+    private static readonly string HiddenFormat = new('*', 4);
+
     /// <summary>
     /// Gets or sets the <see cref="IIbanValidator" /> used to validate an IBAN.
     /// <para>
@@ -88,9 +90,10 @@ public sealed class Iban
 
     /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
     /// <example>
-    /// <see cref="IbanFormat.Print" /> => NL91 ABNA 0417 1643 00
-    /// <see cref="IbanFormat.Electronic" /> => NL91ABNA0417164300
-    /// <see cref="IbanFormat.Obfuscated" /> => XXXXXXXXXXXXXXXXXX4300
+    /// <see cref="IbanFormat.Print" /> =&gt; NL91 ABNA 0417 1643 00
+    /// <see cref="IbanFormat.Electronic" /> =&gt; NL91ABNA0417164300
+    /// <see cref="IbanFormat.Obfuscated" /> =&gt; XXXXXXXXXXXXXXXXXX4300
+    /// <see cref="IbanFormat.Hidden" /> =&gt; ****
     /// </example>
     /// <param name="format">The format to use.</param>
     /// <returns>A string that represents the current <see cref="Iban" />.</returns>
@@ -112,13 +115,14 @@ public sealed class Iban
                     .Chunk(segmentSize)
                     .Select(p => new string(p.ToArray()))
             ),
+            IbanFormat.Hidden => HiddenFormat,
             // TODO: change to IbanFormatException in future major release.
             _ => throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format), nameof(format))
         };
     }
 
-    /// <summary>Returns a string that represents the current <see cref="Iban" />.</summary>
-    /// <returns>A string that represents the current <see cref="Iban" />.</returns>
+    /// <summary>Returns a string that represents the current <see cref="Iban" /> in electronic format.</summary>
+    /// <returns>A string that represents the current <see cref="Iban" /> in electronic format.</returns>
     public override string ToString()
     {
         return ((IFormattable)this).ToString(null, null);
@@ -126,23 +130,49 @@ public sealed class Iban
 
     /// <summary>Formats the value of the current instance using the specified format.</summary>
     /// <example>
-    /// P => NL91 ABNA 0417 1643 00
-    /// E => NL91ABNA0417164300
-    /// O => XXXXXXXXXXXXXXXXXX4300
+    /// P =&gt; NL91 ABNA 0417 1643 00
+    /// E =&gt; NL91ABNA0417164300
+    /// O =&gt; XXXXXXXXXXXXXXXXXX4300
+    /// H =&gt; ****
     /// </example>
     /// <param name="format">The format to use.
     /// <list type="table">
     /// <item>
     /// <term>P</term>
-    /// <description>Format in human readable format. (eg. NL91 ABNA 0417 1643 00)</description>
+    /// <description>Format in human readable format. (eg. NL91 ABNA 0417 1643 00)
+    /// <remarks>
+    /// <para>Typically used for displaying IBAN's to end-users in safe environments.</para>
+    /// </remarks>
+    /// </description>
     /// </item>
     /// <item>
     /// <term>E</term>
-    /// <description>Format in electronic format. (eg. NL91ABNA0417164300)</description>
+    /// <description>Format in electronic format. (eg. NL91ABNA0417164300). This is also the default format in case <paramref name="format"/> is <see langword="null" />.
+    /// <remarks>
+    /// <para>Typically used for electronic processing and storage of IBAN's.</para>
+    /// </remarks>
+    /// </description>
     /// </item>
     /// <item>
     /// <term>O</term>
-    /// <description>Format in obfuscated format. (eg. XXXXXXXXXXXXXXXXXX4300)</description>
+    /// <description>Format in obfuscated format. (eg. XXXXXXXXXXXXXXXXXX4300)
+    /// <remarks>
+    /// <para>
+    /// Typically used when displaying IBAN's in user interfaces to prevent exposing sensitive information.
+    /// Note that this format still allows for partial identification of the IBAN, both due to the visible last characters and the length.
+    /// </para>
+    /// </remarks>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>H</term>
+    /// <description>Format by hiding the IBAN in its entirety. (eg.: ****)
+    /// <remarks>
+    /// <para>
+    /// Typically used when IBAN's should not be displayed at all, and only an indication that an IBAN exists is needed. (For example in audit logs or activity feeds)
+    /// </para>
+    /// </remarks>
+    /// </description>
     /// </item>
     /// </list>
     /// -or-
@@ -154,34 +184,6 @@ public sealed class Iban
         return ((IFormattable)this).ToString(format, null);
     }
 
-    /// <summary>Formats the value of the current instance using the specified format.</summary>
-    /// <example>
-    /// P => NL91 ABNA 0417 1643 00
-    /// E => NL91ABNA0417164300
-    /// O => XXXXXXXXXXXXXXXXXX4300
-    /// </example>
-    /// <param name="format">The format to use.
-    /// <list type="table">
-    /// <item>
-    /// <term>P</term>
-    /// <description>Format in human readable format. (eg. NL91 ABNA 0417 1643 00)</description>
-    /// </item>
-    /// <item>
-    /// <term>E</term>
-    /// <description>Format in electronic format. (eg. NL91ABNA0417164300)</description>
-    /// </item>
-    /// <item>
-    /// <term>O</term>
-    /// <description>Format in obfuscated format. (eg. XXXXXXXXXXXXXXXXXX4300)</description>
-    /// </item>
-    /// </list>
-    /// -or-
-    /// A <see langword="null"/> reference to use the default format defined for the type of the <see cref="IFormattable" /> implementation.
-    /// </param>
-    /// <param name="formatProvider">The provider to use to format the value.
-    /// -or-
-    /// A <see langword="null"/> reference to obtain the numeric format information from the current locale setting of the operating system.</param>
-    /// <returns>The value of the current instance in the specified format.</returns>
     string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
     {
         return (format ?? "E").ToUpperInvariant() switch
@@ -189,6 +191,7 @@ public sealed class Iban
             "E" => ToString(IbanFormat.Electronic),
             "O" => ToString(IbanFormat.Obfuscated),
             "P" => ToString(IbanFormat.Print),
+            "H" => ToString(IbanFormat.Hidden),
             _ => throw new IbanFormatException(string.Format(CultureInfo.CurrentCulture, Resources.ArgumentException_The_format_0_is_invalid, format))
         };
     }

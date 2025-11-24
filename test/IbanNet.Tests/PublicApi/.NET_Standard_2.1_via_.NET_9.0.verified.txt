@@ -123,6 +123,7 @@ namespace IbanNet
         Print = 0,
         Electronic = 1,
         Obfuscated = 2,
+        Hidden = 3,
     }
     [System.Serializable]
     public class IbanFormatException : System.FormatException
