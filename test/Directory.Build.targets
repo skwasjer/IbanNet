@@ -22,7 +22,7 @@
     </PackageReference>
     <PackageReference Include="xunit" Version="2.9.3" />
     <!-- Prevent Verify/DiffEngine/EmptyFiles from creating excessive files in output folder, when we don't need them. -->
-    <PackageReference Include="EmptyFiles" Version="8.13.0" ExcludeAssets="buildTransitive" />
+    <PackageReference Include="EmptyFiles" Version="8.17.1" ExcludeAssets="buildTransitive" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(IsTestProject)' == 'true'">
