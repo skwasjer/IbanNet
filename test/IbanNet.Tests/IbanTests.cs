@@ -57,6 +57,7 @@ public class IbanTests
         private const string IbanElectronic = "AD1200012030200359100100";
         private const string IbanPrint = "AD12 0001 2030 2003 5910 0100";
         private const string IbanObfuscated = "XXXXXXXXXXXXXXXXXXXX0100";
+        private const string IbanHidden = "****";
 
         private readonly Iban _iban;
 
@@ -93,6 +94,7 @@ public class IbanTests
         [InlineData(IbanFormat.Electronic, IbanElectronic)]
         [InlineData(IbanFormat.Print, IbanPrint)]
         [InlineData(IbanFormat.Obfuscated, IbanObfuscated)]
+        [InlineData(IbanFormat.Hidden, IbanHidden)]
         public void With_valid_iban_format_should_succeed(IbanFormat format, string expected)
         {
             // Act
@@ -118,6 +120,7 @@ public class IbanTests
         [InlineData("E", IbanElectronic)]
         [InlineData("P", IbanPrint)]
         [InlineData("O", IbanObfuscated)]
+        [InlineData("H", IbanHidden)]
         public void With_valid_iban_format_when_string_formatting_it_should_succeed(string format, string expected)
         {
             // Act
