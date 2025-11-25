@@ -98,8 +98,8 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-    <data name="IbanFormatException_The_value_0_is_not_a_valid_IBAN" xml:space="preserve">
-        <value>The value '{0}' is not a valid IBAN.</value>
+    <data name="IbanFormatException_The_value_is_not_a_valid_IBAN" xml:space="preserve">
+        <value>The value is not a valid IBAN.</value>
     </data>
     <data name="ArgumentException_The_format_0_is_invalid" xml:space="preserve">
         <value>The format '{0}' is invalid.</value>
