@@ -101,7 +101,7 @@ namespace IbanNet
     }
     [System.ComponentModel.TypeConverter(typeof(IbanNet.TypeConverters.IbanTypeConverter))]
     [System.Text.Json.Serialization.JsonConverter(typeof(IbanNet.Json.IbanJsonConverter))]
-    public sealed class Iban : System.IEquatable<IbanNet.Iban>, System.IFormattable, System.IParsable<IbanNet.Iban>
+    public sealed class Iban : System.IEquatable<IbanNet.Iban>, System.IFormattable, System.IParsable<IbanNet.Iban>, System.ISpanParsable<IbanNet.Iban>
     {
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         public const int MaxLength = 34;
