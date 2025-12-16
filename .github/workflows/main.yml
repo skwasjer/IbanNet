@@ -68,7 +68,7 @@ jobs:
 
       # NuGet cache
       - name: Restore NuGet global package cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.targets','**/*.props','**/*.csproj') }} # Can't use packages.lock.json yet, because Dependabot does not support it.
@@ -155,7 +155,7 @@ jobs:
 
       # NuGet cache (.NET Framework Reference assemblies are needed for pack)
       - name: Restore NuGet global package cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.targets','**/*.props','**/*.csproj') }} # Can't use packages.lock.json yet, because Dependabot does not support it.
