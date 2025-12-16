@@ -199,4 +199,4 @@ jobs:
         env:
           NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push **/*.nupkg -k $NUGET_API_KEY -s "$NUGET_SOURCE_URL"
+        run: dotnet nuget push ./**/*.nupkg -k $NUGET_API_KEY -s "$NUGET_SOURCE_URL"
