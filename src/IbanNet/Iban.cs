@@ -19,7 +19,7 @@ namespace IbanNet;
 public sealed class Iban
     : IEquatable<Iban>,
 #if NET8_0_OR_GREATER
-      IParsable<Iban>,
+      ISpanParsable<Iban>,
 #endif
       IFormattable
 {
@@ -295,6 +295,20 @@ public sealed class Iban
         return parser.Parse(s);
     }
 
+#if USE_SPANS
+    /// <summary>
+    /// Converts the specified <paramref name="s" /> into an <see cref="Iban" />.
+    /// </summary>
+    /// <param name="s">The IBAN value to parse.</param>
+    /// <returns>An <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</returns>
+    /// <exception cref="IbanFormatException">Thrown when the specified <paramref name="s" /> is not a valid IBAN.</exception>
+    internal static Iban Parse(ReadOnlySpan<char> s)
+    {
+        IIbanSpanParser parser = new IbanParser(IbanRegistry.Default);
+        return parser.Parse(s);
+    }
+#endif
+
 #if NET8_0_OR_GREATER
     /// <summary>
     /// Converts the specified <paramref name="s" /> into an <see cref="Iban" />.
@@ -305,6 +319,9 @@ public sealed class Iban
     /// <exception cref="ArgumentNullException">Thrown when the specified <paramref name="s" /> is <see langword="null" />.</exception>
     /// <exception cref="IbanFormatException">Thrown when the specified <paramref name="s" /> is not a valid IBAN.</exception>
     static Iban IParsable<Iban>.Parse(string s, IFormatProvider? provider)
+        => Parse(s);
+
+    static Iban ISpanParsable<Iban>.Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
         => Parse(s);
 #endif
 
@@ -320,6 +337,20 @@ public sealed class Iban
         return parser.TryParse(s, out result);
     }
 
+#if USE_SPANS
+    /// <summary>
+    /// Tries to convert the specified <paramref name="s" /> into an <see cref="Iban" />.
+    /// </summary>
+    /// <param name="s">The IBAN value to parse.</param>
+    /// <param name="result">The <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</param>
+    /// <returns><see langword="true" /> if the <paramref name="s" /> is converted successfully, or <see langword="false" /> otherwise</returns>
+    internal static bool TryParse(ReadOnlySpan<char> s, [NotNullWhen(true)] out Iban? result)
+    {
+        IIbanSpanParser parser = new IbanParser(IbanRegistry.Default);
+        return parser.TryParse(s, out result);
+    }
+#endif
+
 #if NET8_0_OR_GREATER
     /// <summary>
     /// Tries to convert the specified <paramref name="s" /> into an <see cref="Iban" />.
@@ -329,6 +360,9 @@ public sealed class Iban
     /// <param name="result">The <see cref="Iban" /> if the <paramref name="s" /> is converted successfully.</param>
     /// <returns><see langword="true" /> if the <paramref name="s" /> is converted successfully, or <see langword="false" /> otherwise</returns>
     static bool IParsable<Iban>.TryParse(string? s, IFormatProvider? provider, [NotNullWhen(true)] out Iban? result)
+        => TryParse(s, out result);
+
+    static bool ISpanParsable<Iban>.TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [NotNullWhen(true)] out Iban? result)
         => TryParse(s, out result);
 #endif
 }
