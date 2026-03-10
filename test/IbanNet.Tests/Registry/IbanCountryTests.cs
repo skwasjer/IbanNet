@@ -45,6 +45,7 @@ public class IbanCountryTests
         const string twoLetterIsoRegionName = "nl";
         var ibanPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
         var bbanPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
+        var bankAccountNumberPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
         var bankPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
         var branchPatternDescriptor = new PatternDescriptor(NullPattern.Instance);
         const string displayName = "name";
@@ -59,6 +60,7 @@ public class IbanCountryTests
         {
             Iban = ibanPatternDescriptor,
             Bban = bbanPatternDescriptor,
+            BankAccountNumber = bankAccountNumberPatternDescriptor,
             Bank = bankPatternDescriptor,
             Branch = branchPatternDescriptor,
             DisplayName = displayName,
@@ -73,6 +75,7 @@ public class IbanCountryTests
         ibanCountry.TwoLetterISORegionName.Should().Be(twoLetterIsoRegionName.ToUpper());
         ibanCountry.Iban.Should().BeSameAs(ibanPatternDescriptor);
         ibanCountry.Bank.Should().BeSameAs(bankPatternDescriptor);
+        ibanCountry.BankAccountNumber.Should().BeSameAs(bankAccountNumberPatternDescriptor);
         ibanCountry.Bban.Should().BeSameAs(bbanPatternDescriptor);
         ibanCountry.Branch.Should().BeSameAs(branchPatternDescriptor);
         ibanCountry.DisplayName.Should().Be(displayName);
