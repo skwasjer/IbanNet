@@ -67,7 +67,7 @@ jobs:
 
       - name: Install Coverlet
         run: |
-          find ./test -type f -name "*Tests.csproj" -exec dotnet add "{}" package coverlet.msbuild \;
+          find ./test -type f -name "*Tests.csproj" -exec dotnet add "{}" package coverlet.msbuild --version 6.0.4 \;
 
       - name: Set env
         run: |
