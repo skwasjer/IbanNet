@@ -3,6 +3,30 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v6.1.0
+
+### What's Changed
+
+* feat: adds hidden format (****) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/377
+
+#### Chores/CI
+
+* test: exclude transitive build assets to get rid of 1400+ empty files in output folders by @skwasjer in https://github.com/skwasjer/IbanNet/pull/371
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 17.13.0 to 18.0.1 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/373
+* ci(deps): Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/376
+* chore(deps): Bump EmptyFiles from 8.13.0 to 8.17.1 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/375
+* ci(S6573): prefix files and paths with "./" or "--" when using glob by @skwasjer in https://github.com/skwasjer/IbanNet/pull/385
+* ci(deps): Bump actions/cache from 4 to 5 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/382
+* ci(deps): Bump actions/upload-artifact from 5 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/383
+* ci(deps): Bump actions/download-artifact from 6 to 7 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/384
+* fix(ci): coverlet.msbuild 8.0.0 breaks our CI, revert to 6.0.4 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/395
+* ci(deps): bump actions/upload-artifact from 6 to 7 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/391
+* ci(deps): bump actions/download-artifact from 7 to 8 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/392
+* ci(deps): bump gittools/actions from 4.2.0 to 4.3.3 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/393
+
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v6.0.0...v6.1.0
+
 ## v6.0.0
 
 ### What's Changed
@@ -57,7 +81,7 @@ The breaking changes are mostly isolated to the registry.
 
 ## v5.19.2
 
-## What's Changed
+### What's Changed
 
 * chore: mark CheckDigits(.Calculators) namespace obsolete by @skwasjer in https://github.com/skwasjer/IbanNet/pull/370
 
