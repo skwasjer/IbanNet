@@ -193,7 +193,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2015-02-01 +0,
+    LastUpdatedDate: 2025-02-01 +0,
     EffectiveDate: 2011-10-01 +0
   },
   {
@@ -293,7 +293,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2011-04-01 +0,
+    LastUpdatedDate: 2025-06-01 +0,
     EffectiveDate: 2009-04-01 +0
   },
   {
@@ -380,7 +380,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -1619,7 +1619,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-06-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -4325,7 +4325,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2014-02-01 +0
   },
   {
@@ -4412,7 +4412,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2011-01-01 +0
   },
   {
@@ -4499,7 +4499,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-03-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2010-09-01 +0
   },
   {
@@ -4586,7 +4586,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2010-01-01 +0,
+    LastUpdatedDate: 2016-09-01 +0,
     EffectiveDate: 2010-01-01 +0
   },
   {
@@ -4760,7 +4760,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2012-04-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -4847,7 +4847,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -4934,7 +4934,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5021,7 +5021,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2009-01-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5251,7 +5251,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2008-01-01 +0
   },
   {
@@ -5338,7 +5338,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2016-01-01 +0
   },
   {
@@ -5442,7 +5442,7 @@
     TwoLetterISORegionName: MK,
     DisplayName: Северна Македонија,
     NativeName: Северна Македонија,
-    EnglishName: Macedonia,
+    EnglishName: North Macedonia,
     Sepa: {
       IsMember: false
     },
@@ -5532,7 +5532,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2011-01-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5849,7 +5849,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5989,7 +5989,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2007-04-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -6347,7 +6347,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2024-02-01 +0,
+    LastUpdatedDate: 2024-03-01 +0,
     EffectiveDate: 2024-03-01 +0
   },
   {
@@ -6434,7 +6434,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2012-12-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2012-12-01 +0
   },
   {
@@ -6521,7 +6521,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-10-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -6608,7 +6608,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2012-07-01 +0
   },
   {
@@ -6732,7 +6732,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2024-07-01 +0,
+    LastUpdatedDate: 2025-12-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -6906,7 +6906,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2007-04-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -7005,6 +7005,116 @@
     },
     LastUpdatedDate: 2017-03-01 +0,
     EffectiveDate: 2007-04-01 +0
+  },
+  {
+    TwoLetterISORegionName: RU,
+    DisplayName: Россия,
+    NativeName: Россия,
+    EnglishName: Russian Federation,
+    Sepa: {
+      IsMember: false
+    },
+    DomesticAccountNumberExample: 810538091310419,
+    Bban: {
+      Position: 4,
+      Length: 29,
+      Example: 04452522540817810538091310419,
+      Pattern: {
+        ToString(): 9!n5!n15!c,
+        IsFixedLength: true,
+        MaxLength: 29,
+        Tokens: [
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 9
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: AlphaNumeric,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Iban: {
+      Length: 33,
+      Example: RU0304452522540817810538091310419,
+      Pattern: {
+        ToString(): RU2!n9!n5!n15!c,
+        IsFixedLength: true,
+        MaxLength: 33,
+        Tokens: [
+          {
+            Category: None,
+            Value: RU,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 2
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 9
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 5
+          },
+          {
+            Category: AlphaNumeric,
+            IsFixedLength: true,
+            Length: 15
+          }
+        ]
+      }
+    },
+    Bank: {
+      Position: 4,
+      Length: 9,
+      Example: 044525225,
+      Pattern: {
+        ToString(): 9!n,
+        IsFixedLength: true,
+        MaxLength: 9,
+        Tokens: [
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 9
+          }
+        ]
+      }
+    },
+    Branch: {
+      Position: 13,
+      Length: 5,
+      Example: 40817,
+      Pattern: {
+        ToString(): 5!n,
+        IsFixedLength: true,
+        MaxLength: 5,
+        Tokens: [
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 5
+          }
+        ]
+      }
+    },
+    LastUpdatedDate: 2025-10-01 +0,
+    EffectiveDate: 2016-10-01 +0
   },
   {
     TwoLetterISORegionName: SA,
@@ -7833,7 +7943,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2023-02-01 +0,
+    LastUpdatedDate: 2025-02-01 +0,
     EffectiveDate: 2023-01-01 +0
   },
   {
@@ -8344,7 +8454,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -8431,7 +8541,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2016-02-01 +0
   },
   {
@@ -8518,7 +8628,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2018-12-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2019-03-01 +0
   },
   {
@@ -8605,7 +8715,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2014-06-01 +0,
+    LastUpdatedDate: 2016-09-01 +0,
     EffectiveDate: 2012-04-01 +0
   },
   {
@@ -8715,7 +8825,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2024-07-01 +0,
     EffectiveDate: 2014-09-01 +0
   },
   {
