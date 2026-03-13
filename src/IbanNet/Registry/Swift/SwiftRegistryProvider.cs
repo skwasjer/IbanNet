@@ -53,6 +53,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "00012030200359100100"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!c"), 12)
+            {
+                Example = "200359100100"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0001"
@@ -83,6 +87,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "0331234567890123456"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!n"), 7)
+            {
+                Example = "1234567890123456"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "033"
@@ -108,6 +116,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("8!n16!c"), 4)
             {
                 Example = "212110090000000235698741"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!c"), 12)
+            {
+                Example = "0000000235698741"
             },
             Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
@@ -139,6 +151,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "1904300234573201"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n"), 9)
+            {
+                Example = "00234573201"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "19043"
@@ -165,6 +181,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "NABZ00000000137010001944"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!c"), 8)
+            {
+                Example = "00000000137010001944"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NABZ"
@@ -190,6 +210,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n3!n8!n2!n"), 4)
             {
                 Example = "1990440001200279"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("8!n2!n"), 10)
+            {
+                Example = "0001200279"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -221,6 +245,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "539007547034"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("7!n2!n"), 7)
+            {
+                Example = "007547034"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "539"
@@ -246,6 +274,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a4!n2!n8!c"), 4)
             {
                 Example = "BNBG96611020345678"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("2!n8!c"), 12)
+            {
+                Example = "1020345678"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -277,6 +309,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "BMAG00001299123456"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("14!c"), 8)
+            {
+                Example = "00001299123456"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BMAG"
@@ -302,6 +338,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
                 Example = "10000100010000332045181"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n2!n"), 14)
+            {
+                Example = "0000332045181"
             },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
@@ -341,6 +381,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "00001"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("10!n1!a1!c"), 13)
+            {
+                Example = "0009795493C1"
+            },
             Sepa = new SepaInfo
             {
                 IsMember = false
@@ -362,6 +406,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!c4!n16!c"), 4)
             {
                 Example = "NBRB3600900000002Z00AB00"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("4!n16!c"), 8)
+            {
+                Example = "3600900000002Z00AB00"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!c"), 4)
             {
@@ -389,6 +437,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "00762011623852957"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!c"), 9)
+            {
+                Example = "011623852957"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "00762"
@@ -415,6 +467,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "15202001026284066"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("14!n"), 8)
+            {
+                Example = "2001026284066"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0152"
@@ -440,6 +496,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n5!n16!c"), 4)
             {
                 Example = "002001280000001200527600"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!c"), 12)
+            {
+                Example = "0000001200527600"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -471,6 +531,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "08000000192000145399"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("6!n10!n"), 8)
+            {
+                Example = "0000192000145399"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0800"
@@ -497,6 +561,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "370400440532013000"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("10!n"), 12)
+            {
+                Example = "0532013000"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
                 Example = "37040044"
@@ -522,6 +590,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
                 Example = "00010000000154000100186"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n2!n"), 14)
+            {
+                Example = "0154000100186"
             },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
@@ -553,6 +625,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "00400440116243"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("9!n1!n"), 4)
+            {
+                Example = "0440116243"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0040"
@@ -578,6 +654,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!c20!n"), 4)
             {
                 Example = "BAGR00000001212453611324"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!n"), 8)
+            {
+                Example = "00000001212453611324"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!c"), 4)
             {
@@ -605,6 +685,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "2200221020145685"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("14!n"), 6)
+            {
+                Example = "00221020145685"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "22"
@@ -630,6 +714,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n4!n17!n"), 4)
             {
                 Example = "0019000500000000263180002"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("17!n"), 12)
+            {
+                Example = "00000000263180002"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
@@ -660,6 +748,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n4!n1!n1!n10!n"), 4)
             {
                 Example = "21000418450200051332"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("1!n1!n10!n"), 12)
+            {
+                Example = "450200051332"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
@@ -695,6 +787,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "12345600000785"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("8!n"), 10)
+            {
+                Example = "00000785"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("6!n"), 4)
             {
                 Example = "123456"
@@ -725,6 +821,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "SC123456789012"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!n"), 6)
+            {
+                Example = "123456789012"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("2!a"), 4)
             {
                 Example = "SC"
@@ -750,6 +850,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n9!n1!n"), 4)
             {
                 Example = "64600001631634"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("9!n1!n"), 8)
+            {
+                Example = "0001631634"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
@@ -780,6 +884,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!c2!n"), 4)
             {
                 Example = "20041010050500013M02606"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!c2!n"), 14)
+            {
+                Example = "0500013M02606"
             },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
@@ -819,6 +927,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "NWBK60161331926819"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("8!n"), 14)
+            {
+                Example = "31926819"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NWBK"
@@ -849,6 +961,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "NB0000000101904917"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!n"), 6)
+            {
+                Example = "0000000101904917"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("2!a"), 4)
             {
                 Example = "NB"
@@ -874,6 +990,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a15!c"), 4)
             {
                 Example = "NWBK000000007099453"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("15!c"), 8)
+            {
+                Example = "000000007099453"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -901,6 +1021,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "64710001000206"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("9!n1!n"), 8)
+            {
+                Example = "0001000206"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "6471"
@@ -926,6 +1050,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n4!n16!c"), 4)
             {
                 Example = "01101250000000012300695"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("3!n4!n16!c"), 11)
+            {
+                Example = "0000000012300695"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -957,6 +1085,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "TRAJ01020000001210029690"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!c"), 8)
+            {
+                Example = "01020000001210029690"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!c"), 4)
             {
                 Example = "TRAJ"
@@ -982,6 +1114,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a20!n"), 4)
             {
                 Example = "CABF00000000000250005469"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!n"), 8)
+            {
+                Example = "00000000000250005469"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -1009,6 +1145,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "10010051863000160"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("7!n10!n"), 11)
+            {
+                Example = "1863000160"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("7!n"), 4)
             {
                 Example = "1001005"
@@ -1034,6 +1174,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n4!n1!n15!n1!n"), 4)
             {
                 Example = "117730161111101800000000"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("1!n15!n1!n"), 11)
+            {
+                Example = "61111101800000000"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1065,6 +1209,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "AIBK93115212345678"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("8!n"), 14)
+            {
+                Example = "12345678"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "AIBK"
@@ -1094,6 +1242,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n3!n13!n"), 4)
             {
                 Example = "010800000099999999"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!n"), 10)
+            {
+                Example = "000099999999"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1125,6 +1277,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "NBIQ850123456789012"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!n"), 11)
+            {
+                Example = "123456789012"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "NBIQ"
@@ -1154,6 +1310,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n2!n6!n10!n"), 4)
             {
                 Example = "0159260076545510730339"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("6!n10!n"), 8)
+            {
+                Example = "0076545510730339"
             },
             Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
@@ -1185,6 +1345,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "X0542811101000000123456"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("1!a5!n5!n12!c"), 15)
+            {
+                Example = "000000123456"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 5)
             {
                 Example = "05428"
@@ -1215,13 +1379,17 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "CBJO0010000000000131000302"
             },
-            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 8)
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("18!c"), 12)
+            {
+                Example = "000000000131000302"
+            },
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CBJO"
             },
             Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
-                Example = ""
+                Example = "0010"
             },
             Sepa = new SepaInfo
             {
@@ -1244,6 +1412,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a22!c"), 4)
             {
                 Example = "CBKU0000000000001234560101"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("22!c"), 8)
+            {
+                Example = "0000000000001234560101"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -1271,6 +1443,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "125KZT5004100100"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!c"), 7)
+            {
+                Example = "KZT5004100100"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "125"
@@ -1296,6 +1472,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n20!c"), 4)
             {
                 Example = "099900000001001901229114"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!c"), 8)
+            {
+                Example = "00000001001901229114"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -1323,6 +1503,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "HEMM000100010012001200023015"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("24!c"), 8)
+            {
+                Example = "000100010012001200023015"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "HEMM"
@@ -1348,6 +1532,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("5!n12!c"), 4)
             {
                 Example = "088100002324013AA"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!c"), 9)
+            {
+                Example = "0002324013AA"
             },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
@@ -1375,6 +1563,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "1000011101001000"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n"), 9)
+            {
+                Example = "11101001000"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "10000"
@@ -1400,6 +1592,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n13!c"), 4)
             {
                 Example = "0019400644750000"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!c"), 7)
+            {
+                Example = "9400644750000"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1427,6 +1623,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "BANK0000435195001"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!c"), 8)
+            {
+                Example = "0000435195001"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BANK"
@@ -1452,6 +1652,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n3!n15!n"), 4)
             {
                 Example = "002048000020100120361"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("15!n"), 10)
+            {
+                Example = "000020100120361"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1483,6 +1687,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "11222000010123456789030"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!c2!n"), 14)
+            {
+                Example = "0123456789030"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "11222"
@@ -1513,6 +1721,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "AG000225100013104168"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("18!c"), 6)
+            {
+                Example = "000225100013104168"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("2!c"), 4)
             {
                 Example = "AG"
@@ -1538,6 +1750,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n13!n2!n"), 4)
             {
                 Example = "505000012345678951"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!n2!n"), 7)
+            {
+                Example = "000012345678951"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1565,6 +1781,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "250120000058984"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("10!c2!n"), 7)
+            {
+                Example = "120000058984"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "300"
@@ -1591,6 +1811,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "1234123456789123"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("2!n"), 8)
+            {
+                Example = "123456789123"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "1234"
@@ -1616,6 +1840,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("5!n5!n11!n2!n"), 4)
             {
                 Example = "00020001010000123456753"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n2!n"), 14)
+            {
+                Example = "0000123456753"
             },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
@@ -1647,6 +1875,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "MALT011000012345MTLCAST001S"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("18!c"), 13)
+            {
+                Example = "0012345MTLCAST001S"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "MALT"
@@ -1677,7 +1909,11 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "BOMM0101101030300200000MUR"
             },
-            Bank = new PatternDescriptor(new SwiftPattern("6!c"), 4)
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!n3!n3!a"), 12)
+            {
+                Example = "101030300200000MUR"
+            },
+            Bank = new PatternDescriptor(new SwiftPattern("4!a2!n"), 4)
             {
                 Example = "BOMM01"
             },
@@ -1707,6 +1943,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "BAPR00000013000003558124"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!n"), 8)
+            {
+                Example = "00000013000003558124"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "BAPR"
@@ -1732,6 +1972,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a10!n"), 4)
             {
                 Example = "ABNA0417164300"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("10!n"), 8)
+            {
+                Example = "0417164300"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -1759,6 +2003,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "86011117947"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("6!n1!n"), 8)
+            {
+                Example = "1117947"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "8601"
@@ -1784,6 +2032,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n16!c"), 4)
             {
                 Example = "0180000001299123456"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!c"), 7)
+            {
+                Example = "0000001299123456"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1811,6 +2063,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "SCBL0000001123456702"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("4!a16!c"), 8)
+            {
+                Example = "0000001123456702"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "SCBL"
@@ -1836,6 +2092,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("8!n16!n"), 4)
             {
                 Example = "109010140000071219812874"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("8!n16!n"), 12)
+            {
+                Example = "0000071219812874"
             },
             Branch = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
@@ -1863,6 +2123,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "PALS000000000400123456702"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("21!c"), 8)
+            {
+                Example = "000000000400123456702"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "PALS"
@@ -1888,6 +2152,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n4!n11!n2!n"), 4)
             {
                 Example = "000201231234567890154"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n2!n"), 12)
+            {
+                Example = "1234567890154"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
@@ -1923,6 +2191,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "DOHB00001234567890ABCDEFG"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("21!c"), 8)
+            {
+                Example = "00001234567890ABCDEFG"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "DOHB"
@@ -1948,6 +2220,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a16!c"), 4)
             {
                 Example = "AAAA1B31007593840000"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!c"), 8)
+            {
+                Example = "1B31007593840000"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
@@ -1975,6 +2251,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "260005601001611379"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!n2!n"), 7)
+            {
+                Example = "005601001611379"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "260"
@@ -2001,6 +2281,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "80000000608010167519"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("18!c"), 6)
+            {
+                Example = "000000608010167519"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "80"
@@ -2026,6 +2310,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a2!n2!n16!n3!a"), 4)
             {
                 Example = "SSCB11010000000000001497USD"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!n3!a"), 12)
+            {
+                Example = "0000000000001497USD"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a2!n"), 4)
             {
@@ -2057,6 +2345,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "29010501234001"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!n"), 6)
+            {
+                Example = "010501234001"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
                 Example = "29"
@@ -2082,6 +2374,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("3!n16!n1!n"), 4)
             {
                 Example = "50000000058398257466"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!n1!n"), 7)
+            {
+                Example = "00000058398257466"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -2109,6 +2405,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "263300012039086"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("8!n2!n"), 9)
+            {
+                Example = "0012039086"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "26330"
@@ -2135,6 +2435,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "12000000198742637541"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("6!n10!n"), 8)
+            {
+                Example = "0000198742637541"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "1200"
@@ -2160,6 +2464,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("1!a5!n5!n12!c"), 4)
             {
                 Example = "U0322509800000000270100"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!c"), 15)
+            {
+                Example = "000000270100"
             },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 5)
             {
@@ -2191,6 +2499,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "1000001001000100141"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("12!n"), 11)
+            {
+                Example = "001000100141"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "1000"
@@ -2218,6 +2530,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 Example = "ST23000100010051845310146"
             },
             Bban = new PatternDescriptor(new SwiftPattern("8!n11!n2!n"), 4)
+            {
+                Example = "000100010051845310146"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("11!n2!n"), 12)
             {
                 Example = "000100010051845310146"
             },
@@ -2251,6 +2567,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "CENR00000000000000700025"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("20!n"), 8)
+            {
+                Example = "00000000000000700025"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CENR"
@@ -2277,6 +2597,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "0080012345678910157"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("14!n2!n"), 7)
+            {
+                Example = "0012345678910157"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "008"
@@ -2302,6 +2626,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("2!n3!n13!n2!n"), 4)
             {
                 Example = "10006035183598478831"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("13!n2!n"), 9)
+            {
+                Example = "035183598478831"
             },
             Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
@@ -2333,6 +2661,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "0006100519786457841326"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("1!n16!c"), 9)
+            {
+                Example = "00519786457841326"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("5!n"), 4)
             {
                 Example = "00061"
@@ -2358,6 +2690,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("6!n19!c"), 4)
             {
                 Example = "3223130000026007233566001"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("19!c"), 10)
+            {
+                Example = "0000026007233566001"
             },
             Bank = new PatternDescriptor(new SwiftPattern("6!n"), 4)
             {
@@ -2385,6 +2721,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "001123000012345678"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("15!n"), 7)
+            {
+                Example = "123000012345678"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
                 Example = "001"
@@ -2411,6 +2751,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "VPVG0000012345678901"
             },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("16!n"), 8)
+            {
+                Example = "0000012345678901"
+            },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "VPVG"
@@ -2436,6 +2780,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!n10!n2!n"), 4)
             {
                 Example = "1212012345678906"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("10!n2!n"), 8)
+            {
+                Example = "012345678906"
             },
             Bank = new PatternDescriptor(new SwiftPattern("2!n"), 4)
             {
@@ -2466,6 +2814,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             Bban = new PatternDescriptor(new SwiftPattern("4!a4!n18!c"), 4)
             {
                 Example = "CBYE0001018861234567891234"
+            },
+            BankAccountNumber = new PatternDescriptor(new SwiftPattern("18!c"), 12)
+            {
+                Example = "018861234567891234"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {

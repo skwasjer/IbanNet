@@ -21,6 +21,7 @@ public class SwiftRegistryProviderTests : BaseRegistryProviderSpec<SwiftRegistry
         actual.Should().BeEquivalentTo(expectedIbanCountry);
         actual.Iban.Pattern.ToString().Should().Be(expectedIbanCountry.Iban.Pattern.ToString());
         actual.Bban.Pattern.ToString().Should().Be(expectedIbanCountry.Bban.Pattern.ToString());
+        actual.BankAccountNumber.Pattern.ToString().Should().Be(expectedIbanCountry.BankAccountNumber.Pattern.ToString());
         actual.Bank.Pattern.ToString().Should().Be(expectedIbanCountry.Bank.Pattern.ToString());
         actual.Branch.Pattern.ToString().Should().Be(expectedIbanCountry.Branch.Pattern.ToString());
     }
