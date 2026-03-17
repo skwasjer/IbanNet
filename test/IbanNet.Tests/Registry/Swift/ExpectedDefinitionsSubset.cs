@@ -54,7 +54,7 @@ internal sealed class ExpectedDefinitionsSubset : IEnumerable<object[]>
                 Branch = new PatternDescriptor(new TestPattern("3!n", tokenizer), 8) { Example = "001" },
                 Sepa = new SepaInfo { IsMember = false },
                 DomesticAccountNumberExample = "001000100141",
-                LastUpdatedDate = new DateTimeOffset(2023, 2, 1, 0, 0, 0, TimeSpan.Zero),
+                LastUpdatedDate = new DateTimeOffset(2025, 2, 1, 0, 0, 0, TimeSpan.Zero),
                 EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
             }
         ];
@@ -72,7 +72,7 @@ internal sealed class ExpectedDefinitionsSubset : IEnumerable<object[]>
                 Branch = new PatternDescriptor(new TestPattern("2!n", tokenizer), 6) { Example = "12" },
                 Sepa = new SepaInfo { IsMember = false },
                 DomesticAccountNumberExample = "1212 0123456789 06",
-                LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+                LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero),
                 EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
             }
         ];
