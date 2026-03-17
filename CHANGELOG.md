@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
+- Implement `BankAccountNumber` on Iban type in https://github.com/skwasjer/IbanNet/pull/394
 
 ## v6.1.0
 
