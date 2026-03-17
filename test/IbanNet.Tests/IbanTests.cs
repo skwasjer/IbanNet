@@ -310,7 +310,7 @@ public class IbanTests
 
             // Act & Assert
             iban.Bban.Should().Be(ibanCountry.Bban.Example);
-            iban.BankAccountNumber.Should().Be(ibanCountry.BankAccountNumber.Example);
+            iban.BankAccountNumber.Should().BeNull("no pattern descriptor is available");
             iban.BankIdentifier.Should().BeNull("no pattern descriptor is available");
             iban.BranchIdentifier.Should().BeNull("no pattern descriptor is available");
         }

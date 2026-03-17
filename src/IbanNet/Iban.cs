@@ -81,8 +81,24 @@ public sealed class Iban
     /// <summary>
     /// Gets the bank account number part of the IBAN.
     /// </summary>
-    public string BankAccountNumber  => Extract(Country.BankAccountNumber) ?? Bban.Substring(BankIdentifier?.Length ?? 0 + BranchIdentifier?.Length ?? 0);
-
+    public string? BankAccountNumber
+    {
+        get
+        {
+            var result = Extract(Country.BankAccountNumber);
+            if (result is not null)
+            {
+                return result;
+            }
+            var bankIdentifier = BankIdentifier;
+            var branchIdentifier = BranchIdentifier;
+            if (bankIdentifier is null || branchIdentifier is null)
+            {
+                return null;
+            }
+            return Bban.Substring(bankIdentifier.Length + branchIdentifier.Length);
+        }
+    }
     /// <summary>
     /// Gets the bank identifier, or <see langword="null" /> if bank identifier cannot be extracted.
     /// </summary>
