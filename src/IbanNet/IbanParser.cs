@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using IbanNet.Internal;
 using IbanNet.Registry;
 
@@ -8,7 +7,11 @@ namespace IbanNet;
 /// <summary>
 /// Provides parsing of international bank account numbers into an <see cref="Iban" />.
 /// </summary>
-public sealed class IbanParser : IIbanParser
+public sealed class IbanParser
+    : IIbanParser
+#if USE_SPANS
+      , IIbanSpanParser
+#endif
 {
     private readonly IIbanValidator _ibanValidator;
 
@@ -23,10 +26,7 @@ public sealed class IbanParser : IIbanParser
             throw new ArgumentNullException(nameof(registry));
         }
 
-        _ibanValidator = new IbanValidator(new IbanValidatorOptions
-        {
-            Registry = registry
-        });
+        _ibanValidator = new IbanValidator(new IbanValidatorOptions { Registry = registry });
     }
 
     /// <summary>
@@ -39,12 +39,24 @@ public sealed class IbanParser : IIbanParser
     }
 
     /// <inheritdoc />
+#if USE_SPANS
+    public Iban Parse(string value)
+    {
+        return value is null
+            ? throw new ArgumentNullException(nameof(value))
+            : ((IIbanSpanParser)this).Parse(value);
+    }
+
+    Iban IIbanSpanParser.Parse(ReadOnlySpan<char> value)
+    {
+#else
     public Iban Parse(string value)
     {
         if (value is null)
         {
             throw new ArgumentNullException(nameof(value));
         }
+#endif
 
         if (TryParse(value, out Iban? iban, out ValidationResult validationResult, out Exception? exceptionThrown))
         {
@@ -52,7 +64,7 @@ public sealed class IbanParser : IIbanParser
         }
 
         string errorMessage = validationResult.Error is null || string.IsNullOrEmpty(validationResult.Error.ErrorMessage)
-            ? string.Format(CultureInfo.CurrentCulture, Resources.IbanFormatException_The_value_0_is_not_a_valid_IBAN, value)
+            ? Resources.IbanFormatException_The_value_is_not_a_valid_IBAN
             : validationResult.Error.ErrorMessage;
 
         if (exceptionThrown is not null)
@@ -69,7 +81,16 @@ public sealed class IbanParser : IIbanParser
         return TryParse(value, out iban, out _, out _);
     }
 
-    private bool TryParse(
+
+#if USE_SPANS
+    bool IIbanSpanParser.TryParse(ReadOnlySpan<char> value, [NotNullWhen(true)] out Iban? iban)
+    {
+        return TryParse(value, out iban, out _, out _);
+    }
+#endif
+
+    private bool TryParse
+    (
 #if USE_SPANS
         ReadOnlySpan<char> value,
 #else
@@ -77,6 +98,7 @@ public sealed class IbanParser : IIbanParser
 #endif
         [NotNullWhen(true)] out Iban? iban,
         out ValidationResult validationResult,
+        // ReSharper disable once RedundantNullableFlowAttribute
         [MaybeNullWhen(false)] out Exception? exceptionThrown)
     {
         iban = null;
