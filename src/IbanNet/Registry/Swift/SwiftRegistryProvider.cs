@@ -1,4 +1,5 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -10,9 +11,9 @@ namespace IbanNet.Registry.Swift;
 /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 /// </summary>
 /// <remarks>
-/// Generated from: swift_iban_registry_202412.r99.txt
+/// Generated from: swift_iban_registry_202412.r101.txt
 /// </remarks>
-[GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+[GeneratedCode("SwiftRegistryProviderT4", "1.1-r101")]
 public class SwiftRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -92,7 +93,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1234567890123456",
-            LastUpdatedDate = new DateTimeOffset(2015, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -122,7 +123,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000000235698741",
-            LastUpdatedDate = new DateTimeOffset(2011, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 6, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -148,7 +149,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "BLZ 19043 Kto 234573201",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -480,7 +481,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "19-2000145399/0800",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 6, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1228,7 +1229,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0001310000302",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1254,7 +1255,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1234560101",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1280,7 +1281,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "KZ86 125K ZT50 0410 0100",
-            LastUpdatedDate = new DateTimeOffset(2016, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1306,7 +1307,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "01 001 901229114",
-            LastUpdatedDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1358,7 +1359,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "8810 2324013AA",
-            LastUpdatedDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1384,7 +1385,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1410,7 +1411,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1436,7 +1437,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "LV80 BANK 0000 4351 9500 1",
-            LastUpdatedDate = new DateTimeOffset(2009, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1496,7 +1497,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "0011111000h",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1522,7 +1523,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "000225100013104168",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1556,7 +1557,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         yield return new IbanCountry("MK")
         {
             NativeName = "Северна Македонија",
-            EnglishName = "Macedonia",
+            EnglishName = "North Macedonia",
             Iban = new PatternDescriptor(new Patterns.MK())
             {
                 Example = "MK07250120000058984"
@@ -1574,7 +1575,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "MK07 300 0000000424 25",
-            LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1660,7 +1661,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "12345MTLCAST001S",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1690,7 +1691,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "MU17 BOMM 0101 1010 3030 0200 000M UR",
-            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1794,7 +1795,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000001299123456",
-            LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2024, 3, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2024, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1820,7 +1821,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00260101036360",
-            LastUpdatedDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1846,7 +1847,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "61 1090 1014 0000 0712 1981 2874",
-            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1872,7 +1873,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "400123456702",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1906,7 +1907,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 ]
             },
             DomesticAccountNumberExample = "0002.0123.12345678901.54",
-            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 12, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1958,7 +1959,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "RO49 AAAA 1B31 0075 9384 0000",
-            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1986,6 +1987,36 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             DomesticAccountNumberExample = "260-0056010016113-79",
             LastUpdatedDate = new DateTimeOffset(2017, 3, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
+        };
+
+        // Russian Federation
+        yield return new IbanCountry("RU")
+        {
+            NativeName = "Россия",
+            EnglishName = "Russian Federation",
+            Iban = new PatternDescriptor(new Patterns.RU())
+            {
+                Example = "RU0304452522540817810538091310419"
+            },
+            Bban = new PatternDescriptor(new SwiftPattern("9!n5!n15!c"), 4)
+            {
+                Example = "04452522540817810538091310419"
+            },
+            Bank = new PatternDescriptor(new SwiftPattern("9!n"), 4)
+            {
+                Example = "044525225"
+            },
+            Branch = new PatternDescriptor(new SwiftPattern("5!n"), 13)
+            {
+                Example = "40817"
+            },
+            Sepa = new SepaInfo
+            {
+                IsMember = false
+            },
+            DomesticAccountNumberExample = "810538091310419",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            EffectiveDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
         // Saudi Arabia
@@ -2204,7 +2235,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "001000100141",
-            LastUpdatedDate = new DateTimeOffset(2023, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2342,7 +2373,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2368,7 +2399,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "26007233566001",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2394,7 +2425,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "123000012345678",
-            LastUpdatedDate = new DateTimeOffset(2018, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2420,7 +2451,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00000 12 345 678 901",
-            LastUpdatedDate = new DateTimeOffset(2014, 6, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2450,7 +2481,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1212 0123456789 06",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2014, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -5702,6 +5733,60 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                     && char.IsAsciiDigit(value[pos++])
                     && char.IsAsciiDigit(value[pos++])
                     && char.IsAsciiDigit(value[pos++])
+                    )
+                {
+                    errorPos = null;
+                    return true;
+                }
+
+                errorPos = pos - 1;
+                return false;
+            }
+        }
+
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r101")]
+        internal sealed class RU() : SwiftPattern("RU2!n9!n5!n15!c", 33, true)
+        {
+#if USE_SPANS
+            internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
+#else
+            internal override bool IsMatch(string value, [NotNullWhen(false)] out int? errorPos)
+#endif
+            {
+                int pos = 0;
+                if (value.Length == MaxLength
+                    && value[pos++] == 'R'
+                    && value[pos++] == 'U'
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
+                    && char.IsAsciiLetterOrDigit(value[pos++])
                     )
                 {
                     errorPos = null;
