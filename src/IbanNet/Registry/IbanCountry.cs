@@ -24,6 +24,8 @@ public sealed class IbanCountry
     private readonly PatternDescriptor? _bankPatternDescriptor;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly PatternDescriptor? _branchPatternDescriptor;
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    private readonly PatternDescriptor? _bankAccountNumberPatternDescriptor;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IbanCountry" /> class using specified 2 letter ISO region name.
@@ -124,6 +126,16 @@ public sealed class IbanCountry
     {
         get => _branchPatternDescriptor ?? NullPatternDescriptor;
         init => _branchPatternDescriptor = value;
+    }
+
+    /// <summary>
+    /// Gets the pattern descriptor for the bank account number identifier.
+    /// </summary>
+    [AllowNull]
+    public PatternDescriptor BankAccountNumber
+    {
+        get => _bankAccountNumberPatternDescriptor ?? NullPatternDescriptor;
+        init => _bankAccountNumberPatternDescriptor = value;
     }
 
     /// <summary>
