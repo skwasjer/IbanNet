@@ -7,7 +7,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 2030200359100100,
+    DomesticAccountNumberExample: 200359100100,
     Bban: {
       Position: 4,
       Length: 20,
@@ -193,7 +193,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2015-02-01 +0,
+    LastUpdatedDate: 2025-02-01 +0,
     EffectiveDate: 2011-10-01 +0
   },
   {
@@ -261,17 +261,17 @@
     },
     Bank: {
       Position: 4,
-      Length: 8,
-      Example: 21211009,
+      Length: 3,
+      Example: 212,
       Pattern: {
-        ToString(): 8!n,
+        ToString(): 3!n,
         IsFixedLength: true,
-        MaxLength: 8,
+        MaxLength: 3,
         Tokens: [
           {
             Category: Digit,
             IsFixedLength: true,
-            Length: 8
+            Length: 3
           }
         ]
       }
@@ -279,7 +279,7 @@
     Branch: {
       Position: 7,
       Length: 5,
-      Example: 1100,
+      Example: 11009,
       Pattern: {
         ToString(): 5!n,
         IsFixedLength: true,
@@ -293,7 +293,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2011-04-01 +0,
+    LastUpdatedDate: 2025-06-01 +0,
     EffectiveDate: 2009-04-01 +0
   },
   {
@@ -304,7 +304,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: BLZ 19043 Kto 234573201,
+    DomesticAccountNumberExample: 00234573201,
     Bban: {
       Position: 4,
       Length: 16,
@@ -380,7 +380,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -391,7 +391,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: NABZ00000000137010001944,
+    DomesticAccountNumberExample: 00000000137010001944,
     Bban: {
       Position: 4,
       Length: 24,
@@ -478,7 +478,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 199-044-00012002-79,
+    DomesticAccountNumberExample: 00012002-79,
     Bban: {
       Position: 4,
       Length: 16,
@@ -598,7 +598,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: BE68 5390 0754 7034,
+    DomesticAccountNumberExample: 007547034,
     Bban: {
       Position: 4,
       Length: 12,
@@ -695,7 +695,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
+    DomesticAccountNumberExample: 1020345678,
     Bban: {
       Position: 4,
       Length: 18,
@@ -891,7 +891,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2012-01-01 +0,
+    LastUpdatedDate: 2026-06-01 +0,
     EffectiveDate: 2012-01-01 +0
   },
   {
@@ -1026,7 +1026,7 @@
     Bban: {
       Position: 4,
       Length: 25,
-      Example: 00360305000010009795493P1,
+      Example: 00360305000010009795493C1,
       Pattern: {
         ToString(): 8!n5!n10!n1!a1!c,
         IsFixedLength: true,
@@ -1148,11 +1148,11 @@
     TwoLetterISORegionName: BY,
     DisplayName: Беларусь,
     NativeName: Беларусь,
-    EnglishName: Republic of Belarus,
+    EnglishName: Belarus,
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 3600 0000 0000 0Z00 AB00,
+    DomesticAccountNumberExample: 3600900000002Z00AB00,
     Bban: {
       Position: 4,
       Length: 24,
@@ -1249,7 +1249,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 762 1162-3852.957,
+    DomesticAccountNumberExample: 01162-3852.957,
     Bban: {
       Position: 4,
       Length: 17,
@@ -1340,7 +1340,7 @@
     Bban: {
       Position: 4,
       Length: 18,
-      Example: 15202001026284066,
+      Example: 015202001026284066,
       Pattern: {
         ToString(): 4!n14!n,
         IsFixedLength: true,
@@ -1539,7 +1539,7 @@
       Length: 20,
       Example: 08000000192000145399,
       Pattern: {
-        ToString(): 4!n6!n10!n,
+        ToString(): 4!n16!n,
         IsFixedLength: true,
         MaxLength: 20,
         Tokens: [
@@ -1551,12 +1551,7 @@
           {
             Category: Digit,
             IsFixedLength: true,
-            Length: 6
-          },
-          {
-            Category: Digit,
-            IsFixedLength: true,
-            Length: 10
+            Length: 16
           }
         ]
       }
@@ -1619,7 +1614,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-06-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -1630,7 +1625,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 532013000,
+    DomesticAccountNumberExample: 0532013000,
     Bban: {
       Position: 4,
       Length: 18,
@@ -1837,7 +1832,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 0040 0440116243,
+    DomesticAccountNumberExample: 0440116243,
     Bban: {
       Position: 4,
       Length: 14,
@@ -2021,7 +2016,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 221020145685,
+    DomesticAccountNumberExample: 00221020145685,
     Bban: {
       Position: 4,
       Length: 16,
@@ -2108,7 +2103,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 000263180002,
+    DomesticAccountNumberExample: 00000000263180002,
     Bban: {
       Position: 4,
       Length: 25,
@@ -2218,7 +2213,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 2100 0418 45 0200051332,
+    DomesticAccountNumberExample: 45 0200051332,
     Bban: {
       Position: 4,
       Length: 20,
@@ -2354,7 +2349,7 @@
         AX
       ]
     },
-    DomesticAccountNumberExample: ,
+    DomesticAccountNumberExample: 123 45600000785,
     Bban: {
       Position: 4,
       Length: 14,
@@ -2437,7 +2432,7 @@
     TwoLetterISORegionName: FK,
     DisplayName: Falkland Islands,
     NativeName: Falkland Islands,
-    EnglishName: Falkland Islands,
+    EnglishName: Falkland Islands (Malvinas),
     Sepa: {
       IsMember: false
     },
@@ -2528,7 +2523,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 6460 0001631634,
+    DomesticAccountNumberExample: 0001631634,
     Bban: {
       Position: 4,
       Length: 14,
@@ -2649,7 +2644,7 @@
         MF
       ]
     },
-    DomesticAccountNumberExample: 20041 01005 0500013M026 06,
+    DomesticAccountNumberExample: 01005 0500013M026 06,
     Bban: {
       Position: 4,
       Length: 23,
@@ -2774,7 +2769,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 60-16-13 31926819,
+    DomesticAccountNumberExample: 31926819,
     Bban: {
       Position: 4,
       Length: 18,
@@ -3058,7 +3053,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 6471 0001000206,
+    DomesticAccountNumberExample: 0001000206,
     Bban: {
       Position: 4,
       Length: 14,
@@ -3155,7 +3150,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 01250000000012300695,
+    DomesticAccountNumberExample: 0000000012300695,
     Bban: {
       Position: 4,
       Length: 23,
@@ -3352,7 +3347,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 250005469,
+    DomesticAccountNumberExample: 00000000000250005469,
     Bban: {
       Position: 4,
       Length: 24,
@@ -3439,7 +3434,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 1001005-1863000160,
+    DomesticAccountNumberExample: 1863000160,
     Bban: {
       Position: 4,
       Length: 17,
@@ -3526,7 +3521,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 11773016-11111018-00000000,
+    DomesticAccountNumberExample: 6-11111018-00000000,
     Bban: {
       Position: 4,
       Length: 24,
@@ -3656,7 +3651,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 93-11-52 12345678,
+    DomesticAccountNumberExample: 12345678,
     Bban: {
       Position: 4,
       Length: 18,
@@ -3766,11 +3761,11 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 10-800-99999999,
+    DomesticAccountNumberExample: 0000099999999,
     Bban: {
       Position: 4,
       Length: 19,
-      Example: 010800000099999999,
+      Example: 0108000000099999999,
       Pattern: {
         ToString(): 3!n3!n13!n,
         IsFixedLength: true,
@@ -3986,7 +3981,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 0159-26-007654-551073-0339,
+    DomesticAccountNumberExample: 26-007654-551073-0339,
     Bban: {
       Position: 4,
       Length: 22,
@@ -4106,7 +4101,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: X 05428 11101 000000123456,
+    DomesticAccountNumberExample: 000000123456,
     Bban: {
       Position: 4,
       Length: 23,
@@ -4226,7 +4221,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 0001310000302,
+    DomesticAccountNumberExample: 000000000131000302,
     Bban: {
       Position: 4,
       Length: 26,
@@ -4292,16 +4287,16 @@
       }
     },
     Bank: {
-      Position: 8,
+      Position: 4,
       Length: 4,
       Example: CBJO,
       Pattern: {
-        ToString(): 4!n,
+        ToString(): 4!a,
         IsFixedLength: true,
         MaxLength: 4,
         Tokens: [
           {
-            Category: Digit,
+            Category: UppercaseLetter,
             IsFixedLength: true,
             Length: 4
           }
@@ -4311,7 +4306,7 @@
     Branch: {
       Position: 8,
       Length: 4,
-      Example: ,
+      Example: 0010,
       Pattern: {
         ToString(): 4!n,
         IsFixedLength: true,
@@ -4325,7 +4320,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2014-02-01 +0
   },
   {
@@ -4336,7 +4331,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 1234560101,
+    DomesticAccountNumberExample: 0000000000001234560101,
     Bban: {
       Position: 4,
       Length: 26,
@@ -4412,7 +4407,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2011-01-01 +0
   },
   {
@@ -4423,7 +4418,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: KZ86 125K ZT50 0410 0100,
+    DomesticAccountNumberExample: 125K ZT50 0410 0100,
     Bban: {
       Position: 4,
       Length: 16,
@@ -4499,7 +4494,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-03-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2010-09-01 +0
   },
   {
@@ -4510,7 +4505,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 01 001 901229114,
+    DomesticAccountNumberExample: 0000 0001 0019 0122 9114,
     Bban: {
       Position: 4,
       Length: 24,
@@ -4570,12 +4565,12 @@
       Length: 4,
       Example: 0999,
       Pattern: {
-        ToString(): 4!a,
+        ToString(): 4!n,
         IsFixedLength: true,
         MaxLength: 4,
         Tokens: [
           {
-            Category: UppercaseLetter,
+            Category: Digit,
             IsFixedLength: true,
             Length: 4
           }
@@ -4586,7 +4581,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2010-01-01 +0,
+    LastUpdatedDate: 2016-09-01 +0,
     EffectiveDate: 2010-01-01 +0
   },
   {
@@ -4684,7 +4679,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 8810 2324013AA,
+    DomesticAccountNumberExample: 0002324013AA,
     Bban: {
       Position: 4,
       Length: 17,
@@ -4760,7 +4755,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2012-04-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -4771,7 +4766,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
+    DomesticAccountNumberExample: 11101001000,
     Bban: {
       Position: 4,
       Length: 16,
@@ -4847,7 +4842,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -4858,7 +4853,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: ,
+    DomesticAccountNumberExample: 9400644750000,
     Bban: {
       Position: 4,
       Length: 16,
@@ -4934,7 +4929,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -4945,7 +4940,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: LV80 BANK 0000 4351 9500 1,
+    DomesticAccountNumberExample: BANK 0000 4351 9500 1,
     Bban: {
       Position: 4,
       Length: 17,
@@ -5021,7 +5016,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2009-01-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5142,7 +5137,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 0011111000h,
+    DomesticAccountNumberExample: 01234567890 30,
     Bban: {
       Position: 4,
       Length: 23,
@@ -5251,14 +5246,14 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2008-01-01 +0
   },
   {
     TwoLetterISORegionName: MD,
     DisplayName: Republica Moldova,
     NativeName: Republica Moldova,
-    EnglishName: Moldova,
+    EnglishName: Moldova, Republic of,
     Sepa: {
       IsMember: false
     },
@@ -5338,7 +5333,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2016-01-01 +0
   },
   {
@@ -5442,11 +5437,11 @@
     TwoLetterISORegionName: MK,
     DisplayName: Северна Македонија,
     NativeName: Северна Македонија,
-    EnglishName: Macedonia,
+    EnglishName: North Macedonia,
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: MK07 300 0000000424 25,
+    DomesticAccountNumberExample: 250 0000000424 25,
     Bban: {
       Position: 4,
       Length: 15,
@@ -5514,7 +5509,7 @@
     Bank: {
       Position: 4,
       Length: 3,
-      Example: 300,
+      Example: 250,
       Pattern: {
         ToString(): 3!n,
         IsFixedLength: true,
@@ -5532,7 +5527,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2011-01-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5750,7 +5745,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 12345MTLCAST001S,
+    DomesticAccountNumberExample: 0012345MTLCAST001S,
     Bban: {
       Position: 4,
       Length: 27,
@@ -5849,7 +5844,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -5860,7 +5855,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: MU17 BOMM 0101 1010 3030 0200 000M UR,
+    DomesticAccountNumberExample: BOMM 0101 1010 3030 0200 000M UR,
     Bban: {
       Position: 4,
       Length: 26,
@@ -5960,14 +5955,19 @@
       Length: 6,
       Example: BOMM01,
       Pattern: {
-        ToString(): 6!c,
+        ToString(): 4!a2!n,
         IsFixedLength: true,
         MaxLength: 6,
         Tokens: [
           {
-            Category: AlphaNumeric,
+            Category: UppercaseLetter,
             IsFixedLength: true,
-            Length: 6
+            Length: 4
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 2
           }
         ]
       }
@@ -5989,7 +5989,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2007-04-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -6347,7 +6347,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2024-02-01 +0,
+    LastUpdatedDate: 2024-03-01 +0,
     EffectiveDate: 2024-03-01 +0
   },
   {
@@ -6358,7 +6358,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 00260101036360,
+    DomesticAccountNumberExample: 0000001123456702,
     Bban: {
       Position: 4,
       Length: 20,
@@ -6434,7 +6434,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2012-12-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2012-12-01 +0
   },
   {
@@ -6445,7 +6445,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: 61 1090 1014 0000 0712 1981 2874,
+    DomesticAccountNumberExample: 1090 1014 0000 0712 1981 2874,
     Bban: {
       Position: 4,
       Length: 24,
@@ -6501,13 +6501,9 @@
       }
     },
     Bank: {
-      Example: ,
-      Pattern: null
-    },
-    Branch: {
       Position: 4,
       Length: 8,
-      Example: 10901014,
+      Example: ,
       Pattern: {
         ToString(): 8!n,
         IsFixedLength: true,
@@ -6521,7 +6517,11 @@
         ]
       }
     },
-    LastUpdatedDate: 2016-10-01 +0,
+    Branch: {
+      Example: ,
+      Pattern: null
+    },
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -6532,7 +6532,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 400123456702,
+    DomesticAccountNumberExample: 000000000400123456702,
     Bban: {
       Position: 4,
       Length: 25,
@@ -6608,7 +6608,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-08-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2012-07-01 +0
   },
   {
@@ -6623,7 +6623,7 @@
         MA
       ]
     },
-    DomesticAccountNumberExample: 0002.0123.12345678901.54,
+    DomesticAccountNumberExample: 12345678901,
     Bban: {
       Position: 4,
       Length: 21,
@@ -6716,23 +6716,10 @@
       }
     },
     Branch: {
-      Position: 8,
-      Length: 4,
-      Example: 0123,
-      Pattern: {
-        ToString(): 4!n,
-        IsFixedLength: true,
-        MaxLength: 4,
-        Tokens: [
-          {
-            Category: Digit,
-            IsFixedLength: true,
-            Length: 4
-          }
-        ]
-      }
+      Example: ,
+      Pattern: null
     },
-    LastUpdatedDate: 2024-07-01 +0,
+    LastUpdatedDate: 2025-12-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -6830,7 +6817,7 @@
     Sepa: {
       IsMember: true
     },
-    DomesticAccountNumberExample: RO49 AAAA 1B31 0075 9384 0000,
+    DomesticAccountNumberExample: AAAA 1B31 0075 9384 0000,
     Bban: {
       Position: 4,
       Length: 20,
@@ -6906,7 +6893,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2007-04-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -7014,7 +7001,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 608010167519,
+    DomesticAccountNumberExample: 000000608010167519,
     Bban: {
       Position: 4,
       Length: 20,
@@ -7833,7 +7820,7 @@
         ]
       }
     },
-    LastUpdatedDate: 2023-02-01 +0,
+    LastUpdatedDate: 2025-02-01 +0,
     EffectiveDate: 2023-01-01 +0
   },
   {
@@ -7850,14 +7837,19 @@
       Length: 21,
       Example: 000100010051845310146,
       Pattern: {
-        ToString(): 8!n11!n2!n,
+        ToString(): 4!n4!n11!n2!n,
         IsFixedLength: true,
         MaxLength: 21,
         Tokens: [
           {
             Category: Digit,
             IsFixedLength: true,
-            Length: 8
+            Length: 4
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 4
           },
           {
             Category: Digit,
@@ -7876,7 +7868,7 @@
       Length: 25,
       Example: ST23000100010051845310146,
       Pattern: {
-        ToString(): ST2!n8!n11!n2!n,
+        ToString(): ST2!n4!n4!n11!n2!n,
         IsFixedLength: true,
         MaxLength: 25,
         Tokens: [
@@ -7894,7 +7886,12 @@
           {
             Category: Digit,
             IsFixedLength: true,
-            Length: 8
+            Length: 4
+          },
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 4
           },
           {
             Category: Digit,
@@ -8254,7 +8251,7 @@
     TwoLetterISORegionName: TR,
     DisplayName: Türkiye,
     NativeName: Türkiye,
-    EnglishName: Turkey,
+    EnglishName: Turkiye,
     Sepa: {
       IsMember: false
     },
@@ -8344,7 +8341,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2007-04-01 +0
   },
   {
@@ -8355,7 +8352,7 @@
     Sepa: {
       IsMember: false
     },
-    DomesticAccountNumberExample: 26007233566001,
+    DomesticAccountNumberExample: 0000026007233566001,
     Bban: {
       Position: 4,
       Length: 25,
@@ -8431,14 +8428,14 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2016-09-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2016-02-01 +0
   },
   {
     TwoLetterISORegionName: VA,
     DisplayName: Città del Vaticano,
     NativeName: Città del Vaticano,
-    EnglishName: Vatican City State,
+    EnglishName: Holy See,
     Sepa: {
       IsMember: true
     },
@@ -8518,14 +8515,14 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2018-12-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2019-03-01 +0
   },
   {
     TwoLetterISORegionName: VG,
     DisplayName: British Virgin Islands,
     NativeName: British Virgin Islands,
-    EnglishName: Virgin Islands,
+    EnglishName: Virgin Islands (British),
     Sepa: {
       IsMember: false
     },
@@ -8605,7 +8602,7 @@
       Example: ,
       Pattern: null
     },
-    LastUpdatedDate: 2014-06-01 +0,
+    LastUpdatedDate: 2025-10-01 +0,
     EffectiveDate: 2012-04-01 +0
   },
   {
