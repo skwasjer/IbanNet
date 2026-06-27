@@ -10,9 +10,9 @@ namespace IbanNet.Registry.Swift;
 /// This IBAN registry provider contains IBAN/BBAN/SEPA information for all known IBAN countries.
 /// </summary>
 /// <remarks>
-/// Generated from: swift_iban_registry_202412.r99.txt
+/// Generated from: swift_iban_registry_202606.r102.txt
 /// </remarks>
-[GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+[GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
 public class SwiftRegistryProvider : IIbanRegistryProvider
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -65,7 +65,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "2030200359100100",
+            DomesticAccountNumberExample = "200359100100",
             LastUpdatedDate = new DateTimeOffset(2021, 3, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -92,7 +92,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "1234567890123456",
-            LastUpdatedDate = new DateTimeOffset(2015, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2011, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -109,20 +109,20 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "212110090000000235698741"
             },
-            Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
-                Example = "21211009"
+                Example = "212"
             },
             Branch = new PatternDescriptor(new SwiftPattern("5!n"), 7)
             {
-                Example = "1100"
+                Example = "11009"
             },
             Sepa = new SepaInfo
             {
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000000235698741",
-            LastUpdatedDate = new DateTimeOffset(2011, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 6, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2009, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -147,8 +147,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "BLZ 19043 Kto 234573201",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "00234573201",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -173,7 +173,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "NABZ00000000137010001944",
+            DomesticAccountNumberExample = "00000000137010001944",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2013, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -203,7 +203,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "199-044-00012002-79",
+            DomesticAccountNumberExample = "00012002-79",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -229,7 +229,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "BE68 5390 0754 7034",
+            DomesticAccountNumberExample = "007547034",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -259,7 +259,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "",
+            DomesticAccountNumberExample = "1020345678",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -286,7 +286,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00001299123456",
-            LastUpdatedDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2026, 6, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -331,7 +331,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             Bban = new PatternDescriptor(new SwiftPattern("8!n5!n10!n1!a1!c"), 4)
             {
-                Example = "00360305000010009795493P1"
+                Example = "00360305000010009795493C1"
             },
             Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
@@ -350,11 +350,11 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EffectiveDate = new DateTimeOffset(2013, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Republic of Belarus
+        // Belarus
         yield return new IbanCountry("BY")
         {
             NativeName = "Беларусь",
-            EnglishName = "Republic of Belarus",
+            EnglishName = "Belarus",
             Iban = new PatternDescriptor(new Patterns.BY())
             {
                 Example = "BY13NBRB3600900000002Z00AB00"
@@ -371,7 +371,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "3600 0000 0000 0Z00 AB00",
+            DomesticAccountNumberExample = "3600900000002Z00AB00",
             LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2017, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -397,7 +397,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "762 1162-3852.957",
+            DomesticAccountNumberExample = "01162-3852.957",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -413,7 +413,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             Bban = new PatternDescriptor(new SwiftPattern("4!n14!n"), 4)
             {
-                Example = "15202001026284066"
+                Example = "015202001026284066"
             },
             Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
@@ -467,7 +467,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "CZ6508000000192000145399"
             },
-            Bban = new PatternDescriptor(new SwiftPattern("4!n6!n10!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n16!n"), 4)
             {
                 Example = "08000000192000145399"
             },
@@ -480,7 +480,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "19-2000145399/0800",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 6, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -505,7 +505,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "532013000",
+            DomesticAccountNumberExample = "0532013000",
             LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -561,7 +561,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "0040 0440116243",
+            DomesticAccountNumberExample = "0440116243",
             LastUpdatedDate = new DateTimeOffset(2018, 11, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -613,7 +613,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "221020145685",
+            DomesticAccountNumberExample = "00221020145685",
             LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -643,7 +643,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "000263180002",
+            DomesticAccountNumberExample = "00000000263180002",
             LastUpdatedDate = new DateTimeOffset(2020, 1, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -673,7 +673,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "2100 0418 45 0200051332",
+            DomesticAccountNumberExample = "45 0200051332",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -707,16 +707,16 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                         "AX"
                 ]
             },
-            DomesticAccountNumberExample = "",
+            DomesticAccountNumberExample = "123 45600000785",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2011, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Falkland Islands
+        // Falkland Islands (Malvinas)
         yield return new IbanCountry("FK")
         {
             NativeName = "Falkland Islands",
-            EnglishName = "Falkland Islands",
+            EnglishName = "Falkland Islands (Malvinas)",
             Iban = new PatternDescriptor(new Patterns.FK())
             {
                 Example = "FK88SC123456789012"
@@ -759,7 +759,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "6460 0001631634",
+            DomesticAccountNumberExample = "0001631634",
             LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -797,7 +797,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                         "GF", "GP", "MQ", "YT", "RE", "PM", "BL", "MF"
                 ]
             },
-            DomesticAccountNumberExample = "20041 01005 0500013M026 06",
+            DomesticAccountNumberExample = "01005 0500013M026 06",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -831,7 +831,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "60-16-13 31926819",
+            DomesticAccountNumberExample = "31926819",
             LastUpdatedDate = new DateTimeOffset(2017, 5, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -909,7 +909,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "6471 0001000206",
+            DomesticAccountNumberExample = "0001000206",
             LastUpdatedDate = new DateTimeOffset(2017, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -939,7 +939,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "01250000000012300695",
+            DomesticAccountNumberExample = "0000000012300695",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -991,7 +991,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "250005469",
+            DomesticAccountNumberExample = "00000000000250005469",
             LastUpdatedDate = new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2024, 10, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1017,7 +1017,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "1001005-1863000160",
+            DomesticAccountNumberExample = "1863000160",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1047,7 +1047,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "11773016-11111018-00000000",
+            DomesticAccountNumberExample = "6-11111018-00000000",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1077,7 +1077,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "93-11-52 12345678",
+            DomesticAccountNumberExample = "12345678",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1093,7 +1093,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             Bban = new PatternDescriptor(new SwiftPattern("3!n3!n13!n"), 4)
             {
-                Example = "010800000099999999"
+                Example = "0108000000099999999"
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
@@ -1107,7 +1107,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "10-800-99999999",
+            DomesticAccountNumberExample = "0000099999999",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1167,7 +1167,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "0159-26-007654-551073-0339",
+            DomesticAccountNumberExample = "26-007654-551073-0339",
             LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1197,7 +1197,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "X 05428 11101 000000123456",
+            DomesticAccountNumberExample = "000000123456",
             LastUpdatedDate = new DateTimeOffset(2013, 3, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -1215,20 +1215,20 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "CBJO0010000000000131000302"
             },
-            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 8)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
             {
                 Example = "CBJO"
             },
             Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
             {
-                Example = ""
+                Example = "0010"
             },
             Sepa = new SepaInfo
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "0001310000302",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "000000000131000302",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2014, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1253,8 +1253,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "1234560101",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "0000000000001234560101",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1279,8 +1279,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "KZ86 125K ZT50 0410 0100",
-            LastUpdatedDate = new DateTimeOffset(2016, 3, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "125K ZT50 0410 0100",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2010, 9, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1297,7 +1297,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "099900000001001901229114"
             },
-            Bank = new PatternDescriptor(new SwiftPattern("4!a"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!n"), 4)
             {
                 Example = "0999"
             },
@@ -1305,8 +1305,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "01 001 901229114",
-            LastUpdatedDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "0000 0001 0019 0122 9114",
+            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2010, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1357,8 +1357,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "8810 2324013AA",
-            LastUpdatedDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "0002324013AA",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1383,8 +1383,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "11101001000",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1409,8 +1409,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "9400644750000",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1435,8 +1435,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "LV80 BANK 0000 4351 9500 1",
-            LastUpdatedDate = new DateTimeOffset(2009, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "BANK 0000 4351 9500 1",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1495,16 +1495,16 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "0011111000h",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "01234567890 30",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2008, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Moldova
+        // Moldova, Republic of
         yield return new IbanCountry("MD")
         {
             NativeName = "Republica Moldova",
-            EnglishName = "Moldova",
+            EnglishName = "Moldova, Republic of",
             Iban = new PatternDescriptor(new Patterns.MD())
             {
                 Example = "MD24AG000225100013104168"
@@ -1522,7 +1522,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "000225100013104168",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2016, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1552,11 +1552,11 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Macedonia
+        // North Macedonia
         yield return new IbanCountry("MK")
         {
             NativeName = "Северна Македонија",
-            EnglishName = "Macedonia",
+            EnglishName = "North Macedonia",
             Iban = new PatternDescriptor(new Patterns.MK())
             {
                 Example = "MK07250120000058984"
@@ -1567,14 +1567,14 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             },
             Bank = new PatternDescriptor(new SwiftPattern("3!n"), 4)
             {
-                Example = "300"
+                Example = "250"
             },
             Sepa = new SepaInfo
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "MK07 300 0000000424 25",
-            LastUpdatedDate = new DateTimeOffset(2011, 1, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "250 0000000424 25",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1659,8 +1659,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "12345MTLCAST001S",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "0012345MTLCAST001S",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1677,7 +1677,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "BOMM0101101030300200000MUR"
             },
-            Bank = new PatternDescriptor(new SwiftPattern("6!c"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("4!a2!n"), 4)
             {
                 Example = "BOMM01"
             },
@@ -1689,8 +1689,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "MU17 BOMM 0101 1010 3030 0200 000M UR",
-            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "BOMM 0101 1010 3030 0200 000M UR",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1794,7 +1794,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "0000001299123456",
-            LastUpdatedDate = new DateTimeOffset(2024, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2024, 3, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2024, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1819,8 +1819,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "00260101036360",
-            LastUpdatedDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "0000001123456702",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 12, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1837,16 +1837,16 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "109010140000071219812874"
             },
-            Branch = new PatternDescriptor(new SwiftPattern("8!n"), 4)
+            Bank = new PatternDescriptor(new SwiftPattern("8!n"), 4)
             {
-                Example = "10901014"
+                Example = ""
             },
             Sepa = new SepaInfo
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "61 1090 1014 0000 0712 1981 2874",
-            LastUpdatedDate = new DateTimeOffset(2016, 10, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "1090 1014 0000 0712 1981 2874",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1871,8 +1871,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "400123456702",
-            LastUpdatedDate = new DateTimeOffset(2016, 8, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "000000000400123456702",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1893,10 +1893,6 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "0002"
             },
-            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
-            {
-                Example = "0123"
-            },
             Sepa = new SepaInfo
             {
                 IsMember = true,
@@ -1905,8 +1901,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                         "AZ", "MA"
                 ]
             },
-            DomesticAccountNumberExample = "0002.0123.12345678901.54",
-            LastUpdatedDate = new DateTimeOffset(2024, 7, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "12345678901",
+            LastUpdatedDate = new DateTimeOffset(2025, 12, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -1957,8 +1953,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = true
             },
-            DomesticAccountNumberExample = "RO49 AAAA 1B31 0075 9384 0000",
-            LastUpdatedDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "AAAA 1B31 0075 9384 0000",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2009,7 +2005,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "608010167519",
+            DomesticAccountNumberExample = "000000608010167519",
             LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2016, 7, 1, 0, 0, 0, TimeSpan.Zero)
         };
@@ -2204,7 +2200,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "001000100141",
-            LastUpdatedDate = new DateTimeOffset(2023, 2, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 2, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2217,7 +2213,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "ST23000100010051845310146"
             },
-            Bban = new PatternDescriptor(new SwiftPattern("8!n11!n2!n"), 4)
+            Bban = new PatternDescriptor(new SwiftPattern("4!n4!n11!n2!n"), 4)
             {
                 Example = "000100010051845310146"
             },
@@ -2320,11 +2316,11 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Turkey
+        // Turkiye
         yield return new IbanCountry("TR")
         {
             NativeName = "Türkiye",
-            EnglishName = "Turkey",
+            EnglishName = "Turkiye",
             Iban = new PatternDescriptor(new Patterns.TR())
             {
                 Example = "TR330006100519786457841326"
@@ -2342,7 +2338,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2007, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2367,16 +2363,16 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 IsMember = false
             },
-            DomesticAccountNumberExample = "26007233566001",
-            LastUpdatedDate = new DateTimeOffset(2016, 9, 1, 0, 0, 0, TimeSpan.Zero),
+            DomesticAccountNumberExample = "0000026007233566001",
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2016, 2, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Vatican City State
+        // Holy See
         yield return new IbanCountry("VA")
         {
             NativeName = "Città del Vaticano",
-            EnglishName = "Vatican City State",
+            EnglishName = "Holy See",
             Iban = new PatternDescriptor(new Patterns.VA())
             {
                 Example = "VA59001123000012345678"
@@ -2394,15 +2390,15 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = true
             },
             DomesticAccountNumberExample = "123000012345678",
-            LastUpdatedDate = new DateTimeOffset(2018, 12, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2019, 3, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
-        // Virgin Islands
+        // Virgin Islands (British)
         yield return new IbanCountry("VG")
         {
             NativeName = "British Virgin Islands",
-            EnglishName = "Virgin Islands",
+            EnglishName = "Virgin Islands (British)",
             Iban = new PatternDescriptor(new Patterns.VG())
             {
                 Example = "VG96VPVG0000012345678901"
@@ -2420,7 +2416,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
                 IsMember = false
             },
             DomesticAccountNumberExample = "00000 12 345 678 901",
-            LastUpdatedDate = new DateTimeOffset(2014, 6, 1, 0, 0, 0, TimeSpan.Zero),
+            LastUpdatedDate = new DateTimeOffset(2025, 10, 1, 0, 0, 0, TimeSpan.Zero),
             EffectiveDate = new DateTimeOffset(2012, 4, 1, 0, 0, 0, TimeSpan.Zero)
         };
 
@@ -2488,11 +2484,11 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
         // ReSharper restore CommentTypo
     }
 
-    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+    [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
     private static class Patterns
     {
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class AD() : SwiftPattern("AD2!n4!n4!n12!c", 24, true)
         {
 #if USE_SPANS
@@ -2538,7 +2534,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class AE() : SwiftPattern("AE2!n3!n16!n", 23, true)
         {
 #if USE_SPANS
@@ -2583,7 +2579,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class AL() : SwiftPattern("AL2!n8!n16!c", 28, true)
         {
 #if USE_SPANS
@@ -2633,7 +2629,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class AT() : SwiftPattern("AT2!n5!n11!n", 20, true)
         {
 #if USE_SPANS
@@ -2675,7 +2671,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class AZ() : SwiftPattern("AZ2!n4!a20!c", 28, true)
         {
 #if USE_SPANS
@@ -2725,7 +2721,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BA() : SwiftPattern("BA2!n3!n3!n8!n2!n", 20, true)
         {
 #if USE_SPANS
@@ -2767,7 +2763,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BE() : SwiftPattern("BE2!n3!n7!n2!n", 16, true)
         {
 #if USE_SPANS
@@ -2805,7 +2801,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BG() : SwiftPattern("BG2!n4!a4!n2!n8!c", 22, true)
         {
 #if USE_SPANS
@@ -2849,7 +2845,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BH() : SwiftPattern("BH2!n4!a14!c", 22, true)
         {
 #if USE_SPANS
@@ -2893,7 +2889,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BI() : SwiftPattern("BI2!n5!n5!n11!n2!n", 27, true)
         {
 #if USE_SPANS
@@ -2942,7 +2938,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BR() : SwiftPattern("BR2!n8!n5!n10!n1!a1!c", 29, true)
         {
 #if USE_SPANS
@@ -2993,7 +2989,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class BY() : SwiftPattern("BY2!n4!c4!n16!c", 28, true)
         {
 #if USE_SPANS
@@ -3043,7 +3039,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class CH() : SwiftPattern("CH2!n5!n12!c", 21, true)
         {
 #if USE_SPANS
@@ -3086,7 +3082,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class CR() : SwiftPattern("CR2!n4!n14!n", 22, true)
         {
 #if USE_SPANS
@@ -3130,7 +3126,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class CY() : SwiftPattern("CY2!n3!n5!n16!c", 28, true)
         {
 #if USE_SPANS
@@ -3180,7 +3176,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class CZ() : SwiftPattern("CZ2!n4!n6!n10!n", 24, true)
         {
 #if USE_SPANS
@@ -3226,7 +3222,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class DE() : SwiftPattern("DE2!n8!n10!n", 22, true)
         {
 #if USE_SPANS
@@ -3270,7 +3266,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class DJ() : SwiftPattern("DJ2!n5!n5!n11!n2!n", 27, true)
         {
 #if USE_SPANS
@@ -3319,7 +3315,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class DK() : SwiftPattern("DK2!n4!n9!n1!n", 18, true)
         {
 #if USE_SPANS
@@ -3359,7 +3355,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class DO() : SwiftPattern("DO2!n4!c20!n", 28, true)
         {
 #if USE_SPANS
@@ -3409,7 +3405,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class EE() : SwiftPattern("EE2!n2!n14!n", 20, true)
         {
 #if USE_SPANS
@@ -3451,7 +3447,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class EG() : SwiftPattern("EG2!n4!n4!n17!n", 29, true)
         {
 #if USE_SPANS
@@ -3502,7 +3498,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class ES() : SwiftPattern("ES2!n4!n4!n1!n1!n10!n", 24, true)
         {
 #if USE_SPANS
@@ -3548,7 +3544,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class FI() : SwiftPattern("FI2!n3!n11!n", 18, true)
         {
 #if USE_SPANS
@@ -3588,7 +3584,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class FK() : SwiftPattern("FK2!n2!a12!n", 18, true)
         {
 #if USE_SPANS
@@ -3628,7 +3624,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class FO() : SwiftPattern("FO2!n4!n9!n1!n", 18, true)
         {
 #if USE_SPANS
@@ -3668,7 +3664,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class FR() : SwiftPattern("FR2!n5!n5!n11!c2!n", 27, true)
         {
 #if USE_SPANS
@@ -3717,7 +3713,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class GB() : SwiftPattern("GB2!n4!a6!n8!n", 22, true)
         {
 #if USE_SPANS
@@ -3761,7 +3757,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class GE() : SwiftPattern("GE2!n2!a16!n", 22, true)
         {
 #if USE_SPANS
@@ -3805,7 +3801,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class GI() : SwiftPattern("GI2!n4!a15!c", 23, true)
         {
 #if USE_SPANS
@@ -3850,7 +3846,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class GL() : SwiftPattern("GL2!n4!n9!n1!n", 18, true)
         {
 #if USE_SPANS
@@ -3890,7 +3886,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class GR() : SwiftPattern("GR2!n3!n4!n16!c", 27, true)
         {
 #if USE_SPANS
@@ -3939,7 +3935,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class GT() : SwiftPattern("GT2!n4!c20!c", 28, true)
         {
 #if USE_SPANS
@@ -3989,7 +3985,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class HN() : SwiftPattern("HN2!n4!a20!n", 28, true)
         {
 #if USE_SPANS
@@ -4039,7 +4035,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class HR() : SwiftPattern("HR2!n7!n10!n", 21, true)
         {
 #if USE_SPANS
@@ -4082,7 +4078,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class HU() : SwiftPattern("HU2!n3!n4!n1!n15!n1!n", 28, true)
         {
 #if USE_SPANS
@@ -4132,7 +4128,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class IE() : SwiftPattern("IE2!n4!a6!n8!n", 22, true)
         {
 #if USE_SPANS
@@ -4176,7 +4172,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class IL() : SwiftPattern("IL2!n3!n3!n13!n", 23, true)
         {
 #if USE_SPANS
@@ -4221,7 +4217,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class IQ() : SwiftPattern("IQ2!n4!a3!n12!n", 23, true)
         {
 #if USE_SPANS
@@ -4266,7 +4262,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class IS() : SwiftPattern("IS2!n4!n2!n6!n10!n", 26, true)
         {
 #if USE_SPANS
@@ -4314,7 +4310,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class IT() : SwiftPattern("IT2!n1!a5!n5!n12!c", 27, true)
         {
 #if USE_SPANS
@@ -4363,7 +4359,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class JO() : SwiftPattern("JO2!n4!a4!n18!c", 30, true)
         {
 #if USE_SPANS
@@ -4415,7 +4411,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class KW() : SwiftPattern("KW2!n4!a22!c", 30, true)
         {
 #if USE_SPANS
@@ -4467,7 +4463,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class KZ() : SwiftPattern("KZ2!n3!n13!c", 20, true)
         {
 #if USE_SPANS
@@ -4509,7 +4505,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LB() : SwiftPattern("LB2!n4!n20!c", 28, true)
         {
 #if USE_SPANS
@@ -4559,7 +4555,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LC() : SwiftPattern("LC2!n4!a24!c", 32, true)
         {
 #if USE_SPANS
@@ -4613,7 +4609,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LI() : SwiftPattern("LI2!n5!n12!c", 21, true)
         {
 #if USE_SPANS
@@ -4656,7 +4652,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LT() : SwiftPattern("LT2!n5!n11!n", 20, true)
         {
 #if USE_SPANS
@@ -4698,7 +4694,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LU() : SwiftPattern("LU2!n3!n13!c", 20, true)
         {
 #if USE_SPANS
@@ -4740,7 +4736,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LV() : SwiftPattern("LV2!n4!a13!c", 21, true)
         {
 #if USE_SPANS
@@ -4783,7 +4779,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class LY() : SwiftPattern("LY2!n3!n3!n15!n", 25, true)
         {
 #if USE_SPANS
@@ -4830,7 +4826,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MC() : SwiftPattern("MC2!n5!n5!n11!c2!n", 27, true)
         {
 #if USE_SPANS
@@ -4879,7 +4875,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MD() : SwiftPattern("MD2!n2!c18!c", 24, true)
         {
 #if USE_SPANS
@@ -4925,7 +4921,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class ME() : SwiftPattern("ME2!n3!n13!n2!n", 22, true)
         {
 #if USE_SPANS
@@ -4969,7 +4965,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MK() : SwiftPattern("MK2!n3!n10!c2!n", 19, true)
         {
 #if USE_SPANS
@@ -5010,7 +5006,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MN() : SwiftPattern("MN2!n4!n12!n", 20, true)
         {
 #if USE_SPANS
@@ -5052,7 +5048,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MR() : SwiftPattern("MR2!n5!n5!n11!n2!n", 27, true)
         {
 #if USE_SPANS
@@ -5101,7 +5097,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MT() : SwiftPattern("MT2!n4!a5!n18!c", 31, true)
         {
 #if USE_SPANS
@@ -5154,7 +5150,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class MU() : SwiftPattern("MU2!n4!a2!n2!n12!n3!n3!a", 30, true)
         {
 #if USE_SPANS
@@ -5206,7 +5202,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class NI() : SwiftPattern("NI2!n4!a20!n", 28, true)
         {
 #if USE_SPANS
@@ -5256,7 +5252,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class NL() : SwiftPattern("NL2!n4!a10!n", 18, true)
         {
 #if USE_SPANS
@@ -5296,7 +5292,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class NO() : SwiftPattern("NO2!n4!n6!n1!n", 15, true)
         {
 #if USE_SPANS
@@ -5333,7 +5329,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class OM() : SwiftPattern("OM2!n3!n16!c", 23, true)
         {
 #if USE_SPANS
@@ -5378,7 +5374,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class PK() : SwiftPattern("PK2!n4!a16!c", 24, true)
         {
 #if USE_SPANS
@@ -5424,7 +5420,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class PL() : SwiftPattern("PL2!n8!n16!n", 28, true)
         {
 #if USE_SPANS
@@ -5474,7 +5470,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class PS() : SwiftPattern("PS2!n4!a21!c", 29, true)
         {
 #if USE_SPANS
@@ -5525,7 +5521,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class PT() : SwiftPattern("PT2!n4!n4!n11!n2!n", 25, true)
         {
 #if USE_SPANS
@@ -5572,7 +5568,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class QA() : SwiftPattern("QA2!n4!a21!c", 29, true)
         {
 #if USE_SPANS
@@ -5623,7 +5619,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class RO() : SwiftPattern("RO2!n4!a16!c", 24, true)
         {
 #if USE_SPANS
@@ -5669,7 +5665,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class RS() : SwiftPattern("RS2!n3!n13!n2!n", 22, true)
         {
 #if USE_SPANS
@@ -5713,7 +5709,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SA() : SwiftPattern("SA2!n2!n18!c", 24, true)
         {
 #if USE_SPANS
@@ -5759,7 +5755,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SC() : SwiftPattern("SC2!n4!a2!n2!n16!n3!a", 31, true)
         {
 #if USE_SPANS
@@ -5812,7 +5808,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SD() : SwiftPattern("SD2!n2!n12!n", 18, true)
         {
 #if USE_SPANS
@@ -5852,7 +5848,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SE() : SwiftPattern("SE2!n3!n16!n1!n", 24, true)
         {
 #if USE_SPANS
@@ -5898,7 +5894,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SI() : SwiftPattern("SI2!n5!n8!n2!n", 19, true)
         {
 #if USE_SPANS
@@ -5939,7 +5935,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SK() : SwiftPattern("SK2!n4!n6!n10!n", 24, true)
         {
 #if USE_SPANS
@@ -5985,7 +5981,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SM() : SwiftPattern("SM2!n1!a5!n5!n12!c", 27, true)
         {
 #if USE_SPANS
@@ -6034,7 +6030,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SO() : SwiftPattern("SO2!n4!n3!n12!n", 23, true)
         {
 #if USE_SPANS
@@ -6079,8 +6075,8 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
-        internal sealed class ST() : SwiftPattern("ST2!n8!n11!n2!n", 25, true)
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
+        internal sealed class ST() : SwiftPattern("ST2!n4!n4!n11!n2!n", 25, true)
         {
 #if USE_SPANS
             internal override bool IsMatch(ReadOnlySpan<char> value, [NotNullWhen(false)] out int? errorPos)
@@ -6126,7 +6122,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class SV() : SwiftPattern("SV2!n4!a20!n", 28, true)
         {
 #if USE_SPANS
@@ -6176,7 +6172,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class TL() : SwiftPattern("TL2!n3!n14!n2!n", 23, true)
         {
 #if USE_SPANS
@@ -6221,7 +6217,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class TN() : SwiftPattern("TN2!n2!n3!n13!n2!n", 24, true)
         {
 #if USE_SPANS
@@ -6267,7 +6263,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class TR() : SwiftPattern("TR2!n5!n1!n16!c", 26, true)
         {
 #if USE_SPANS
@@ -6315,7 +6311,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class UA() : SwiftPattern("UA2!n6!n19!c", 29, true)
         {
 #if USE_SPANS
@@ -6366,7 +6362,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class VA() : SwiftPattern("VA2!n3!n15!n", 22, true)
         {
 #if USE_SPANS
@@ -6410,7 +6406,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class VG() : SwiftPattern("VG2!n4!a16!n", 24, true)
         {
 #if USE_SPANS
@@ -6456,7 +6452,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class XK() : SwiftPattern("XK2!n4!n10!n2!n", 20, true)
         {
 #if USE_SPANS
@@ -6498,7 +6494,7 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             }
         }
 
-        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r99")]
+        [GeneratedCode("SwiftRegistryProviderT4", "1.1-r102")]
         internal sealed class YE() : SwiftPattern("YE2!n4!a4!n18!c", 30, true)
         {
 #if USE_SPANS
