@@ -3,6 +3,26 @@
 ## Unreleased
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
+## v6.2.0
+
+### What's Changed
+
+* feat(registry): update SWIFT registry to r102 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/419
+
+#### Chores/CI
+
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 18.0.1 to 18.3.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/398
+* ci(deps): Bump gittools/actions from 4.3.3 to 4.4.2 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/401
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 18.3.0 to 18.4.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/403
+* ci(deps): Bump gittools/actions from 4.4.2 to 4.5.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/405
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 18.4.0 to 18.6.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/410
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 18.6.0 to 18.7.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/417
+* test: remove redundant tests by @skwasjer in https://github.com/skwasjer/IbanNet/pull/418
+* chore: SWIFT code gen cleanup by @skwasjer in https://github.com/skwasjer/IbanNet/pull/420
+
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v6.1.0...v6.2.0
+
 ## v6.1.0
 
 ### What's Changed
