@@ -4,7 +4,7 @@ using TestHelpers.Specs;
 namespace IbanNet.Registry;
 
 public abstract class BaseRegistryProviderSpec<T> : AsyncSpec<T>
-    where T : IIbanRegistryProvider
+    where T : IIbanRegistryProvider, new()
 {
     private readonly int _expectedCount;
 
@@ -16,6 +16,11 @@ public abstract class BaseRegistryProviderSpec<T> : AsyncSpec<T>
     protected override Task GivenAsync()
     {
         return Task.CompletedTask;
+    }
+
+    protected override Task<T> CreateSubjectAsync()
+    {
+        return Task.FromResult(new T());
     }
 
     [Fact]

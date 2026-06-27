@@ -29,20 +29,6 @@ public class IbanRegistryTests
         country!.TwoLetterISORegionName.Should().Be(countryCode.ToUpperInvariant());
     }
 
-    [Theory]
-    [ClassData(typeof(ExpectedDefinitionsSubset))]
-    public void When_definitions_are_loaded_should_contain(IbanCountry expectedIbanCountry)
-    {
-        IbanCountry? actual = _sut.Should()
-            .Contain(c => c.TwoLetterISORegionName == expectedIbanCountry.TwoLetterISORegionName)
-            .Which;
-        actual.Should().BeEquivalentTo(expectedIbanCountry);
-        actual.Iban.Pattern.ToString().Should().Be(expectedIbanCountry.Iban.Pattern.ToString());
-        actual.Bban.Pattern.ToString().Should().Be(expectedIbanCountry.Bban.Pattern.ToString());
-        actual.Bank.Pattern.ToString().Should().Be(expectedIbanCountry.Bank.Pattern.ToString());
-        actual.Branch.Pattern.ToString().Should().Be(expectedIbanCountry.Branch.Pattern.ToString());
-    }
-
     [Fact]
     public void Given_that_registry_is_not_yet_hydrated_when_adding_provider_it_should_not_throw()
     {

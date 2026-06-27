@@ -5,9 +5,4 @@ public class WikipediaRegistryProviderTests : BaseRegistryProviderSpec<Wikipedia
     public WikipediaRegistryProviderTests() : base(110)
     {
     }
-
-    protected override Task<WikipediaRegistryProvider> CreateSubjectAsync()
-    {
-        return Task.FromResult(new WikipediaRegistryProvider());
-    }
 }
