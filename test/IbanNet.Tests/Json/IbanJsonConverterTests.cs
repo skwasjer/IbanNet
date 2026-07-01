@@ -1,4 +1,5 @@
 ﻿#if NET5_0_OR_GREATER
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using IbanNet.Registry;
@@ -108,9 +109,8 @@ public class IbanJsonConverterTests
 
     public static IEnumerable<object?[]> WriterNullArgTestCases()
     {
-        var parser = new IbanParser(IbanRegistry.Default);
         var writer = new Utf8JsonWriter(Stream.Null);
-        Iban value = parser.Parse("NL91 ABNA 0417 1643 00");
+        object value = RuntimeHelpers.GetUninitializedObject(typeof(Iban));
         yield return [null, value, nameof(writer)];
         yield return [writer, null, nameof(value)];
     }
