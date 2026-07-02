@@ -21,11 +21,18 @@ public class Mod9710Benchmark
         ];
     }
 
+    [Benchmark(Baseline = true)]
+    [ArgumentsSource(nameof(TestCases))]
+    public int Test(TestCase buffer)
+    {
+        return Mod9710.Compute(buffer.Buffer);
+    }
+
     [Benchmark]
     [ArgumentsSource(nameof(TestCases))]
-    public void Test(TestCase buffer)
+    public int Alt(TestCase buffer)
     {
-        Mod9710.Compute(buffer.Buffer);
+        return AltMod.Mod97(buffer.Buffer);
     }
 
     public sealed class TestCase
