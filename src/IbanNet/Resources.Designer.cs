@@ -19,7 +19,7 @@ namespace IbanNet {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -178,11 +178,11 @@ namespace IbanNet {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not a valid IBAN..
+        ///   Looks up a localized string similar to The value is not a valid IBAN..
         /// </summary>
-        internal static string IbanFormatException_The_value_0_is_not_a_valid_IBAN {
+        internal static string IbanFormatException_The_value_is_not_a_valid_IBAN {
             get {
-                return ResourceManager.GetString("IbanFormatException_The_value_0_is_not_a_valid_IBAN", resourceCulture);
+                return ResourceManager.GetString("IbanFormatException_The_value_is_not_a_valid_IBAN", resourceCulture);
             }
         }
         
