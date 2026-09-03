@@ -14,7 +14,7 @@ public static class SwissIbanExtensions
     /// </para>
     /// <para>
     /// The formal definition of IID, QR-IID and QR-IBAN can be found in the
-    /// [Swiss Implementation Guidelines for the QR-bill](https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf).
+    /// <a href="https://www.six-group.com/dam/download/banking-services/standardization/qr-bill/ig-qr-bill-v2.3-en.pdf">Swiss Implementation Guidelines for the QR-bill</a> at § 2.8 and 2.10.
     /// </para>
     /// <param name="iban">The iban.</param>
     /// <example>
