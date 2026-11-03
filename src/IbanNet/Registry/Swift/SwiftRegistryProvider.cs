@@ -1893,6 +1893,10 @@ public class SwiftRegistryProvider : IIbanRegistryProvider
             {
                 Example = "0002"
             },
+            Branch = new PatternDescriptor(new SwiftPattern("4!n"), 8)
+            {
+                Example = "0123"
+            },
             Sepa = new SepaInfo
             {
                 IsMember = true,
