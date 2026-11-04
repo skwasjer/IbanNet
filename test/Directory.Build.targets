@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
 
-    <MicrosoftNetTestSdk>18.8.1</MicrosoftNetTestSdk>
+    <MicrosoftNetTestSdk>18.10.1</MicrosoftNetTestSdk>
   </PropertyGroup>
 
   <ItemGroup>
