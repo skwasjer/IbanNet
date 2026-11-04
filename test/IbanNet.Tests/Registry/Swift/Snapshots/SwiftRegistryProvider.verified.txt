@@ -6716,8 +6716,21 @@
       }
     },
     Branch: {
-      Example: ,
-      Pattern: null
+      Position: 8,
+      Length: 4,
+      Example: 0123,
+      Pattern: {
+        ToString(): 4!n,
+        IsFixedLength: true,
+        MaxLength: 4,
+        Tokens: [
+          {
+            Category: Digit,
+            IsFixedLength: true,
+            Length: 4
+          }
+        ]
+      }
     },
     LastUpdatedDate: 2025-12-01 +0,
     EffectiveDate: 2007-04-01 +0

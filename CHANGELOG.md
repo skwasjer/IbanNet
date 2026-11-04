@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Fix missing branch identifier for Portugal (PT) after the SWIFT registry update to r102 in https://github.com/skwasjer/IbanNet/issues/448
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
 
 ## v6.2.0
