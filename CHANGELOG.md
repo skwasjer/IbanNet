@@ -1,8 +1,37 @@
 # Changelog
 
 ## Unreleased
-- Fix missing branch identifier for Portugal (PT) after the SWIFT registry update to r102 in https://github.com/skwasjer/IbanNet/issues/448
+
 - Implement `IParsable<TSelf>` on Iban type in https://github.com/skwasjer/IbanNet/pull/138
+
+## v6.2.1
+
+### What's Changed
+
+* fix(registry): restore branch identifier for Portugal (PT) by @fabio-andre-rodrigues in https://github.com/skwasjer/IbanNet/pull/449. Regression introduced in v6.2.0.
+* Update the link to "Swiss Implementation Guidelines for the QR-bill" by @0xced in https://github.com/skwasjer/IbanNet/pull/440
+
+#### Chores
+
+* test: use uninitialized object instead of parsing by @skwasjer in https://github.com/skwasjer/IbanNet/pull/422
+* ci(deps): Bump actions/cache from 5 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/421
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 18.7.0 to 18.8.1 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/426
+* ci(deps): Bump the git-tools group with 2 updates by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/432
+* ci(deps): Bump actions/setup-dotnet from 5 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/430
+* ci(deps): Bump actions/setup-node from 6 to 7 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/431
+* ci(deps): update to Java 25 by @skwasjer in https://github.com/skwasjer/IbanNet/pull/433
+* chore(deps): Bump BenchmarkDotNet.Diagnostics.Windows from 0.15.7 to 0.15.8 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/380
+* ci(deps): Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/416
+* chore(deps): Bump NSubstitute from 5.3.0 to 6.2.0 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/436
+* ci(deps): Bump actions/setup-java from 5 to 6 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/441
+* chore(deps): Bump Microsoft.NET.Test.Sdk from 18.8.1 to 18.10.1 by @dependabot[bot] in https://github.com/skwasjer/IbanNet/pull/445
+* ci(nuget): transition to Trusted Publishing (remove API key) by @skwasjer in https://github.com/skwasjer/IbanNet/pull/450
+* ci(actions): pin all actions to commit SHA by @skwasjer in https://github.com/skwasjer/IbanNet/pull/451
+
+## New Contributors
+* @fabio-andre-rodrigues made their first contribution in https://github.com/skwasjer/IbanNet/pull/449
+
+**Full Changelog**: https://github.com/skwasjer/IbanNet/compare/v6.2.0...v6.2.1
 
 ## v6.2.0
 

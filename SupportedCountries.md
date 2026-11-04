@@ -21,7 +21,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | BH | Bahrain | 22 | `BH67 BMAG 0000 1299 1234 56` | No | ![Supported][supported] | - |
 | BI | Burundi | 27 | `BI42 1000 0100 0100 0033 2045 181` | No | ![Supported][supported] | ![Supported][supported] |
 | BR | Brazil | 29 | `BR18 0036 0305 0000 1000 9795 493C 1` | No | ![Supported][supported] | ![Supported][supported] |
-| BY | Republic of Belarus | 28 | `BY13 NBRB 3600 9000 0000 2Z00 AB00` | No | ![Supported][supported] | - |
+| BY | Belarus | 28 | `BY13 NBRB 3600 9000 0000 2Z00 AB00` | No | ![Supported][supported] | - |
 | CH | Switzerland | 21 | `CH93 0076 2011 6238 5295 7` | Yes | ![Supported][supported] | - |
 | CR | Costa Rica | 22 | `CR05 0152 0200 1026 2840 66` | No | ![Supported][supported] | - |
 | CY | Cyprus | 28 | `CY17 0020 0128 0000 0012 0052 7600` | Yes | ![Supported][supported] | ![Supported][supported] |
@@ -34,7 +34,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | EG | Egypt | 29 | `EG38 0019 0005 0000 0000 2631 8000 2` | No | ![Supported][supported] | ![Supported][supported] |
 | ES | Spain | 24 | `ES91 2100 0418 4502 0005 1332` | Yes | ![Supported][supported] | ![Supported][supported] |
 | FI | Finland | 18 | `FI21 1234 5600 0007 85` | Yes | ![Supported][supported] | - |
-| FK | Falkland Islands | 18 | `FK88 SC12 3456 7890 12` | No | ![Supported][supported] | - |
+| FK | Falkland Islands (Malvinas) | 18 | `FK88 SC12 3456 7890 12` | No | ![Supported][supported] | - |
 | FO | Faroe Islands | 18 | `FO62 6460 0001 6316 34` | No | ![Supported][supported] | - |
 | FR | France | 27 | `FR14 2004 1010 0505 0001 3M02 606` | Yes | ![Supported][supported] | ![Supported][supported] |
 | GB | United Kingdom | 22 | `GB29 NWBK 6016 1331 9268 19` | Yes | ![Supported][supported] | ![Supported][supported] |
@@ -62,9 +62,9 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | LV | Latvia | 21 | `LV80 BANK 0000 4351 9500 1` | Yes | ![Supported][supported] | - |
 | LY | Libya | 25 | `LY83 0020 4800 0020 1001 2036 1` | No | ![Supported][supported] | ![Supported][supported] |
 | MC | Monaco | 27 | `MC58 1122 2000 0101 2345 6789 030` | Yes | ![Supported][supported] | ![Supported][supported] |
-| MD | Moldova | 24 | `MD24 AG00 0225 1000 1310 4168` | No | ![Supported][supported] | - |
+| MD | Moldova, Republic of | 24 | `MD24 AG00 0225 1000 1310 4168` | No | ![Supported][supported] | - |
 | ME | Montenegro | 22 | `ME25 5050 0001 2345 6789 51` | No | ![Supported][supported] | - |
-| MK | Macedonia | 19 | `MK07 2501 2000 0058 984` | No | ![Supported][supported] | - |
+| MK | North Macedonia | 19 | `MK07 2501 2000 0058 984` | No | ![Supported][supported] | - |
 | MN | Mongolia | 20 | `MN12 1234 1234 5678 9123` | No | ![Supported][supported] | - |
 | MR | Mauritania | 27 | `MR13 0002 0001 0100 0012 3456 753` | No | ![Supported][supported] | ![Supported][supported] |
 | MT | Malta | 31 | `MT84 MALT 0110 0001 2345 MTLC AST0 01S` | Yes | ![Supported][supported] | ![Supported][supported] |
@@ -74,7 +74,7 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | NO | Norway | 15 | `NO93 8601 1117 947` | Yes | ![Supported][supported] | - |
 | OM | Oman | 23 | `OM81 0180 0000 0129 9123 456` | No | ![Supported][supported] | - |
 | PK | Pakistan | 24 | `PK36 SCBL 0000 0011 2345 6702` | No | ![Supported][supported] | - |
-| PL | Poland | 28 | `PL61 1090 1014 0000 0712 1981 2874` | Yes | - | ![Supported][supported] |
+| PL | Poland | 28 | `PL61 1090 1014 0000 0712 1981 2874` | Yes | ![Supported][supported] | - |
 | PS | Palestine, State of | 29 | `PS92 PALS 0000 0000 0400 1234 5670 2` | No | ![Supported][supported] | - |
 | PT | Portugal | 25 | `PT50 0002 0123 1234 5678 9015 4` | Yes | ![Supported][supported] | ![Supported][supported] |
 | QA | Qatar | 29 | `QA58 DOHB 0000 1234 5678 90AB CDEF G` | No | ![Supported][supported] | - |
@@ -92,10 +92,10 @@ See the [SWIFT website](https://www.swift.com/standards/data-standards/iban-inte
 | SV | El Salvador | 28 | `SV62 CENR 0000 0000 0000 0070 0025` | No | ![Supported][supported] | - |
 | TL | Timor-Leste | 23 | `TL38 0080 0123 4567 8910 157` | No | ![Supported][supported] | - |
 | TN | Tunisia | 24 | `TN59 1000 6035 1835 9847 8831` | No | ![Supported][supported] | ![Supported][supported] |
-| TR | Turkey | 26 | `TR33 0006 1005 1978 6457 8413 26` | No | ![Supported][supported] | - |
+| TR | Turkiye | 26 | `TR33 0006 1005 1978 6457 8413 26` | No | ![Supported][supported] | - |
 | UA | Ukraine | 29 | `UA21 3223 1300 0002 6007 2335 6600 1` | No | ![Supported][supported] | - |
-| VA | Vatican City State | 22 | `VA59 0011 2300 0012 3456 78` | Yes | ![Supported][supported] | - |
-| VG | Virgin Islands | 24 | `VG96 VPVG 0000 0123 4567 8901` | No | ![Supported][supported] | - |
+| VA | Holy See | 22 | `VA59 0011 2300 0012 3456 78` | Yes | ![Supported][supported] | - |
+| VG | Virgin Islands (British) | 24 | `VG96 VPVG 0000 0123 4567 8901` | No | ![Supported][supported] | - |
 | XK | Kosovo | 20 | `XK05 1212 0123 4567 8906` | No | ![Supported][supported] | ![Supported][supported] |
 | YE | Yemen | 30 | `YE15 CBYE 0001 0188 6123 4567 8912 34` | No | ![Supported][supported] | ![Supported][supported] |
 
