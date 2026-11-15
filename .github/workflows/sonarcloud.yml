@@ -13,7 +13,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   DOTNET_NOLOGO: true
   dotnet-version: |
-    10.0.x
+    10.0.403
     9.0.x
     8.0.x
 
@@ -24,13 +24,13 @@ jobs:
       ${{ (github.event_name == 'pull_request_target' &&
       github.event.pull_request.head.repo.full_name != github.repository) &&
       'external' || 'internal' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: echo ✓
 
   analysis:
     needs: authorize
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
         with:
